@@ -4,7 +4,7 @@ import {
   theme,
 } from "@chakra-ui/react"
 import { AnimatePresence } from "framer-motion"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
+// import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import AppRouter from "./AppRouter"
 
 export const App = () => (
