@@ -69,6 +69,10 @@ const RegisterMaba: React.FC = () => {
           px={10}
           m={20}
           rounded={25}
+          style={{
+            WebkitBackdropFilter: "blur(4px)",
+            backdropFilter: "blur(4px)",
+          }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
