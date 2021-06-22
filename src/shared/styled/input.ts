@@ -50,6 +50,9 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
       color: #cbd5e0;
     }
   }
+  & Input::-ms-reveal {
+    display: none !important;
+  }
   & div {
     height: 45px !important;
     background-color: ${(props) =>

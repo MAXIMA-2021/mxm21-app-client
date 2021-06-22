@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -51,8 +51,11 @@ const RegisterMaba: React.FC = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+  const password = useRef({});
+  password.current = watch("password", "");
   const onSubmit = (data: any) => {
     window.confirm(JSON.stringify(data));
   };
@@ -102,9 +105,20 @@ const RegisterMaba: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5">
+              <FormControl mb={3} mr="5" isInvalid={errors.nama}>
                 <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
-                <MxmInput placeholder="Nama" />
+                <MxmInput
+                  placeholder="Nama"
+                  {...register("nama", { required: "Tidak boleh kosong" })}
+                />
+                <FormErrorMessage>
+                  {errors.nama && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.nama.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors.nimMahasiswa} mb={3} w="30%">
                 <MxmFormLabel>NIM Anda</MxmFormLabel>
@@ -144,23 +158,66 @@ const RegisterMaba: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5">
+              <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
                 <MxmFormLabel>Tempat Lahir</MxmFormLabel>
-                <MxmInput placeholder="Tempat Lahir" />
+                <MxmInput
+                  placeholder="Tempat Lahir"
+                  {...register("tempatLahir", {
+                    required: "Tidak boleh kosong",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.tempatLahir && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.tempatLahir.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} mr="5" w="60%">
+              <FormControl
+                mb={3}
+                mr="5"
+                w="60%"
+                isInvalid={errors.tanggalLahir}
+              >
                 <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
-                <MxmInput type="date" />
+                <MxmInput
+                  type="date"
+                  {...register("tanggalLahir", {
+                    required: "Tidak boleh kosong",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.tanggalLahir && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.tanggalLahir.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} w="50%">
+              <FormControl mb={3} w="50%" isInvalid={errors.jenisKelamin}>
                 <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
-                <MxmSelect>
+                <MxmSelect
+                  {...register("jenisKelamin", {
+                    required: "Pilih jenis kelamin kamu",
+                  })}
+                >
                   <option value="" selected disabled hidden>
                     Pilih Jenis Kelamin
                   </option>
                   <option value="laki-laki">Laki-laki</option>
                   <option value="perempuan">Perempuan</option>
                 </MxmSelect>
+                <FormErrorMessage>
+                  {errors.jenisKelamin && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.jenisKelamin.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
             </Flex>
             <Flex
@@ -172,9 +229,14 @@ const RegisterMaba: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5" w="60%">
+              <FormControl mb={3} mr="5" w="60%" isInvalid={errors.prodi}>
                 <MxmFormLabel>Program Studi</MxmFormLabel>
-                <MxmSelect backgroundColor="white">
+                <MxmSelect
+                  backgroundColor="white"
+                  {...register("prodi", {
+                    required: "Pilih program studi",
+                  })}
+                >
                   <option value="" selected disabled hidden>
                     Pilih Program Studi
                   </option>
@@ -196,10 +258,23 @@ const RegisterMaba: React.FC = () => {
                   <option value="Akuntansi">Akuntansi</option>
                   <option value="Perhotelan">Perhotelan</option>
                 </MxmSelect>
+                <FormErrorMessage>
+                  {errors.prodi && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.prodi.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} mr="5" w="40%">
+              <FormControl mb={3} mr="5" w="40%" isInvalid={errors.angkatan}>
                 <MxmFormLabel>Angkatan</MxmFormLabel>
-                <MxmSelect backgroundColor="white">
+                <MxmSelect
+                  backgroundColor="white"
+                  {...register("angkatan", {
+                    required: "Pilih angkatan kamu",
+                  })}
+                >
                   <option value="" selected disabled hidden>
                     Pilih Angkatan
                   </option>
@@ -208,13 +283,38 @@ const RegisterMaba: React.FC = () => {
                   <option value="2019">2019</option>
                   <option value="2018">2018</option>
                 </MxmSelect>
+                <FormErrorMessage>
+                  {errors.angkatan && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.angkatan.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} isInvalid={errors.email}>
                 <MxmFormLabel>Email Student</MxmFormLabel>
                 <MxmInputGroup addon="right">
-                  <Input placeholder="Masukkan email kamu" />
+                  <Input
+                    placeholder="Masukkan email kamu"
+                    {...register("email", {
+                      required: "Tidak boleh kosong",
+                      pattern: {
+                        value: /^[^@]+$/g,
+                        message: "Alamat email tidak perlu mencantumkan domain",
+                      },
+                    })}
+                  />
                   <InputRightAddon children="@student.umn.ac.id" />
                 </MxmInputGroup>
+                <FormErrorMessage>
+                  {errors.email && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.email.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
             </Flex>
             <Flex
@@ -226,17 +326,119 @@ const RegisterMaba: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5">
+              <FormControl mb={3} mr="5" isInvalid={errors.whatsApp}>
                 <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
-                <MxmInput type="number" placeholder="Nomor WhatsApp" />
+                <MxmInput
+                  type="number"
+                  placeholder="Nomor WhatsApp"
+                  {...register("whatsApp", {
+                    required: "Tidak boleh kosong",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.whatsApp && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.whatsApp.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} mr="5">
+              <FormControl mb={3} mr="5" isInvalid={errors.idLine}>
                 <MxmFormLabel>ID LINE</MxmFormLabel>
-                <MxmInput placeholder="Id LINE" />
+                <MxmInput
+                  placeholder="Id LINE"
+                  {...register("idLine", {
+                    required: "Tidak boleh kosong",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.idLine && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.idLine.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} isInvalid={errors.usernameIG}>
                 <MxmFormLabel>Username Instagram</MxmFormLabel>
-                <MxmInput placeholder="Username Instagram" />
+                <MxmInput
+                  placeholder="Username Instagram"
+                  {...register("usernameIG", {
+                    required: "Tidak boleh kosong",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.usernameIG && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.usernameIG.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
+              </FormControl>
+            </Flex>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <FormControl isInvalid={errors.password} mb={3} mr="5">
+                <MxmFormLabel>Masukkan Kata Sandi</MxmFormLabel>
+                <MxmInputGroup>
+                  <Input
+                    placeholder="Masukkan kata sandi kamu"
+                    {...register("password", {
+                      required: "Tidak boleh kosong",
+                      minLength: {
+                        value: 8,
+                        message: "Kata sandi minimal 8 karakter",
+                      },
+                    })}
+                    pr="4.5rem"
+                    type={show ? "text" : "password"}
+                  />
+                  <InputRightElement>
+                    <Button size="sm" onClick={handleClick}>
+                      {show ? <IconHidePassword /> : <IconShowPassword />}
+                    </Button>
+                  </InputRightElement>
+                </MxmInputGroup>
+                <FormErrorMessage>
+                  {errors.password && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.password.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
+                <MxmFormLabel>Konfirmasi Kata Sandi</MxmFormLabel>
+                <MxmInputGroup>
+                  <Input
+                    type="password"
+                    placeholder="Masukkan kata sandi Anda"
+                    {...register("konfirmasiPassword", {
+                      required: "Tidak boleh kosong",
+                      validate: (value) =>
+                        value === password.current || "Kata sandi tidak sama",
+                    })}
+                  />
+                </MxmInputGroup>
+                <FormErrorMessage>
+                  {errors.konfirmasiPassword && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.konfirmasiPassword.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
               </FormControl>
             </Flex>
             <MxmButton variant="desktop" colorScheme="cyan-navy">
