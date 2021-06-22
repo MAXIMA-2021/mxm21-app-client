@@ -30,8 +30,9 @@ import {
   MxmInputGroup,
   MxmFormLabel,
 } from "../../../shared/styled/input";
-import { MxmLogo, MxmLogoText } from "../../../assets";
 import { MxmContainers } from "../../../shared/styled/containers";
+import { MxmButton } from "../../../shared/styled/buttons";
+import { MxmLogo, MxmLogoText } from "../../../assets";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -60,7 +61,12 @@ const RegisterMaba: React.FC = () => {
   return (
     <MxmContainers>
       <Flex height="100vh" alignItems="center" justifyContent="center">
-        <Flex direction="column" background="#41ceba" p={12} rounded={6}>
+        <Flex
+          direction="column"
+          background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
+          p={12}
+          rounded={6}
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
               <Heading mb={3} color="white">
@@ -80,6 +86,7 @@ const RegisterMaba: React.FC = () => {
               style={{ border: "2px solid white" }}
               mb={3}
             />
+
             <Grid templateColumns="repeat(2, 1fr)" gap={6}>
               <FormControl mb={3}>
                 <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
@@ -194,9 +201,9 @@ const RegisterMaba: React.FC = () => {
                 <MxmInput placeholder="Username Instagram" />
               </FormControl>
             </Grid>
-            <Button colorScheme="linkedin" type="submit">
+            <MxmButton variant="desktop" colorScheme="cyan-navy">
               Daftar
-            </Button>
+            </MxmButton>
           </form>
         </Flex>
       </Flex>

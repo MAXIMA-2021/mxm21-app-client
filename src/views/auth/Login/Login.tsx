@@ -21,6 +21,7 @@ import {
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
 import { MxmContainers } from "../../../shared/styled/containers";
+import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import "./Login.scss";
 
@@ -51,13 +52,18 @@ const Login: React.FC = () => {
   return (
     <MxmContainers>
       <Flex height="100vh" alignItems="center" justifyContent="center">
-        <Flex direction="column" background="#41ceba" p={12} rounded={6}>
+        <Flex
+          direction="column"
+          background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
+          p={12}
+          rounded={6}
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
               <Heading mb={3} color="white">
                 Masuk
               </Heading>
-              <Spacer/>
+              <Spacer />
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
@@ -66,12 +72,15 @@ const Login: React.FC = () => {
                 my={4}
               />
             </Flex>
-            <Divider colorScheme="whiteAlpha" style={{border: "2px solid white"}}/>
+            <Divider
+              colorScheme="whiteAlpha"
+              style={{ border: "2px solid white" }}
+            />
             <Center>
               <Image
                 src={MxmLogoText}
                 alt="Logo MAXIMA 2021"
-                className="img-responsive" 
+                className="img-responsive"
                 my={6}
               />
             </Center>
@@ -86,7 +95,7 @@ const Login: React.FC = () => {
                       value: 5,
                       message: "Input harus 5 angka",
                     },
-                    maxLength: {  
+                    maxLength: {
                       value: 5,
                       message: "Input harus 5 angka",
                     },
@@ -125,9 +134,9 @@ const Login: React.FC = () => {
                 )}
               </FormErrorMessage>
             </FormControl>
-            <Button colorScheme="linkedin" type="submit">
+            <MxmButton variant="desktop" colorScheme="cyan-navy">
               Masuk
-            </Button>
+            </MxmButton>
           </form>
         </Flex>
       </Flex>
