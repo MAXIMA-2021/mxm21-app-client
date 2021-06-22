@@ -34,6 +34,7 @@ import {
 import { MxmContainers } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
+import { kMaxLength } from "buffer";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -329,10 +330,21 @@ const RegisterMaba: React.FC = () => {
               <FormControl mb={3} mr="5" isInvalid={errors.whatsApp}>
                 <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
                 <MxmInput
-                  type="number"
                   placeholder="Nomor WhatsApp"
                   {...register("whatsApp", {
                     required: "Tidak boleh kosong",
+                    minLength: {
+                      value: 10,
+                      message: "Nomor telepon tidak dapat dibawah 10 digit",
+                    },
+                    maxLength: {
+                      value: 13,
+                      message: "Nomor telepon tidak dapat lebih dari 13 digit",
+                    },
+                    pattern: {
+                      value: /^\d+$/g,
+                      message: "Nomor telepon harus berupa angka",
+                    },
                   })}
                 />
                 <FormErrorMessage>
@@ -350,6 +362,10 @@ const RegisterMaba: React.FC = () => {
                   placeholder="Id LINE"
                   {...register("idLine", {
                     required: "Tidak boleh kosong",
+                    pattern: {
+                      value: /^([0-9]||[a-z]||[-_.])+$/,
+                      message: "ID LINE tidak valid",
+                    },
                   })}
                 />
                 <FormErrorMessage>
@@ -367,6 +383,10 @@ const RegisterMaba: React.FC = () => {
                   placeholder="Username Instagram"
                   {...register("usernameIG", {
                     required: "Tidak boleh kosong",
+                    pattern: {
+                      value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
+                      message: "Username Instagram tidak valid",
+                    },
                   })}
                 />
                 <FormErrorMessage>
@@ -441,9 +461,19 @@ const RegisterMaba: React.FC = () => {
                 </FormErrorMessage>
               </FormControl>
             </Flex>
-            <MxmButton variant="desktop" colorScheme="cyan-navy">
-              Daftar
-            </MxmButton>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <MxmButton variant="desktop" colorScheme="cyan-navy">
+                Daftar
+              </MxmButton>
+            </Flex>
           </form>
         </Flex>
       </Flex>
