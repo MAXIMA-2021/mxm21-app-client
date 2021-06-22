@@ -21,11 +21,17 @@ import {
   Divider,
   Image,
   Spacer,
+  Select,
+  Grid,
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
-import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
-import { MxmContainers } from "../../../shared/styled/containers"
-import { MxmLogo } from "../../../assets";
+import {
+  MxmInput,
+  MxmInputGroup,
+  MxmFormLabel,
+} from "../../../shared/styled/input";
+import { MxmLogo, MxmLogoText } from "../../../assets";
+import { MxmContainers } from "../../../shared/styled/containers";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -56,11 +62,11 @@ const RegisterMaba: React.FC = () => {
       <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex direction="column" background="#41ceba" p={12} rounded={6}>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <Flex>
+            <Flex>
               <Heading mb={3} color="white">
                 Daftar
               </Heading>
-              <Spacer/>
+              <Spacer />
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
@@ -69,59 +75,125 @@ const RegisterMaba: React.FC = () => {
                 my={4}
               />
             </Flex>
-            <Divider colorScheme="whiteAlpha" style={{border: "2px solid white"}} mb={3}/>
-            <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
-              <FormLabel>NIM Anda</FormLabel>
-              <MxmInputGroup addon="left">
-                <InputLeftAddon children="000000" />
-                <Input
-                  type="number"
-                  {...register("nimMahasiswa", {
-                    required: "Tidak boleh kosong",
-                    minLength: {
-                      value: 5,
-                      message: "Input harus 5 angka",
-                    },
-                    maxLength: {
-                      value: 5,
-                      message: "Input harus 5 angka",
-                    },
-                  })}
-                />
-              </MxmInputGroup>
-              <FormErrorMessage>
-                {errors.nimMahasiswa && (
-                  <p>
-                    <FormErrorIcon />
-                    {errors.nimMahasiswa.message}
-                  </p>
-                )}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={errors.password} mb={6}>
-              <FormLabel>Password Anda</FormLabel>
-              <MxmInputGroup>
-                <Input
-                  placeholder="Masukkan password Anda"
-                  {...register("password", { required: "Tidak boleh kosong" })}
-                  pr="4.5rem"
-                  type={show ? "text" : "password"}
-                />
-                <InputRightElement>
-                  <Button size="sm" onClick={handleClick}>
-                    {show ? <IconHidePassword /> : <IconShowPassword />}
-                  </Button>
-                </InputRightElement>
-              </MxmInputGroup>
-              <FormErrorMessage>
-                {errors.password && (
-                  <p>
-                    <FormErrorIcon />
-                    {errors.password.message}
-                  </p>
-                )}
-              </FormErrorMessage>
-            </FormControl>
+            <Divider
+              colorScheme="whiteAlpha"
+              style={{ border: "2px solid white" }}
+              mb={3}
+            />
+            <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+              <FormControl mb={3}>
+                <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
+                <MxmInput placeholder="Nama" />
+              </FormControl>
+              <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
+                <MxmFormLabel>NIM Anda</MxmFormLabel>
+                <MxmInputGroup addon="left">
+                  <InputLeftAddon children="000000" />
+                  <Input
+                    type="number"
+                    {...register("nimMahasiswa", {
+                      required: "Tidak boleh kosong",
+                      minLength: {
+                        value: 5,
+                        message: "Input harus 5 angka",
+                      },
+                      maxLength: {
+                        value: 5,
+                        message: "Input harus 5 angka",
+                      },
+                    })}
+                  />
+                </MxmInputGroup>
+                <FormErrorMessage>
+                  {errors.nimMahasiswa && (
+                    <p>
+                      <FormErrorIcon />
+                      {errors.nimMahasiswa.message}
+                    </p>
+                  )}
+                </FormErrorMessage>
+              </FormControl>
+            </Grid>
+            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+              <FormControl mb={3}>
+                <MxmFormLabel>Tempat Lahir</MxmFormLabel>
+                <MxmInput placeholder="Tempat Lahir" />
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
+                <MxmInput type="date" />
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
+                <Select backgroundColor="white">
+                  <option value="" selected disabled hidden>
+                    Pilih Jenis Kelamin
+                  </option>
+                  <option value="laki-laki">Laki-laki</option>
+                  <option value="perempuan">Perempuan</option>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+              <FormControl mb={3}>
+                <MxmFormLabel>Program Studi</MxmFormLabel>
+                <Select backgroundColor="white">
+                  <option value="" selected disabled hidden>
+                    Pilih Program Studi
+                  </option>
+                  <option value="Desain Komunikasi Visual">
+                    Desain Komunikasi Visual
+                  </option>
+                  <option value="Film">Film</option>
+                  <option value="Arsitektur">Arsitektur</option>
+                  <option value="Komunikasi Strategis">
+                    Komunikasi Strategis
+                  </option>
+                  <option value="Jurnalistik">Jurnalistik</option>
+                  <option value="Informatika">Informatika</option>
+                  <option value="Sistem Informasi">Sistem Informasi</option>
+                  <option value="Teknik Komputer">Teknik Komputer</option>
+                  <option value="Teknik Elektro">Teknik Elektro</option>
+                  <option value="Teknik Fisika">Teknik Fisika</option>
+                  <option value="Manajemen">Manajemen</option>
+                  <option value="Akuntansi">Akuntansi</option>
+                  <option value="Perhotelan">Perhotelan</option>
+                </Select>
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>Angkatan</MxmFormLabel>
+                <Select backgroundColor="white">
+                  <option value="" selected disabled hidden>
+                    Pilih Angkatan
+                  </option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                </Select>
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>Email Student</MxmFormLabel>
+                <MxmInputGroup addon="right">
+                  <Input placeholder="Masukkan email kamu" />
+                  <InputRightAddon children="@student.umn.ac.id" />
+                </MxmInputGroup>
+              </FormControl>
+            </Grid>
+            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+              <FormControl mb={3}>
+                <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
+                <MxmInput type="number" placeholder="Nomor WhatsApp" />
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>ID LINE</MxmFormLabel>
+                <MxmInput placeholder="Id LINE" />
+              </FormControl>
+              <FormControl mb={3}>
+                <MxmFormLabel>Username Instagram</MxmFormLabel>
+                <MxmInput placeholder="Username Instagram" />
+              </FormControl>
+            </Grid>
             <Button colorScheme="linkedin" type="submit">
               Daftar
             </Button>
