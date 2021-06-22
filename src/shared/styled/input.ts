@@ -5,12 +5,14 @@ export const MxmInput = styled(Input)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
 `;
 
 export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   & Input {
+    font-family: "Poppins", sans-serif;
     border-radius: ${(props) => {
       let radius: string;
       props.border === "rounded" ? (radius = "30px") : (radius = "4px");
