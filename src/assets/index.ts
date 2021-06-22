@@ -1,0 +1,1 @@
+export { default as bgAuth } from './bg.jpg';

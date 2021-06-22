@@ -9,11 +9,11 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react"
-// import { MxmContainers } from "../../../shared/styled/containers"
+import { MxmContainers } from "../../../shared/styled/containers"
 
 const Login: React.FC = () => {
   return (
-    <div>
+    <MxmContainers>
         <Flex height="100vh" alignItems="center" justifyContent="center">
           <Flex direction="column" background="#41ceba" p={12} rounded={6}>
             <Heading mb={6} color="white">Masuk</Heading>
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
             <Button colorScheme="linkedin" type="submit">Masuk</Button>
           </Flex>
         </Flex>
-    </div>
+    </MxmContainers>
   )
 }
 

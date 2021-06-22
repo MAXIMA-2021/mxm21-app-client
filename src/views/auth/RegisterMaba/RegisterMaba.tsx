@@ -20,7 +20,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
-// import { MxmContainers } from "../../../shared/styled/containers"
+import { MxmContainers } from "../../../shared/styled/containers"
 
 const RegisterMaba: React.FC = () => {
   const {
@@ -33,7 +33,7 @@ const RegisterMaba: React.FC = () => {
   };
 
   return (
-    <div>
+    <MxmContainers>
       <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex direction="column" background="#41ceba" p={12} rounded={6}>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -90,7 +90,7 @@ const RegisterMaba: React.FC = () => {
           </form>
         </Flex>
       </Flex>
-    </div>
+    </MxmContainers>
   );
 };
 
