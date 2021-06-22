@@ -14,11 +14,15 @@ import {
   FormControl,
   FormErrorMessage,
   FormErrorIcon,
+  Image,
+  Spacer,
+  Divider,
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
 import { MxmContainers } from "../../../shared/styled/containers";
 import { MxmLogo, MxmLogoText } from "../../../assets";
+import "./Login.scss";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -49,9 +53,28 @@ const Login: React.FC = () => {
       <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex direction="column" background="#41ceba" p={12} rounded={6}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading mb={6} color="white">
-              Masuk
-            </Heading>
+            <Flex>
+              <Heading mb={3} color="white">
+                Masuk
+              </Heading>
+              <Spacer/>
+              <Image
+                src={MxmLogo}
+                alt="Logo MAXIMA 2021"
+                height={6}
+                width={6}
+                my={4}
+              />
+            </Flex>
+            <Divider colorScheme="whiteAlpha" style={{border: "2px solid white"}}/>
+            <Center>
+              <Image
+                src={MxmLogoText}
+                alt="Logo MAXIMA 2021"
+                className="img-responsive" 
+                my={6}
+              />
+            </Center>
             <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
               <MxmInputGroup addon="left">
                 <InputLeftAddon children="000000" />
@@ -63,7 +86,7 @@ const Login: React.FC = () => {
                       value: 5,
                       message: "Input harus 5 angka",
                     },
-                    maxLength: {
+                    maxLength: {  
                       value: 5,
                       message: "Input harus 5 angka",
                     },

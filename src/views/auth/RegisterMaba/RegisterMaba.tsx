@@ -18,6 +18,9 @@ import {
   InputLeftAddon,
   InputRightAddon,
   InputRightElement,
+  Divider,
+  Image,
+  Spacer,
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
@@ -53,9 +56,20 @@ const RegisterMaba: React.FC = () => {
       <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex direction="column" background="#41ceba" p={12} rounded={6}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading mb={6} color="white">
-              Daftar
-            </Heading>
+          <Flex>
+              <Heading mb={3} color="white">
+                Daftar
+              </Heading>
+              <Spacer/>
+              <Image
+                src={MxmLogo}
+                alt="Logo MAXIMA 2021"
+                height={6}
+                width={6}
+                my={4}
+              />
+            </Flex>
+            <Divider colorScheme="whiteAlpha" style={{border: "2px solid white"}} mb={3}/>
             <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
               <FormLabel>NIM Anda</FormLabel>
               <MxmInputGroup addon="left">
