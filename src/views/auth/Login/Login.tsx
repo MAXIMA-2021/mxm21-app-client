@@ -72,9 +72,9 @@ const Login: React.FC = () => {
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
-                height={6}
-                width={6}
-                my={4}
+                height={8}
+                width={8}
+                mt={2}
               />
             </Flex>
             <Divider

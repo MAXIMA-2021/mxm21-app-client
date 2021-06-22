@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import { Input, InputGroup, FormLabel } from "@chakra-ui/react";
+import { Input, InputGroup, FormLabel, Select } from "@chakra-ui/react";
+
+export const MxmSelect = styled(Select)`
+  background-color: white !important;
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border: 1px solid #e2e8f0;
+  box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+  height: 45px !important;
+`;
 
 export const MxmFormLabel = styled(FormLabel)`
   color: white;
