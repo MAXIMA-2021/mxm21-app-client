@@ -6,9 +6,10 @@ import Home from './views/Home';
 export default function AppRouter() {
   return (
     <Switch>
+      <Route path='/' exact component={Home} />
       <Route path='/masuk' exact component={Auth.Login} />
       <Route path='/daftar' exact component={Auth.RegisterMaba} />
-      <Route path='/' exact component={Home} />
+      <Route path='/' component={Home} />
     </Switch>
   )
 }
