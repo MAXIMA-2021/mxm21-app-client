@@ -55,8 +55,10 @@ const Login: React.FC = () => {
         <Flex
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-          p={12}
-          rounded={6}
+          py={5}
+          px={10}
+          m={20}
+          rounded={15}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
@@ -67,9 +69,9 @@ const Login: React.FC = () => {
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
-                height={6}
-                width={6}
-                my={4}
+                height={8}
+                width={8}
+                mt={2}
               />
             </Flex>
             <Divider
