@@ -180,6 +180,7 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }`}
 
+  font-family: Rubik, Arial,  sans-serif;
   font-size: 1rem;
   font-weight: bold;
   transition: all 0.2s;
