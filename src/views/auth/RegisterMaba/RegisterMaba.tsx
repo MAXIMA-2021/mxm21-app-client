@@ -29,6 +29,7 @@ import {
   MxmInput,
   MxmInputGroup,
   MxmFormLabel,
+  MxmSelect,
 } from "../../../shared/styled/input";
 import { MxmContainers } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
@@ -86,13 +87,20 @@ const RegisterMaba: React.FC = () => {
               style={{ border: "2px solid white" }}
               mb={3}
             />
-
-            <Grid templateColumns="repeat(2, 1fr)" gap={6}>
-              <FormControl mb={3}>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <FormControl mb={3} mr="5">
                 <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
                 <MxmInput placeholder="Nama" />
               </FormControl>
-              <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
+              <FormControl isInvalid={errors.nimMahasiswa} mb={3} w="30%">
                 <MxmFormLabel>NIM Anda</MxmFormLabel>
                 <MxmInputGroup addon="left">
                   <InputLeftAddon children="000000" />
@@ -120,31 +128,47 @@ const RegisterMaba: React.FC = () => {
                   )}
                 </FormErrorMessage>
               </FormControl>
-            </Grid>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-              <FormControl mb={3}>
+            </Flex>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <FormControl mb={3} mr="5">
                 <MxmFormLabel>Tempat Lahir</MxmFormLabel>
                 <MxmInput placeholder="Tempat Lahir" />
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} mr="5" w="60%">
                 <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
                 <MxmInput type="date" />
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} w="50%">
                 <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
-                <Select backgroundColor="white">
+                <MxmSelect>
                   <option value="" selected disabled hidden>
                     Pilih Jenis Kelamin
                   </option>
                   <option value="laki-laki">Laki-laki</option>
                   <option value="perempuan">Perempuan</option>
-                </Select>
+                </MxmSelect>
               </FormControl>
-            </Grid>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-              <FormControl mb={3}>
+            </Flex>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <FormControl mb={3} mr="5" w="60%">
                 <MxmFormLabel>Program Studi</MxmFormLabel>
-                <Select backgroundColor="white">
+                <MxmSelect backgroundColor="white">
                   <option value="" selected disabled hidden>
                     Pilih Program Studi
                   </option>
@@ -165,11 +189,11 @@ const RegisterMaba: React.FC = () => {
                   <option value="Manajemen">Manajemen</option>
                   <option value="Akuntansi">Akuntansi</option>
                   <option value="Perhotelan">Perhotelan</option>
-                </Select>
+                </MxmSelect>
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} mr="5" w="40%">
                 <MxmFormLabel>Angkatan</MxmFormLabel>
-                <Select backgroundColor="white">
+                <MxmSelect backgroundColor="white">
                   <option value="" selected disabled hidden>
                     Pilih Angkatan
                   </option>
@@ -177,7 +201,7 @@ const RegisterMaba: React.FC = () => {
                   <option value="2020">2020</option>
                   <option value="2019">2019</option>
                   <option value="2018">2018</option>
-                </Select>
+                </MxmSelect>
               </FormControl>
               <FormControl mb={3}>
                 <MxmFormLabel>Email Student</MxmFormLabel>
@@ -186,13 +210,21 @@ const RegisterMaba: React.FC = () => {
                   <InputRightAddon children="@student.umn.ac.id" />
                 </MxmInputGroup>
               </FormControl>
-            </Grid>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-              <FormControl mb={3}>
+            </Flex>
+            <Flex
+              direction={{
+                base: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+                xl: "row",
+              }}
+            >
+              <FormControl mb={3} mr="5">
                 <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
                 <MxmInput type="number" placeholder="Nomor WhatsApp" />
               </FormControl>
-              <FormControl mb={3}>
+              <FormControl mb={3} mr="5">
                 <MxmFormLabel>ID LINE</MxmFormLabel>
                 <MxmInput placeholder="Id LINE" />
               </FormControl>
@@ -200,7 +232,7 @@ const RegisterMaba: React.FC = () => {
                 <MxmFormLabel>Username Instagram</MxmFormLabel>
                 <MxmInput placeholder="Username Instagram" />
               </FormControl>
-            </Grid>
+            </Flex>
             <MxmButton variant="desktop" colorScheme="cyan-navy">
               Daftar
             </MxmButton>
