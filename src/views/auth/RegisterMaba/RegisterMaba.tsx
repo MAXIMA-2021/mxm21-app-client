@@ -22,6 +22,7 @@ import {
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
 import { MxmContainers } from "../../../shared/styled/containers"
+import { MxmLogo } from "../../../assets";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
