@@ -182,7 +182,7 @@ export const MxmButton = styled("button")<{
 
   font-family: Rubik, Arial,  sans-serif;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   transition: all 0.2s;
 `;
 

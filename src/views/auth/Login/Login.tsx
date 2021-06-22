@@ -54,9 +54,14 @@ const Login: React.FC = () => {
       <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex
           direction="column"
-          background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
+          background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
+          className="filter"
           p={12}
           rounded={6}
+          style={{
+            WebkitBackdropFilter: "blur(4px)",
+            backdropFilter: "blur(4px)",
+          }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
@@ -115,7 +120,9 @@ const Login: React.FC = () => {
               <MxmInputGroup>
                 <Input
                   placeholder="Masukkan password Anda"
-                  {...register("password", { required: "Tidak boleh kosong" })}
+                  {...register("password", {
+                    required: "Tidak boleh kosong",
+                  })}
                   pr="4.5rem"
                   type={show ? "text" : "password"}
                 />
