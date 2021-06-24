@@ -69,9 +69,48 @@ const RegisterMaba: React.FC = () => {
         <Flex
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-          py={5}
-          px={10}
-          m={20}
+          h={{
+            base: "100vh",
+            sm: "100vh",
+            md: "60vh",
+            lg: "60vh",
+            xl: "60vh",
+          }}
+          w={{
+            base: "100vw",
+            sm: "100vw",
+            md: "50vw",
+            lg: "50vw",
+            xl: "50vw",
+          }}
+          py={{
+            base: "2vh",
+            sm: "2vh",
+            md: "2vh",
+            lg: "2vh",
+            xl: "2vh",
+          }}
+          px={{
+            base: "5vw",
+            sm: "5vw",
+            md: "2vw",
+            lg: "2vw",
+            xl: "2vw",
+          }}
+          my={{
+            base: "1vh",
+            sm: "1vh",
+            md: "10vh",
+            lg: "10vh",
+            xl: "10vh",
+          }}
+          mx={{
+            base: "1vw",
+            sm: "1vw",
+            md: "10vw",
+            lg: "10vw",
+            xl: "10vw",
+          }}
           rounded={25}
           style={{
             WebkitBackdropFilter: "blur(4px)",
@@ -121,7 +160,15 @@ const RegisterMaba: React.FC = () => {
                   )}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={errors.nimMahasiswa} mb={3} w="30%">
+              <FormControl isInvalid={errors.nimMahasiswa} mb={3} 
+                w={{
+                  base: "100%",
+                  sm: "100%",
+                  md: "30%",
+                  lg: "30%",
+                  xl: "30%",
+                }}
+              >
                 <MxmFormLabel>NIM Anda</MxmFormLabel>
                 <MxmInputGroup addon="left">
                   <InputLeftAddon children="000000" />
@@ -179,7 +226,13 @@ const RegisterMaba: React.FC = () => {
               <FormControl
                 mb={3}
                 mr="5"
-                w="60%"
+                w={{
+                  base: "100%",
+                  sm: "100%",
+                  md: "60%",
+                  lg: "60%",
+                  xl: "60%",
+                }}
                 isInvalid={errors.tanggalLahir}
               >
                 <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
@@ -198,7 +251,15 @@ const RegisterMaba: React.FC = () => {
                   )}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} w="50%" isInvalid={errors.jenisKelamin}>
+              <FormControl mb={3} 
+              w={{
+                base: "100%",
+                sm: "100%",
+                md: "50%",
+                lg: "50%",
+                xl: "50%",
+              }}
+              isInvalid={errors.jenisKelamin}>
                 <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
                 <MxmSelect
                   {...register("jenisKelamin", {
@@ -230,7 +291,15 @@ const RegisterMaba: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5" w="60%" isInvalid={errors.prodi}>
+              <FormControl mb={3} mr="5" 
+              w={{
+                base: "100%",
+                sm: "100%",
+                md: "60%",
+                lg: "60%",
+                xl: "60%",
+              }}
+              isInvalid={errors.prodi}>
                 <MxmFormLabel>Program Studi</MxmFormLabel>
                 <MxmSelect
                   backgroundColor="white"
@@ -268,7 +337,15 @@ const RegisterMaba: React.FC = () => {
                   )}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl mb={3} mr="5" w="40%" isInvalid={errors.angkatan}>
+              <FormControl mb={3} mr="5" 
+              w={{
+                base: "100%",
+                sm: "100%",
+                md: "40%",
+                lg: "40%",
+                xl: "40%",
+              }}
+              isInvalid={errors.angkatan}>
                 <MxmFormLabel>Angkatan</MxmFormLabel>
                 <MxmSelect
                   backgroundColor="white"

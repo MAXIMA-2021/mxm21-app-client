@@ -56,8 +56,51 @@ const Login: React.FC = () => {
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
           className="filter"
-          p={12}
-          rounded={6}
+          h={{
+            base: "70vh",
+            sm: "60vh",
+            md: "60vh",
+            lg: "64vh",
+            xl: "56vh",
+            "2xl": "42vh",
+          }}
+          w={{
+            base: "100vw",
+            sm: "100vw",
+            md: "40vw",
+            lg: "35vw",
+            xl: "30vw",
+            "2xl": "22vw",
+          }}
+          py={{
+            base: "3vh",
+            sm: "3vh",
+            md: "3vh",
+            lg: "3vh",
+            xl: "3vh",
+          }}
+          px={{
+            base: "5vw",
+            sm: "5vw",
+            md: "2vw",
+            lg: "2vw",
+            xl: "2vw",
+          }}
+          my={{
+            base: "1vh",
+            sm: "1vh",
+            md: "10vh",
+            lg: "10vh",
+            xl: "10vh",
+          }}
+          mx={{
+            base: "1vw",
+            sm: "1vw",
+            md: "10vw",
+            lg: "10vw",
+            xl: "10vw",
+          }}
+          rounded={25}
           style={{
             WebkitBackdropFilter: "blur(4px)",
             backdropFilter: "blur(4px)",
@@ -65,15 +108,31 @@ const Login: React.FC = () => {
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
-              <Heading mb={3} color="white">
+              <Heading mb={3} color="white" 
+              fontSize={{
+                base: "15vh",
+                sm: "8vh",
+                md: "8vh",
+                lg: "10vh",
+                xl: "3em",
+                "2xl": "2.5em",
+              }}
+              >
                 Masuk
               </Heading>
               <Spacer />
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
-                height={8}
-                width={8}
+                h="100%"
+                w={{
+                  base: "15vh",
+                  sm: "8vh",
+                  md: "8vh",
+                  lg: "10vh",
+                  xl: "3vw",
+                  "2xl": "1.5vw",
+                }}
                 mt={2}
               />
             </Flex>
@@ -85,7 +144,14 @@ const Login: React.FC = () => {
               <Image
                 src={MxmLogoText}
                 alt="Logo MAXIMA 2021"
-                className="img-responsive"
+                w={{
+                  base: "15vh",
+                  sm: "8vh",
+                  md: "8vh",
+                  lg: "10vh",
+                  xl: "10vh",
+                  "2xl": "5vw",
+                }}
                 my={6}
               />
             </Center>

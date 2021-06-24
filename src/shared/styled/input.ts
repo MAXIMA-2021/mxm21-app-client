@@ -7,13 +7,14 @@ export const MxmSelect = styled(Select)`
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
-  height: 45px !important;
+  height: 5vh !important;
 `;
 
 export const MxmFormLabel = styled(FormLabel)`
   color: white;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
+  font-size: 1em !important;
 `;
 
 export const MxmInput = styled(Input)<{ border: string }>`
@@ -22,7 +23,7 @@ export const MxmInput = styled(Input)<{ border: string }>`
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
-  height: 45px !important;
+  height: 5vh !important;
   & ::placeholder {
     color: #cbd5e0;
   }
@@ -32,7 +33,7 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   & Input {
-    height: 45px !important;
+    height: 5vh !important;
     background-color: white;
     font-family: "Poppins", sans-serif;
     border-radius: ${(props) => {
@@ -54,7 +55,7 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
     display: none !important;
   }
   & div {
-    height: 45px !important;
+    height: 5vh !important;
     background-color: ${(props) =>
       props.addon === "icon" ? "transparant" : "#deefec"};
     border-radius: ${(props) => {
