@@ -17,6 +17,8 @@ import {
   Image,
   Spacer,
   Divider,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
@@ -110,11 +112,11 @@ const Login: React.FC = () => {
             <Flex>
               <Heading mb={3} color="white" 
               fontSize={{
-                base: "15vh",
-                sm: "8vh",
-                md: "8vh",
-                lg: "10vh",
-                xl: "3em",
+                base: "1.5em",
+                sm: "1.5em",
+                md: "1.5em",
+                lg: "1.5em",
+                xl: "2.5em",
                 "2xl": "2.5em",
               }}
               >
@@ -126,11 +128,11 @@ const Login: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "15vh",
-                  sm: "8vh",
-                  md: "8vh",
-                  lg: "10vh",
-                  xl: "3vw",
+                  base: "5vw",
+                  sm: "4vw",
+                  md: "2.5vw",
+                  lg: "2vw",
+                  xl: "2.5vw",
                   "2xl": "1.5vw",
                 }}
                 mt={2}
@@ -193,7 +195,7 @@ const Login: React.FC = () => {
                   type={show ? "text" : "password"}
                 />
                 <InputRightElement>
-                  <Button size="sm" onClick={handleClick}>
+                  <Button size="base" onClick={handleClick}>
                     {show ? <IconHidePassword /> : <IconShowPassword />}
                   </Button>
                 </InputRightElement>
@@ -207,9 +209,16 @@ const Login: React.FC = () => {
                 )}
               </FormErrorMessage>
             </FormControl>
-            <MxmButton variant="desktop" colorScheme="cyan-navy">
-              Masuk
-            </MxmButton>
+            <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
+              <div>
+                <Text color="white">Belum punya akun? <Link href="/daftar" color="#41ceba">Daftar</Link></Text>
+                <Text color="white">Lupa kata sandimu? <Link href="/reset" color="#41ceba">Klik di sini</Link></Text>
+              </div>
+              <Spacer/>
+              <MxmButton variant="desktop" colorScheme="cyan-navy">
+                Masuk
+              </MxmButton>
+            </Flex>
           </form>
         </Flex>
       </Flex>

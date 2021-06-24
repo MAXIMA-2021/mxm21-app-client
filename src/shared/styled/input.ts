@@ -14,7 +14,15 @@ export const MxmFormLabel = styled(FormLabel)`
   color: white;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  font-size: 1em !important;
+  font-size: 1vw !important;
+
+  @media (max-width: 767px) {
+    font-size: 2vw !important;
+  }
+
+  @media (min-width: 1535px) {
+    font-size: 0.7vw !important;
+  }
 `;
 
 export const MxmInput = styled(Input)<{ border: string }>`

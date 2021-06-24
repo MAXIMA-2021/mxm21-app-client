@@ -23,6 +23,8 @@ import {
   Spacer,
   Select,
   Grid,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
 import {
@@ -72,16 +74,18 @@ const RegisterMaba: React.FC = () => {
           h={{
             base: "100vh",
             sm: "100vh",
-            md: "60vh",
-            lg: "60vh",
-            xl: "60vh",
+            md: "80vh",
+            lg: "80vh",
+            xl: "75vh",
+            "2xl": "54vh",
           }}
           w={{
             base: "100vw",
             sm: "100vw",
-            md: "50vw",
-            lg: "50vw",
-            xl: "50vw",
+            md: "60vw",
+            lg: "60vw",
+            xl: "60vw",
+           "2xl": "50vw",
           }}
           py={{
             base: "2vh",
@@ -119,15 +123,31 @@ const RegisterMaba: React.FC = () => {
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex>
-              <Heading mb={3} color="white">
+              <Heading mb={3} color="white" 
+              fontSize={{
+                base: "1.5em",
+                sm: "1.5em",
+                md: "1.5em",
+                lg: "1.5em",
+                xl: "2.5em",
+                "2xl": "2.5em",
+              }}
+              >
                 Daftar
               </Heading>
               <Spacer />
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
-                height={8}
-                width={8}
+                h="100%"
+                w={{
+                  base: "5vw",
+                  sm: "4vw",
+                  md: "2.5vw",
+                  lg: "2vw",
+                  xl: "2.5vw",
+                  "2xl": "1.5vw",
+                }}
                 mt={2}
               />
             </Flex>
@@ -538,17 +558,13 @@ const RegisterMaba: React.FC = () => {
                 </FormErrorMessage>
               </FormControl>
             </Flex>
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
+              <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
+              <div>
+                <Text color="white">Sudah punya akun? <Link href="/masuk" color="#41ceba">Masuk</Link></Text>
+              </div>
+              <Spacer/>
               <MxmButton variant="desktop" colorScheme="cyan-navy">
-                Daftar
+                Masuk
               </MxmButton>
             </Flex>
           </form>
