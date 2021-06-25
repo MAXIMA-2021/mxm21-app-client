@@ -33,7 +33,7 @@ import {
   MxmFormLabel,
   MxmSelect,
 } from "../../../shared/styled/input";
-import { MxmContainers } from "../../../shared/styled/containers";
+import { MxmContainers, MxmVerticalAlign } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import { kMaxLength } from "buffer";
@@ -67,26 +67,10 @@ const RegisterMaba: React.FC = () => {
 
   return (
     <MxmContainers>
-      <Flex height="100vh" alignItems="center" justifyContent="center">
+      <Flex alignItems="center" justifyContent="center">
         <Flex
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-          h={{
-            base: "100vh",
-            sm: "100vh",
-            md: "80vh",
-            lg: "80vh",
-            xl: "75vh",
-            "2xl": "54vh",
-          }}
-          w={{
-            base: "100vw",
-            sm: "100vw",
-            md: "60vw",
-            lg: "60vw",
-            xl: "60vw",
-           "2xl": "50vw",
-          }}
           py={{
             base: "2vh",
             sm: "2vh",
@@ -168,7 +152,7 @@ const RegisterMaba: React.FC = () => {
               <FormControl mb={3} mr="5" isInvalid={errors.nama}>
                 <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
                 <MxmInput
-                  placeholder="Nama"
+                  placeholder="Nama Lengkap"
                   {...register("nama", { required: "Tidak boleh kosong" })}
                 />
                 <FormErrorMessage>
@@ -521,7 +505,7 @@ const RegisterMaba: React.FC = () => {
                     type={show ? "text" : "password"}
                   />
                   <InputRightElement>
-                    <Button size="sm" onClick={handleClick}>
+                    <Button size="base" onClick={handleClick}>
                       {show ? <IconHidePassword /> : <IconShowPassword />}
                     </Button>
                   </InputRightElement>
@@ -558,10 +542,10 @@ const RegisterMaba: React.FC = () => {
                 </FormErrorMessage>
               </FormControl>
             </Flex>
-              <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
-              <div>
+              <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em" mt={1}>
+              <MxmVerticalAlign variant="">
                 <Text color="white">Sudah punya akun? <Link href="/masuk" color="#41ceba">Masuk</Link></Text>
-              </div>
+              </MxmVerticalAlign>
               <Spacer/>
               <MxmButton variant="desktop" colorScheme="cyan-navy">
                 Masuk

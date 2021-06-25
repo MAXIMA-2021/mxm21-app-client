@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
-import { MxmContainers } from "../../../shared/styled/containers";
+import { MxmContainers, MxmVerticalAlign } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import "./Login.scss";
@@ -58,22 +58,6 @@ const Login: React.FC = () => {
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
           className="filter"
-          h={{
-            base: "70vh",
-            sm: "60vh",
-            md: "60vh",
-            lg: "64vh",
-            xl: "56vh",
-            "2xl": "42vh",
-          }}
-          w={{
-            base: "100vw",
-            sm: "100vw",
-            md: "40vw",
-            lg: "35vw",
-            xl: "30vw",
-            "2xl": "22vw",
-          }}
           py={{
             base: "3vh",
             sm: "3vh",
@@ -210,10 +194,10 @@ const Login: React.FC = () => {
               </FormErrorMessage>
             </FormControl>
             <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
-              <div>
+              <MxmVerticalAlign variant="">
                 <Text color="white">Belum punya akun? <Link href="/daftar" color="#41ceba">Daftar</Link></Text>
                 <Text color="white">Lupa kata sandimu? <Link href="/reset" color="#41ceba">Klik di sini</Link></Text>
-              </div>
+              </MxmVerticalAlign>
               <Spacer/>
               <MxmButton variant="desktop" colorScheme="cyan-navy">
                 Masuk
