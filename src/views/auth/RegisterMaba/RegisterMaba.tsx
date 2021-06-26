@@ -67,7 +67,15 @@ const RegisterMaba: React.FC = () => {
 
   return (
     <MxmContainers>
-      <Flex alignItems="center" justifyContent="center">
+      <Flex 
+      height={{
+        base: "",
+        sm: "",
+        md: "100vh",
+        lg: "100vh",
+        xl: "100vh",
+      }} 
+      alignItems="center" justifyContent="center">
         <Flex
           direction="column"
           background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
