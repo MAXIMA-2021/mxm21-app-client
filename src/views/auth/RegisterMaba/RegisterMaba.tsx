@@ -37,6 +37,7 @@ import { MxmContainers, MxmVerticalAlign } from "../../../shared/styled/containe
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import { kMaxLength } from "buffer";
+import { motion, AnimatePresence } from "framer-motion"
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -66,178 +67,252 @@ const RegisterMaba: React.FC = () => {
   const handleClick = () => setShow(!show);
 
   return (
-    <MxmContainers>
-      <Flex 
-      height={{
-        base: "",
-        sm: "",
-        md: "100vh",
-        lg: "100vh",
-        xl: "100vh",
-      }} 
-      alignItems="center" justifyContent="center">
-        <Flex
-          direction="column"
-          background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-          py={{
-            base: "2vh",
-            sm: "2vh",
-            md: "2vh",
-            lg: "2vh",
-            xl: "2vh",
-          }}
-          px={{
-            base: "5vw",
-            sm: "5vw",
-            md: "2vw",
-            lg: "2vw",
-            xl: "2vw",
-          }}
-          my={{
-            base: "1vh",
-            sm: "1vh",
-            md: "10vh",
-            lg: "10vh",
-            xl: "10vh",
-          }}
-          mx={{
-            base: "1vw",
-            sm: "1vw",
-            md: "10vw",
-            lg: "10vw",
-            xl: "10vw",
-          }}
-          rounded={25}
-          style={{
-            WebkitBackdropFilter: "blur(4px)",
-            backdropFilter: "blur(4px)",
-          }}
+    <AnimatePresence>
+      <MxmContainers>
+        <motion.div
+          key="modal"
+          initial={{ x: 1000, opacity: 1, scale: 0.5 }}
+          animate={{ x: 0, opacity: 1, scale: 1 }}
+          exit={{ x: -1000, opacity: 1, scale: 0.5 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30, duration: 1 }}
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Flex>
-              <Heading mb={3} color="white" 
-              fontSize={{
-                base: "1.5em",
-                sm: "1.5em",
-                md: "1.5em",
-                lg: "1.5em",
-                xl: "2.5em",
-                "2xl": "2.5em",
-              }}
-              >
-                Daftar
-              </Heading>
-              <Spacer />
-              <Image
-                src={MxmLogo}
-                alt="Logo MAXIMA 2021"
-                h="100%"
-                w={{
-                  base: "5vw",
-                  sm: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  xl: "2.5vw",
-                  "2xl": "1.5vw",
+        <Flex 
+        height={{
+          base: "",
+          sm: "",
+          md: "100vh",
+          lg: "100vh",
+          xl: "100vh",
+        }} 
+        alignItems="center" justifyContent="center">
+          <Flex
+            direction="column"
+            background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
+            py={{
+              base: "2vh",
+              sm: "2vh",
+              md: "2vh",
+              lg: "2vh",
+              xl: "2vh",
+            }}
+            px={{
+              base: "5vw",
+              sm: "5vw",
+              md: "2vw",
+              lg: "2vw",
+              xl: "2vw",
+            }}
+            my={{
+              base: "1vh",
+              sm: "1vh",
+              md: "10vh",
+              lg: "10vh",
+              xl: "10vh",
+            }}
+            mx={{
+              base: "1vw",
+              sm: "1vw",
+              md: "10vw",
+              lg: "10vw",
+              xl: "10vw",
+            }}
+            rounded={25}
+            style={{
+              WebkitBackdropFilter: "blur(4px)",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Flex>
+                <Heading mb={3} color="white" 
+                fontSize={{
+                  base: "1.5em",
+                  sm: "1.5em",
+                  md: "1.5em",
+                  lg: "1.5em",
+                  xl: "2.5em",
+                  "2xl": "2.5em",
                 }}
-                mt={2}
-              />
-            </Flex>
-            <Divider
-              colorScheme="whiteAlpha"
-              style={{ border: "2px solid white" }}
-              mb={3}
-            />
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
-              <FormControl mb={3} mr="5" isInvalid={errors.nama}>
-                <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
-                <MxmInput
-                  placeholder="Nama Lengkap"
-                  {...register("nama", { required: "Tidak boleh kosong" })}
+                >
+                  Daftar
+                </Heading>
+                <Spacer />
+                <Image
+                  src={MxmLogo}
+                  alt="Logo MAXIMA 2021"
+                  h="100%"
+                  w={{
+                    base: "5vw",
+                    sm: "4vw",
+                    md: "2.5vw",
+                    lg: "2vw",
+                    xl: "2.5vw",
+                    "2xl": "1.5vw",
+                  }}
+                  mt={2}
                 />
-                <FormErrorMessage>
-                  {errors.nama && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.nama.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={errors.nimMahasiswa} mb={3} 
+              </Flex>
+              <Divider
+                colorScheme="whiteAlpha"
+                style={{ border: "2px solid white" }}
+                mb={3}
+              />
+              <Flex
+                direction={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                }}
+              >
+                <FormControl mb={3} mr="5" isInvalid={errors.nama}>
+                  <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
+                  <MxmInput
+                    placeholder="Nama Lengkap"
+                    {...register("nama", { required: "Tidak boleh kosong" })}
+                  />
+                  <FormErrorMessage>
+                    {errors.nama && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.nama.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl isInvalid={errors.nimMahasiswa} mb={3} 
+                  w={{
+                    base: "100%",
+                    sm: "100%",
+                    md: "30%",
+                    lg: "30%",
+                    xl: "30%",
+                  }}
+                >
+                  <MxmFormLabel>NIM Anda</MxmFormLabel>
+                  <MxmInputGroup addon="left">
+                    <InputLeftAddon children="000000" />
+                    <Input
+                      type="number"
+                      {...register("nimMahasiswa", {
+                        required: "Tidak boleh kosong",
+                        minLength: {
+                          value: 5,
+                          message: "Input harus 5 angka",
+                        },
+                        maxLength: {
+                          value: 5,
+                          message: "Input harus 5 angka",
+                        },
+                      })}
+                    />
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.nimMahasiswa && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.nimMahasiswa.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+              </Flex>
+              <Flex
+                direction={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                }}
+              >
+                <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
+                  <MxmFormLabel>Tempat Lahir</MxmFormLabel>
+                  <MxmInput
+                    placeholder="Tempat Lahir"
+                    {...register("tempatLahir", {
+                      required: "Tidak boleh kosong",
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.tempatLahir && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.tempatLahir.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl
+                  mb={3}
+                  mr="5"
+                  w={{
+                    base: "100%",
+                    sm: "100%",
+                    md: "60%",
+                    lg: "60%",
+                    xl: "60%",
+                  }}
+                  isInvalid={errors.tanggalLahir}
+                >
+                  <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
+                  <MxmInput
+                    type="date"
+                    {...register("tanggalLahir", {
+                      required: "Tidak boleh kosong",
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.tanggalLahir && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.tanggalLahir.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} 
                 w={{
                   base: "100%",
                   sm: "100%",
-                  md: "30%",
-                  lg: "30%",
-                  xl: "30%",
+                  md: "50%",
+                  lg: "50%",
+                  xl: "50%",
+                }}
+                isInvalid={errors.jenisKelamin}>
+                  <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
+                  <MxmSelect
+                    {...register("jenisKelamin", {
+                      required: "Pilih jenis kelamin kamu",
+                    })}
+                  >
+                    <option value="" selected disabled hidden>
+                      Pilih Jenis Kelamin
+                    </option>
+                    <option value="laki-laki">Laki-laki</option>
+                    <option value="perempuan">Perempuan</option>
+                  </MxmSelect>
+                  <FormErrorMessage>
+                    {errors.jenisKelamin && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.jenisKelamin.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+              </Flex>
+              <Flex
+                direction={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
                 }}
               >
-                <MxmFormLabel>NIM Anda</MxmFormLabel>
-                <MxmInputGroup addon="left">
-                  <InputLeftAddon children="000000" />
-                  <Input
-                    type="number"
-                    {...register("nimMahasiswa", {
-                      required: "Tidak boleh kosong",
-                      minLength: {
-                        value: 5,
-                        message: "Input harus 5 angka",
-                      },
-                      maxLength: {
-                        value: 5,
-                        message: "Input harus 5 angka",
-                      },
-                    })}
-                  />
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.nimMahasiswa && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.nimMahasiswa.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
-              <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
-                <MxmFormLabel>Tempat Lahir</MxmFormLabel>
-                <MxmInput
-                  placeholder="Tempat Lahir"
-                  {...register("tempatLahir", {
-                    required: "Tidak boleh kosong",
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.tempatLahir && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.tempatLahir.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl
-                mb={3}
-                mr="5"
+                <FormControl mb={3} mr="5" 
                 w={{
                   base: "100%",
                   sm: "100%",
@@ -245,324 +320,260 @@ const RegisterMaba: React.FC = () => {
                   lg: "60%",
                   xl: "60%",
                 }}
-                isInvalid={errors.tanggalLahir}
-              >
-                <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
-                <MxmInput
-                  type="date"
-                  {...register("tanggalLahir", {
-                    required: "Tidak boleh kosong",
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.tanggalLahir && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.tanggalLahir.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} 
-              w={{
-                base: "100%",
-                sm: "100%",
-                md: "50%",
-                lg: "50%",
-                xl: "50%",
-              }}
-              isInvalid={errors.jenisKelamin}>
-                <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
-                <MxmSelect
-                  {...register("jenisKelamin", {
-                    required: "Pilih jenis kelamin kamu",
-                  })}
-                >
-                  <option value="" selected disabled hidden>
-                    Pilih Jenis Kelamin
-                  </option>
-                  <option value="laki-laki">Laki-laki</option>
-                  <option value="perempuan">Perempuan</option>
-                </MxmSelect>
-                <FormErrorMessage>
-                  {errors.jenisKelamin && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.jenisKelamin.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
-              <FormControl mb={3} mr="5" 
-              w={{
-                base: "100%",
-                sm: "100%",
-                md: "60%",
-                lg: "60%",
-                xl: "60%",
-              }}
-              isInvalid={errors.prodi}>
-                <MxmFormLabel>Program Studi</MxmFormLabel>
-                <MxmSelect
-                  backgroundColor="white"
-                  {...register("prodi", {
-                    required: "Pilih program studi",
-                  })}
-                >
-                  <option value="" selected disabled hidden>
-                    Pilih Program Studi
-                  </option>
-                  <option value="Desain Komunikasi Visual">
-                    Desain Komunikasi Visual
-                  </option>
-                  <option value="Film">Film</option>
-                  <option value="Arsitektur">Arsitektur</option>
-                  <option value="Komunikasi Strategis">
-                    Komunikasi Strategis
-                  </option>
-                  <option value="Jurnalistik">Jurnalistik</option>
-                  <option value="Informatika">Informatika</option>
-                  <option value="Sistem Informasi">Sistem Informasi</option>
-                  <option value="Teknik Komputer">Teknik Komputer</option>
-                  <option value="Teknik Elektro">Teknik Elektro</option>
-                  <option value="Teknik Fisika">Teknik Fisika</option>
-                  <option value="Manajemen">Manajemen</option>
-                  <option value="Akuntansi">Akuntansi</option>
-                  <option value="Perhotelan">Perhotelan</option>
-                </MxmSelect>
-                <FormErrorMessage>
-                  {errors.prodi && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.prodi.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} mr="5" 
-              w={{
-                base: "100%",
-                sm: "100%",
-                md: "40%",
-                lg: "40%",
-                xl: "40%",
-              }}
-              isInvalid={errors.angkatan}>
-                <MxmFormLabel>Angkatan</MxmFormLabel>
-                <MxmSelect
-                  backgroundColor="white"
-                  {...register("angkatan", {
-                    required: "Pilih angkatan kamu",
-                  })}
-                >
-                  <option value="" selected disabled hidden>
-                    Pilih Angkatan
-                  </option>
-                  <option value="2021">2021</option>
-                  <option value="2020">2020</option>
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                </MxmSelect>
-                <FormErrorMessage>
-                  {errors.angkatan && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.angkatan.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} isInvalid={errors.email}>
-                <MxmFormLabel>Email Student</MxmFormLabel>
-                <MxmInputGroup addon="right">
-                  <Input
-                    placeholder="Masukkan email kamu"
-                    {...register("email", {
-                      required: "Tidak boleh kosong",
-                      pattern: {
-                        value: /^[^@]+$/g,
-                        message: "Alamat email tidak perlu mencantumkan domain",
-                      },
+                isInvalid={errors.prodi}>
+                  <MxmFormLabel>Program Studi</MxmFormLabel>
+                  <MxmSelect
+                    backgroundColor="white"
+                    {...register("prodi", {
+                      required: "Pilih program studi",
                     })}
-                  />
-                  <InputRightAddon children="@student.umn.ac.id" />
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.email && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.email.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
-              <FormControl mb={3} mr="5" isInvalid={errors.whatsApp}>
-                <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
-                <MxmInput
-                  placeholder="Nomor WhatsApp"
-                  {...register("whatsApp", {
-                    required: "Tidak boleh kosong",
-                    minLength: {
-                      value: 10,
-                      message: "Nomor telepon tidak dapat dibawah 10 digit",
-                    },
-                    maxLength: {
-                      value: 13,
-                      message: "Nomor telepon tidak dapat lebih dari 13 digit",
-                    },
-                    pattern: {
-                      value: /^\d+$/g,
-                      message: "Nomor telepon harus berupa angka",
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.whatsApp && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.whatsApp.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} mr="5" isInvalid={errors.idLine}>
-                <MxmFormLabel>ID LINE</MxmFormLabel>
-                <MxmInput
-                  placeholder="Id LINE"
-                  {...register("idLine", {
-                    required: "Tidak boleh kosong",
-                    pattern: {
-                      value: /^([0-9]||[a-z]||[-_.])+$/,
-                      message: "ID LINE tidak valid",
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.idLine && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.idLine.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} isInvalid={errors.usernameIG}>
-                <MxmFormLabel>Username Instagram</MxmFormLabel>
-                <MxmInput
-                  placeholder="Username Instagram"
-                  {...register("usernameIG", {
-                    required: "Tidak boleh kosong",
-                    pattern: {
-                      value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
-                      message: "Username Instagram tidak valid",
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.usernameIG && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.usernameIG.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-            <Flex
-              direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              }}
-            >
-              <FormControl isInvalid={errors.password} mb={3} mr="5">
-                <MxmFormLabel>Masukkan Kata Sandi</MxmFormLabel>
-                <MxmInputGroup>
-                  <Input
-                    placeholder="Masukkan kata sandi kamu"
-                    {...register("password", {
+                  >
+                    <option value="" selected disabled hidden>
+                      Pilih Program Studi
+                    </option>
+                    <option value="Desain Komunikasi Visual">
+                      Desain Komunikasi Visual
+                    </option>
+                    <option value="Film">Film</option>
+                    <option value="Arsitektur">Arsitektur</option>
+                    <option value="Komunikasi Strategis">
+                      Komunikasi Strategis
+                    </option>
+                    <option value="Jurnalistik">Jurnalistik</option>
+                    <option value="Informatika">Informatika</option>
+                    <option value="Sistem Informasi">Sistem Informasi</option>
+                    <option value="Teknik Komputer">Teknik Komputer</option>
+                    <option value="Teknik Elektro">Teknik Elektro</option>
+                    <option value="Teknik Fisika">Teknik Fisika</option>
+                    <option value="Manajemen">Manajemen</option>
+                    <option value="Akuntansi">Akuntansi</option>
+                    <option value="Perhotelan">Perhotelan</option>
+                  </MxmSelect>
+                  <FormErrorMessage>
+                    {errors.prodi && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.prodi.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} mr="5" 
+                w={{
+                  base: "100%",
+                  sm: "100%",
+                  md: "40%",
+                  lg: "40%",
+                  xl: "40%",
+                }}
+                isInvalid={errors.angkatan}>
+                  <MxmFormLabel>Angkatan</MxmFormLabel>
+                  <MxmSelect
+                    backgroundColor="white"
+                    {...register("angkatan", {
+                      required: "Pilih angkatan kamu",
+                    })}
+                  >
+                    <option value="" selected disabled hidden>
+                      Pilih Angkatan
+                    </option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </MxmSelect>
+                  <FormErrorMessage>
+                    {errors.angkatan && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.angkatan.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} isInvalid={errors.email}>
+                  <MxmFormLabel>Email Student</MxmFormLabel>
+                  <MxmInputGroup addon="right">
+                    <Input
+                      placeholder="Masukkan email kamu"
+                      {...register("email", {
+                        required: "Tidak boleh kosong",
+                        pattern: {
+                          value: /^[^@]+$/g,
+                          message: "Alamat email tidak perlu mencantumkan domain",
+                        },
+                      })}
+                    />
+                    <InputRightAddon children="@student.umn.ac.id" />
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.email && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+              </Flex>
+              <Flex
+                direction={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                }}
+              >
+                <FormControl mb={3} mr="5" isInvalid={errors.whatsApp}>
+                  <MxmFormLabel>Nomor WhatsApp</MxmFormLabel>
+                  <MxmInput
+                    placeholder="Nomor WhatsApp"
+                    {...register("whatsApp", {
                       required: "Tidak boleh kosong",
                       minLength: {
-                        value: 8,
-                        message: "Kata sandi minimal 8 karakter",
+                        value: 10,
+                        message: "Nomor telepon tidak dapat dibawah 10 digit",
+                      },
+                      maxLength: {
+                        value: 13,
+                        message: "Nomor telepon tidak dapat lebih dari 13 digit",
+                      },
+                      pattern: {
+                        value: /^\d+$/g,
+                        message: "Nomor telepon harus berupa angka",
                       },
                     })}
-                    pr="4.5rem"
-                    type={show ? "text" : "password"}
                   />
-                  <InputRightElement>
-                    <Button size="base" onClick={handleClick}>
-                      {show ? <IconHidePassword /> : <IconShowPassword />}
-                    </Button>
-                  </InputRightElement>
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.password && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.password.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
-                <MxmFormLabel>Konfirmasi Kata Sandi</MxmFormLabel>
-                <MxmInputGroup>
-                  <Input
-                    type="password"
-                    placeholder="Masukkan kata sandi Anda"
-                    {...register("konfirmasiPassword", {
+                  <FormErrorMessage>
+                    {errors.whatsApp && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.whatsApp.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} mr="5" isInvalid={errors.idLine}>
+                  <MxmFormLabel>ID LINE</MxmFormLabel>
+                  <MxmInput
+                    placeholder="Id LINE"
+                    {...register("idLine", {
                       required: "Tidak boleh kosong",
-                      validate: (value) =>
-                        value === password.current || "Kata sandi tidak sama",
+                      pattern: {
+                        value: /^([0-9]||[a-z]||[-_.])+$/,
+                        message: "ID LINE tidak valid",
+                      },
                     })}
                   />
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.konfirmasiPassword && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.konfirmasiPassword.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-            </Flex>
-              <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em" mt={1}>
-              <MxmVerticalAlign variant="">
-                <Text color="white">Sudah punya akun? <Link href="/masuk" color="#41ceba">Masuk</Link></Text>
-              </MxmVerticalAlign>
-              <Spacer/>
-              <MxmButton variant="desktop" colorScheme="cyan-navy">
-                Masuk
-              </MxmButton>
-            </Flex>
-          </form>
+                  <FormErrorMessage>
+                    {errors.idLine && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.idLine.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} isInvalid={errors.usernameIG}>
+                  <MxmFormLabel>Username Instagram</MxmFormLabel>
+                  <MxmInput
+                    placeholder="Username Instagram"
+                    {...register("usernameIG", {
+                      required: "Tidak boleh kosong",
+                      pattern: {
+                        value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
+                        message: "Username Instagram tidak valid",
+                      },
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.usernameIG && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.usernameIG.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+              </Flex>
+              <Flex
+                direction={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                }}
+              >
+                <FormControl isInvalid={errors.password} mb={3} mr="5">
+                  <MxmFormLabel>Masukkan Kata Sandi</MxmFormLabel>
+                  <MxmInputGroup>
+                    <Input
+                      placeholder="Masukkan kata sandi kamu"
+                      {...register("password", {
+                        required: "Tidak boleh kosong",
+                        minLength: {
+                          value: 8,
+                          message: "Kata sandi minimal 8 karakter",
+                        },
+                      })}
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                    />
+                    <InputRightElement>
+                      <Button size="base" onClick={handleClick}>
+                        {show ? <IconHidePassword /> : <IconShowPassword />}
+                      </Button>
+                    </InputRightElement>
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.password && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
+                  <MxmFormLabel>Konfirmasi Kata Sandi</MxmFormLabel>
+                  <MxmInputGroup>
+                    <Input
+                      type="password"
+                      placeholder="Masukkan kata sandi Anda"
+                      {...register("konfirmasiPassword", {
+                        required: "Tidak boleh kosong",
+                        validate: (value) =>
+                          value === password.current || "Kata sandi tidak sama",
+                      })}
+                    />
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.konfirmasiPassword && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.konfirmasiPassword.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+              </Flex>
+                <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em" mt={1}>
+                <MxmVerticalAlign variant="">
+                  <Text color="white">Sudah punya akun? <Link href="/masuk" color="#41ceba">Masuk</Link></Text>
+                </MxmVerticalAlign>
+                <Spacer/>
+                <MxmButton variant="desktop" colorScheme="cyan-navy">
+                  Masuk
+                </MxmButton>
+              </Flex>
+            </form>
+          </Flex>
         </Flex>
-      </Flex>
-    </MxmContainers>
+        </motion.div>
+      </MxmContainers>
+    </AnimatePresence>
   );
 };
 
