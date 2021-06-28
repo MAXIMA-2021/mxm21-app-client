@@ -22,12 +22,15 @@ import {
 import { Link } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
-import { MxmContainers, MxmVerticalAlign } from "../../../shared/styled/containers";
+import {
+  MxmContainers,
+  MxmVerticalAlign,
+} from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import "./Login.scss";
-import { motion, AnimatePresence } from "framer-motion"
-import { Palette } from "../../../types/enums"
+import { motion, AnimatePresence } from "framer-motion";
+import { Palette } from "../../../types/enums";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -43,7 +46,7 @@ const IconHidePassword = createIcon({
 
 const transition = {
   duration: 1,
-  ease: [0.43, 0.13, 0.23, 0.96]
+  ease: [0.43, 0.13, 0.23, 0.96],
 };
 
 const cardVariants = {
@@ -51,13 +54,13 @@ const cardVariants = {
   enter: {
     y: "0%",
     opacity: 1,
-    transition
-  }
+    transition,
+  },
 };
 
 const buttonVariants = {
   exit: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } }
+  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } },
 };
 
 const Login: React.FC = () => {
@@ -76,172 +79,191 @@ const Login: React.FC = () => {
     <MxmContainers>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
-        <Flex height={{
-          base: "",
-          sm: "",
-          md: "80vh",
-          lg: "80vh",
-          xl: "80vh",
-        }}  
-        alignItems="center" justifyContent="center">
           <Flex
-            direction="column"
-            background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
-            className="filter"
-            py={{
-              base: "3vh",
-              sm: "3vh",
-              md: "3vh",
-              lg: "3vh",
-              xl: "3vh",
+            height={{
+              base: "",
+              sm: "",
+              md: "80vh",
+              lg: "80vh",
+              xl: "80vh",
             }}
-            px={{
-              base: "5vw",
-              sm: "5vw",
-              md: "2vw",
-              lg: "2vw",
-              xl: "2vw",
-            }}
-            my={{
-              base: "1vh",
-              sm: "1vh",
-              md: "10vh",
-              lg: "10vh",
-              xl: "10vh",
-            }}
-            mx={{
-              base: "1vw",
-              sm: "1vw",
-              md: "10vw",
-              lg: "10vw",
-              xl: "10vw",
-            }}
-            rounded={25}
-            style={{
-              WebkitBackdropFilter: "blur(4px)",
-              backdropFilter: "blur(4px)",
-            }}
+            alignItems="center"
+            justifyContent="center"
           >
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Flex>
-                <Heading mb={3} color="white" 
-                letterSpacing="0.05em"
-                fontSize={{
-                  base: "1.5em",
-                  sm: "1.5em",
-                  md: "1.5em",
-                  lg: "1.5em",
-                  xl: "1.7em",
-                  "2xl": "1.7em",
-                }}
-                >
-                  Masuk
-                </Heading>
-                <Spacer />
-                <Image
-                  src={MxmLogo}
-                  alt="Logo MAXIMA 2021"
-                  h="100%"
-                  w={{
-                    base: "4vw",
-                    sm: "4vw",
-                    md: "2.5vw",
-                    lg: "2vw",
-                    xl: "2vw",
-                    "2xl": "1.2vw",
-                  }}
-                  mt={2}
-                />
-              </Flex>
-              <Divider
-                colorScheme="whiteAlpha"
-                style={{ border: "2px solid white" }}
-              />
-              <Center>
-                <Image
-                  src={MxmLogoText}
-                  alt="Logo MAXIMA 2021"
-                  w={{
-                    base: "15vh",
-                    sm: "8vh",
-                    md: "8vh",
-                    lg: "10vh",
-                    xl: "10vh",
-                    "2xl": "10vh",
-                  }}
-                  my={6}
-                />
-              </Center>
-              <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
-                <MxmInputGroup addon="left">
-                  <InputLeftAddon size="base" children="000000" letterSpacing="0.05em"/>
-                  <Input
-                    type="number"
-                    placeholder="5 angka terakhir NIM"
-                    {...register("nimMahasiswa", {
-                      required: "Isi NIM kamu",
-                      minLength: {
-                        value: 5,
-                        message: "Masukkan 5 angka terakhir dari NIM kamu",
-                      },
-                      maxLength: {
-                        value: 5,
-                        message: "Masukkan 5 angka terakhir dari NIM kamu",
-                      },
-                    })}
-                  />
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.nimMahasiswa && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.nimMahasiswa.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={errors.password} mb={6}>
-                <MxmInputGroup>
-                  <Input
-                    placeholder="Masukkan password kamu"
-                    {...register("password", {
-                      required: "Isi password kamu",
-                    })}
-                    pr="4.5rem"
-                    type={show ? "text" : "password"}
-                  />
-                  <InputRightElement>
-                    <Button size="base" onClick={handleClick}>
-                      {show ? <IconHidePassword /> : <IconShowPassword />}
-                    </Button>
-                  </InputRightElement>
-                </MxmInputGroup>
-                <FormErrorMessage>
-                  {errors.password && (
-                    <p>
-                      <FormErrorIcon />
-                      {errors.password.message}
-                    </p>
-                  )}
-                </FormErrorMessage>
-              </FormControl>
-              <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
-                <MxmVerticalAlign variant="">
-                  <Text color="white">Belum punya akun? <Link to="/daftar" style={{color: `${Palette.Cyan}`}}>Daftar</Link></Text>
-                  <Spacer />
-                  <Text color="white">Lupa kata sandimu? <Link to="/reset" style={{color: `${Palette.Cyan}`}}>Klik di sini</Link></Text>
-                </MxmVerticalAlign>
-                <Spacer/>
-                
-                <motion.div className="back" variants={buttonVariants}>
-                  <MxmButton variant="desktop" colorScheme="cyan-navy">
+            <Flex
+              direction="column"
+              background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
+              className="filter"
+              py={{
+                base: "3vh",
+                sm: "3vh",
+                md: "3vh",
+                lg: "3vh",
+                xl: "3vh",
+              }}
+              px={{
+                base: "5vw",
+                sm: "5vw",
+                md: "2vw",
+                lg: "2vw",
+                xl: "2vw",
+              }}
+              my={{
+                base: "1vh",
+                sm: "1vh",
+                md: "10vh",
+                lg: "10vh",
+                xl: "10vh",
+              }}
+              mx={{
+                base: "1vw",
+                sm: "1vw",
+                md: "10vw",
+                lg: "10vw",
+                xl: "10vw",
+              }}
+              rounded={25}
+              style={{
+                WebkitBackdropFilter: "blur(4px)",
+                backdropFilter: "blur(4px)",
+              }}
+            >
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Flex>
+                  <Heading
+                    mb={3}
+                    color="white"
+                    letterSpacing="0.05em"
+                    fontSize={{
+                      base: "1.5em",
+                      sm: "1.5em",
+                      md: "1.5em",
+                      lg: "1.5em",
+                      xl: "1.7em",
+                      "2xl": "1.7em",
+                    }}
+                  >
                     Masuk
-                  </MxmButton>
-                </motion.div>
-              </Flex>
-            </form>
+                  </Heading>
+                  <Spacer />
+                  <Image
+                    src={MxmLogo}
+                    alt="Logo MAXIMA 2021"
+                    h="100%"
+                    w={{
+                      base: "4vw",
+                      sm: "4vw",
+                      md: "2.5vw",
+                      lg: "2vw",
+                      xl: "2vw",
+                      "2xl": "1.2vw",
+                    }}
+                    mt={2}
+                  />
+                </Flex>
+                <Divider
+                  colorScheme="whiteAlpha"
+                  style={{ border: "2px solid white" }}
+                />
+                <Center>
+                  <Image
+                    src={MxmLogoText}
+                    alt="Logo MAXIMA 2021"
+                    w={{
+                      base: "15vh",
+                      sm: "8vh",
+                      md: "8vh",
+                      lg: "10vh",
+                      xl: "10vh",
+                      "2xl": "10vh",
+                    }}
+                    my={6}
+                  />
+                </Center>
+                <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
+                  <MxmInputGroup addon="left">
+                    <InputLeftAddon
+                      size="base"
+                      children="000000"
+                      letterSpacing="0.05em"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="5 angka terakhir NIM"
+                      {...register("nimMahasiswa", {
+                        required: "Isi NIM kamu",
+                        minLength: {
+                          value: 5,
+                          message: "Masukkan 5 angka terakhir dari NIM kamu",
+                        },
+                        maxLength: {
+                          value: 5,
+                          message: "Masukkan 5 angka terakhir dari NIM kamu",
+                        },
+                      })}
+                    />
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.nimMahasiswa && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.nimMahasiswa.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl isInvalid={errors.password} mb={6}>
+                  <MxmInputGroup>
+                    <Input
+                      placeholder="Masukkan password kamu"
+                      {...register("password", {
+                        required: "Isi password kamu",
+                      })}
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                    />
+                    <InputRightElement>
+                      <Button size="base" onClick={handleClick}>
+                        {show ? <IconHidePassword /> : <IconShowPassword />}
+                      </Button>
+                    </InputRightElement>
+                  </MxmInputGroup>
+                  <FormErrorMessage>
+                    {errors.password && (
+                      <p>
+                        <FormErrorIcon />
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </FormErrorMessage>
+                </FormControl>
+                <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
+                  <MxmVerticalAlign variant="">
+                    <Text color="white">
+                      Belum punya akun?{" "}
+                      <Link to="/daftar" style={{ color: `${Palette.Cyan}` }}>
+                        Daftar
+                      </Link>
+                    </Text>
+                    {/* <Spacer /> */}
+                    <Text color="white">
+                      Lupa kata sandimu?{" "}
+                      <Link to="/reset" style={{ color: `${Palette.Cyan}` }}>
+                        Klik di sini
+                      </Link>
+                    </Text>
+                  </MxmVerticalAlign>
+                  <Spacer />
+
+                  <motion.div className="back" variants={buttonVariants}>
+                    <MxmButton variant="desktop" colorScheme="cyan-navy">
+                      Masuk
+                    </MxmButton>
+                  </motion.div>
+                </Flex>
+              </form>
+            </Flex>
           </Flex>
-        </Flex>
         </motion.div>
       </motion.div>
     </MxmContainers>

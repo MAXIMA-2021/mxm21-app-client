@@ -13,8 +13,9 @@ export const MxmButton = styled("button")<{
 
   /* min-width: 105px;
   height: 43px; */
-  padding: 0.5em 1.6em;
-  /* margin: 1rem; */
+  
+  padding: 0.8vh 1vw;
+  margin: 1rem;
 
   border-radius: ${(props) => (props.variant === "mobile" ? "10px" : "20px")};
 
