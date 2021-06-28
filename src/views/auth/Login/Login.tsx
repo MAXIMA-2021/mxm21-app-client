@@ -81,8 +81,8 @@ const Login: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "",
-              sm: "",
+              base: "100vh",
+              sm: "100vh",
               md: "80vh",
               lg: "80vh",
               xl: "80vh",
@@ -170,7 +170,7 @@ const Login: React.FC = () => {
                     src={MxmLogoText}
                     alt="Logo MAXIMA 2021"
                     w={{
-                      base: "15vh",
+                      base: "8vh",
                       sm: "8vh",
                       md: "8vh",
                       lg: "10vh",

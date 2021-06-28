@@ -95,8 +95,8 @@ const RegisterMaba: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "",
-              sm: "",
+              base: "100%",
+              sm: "100%",
               md: "80vh",
               lg: "80vh",
               xl: "80vh",
@@ -210,7 +210,7 @@ const RegisterMaba: React.FC = () => {
                     w={{
                       base: "100%",
                       sm: "100%",
-                      md: "30%",
+                      md: "40%",
                       lg: "30%",
                       xl: "30%",
                     }}
