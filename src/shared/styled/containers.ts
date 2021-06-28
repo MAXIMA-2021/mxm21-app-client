@@ -4,6 +4,7 @@ import { bgAuth } from "../../assets";
 export const MxmContainers = styled("div")`
     background-image: url(${bgAuth});
     height: 100%;
+    padding: 10vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

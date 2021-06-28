@@ -8,6 +8,7 @@ export const MxmSelect = styled(Select)`
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
   /* height: 5vh !important; */
+  font-size: 0.9em !important;
 `;
 
 export const MxmFormLabel = styled(FormLabel)`
@@ -15,14 +16,6 @@ export const MxmFormLabel = styled(FormLabel)`
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-size: 0.8em !important;
-
-  @media (max-width: 767px) {
-    font-size: 0.8em !important;
-  }
-
-  @media (min-width: 1535px) {
-    font-size: 1em !important;
-  }
 `;
 
 export const MxmInput = styled(Input)<{ border: string }>`
@@ -31,18 +24,10 @@ export const MxmInput = styled(Input)<{ border: string }>`
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
-  font-size: 1em !important;
+  font-size: 0.9em !important;
   /* height: 5vh !important; */
   & ::placeholder {
     color: #cbd5e0;
-  }
-
-  @media (max-width: 767px) {
-    font-size: 1em !important;
-  }
-
-  @media (min-width: 1535px) {
-    font-size: 1em !important;
   }
 `;
 
@@ -51,6 +36,7 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   & Input {
     /* height: 5vh !important; */
+    font-size: 0.9em !important;
     background-color: white;
     font-family: "Poppins", sans-serif;
     border-radius: ${(props) => {
@@ -72,6 +58,7 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
     display: none !important;
   }
   & div {
+    font-size: 0.9em !important;
     /* height: 5vh !important; */
     background-color: ${(props) =>
       props.addon === "icon" ? "transparant" : "#deefec"};

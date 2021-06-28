@@ -2,6 +2,7 @@ export enum Palette {
   Navy = '#1F2C4C',
   Cyan = '#41CEBA',
   Yellow = '#FFD008',
-  Pink = '#F4224B',
+  Red = '#F4224B',
   White = '#FFFFFF',
+  Black = '#000000',
 }

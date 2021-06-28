@@ -24,8 +24,8 @@ import {
   Select,
   Grid,
   Text,
-  Link,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmInput,
@@ -52,6 +52,25 @@ const IconHidePassword = createIcon({
   d: "M19.97 21.385L16.614 18.029C15.1661 18.6882 13.5908 19.0204 12 19.002C10.3599 19.0224 8.73671 18.6684 7.254 17.967C6.10468 17.4063 5.07264 16.6318 4.213 15.685C3.30049 14.7069 2.5833 13.5634 2.1 12.316L2 12.002L2.105 11.686C2.82781 9.84231 4.04426 8.23318 5.621 7.03501L3 4.41401L4.413 3.00201L21.382 19.971L19.972 21.385H19.97ZM7.036 8.45101C5.75792 9.34693 4.74865 10.5747 4.117 12.002C5.47142 15.1269 8.59587 17.1087 12 17.002C13.0498 17.0106 14.0936 16.8416 15.087 16.502L13.287 14.702C12.8863 14.8984 12.4462 15.001 12 15.002C10.3475 14.9916 9.01037 13.6546 9 12.002C9.00048 11.5548 9.10309 11.1136 9.3 10.712L7.036 8.45101ZM19.852 15.612L18.46 14.221C19.0456 13.5589 19.5256 12.8105 19.883 12.002C18.5304 8.87559 15.4047 6.89309 12 7.00201C11.753 7.00201 11.505 7.01101 11.265 7.02801L9.5 5.26101C10.3216 5.08525 11.1598 4.99841 12 5.00201C13.6401 4.98166 15.2633 5.33564 16.746 6.03701C17.8953 6.59775 18.9274 7.37221 19.787 8.31901C20.6991 9.29598 21.4163 10.4381 21.9 11.684L22 12.002L21.895 12.318C21.4268 13.5361 20.7342 14.6555 19.853 15.618L19.852 15.612Z",
 });
 
+const transition = {
+  duration: 1,
+  ease: [0.43, 0.13, 0.23, 0.96]
+};
+
+const cardVariants = {
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.5, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition
+  }
+};
+
+const buttonVariants = {
+  exit: { x: 100, opacity: 0, transition },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } }
+};
+
 const RegisterMaba: React.FC = () => {
   const {
     register,
@@ -68,14 +87,9 @@ const RegisterMaba: React.FC = () => {
   const handleClick = () => setShow(!show);
 
   return (
-      <MxmContainers>
-        <motion.div
-          key="modal"
-          initial={{ x: 300, opacity: 1, scale: 0.5 }}
-          animate={{ x: 0, opacity: 1, scale: 1 }}
-          exit={{ x: -300, opacity: 1, scale: 0.5 }}
-          transition={{ type: "tween", duration: 0.4, delay: 0.1 }}
-        >
+    <MxmContainers>
+      <motion.div initial="exit" animate="enter" exit="exit">
+        <motion.div variants={cardVariants}>
         <Flex 
         height={{
           base: "",
@@ -125,6 +139,7 @@ const RegisterMaba: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Flex>
                 <Heading mb={3} color="white" 
+                letterSpacing="0.05em"
                 fontSize={{
                   base: "1.5em",
                   sm: "1.5em",
@@ -557,18 +572,21 @@ const RegisterMaba: React.FC = () => {
               </Flex> */}
                 <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em" mt={1}>
                 <MxmVerticalAlign variant="">
-                  <Text color="white">Sudah punya akun? <Link href="/masuk" color={Palette.Cyan}>Masuk</Link></Text>
+                  <Text color="white">Sudah punya akun? <Link to="/masuk" style={{color: `${Palette.Cyan}`}}>Masuk</Link></Text>
                 </MxmVerticalAlign>
                 <Spacer/>
-                <MxmButton variant="desktop" colorScheme="cyan-navy">
-                  Daftar
-                </MxmButton>
+                <motion.div className="back" variants={buttonVariants}>
+                  <MxmButton variant="desktop" colorScheme="cyan-navy">
+                    Daftar
+                  </MxmButton>
+                </motion.div>
               </Flex>
             </form>
           </Flex>
         </Flex>
         </motion.div>
-      </MxmContainers>
+      </motion.div>
+    </MxmContainers>
   );
 };
 

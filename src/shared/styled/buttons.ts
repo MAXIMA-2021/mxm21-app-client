@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Palette } from "../../types/enums"
 
 export const MxmButton = styled("button")<{
   variant: string;
@@ -22,161 +23,171 @@ export const MxmButton = styled("button")<{
   ${(props) =>
     props.colorScheme === "cyan-navy"
       ? `
-    background: #41CEBA;
-    box-shadow: -3px 3px 0 0 #1f2c4c;
+    background: ${Palette.Cyan};
+    box-shadow: -3px 3px 0 0 ${Palette.Navy};
     color: white;
 
     &:hover {
-        box-shadow: -2px 2px 0 0 #1f2c4c;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Navy};
         transform: translate(2px, -2px);
     }
 
     &:active {
-        box-shadow: 0 0 0 0 #1f2c4c;
+        box-shadow: 0 0 0 0 ${Palette.Navy};
         transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "navy-cyan"
       ? `
-    background: #1F2C4C;
-    box-shadow: -3px 3px 0 0 #41CEBA;
+    background: ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: white;
 
     &:hover {
-        box-shadow: -2px 2px 0 0 #41CEBA;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Cyan};
         transform: translate(2px, -2px);
     }
 
     &:active {
-        box-shadow: 0 0 0 0 #41CEBA;
+        box-shadow: 0 0 0 0 ${Palette.Cyan};
         transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "yellow-red"
       ? ` 
-      background: #FFD008;
-    box-shadow: -3px 3px 0 0 #F4224B;
-    color: #F4224B;
+      background: ${Palette.Yellow};
+    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
+    color: ${Palette.Red}B;
 
     &:hover {
-        box-shadow: -2px 2px 0 0 #F4224B;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Red}B;
         transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #F4224B;
+      box-shadow: 0 0 0 0 ${Palette.Red}B;
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "navy-cyan"
       ? `
-    background: #1F2C4C;
-    box-shadow: -3px 3px 0 0 #41CEBA;
+    background: ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: #FFFFFF;
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #41CEBA;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #41CEBA;
+      box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "navy-cyan-cyan"
       ? `
-    background: #1F2C4C;
-    box-shadow: -3px 3px 0 0 #41CEBA;
-    color: #41CEBA;
+    background: ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
+    color: ${Palette.Cyan};
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #41CEBA;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #41CEBA;
+      box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "navy-white"
       ? `
-    background: #1F2C4C;
+    background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 #FFFFFF;
     color: #ffffff;
 
     &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
       box-shadow: -2px 2px 0 0 #FFFFFF;
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #41CEBA;
+      box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "white-red"
       ? `
     background: #FFFFFF;
-    box-shadow: -3px 3px 0 0 #F4224B;
-    color: #F4224B;
+    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
+    color: ${Palette.Red}B;
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #F4224B;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Red}B;
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #F4224B;
+      box-shadow: 0 0 0 0 ${Palette.Red}B;
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "white-navy"
       ? `
     background: #FFFFFF;
-    box-shadow: -3px 3px 0 0 #1F2C4C;
-    color: #1F2C4C;
+    box-shadow: -3px 3px 0 0 ${Palette.Navy};
+    color: ${Palette.Navy};
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #1F2C4C;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Navy};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #1F2C4C;
+      box-shadow: 0 0 0 0 ${Palette.Navy};
       transform: translate(0px, 0px);
     }
     `
       : props.colorScheme === "white-cyan"
       ? `
     background: #FFFFFF;
-    box-shadow: -3px 3px 0 0 #41CEBA;
-    color: #41CEBA;
+    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
+    color: ${Palette.Cyan};
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #41CEBA;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #41CEBA;
+      box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
     }
     `
       : `
     
-    background: #1F2C4C;
-    box-shadow: -3px 3px 0 0 #41CEBA;
+    background: ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: white;
 
     &:hover {
-      box-shadow: -2px 2px 0 0 #41CEBA;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 #41CEBA;
+      box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
     }`}
 
