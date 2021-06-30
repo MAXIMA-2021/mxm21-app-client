@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -42,6 +42,8 @@ import { MxmLogo, MxmLogoText } from "../../../assets";
 import { kMaxLength } from "buffer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
+import "./RegisterMaba.scss";
+import { convertToObject } from "typescript";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -88,6 +90,12 @@ const RegisterMaba: React.FC = () => {
   };
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+  const handleSelectChange = (event: any) => {
+    if (event.target.value !== "") {
+      event.target.style.color = "black";
+    }
+  };
 
   return (
     <MxmContainers>
@@ -315,9 +323,11 @@ const RegisterMaba: React.FC = () => {
                       {...register("jenisKelamin", {
                         required: "Pilih jenis kelamin kamu",
                       })}
+                      className="select"
+                      onChange={handleSelectChange}
                     >
                       <option value="" selected disabled hidden>
-                        Pilih Jenis Kelamin
+                        L/P
                       </option>
                       <option value="laki-laki">Laki-laki</option>
                       <option value="perempuan">Perempuan</option>
@@ -359,6 +369,8 @@ const RegisterMaba: React.FC = () => {
                       {...register("prodi", {
                         required: "Pilih program studi kamu",
                       })}
+                      className="select"
+                      onChange={handleSelectChange}
                     >
                       <option value="" selected disabled hidden>
                         Pilih Program Studi
@@ -408,6 +420,8 @@ const RegisterMaba: React.FC = () => {
                       {...register("angkatan", {
                         required: "Pilih angkatan kamu",
                       })}
+                      className="select"
+                      onChange={handleSelectChange}
                     >
                       <option value="" selected disabled hidden>
                         Pilih Angkatan
