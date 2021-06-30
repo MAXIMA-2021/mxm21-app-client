@@ -1,5 +1,23 @@
 import styled from "styled-components";
-import { Input, InputGroup, FormLabel, Select } from "@chakra-ui/react";
+import {
+  Input,
+  InputGroup,
+  FormLabel,
+  Select,
+  FormErrorMessage,
+} from "@chakra-ui/react";
+
+export const MxmFormErrorMessage = styled(FormErrorMessage)`
+  & svg {
+    color: white;
+  }
+  & p {
+    background-color: #e8413c;
+    color: white;
+    padding: 0em 0.4em 0.2em 0.4em;
+    border-radius: 5px;
+  }
+`;
 
 export const MxmSelect = styled(Select)`
   background-color: white !important;

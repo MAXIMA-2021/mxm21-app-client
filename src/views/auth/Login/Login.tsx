@@ -12,7 +12,6 @@ import {
   InputLeftAddon,
   InputRightElement,
   FormControl,
-  FormErrorMessage,
   FormErrorIcon,
   Image,
   Spacer,
@@ -21,7 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
-import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
+import {
+  MxmFormErrorMessage,
+  MxmInput,
+  MxmInputGroup,
+} from "../../../shared/styled/input";
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -203,17 +206,17 @@ const Login: React.FC = () => {
                       })}
                     />
                   </MxmInputGroup>
-                  <FormErrorMessage>
+                  <MxmFormErrorMessage>
                     {errors.nimMahasiswa && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.nimMahasiswa.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={errors.password} mb={6}>
-                  <MxmInputGroup>
+                  <MxmInputGroup addon="icon">
                     <Input
                       placeholder="Masukkan password kamu"
                       {...register("password", {
@@ -228,14 +231,14 @@ const Login: React.FC = () => {
                       </Button>
                     </InputRightElement>
                   </MxmInputGroup>
-                  <FormErrorMessage>
+                  <MxmFormErrorMessage>
                     {errors.password && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.password.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
                 <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
                   <MxmVerticalAlign variant="">
