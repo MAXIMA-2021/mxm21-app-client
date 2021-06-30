@@ -13,7 +13,6 @@ import {
   NumberInput,
   NumberInputField,
   FormControl,
-  FormErrorMessage,
   FormErrorIcon,
   InputLeftAddon,
   InputRightAddon,
@@ -32,6 +31,7 @@ import {
   MxmInputGroup,
   MxmFormLabel,
   MxmSelect,
+  MxmFormErrorMessage,
 } from "../../../shared/styled/input";
 import {
   MxmContainers,
@@ -58,12 +58,12 @@ const IconHidePassword = createIcon({
 });
 
 const transition = {
-  duration: 1,
+  duration: 0.5,
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
 const cardVariants = {
-  exit: { y: "50%", opacity: 0, transition: { delay: 0.5, ...transition } },
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
@@ -73,7 +73,7 @@ const cardVariants = {
 
 const buttonVariants = {
   exit: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
 const RegisterMaba: React.FC = () => {
@@ -103,8 +103,8 @@ const RegisterMaba: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "",
-              sm: "",
+              base: "100%",
+              sm: "100%",
               md: "80vh",
               lg: "80vh",
               xl: "80vh",
@@ -203,14 +203,16 @@ const RegisterMaba: React.FC = () => {
                         required: "Isi nama lengkap kamu",
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.nama && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.nama.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.nama.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl
                     isInvalid={errors.nimMahasiswa}
@@ -218,7 +220,7 @@ const RegisterMaba: React.FC = () => {
                     w={{
                       base: "100%",
                       sm: "100%",
-                      md: "30%",
+                      md: "40%",
                       lg: "30%",
                       xl: "30%",
                     }}
@@ -244,14 +246,16 @@ const RegisterMaba: React.FC = () => {
                         })}
                       />
                     </MxmInputGroup>
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.nimMahasiswa && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.nimMahasiswa.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.nimMahasiswa.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
                 <Flex
@@ -270,14 +274,16 @@ const RegisterMaba: React.FC = () => {
                         required: "Isi tempat lahir kamu",
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.tempatLahir && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.tempatLahir.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.tempatLahir.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl
                     mb={3}
@@ -298,14 +304,16 @@ const RegisterMaba: React.FC = () => {
                         required: "Isi tanggal lahir kamu",
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.tanggalLahir && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.tanggalLahir.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.tanggalLahir.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl
                     mb={3}
@@ -332,14 +340,16 @@ const RegisterMaba: React.FC = () => {
                       <option value="laki-laki">Laki-laki</option>
                       <option value="perempuan">Perempuan</option>
                     </MxmSelect>
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.jenisKelamin && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.jenisKelamin.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.jenisKelamin.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
                 <Flex
@@ -393,14 +403,16 @@ const RegisterMaba: React.FC = () => {
                       <option value="Akuntansi">Akuntansi</option>
                       <option value="Perhotelan">Perhotelan</option>
                     </MxmSelect>
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.prodi && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.prodi.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.prodi.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl
                     mb={3}
@@ -431,14 +443,16 @@ const RegisterMaba: React.FC = () => {
                       <option value="2019">2019</option>
                       <option value="2018">2018</option>
                     </MxmSelect>
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.angkatan && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.angkatan.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.angkatan.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} isInvalid={errors.email}>
                     <MxmFormLabel>Email Student</MxmFormLabel>
@@ -455,14 +469,16 @@ const RegisterMaba: React.FC = () => {
                       />
                       <InputRightAddon children="@student.umn.ac.id" />
                     </MxmInputGroup>
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.email && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.email.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.email.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
                 <Flex
@@ -496,14 +512,16 @@ const RegisterMaba: React.FC = () => {
                         },
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.whatsApp && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.whatsApp.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.whatsApp.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} mr="5" isInvalid={errors.idLine}>
                     <MxmFormLabel>ID LINE</MxmFormLabel>
@@ -516,14 +534,16 @@ const RegisterMaba: React.FC = () => {
                         },
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.idLine && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.idLine.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.idLine.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} isInvalid={errors.usernameIG}>
                     <MxmFormLabel>Username Instagram</MxmFormLabel>
@@ -537,14 +557,16 @@ const RegisterMaba: React.FC = () => {
                         },
                       })}
                     />
-                    <FormErrorMessage fontSize="xs" mt={1}>
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.usernameIG && (
                         <Flex flexDirection="row" alignItems="center">
-                          <FormErrorIcon />
-                          <p>{errors.usernameIG.message}</p>
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.usernameIG.message}
+                          </p>
                         </Flex>
                       )}
-                    </FormErrorMessage>
+                    </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
                 {/* <Flex
@@ -577,14 +599,14 @@ const RegisterMaba: React.FC = () => {
                       </Button>
                     </InputRightElement>
                   </MxmInputGroup>
-                  <FormErrorMessage fontSize="xs" mt={1}>
+                  <MxmFormErrorMessage fontSize="xs" mt={1}>
                     {errors.password && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.password.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
                 <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
                   <MxmFormLabel>Konfirmasi Kata Sandi</MxmFormLabel>
@@ -599,14 +621,14 @@ const RegisterMaba: React.FC = () => {
                       })}
                     />
                   </MxmInputGroup>
-                  <FormErrorMessage fontSize="xs" mt={1}>
+                  <MxmFormErrorMessage fontSize="xs" mt={1}>
                     {errors.konfirmasiPassword && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.konfirmasiPassword.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
               </Flex> */}
                 <Flex

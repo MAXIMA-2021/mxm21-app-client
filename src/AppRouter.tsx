@@ -9,7 +9,7 @@ export default function AppRouter() {
     <Router>
       <Route
         render={({ location }) => (
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence exitBeforeEnter initial={false}>
             <Switch location={location} key={location.pathname}>
               <Route path='/' exact component={Home} />
               <Route path='/masuk' exact component={Auth.Login} />

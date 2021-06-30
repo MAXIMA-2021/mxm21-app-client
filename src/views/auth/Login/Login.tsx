@@ -12,7 +12,6 @@ import {
   InputLeftAddon,
   InputRightElement,
   FormControl,
-  FormErrorMessage,
   FormErrorIcon,
   Image,
   Spacer,
@@ -21,7 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
-import { MxmInput, MxmInputGroup } from "../../../shared/styled/input";
+import {
+  MxmFormErrorMessage,
+  MxmInput,
+  MxmInputGroup,
+} from "../../../shared/styled/input";
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -45,12 +48,12 @@ const IconHidePassword = createIcon({
 });
 
 const transition = {
-  duration: 1,
+  duration: 0.5,
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
 const cardVariants = {
-  exit: { y: "50%", opacity: 0, transition: { delay: 0.5, ...transition } },
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
@@ -60,7 +63,7 @@ const cardVariants = {
 
 const buttonVariants = {
   exit: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
 const Login: React.FC = () => {
@@ -81,8 +84,8 @@ const Login: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "",
-              sm: "",
+              base: "100vh",
+              sm: "100vh",
               md: "80vh",
               lg: "80vh",
               xl: "80vh",
@@ -170,7 +173,7 @@ const Login: React.FC = () => {
                     src={MxmLogoText}
                     alt="Logo MAXIMA 2021"
                     w={{
-                      base: "15vh",
+                      base: "8vh",
                       sm: "8vh",
                       md: "8vh",
                       lg: "10vh",
@@ -203,17 +206,17 @@ const Login: React.FC = () => {
                       })}
                     />
                   </MxmInputGroup>
-                  <FormErrorMessage>
+                  <MxmFormErrorMessage>
                     {errors.nimMahasiswa && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.nimMahasiswa.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={errors.password} mb={6}>
-                  <MxmInputGroup>
+                  <MxmInputGroup addon="icon">
                     <Input
                       placeholder="Masukkan password kamu"
                       {...register("password", {
@@ -228,14 +231,14 @@ const Login: React.FC = () => {
                       </Button>
                     </InputRightElement>
                   </MxmInputGroup>
-                  <FormErrorMessage>
+                  <MxmFormErrorMessage>
                     {errors.password && (
                       <p>
-                        <FormErrorIcon />
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
                         {errors.password.message}
                       </p>
                     )}
-                  </FormErrorMessage>
+                  </MxmFormErrorMessage>
                 </FormControl>
                 <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
                   <MxmVerticalAlign variant="">
