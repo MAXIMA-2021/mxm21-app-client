@@ -56,12 +56,12 @@ const IconHidePassword = createIcon({
 });
 
 const transition = {
-  duration: 1,
+  duration: 0.5,
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
 const cardVariants = {
-  exit: { y: "50%", opacity: 0, transition: { delay: 0.5, ...transition } },
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
@@ -71,7 +71,7 @@ const cardVariants = {
 
 const buttonVariants = {
   exit: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.5, ...transition } },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
 const RegisterMaba: React.FC = () => {
