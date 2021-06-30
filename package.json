@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.13",
     "@chakra-ui/react": "^1.6.4",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -20,7 +21,9 @@
     "jwt-decode": "^3.1.2",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
+    "react-backdrop-filter": "^2.1.0",
     "react-dom": "^17.0.2",
+    "react-google-login": "^5.2.2",
     "react-hook-form": "^7.9.0",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
