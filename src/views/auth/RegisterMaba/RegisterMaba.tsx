@@ -303,6 +303,8 @@ const RegisterMaba: React.FC = () => {
                       {...register("tanggalLahir", {
                         required: "Isi tanggal lahir kamu",
                       })}
+                      className="select"
+                      onChange={handleSelectChange}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.tanggalLahir && (
