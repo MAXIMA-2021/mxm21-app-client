@@ -1,7 +1,15 @@
 .select {
-  color: #ced5de;
+  color: #a9a9a9;
+
+  & option {
+    color: black;
+  }
 }
 
-.select option {
-  color: black;
+input::placeholder {
+  color: #a9a9a9;
+}
+
+input::-moz-placeholder {
+  color: #777777;
 }
