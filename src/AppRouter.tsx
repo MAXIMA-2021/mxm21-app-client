@@ -5,6 +5,7 @@ import * as Dashboards from "./views/dashboards";
 import {Home} from "./views";
 import { AdminRouters } from './routers';
 import { AnimatePresence } from "framer-motion";
+import { DashboardNavigation } from "./shared/component/DashboardNavigation";
 
 export default function AppRouter() {
   return (
@@ -18,7 +19,7 @@ export default function AppRouter() {
               <Route path="/daftar" exact component={Auth.RegisterMaba} />
               <Route path="/admin/:path1?/:path2?/:path3?" exact>
                 <Switch>
-                  <AdminRouters/>
+                  <DashboardNavigation/>
                 </Switch>
               </Route>
               <Route path="/" component={Home} />

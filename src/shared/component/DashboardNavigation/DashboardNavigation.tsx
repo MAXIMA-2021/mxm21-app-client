@@ -3,6 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { Container } from "@chakra-ui/react";
+import { AdminRouters } from '../../../routers'
 
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -145,7 +149,7 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </header>
 
-      <aside
+      <aside 
         className={`sidebar-container ${
           isSmallerThan450px
             ? sidebarShow
@@ -305,6 +309,15 @@ const DashboardNavigation: React.FC = () => {
           </Flex>
         </Flex>
       </aside>
+
+      <Container paddingLeft={
+        sidebarShow
+              ? "300px"
+              : "0px"
+           
+        }>
+        <AdminRouters/>
+      </Container>
 
       {/* <footer className="footer">
         <Flex></Flex>

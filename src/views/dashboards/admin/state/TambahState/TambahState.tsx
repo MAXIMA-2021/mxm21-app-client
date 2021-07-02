@@ -82,8 +82,9 @@ const TambahState: React.FC = () => {
   };
 
   return (
+  <div className="content">
     <Flex
-      height="100vh"
+      // height="100vh"
       backgroundColor="#F4F4F4"
       alignItems="center"
       justifyContent="center"
@@ -91,7 +92,6 @@ const TambahState: React.FC = () => {
       <Flex
         direction="column"
         backgroundColor="#FFFFFF"
-        className="filter"
         py={{
           base: "3vh",
           sm: "3vh",
@@ -276,6 +276,7 @@ const TambahState: React.FC = () => {
         </form>
       </Flex>
     </Flex>
+  </div>
   );
 };
 

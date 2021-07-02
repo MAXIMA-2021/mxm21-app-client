@@ -15,6 +15,7 @@
   width: calc(100vw - 18em);
   height: 3.125em;
   background: var(--Mxm-cyan);
+  z-index: 1;
 
   &.open {
     margin-left: 18em;
@@ -98,8 +99,9 @@
   width: 18em;
   background: var(--Mxm-navy);
   transition: all 0.2s ease-in-out;
+  z-index: 1;
 
-  overflow-y: auto;
+  overflow-y: hidden;
 
   font-family: Poppins, Arial, sans-serif;
 

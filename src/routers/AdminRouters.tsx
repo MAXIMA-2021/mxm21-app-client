@@ -10,9 +10,7 @@ import { Container } from "@chakra-ui/react";
 
 export default function AdminRouters() {
   return (
-    <div style={{ height: "200vh" }}>
-      <DashboardNavigation />
-      <Container>
+    <div>
         <Router>
           <Route
             render={({ location }) => (
@@ -62,8 +60,6 @@ export default function AdminRouters() {
             )}
           />
         </Router>
-      </Container>
-      <DashboardFooter />
     </div>
   );
 }
