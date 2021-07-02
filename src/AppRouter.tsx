@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as Auth from "./views/auth";
 import * as Dashboards from "./views/dashboards";
-import Home from "./views/Home";
+import {Home} from "./views";
+import { AdminRouters } from './routers';
 import { AnimatePresence } from "framer-motion";
 
 export default function AppRouter() {
@@ -15,41 +16,11 @@ export default function AppRouter() {
               <Route path="/" exact component={Home} />
               <Route path="/masuk" exact component={Auth.Login} />
               <Route path="/daftar" exact component={Auth.RegisterMaba} />
-              <Route
-                path="/tambah-state"
-                exact
-                component={Dashboards.TambahState}
-              />
-              <Route
-                path="/tambah-pic"
-                exact
-                component={Dashboards.TambahPIC}
-              />
-              <Route
-                path="/edit-state"
-                exact
-                component={Dashboards.EditState}
-              />
-              <Route
-                path="/daftar-state"
-                exact
-                component={Dashboards.DaftarState}
-              />
-              <Route
-                path="/daftar-organisator"
-                exact
-                component={Dashboards.DaftarOrganisator}
-              />
-              <Route
-                path="/daftar-pic"
-                exact
-                component={Dashboards.DaftarPIC}
-              />
-              <Route
-                path="/state-detail"
-                exact
-                component={Dashboards.StateDetail}
-              />
+              <Route path="/admin/:path1?/:path2?/:path3?" exact>
+                <Switch>
+                  <AdminRouters/>
+                </Switch>
+              </Route>
               <Route path="/" component={Home} />
             </Switch>
           </AnimatePresence>

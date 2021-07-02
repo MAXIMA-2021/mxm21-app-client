@@ -175,7 +175,7 @@ const DashboardNavigation: React.FC = () => {
                 <ul className="dropdown-items">
                   <li>
                     <NavLink
-                      to="/tambahState"
+                      to="/admin/tambah-state"
                       activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon
@@ -186,7 +186,7 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/daftarState"
+                      to="/admin/daftar-state"
                       activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon
@@ -197,7 +197,7 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/daftarOrganisator"
+                      to="/admin/daftar-organisator"
                       activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon
@@ -208,7 +208,7 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/tambahPicOrganisator"
+                      to="/admin/tambah-pic"
                       activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon
@@ -219,7 +219,7 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/daftarPic"
+                      to="/admin/daftar-pic"
                       activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon
