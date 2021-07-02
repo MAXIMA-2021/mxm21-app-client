@@ -55,10 +55,13 @@ const UploadFiles = () => {
         <input {...getInputProps()} />
         <IconUpload boxSize="3.5em" />
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
-          Drag and Drop atau Klik Disini
+          Drag and Drop atau{" "}
+          <span style={{ color: "blue" }}>
+            <u>Klik Disini</u>
+          </span>
         </p>
         <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
-          Anda hanya dapat mengirim satu gambar saja
+          Kamu hanya dapat mengirim satu gambar saja
         </em>
       </UploadContainer>
       {files}

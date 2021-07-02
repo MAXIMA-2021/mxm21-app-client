@@ -12,7 +12,13 @@ export default function AppRouter() {
         render={({ location }) => (
           <AnimatePresence exitBeforeEnter initial={false}>
             <Switch location={location} key={location.pathname}>
-              <Route path="/tambah" exact component={Dashboard.TambahState} />
+              <Route
+                path="/tambah-state"
+                exact
+                component={Dashboard.TambahState}
+              />
+              <Route path="/tambah-pic" exact component={Dashboard.TambahPIC} />
+              <Route path="/edit-state" exact component={Dashboard.EditState} />
               <Route path="/" exact component={Home} />
               <Route path="/masuk" exact component={Auth.Login} />
               <Route path="/daftar" exact component={Auth.RegisterMaba} />

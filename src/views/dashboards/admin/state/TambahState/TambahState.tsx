@@ -7,7 +7,6 @@ import {
   Heading,
   Spacer,
   Image,
-  Divider,
   FormControl,
   FormErrorIcon,
   NumberInputField,
@@ -155,7 +154,7 @@ const TambahState: React.FC = () => {
               mt={2}
             />
           </Flex>
-          <MxmDivider color="black" height="3px" margin="0 0 0.8em 0" />
+          <MxmDivider color="black" height="3px" margin="0 0 1.5em 0" />
           <Flex
             direction={{
               base: "column",
@@ -269,6 +268,7 @@ const TambahState: React.FC = () => {
               borderRadius="30px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
+              _hover={{ backgroundColor: "red" }}
             >
               SUBMIT
             </Button>
