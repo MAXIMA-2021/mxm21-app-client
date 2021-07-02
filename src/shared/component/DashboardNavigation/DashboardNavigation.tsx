@@ -19,7 +19,6 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
-
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
 
   const sidebarShown = () => {
@@ -54,6 +53,38 @@ const DashboardNavigation: React.FC = () => {
           .classList.add("dropdown-items_open");
 
         event.target.parentNode
+          .querySelector(".dropdown-header")
+          .classList.add("sidebar-nav_active");
+        console.log(
+          event.target.parentNode.querySelector(".dropdown").classList
+        );
+      }
+    } catch {
+      // DELETE THIS
+      console.log(`target null`);
+    }
+  };
+
+  const sidebarDropdownActiveSvg = (event: any) => {
+    try {
+      if (
+        event.target.parentNode.parentNode.parentNode
+          .querySelector(".dropdown-items")
+          .classList.contains("dropdown-items_open")
+      ) {
+        event.target.parentNode.parentNode.parentNode
+          .querySelector(".dropdown-items")
+          .classList.remove("dropdown-items_open");
+
+        event.target.parentNode.parentNode.parentNode
+          .querySelector(".dropdown-header")
+          .classList.remove("sidebar-nav_active");
+      } else {
+        event.target.parentNode.parentNode.parentNode
+          .querySelector(".dropdown-items")
+          .classList.add("dropdown-items_open");
+
+        event.target.parentNode.parentNode.parentNode
           .querySelector(".dropdown-header")
           .classList.add("sidebar-nav_active");
         console.log(
@@ -137,9 +168,9 @@ const DashboardNavigation: React.FC = () => {
               </NavLink>
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
-                  <FlightIcon onClick={sidebarDropdownActive} />
+                  <FlightIcon onClick={sidebarDropdownActiveSvg} />
                   STATE
-                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActive} />
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
                 </Flex>
                 <ul className="dropdown-items">
                   <li>
