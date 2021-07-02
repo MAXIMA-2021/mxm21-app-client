@@ -21,6 +21,7 @@
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
     "jwt-decode": "^3.1.2",
+    "mui-datatables": "^3.7.7",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-backdrop-filter": "^2.1.0",
@@ -55,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/mui-datatables": "^3.7.4"
   }
 }

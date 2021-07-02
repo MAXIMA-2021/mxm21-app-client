@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "./views/auth";
-import Home from "./views/Home";
-import * as Dashboards from "./views/dashboards/";
-import { AnimatePresence } from "framer-motion";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import * as Auth from './views/auth';
+import * as Dashboards from './views/dashboards';
+import Home from './views/Home';
+import { AnimatePresence } from "framer-motion"
 
 export default function AppRouter() {
   return (
@@ -12,19 +12,14 @@ export default function AppRouter() {
         render={({ location }) => (
           <AnimatePresence exitBeforeEnter initial={false}>
             <Switch location={location} key={location.pathname}>
-              <Route path="/" exact component={Home} />
-              <Route path="/masuk" exact component={Auth.Login} />
-              <Route path="/daftar" exact component={Auth.RegisterMaba} />
-
-              {/* TEST ROUTE */}
-              <Route
-                path="/daftarOrganisator"
-                exact
-                component={Dashboards.DaftarOrganisator}
-              />
-              <Route path="/daftarPic" exact component={Dashboards.DaftarPIC} />
-
-              <Route path="/" component={Home} />
+              <Route path='/' exact component={Home} />
+              <Route path='/masuk' exact component={Auth.Login} />
+              <Route path='/daftar' exact component={Auth.RegisterMaba} />
+              <Route path='/daftar-state' exact component={Dashboards.DaftarState}/>
+              <Route path='/daftar-organisator' exact component={Dashboards.DaftarOrganisator}/>
+              <Route path='/daftar-pic' exact component={Dashboards.DaftarPIC}/>
+              <Route path='/state-detail' exact component={Dashboards.StateDetail}/>
+              <Route path='/' component={Home} />
             </Switch>
           </AnimatePresence>
         )}
