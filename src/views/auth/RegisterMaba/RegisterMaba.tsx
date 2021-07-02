@@ -319,7 +319,7 @@ const RegisterMaba: React.FC = () => {
                   </FormControl>
                   <FormControl
                     mb={3}
-                    w={{
+                    w={{  
                       base: "100%",
                       sm: "100%",
                       md: "50%",
