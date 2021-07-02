@@ -23,7 +23,6 @@ const DashboardNavigation: React.FC = () => {
 
   const sidebarShown = () => {
     setSidebarShow(false);
-    // console.log({ sidebarShow });
     if (sidebarShow === false) {
       setSidebarShow(true);
     }
@@ -55,9 +54,7 @@ const DashboardNavigation: React.FC = () => {
         event.target.parentNode
           .querySelector(".dropdown-header")
           .classList.add("sidebar-nav_active");
-        console.log(
-          event.target.parentNode.querySelector(".dropdown").classList
-        );
+        // console.log(event.target);
       }
     } catch {
       // DELETE THIS
@@ -67,29 +64,52 @@ const DashboardNavigation: React.FC = () => {
 
   const sidebarDropdownActiveSvg = (event: any) => {
     try {
-      if (
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.contains("dropdown-items_open")
-      ) {
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.remove("dropdown-items_open");
+      if (event.target.localName === "svg") {
+        if (
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.contains("dropdown-items_open")
+        ) {
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.remove("dropdown-items_open");
 
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.remove("sidebar-nav_active");
-      } else {
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.add("dropdown-items_open");
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.remove("sidebar-nav_active");
+        } else {
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.add("dropdown-items_open");
 
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.add("sidebar-nav_active");
-        console.log(
-          event.target.parentNode.querySelector(".dropdown").classList
-        );
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.add("sidebar-nav_active");
+          // console.log(event.target);
+        }
+      } else if (event.target.localName === "path") {
+        if (
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.contains("dropdown-items_open")
+        ) {
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.remove("dropdown-items_open");
+
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.remove("sidebar-nav_active");
+        } else {
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.add("dropdown-items_open");
+
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.add("sidebar-nav_active");
+          // console.log(event.target);
+        }
       }
     } catch {
       // DELETE THIS
@@ -233,9 +253,9 @@ const DashboardNavigation: React.FC = () => {
 
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
-                  <HomeRoundedIcon />
+                  <HomeRoundedIcon onClick={sidebarDropdownActiveSvg} />
                   HoME
-                  <ArrowBackIosRoundedIcon />
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
                 </Flex>
                 <ul className="dropdown-items">
                   <li>
