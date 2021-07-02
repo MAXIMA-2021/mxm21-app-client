@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import {
-  Flex,
-} from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -13,11 +11,7 @@ import { Palette } from "../../../../../types/enums";
 import "./DaftarOrganisator.scss";
 
 const DaftarOrganisator: React.FC = () => {
-
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };
 
 export default DaftarOrganisator;
