@@ -10,6 +10,8 @@ export default function Home() {
         MAXIMA 2021 
       </Heading> */}
       <DashboardNavigation />
+      <div style={{ height: "100vh" }}></div>
+      <DashboardFooter />
     </div>
   );
 }

@@ -1,19 +1,19 @@
 .footer {
-  width: calc(100vw - 18em);
+  width: 100%;
   height: 40px;
   background-color: var(--Mxm-navy);
+  z-index: -9999;
 
   position: absolute;
   bottom: 0;
-
-  margin-left: 18em;
 
   color: #ffffff;
   & h4 {
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 1.25em;
+    // margin-left: 18em;
   }
 
   & .footer-flexbox {
@@ -23,6 +23,18 @@
 
     & svg {
       color: #ff0000;
+    }
+  }
+}
+
+@media screen and (max-width: 50em) {
+  .footer-flexbox {
+    font-size: 0.7em;
+  }
+
+  @media screen and (max-width: 24em) {
+    .footer-flexbox {
+      font-size: 0.6em;
     }
   }
 }

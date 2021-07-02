@@ -9,14 +9,9 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import "./DaftarPIC.scss";
-import { DashboardNavigation } from "../../../../../shared/component/DashboardNavigation";
 
 const DaftarPIC: React.FC = () => {
-  return (
-    <>
-      <DashboardNavigation />
-    </>
-  );
+  return <></>;
 };
 
 export default DaftarPIC;
