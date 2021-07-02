@@ -18,7 +18,7 @@ export default function Home() {
           marginLeft: "18em",
         }}
       ></div> */}
-      <DashboardFooter />
+      {/* <DashboardFooter /> */}
     </div>
   );
 }
