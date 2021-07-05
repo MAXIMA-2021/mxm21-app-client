@@ -262,6 +262,7 @@ const DaftarState: React.FC = () => {
                 selectableRows: false,
                 rowsPerPage: 5,
                 rowsPerPageOptions: [5, 15, 20],
+                elavation: 0,
               }}
             />
           </Center>
