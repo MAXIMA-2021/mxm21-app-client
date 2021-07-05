@@ -6,7 +6,7 @@ import { useMediaQuery } from "@chakra-ui/media-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Container } from "@chakra-ui/react";
-import { AdminRouters } from "../../../routers";
+import { AdminRouters } from '../../../routers'
 
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -22,10 +22,8 @@ import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUnch
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 
 const DashboardNavigation: React.FC = () => {
+  const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
-  const [sidebarShow, setSidebarShow] = useState(
-    isSmallerThan450px ? false : true
-  );
 
   const sidebarShown = () => {
     setSidebarShow(false);
@@ -91,6 +89,7 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
+          // console.log(event.target);
         }
       } else if (event.target.localName === "path") {
         if (
@@ -113,6 +112,7 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
+          // console.log(event.target);
         }
       }
     } catch {
@@ -149,7 +149,7 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </header>
 
-      <aside
+      <aside 
         className={`sidebar-container ${
           isSmallerThan450px
             ? sidebarShow
@@ -310,8 +310,13 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </aside>
 
-      <Container paddingLeft={sidebarShow ? "300px" : "0px"}>
-        <AdminRouters />
+      <Container paddingLeft={
+        sidebarShow
+              ? "300px"
+              : "0px"
+           
+        }>
+        <AdminRouters/>
       </Container>
 
       {/* <footer className="footer">

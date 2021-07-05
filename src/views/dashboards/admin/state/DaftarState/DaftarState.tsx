@@ -13,7 +13,7 @@ import {
   CloseButton,
   Text,
 } from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons'
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -22,91 +22,67 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import "./DaftarState.scss";
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables'
 
 const DaftarState: React.FC = () => {
   const tableColumns = [
     {
-      name: "state_id",
-      label: "ID STATE",
+      name: 'state_id',
+      label: 'ID STATE',
       options: { display: false },
     },
     {
-      name: "name",
-      label: "Nama STATE",
+      name: 'name',
+      label: 'Nama STATE',
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
+        customHeadLabelRender: ({index, ...column}) => (
+          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
-        }),
+        setCellProps: () => ({ style: { minWidth: "300px", maxWidth: "300px" }}),
       },
     },
     {
-      name: "kuota_terisi",
-      label: "Kuota Terisi",
+      name: 'kuota_terisi',
+      label: 'Kuota Terisi',
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
+        customHeadLabelRender: ({index, ...column}) => (
+          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "250px", maxWidth: "250px" },
-        }),
-        customBodyRender: (value: any) => <Text>{value}/100</Text>,
+        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
+        customBodyRender: (value: any) => (
+          <Text>{value}/100</Text>
+        ),
       },
     },
     {
-      name: "kode_presensi",
-      label: "Kode Presensi",
+      name: 'kode_presensi',
+      label: 'Kode Presensi',
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
+        customHeadLabelRender: ({index, ...column}) => (
+          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "250px", maxWidth: "250px" },
-        }),
+        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
       },
     },
     {
-      name: "Actions",
-      label: "Aksi",
+      name: 'Actions',
+      label: 'Aksi',
       options: {
         print: false,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
+        customHeadLabelRender: ({index, ...column}) => (
+          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
             {column.label}
           </Text>
         ),
@@ -115,34 +91,22 @@ const DaftarState: React.FC = () => {
             <Link
               to={`/admin/state-detail/${tableMeta.rowData[0]}`}
               style={{
-                textDecoration: "none",
+                textDecoration: 'none',
               }}
             >
-              <Button
-                size="sm"
-                leftIcon={<InfoOutlineIcon />}
-                bgColor={Palette.Navy}
-                color="white"
-              >
+              <Button size="sm" leftIcon={<InfoOutlineIcon/>} bgColor={Palette.Navy} color="white">
                 Detail
               </Button>
             </Link>
             <Link
               to={`/admin/edit-state/${tableMeta.rowData[0]}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
-              <Button
-                size="sm"
-                leftIcon={<EditIcon />}
-                bgColor="white"
-                color={Palette.Navy}
-                border="1px"
-                borderColor={Palette.Navy}
-              >
+              <Button size="sm" leftIcon={<EditIcon/>} bgColor="white" color={Palette.Navy} border="1px" borderColor={Palette.Navy}>
                 Edit
               </Button>
             </Link>
-            <CloseButton size="sm" color={Palette.Red} />
+            <CloseButton size="sm" color={Palette.Red}/>
           </HStack>
         ),
       },
@@ -241,13 +205,13 @@ const DaftarState: React.FC = () => {
               style={{ border: "2px solid black" }}
             />
             <Center>
-              <MUIDataTable
-                data={data}
-                columns={tableColumns}
-                options={{
-                  selectableRows: false,
-                }}
-              />
+            <MUIDataTable 
+              data={data} 
+              columns={tableColumns} 
+              options={{
+                selectableRows: false
+              }}
+            />
             </Center>
           </form>
         </Flex>
