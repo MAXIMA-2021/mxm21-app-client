@@ -24,6 +24,7 @@ export default function AdminRouters(show: boolean) {
                 <Route path="/masuk" exact component={Auth.Login} />
                 <Route path="/daftar" exact component={Auth.RegisterMaba} />
                 <Flex
+                  marginBottom="3vh"
                   height={{
                     base: "100vh",
                     sm: "100vh",

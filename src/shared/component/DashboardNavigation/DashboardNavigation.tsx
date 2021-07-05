@@ -312,6 +312,7 @@ const DashboardNavigation: React.FC = () => {
         backgroundColor="#F4F4F4"
         alignItems="center"
         justifyContent="center"
+        marginTop="-3vh"
         paddingRight={0}
         paddingLeft={
           isSmallerThan450px
