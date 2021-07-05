@@ -45,7 +45,14 @@ const TambahPIC: React.FC = () => {
 
   return (
     <Flex
-      height="100vh"
+      width="79vw"
+      height={{
+        base: "100vh",
+        sm: "100vh",
+        md: "92vh",
+        lg: "92vh",
+        xl: "92vh",
+      }}
       backgroundColor="#F4F4F4"
       alignItems="center"
       justifyContent="center"
@@ -116,7 +123,7 @@ const TambahPIC: React.FC = () => {
               mt={2}
             />
           </Flex>
-          <MxmDivider color="black" height="3px" margin="0 0 1.5em 0" />
+          <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
           <FormControl mb={3} isInvalid={errors.akunOrganisator}>
             <MxmFormLabel color="black">Akun Organisator</MxmFormLabel>
             <Autocomplete

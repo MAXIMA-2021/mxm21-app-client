@@ -84,7 +84,14 @@ const TambahState: React.FC = () => {
   return (
     <div className="content">
       <Flex
-        backgroundColor="#F4F4F4"
+        width="79vw"
+        height={{
+          base: "100vh",
+          sm: "100vh",
+          md: "92vh",
+          lg: "92vh",
+          xl: "92vh",
+        }}
         alignItems="center"
         justifyContent="center"
       >
@@ -153,7 +160,7 @@ const TambahState: React.FC = () => {
                 mt={2}
               />
             </Flex>
-            <MxmDivider color="black" height="3px" margin="0 0 1.5em 0" />
+            <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex
               direction={{
                 base: "column",

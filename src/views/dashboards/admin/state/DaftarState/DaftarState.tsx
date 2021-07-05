@@ -23,6 +23,7 @@ import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import "./DaftarState.scss";
 import MUIDataTable from "mui-datatables";
+import { MxmDivider } from "../../../../../shared/styled/input";
 
 const DaftarState: React.FC = () => {
   const tableColumns = [
@@ -161,7 +162,7 @@ const DaftarState: React.FC = () => {
     <>
       <Flex
         direction="column"
-        background="lightgray"
+        background="white"
         py={{
           base: "3vh",
           sm: "3vh",
@@ -225,10 +226,7 @@ const DaftarState: React.FC = () => {
               mt={2}
             />
           </Flex>
-          <Divider
-            colorScheme="blackAlpha"
-            style={{ border: "2px solid black" }}
-          />
+          <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
           <Center>
             <MUIDataTable
               data={data}

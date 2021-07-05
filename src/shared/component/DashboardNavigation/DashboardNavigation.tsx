@@ -311,6 +311,7 @@ const DashboardNavigation: React.FC = () => {
       </aside>
 
       <Flex
+        backgroundColor="#F4F4F4"
         alignItems="center"
         justifyContent="center"
         paddingRight={0}
