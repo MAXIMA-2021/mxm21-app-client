@@ -43,7 +43,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
+          style: { minWidth: "250px", maxWidth: "250px" },
         }),
       },
     },

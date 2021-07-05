@@ -5,7 +5,7 @@ import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Container } from "@chakra-ui/react";
+// import { Container } from "@chakra-ui/react";
 import { AdminRouters } from "../../../routers";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -317,8 +317,8 @@ const DashboardNavigation: React.FC = () => {
         paddingLeft={
           isSmallerThan450px
             ? sidebarShow
-              ? "0px"
-              : "0px"
+              ? "0"
+              : "0"
             : sidebarShow
             ? "21vw"
             : "0px"

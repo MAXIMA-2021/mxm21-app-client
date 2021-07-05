@@ -13,7 +13,7 @@ import {
   CloseButton,
   Text,
 } from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons'
+import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -22,51 +22,72 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import "./DaftarOrganisator.scss";
-import MUIDataTable from 'mui-datatables'
+import MUIDataTable from "mui-datatables";
 
 const DaftarOrganisator: React.FC = () => {
   const tableColumns = [
     {
-      name: 'name',
-      label: 'Nama Organisator',
+      name: "name",
+      label: "Nama Organisator",
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({ style: { minWidth: "300px", maxWidth: "300px" }}),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
       },
     },
     {
-      name: 'nim',
-      label: 'NIM',
+      name: "nim",
+      label: "NIM",
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
       },
     },
-    
+
     {
-      name: 'email',
-      label: 'Alamat Email',
+      name: "email",
+      label: "Alamat Email",
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
       },
     },
   ];
@@ -85,9 +106,9 @@ const DaftarOrganisator: React.FC = () => {
         height={{
           base: "100vh",
           sm: "100vh",
-          md: "80vh",
-          lg: "80vh",
-          xl: "80vh",
+          md: "92vh",
+          lg: "92vh",
+          xl: "92vh",
         }}
         alignItems="center"
         justifyContent="center"
@@ -163,13 +184,13 @@ const DaftarOrganisator: React.FC = () => {
               style={{ border: "2px solid black" }}
             />
             <Center>
-            <MUIDataTable 
-              data={data} 
-              columns={tableColumns} 
-              options={{
-                selectableRows: false
-              }}
-            />
+              <MUIDataTable
+                data={data}
+                columns={tableColumns}
+                options={{
+                  selectableRows: false,
+                }}
+              />
             </Center>
           </form>
         </Flex>
