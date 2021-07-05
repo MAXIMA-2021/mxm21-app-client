@@ -311,6 +311,7 @@ const DashboardNavigation: React.FC = () => {
       </aside>
 
       <Container
+        paddingRight={0}
         paddingLeft={
           isSmallerThan450px
             ? sidebarShow
