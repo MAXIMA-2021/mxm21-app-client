@@ -26,6 +26,14 @@ import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 
 const DaftarPIC: React.FC = () => {
+  const responsiveData = {
+    base: "1em",
+    sm: "1em",
+    md: "1em",
+    lg: "1em",
+    "2xl": "1.2em",
+  };
+
   const tableColumns = [
     {
       name: "name",
@@ -43,9 +51,12 @@ const DaftarPIC: React.FC = () => {
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "250px", maxWidth: "250px" },
-        }),
+        // setCellProps: () => ({
+        //   style: { minWidth: "250px", maxWidth: "250px" },
+        // }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
       },
     },
     {
@@ -64,9 +75,12 @@ const DaftarPIC: React.FC = () => {
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "250px", maxWidth: "250px" },
-        }),
+        // setCellProps: () => ({
+        //   style: { minWidth: "250px", maxWidth: "250px" },
+        // }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
       },
     },
 
@@ -86,9 +100,12 @@ const DaftarPIC: React.FC = () => {
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({
-          style: { minWidth: "250px", maxWidth: "250px" },
-        }),
+        // setCellProps: () => ({
+        //   style: { minWidth: "250px", maxWidth: "250px" },
+        // }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
       },
     },
   ];

@@ -26,6 +26,14 @@ import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 
 const DaftarState: React.FC = () => {
+  const responsiveData = {
+    base: "1em",
+    sm: "1em",
+    md: "1em",
+    lg: "1em",
+    "2xl": "1.2em",
+  };
+
   const tableColumns = [
     {
       name: "state_id",
@@ -51,6 +59,9 @@ const DaftarState: React.FC = () => {
         // setCellProps: () => ({
         //   style: { minWidth: "250px", maxWidth: "250px" },
         // }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
       },
     },
     {
@@ -72,7 +83,9 @@ const DaftarState: React.FC = () => {
         // setCellProps: () => ({
         //   style: { minWidth: "250px", maxWidth: "250px" },
         // }),
-        customBodyRender: (value: any) => <Text>{value}/100</Text>,
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}/100</Text>
+        ),
       },
     },
     {
@@ -94,6 +107,9 @@ const DaftarState: React.FC = () => {
         // setCellProps: () => ({
         //   style: { minWidth: "250px", maxWidth: "250px" },
         // }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
       },
     },
     {
@@ -120,7 +136,8 @@ const DaftarState: React.FC = () => {
               }}
             >
               <Button
-                size="sm"
+                fontSize={responsiveData}
+                size="xs"
                 leftIcon={<InfoOutlineIcon />}
                 bgColor={Palette.Navy}
                 color="white"
@@ -133,7 +150,8 @@ const DaftarState: React.FC = () => {
               style={{ textDecoration: "none" }}
             >
               <Button
-                size="sm"
+                fontSize={responsiveData}
+                size="xs"
                 leftIcon={<EditIcon />}
                 bgColor="white"
                 color={Palette.Navy}
@@ -143,7 +161,11 @@ const DaftarState: React.FC = () => {
                 Edit
               </Button>
             </Link>
-            <CloseButton size="sm" color={Palette.Red} />
+            <CloseButton
+              size="sm"
+              color={Palette.Red}
+              style={{ marginLeft: 2 }}
+            />
           </HStack>
         ),
       },
@@ -151,6 +173,11 @@ const DaftarState: React.FC = () => {
   ];
 
   const data = [
+    ["U0001", "Ultimagz", 100, "IF430"],
+    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
+    ["U0003", "Ultima Sonora", 90, "IF430"],
+    ["U0004", "Teater Katak", 60, "IF430"],
+    ["U0005", "Game Development Club", 70, "IF430"],
     ["U0001", "Ultimagz", 100, "IF430"],
     ["U0002", "J-Cafe Cosplay", 50, "IF430"],
     ["U0003", "Ultima Sonora", 90, "IF430"],
@@ -233,6 +260,8 @@ const DaftarState: React.FC = () => {
               columns={tableColumns}
               options={{
                 selectableRows: false,
+                rowsPerPage: 5,
+                rowsPerPageOptions: [5, 15, 20],
               }}
             />
           </Center>

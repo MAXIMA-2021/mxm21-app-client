@@ -114,11 +114,11 @@
   height: 8vh;
   background-color: #37a898;
 
-  & h2 {
-    font-family: Rubik, Arial, sans-serif;
+  & Text {
+    font-family: Poppins, Rubik, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 1.25rem;
+    // font-size: 1.25rem;
     line-height: 1.1875em;
   }
 
@@ -174,7 +174,7 @@
     & a {
       // font-weight: 600;
       background: var(--Mxm-navy);
-      font-size: 1rem;
+      // font-size: 1rem;
       list-style-type: none;
 
       padding: 2vh 1.3vw;
