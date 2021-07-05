@@ -204,6 +204,7 @@ const DaftarPIC: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
+                  elevation: 0,
                 }}
               />
             </Center>

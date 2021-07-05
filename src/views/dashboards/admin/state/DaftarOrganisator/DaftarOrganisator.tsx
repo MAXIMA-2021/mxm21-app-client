@@ -116,6 +116,11 @@ const DaftarOrganisator: React.FC = () => {
     ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "56565", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "35353", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper", "34242", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper", "23231", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper", "35353", "jane.cooper@student.umn.ac.id"],
   ];
 
   return (
@@ -204,6 +209,7 @@ const DaftarOrganisator: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
+                  elevation: 0,
                 }}
               />
             </Center>
