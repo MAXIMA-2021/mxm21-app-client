@@ -223,19 +223,18 @@ const DaftarState: React.FC = () => {
         <form>
           <Flex>
             <Heading
-              mb={3}
-              color="black"
+              mb="1vh"
               letterSpacing="0.05em"
               fontSize={{
-                base: "1.5em",
-                sm: "1.5em",
-                md: "1.5em",
-                lg: "1.5em",
-                xl: "1.7em",
-                "2xl": "1.7em",
+                base: "1.2em",
+                sm: "1.2em",
+                md: "1.2em",
+                lg: "1.3em",
+                xl: "1.5em",
+                "2xl": "1.5em",
               }}
             >
-              Daftar STATE
+              Daftar State
             </Heading>
             <Spacer />
             <Image
@@ -250,7 +249,8 @@ const DaftarState: React.FC = () => {
                 xl: "2vw",
                 "2xl": "1.2vw",
               }}
-              mt={2}
+              mt="0.4vh"
+              mb="1vh"
             />
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
