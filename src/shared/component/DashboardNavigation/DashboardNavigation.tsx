@@ -310,7 +310,9 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </aside>
 
-      <Container
+      <Flex
+        alignItems="center"
+        justifyContent="center"
         paddingRight={0}
         paddingLeft={
           isSmallerThan450px
@@ -318,12 +320,12 @@ const DashboardNavigation: React.FC = () => {
               ? "0px"
               : "0px"
             : sidebarShow
-            ? "300px"
+            ? "21vw"
             : "0px"
         }
       >
-        <AdminRouters />
-      </Container>
+        <AdminRouters show={sidebarShow} />
+      </Flex>
 
       {/* <footer className="footer">
         <Flex></Flex>
