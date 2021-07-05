@@ -6,7 +6,7 @@ import { useMediaQuery } from "@chakra-ui/media-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Container } from "@chakra-ui/react";
-import { AdminRouters } from '../../../routers'
+import { AdminRouters } from "../../../routers";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -149,7 +149,7 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </header>
 
-      <aside 
+      <aside
         className={`sidebar-container ${
           isSmallerThan450px
             ? sidebarShow
@@ -310,13 +310,18 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </aside>
 
-      <Container paddingLeft={
-        sidebarShow
-              ? "300px"
+      <Container
+        paddingLeft={
+          isSmallerThan450px
+            ? sidebarShow
+              ? "0px"
               : "0px"
-           
-        }>
-        <AdminRouters/>
+            : sidebarShow
+            ? "300px"
+            : "0px"
+        }
+      >
+        <AdminRouters />
       </Container>
 
       {/* <footer className="footer">
