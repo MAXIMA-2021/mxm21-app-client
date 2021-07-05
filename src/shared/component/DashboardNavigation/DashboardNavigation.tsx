@@ -21,6 +21,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
@@ -149,7 +150,6 @@ const DashboardNavigation: React.FC = () => {
           </Flex>
         </Flex>
       </header>
-
       <aside
         className={`sidebar-container ${
           isSmallerThan450px
@@ -310,7 +310,6 @@ const DashboardNavigation: React.FC = () => {
           </Flex>
         </Flex>
       </aside>
-
       <Flex
         backgroundColor="#F4F4F4"
         alignItems="center"
@@ -328,11 +327,24 @@ const DashboardNavigation: React.FC = () => {
       >
         <AdminRouters show={sidebarShow} />
       </Flex>
-      <DashboardFooter show={sidebarShow} />
 
-      {/* <footer className="footer">
-        <Flex></Flex>
-      </footer> */}
+      <footer
+        className={`footer ${
+          isSmallerThan450px
+            ? sidebarShow
+              ? "open"
+              : "close"
+            : sidebarShow
+            ? "open"
+            : "close"
+        }`}
+      >
+        <Flex className="footer-flexbox">
+          <h4>
+            Created with <FavoriteOutlinedIcon /> by WEB MAXIMA 2021 Team
+          </h4>
+        </Flex>
+      </footer>
     </>
   );
 };
