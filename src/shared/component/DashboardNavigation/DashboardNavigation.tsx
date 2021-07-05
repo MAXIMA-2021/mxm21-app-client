@@ -5,9 +5,7 @@ import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-// import { Container } from "@chakra-ui/react";
 import { AdminRouters } from "../../../routers";
-import { DashboardFooter } from "../DashboardFooter";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
