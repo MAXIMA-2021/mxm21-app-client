@@ -27,6 +27,7 @@ import {
   MxmInput,
   MxmSelect,
 } from "../../../../../shared/styled/input";
+import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahPIC: React.FC = () => {
   const {
@@ -49,9 +50,9 @@ const TambahPIC: React.FC = () => {
       height={{
         base: "100vh",
         sm: "100vh",
-        md: "92vh",
-        lg: "92vh",
-        xl: "92vh",
+        md: "80vh",
+        lg: "80vh",
+        xl: "80vh",
       }}
       backgroundColor="#F4F4F4"
       alignItems="center"
@@ -160,7 +161,6 @@ const TambahPIC: React.FC = () => {
           <FormControl mb={3} isInvalid={errors.kegiatanState}>
             <MxmFormLabel color="black">Kegiatan STATE</MxmFormLabel>
             <Autocomplete
-              style={{ width: "30vw" }}
               id="stateList-combo-box"
               options={stateList}
               getOptionLabel={(option) => option.name}
@@ -218,6 +218,7 @@ const TambahPIC: React.FC = () => {
           </Flex>
         </form>
       </Flex>
+      <DashboardFooter />
     </Flex>
   );
 };

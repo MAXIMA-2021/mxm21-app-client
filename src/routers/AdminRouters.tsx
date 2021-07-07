@@ -16,75 +16,65 @@ export default function AdminRouters(show: boolean) {
   return (
     <div>
       <Router>
-        <Route
-          render={({ location }) => (
-            <AnimatePresence exitBeforeEnter initial={false}>
-              <Switch location={location} key={location.pathname}>
-                <Route path="/" exact component={Home} />
-                <Route path="/masuk" exact component={Auth.Login} />
-                <Route path="/daftar" exact component={Auth.RegisterMaba} />
-                <Flex
-                  marginBottom="3vh"
-                  height={{
-                    base: "100vh",
-                    sm: "100vh",
-                    md: "92vh",
-                    lg: "92vh",
-                    xl: "92vh",
-                  }}
-                  width={
-                    isSmallerThan450px
-                      ? show
-                        ? "100vw"
-                        : "100vw"
-                      : show
-                      ? "79vw"
-                      : "100vw"
-                  }
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Route
-                    path="/admin/tambah-state"
-                    exact
-                    component={Dashboards.TambahState}
-                  />
-                  <Route
-                    path="/admin/tambah-pic"
-                    exact
-                    component={Dashboards.TambahPIC}
-                  />
-                  <Route
-                    path="/admin/edit-state"
-                    exact
-                    component={Dashboards.EditState}
-                  />
-                  <Route
-                    path="/admin/daftar-state"
-                    exact
-                    component={Dashboards.DaftarState}
-                  />
-                  <Route
-                    path="/admin/daftar-organisator"
-                    exact
-                    component={Dashboards.DaftarOrganisator}
-                  />
-                  <Route
-                    path="/admin/daftar-pic"
-                    exact
-                    component={Dashboards.DaftarPIC}
-                  />
-                  <Route
-                    path="/admin/state-detail"
-                    exact
-                    component={Dashboards.StateDetail}
-                  />
-                </Flex>
-                <Route path="/" component={Home} />
-              </Switch>
-            </AnimatePresence>
-          )}
-        />
+        <Flex
+          marginBottom="3vh"
+          height={{
+            base: "100vh",
+            sm: "100vh",
+            md: "100vh",
+            lg: "92vh",
+            xl: "92vh",
+          }}
+          width={
+            isSmallerThan450px
+              ? show
+                ? "100vw"
+                : "100vw"
+              : show
+              ? "79vw"
+              : "100vw"
+          }
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="#f4f4f4"
+        >
+          <Route
+            path="/admin/tambah-state"
+            exact
+            component={Dashboards.TambahState}
+          />
+          <Route
+            path="/admin/tambah-pic"
+            exact
+            component={Dashboards.TambahPIC}
+          />
+          <Route
+            path="/admin/edit-state"
+            exact
+            component={Dashboards.EditState}
+          />
+          <Route
+            path="/admin/daftar-state"
+            exact
+            component={Dashboards.DaftarState}
+          />
+          <Route
+            path="/admin/daftar-organisator"
+            exact
+            component={Dashboards.DaftarOrganisator}
+          />
+          <Route
+            path="/admin/daftar-pic"
+            exact
+            component={Dashboards.DaftarPIC}
+          />
+          <Route
+            path="/admin/state-detail"
+            exact
+            component={Dashboards.StateDetail}
+          />
+        </Flex>
+        <Route path="/" component={Home} />
       </Router>
     </div>
   );

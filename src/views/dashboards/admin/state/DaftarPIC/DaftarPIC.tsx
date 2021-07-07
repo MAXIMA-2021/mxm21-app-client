@@ -24,6 +24,7 @@ import { MxmLogo } from "../../../../../assets";
 import "./DaftarPIC.scss";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
+import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const DaftarPIC: React.FC = () => {
   const responsiveData = {
@@ -52,7 +53,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         // setCellProps: () => ({
-        //   style: { minWidth: "250px", maxWidth: "250px" },
+        //   style: { minWidth: "200px", maxWidth: "200px" },
         // }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -76,7 +77,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         // setCellProps: () => ({
-        //   style: { minWidth: "250px", maxWidth: "250px" },
+        //   style: { minWidth: "100px", maxWidth: "100px" },
         // }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -101,7 +102,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         // setCellProps: () => ({
-        //   style: { minWidth: "250px", maxWidth: "250px" },
+        //   style: { minWidth: "300px", maxWidth: "300px" },
         // }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -114,6 +115,11 @@ const DaftarPIC: React.FC = () => {
     ["Jane Cooper", "34242", "Ultimagz"],
     ["Jane Cooper", "23231", "J-Cafe Cosplay"],
     ["Jane Cooper", "12121", "Ultima Sonora"],
+    ["Jane Cooper", "34242", "Ultimagz"],
+    ["Jane Cooper", "23231", "J-Cafe Cosplay"],
+    ["Jane Cooper", "12121", "Ultima Sonora"],
+    ["Jane Cooper", "56565", "Teater Katak"],
+    ["Jane Cooper", "35353", "Game Development Club"],
     ["Jane Cooper", "56565", "Teater Katak"],
     ["Jane Cooper", "35353", "Game Development Club"],
   ];
@@ -204,12 +210,15 @@ const DaftarPIC: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
-                  elevation: 0,
+                  rowsPerPage: 5,
+                  rowsPerPageOptions: [5, 10, 15],
+                  elavation: 0,
                 }}
               />
             </Center>
           </form>
         </Flex>
+        <DashboardFooter />
       </Flex>
     </>
   );

@@ -22,14 +22,6 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 
 const DashboardNavigation: React.FC = () => {
-  const responsiveImage = {
-    base: "1em",
-    sm: "0.5em",
-    md: "0.6em",
-    lg: "1em",
-    "2xl": "200em",
-  };
-
   const responsiveTitle = {
     base: "1em",
     sm: "0.5em",
@@ -367,7 +359,20 @@ const DashboardNavigation: React.FC = () => {
         backgroundColor="#F4F4F4"
         alignItems="center"
         justifyContent="center"
-        marginTop="-3vh"
+        marginTop={{
+          base: "30vh",
+          sm: "20vh",
+          md: "20vh",
+          lg: "-3vh",
+          xl: "-3vh",
+        }}
+        marginBottom={{
+          base: "30vh",
+          sm: "20vh",
+          md: "20vh",
+          lg: "0vh",
+          xl: "0vh",
+        }}
         paddingRight={0}
         paddingLeft={
           isSmallerThan450px
@@ -381,24 +386,6 @@ const DashboardNavigation: React.FC = () => {
       >
         <AdminRouters show={sidebarShow} />
       </Flex>
-
-      <footer
-        className={`footer ${
-          isSmallerThan450px
-            ? sidebarShow
-              ? "open"
-              : "close"
-            : sidebarShow
-            ? "open"
-            : "close"
-        }`}
-      >
-        <Flex className="footer-flexbox">
-          <Text fontSize={responsiveTitle} fontFamily="Rubik" fontWeight="500">
-            Created with <FavoriteOutlinedIcon /> by WEB MAXIMA 2021 Team
-          </Text>
-        </Flex>
-      </footer>
     </>
   );
 };

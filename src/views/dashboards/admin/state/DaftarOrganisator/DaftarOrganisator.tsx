@@ -24,6 +24,7 @@ import { MxmLogo } from "../../../../../assets";
 import "./DaftarOrganisator.scss";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
+import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const DaftarOrganisator: React.FC = () => {
   const responsiveData = {
@@ -52,7 +53,7 @@ const DaftarOrganisator: React.FC = () => {
           </Text>
         ),
         // setCellProps: () => ({
-        //   style: { minWidth: "300px", maxWidth: "300px" },
+        //   style: { minWidth: "200px", maxWidth: "200px" },
         // }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -76,7 +77,7 @@ const DaftarOrganisator: React.FC = () => {
           </Text>
         ),
         // setCellProps: () => ({
-        //   style: { minWidth: "300px", maxWidth: "300px" },
+        //   style: { minWidth: "100px", maxWidth: "100px" },
         // }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -111,7 +112,7 @@ const DaftarOrganisator: React.FC = () => {
   ];
 
   const data = [
-    ["Jane Cooper", "34242", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "23231", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "56565", "jane.cooper@student.umn.ac.id"],
@@ -126,6 +127,7 @@ const DaftarOrganisator: React.FC = () => {
   return (
     <>
       <Flex
+        backgroundColor="#f4f4f4"
         height={{
           base: "100vh",
           sm: "100vh",
@@ -137,6 +139,7 @@ const DaftarOrganisator: React.FC = () => {
         justifyContent="center"
       >
         <Flex
+          backgroundColor="#f4f4f4"
           direction="column"
           background="white"
           py={{
@@ -209,12 +212,15 @@ const DaftarOrganisator: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
-                  elevation: 0,
+                  rowsPerPage: 5,
+                  rowsPerPageOptions: [5, 10, 15],
+                  elavation: 0,
                 }}
               />
             </Center>
           </form>
         </Flex>
+        <DashboardFooter />
       </Flex>
     </>
   );

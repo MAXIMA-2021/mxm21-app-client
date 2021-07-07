@@ -13,8 +13,8 @@ import {
   CloseButton,
   Text,
 } from "@chakra-ui/react";
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import ClearIcon from '@material-ui/icons/Clear';
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import ClearIcon from "@material-ui/icons/Clear";
 import {
   MxmContainers,
   MxmVerticalAlign,
@@ -23,8 +23,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import "./StateDetail.scss";
-import MUIDataTable from 'mui-datatables'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import MUIDataTable from "mui-datatables";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { MxmDivider } from "../../../../../shared/styled/input";
+import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const colorTheme = createMuiTheme({
   palette: {
@@ -40,47 +42,78 @@ const colorTheme = createMuiTheme({
 const StateDetail: React.FC = () => {
   const tableColumns = [
     {
-      name: 'name',
-      label: 'Nama Mahasiswa',
-      options: { 
-        filter: true,
-        sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
-            {column.label}
-          </Text>
-        ),
-        setCellProps: () => ({ style: { minWidth: "300px", maxWidth: "300px" }}),
-      },
-    },
-    {
-      name: 'nim',
-      label: 'NIM',
+      name: "name",
+      label: "Nama Mahasiswa",
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
       },
     },
     {
-      name: 'attendance',
-      label: 'Kehadiran',
+      name: "nim",
+      label: "NIM",
       options: {
         filter: true,
         sort: true,
-        customHeadLabelRender: ({index, ...column}) => (
-          <Text key={index} fontWeight="bold" fontFamily="Rubik" fontSize="1.1em">
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
             {column.label}
           </Text>
         ),
-        setCellProps: () => ({ style: { minWidth: "250px", maxWidth: "250px" }}),
+        setCellProps: () => ({
+          style: { minWidth: "150px", maxWidth: "150px" },
+        }),
+      },
+    },
+    {
+      name: "attendance",
+      label: "Kehadiran",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "150px", maxWidth: "150px" },
+        }),
         customBodyRender: (value: any) => (
-          <Text ml={8}>{value ? <ThemeProvider theme={colorTheme}><CheckCircleOutlineIcon color="primary"/></ThemeProvider> : <ThemeProvider theme={colorTheme}><ClearIcon color="secondary"/></ThemeProvider>}</Text>
+          <Text ml={8}>
+            {value ? (
+              <ThemeProvider theme={colorTheme}>
+                <CheckCircleOutlineIcon color="primary" />
+              </ThemeProvider>
+            ) : (
+              <ThemeProvider theme={colorTheme}>
+                <ClearIcon color="secondary" />
+              </ThemeProvider>
+            )}
+          </Text>
         ),
       },
     },
@@ -109,7 +142,7 @@ const StateDetail: React.FC = () => {
       >
         <Flex
           direction="column"
-          background="lightgray"
+          background="white"
           py={{
             base: "3vh",
             sm: "3vh",
@@ -143,19 +176,18 @@ const StateDetail: React.FC = () => {
           <form>
             <Flex>
               <Heading
-                mb={3}
-                color="black"
+                mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.5em",
-                  sm: "1.5em",
-                  md: "1.5em",
-                  lg: "1.5em",
-                  xl: "1.7em",
-                  "2xl": "1.7em",
+                  base: "1.2em",
+                  sm: "1.2em",
+                  md: "1.2em",
+                  lg: "1.3em",
+                  xl: "1.5em",
+                  "2xl": "1.5em",
                 }}
               >
-                Daftar STATE
+                Daftar PIC Organisator
               </Heading>
               <Spacer />
               <Image
@@ -170,32 +202,33 @@ const StateDetail: React.FC = () => {
                   xl: "2vw",
                   "2xl": "1.2vw",
                 }}
-                mt={2}
+                mt="0.4vh"
+                mb="1vh"
               />
             </Flex>
-            <Divider
-              colorScheme="blackAlpha"
-              style={{ border: "2px solid black" }}
-            />
+            <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex direction="row">
-                <img src="http://lorempixel.com/400/200/sports/"/>
-                <div>
-                  <Text>Ultimagz</Text>
-                  <Text>Ultimagz</Text>
-                </div>
+              <img src="http://lorempixel.com/400/200/sports/" />
+              <div>
+                <Text>Ultimagz</Text>
+                <Text>Ultimagz</Text>
+              </div>
             </Flex>
-            <Text fontWeight="bold" fontSize="1.2em">Peserta Registrasi STATE</Text>
+            <Text fontWeight="bold" fontSize="1.2em">
+              Peserta Registrasi STATE
+            </Text>
             <Center>
-            <MUIDataTable 
-              data={data} 
-              columns={tableColumns} 
-              options={{
-                selectableRows: false
-              }}
-            />
+              <MUIDataTable
+                data={data}
+                columns={tableColumns}
+                options={{
+                  selectableRows: false,
+                }}
+              />
             </Center>
           </form>
         </Flex>
+        <DashboardFooter />
       </Flex>
     </>
   );

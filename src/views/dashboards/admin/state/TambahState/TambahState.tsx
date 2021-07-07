@@ -36,6 +36,7 @@ import {
 } from "../../../../../shared/styled/input";
 import UploadFiles from "./upload/UploadFiles";
 import { MxmButton } from "../../../../../shared/styled/buttons";
+import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 // const UploadFiles = () => {
 //   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
@@ -284,6 +285,7 @@ const TambahState: React.FC = () => {
             </Flex>
           </form>
         </Flex>
+        <DashboardFooter />
       </Flex>
     </div>
   );
