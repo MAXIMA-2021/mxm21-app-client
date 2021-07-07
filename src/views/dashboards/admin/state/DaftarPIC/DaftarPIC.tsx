@@ -211,7 +211,7 @@ const DaftarPIC: React.FC = () => {
                 options={{
                   selectableRows: false,
                   rowsPerPage: 5,
-                  rowsPerPageOptions: [5, 10, 15],
+                  rowsPerPageOptions: 5,
                   elavation: 0,
                 }}
               />
