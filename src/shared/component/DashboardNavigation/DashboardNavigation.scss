@@ -1,18 +1,29 @@
 :root {
   --Mxm-cyan: rgb(116, 201, 188);
   --Mxm-navy: #1f2c4c;
+  --sidebar-width: 18rem;
+}
+
+//SCSS VARIABLES
+//sidebar container width:
+// $sidebar-width: 30em;
+
+@media screen and (min-width: 2000px) {
+  * {
+    --sidebar-width: 30rem;
+  }
 }
 
 .navbar {
   position: sticky;
   top: 0px;
-  width: calc(100vw - 21vw);
+  width: calc(100vw - var(--sidebar-width));
   height: 8vh;
   background: var(--Mxm-cyan);
   z-index: 999;
 
   &.open {
-    margin-left: 21vw;
+    margin-left: var(--sidebar-width);
     transition: 0.235s ease-in-out;
   }
   &.close {
@@ -90,7 +101,7 @@
   position: fixed;
   top: 0px;
   height: 100vh;
-  width: 21vw;
+  width: var(--sidebar-width);
   background: var(--Mxm-navy);
   transition: all 0.2s ease-in-out;
   z-index: 999;
@@ -106,7 +117,7 @@
   left: 0px;
 }
 .sidebar-container.close {
-  left: -21vw;
+  left: calc(-1 * var(--sidebar-width));
 }
 
 .sidebar-header {
@@ -249,10 +260,10 @@
     transition: max-height 0.2s ease;
 
     & a {
-      font-size: 0.9rem;
+      // font-size: 0.9em;
       color: #adadad;
-      padding: 1.4vh 1.5vw;
-      width: 21vw;
+      padding: 1.4vw 1.5vh;
+      min-width: var(--sidebar-width);
 
       & svg {
         margin-right: 1.8vw;
@@ -265,12 +276,13 @@
     }
 
     &.dropdown-items_open {
-      max-height: 243px;
+      max-height: max-content;
     }
   }
 }
 
 @media screen and (max-width: 43.4375em) {
+  //695px
   .navbar-avatar {
     & h4 {
       display: none;
@@ -281,6 +293,7 @@
   }
 
   @media screen and (max-width: 34.375em) {
+    //550px
     .navbar-logout-btn p {
       display: none;
     }
@@ -288,6 +301,7 @@
 }
 
 @media screen and (max-width: 28.125em) {
+  //450px
   .sidebar-header {
     padding: 0 5vw;
 
