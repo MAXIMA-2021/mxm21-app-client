@@ -74,7 +74,6 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.StateDetail}
           />
         </Flex>
-        <Route path="/" component={Home} />
       </Router>
     </div>
   );
