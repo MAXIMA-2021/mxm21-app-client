@@ -22,30 +22,6 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 
 const DashboardNavigation: React.FC = () => {
-  const responsiveTitle = {
-    base: "1em",
-    sm: "0.5em",
-    md: "0.6em",
-    lg: "1em",
-    "2xl": "1.4em",
-  };
-
-  const responsiveName = {
-    base: "1em",
-    sm: "0.5em",
-    md: "0.6em",
-    lg: "0.9em",
-    "2xl": "1.2em",
-  };
-
-  const responsiveLabel = {
-    base: "0.8em",
-    sm: "0.4em",
-    md: "0.5em",
-    lg: "0.85em",
-    "2xl": "1em",
-  };
-
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
 
@@ -160,21 +136,14 @@ const DashboardNavigation: React.FC = () => {
           <Flex className="navbar-menu">
             <Flex align="center" className="navbar-avatar">
               <div className="navbar-avatar-image">
-                <AccountCircleIcon style={{ fontSize: 25 }} />
+                <AccountCircleIcon />
               </div>
-              <Text
-                fontSize={responsiveName}
-                fontFamily="Rubik"
-                fontWeight="500"
-                ml={2}
-              >
-                Bukan Tiara Andini
-              </Text>
+              <h4>Bukan Tiara Andini</h4>
             </Flex>
 
             <button className="navbar-logout-btn">
-              <Text fontSize={responsiveName}>Keluar</Text>
-              <ExitToAppIcon style={{ fontSize: 18 }} />
+              <p>Keluar</p>
+              <ExitToAppIcon />
             </button>
           </Flex>
         </Flex>
@@ -191,34 +160,26 @@ const DashboardNavigation: React.FC = () => {
         }`}
       >
         <Flex className="sidebar-header" align="center" justify="center">
-          <Text fontSize={responsiveTitle} fontFamily="Rubik" fontWeight="500">
-            Dashboard Maxima 2021
-          </Text>
+          <h2>Dashboard Maxima 2021</h2>
           {isSmallerThan450px ? <Spacer /> : ""}
           <CloseRoundedIcon onClick={closeSidebar} />
         </Flex>
         <Flex className="sidebar-menu" direction="column">
           <div className="sidebar-avatar">
             <div className="sidebar-avatar_image">
-              <AccountCircleIcon
-                style={{
-                  fontSize: 40,
-                }}
-              />
+              <AccountCircleIcon />
             </div>
-            <Text fontSize={responsiveName} fontFamily="Rubik" fontWeight="500">
-              Bukan Tiara Andini
-            </Text>
-            <Text fontSize={responsiveLabel}>Panitia</Text>
+            <h4>Bukan Tiara Andini</h4>
+            <h6>Panitia</h6>
           </div>
           <Flex className="sidebar-nav_header">
-            <Text fontSize={responsiveLabel}>MENU NAVIGASI</Text>
+            <h3>MENU NAVIGASI</h3>
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
               <NavLink to="/dashboard" activeClassName="sidebar-nav_active">
                 <AssessmentIcon />
-                <Text fontSize={responsiveName}>Dashboard</Text>
+                Dashboard
               </NavLink>
 
               <NavLink
@@ -226,12 +187,12 @@ const DashboardNavigation: React.FC = () => {
                 activeClassName="sidebar-nav_active"
               >
                 <ContactsIcon />
-                <Text fontSize={responsiveName}>Daftar Mahasiswa Baru</Text>
+                Daftar Mahasiswa Baru
               </NavLink>
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
                   <FlightIcon onClick={sidebarDropdownActiveSvg} />
-                  <Text fontSize={responsiveName}>STATE</Text>
+                  STATE
                   <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
                 </Flex>
                 <ul className="dropdown-items">
@@ -240,10 +201,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/admin/tambah-state"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>Tambah STATE</Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah STATE
                     </NavLink>
                   </li>
                   <li>
@@ -251,10 +210,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/admin/daftar-state"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>Daftar STATE</Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar STATE
                     </NavLink>
                   </li>
                   <li>
@@ -262,12 +219,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/admin/daftar-organisator"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>
-                        Daftar Akun Organisator
-                      </Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Organisator
                     </NavLink>
                   </li>
                   <li>
@@ -275,12 +228,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/admin/tambah-pic"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>
-                        Tambah PIC Organisator
-                      </Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah PIC Organisator
                     </NavLink>
                   </li>
                   <li>
@@ -288,12 +237,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/admin/daftar-pic"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>
-                        Daftar PIC Organisator
-                      </Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar PIC Organisator
                     </NavLink>
                   </li>
                 </ul>
@@ -302,7 +247,7 @@ const DashboardNavigation: React.FC = () => {
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
                   <HomeRoundedIcon onClick={sidebarDropdownActiveSvg} />
-                  <Text fontSize={responsiveName}>HoME</Text>
+                  HoME
                   <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
                 </Flex>
                 <ul className="dropdown-items">
@@ -311,10 +256,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/tambahDataHome"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>Tambah Data HoME</Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Data HoME
                     </NavLink>
                   </li>
                   <li>
@@ -322,10 +265,8 @@ const DashboardNavigation: React.FC = () => {
                       to="/tambahMediaHome"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>Tambah Media HoME</Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Media HoME
                     </NavLink>
                   </li>
                   <li>
@@ -333,23 +274,19 @@ const DashboardNavigation: React.FC = () => {
                       to="/daftarOrganisatorHome"
                       activeClassName="dropdown-item_active"
                     >
-                      <RadioButtonUncheckedOutlinedIcon
-                        style={{ fontSize: 18 }}
-                      />
-                      <Text fontSize={responsiveLabel}>
-                        Daftar Organisasi HoME
-                      </Text>
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Organisasi HoME
                     </NavLink>
                   </li>
                 </ul>
               </li>
               <NavLink to="/shortener" activeClassName="sidebar-nav_active">
                 <LinkIcon />
-                <Text fontSize={responsiveName}>Shortener</Text>
+                Shortener
               </NavLink>
               <NavLink to="/tambahAkun" activeClassName="sidebar-nav_active">
                 <PersonAddIcon />
-                <Text fontSize={responsiveName}>Tambah Akun</Text>
+                Tambah Akun
               </NavLink>
             </ul>
           </Flex>

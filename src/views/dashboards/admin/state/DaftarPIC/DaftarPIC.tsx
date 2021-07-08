@@ -212,7 +212,7 @@ const DaftarPIC: React.FC = () => {
                   selectableRows: false,
                   rowsPerPage: 5,
                   rowsPerPageOptions: 5,
-                  elavation: 0,
+                  elevation: 0,
                 }}
               />
             </Center>

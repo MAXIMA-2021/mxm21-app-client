@@ -2,23 +2,17 @@
   --Mxm-cyan: rgb(116, 201, 188);
   --Mxm-navy: #1f2c4c;
   --sidebar-width: 18rem;
-}
-
-//SCSS VARIABLES
-//sidebar container width:
-// $sidebar-width: 30em;
-
-@media screen and (min-width: 2000px) {
-  * {
-    --sidebar-width: 30rem;
-  }
+  --navbar-height: 3.75rem;
+  --main-nav-fontSize: 1rem;
+  --main-nav-svg-Size: 1.3rem;
+  --dropdown-items-svg: 1.1rem;
 }
 
 .navbar {
   position: sticky;
   top: 0px;
   width: calc(100vw - var(--sidebar-width));
-  height: 8vh;
+  height: var(--navbar-height);
   background: var(--Mxm-cyan);
   z-index: 999;
 
@@ -61,7 +55,7 @@
           line-height: 1.5em;
           color: #ffffff;
 
-          padding: 1px 5px;
+          padding: 0.0625em 0.3125em;
         }
       }
 
@@ -69,7 +63,7 @@
         padding: 0 1rem;
 
         width: max-content;
-        height: 1.875em;
+        // height: 1.875em;
         background-color: #ffffff;
 
         border-radius: 999px;
@@ -86,7 +80,7 @@
         align-items: center;
 
         & p {
-          padding-right: 0.5vw;
+          padding-right: 0.6rem;
         }
 
         &:hover {
@@ -106,7 +100,8 @@
   transition: all 0.2s ease-in-out;
   z-index: 999;
 
-  overflow-y: hidden;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
 
   font-family: Poppins, Arial, sans-serif;
 
@@ -122,14 +117,14 @@
 
 .sidebar-header {
   width: inherit;
-  height: 8vh;
+  height: var(--navbar-height);
   background-color: #37a898;
 
-  & Text {
+  & h2 {
     font-family: Poppins, Rubik, Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
-    // font-size: 1.25rem;
+    font-size: 1.25rem;
     line-height: 1.1875em;
   }
 
@@ -145,11 +140,15 @@
     "avatarImg avatarName"
     "avatarImg avatarRole";
   column-gap: 0.5rem;
-  padding: 2vh 1.2vw;
+  padding: 0.7rem 1.2rem;
   align-items: center;
 
   & .sidebar-avatar_image {
     grid-area: avatarImg;
+
+    & svg {
+      font-size: 40px;
+    }
   }
 
   & h4 {
@@ -157,7 +156,7 @@
 
     font-family: Poppins;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
     line-height: 1.3125em;
   }
@@ -167,14 +166,14 @@
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 0.75em;
+    font-size: 0.75rem;
     line-height: 16px;
   }
 }
 
 .sidebar-menu {
   & .sidebar-nav_header {
-    padding: 1.5vh 1.5vw;
+    padding: 0.8rem 1.4rem;
     background-color: #141c31;
     font-size: 0.8rem;
     font-weight: 500;
@@ -183,18 +182,19 @@
 
   & .main-navigation {
     & a {
-      // font-weight: 600;
+      font-weight: 400;
       background: var(--Mxm-navy);
-      // font-size: 1rem;
+      font-size: var(--main-nav-fontSize);
       list-style-type: none;
 
-      padding: 2vh 1.3vw;
+      padding: 1rem 1.1rem;
 
       display: flex;
       align-items: center;
 
       & svg {
         margin-right: 10px;
+        font-size: var(--main-nav-svg-Size);
       }
 
       &:hover {
@@ -212,7 +212,7 @@
 
 .sidebar-menu .dropdown {
   background: var(--Mxm-navy);
-  font-size: 1rem;
+  font-size: var(--main-nav-fontSize);
   list-style-type: none;
 
   display: flex;
@@ -220,7 +220,7 @@
   flex-wrap: wrap;
 
   & .dropdown-header {
-    padding: 2vh 1.3vw;
+    padding: 1rem 1.1rem;
     width: 100%;
 
     &.sidebar-nav_active {
@@ -235,6 +235,7 @@
 
   & svg {
     margin-right: 10px;
+    font-size: var(--main-nav-svg-Size);
   }
 
   & svg:last-child {
@@ -251,7 +252,7 @@
   & .dropdown-items {
     justify-content: center;
     max-height: 0px;
-    overflow-y: hidden;
+    overflow-x: hidden;
 
     list-style: none;
     display: flex;
@@ -260,14 +261,15 @@
     transition: max-height 0.2s ease;
 
     & a {
-      // font-size: 0.9em;
+      font-size: 0.9rem;
       color: #adadad;
-      padding: 1.4vw 1.5vh;
+      padding: 0.9rem 1.3rem;
       min-width: var(--sidebar-width);
 
       & svg {
-        margin-right: 1.8vw;
+        margin-right: 2rem;
         margin-left: unset;
+        font-size: var(--dropdown-items-svg);
       }
     }
 
@@ -277,6 +279,100 @@
 
     &.dropdown-items_open {
       max-height: max-content;
+    }
+  }
+}
+
+@media screen and (min-width: 3000px) {
+  * {
+    --sidebar-width: 40rem;
+    --navbar-height: 7rem;
+    --main-nav-fontSize: 2rem;
+    --main-nav-svg-Size: 45px;
+    --dropdown-items-svg: 25px;
+  }
+
+  .navbar {
+    & .navbar-flex-container {
+      & .navbar-menu-icon {
+        font-size: 50px;
+      }
+
+      & .navbar-menu {
+        & .navbar-avatar {
+          & svg {
+            font-size: 50px;
+          }
+
+          & h4 {
+            font-size: 2rem;
+          }
+        }
+
+        & .navbar-logout-btn {
+          & p {
+            font-size: 2rem;
+            padding: 0.9rem 1rem;
+          }
+
+          & svg {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+  .sidebar-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .sidebar-avatar {
+    padding: 2rem 3rem;
+    column-gap: 1.5rem;
+    align-items: unset;
+
+    & .sidebar-avatar_image svg {
+      font-size: 5rem;
+    }
+
+    & h4 {
+      font-size: 2rem;
+    }
+    & h6 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .sidebar-menu {
+    & .sidebar-nav_header {
+      font-size: 1.8rem;
+      padding: 2rem 3.5rem;
+    }
+
+    & .main-navigation {
+      & a {
+        padding: 2.4rem 3rem;
+
+        & svg {
+          margin-right: 30px;
+        }
+      }
+    }
+  }
+
+  .sidebar-menu .dropdown {
+    & .dropdown-header {
+      padding: 2.4rem 3rem;
+      & svg:first-child {
+        margin-right: 30px;
+      }
+    }
+
+    & .dropdown-items {
+      & a {
+        padding: 1.7rem 3.6rem;
+        font-size: 2rem;
+      }
     }
   }
 }
@@ -303,7 +399,7 @@
 @media screen and (max-width: 28.125em) {
   //450px
   .sidebar-header {
-    padding: 0 5vw;
+    padding: 0 5vw; //change
 
     & svg {
       display: block;
@@ -316,9 +412,10 @@
 
   .sidebar-container {
     width: 100vw;
+    overflow-y: scroll;
 
     & .sidebar-avatar {
-      padding: 2vh 5vw;
+      padding: 2vh 5vw; //change
     }
 
     &.close {
@@ -327,27 +424,27 @@
   }
 
   .sidebar-menu .sidebar-nav_header {
-    padding: 1.5vh 6vw;
+    padding: 1.5vh 6vw; //change
   }
 
   .sidebar-menu .main-navigation {
     & a {
-      padding: 2vh 5vw;
+      padding: 2vh 5vw; //change
     }
   }
 
   .sidebar-menu .dropdown {
     & .dropdown-header {
-      padding: 2vh 5vw;
+      padding: 2vh 5vw; //change
     }
 
     & .dropdown-items {
       & a {
-        padding: 1.4vh 6vw;
+        padding: 1.4vh 6vw; //change
         width: 100vw;
 
         & svg {
-          margin-right: 6vw;
+          margin-right: 6vw; //change
         }
       }
     }
