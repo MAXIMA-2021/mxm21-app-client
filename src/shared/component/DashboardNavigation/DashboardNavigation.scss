@@ -11,7 +11,7 @@
 .navbar {
   position: sticky;
   top: 0px;
-  width: calc(100vw - var(--sidebar-width));
+  // width: calc(100vw - var(--sidebar-width));
   height: var(--navbar-height);
   background: var(--Mxm-cyan);
   z-index: 999;
@@ -22,7 +22,7 @@
   }
   &.close {
     margin-left: 0;
-    width: 100vw;
+    width: 100%;
     transition: 0.15s ease-in-out;
   }
 
@@ -94,7 +94,7 @@
 .sidebar-container {
   position: fixed;
   top: 0px;
-  height: 100vh;
+  height: 100%;
   width: var(--sidebar-width);
   background: var(--Mxm-navy);
   transition: all 0.2s ease-in-out;

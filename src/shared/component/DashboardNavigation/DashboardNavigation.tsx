@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./DashboardNavigation.scss";
-import { Flex, Spacer, Heading, Text } from "@chakra-ui/react";
+import { Flex, Spacer, Heading, Text, Box } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -122,7 +122,7 @@ const DashboardNavigation: React.FC = () => {
   };
 
   return (
-    <>
+    <div style={{ backgroundColor: "#f4f4f4" }}>
       <header
         className={`navbar ${
           isSmallerThan450px ? "close" : sidebarShow ? "open" : "close"
@@ -293,23 +293,23 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </aside>
       <Flex
-        backgroundColor="#F4F4F4"
+        // backgroundColor="red"
         alignItems="center"
         justifyContent="center"
-        marginTop={{
-          base: "30vh",
-          sm: "20vh",
-          md: "20vh",
-          lg: "-3vh",
-          xl: "-3vh",
-        }}
-        marginBottom={{
-          base: "30vh",
-          sm: "20vh",
-          md: "20vh",
-          lg: "0vh",
-          xl: "0vh",
-        }}
+        // marginTop={{
+        //   base: "30vh",
+        //   sm: "20vh",
+        //   md: "20vh",
+        //   lg: "-3vh",
+        //   xl: "-3vh",
+        // }}
+        // marginBottom={{
+        //   base: "30vh",
+        //   sm: "20vh",
+        //   md: "20vh",
+        //   lg: "0vh",
+        //   xl: "0vh",
+        // }}
         paddingRight={0}
         paddingLeft={
           isSmallerThan450px
@@ -323,7 +323,7 @@ const DashboardNavigation: React.FC = () => {
       >
         <AdminRouters show={sidebarShow} />
       </Flex>
-    </>
+    </div>
   );
 };
 

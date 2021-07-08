@@ -12,6 +12,7 @@ import {
   HStack,
   CloseButton,
   Text,
+  Box,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
 import {
@@ -58,7 +59,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "340px", maxWidth: "340px" },
+          style: { minWidth: "300px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -82,7 +83,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "170px", maxWidth: "170px" },
+          style: { minWidth: "195px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}/100</Text>
@@ -106,7 +107,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "170px", maxWidth: "170px" },
+          style: { minWidth: "195px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -194,15 +195,9 @@ const DaftarState: React.FC = () => {
   return (
     <>
       <Flex
-        height={{
-          base: "100vh",
-          sm: "100vh",
-          md: "80vh",
-          lg: "80vh",
-          xl: "80vh",
-        }}
         alignItems="center"
         justifyContent="center"
+        backgroundColor="#f4f4f4"
       >
         <Flex
           direction="column"
@@ -221,19 +216,26 @@ const DaftarState: React.FC = () => {
             lg: "2vw",
             xl: "2vw",
           }}
-          my={{
+          mt={{
             base: "1vh",
             sm: "1vh",
-            md: "10vh",
-            lg: "10vh",
-            xl: "10vh",
+            md: "3vh",
+            lg: "3vh",
+            xl: "3vh",
+          }}
+          mb={{
+            base: "1vh",
+            sm: "1vh",
+            md: "8vh",
+            lg: "8vh",
+            xl: "8vh",
           }}
           mx={{
             base: "1vw",
             sm: "1vw",
-            md: "10vw",
-            lg: "10vw",
-            xl: "10vw",
+            md: "2vw",
+            lg: "2vw",
+            xl: "2vw",
           }}
           rounded={20}
         >
@@ -270,7 +272,7 @@ const DaftarState: React.FC = () => {
                 mb="1vh"
               />
             </Flex>
-            <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
+            <MxmDivider color="black" height="3px" margin="1.5rem 0 0.5rem 0" />
             <Center>
               <MUIDataTable
                 data={data}

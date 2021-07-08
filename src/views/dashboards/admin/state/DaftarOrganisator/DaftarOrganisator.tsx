@@ -53,7 +53,7 @@ const DaftarOrganisator: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
+          style: { minWidth: "350px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -77,7 +77,7 @@ const DaftarOrganisator: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
+          style: { minWidth: "200px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -102,7 +102,7 @@ const DaftarOrganisator: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
+          style: { minWidth: "350px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -113,28 +113,48 @@ const DaftarOrganisator: React.FC = () => {
 
   const data = [
     ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "23231", "jane.cooper@student.umn.ac.id"],
+    [
+      "Maximilliano Adrian Stefan Gabrielsar",
+      "23231",
+      "jane.cooper@student.umn.ac.id",
+    ],
+    ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
+    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    [
+      "Jane Cooper Krisna Finantyo Chandra",
+      "35353",
+      "jane.cooper@student.umn.ac.id",
+    ],
+    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    [
+      "Jane Cooper Krisna Finantyo Chandra",
+      "35353",
+      "jane.cooper@student.umn.ac.id",
+    ],
+    ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
+    [
+      "Jane Cooper Krisna Finantyo Chandra",
+      "35353",
+      "jane.cooper@student.umn.ac.id",
+    ],
+    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    [
+      "Jane Cooper Krisna Finantyo Chandra",
+      "35353",
+      "jane.cooper@student.umn.ac.id",
+    ],
+    ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
     ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "35353", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "34242", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "23231", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "35353", "jane.cooper@student.umn.ac.id"],
+    ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
   ];
 
   return (
     <>
       <Flex
         backgroundColor="#f4f4f4"
-        height={{
-          base: "100vh",
-          sm: "100vh",
-          md: "92vh",
-          lg: "92vh",
-          xl: "92vh",
-        }}
         alignItems="center"
         justifyContent="center"
       >
@@ -156,12 +176,19 @@ const DaftarOrganisator: React.FC = () => {
             lg: "2vw",
             xl: "2vw",
           }}
-          my={{
+          mt={{
             base: "1vh",
             sm: "1vh",
-            md: "10vh",
-            lg: "10vh",
-            xl: "10vh",
+            md: "3vh",
+            lg: "3vh",
+            xl: "3vh",
+          }}
+          mb={{
+            base: "1vh",
+            sm: "1vh",
+            md: "8vh",
+            lg: "8vh",
+            xl: "8vh",
           }}
           mx={{
             base: "1vw",
@@ -205,15 +232,15 @@ const DaftarOrganisator: React.FC = () => {
                 mb="1vh"
               />
             </Flex>
-            <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
+            <MxmDivider color="black" height="3px" margin="1.5rem 0 0.5rem 0" />
             <Center>
               <MUIDataTable
                 data={data}
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
-                  rowsPerPage: 5,
-                  rowsPerPageOptions: 5,
+                  rowsPerPage: 15,
+                  rowsPerPageOptions: [10, 15, 20],
                   elevation: 0,
                 }}
               />
