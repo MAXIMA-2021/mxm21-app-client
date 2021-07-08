@@ -314,11 +314,13 @@ const DashboardNavigation: React.FC = () => {
         paddingRight={0}
         paddingLeft={
           isLargerThan3000px
-            ? "40rem"
+            ? sidebarShow
+              ? "40rem"
+              : "0px"
             : isSmallerThan450px
             ? sidebarShow
-              ? "0"
-              : "0"
+              ? "0px"
+              : "0px"
             : sidebarShow
             ? "18rem"
             : "0px"
