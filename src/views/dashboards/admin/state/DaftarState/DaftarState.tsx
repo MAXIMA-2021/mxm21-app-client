@@ -57,9 +57,9 @@ const DaftarState: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "200px", maxWidth: "200px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "340px", maxWidth: "340px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),
@@ -81,9 +81,9 @@ const DaftarState: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "170px", maxWidth: "170px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "170px", maxWidth: "170px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}/100</Text>
         ),
@@ -105,9 +105,9 @@ const DaftarState: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "170px", maxWidth: "170px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "170px", maxWidth: "170px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),
@@ -176,6 +176,11 @@ const DaftarState: React.FC = () => {
   const data = [
     ["U0001", "Ultimagz", 100, "IF430"],
     ["U0002", "J-Cafe Cosplay", 50, "IF430"],
+    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
+    ["U0003", "Ultima Sonora", 90, "IF430"],
+    ["U0004", "Teater Katak", 60, "IF430"],
+    ["U0005", "Game Development Club", 70, "IF430"],
+    ["U0004", "Teater Katak", 60, "IF430"],
     ["U0003", "Ultima Sonora", 90, "IF430"],
     ["U0002", "J-Cafe Cosplay", 50, "IF430"],
     ["U0003", "Ultima Sonora", 90, "IF430"],
@@ -272,8 +277,8 @@ const DaftarState: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
-                  rowsPerPage: 5,
-                  rowsPerPageOptions: 5,
+                  rowsPerPage: 15,
+                  rowsPerPageOptions: [10, 15, 20],
                   elevation: 0,
                 }}
               />

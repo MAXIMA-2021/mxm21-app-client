@@ -52,9 +52,9 @@ const DaftarOrganisator: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "200px", maxWidth: "200px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),
@@ -76,9 +76,9 @@ const DaftarOrganisator: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "100px", maxWidth: "100px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),
@@ -101,9 +101,9 @@ const DaftarOrganisator: React.FC = () => {
             {column.label}
           </Text>
         ),
-        // setCellProps: () => ({
-        //   style: { minWidth: "300px", maxWidth: "300px" },
-        // }),
+        setCellProps: () => ({
+          style: { minWidth: "300px", maxWidth: "300px" },
+        }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),

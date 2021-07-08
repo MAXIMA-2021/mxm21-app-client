@@ -317,7 +317,7 @@ const DashboardNavigation: React.FC = () => {
               ? "0"
               : "0"
             : sidebarShow
-            ? "21vw"
+            ? "18rem"
             : "0px"
         }
       >
