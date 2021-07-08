@@ -267,7 +267,7 @@ const TambahState: React.FC = () => {
                 borderRadius="999px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
-                _hover={{ backgroundColor: "red" }}
+                _hover={{ backgroundColor: "#2BAD96" }}
               >
                 SUBMIT
               </Button>
