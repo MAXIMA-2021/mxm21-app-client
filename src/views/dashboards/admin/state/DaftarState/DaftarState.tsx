@@ -219,7 +219,7 @@ const DaftarState: React.FC = () => {
           }}
           rounded={20}
         >
-          <form>
+          <form className="form_daftar-state">
             <Flex>
               <Heading
                 mb="1vh"
