@@ -192,9 +192,9 @@ const DaftarPIC: React.FC = () => {
           mx={{
             base: "1vw",
             sm: "1vw",
-            md: "10vw",
-            lg: "10vw",
-            xl: "10vw",
+            md: "2vw",
+            lg: "2vw",
+            xl: "2vw",
           }}
           rounded={20}
         >
