@@ -38,12 +38,12 @@ const DaftarState: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "state_id",
+      name: "stateID",
       label: "ID STATE",
       options: { display: false },
     },
     {
-      name: "name",
+      name: "namaState",
       label: "Nama STATE",
       options: {
         filter: true,
@@ -67,7 +67,7 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kuota_terisi",
+      name: "kuotaTerisi",
       label: "Kuota Terisi",
       options: {
         filter: true,
@@ -91,7 +91,7 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kode_presensi",
+      name: "kodePresensi",
       label: "Kode Presensi",
       options: {
         filter: true,

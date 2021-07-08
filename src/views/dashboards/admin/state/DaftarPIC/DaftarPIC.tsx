@@ -37,7 +37,7 @@ const DaftarPIC: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "namaPic",
       label: "Nama PIC",
       options: {
         filter: true,
@@ -86,7 +86,7 @@ const DaftarPIC: React.FC = () => {
     },
 
     {
-      name: "nama_state",
+      name: "namaState",
       label: "Nama STATE",
       options: {
         filter: true,

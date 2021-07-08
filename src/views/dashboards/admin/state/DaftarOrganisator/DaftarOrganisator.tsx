@@ -37,7 +37,7 @@ const DaftarOrganisator: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "namaOrganisator",
       label: "Nama Organisator",
       options: {
         filter: true,
