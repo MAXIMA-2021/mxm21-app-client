@@ -206,7 +206,7 @@ const EditState: React.FC = () => {
                 color="white"
                 padding="1em"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                _hover={{ backgroundColor: "#4de2cc" }}
+                _hover={{ backgroundColor: "#2BAD96" }}
               >
                 Choose File Upload
               </Button>

@@ -14,10 +14,50 @@ input::-moz-placeholder {
   color: #777777;
 }
 
-// .content {
-//   position: relative;
-//   background-color: black;
-//   height: 100vh;
-//   width: 100vw;
-//   z-index: 1;
-// }
+@media screen and (min-width: 3000px) {
+  .form_state {
+    width: 100%;
+    height: max-content !important;
+
+    & .chakra-heading {
+      font-size: 4rem;
+    }
+
+    & .chakra-form-control {
+      & label {
+        font-size: 2rem !important;
+      }
+
+      & input {
+        height: 5rem;
+        font-size: 2rem !important;
+      }
+
+      & select {
+        height: 5rem;
+        font-size: 2rem !important;
+      }
+    }
+
+    .dropzone {
+      font-size: 2.4rem;
+    }
+
+    button[type="submit"] {
+      padding: 3rem 4rem;
+      font-size: 2rem;
+    }
+
+    .chakra-image {
+      width: 4rem;
+    }
+
+    .chakra-form__error-message {
+      font-size: 1.5rem;
+
+      & svg {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@ import {
   FormErrorIcon,
   Button,
 } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import {
@@ -43,6 +44,7 @@ const TambahPIC: React.FC = () => {
       event.target.style.color = "black";
     }
   };
+  const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
 
   return (
     <Flex
@@ -73,7 +75,7 @@ const TambahPIC: React.FC = () => {
         px="1.5rem"
         rounded={25}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="form_PIC">
           <Flex>
             <Heading
               mb="1vh"
@@ -109,7 +111,7 @@ const TambahPIC: React.FC = () => {
               options={organisatorList}
               getOptionLabel={(option) => option.name}
               renderOption={(option) => (
-                <p>
+                <p style={isLargerThan3000px ? { fontSize: "2rem" } : ""}>
                   {option.name} ({option.nim})
                 </p>
               )}
@@ -144,16 +146,24 @@ const TambahPIC: React.FC = () => {
                 <Flex alignItems="center">
                   <img
                     src="https://img.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg?size=338&ext=jpg"
-                    width={35}
-                    height={35}
+                    width={isLargerThan3000px ? 80 : 35}
+                    height={isLargerThan3000px ? 80 : 35}
                     alt="logo"
                   />
                   <p
-                    style={{
-                      fontSize: "0.8em",
-                      fontFamily: "Poppins",
-                      marginLeft: "1em",
-                    }}
+                    style={
+                      isLargerThan3000px
+                        ? {
+                            fontSize: "2rem",
+                            fontFamily: "Poppins",
+                            marginLeft: "1em",
+                          }
+                        : {
+                            fontSize: "0.8em",
+                            fontFamily: "Poppins",
+                            marginLeft: "1em",
+                          }
+                    }
                   >
                     {option.name} Hari ke-{option.day}
                   </p>
@@ -184,7 +194,7 @@ const TambahPIC: React.FC = () => {
               backgroundColor={Palette.Cyan}
               color="white"
               padding="1em 2em 1em 2em"
-              borderRadius="30px"
+              borderRadius="999px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
               _hover={{ backgroundColor: "#4de2cc" }}

@@ -57,7 +57,7 @@ const UploadFiles = () => {
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
           Drag and Drop atau{" "}
           <span style={{ color: "blue" }}>
-            <u>Klik Disini</u>
+            <u>Klik Di Sini</u>
           </span>
         </p>
         <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>

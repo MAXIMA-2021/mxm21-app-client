@@ -112,7 +112,7 @@ const TambahState: React.FC = () => {
           px="1.5rem"
           rounded={25}
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="form_state">
             <Flex>
               <Heading
                 mb="1vh"
@@ -253,7 +253,7 @@ const TambahState: React.FC = () => {
                 backgroundColor={Palette.Cyan}
                 color="white"
                 padding="1em 2em 1em 2em"
-                borderRadius="30px"
+                borderRadius="999px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
                 _hover={{ backgroundColor: "#4de2cc" }}

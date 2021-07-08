@@ -141,6 +141,7 @@ const StateDetail: React.FC = () => {
         height="100%"
       >
         <Flex
+          maxWidth="60%"
           direction="column"
           background="white"
           py="1.5rem"
@@ -191,7 +192,11 @@ const StateDetail: React.FC = () => {
             </Flex>
             <MxmDivider color="black" height="3px" margin="1rem 0 1.5rem 0" />
             <Flex direction="row">
-              <img src="http://lorempixel.com/400/200/sports/" />
+              <img
+                src="https://ultimagz.com/wp-content/uploads/cropped-thumbnail_Logo-Ultimagz-01.png"
+                style={{ maxWidth: "50%", height: "100%" }}
+                alt="logoState"
+              />
               <Container pl="1rem">
                 <Heading>Ultimagz</Heading>
                 <Text mt="1.5rem">
