@@ -24,6 +24,7 @@ import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
+  const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
 
   const sidebarShown = () => {
     setSidebarShow(false);
@@ -312,7 +313,9 @@ const DashboardNavigation: React.FC = () => {
         }}
         paddingRight={0}
         paddingLeft={
-          isSmallerThan450px
+          isLargerThan3000px
+            ? "40rem"
+            : isSmallerThan450px
             ? sidebarShow
               ? "0"
               : "0"

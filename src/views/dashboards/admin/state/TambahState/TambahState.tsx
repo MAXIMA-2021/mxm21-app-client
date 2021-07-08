@@ -97,6 +97,7 @@ const TambahState: React.FC = () => {
         justifyContent="center"
       >
         <Flex
+          width="60%"
           direction="column"
           backgroundColor="#FFFFFF"
           py={{
