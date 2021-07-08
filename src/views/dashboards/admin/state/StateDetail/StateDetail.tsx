@@ -130,46 +130,28 @@ const StateDetail: React.FC = () => {
   return (
     <>
       <Flex
-        height={{
-          base: "100vh",
-          sm: "100vh",
-          md: "80vh",
-          lg: "80vh",
-          xl: "80vh",
-        }}
+        backgroundColor="#f4f4f4"
         alignItems="center"
         justifyContent="center"
+        height="100%"
       >
         <Flex
+          maxWidth="60%"
           direction="column"
           background="white"
-          py={{
-            base: "3vh",
-            sm: "3vh",
-            md: "3vh",
-            lg: "3vh",
-            xl: "3vh",
+          py="2rem"
+          px="1.5rem"
+          mt={{
+            base: "1rem",
+            md: "3rem",
           }}
-          px={{
-            base: "5vw",
-            sm: "5vw",
-            md: "2vw",
-            lg: "2vw",
-            xl: "2vw",
-          }}
-          my={{
-            base: "1vh",
-            sm: "1vh",
-            md: "10vh",
-            lg: "10vh",
-            xl: "10vh",
+          mb={{
+            base: "1rem",
+            md: "8rem",
           }}
           mx={{
-            base: "1vw",
-            sm: "1vw",
-            md: "10vw",
-            lg: "10vw",
-            xl: "10vw",
+            base: "0.2rem",
+            md: "2rem",
           }}
           rounded={20}
         >
@@ -187,7 +169,7 @@ const StateDetail: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar PIC Organisator
+                STATE Detail
               </Heading>
               <Spacer />
               <Image
@@ -208,13 +190,32 @@ const StateDetail: React.FC = () => {
             </Flex>
             <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex direction="row">
-              <img src="http://lorempixel.com/400/200/sports/" />
-              <div>
-                <Text>Ultimagz</Text>
-                <Text>Ultimagz</Text>
+              <img
+                src="https://ultimagz.com/wp-content/uploads/cropped-thumbnail_Logo-Ultimagz-01.png"
+                style={{ maxWidth: "50%", height: "100%" }}
+              />
+              <div style={{ marginLeft: "1.5rem", maxWidth: "50%" }}>
+                <Text style={{ fontSize: "2em", fontWeight: 700 }}>
+                  Ultimagz
+                </Text>
+                <Text style={{ textAlign: "justify" }}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Pellentesque mi felis, fermentum eu nunc et, egestas malesuada
+                  lectus. Vivamus dapibus, dolor a dictum rutrum, nulla elit
+                  tincidunt enim, quis facilisis mi est a urna. Sed rutrum porta
+                  augue nec interdum. Vestibulum sit amet varius magna.
+                  Pellentesque eu risus nulla. Curabitur accumsan mi eu felis
+                  hendrerit, nec dignissim velit consequat. Interdum et
+                  malesuada fames ac ante ipsum primis in faucibus. Sed pretium
+                  finibus commodo. Morbi eu tortor urna. Nulla pretium venenatis
+                  consequat. Aliquam vestibulum justo orci, a elementum mauris
+                  tincidunt at. Proin vel cursus metus. Vivamus mattis lorem in
+                  neque luctus cursus. Mauris sed odio ut odio sagittis
+                  facilisis.
+                </Text>
               </div>
             </Flex>
-            <Text fontWeight="bold" fontSize="1.2em">
+            <Text fontWeight="bold" fontSize="1.2em" mt="1rem">
               Peserta Registrasi STATE
             </Text>
             <Center>
