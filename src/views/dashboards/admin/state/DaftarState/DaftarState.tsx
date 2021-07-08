@@ -198,6 +198,10 @@ const DaftarState: React.FC = () => {
         alignItems="center"
         justifyContent="center"
         backgroundColor="#f4f4f4"
+        height={{
+          base: "100vh",
+          md: "92vh",
+        }}
       >
         <Flex
           direction="column"

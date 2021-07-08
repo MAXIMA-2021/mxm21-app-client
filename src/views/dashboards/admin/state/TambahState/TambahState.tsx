@@ -88,10 +88,7 @@ const TambahState: React.FC = () => {
         width="79vw"
         height={{
           base: "100vh",
-          sm: "100vh",
           md: "92vh",
-          lg: "92vh",
-          xl: "92vh",
         }}
         alignItems="center"
         justifyContent="center"

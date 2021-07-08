@@ -157,6 +157,10 @@ const DaftarOrganisator: React.FC = () => {
         backgroundColor="#f4f4f4"
         alignItems="center"
         justifyContent="center"
+        height={{
+          base: "100vh",
+          md: "92vh",
+        }}
       >
         <Flex
           backgroundColor="#f4f4f4"

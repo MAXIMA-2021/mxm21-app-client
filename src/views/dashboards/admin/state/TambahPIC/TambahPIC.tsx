@@ -49,10 +49,7 @@ const TambahPIC: React.FC = () => {
       width="79vw"
       height={{
         base: "100vh",
-        sm: "100vh",
-        md: "80vh",
-        lg: "80vh",
-        xl: "80vh",
+        md: "92vh",
       }}
       backgroundColor="#F4F4F4"
       alignItems="center"
