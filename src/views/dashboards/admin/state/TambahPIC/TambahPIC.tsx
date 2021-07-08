@@ -59,6 +59,7 @@ const TambahPIC: React.FC = () => {
       justifyContent="center"
     >
       <Flex
+        width="60%"
         direction="column"
         backgroundColor="#FFFFFF"
         className="filter"
