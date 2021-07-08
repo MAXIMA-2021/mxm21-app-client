@@ -59,38 +59,14 @@ const TambahPIC: React.FC = () => {
       justifyContent="center"
     >
       <Flex
-        width="60%"
+        width={{
+          base: "100%",
+          md: "60%",
+        }}
         direction="column"
         backgroundColor="#FFFFFF"
-        className="filter"
-        py={{
-          base: "3vh",
-          sm: "3vh",
-          md: "3vh",
-          lg: "3vh",
-          xl: "3vh",
-        }}
-        px={{
-          base: "5vw",
-          sm: "5vw",
-          md: "2vw",
-          lg: "2vw",
-          xl: "2vw",
-        }}
-        my={{
-          base: "1vh",
-          sm: "1vh",
-          md: "10vh",
-          lg: "10vh",
-          xl: "10vh",
-        }}
-        mx={{
-          base: "1vw",
-          sm: "1vw",
-          md: "10vw",
-          lg: "10vw",
-          xl: "10vw",
-        }}
+        py="2rem"
+        px="2rem"
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)}>

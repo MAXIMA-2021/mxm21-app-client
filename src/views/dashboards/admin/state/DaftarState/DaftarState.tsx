@@ -202,40 +202,19 @@ const DaftarState: React.FC = () => {
         <Flex
           direction="column"
           background="white"
-          py={{
-            base: "3vh",
-            sm: "3vh",
-            md: "3vh",
-            lg: "3vh",
-            xl: "3vh",
-          }}
-          px={{
-            base: "5vw",
-            sm: "5vw",
-            md: "2vw",
-            lg: "2vw",
-            xl: "2vw",
-          }}
+          py="2rem"
+          px="1.5rem"
           mt={{
-            base: "1vh",
-            sm: "1vh",
-            md: "3vh",
-            lg: "3vh",
-            xl: "3vh",
+            base: "1rem",
+            md: "3rem",
           }}
           mb={{
-            base: "1vh",
-            sm: "1vh",
-            md: "8vh",
-            lg: "8vh",
-            xl: "8vh",
+            base: "1rem",
+            md: "8rem",
           }}
           mx={{
-            base: "1vw",
-            sm: "1vw",
-            md: "2vw",
-            lg: "2vw",
-            xl: "2vw",
+            base: "0.2rem",
+            md: "2rem",
           }}
           rounded={20}
         >
