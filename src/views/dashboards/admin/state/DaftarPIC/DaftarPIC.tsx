@@ -162,15 +162,15 @@ const DaftarPIC: React.FC = () => {
         <Flex
           direction="column"
           background="white"
-          py="2rem"
+          py="1.5rem"
           px="1.5rem"
           mt={{
             base: "1rem",
-            md: "3rem",
+            md: "1rem",
           }}
           mb={{
             base: "1rem",
-            md: "8rem",
+            md: "3rem",
           }}
           mx={{
             base: "0.2rem",

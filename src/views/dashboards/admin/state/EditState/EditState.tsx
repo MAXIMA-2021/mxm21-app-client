@@ -47,50 +47,34 @@ const EditState: React.FC = () => {
 
   return (
     <Flex
-      height={{
-        base: "100vh",
-        sm: "100vh",
-        md: "80vh",
-        lg: "80vh",
-        xl: "80vh",
-      }}
-      backgroundColor="#F4F4F4"
       alignItems="center"
       justifyContent="center"
+      backgroundColor="#f4f4f4"
+      width="79vw"
+      height="100%"
     >
       <Flex
+        width={{
+          base: "100%",
+          md: "70%",
+        }}
         direction="column"
-        backgroundColor="#FFFFFF"
-        className="filter"
-        py={{
-          base: "3vh",
-          sm: "3vh",
-          md: "3vh",
-          lg: "3vh",
-          xl: "3vh",
+        background="white"
+        py="1.5rem"
+        px="1.5rem"
+        mt={{
+          base: "1rem",
+          md: "2.5rem",
         }}
-        px={{
-          base: "5vw",
-          sm: "5vw",
-          md: "2vw",
-          lg: "2vw",
-          xl: "2vw",
-        }}
-        my={{
-          base: "1vh",
-          sm: "1vh",
-          md: "10vh",
-          lg: "10vh",
-          xl: "10vh",
+        mb={{
+          base: "1rem",
+          md: "3rem",
         }}
         mx={{
-          base: "1vw",
-          sm: "1vw",
-          md: "10vw",
-          lg: "10vw",
-          xl: "10vw",
+          base: "0.2rem",
+          md: "2rem",
         }}
-        rounded={25}
+        rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex>
@@ -222,7 +206,7 @@ const EditState: React.FC = () => {
                 color="white"
                 padding="1em"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                _hover={{ backgroundColor: "red" }}
+                _hover={{ backgroundColor: "#4de2cc" }}
               >
                 Choose File Upload
               </Button>
@@ -273,7 +257,7 @@ const EditState: React.FC = () => {
               borderRadius="30px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
-              _hover={{ backgroundColor: "red" }}
+              _hover={{ backgroundColor: "#4de2cc" }}
             >
               SUBMIT
             </Button>

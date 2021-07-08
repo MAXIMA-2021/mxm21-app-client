@@ -12,6 +12,7 @@ import {
   HStack,
   CloseButton,
   Text,
+  Container,
 } from "@chakra-ui/react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -27,6 +28,10 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
+import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
+import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
+import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
 
 const colorTheme = createMuiTheme({
   palette: {
@@ -58,7 +63,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px", maxWidth: "300px" },
+          style: { minWidth: "400px" },
         }),
       },
     },
@@ -79,7 +84,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "150px", maxWidth: "150px" },
+          style: { minWidth: "250px" },
         }),
       },
     },
@@ -100,7 +105,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "150px", maxWidth: "150px" },
+          style: { minWidth: "250px" },
         }),
         customBodyRender: (value: any) => (
           <Text ml={8}>
@@ -130,46 +135,27 @@ const StateDetail: React.FC = () => {
   return (
     <>
       <Flex
-        height={{
-          base: "100vh",
-          sm: "100vh",
-          md: "80vh",
-          lg: "80vh",
-          xl: "80vh",
-        }}
+        backgroundColor="#f4f4f4"
         alignItems="center"
         justifyContent="center"
+        height="100%"
       >
         <Flex
           direction="column"
           background="white"
-          py={{
-            base: "3vh",
-            sm: "3vh",
-            md: "3vh",
-            lg: "3vh",
-            xl: "3vh",
+          py="1.5rem"
+          px="1.5rem"
+          mt={{
+            base: "1rem",
+            md: "1rem",
           }}
-          px={{
-            base: "5vw",
-            sm: "5vw",
-            md: "2vw",
-            lg: "2vw",
-            xl: "2vw",
-          }}
-          my={{
-            base: "1vh",
-            sm: "1vh",
-            md: "10vh",
-            lg: "10vh",
-            xl: "10vh",
+          mb={{
+            base: "1rem",
+            md: "3rem",
           }}
           mx={{
-            base: "1vw",
-            sm: "1vw",
-            md: "10vw",
-            lg: "10vw",
-            xl: "10vw",
+            base: "0.2rem",
+            md: "2rem",
           }}
           rounded={20}
         >
@@ -180,14 +166,11 @@ const StateDetail: React.FC = () => {
                 letterSpacing="0.05em"
                 fontSize={{
                   base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
                   lg: "1.3em",
                   xl: "1.5em",
-                  "2xl": "1.5em",
                 }}
               >
-                Daftar PIC Organisator
+                Detail Kegiatan dan Peserta Registrasi STATE
               </Heading>
               <Spacer />
               <Image
@@ -206,15 +189,31 @@ const StateDetail: React.FC = () => {
                 mb="1vh"
               />
             </Flex>
-            <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
+            <MxmDivider color="black" height="3px" margin="1rem 0 1.5rem 0" />
             <Flex direction="row">
               <img src="http://lorempixel.com/400/200/sports/" />
-              <div>
-                <Text>Ultimagz</Text>
-                <Text>Ultimagz</Text>
-              </div>
+              <Container pl="1rem">
+                <Heading>Ultimagz</Heading>
+                <Text mt="1.5rem">
+                  <EventOutlinedIcon /> Hari ke-1 (Rabu, 6 Agustus 2021)
+                </Text>
+                <Flex direction="row" my="1rem">
+                  <Text>
+                    <PeopleAltOutlinedIcon /> 100
+                  </Text>
+                  <Text ml="2rem">
+                    <VpnKeyOutlinedIcon /> ULA326
+                  </Text>
+                </Flex>
+                <Flex direction="row">
+                  <VideocamOutlinedIcon />
+                  <Text ml="0.5rem" wordBreak="break-all">
+                    https://mxm-one.zoom.us/j/4662717372?pwd=dTlPQSt1UHBHM1U3cDlYajZLTEJtdz09
+                  </Text>
+                </Flex>
+              </Container>
             </Flex>
-            <Text fontWeight="bold" fontSize="1.2em">
+            <Text fontWeight="bold" fontSize="1.2em" mt="5rem">
               Peserta Registrasi STATE
             </Text>
             <Center>
@@ -223,6 +222,8 @@ const StateDetail: React.FC = () => {
                 columns={tableColumns}
                 options={{
                   selectableRows: false,
+                  rowsPerPage: 15,
+                  rowsPerPageOptions: [10, 15, 20],
                   elevation: 0,
                 }}
               />

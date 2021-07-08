@@ -51,19 +51,26 @@ const TambahPIC: React.FC = () => {
         base: "100vh",
         md: "92vh",
       }}
-      backgroundColor="#F4F4F4"
       alignItems="center"
       justifyContent="center"
     >
       <Flex
         width={{
           base: "100%",
-          md: "60%",
+          md: "70%",
+        }}
+        mt={{
+          base: "1rem",
+          md: "0rem",
+        }}
+        mb={{
+          base: "1rem",
+          md: "3rem",
         }}
         direction="column"
         backgroundColor="#FFFFFF"
-        py="2rem"
-        px="2rem"
+        py="1.5rem"
+        px="1.5rem"
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,11 +80,8 @@ const TambahPIC: React.FC = () => {
               letterSpacing="0.05em"
               fontSize={{
                 base: "1.2em",
-                sm: "1.2em",
-                md: "1.2em",
                 lg: "1.3em",
                 xl: "1.5em",
-                "2xl": "1.5em",
               }}
             >
               Tambah PIC Organisator
@@ -89,10 +93,8 @@ const TambahPIC: React.FC = () => {
               h="100%"
               w={{
                 base: "4vw",
-                sm: "4vw",
                 md: "2.5vw",
                 lg: "2vw",
-                xl: "2vw",
                 "2xl": "1.2vw",
               }}
               mt="0.4vh"
@@ -185,7 +187,7 @@ const TambahPIC: React.FC = () => {
               borderRadius="30px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
-              _hover={{ backgroundColor: "red" }}
+              _hover={{ backgroundColor: "#4de2cc" }}
             >
               SUBMIT
             </Button>

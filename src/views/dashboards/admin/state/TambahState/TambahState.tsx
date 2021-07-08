@@ -96,26 +96,20 @@ const TambahState: React.FC = () => {
         <Flex
           width={{
             base: "100%",
-            md: "60%",
+            md: "70%",
+          }}
+          mt={{
+            base: "1rem",
+            md: "1rem",
+          }}
+          mb={{
+            base: "1rem",
+            md: "3rem",
           }}
           direction="column"
           backgroundColor="#FFFFFF"
-          py="2rem"
-          px="2rem"
-          // my={{
-          //   base: "1vh",
-          //   sm: "1vh",
-          //   md: "10vh",
-          //   lg: "10vh",
-          //   xl: "10vh",
-          // }}
-          // mx={{
-          //   base: "1vw",
-          //   sm: "1vw",
-          //   md: "10vw",
-          //   lg: "10vw",
-          //   xl: "10vw",
-          // }}
+          py="1.5rem"
+          px="1.5rem"
           rounded={25}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -125,11 +119,8 @@ const TambahState: React.FC = () => {
                 letterSpacing="0.05em"
                 fontSize={{
                   base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
                   lg: "1.3em",
                   xl: "1.5em",
-                  "2xl": "1.5em",
                 }}
               >
                 Tambah State
@@ -141,10 +132,8 @@ const TambahState: React.FC = () => {
                 h="100%"
                 w={{
                   base: "4vw",
-                  sm: "4vw",
                   md: "2.5vw",
                   lg: "2vw",
-                  xl: "2vw",
                   "2xl": "1.2vw",
                 }}
                 mt="0.4vh"
@@ -267,7 +256,7 @@ const TambahState: React.FC = () => {
                 borderRadius="30px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
-                _hover={{ backgroundColor: "red" }}
+                _hover={{ backgroundColor: "#4de2cc" }}
               >
                 SUBMIT
               </Button>
