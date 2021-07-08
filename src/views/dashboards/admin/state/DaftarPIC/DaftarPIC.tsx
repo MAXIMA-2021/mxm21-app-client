@@ -157,10 +157,7 @@ const DaftarPIC: React.FC = () => {
         backgroundColor="#f4f4f4"
         alignItems="center"
         justifyContent="center"
-        height={{
-          base: "100vh",
-          md: "92vh",
-        }}
+        height="100%"
       >
         <Flex
           direction="column"
