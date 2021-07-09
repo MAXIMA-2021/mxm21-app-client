@@ -43,6 +43,8 @@ const UploadFiles = () => {
         color="white"
         onClick={removeFile(file)}
         boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+        size="sm"
+        _hover={{ backgroundColor: "#C71034" }}
       >
         Hapus
       </Button>
