@@ -127,7 +127,7 @@ const DaftarHome: React.FC = () => {
               </Button>
             </Link> */}
             <Link
-              to={`/admin/edit-state/${tableMeta.rowData[0]}`}
+              to={`/admin/edit-home/${tableMeta.rowData[0]}`}
               style={{ textDecoration: "none" }}
             >
               <Button
@@ -190,7 +190,7 @@ const DaftarHome: React.FC = () => {
           }}
           mb={{
             base: "1rem",
-            md: "3rem",
+            md: "5rem",
           }}
           mx={{
             base: "0.2rem",

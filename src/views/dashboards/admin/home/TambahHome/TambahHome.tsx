@@ -21,7 +21,7 @@ import {
   MxmTextarea,
   MxmDivider,
 } from "../../../../../shared/styled/input";
-import UploadFiles from "./upload/UploadFiles";
+import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahHome: React.FC = () => {
@@ -42,7 +42,10 @@ const TambahHome: React.FC = () => {
   return (
     <div className="content">
       <Flex
-        width="79vw"
+        width={{
+          base: "100vw",
+          md: "79vw",
+        }}
         height="100%"
         alignItems="center"
         justifyContent="center"
@@ -58,7 +61,7 @@ const TambahHome: React.FC = () => {
           }}
           mb={{
             base: "2.5rem",
-            md: "4rem",
+            md: "5rem",
           }}
           direction="column"
           backgroundColor="#FFFFFF"
@@ -104,31 +107,31 @@ const TambahHome: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5" isInvalid={errors.Name}>
+              <FormControl mb={3} mr="5" isInvalid={errors.name}>
                 <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
                 <MxmInput
-                  {...register("Name", { required: "Isi Nama Organisator" })}
+                  {...register("name", { required: "Isi Nama Organisator" })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.Name && (
+                  {errors.name && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.Name.message}
+                        {errors.name.message}
                       </p>
                     </Flex>
                   )}
                 </MxmFormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={errors.Kategori} mb={3}>
+              <FormControl isInvalid={errors.kategori} mb={3}>
                 <MxmFormLabel color="black">Kategori</MxmFormLabel>
                 <MxmSelect
-                  {...register("Kategori", { required: "Pilih Kategori" })}
+                  {...register("kategori", { required: "Pilih Kategori" })}
                   className="select"
                   onChange={handleSelectChange}
                 >
                   <option value="" selected disabled hidden>
-                    Pilih Hari Pelaksanaan STATE
+                    Pilih Kategori
                   </option>
                   <option value="UKM Sains dan Sosial">
                     UKM Sains dan Sosial
@@ -148,11 +151,11 @@ const TambahHome: React.FC = () => {
                   </option>
                 </MxmSelect>
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.Kategori && (
+                  {errors.kategori && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.Kategori.message}
+                        {errors.kategori.message}
                       </p>
                     </Flex>
                   )}
@@ -168,19 +171,19 @@ const TambahHome: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} isInvalid={errors.ShortDesc}>
+              <FormControl mb={3} isInvalid={errors.shortDesc}>
                 <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                 <MxmInput
-                  {...register("ShortDesc", {
-                    required: "Isi narasi pendek",
+                  {...register("shortDesc", {
+                    required: "Isi Narasi Pendek",
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.ShortDesc && (
+                  {errors.shortDesc && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.ShortDesc.message}
+                        {errors.shortDesc.message}
                       </p>
                     </Flex>
                   )}
@@ -196,20 +199,20 @@ const TambahHome: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} isInvalid={errors.LongDesc}>
+              <FormControl mb={3} isInvalid={errors.longDesc}>
                 <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
                 <MxmTextarea
-                  resize="none"
-                  {...register("LongDesc", {
-                    required: "Isi narasi panjang",
+                  resize="vertical"
+                  {...register("longDesc", {
+                    required: "Isi Narasi Panjang",
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.LongDesc && (
+                  {errors.longDesc && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.LongDesc.message}
+                        {errors.longDesc.message}
                       </p>
                     </Flex>
                   )}
@@ -240,10 +243,10 @@ const TambahHome: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} isInvalid={errors.LinkYoutube}>
+              <FormControl mb={3} isInvalid={errors.linkYoutube}>
                 <MxmFormLabel color="black">Link Video Youtube</MxmFormLabel>
                 <MxmInput
-                  {...register("LinkYoutube", {
+                  {...register("linkYoutube", {
                     required: "Isi Link Video",
                     pattern: {
                       value:
@@ -253,11 +256,11 @@ const TambahHome: React.FC = () => {
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.LinkYoutube && (
+                  {errors.linkYoutube && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.LinkYoutube.message}
+                        {errors.linkYoutube.message}
                       </p>
                     </Flex>
                   )}
@@ -273,10 +276,10 @@ const TambahHome: React.FC = () => {
                 xl: "row",
               }}
             >
-              <FormControl mb={3} mr="5" isInvalid={errors.LineID}>
+              <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
                 <MxmFormLabel color="black">Media Sosial (LINE)</MxmFormLabel>
                 <MxmInput
-                  {...register("LineID", {
+                  {...register("lineID", {
                     required: "Isi Nama Organisator",
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.])+$/,
@@ -285,22 +288,22 @@ const TambahHome: React.FC = () => {
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.LineID && (
+                  {errors.lineID && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.LineID.message}
+                        {errors.lineID.message}
                       </p>
                     </Flex>
                   )}
                 </MxmFormErrorMessage>
               </FormControl>
-              <FormControl mb={3} isInvalid={errors.Instagram}>
+              <FormControl mb={3} isInvalid={errors.instagram}>
                 <MxmFormLabel color="black">
                   Media Sosial (Instagram)
                 </MxmFormLabel>
                 <MxmInput
-                  {...register("Instagram", {
+                  {...register("instagram", {
                     required: "Isi Akun Instagram",
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
@@ -310,11 +313,11 @@ const TambahHome: React.FC = () => {
                   placeholder="Tidak perlu menggunakan @"
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.Instagram && (
+                  {errors.instagram && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.Instagram.message}
+                        {errors.instagram.message}
                       </p>
                     </Flex>
                   )}

@@ -34,8 +34,7 @@ import {
   MxmNumberInputField,
   MxmDivider,
 } from "../../../../../shared/styled/input";
-import UploadFiles from "./upload/UploadFiles";
-import { MxmButton } from "../../../../../shared/styled/buttons";
+import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahState: React.FC = () => {
