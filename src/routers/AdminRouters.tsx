@@ -39,39 +39,59 @@ export default function AdminRouters(show: boolean) {
           backgroundColor="#f4f4f4"
         >
           <Route
-            path="/admin/tambah-state"
+            path="/admin/state/tambah-state"
             exact
             component={Dashboards.TambahState}
           />
           <Route
-            path="/admin/tambah-pic"
+            path="/admin/state/tambah-pic"
             exact
             component={Dashboards.TambahPIC}
           />
           <Route
-            path="/admin/edit-state"
+            path="/admin/state/edit-state"
             exact
             component={Dashboards.EditState}
           />
           <Route
-            path="/admin/daftar-state"
+            path="/admin/state/daftar-state"
             exact
             component={Dashboards.DaftarState}
           />
           <Route
-            path="/admin/daftar-organisator"
+            path="/admin/state/daftar-organisator"
             exact
             component={Dashboards.DaftarOrganisator}
           />
           <Route
-            path="/admin/daftar-pic"
+            path="/admin/state/daftar-pic"
             exact
             component={Dashboards.DaftarPIC}
           />
           <Route
-            path="/admin/state-detail"
+            path="/admin/state/state-detail"
             exact
             component={Dashboards.StateDetail}
+          />
+          <Route
+            path="/admin/home/daftar-home"
+            exact
+            component={Dashboards.DaftarHome}
+          />
+          <Route
+            path="/admin/home/edit-home"
+            exact
+            component={Dashboards.EditHome}
+          />
+          <Route
+            path="/admin/home/tambah-home"
+            exact
+            component={Dashboards.TambahHome}
+          />
+          <Route
+            path="/admin/home/tambah-media"
+            exact
+            component={Dashboards.TambahMedia}
           />
         </Box>
       </Router>
