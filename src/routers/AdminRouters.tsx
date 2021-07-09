@@ -39,57 +39,57 @@ export default function AdminRouters(show: boolean) {
           backgroundColor="#f4f4f4"
         >
           <Route
-            path="/admin/state/tambah-state"
+            path="/admin/tambah-state"
             exact
             component={Dashboards.TambahState}
           />
           <Route
-            path="/admin/state/tambah-pic"
+            path="/admin/tambah-pic"
             exact
             component={Dashboards.TambahPIC}
           />
           <Route
-            path="/admin/state/edit-state"
+            path="/admin/edit-state"
             exact
             component={Dashboards.EditState}
           />
           <Route
-            path="/admin/state/daftar-state"
+            path="/admin/daftar-state"
             exact
             component={Dashboards.DaftarState}
           />
           <Route
-            path="/admin/state/daftar-organisator"
+            path="/admin/daftar-organisator"
             exact
             component={Dashboards.DaftarOrganisator}
           />
           <Route
-            path="/admin/state/daftar-pic"
+            path="/admin/daftar-pic"
             exact
             component={Dashboards.DaftarPIC}
           />
           <Route
-            path="/admin/state/state-detail"
+            path="/admin/state-detail"
             exact
             component={Dashboards.StateDetail}
           />
           <Route
-            path="/admin/home/daftar-home"
+            path="/admin/daftar-home"
             exact
             component={Dashboards.DaftarHome}
           />
           <Route
-            path="/admin/home/edit-home"
+            path="/admin/edit-home"
             exact
             component={Dashboards.EditHome}
           />
           <Route
-            path="/admin/home/tambah-home"
+            path="/admin/tambah-home"
             exact
             component={Dashboards.TambahHome}
           />
           <Route
-            path="/admin/home/tambah-media"
+            path="/admin/tambah-media"
             exact
             component={Dashboards.TambahMedia}
           />
