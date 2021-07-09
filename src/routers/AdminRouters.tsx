@@ -73,6 +73,26 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.StateDetail}
           />
+          <Route
+            path="/admin/daftar-home"
+            exact
+            component={Dashboards.DaftarHome}
+          />
+          <Route
+            path="/admin/edit-home"
+            exact
+            component={Dashboards.EditHome}
+          />
+          <Route
+            path="/admin/tambah-home"
+            exact
+            component={Dashboards.TambahHome}
+          />
+          <Route
+            path="/admin/tambah-media"
+            exact
+            component={Dashboards.TambahMedia}
+          />
         </Box>
       </Router>
     </div>

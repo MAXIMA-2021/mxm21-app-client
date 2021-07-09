@@ -2,8 +2,8 @@ import { createIcon } from "@chakra-ui/icons";
 import { Flex, Button } from "@chakra-ui/react";
 import React, { useState, useCallback } from "react";
 import { FileError, useDropzone } from "react-dropzone";
-import { UploadContainer } from "../../../../../../shared/styled/containers";
-import { Palette } from "../../../../../../types/enums";
+import { UploadContainer } from "../../styled/containers";
+import { Palette } from "../../../types/enums";
 
 // interface UploadableFile {
 //   file: File;
@@ -43,6 +43,8 @@ const UploadFiles = () => {
         color="white"
         onClick={removeFile(file)}
         boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+        size="sm"
+        _hover={{ backgroundColor: "#C71034" }}
       >
         Hapus
       </Button>

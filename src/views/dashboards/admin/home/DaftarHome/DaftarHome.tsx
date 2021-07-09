@@ -22,12 +22,12 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
-import "./DaftarState.scss";
+import "./DaftarHome.scss";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
-const DaftarState: React.FC = () => {
+const DaftarHome: React.FC = () => {
   const responsiveData = {
     base: "1em",
     sm: "1em",
@@ -38,13 +38,13 @@ const DaftarState: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "stateID",
-      label: "ID STATE",
+      name: "homeID",
+      label: "ID HoME",
       options: { display: false },
     },
     {
-      name: "namaState",
-      label: "Nama STATE",
+      name: "name",
+      label: "Nama Organisator",
       options: {
         filter: true,
         sort: true,
@@ -59,7 +59,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px" },
+          style: { minWidth: "350px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -67,8 +67,8 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kuotaTerisi",
-      label: "Kuota Terisi",
+      name: "kategori",
+      label: "Kategori",
       options: {
         filter: true,
         sort: true,
@@ -83,31 +83,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "195px" },
-        }),
-        customBodyRender: (value: any) => (
-          <Text fontSize={responsiveData}>{value}/100</Text>
-        ),
-      },
-    },
-    {
-      name: "kodePresensi",
-      label: "Kode Presensi",
-      options: {
-        filter: true,
-        sort: true,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
-            {column.label}
-          </Text>
-        ),
-        setCellProps: () => ({
-          style: { minWidth: "195px" },
+          style: { minWidth: "350px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -119,6 +95,9 @@ const DaftarState: React.FC = () => {
       label: "Aksi",
       options: {
         print: false,
+        setCellProps: () => ({
+          style: { minWidth: "200px" },
+        }),
         customHeadLabelRender: ({ index, ...column }) => (
           <Text
             key={index}
@@ -131,7 +110,7 @@ const DaftarState: React.FC = () => {
         ),
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
-            <Link
+            {/* <Link
               to={`/admin/state-detail/${tableMeta.rowData[0]}`}
               style={{
                 textDecoration: "none",
@@ -146,9 +125,9 @@ const DaftarState: React.FC = () => {
               >
                 Detail
               </Button>
-            </Link>
+            </Link> */}
             <Link
-              to={`/admin/edit-state/${tableMeta.rowData[0]}`}
+              to={`/admin/edit-home/${tableMeta.rowData[0]}`}
               style={{ textDecoration: "none" }}
             >
               <Button
@@ -175,21 +154,21 @@ const DaftarState: React.FC = () => {
   ];
 
   const data = [
-    ["U0001", "Ultimagz", 100, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0001", "Ultimagz", 100, "IF430"],
+    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
+    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
+    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
+    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
+    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
+    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
+    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
+    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
+    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
+    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
+    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
+    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
+    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
+    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
+    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
   ];
 
   return (
@@ -233,7 +212,7 @@ const DaftarState: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar State
+                Daftar Organisator HoME
               </Heading>
               <Spacer />
               <Image
@@ -273,4 +252,4 @@ const DaftarState: React.FC = () => {
   );
 };
 
-export default DaftarState;
+export default DaftarHome;

@@ -39,20 +39,15 @@ const TambahPIC: React.FC = () => {
   const onSubmit = (data: any) => {
     window.confirm(JSON.stringify(data));
   };
-  const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
-    }
-  };
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
 
   return (
     <Flex
-      width="79vw"
-      height={{
-        base: "100vh",
-        md: "92vh",
+      width={{
+        base: "100vw",
+        md: "79vw",
       }}
+      height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
       justifyContent="center"
     >
@@ -111,9 +106,12 @@ const TambahPIC: React.FC = () => {
               options={organisatorList}
               getOptionLabel={(option) => option.name}
               renderOption={(option) => (
-                <p style={isLargerThan3000px ? { fontSize: "2rem" } : ""}>
+                <p style={{ fontSize: isLargerThan3000px ? "2rem" : "" }}>
                   {option.name} ({option.nim})
                 </p>
+                // <p style={isLargerThan3000px ? { fontSize: "2rem" } : ""}>
+                //   {option.name} ({option.nim})
+                // </p>
               )}
               renderInput={(params) => (
                 <TextField
