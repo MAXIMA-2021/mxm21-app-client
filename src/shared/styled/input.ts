@@ -8,6 +8,7 @@ import {
   NumberInput,
   NumberInputField,
   Divider,
+  Textarea,
 } from "@chakra-ui/react";
 
 export const MxmDivider = styled.div<{
@@ -118,5 +119,18 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
         return `${radius}`;
       }
     }};
+  }
+`;
+
+export const MxmTextarea = styled(Textarea)<{ border: string }>`
+  background-color: white !important;
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border: 1px solid #e2e8f0;
+  box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em !important;
+  /* height: 5vh !important; */
+  & ::placeholder {
+    color: #cbd5e0;
   }
 `;

@@ -2,16 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
-  Box,
-  Center,
-  VStack,
-  HStack,
   Heading,
   Input,
-  Button,
-  FormLabel,
-  NumberInput,
-  NumberInputField,
   FormControl,
   FormErrorIcon,
   InputLeftAddon,
@@ -319,7 +311,7 @@ const RegisterMaba: React.FC = () => {
                   </FormControl>
                   <FormControl
                     mb={3}
-                    w={{  
+                    w={{
                       base: "100%",
                       sm: "100%",
                       md: "50%",
@@ -571,68 +563,6 @@ const RegisterMaba: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
-                {/* <Flex
-                direction={{
-                  base: "column",
-                  sm: "column",
-                  md: "row",
-                  lg: "row",
-                  xl: "row",
-                }}
-              >
-                <FormControl isInvalid={errors.password} mb={3} mr="5">
-                  <MxmFormLabel>Masukkan Kata Sandi</MxmFormLabel>
-                  <MxmInputGroup>
-                    <Input
-                      placeholder="Masukkan kata sandi kamu"
-                      {...register("password", {
-                        required: "Isi kata sandi kamu",
-                        minLength: {
-                          value: 8,
-                          message: "Kata sandi minimal 8 karakter",
-                        },
-                      })}
-                      pr="4.5rem"
-                      type={show ? "text" : "password"}
-                    />
-                    <InputRightElement>
-                      <Button size="base" onClick={handleClick}>
-                        {show ? <IconHidePassword /> : <IconShowPassword />}
-                      </Button>
-                    </InputRightElement>
-                  </MxmInputGroup>
-                  <MxmFormErrorMessage fontSize="xs" mt={1}>
-                    {errors.password && (
-                      <p>
-                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.password.message}
-                      </p>
-                    )}
-                  </MxmFormErrorMessage>
-                </FormControl>
-                <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
-                  <MxmFormLabel>Konfirmasi Kata Sandi</MxmFormLabel>
-                  <MxmInputGroup>
-                    <Input
-                      type="password"
-                      placeholder="Masukkan kata sandi Anda"
-                      {...register("konfirmasiPassword", {
-                        required: "Masukkan kata sandi kamu lagi",
-                        validate: (value) =>
-                          value === password.current || "Kata sandi tidak sama",
-                      })}
-                    />
-                  </MxmInputGroup>
-                  <MxmFormErrorMessage fontSize="xs" mt={1}>
-                    {errors.konfirmasiPassword && (
-                      <p>
-                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.konfirmasiPassword.message}
-                      </p>
-                    )}
-                  </MxmFormErrorMessage>
-                </FormControl>
-              </Flex> */}
                 <Flex
                   fontFamily="Rubik"
                   fontWeight="400"

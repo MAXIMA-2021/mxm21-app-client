@@ -38,35 +38,6 @@ import UploadFiles from "./upload/UploadFiles";
 import { MxmButton } from "../../../../../shared/styled/buttons";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
-// const UploadFiles = () => {
-//   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-//     useDropzone({
-//       accept: "image/jpeg, image/png",
-//       maxFiles: 1,
-//     });
-//   const acceptedFileItems = acceptedFiles.map((file) => {
-//     console.log(file);
-//     return (
-//       <Flex alignItems="center" justifyContent="space-between">
-//         {file.name} - {file.size} bytes
-//         <Button backgroundColor={Palette.Navy} color="white">
-//           Hapus
-//         </Button>
-//       </Flex>
-//     );
-//   });
-
-//   return (
-// <div>
-// <UploadContainer {...getRootProps({ className: "dropzone" })}>
-//   <input {...getInputProps()} />
-//   <p>Drag and Drop atau Klik Disini</p>
-// </UploadContainer>
-// {acceptedFileItems}
-// </div>
-//   );
-// };
-
 const TambahState: React.FC = () => {
   const {
     register,
@@ -205,7 +176,7 @@ const TambahState: React.FC = () => {
               <FormControl mb={3} isInvalid={errors.hari}>
                 <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
                 <MxmSelect
-                  {...register("hari", { required: "Isi Hari Kegiatan" })}
+                  {...register("hari", { required: "Pilih Hari Kegiatan" })}
                   className="select"
                   onChange={handleSelectChange}
                 >
@@ -219,11 +190,11 @@ const TambahState: React.FC = () => {
                   <option value="5">Hari ke-5</option>
                 </MxmSelect>
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
-                  {errors.kuota && (
+                  {errors.hari && (
                     <Flex flexDirection="row" alignItems="center">
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.kuota.message}
+                        {errors.hari.message}
                       </p>
                     </Flex>
                   )}
