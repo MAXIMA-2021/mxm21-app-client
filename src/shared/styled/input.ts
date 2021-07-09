@@ -5,7 +5,21 @@ import {
   FormLabel,
   Select,
   FormErrorMessage,
+  NumberInput,
+  NumberInputField,
+  Divider,
 } from "@chakra-ui/react";
+
+export const MxmDivider = styled.div<{
+  color: string;
+  height: string;
+  margin: string;
+}>`
+  margin: ${(props) => props.margin || "0"};
+  width: 100%;
+  background-color: ${(props) => props.color || "black"};
+  height: ${(props) => props.height || "4px"};
+`;
 
 export const MxmFormErrorMessage = styled(FormErrorMessage)`
   & svg {
@@ -29,14 +43,27 @@ export const MxmSelect = styled(Select)`
   font-size: 0.9em !important;
 `;
 
-export const MxmFormLabel = styled(FormLabel)`
-  color: white;
+export const MxmFormLabel = styled(FormLabel)<{ color: string }>`
+  color: ${(props) => props.color || "white"};
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-size: 0.8em !important;
 `;
 
 export const MxmInput = styled(Input)<{ border: string }>`
+  background-color: white !important;
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border: 1px solid #e2e8f0;
+  box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em !important;
+  /* height: 5vh !important; */
+  & ::placeholder {
+    color: #cbd5e0;
+  }
+`;
+
+export const MxmNumberInputField = styled(NumberInputField)<{ border: string }>`
   background-color: white !important;
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   border: 1px solid #e2e8f0;
