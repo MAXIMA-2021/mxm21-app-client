@@ -86,10 +86,7 @@ const TambahState: React.FC = () => {
     <div className="content">
       <Flex
         width="79vw"
-        height={{
-          base: "100vh",
-          md: "92vh",
-        }}
+        height="calc(100vh - 3.75rem - 3.5rem)"
         alignItems="center"
         justifyContent="center"
       >

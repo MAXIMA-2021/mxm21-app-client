@@ -51,7 +51,7 @@ const EditState: React.FC = () => {
       justifyContent="center"
       backgroundColor="#f4f4f4"
       width="79vw"
-      height="100%"
+      height="calc(100vh - 3.75rem - 3.5rem)"
     >
       <Flex
         width={{
