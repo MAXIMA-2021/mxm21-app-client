@@ -170,8 +170,8 @@ const DaftarOrganisator: React.FC = () => {
             md: "1rem",
           }}
           mb={{
-            base: "1rem",
-            md: "3rem",
+            base: "4.5rem",
+            md: "5rem",
           }}
           mx={{
             base: "0.2rem",

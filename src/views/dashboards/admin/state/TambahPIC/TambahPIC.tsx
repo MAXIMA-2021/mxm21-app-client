@@ -43,7 +43,10 @@ const TambahPIC: React.FC = () => {
 
   return (
     <Flex
-      width="79vw"
+      width={{
+        base: "100vw",
+        md: "79vw",
+      }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
       justifyContent="center"

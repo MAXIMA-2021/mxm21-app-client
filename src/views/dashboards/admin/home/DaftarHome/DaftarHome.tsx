@@ -189,7 +189,7 @@ const DaftarHome: React.FC = () => {
             md: "1rem",
           }}
           mb={{
-            base: "1rem",
+            base: "4.5rem",
             md: "5rem",
           }}
           mx={{

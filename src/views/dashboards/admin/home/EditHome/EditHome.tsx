@@ -60,7 +60,7 @@ const EditHome: React.FC = () => {
             md: "1rem",
           }}
           mb={{
-            base: "2.5rem",
+            base: "4.5rem",
             md: "5rem",
           }}
           direction="column"
