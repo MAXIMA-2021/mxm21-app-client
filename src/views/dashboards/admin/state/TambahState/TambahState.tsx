@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -15,16 +15,16 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   MxmContainers,
   MxmVerticalAlign,
   UploadContainer,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import "./TambahState.scss";
-import { MxmLogo, MxmLogoText } from "../../../../../assets";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import './TambahState.scss';
+import { MxmLogo, MxmLogoText } from '../../../../../assets';
 import {
   MxmInput,
   MxmInputGroup,
@@ -33,9 +33,9 @@ import {
   MxmFormErrorMessage,
   MxmNumberInputField,
   MxmDivider,
-} from "../../../../../shared/styled/input";
-import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/input';
+import UploadFiles from '../../../../../shared/component/ImageUpload/UploadFiles';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const TambahState: React.FC = () => {
   const {
@@ -47,8 +47,8 @@ const TambahState: React.FC = () => {
     window.confirm(JSON.stringify(data));
   };
   const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
+    if (event.target.value !== '') {
+      event.target.style.color = 'black';
     }
   };
 
@@ -56,8 +56,8 @@ const TambahState: React.FC = () => {
     <div className="content">
       <Flex
         width={{
-          base: "100vw",
-          md: "79vw",
+          base: '100vw',
+          md: '79vw',
         }}
         height="calc(100vh - 3.75rem - 3.5rem)"
         alignItems="center"
@@ -65,16 +65,16 @@ const TambahState: React.FC = () => {
       >
         <Flex
           width={{
-            base: "100%",
-            md: "70%",
+            base: '100%',
+            md: '70%',
           }}
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "1rem",
-            md: "3rem",
+            base: '1rem',
+            md: '3rem',
           }}
           direction="column"
           backgroundColor="#FFFFFF"
@@ -88,9 +88,9 @@ const TambahState: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
+                  base: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
                 }}
               >
                 Tambah State
@@ -101,10 +101,10 @@ const TambahState: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"
@@ -113,17 +113,17 @@ const TambahState: React.FC = () => {
             <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} mr="5" isInvalid={errors.nama}>
                 <MxmFormLabel color="black">Nama STATE</MxmFormLabel>
                 <MxmInput
-                  {...register("nama", { required: "Isi Nama STATE" })}
+                  {...register('nama', { required: 'Isi Nama STATE' })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
                   {errors.nama && (
@@ -141,11 +141,11 @@ const TambahState: React.FC = () => {
                 <NumberInput allowMouseWheel defaultValue={0} min={0}>
                   <MxmNumberInputField
                     type="number"
-                    {...register("kuota", {
-                      required: "Isi Jumlah Kuota",
+                    {...register('kuota', {
+                      required: 'Isi Jumlah Kuota',
                       min: {
                         value: 1,
-                        message: "Jumlah Kuota Terlalu Sedikit",
+                        message: 'Jumlah Kuota Terlalu Sedikit',
                       },
                     })}
                   />
@@ -168,17 +168,17 @@ const TambahState: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.hari}>
                 <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
                 <MxmSelect
-                  {...register("hari", { required: "Pilih Hari Kegiatan" })}
+                  {...register('hari', { required: 'Pilih Hari Kegiatan' })}
                   className="select"
                   onChange={handleSelectChange}
                 >
@@ -205,11 +205,11 @@ const TambahState: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.logo}>
@@ -226,7 +226,7 @@ const TambahState: React.FC = () => {
                 borderRadius="999px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
-                _hover={{ backgroundColor: "#2BAD96" }}
+                _hover={{ backgroundColor: '#2BAD96' }}
               >
                 SUBMIT
               </Button>

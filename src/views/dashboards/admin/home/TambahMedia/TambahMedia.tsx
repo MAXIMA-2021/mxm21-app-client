@@ -6,21 +6,21 @@ import {
   FormErrorIcon,
   Button,
   Image,
-} from "@chakra-ui/react";
-import { TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { MxmLogo } from "../../../../../assets";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '@chakra-ui/react';
+import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { MxmLogo } from '../../../../../assets';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 import {
   MxmDivider,
   MxmFormLabel,
   MxmFormErrorMessage,
   MxmSelect,
   MxmInput,
-} from "../../../../../shared/styled/input";
-import { Palette } from "../../../../../types/enums";
+} from '../../../../../shared/styled/input';
+import { Palette } from '../../../../../types/enums';
 
 const TambahMedia: React.FC = () => {
   const {
@@ -34,8 +34,8 @@ const TambahMedia: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "100vw",
-        md: "79vw",
+        base: '100vw',
+        md: '79vw',
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
@@ -43,16 +43,16 @@ const TambahMedia: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
-          md: "70%",
+          base: '100%',
+          md: '70%',
         }}
         mt={{
-          base: "1rem",
-          md: "0rem",
+          base: '1rem',
+          md: '0rem',
         }}
         mb={{
-          base: "1rem",
-          md: "3rem",
+          base: '1rem',
+          md: '3rem',
         }}
         direction="column"
         backgroundColor="#FFFFFF"
@@ -66,9 +66,9 @@ const TambahMedia: React.FC = () => {
               mb="1vh"
               letterSpacing="0.05em"
               fontSize={{
-                base: "1.2em",
-                lg: "1.3em",
-                xl: "1.5em",
+                base: '1.2em',
+                lg: '1.3em',
+                xl: '1.5em',
               }}
             >
               Tambah Media
@@ -79,10 +79,10 @@ const TambahMedia: React.FC = () => {
               alt="Logo MAXIMA 2021"
               h="100%"
               w={{
-                base: "4vw",
-                md: "2.5vw",
-                lg: "2vw",
-                "2xl": "1.2vw",
+                base: '4vw',
+                md: '2.5vw',
+                lg: '2vw',
+                '2xl': '1.2vw',
               }}
               mt="0.4vh"
               mb="1vh"
@@ -92,14 +92,18 @@ const TambahMedia: React.FC = () => {
           <FormControl mb={3} isInvalid={errors.akunOrganisator}>
             <MxmFormLabel color="black">Akun Organisator</MxmFormLabel>
             <MxmSelect
-              {...register("akunOrganisator", {
-                required: "Pilih Akun Organisator",
+              {...register('akunOrganisator', {
+                required: 'Pilih Akun Organisator',
               })}
             >
-              <option value="" selected disabled hidden></option>
+              <option value="" selected disabled hidden />
               {organisatorList.map((data) => (
                 <option value={data.name}>
-                  {data.name} ({data.nim})
+                  {data.name}
+                  {' '}
+                  (
+                  {data.nim}
+                  )
                 </option>
               ))}
             </MxmSelect>
@@ -117,12 +121,12 @@ const TambahMedia: React.FC = () => {
           <FormControl mb={3} isInvalid={errors.linkMedia}>
             <MxmFormLabel color="black">Link Media</MxmFormLabel>
             <MxmInput
-              {...register("linkMedia", {
-                required: "Isi Link Media",
+              {...register('linkMedia', {
+                required: 'Isi Link Media',
                 pattern: {
                   value:
                     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-                  message: "Link Media Tidak Valid",
+                  message: 'Link Media Tidak Valid',
                 },
               })}
             />
@@ -146,7 +150,7 @@ const TambahMedia: React.FC = () => {
               borderRadius="999px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
+              _hover={{ backgroundColor: '#2BAD96' }}
             >
               SUBMIT
             </Button>
@@ -161,9 +165,9 @@ const TambahMedia: React.FC = () => {
 export default TambahMedia;
 
 const organisatorList = [
-  { name: "Bonifasius Ariesto Adrian Finantyo", nim: "42580" },
-  { name: "Bapak Budi", nim: "32580" },
-  { name: "Ibu Budi", nim: "22580" },
-  { name: "Ini Budi", nim: "12580" },
-  { name: "Bukan Tiara Andini", nim: "52580" },
+  { name: 'Bonifasius Ariesto Adrian Finantyo', nim: '42580' },
+  { name: 'Bapak Budi', nim: '32580' },
+  { name: 'Ibu Budi', nim: '22580' },
+  { name: 'Ini Budi', nim: '12580' },
+  { name: 'Bukan Tiara Andini', nim: '52580' },
 ];

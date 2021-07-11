@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -9,10 +9,10 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
-} from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
-import "./TambahHome.scss";
-import { MxmLogo } from "../../../../../assets";
+} from '@chakra-ui/react';
+import { Palette } from '../../../../../types/enums';
+import './TambahHome.scss';
+import { MxmLogo } from '../../../../../assets';
 import {
   MxmInput,
   MxmFormLabel,
@@ -20,9 +20,9 @@ import {
   MxmFormErrorMessage,
   MxmTextarea,
   MxmDivider,
-} from "../../../../../shared/styled/input";
-import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/input';
+import UploadFiles from '../../../../../shared/component/ImageUpload/UploadFiles';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const TambahHome: React.FC = () => {
   const {
@@ -34,8 +34,8 @@ const TambahHome: React.FC = () => {
     window.confirm(JSON.stringify(data));
   };
   const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
+    if (event.target.value !== '') {
+      event.target.style.color = 'black';
     }
   };
 
@@ -43,8 +43,8 @@ const TambahHome: React.FC = () => {
     <div className="content">
       <Flex
         width={{
-          base: "100vw",
-          md: "79vw",
+          base: '100vw',
+          md: '79vw',
         }}
         height="100%"
         alignItems="center"
@@ -52,16 +52,16 @@ const TambahHome: React.FC = () => {
       >
         <Flex
           width={{
-            base: "100%",
-            md: "70%",
+            base: '100%',
+            md: '70%',
           }}
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "4.5rem",
-            md: "5rem",
+            base: '4.5rem',
+            md: '5rem',
           }}
           direction="column"
           backgroundColor="#FFFFFF"
@@ -75,9 +75,9 @@ const TambahHome: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
+                  base: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
                 }}
               >
                 Tambah HoME
@@ -88,10 +88,10 @@ const TambahHome: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"
@@ -100,17 +100,17 @@ const TambahHome: React.FC = () => {
             <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} mr="5" isInvalid={errors.name}>
                 <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
                 <MxmInput
-                  {...register("name", { required: "Isi Nama Organisator" })}
+                  {...register('name', { required: 'Isi Nama Organisator' })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
                   {errors.name && (
@@ -126,7 +126,7 @@ const TambahHome: React.FC = () => {
               <FormControl isInvalid={errors.kategori} mb={3}>
                 <MxmFormLabel color="black">Kategori</MxmFormLabel>
                 <MxmSelect
-                  {...register("kategori", { required: "Pilih Kategori" })}
+                  {...register('kategori', { required: 'Pilih Kategori' })}
                   className="select"
                   onChange={handleSelectChange}
                 >
@@ -164,18 +164,18 @@ const TambahHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.shortDesc}>
                 <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                 <MxmInput
-                  {...register("shortDesc", {
-                    required: "Isi Narasi Pendek",
+                  {...register('shortDesc', {
+                    required: 'Isi Narasi Pendek',
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -192,19 +192,19 @@ const TambahHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.longDesc}>
                 <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
                 <MxmTextarea
                   resize="vertical"
-                  {...register("longDesc", {
-                    required: "Isi Narasi Panjang",
+                  {...register('longDesc', {
+                    required: 'Isi Narasi Panjang',
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -222,11 +222,11 @@ const TambahHome: React.FC = () => {
 
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.logo}>
@@ -236,22 +236,22 @@ const TambahHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.linkYoutube}>
                 <MxmFormLabel color="black">Link Video Youtube</MxmFormLabel>
                 <MxmInput
-                  {...register("linkYoutube", {
-                    required: "Isi Link Video",
+                  {...register('linkYoutube', {
+                    required: 'Isi Link Video',
                     pattern: {
                       value:
                         /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/g,
-                      message: "Link Video Youtube tidak valid",
+                      message: 'Link Video Youtube tidak valid',
                     },
                   })}
                 />
@@ -269,21 +269,21 @@ const TambahHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
                 <MxmFormLabel color="black">Media Sosial (LINE)</MxmFormLabel>
                 <MxmInput
-                  {...register("lineID", {
-                    required: "Isi Nama Organisator",
+                  {...register('lineID', {
+                    required: 'Isi Nama Organisator',
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.])+$/,
-                      message: "ID LINE tidak valid",
+                      message: 'ID LINE tidak valid',
                     },
                   })}
                 />
@@ -303,11 +303,11 @@ const TambahHome: React.FC = () => {
                   Media Sosial (Instagram)
                 </MxmFormLabel>
                 <MxmInput
-                  {...register("instagram", {
-                    required: "Isi Akun Instagram",
+                  {...register('instagram', {
+                    required: 'Isi Akun Instagram',
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
-                      message: "Username Instagram tidak valid",
+                      message: 'Username Instagram tidak valid',
                     },
                   })}
                   placeholder="Tidak perlu menggunakan @"
@@ -333,7 +333,7 @@ const TambahHome: React.FC = () => {
                 borderRadius="999px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
-                _hover={{ backgroundColor: "#2BAD96" }}
+                _hover={{ backgroundColor: '#2BAD96' }}
               >
                 SUBMIT
               </Button>

@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -9,26 +9,26 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
-} from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/media-query";
-import { TextField } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+} from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/media-query';
+import { TextField } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   MxmContainers,
   MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import "./TambahPIC.scss";
-import { MxmLogo } from "../../../../../assets";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import './TambahPIC.scss';
+import { MxmLogo } from '../../../../../assets';
 import {
   MxmDivider,
   MxmFormErrorMessage,
   MxmFormLabel,
   MxmInput,
   MxmSelect,
-} from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/input';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const TambahPIC: React.FC = () => {
   const {
@@ -39,13 +39,13 @@ const TambahPIC: React.FC = () => {
   const onSubmit = (data: any) => {
     window.confirm(JSON.stringify(data));
   };
-  const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
+  const [isLargerThan3000px] = useMediaQuery('(min-width:3000px)');
 
   return (
     <Flex
       width={{
-        base: "100vw",
-        md: "79vw",
+        base: '100vw',
+        md: '79vw',
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
@@ -53,16 +53,16 @@ const TambahPIC: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
-          md: "70%",
+          base: '100%',
+          md: '70%',
         }}
         mt={{
-          base: "1rem",
-          md: "0rem",
+          base: '1rem',
+          md: '0rem',
         }}
         mb={{
-          base: "1rem",
-          md: "3rem",
+          base: '1rem',
+          md: '3rem',
         }}
         direction="column"
         backgroundColor="#FFFFFF"
@@ -76,9 +76,9 @@ const TambahPIC: React.FC = () => {
               mb="1vh"
               letterSpacing="0.05em"
               fontSize={{
-                base: "1.2em",
-                lg: "1.3em",
-                xl: "1.5em",
+                base: '1.2em',
+                lg: '1.3em',
+                xl: '1.5em',
               }}
             >
               Tambah PIC Organisator
@@ -89,10 +89,10 @@ const TambahPIC: React.FC = () => {
               alt="Logo MAXIMA 2021"
               h="100%"
               w={{
-                base: "4vw",
-                md: "2.5vw",
-                lg: "2vw",
-                "2xl": "1.2vw",
+                base: '4vw',
+                md: '2.5vw',
+                lg: '2vw',
+                '2xl': '1.2vw',
               }}
               mt="0.4vh"
               mb="1vh"
@@ -106,8 +106,12 @@ const TambahPIC: React.FC = () => {
               options={organisatorList}
               getOptionLabel={(option) => option.name}
               renderOption={(option) => (
-                <p style={{ fontSize: isLargerThan3000px ? "2rem" : "" }}>
-                  {option.name} ({option.nim})
+                <p style={{ fontSize: isLargerThan3000px ? '2rem' : '' }}>
+                  {option.name}
+                  {' '}
+                  (
+                  {option.nim}
+                  )
                 </p>
                 // <p style={isLargerThan3000px ? { fontSize: "2rem" } : ""}>
                 //   {option.name} ({option.nim})
@@ -117,8 +121,8 @@ const TambahPIC: React.FC = () => {
                 <TextField
                   {...params}
                   variant="outlined"
-                  {...register("akunOrganisator", {
-                    required: "Pilih Akun Organisator",
+                  {...register('akunOrganisator', {
+                    required: 'Pilih Akun Organisator',
                   })}
                 />
               )}
@@ -152,18 +156,21 @@ const TambahPIC: React.FC = () => {
                     style={
                       isLargerThan3000px
                         ? {
-                            fontSize: "2rem",
-                            fontFamily: "Poppins",
-                            marginLeft: "1em",
-                          }
+                          fontSize: '2rem',
+                          fontFamily: 'Poppins',
+                          marginLeft: '1em',
+                        }
                         : {
-                            fontSize: "0.8em",
-                            fontFamily: "Poppins",
-                            marginLeft: "1em",
-                          }
+                          fontSize: '0.8em',
+                          fontFamily: 'Poppins',
+                          marginLeft: '1em',
+                        }
                     }
                   >
-                    {option.name} Hari ke-{option.day}
+                    {option.name}
+                    {' '}
+                    Hari ke-
+                    {option.day}
                   </p>
                 </Flex>
               )}
@@ -171,7 +178,7 @@ const TambahPIC: React.FC = () => {
                 <TextField
                   {...params}
                   variant="outlined"
-                  {...register("kegiatanState", { required: "Pilih STATE" })}
+                  {...register('kegiatanState', { required: 'Pilih STATE' })}
                 />
               )}
             />
@@ -195,7 +202,7 @@ const TambahPIC: React.FC = () => {
               borderRadius="999px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
+              _hover={{ backgroundColor: '#2BAD96' }}
             >
               SUBMIT
             </Button>
@@ -210,16 +217,16 @@ const TambahPIC: React.FC = () => {
 export default TambahPIC;
 
 const stateList = [
-  { name: "Ultimagz", day: "1" },
-  { name: "Ultima Sonora", day: "2" },
-  { name: "Teater Katak", day: "3" },
-  { name: "UMN Radion", day: "4" },
+  { name: 'Ultimagz', day: '1' },
+  { name: 'Ultima Sonora', day: '2' },
+  { name: 'Teater Katak', day: '3' },
+  { name: 'UMN Radion', day: '4' },
 ];
 
 const organisatorList = [
-  { name: "Bonifasius Ariesto Adrian Finantyo", nim: "42580" },
-  { name: "Bapak Budi", nim: "32580" },
-  { name: "Ibu Budi", nim: "22580" },
-  { name: "Ini Budi", nim: "12580" },
-  { name: "Bukan Tiara Andini", nim: "52580" },
+  { name: 'Bonifasius Ariesto Adrian Finantyo', nim: '42580' },
+  { name: 'Bapak Budi', nim: '32580' },
+  { name: 'Ibu Budi', nim: '22580' },
+  { name: 'Ini Budi', nim: '12580' },
+  { name: 'Bukan Tiara Andini', nim: '52580' },
 ];

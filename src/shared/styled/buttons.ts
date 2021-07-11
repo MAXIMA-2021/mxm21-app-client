@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Palette } from "../../types/enums"
+import styled from 'styled-components';
+import { Palette } from '../../types/enums';
 
-export const MxmButton = styled("button")<{
+export const MxmButton = styled('button')<{
   variant: string;
   colorScheme: string;
 }>`
@@ -17,13 +17,12 @@ export const MxmButton = styled("button")<{
   padding: 0.8vh 1vw;
   margin: 1rem;
 
-  border-radius: ${(props) => (props.variant === "mobile" ? "10px" : "20px")};
+  border-radius: ${(props) => (props.variant === 'mobile' ? '10px' : '20px')};
 
   transform: translate(3px, -3px);
 
-  ${(props) =>
-    props.colorScheme === "cyan-navy"
-      ? `
+  ${(props) => (props.colorScheme === 'cyan-navy'
+    ? `
     background: ${Palette.Cyan};
     box-shadow: -3px 3px 0 0 ${Palette.Navy};
     color: white;
@@ -39,7 +38,7 @@ export const MxmButton = styled("button")<{
         transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "navy-cyan"
+    : props.colorScheme === 'navy-cyan'
       ? `
     background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 ${Palette.Cyan};
@@ -56,8 +55,8 @@ export const MxmButton = styled("button")<{
         transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "yellow-red"
-      ? ` 
+      : props.colorScheme === 'yellow-red'
+        ? ` 
       background: ${Palette.Yellow};
     box-shadow: -3px 3px 0 0 ${Palette.Red}B;
     color: ${Palette.Red}B;
@@ -73,8 +72,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "navy-cyan"
-      ? `
+        : props.colorScheme === 'navy-cyan'
+          ? `
     background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: #FFFFFF;
@@ -90,8 +89,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "navy-cyan-cyan"
-      ? `
+          : props.colorScheme === 'navy-cyan-cyan'
+            ? `
     background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: ${Palette.Cyan};
@@ -107,8 +106,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "navy-white"
-      ? `
+            : props.colorScheme === 'navy-white'
+              ? `
     background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 #FFFFFF;
     color: #ffffff;
@@ -124,8 +123,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "white-red"
-      ? `
+              : props.colorScheme === 'white-red'
+                ? `
     background: #FFFFFF;
     box-shadow: -3px 3px 0 0 ${Palette.Red}B;
     color: ${Palette.Red}B;
@@ -141,8 +140,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "white-navy"
-      ? `
+                : props.colorScheme === 'white-navy'
+                  ? `
     background: #FFFFFF;
     box-shadow: -3px 3px 0 0 ${Palette.Navy};
     color: ${Palette.Navy};
@@ -158,8 +157,8 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : props.colorScheme === "white-cyan"
-      ? `
+                  : props.colorScheme === 'white-cyan'
+                    ? `
     background: #FFFFFF;
     box-shadow: -3px 3px 0 0 ${Palette.Cyan};
     color: ${Palette.Cyan};
@@ -175,7 +174,7 @@ export const MxmButton = styled("button")<{
       transform: translate(0px, 0px);
     }
     `
-      : `
+                    : `
     
     background: ${Palette.Navy};
     box-shadow: -3px 3px 0 0 ${Palette.Cyan};
@@ -190,7 +189,7 @@ export const MxmButton = styled("button")<{
     &:active {
       box-shadow: 0 0 0 0 ${Palette.Cyan};
       transform: translate(0px, 0px);
-    }`}
+    }`)}
 
   font-family: Rubik, Arial,  sans-serif;
   font-size: 1rem;

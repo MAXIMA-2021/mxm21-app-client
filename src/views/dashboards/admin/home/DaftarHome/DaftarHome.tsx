@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -13,38 +13,38 @@ import {
   CloseButton,
   Text,
   Box,
-} from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons';
+import { motion, AnimatePresence } from 'framer-motion';
+import MUIDataTable from 'mui-datatables';
 import {
   MxmContainers,
   MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import { MxmLogo } from "../../../../../assets";
-import "./DaftarHome.scss";
-import MUIDataTable from "mui-datatables";
-import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import { MxmLogo } from '../../../../../assets';
+import './DaftarHome.scss';
+import { MxmDivider } from '../../../../../shared/styled/input';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const DaftarHome: React.FC = () => {
   const responsiveData = {
-    base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
-    "2xl": "1.2em",
+    base: '1em',
+    sm: '1em',
+    md: '1em',
+    lg: '1em',
+    '2xl': '1.2em',
   };
 
   const tableColumns = [
     {
-      name: "homeID",
-      label: "ID HoME",
+      name: 'homeID',
+      label: 'ID HoME',
       options: { display: false },
     },
     {
-      name: "name",
-      label: "Nama Organisator",
+      name: 'name',
+      label: 'Nama Organisator',
       options: {
         filter: true,
         sort: true,
@@ -59,7 +59,7 @@ const DaftarHome: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: '350px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -67,8 +67,8 @@ const DaftarHome: React.FC = () => {
       },
     },
     {
-      name: "kategori",
-      label: "Kategori",
+      name: 'kategori',
+      label: 'Kategori',
       options: {
         filter: true,
         sort: true,
@@ -83,7 +83,7 @@ const DaftarHome: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: '350px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -91,12 +91,12 @@ const DaftarHome: React.FC = () => {
       },
     },
     {
-      name: "Actions",
-      label: "Aksi",
+      name: 'Actions',
+      label: 'Aksi',
       options: {
         print: false,
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: '200px' },
         }),
         customHeadLabelRender: ({ index, ...column }) => (
           <Text
@@ -128,7 +128,7 @@ const DaftarHome: React.FC = () => {
             </Link> */}
             <Link
               to={`/admin/edit-home/${tableMeta.rowData[0]}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               <Button
                 fontSize={responsiveData}
@@ -154,21 +154,21 @@ const DaftarHome: React.FC = () => {
   ];
 
   const data = [
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
+    ['H0001', 'Ultimagz', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0002', 'J-Cafe Cosplay', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0002', 'J-Cafe Cosplay', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0003', 'Ultima Sonora', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0004', 'Teater Katak', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0005', 'Game Development Club', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0004', 'Teater Katak', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0003', 'Ultima Sonora', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0002', 'J-Cafe Cosplay', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0003', 'Ultima Sonora', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0004', 'Teater Katak', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0005', 'Game Development Club', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0004', 'Teater Katak', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0005', 'Game Development Club', 'UKM Coba-coba UMN', 'IF430'],
+    ['H0001', 'Ultimagz', 'UKM Coba-coba UMN', 'IF430'],
   ];
 
   return (
@@ -185,16 +185,16 @@ const DaftarHome: React.FC = () => {
           py="1.5rem"
           px="1.5rem"
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "4.5rem",
-            md: "5rem",
+            base: '4.5rem',
+            md: '5rem',
           }}
           mx={{
-            base: "0.2rem",
-            md: "2rem",
+            base: '0.2rem',
+            md: '2rem',
           }}
           rounded={20}
         >
@@ -204,12 +204,12 @@ const DaftarHome: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
-                  "2xl": "1.5em",
+                  base: '1.2em',
+                  sm: '1.2em',
+                  md: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
+                  '2xl': '1.5em',
                 }}
               >
                 Daftar Organisator HoME
@@ -220,12 +220,12 @@ const DaftarHome: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  sm: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  xl: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  sm: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  xl: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"

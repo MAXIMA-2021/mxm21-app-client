@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -9,10 +9,10 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
-} from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
-import "./EditHome.scss";
-import { MxmLogo } from "../../../../../assets";
+} from '@chakra-ui/react';
+import { Palette } from '../../../../../types/enums';
+import './EditHome.scss';
+import { MxmLogo } from '../../../../../assets';
 import {
   MxmInput,
   MxmFormLabel,
@@ -20,9 +20,9 @@ import {
   MxmFormErrorMessage,
   MxmTextarea,
   MxmDivider,
-} from "../../../../../shared/styled/input";
-import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/input';
+import UploadFiles from '../../../../../shared/component/ImageUpload/UploadFiles';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const EditHome: React.FC = () => {
   const {
@@ -34,8 +34,8 @@ const EditHome: React.FC = () => {
     window.confirm(JSON.stringify(data));
   };
   const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
+    if (event.target.value !== '') {
+      event.target.style.color = 'black';
     }
   };
 
@@ -43,8 +43,8 @@ const EditHome: React.FC = () => {
     <div className="content">
       <Flex
         width={{
-          base: "100vw",
-          md: "79vw",
+          base: '100vw',
+          md: '79vw',
         }}
         height="100%"
         alignItems="center"
@@ -52,16 +52,16 @@ const EditHome: React.FC = () => {
       >
         <Flex
           width={{
-            base: "100%",
-            md: "70%",
+            base: '100%',
+            md: '70%',
           }}
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "4.5rem",
-            md: "5rem",
+            base: '4.5rem',
+            md: '5rem',
           }}
           direction="column"
           backgroundColor="#FFFFFF"
@@ -75,9 +75,9 @@ const EditHome: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
+                  base: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
                 }}
               >
                 Edit HoME
@@ -88,10 +88,10 @@ const EditHome: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"
@@ -100,19 +100,19 @@ const EditHome: React.FC = () => {
             <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.name}>
                 <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
                 <MxmInput
                   value="Ultimagz"
-                  {...register("name", {
-                    required: "Isi Narasi Pendek",
+                  {...register('name', {
+                    required: 'Isi Narasi Pendek',
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -129,17 +129,17 @@ const EditHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
                 <MxmFormLabel color="black">Kategori</MxmFormLabel>
                 <MxmSelect
-                  {...register("Kategori", { required: "Pilih Kategori" })}
+                  {...register('Kategori', { required: 'Pilih Kategori' })}
                   // className="select"
                   // onChange={handleSelectChange}
                 >
@@ -178,7 +178,7 @@ const EditHome: React.FC = () => {
                 <MxmFormLabel color="black">Kata Kunci</MxmFormLabel>
                 <MxmInput
                   value="ultimagz"
-                  {...register("Name", { required: "Isi Nama Organisator" })}
+                  {...register('Name', { required: 'Isi Nama Organisator' })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
                   {errors.searchKey && (
@@ -194,19 +194,19 @@ const EditHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.shortDesc}>
                 <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                 <MxmInput
                   value="narasi pendek"
-                  {...register("ShortDesc", {
-                    required: "Isi Narasi Pendek",
+                  {...register('ShortDesc', {
+                    required: 'Isi Narasi Pendek',
                   })}
                 />
                 <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -223,19 +223,19 @@ const EditHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.longDesc}>
                 <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
                 <MxmTextarea
                   resize="vertical"
-                  {...register("LongDesc", {
-                    required: "Isi Narasi Panjang",
+                  {...register('LongDesc', {
+                    required: 'Isi Narasi Panjang',
                   })}
                   value="narasi panjang"
                 />
@@ -254,11 +254,11 @@ const EditHome: React.FC = () => {
 
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.logo}>
@@ -268,22 +268,22 @@ const EditHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} isInvalid={errors.linkYoutube}>
                 <MxmFormLabel color="black">Link Video Youtube</MxmFormLabel>
                 <MxmInput
-                  {...register("LinkYoutube", {
-                    required: "Isi Link Video",
+                  {...register('LinkYoutube', {
+                    required: 'Isi Link Video',
                     pattern: {
                       value:
                         /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/g,
-                      message: "Link Video Youtube tidak valid",
+                      message: 'Link Video Youtube tidak valid',
                     },
                   })}
                   value="https://www.youtube.com/watch?v=g6rQFP9zCAM&list=WL&index=91"
@@ -302,21 +302,21 @@ const EditHome: React.FC = () => {
             </Flex>
             <Flex
               direction={{
-                base: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
+                base: 'column',
+                sm: 'column',
+                md: 'row',
+                lg: 'row',
+                xl: 'row',
               }}
             >
               <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
                 <MxmFormLabel color="black">Media Sosial (LINE)</MxmFormLabel>
                 <MxmInput
-                  {...register("lineID", {
-                    required: "Isi Nama Organisator",
+                  {...register('lineID', {
+                    required: 'Isi Nama Organisator',
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.])+$/,
-                      message: "ID LINE tidak valid",
+                      message: 'ID LINE tidak valid',
                     },
                   })}
                   value="ultimagzLine"
@@ -337,11 +337,11 @@ const EditHome: React.FC = () => {
                   Media Sosial (Instagram)
                 </MxmFormLabel>
                 <MxmInput
-                  {...register("instagram", {
-                    required: "Isi Akun Instagram",
+                  {...register('instagram', {
+                    required: 'Isi Akun Instagram',
                     pattern: {
                       value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
-                      message: "Username Instagram tidak valid",
+                      message: 'Username Instagram tidak valid',
                     },
                   })}
                   placeholder="Tidak perlu menggunakan @"
@@ -368,7 +368,7 @@ const EditHome: React.FC = () => {
                 borderRadius="999px"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                 type="submit"
-                _hover={{ backgroundColor: "#2BAD96" }}
+                _hover={{ backgroundColor: '#2BAD96' }}
               >
                 SUBMIT
               </Button>

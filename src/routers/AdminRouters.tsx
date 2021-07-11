@@ -1,17 +1,18 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "../views/auth";
-import * as Dashboards from "../views/dashboards";
-import { Home } from "../views";
-import { DashboardNavigation } from "../shared/component/DashboardNavigation";
-import { DashboardFooter } from "../shared/component/DashboardFooter";
-import { AnimatePresence } from "framer-motion";
-import { Container } from "@chakra-ui/react";
-import { Flex, Spacer, Box } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/media-query";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import {
+  Container, Flex, Spacer, Box,
+} from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/media-query';
+import * as Auth from '../views/auth';
+import * as Dashboards from '../views/dashboards';
+import { Home } from '../views';
+import { DashboardNavigation } from '../shared/component/DashboardNavigation';
+import { DashboardFooter } from '../shared/component/DashboardFooter';
 
 export default function AdminRouters(show: boolean) {
-  const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
+  const [isSmallerThan450px] = useMediaQuery('(max-width: 28.125em)');
 
   return (
     <div>

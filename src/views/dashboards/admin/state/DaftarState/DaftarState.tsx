@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -13,38 +13,38 @@ import {
   CloseButton,
   Text,
   Box,
-} from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons';
+import { motion, AnimatePresence } from 'framer-motion';
+import MUIDataTable from 'mui-datatables';
 import {
   MxmContainers,
   MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import { MxmLogo } from "../../../../../assets";
-import "./DaftarState.scss";
-import MUIDataTable from "mui-datatables";
-import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import { MxmLogo } from '../../../../../assets';
+import './DaftarState.scss';
+import { MxmDivider } from '../../../../../shared/styled/input';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const DaftarState: React.FC = () => {
   const responsiveData = {
-    base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
-    "2xl": "1.2em",
+    base: '1em',
+    sm: '1em',
+    md: '1em',
+    lg: '1em',
+    '2xl': '1.2em',
   };
 
   const tableColumns = [
     {
-      name: "stateID",
-      label: "ID STATE",
+      name: 'stateID',
+      label: 'ID STATE',
       options: { display: false },
     },
     {
-      name: "namaState",
-      label: "Nama STATE",
+      name: 'namaState',
+      label: 'Nama STATE',
       options: {
         filter: true,
         sort: true,
@@ -59,7 +59,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "300px" },
+          style: { minWidth: '300px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -67,8 +67,8 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kuotaTerisi",
-      label: "Kuota Terisi",
+      name: 'kuotaTerisi',
+      label: 'Kuota Terisi',
       options: {
         filter: true,
         sort: true,
@@ -83,16 +83,19 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "195px" },
+          style: { minWidth: '195px' },
         }),
         customBodyRender: (value: any) => (
-          <Text fontSize={responsiveData}>{value}/100</Text>
+          <Text fontSize={responsiveData}>
+            {value}
+            /100
+          </Text>
         ),
       },
     },
     {
-      name: "kodePresensi",
-      label: "Kode Presensi",
+      name: 'kodePresensi',
+      label: 'Kode Presensi',
       options: {
         filter: true,
         sort: true,
@@ -107,7 +110,7 @@ const DaftarState: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "195px" },
+          style: { minWidth: '195px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -115,8 +118,8 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "Actions",
-      label: "Aksi",
+      name: 'Actions',
+      label: 'Aksi',
       options: {
         print: false,
         customHeadLabelRender: ({ index, ...column }) => (
@@ -134,7 +137,7 @@ const DaftarState: React.FC = () => {
             <Link
               to={`/admin/state-detail/${tableMeta.rowData[0]}`}
               style={{
-                textDecoration: "none",
+                textDecoration: 'none',
               }}
             >
               <Button
@@ -149,7 +152,7 @@ const DaftarState: React.FC = () => {
             </Link>
             <Link
               to={`/admin/edit-state/${tableMeta.rowData[0]}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               <Button
                 fontSize={responsiveData}
@@ -175,21 +178,21 @@ const DaftarState: React.FC = () => {
   ];
 
   const data = [
-    ["U0001", "Ultimagz", 100, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0001", "Ultimagz", 100, "IF430"],
+    ['U0001', 'Ultimagz', 100, 'IF430'],
+    ['U0002', 'J-Cafe Cosplay', 50, 'IF430'],
+    ['U0002', 'J-Cafe Cosplay', 50, 'IF430'],
+    ['U0003', 'Ultima Sonora', 90, 'IF430'],
+    ['U0004', 'Teater Katak', 60, 'IF430'],
+    ['U0005', 'Game Development Club', 70, 'IF430'],
+    ['U0004', 'Teater Katak', 60, 'IF430'],
+    ['U0003', 'Ultima Sonora', 90, 'IF430'],
+    ['U0002', 'J-Cafe Cosplay', 50, 'IF430'],
+    ['U0003', 'Ultima Sonora', 90, 'IF430'],
+    ['U0004', 'Teater Katak', 60, 'IF430'],
+    ['U0005', 'Game Development Club', 70, 'IF430'],
+    ['U0004', 'Teater Katak', 60, 'IF430'],
+    ['U0005', 'Game Development Club', 70, 'IF430'],
+    ['U0001', 'Ultimagz', 100, 'IF430'],
   ];
 
   return (
@@ -206,16 +209,16 @@ const DaftarState: React.FC = () => {
           py="1.5rem"
           px="1.5rem"
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "4.5rem",
-            md: "5rem",
+            base: '4.5rem',
+            md: '5rem',
           }}
           mx={{
-            base: "0.2rem",
-            md: "2rem",
+            base: '0.2rem',
+            md: '2rem',
           }}
           rounded={20}
         >
@@ -225,12 +228,12 @@ const DaftarState: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
-                  "2xl": "1.5em",
+                  base: '1.2em',
+                  sm: '1.2em',
+                  md: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
+                  '2xl': '1.5em',
                 }}
               >
                 Daftar State
@@ -241,12 +244,12 @@ const DaftarState: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  sm: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  xl: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  sm: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  xl: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"

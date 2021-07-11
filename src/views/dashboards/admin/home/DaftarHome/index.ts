@@ -1,1 +1,1 @@
-export { default as DaftarHome } from "./DaftarHome";
+export { default as DaftarHome } from './DaftarHome';

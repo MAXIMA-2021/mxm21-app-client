@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   Input,
   InputGroup,
@@ -9,17 +9,17 @@ import {
   NumberInputField,
   Divider,
   Textarea,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 export const MxmDivider = styled.div<{
   color: string;
   height: string;
   margin: string;
 }>`
-  margin: ${(props) => props.margin || "0"};
+  margin: ${(props) => props.margin || '0'};
   width: 100%;
-  background-color: ${(props) => props.color || "black"};
-  height: ${(props) => props.height || "4px"};
+  background-color: ${(props) => props.color || 'black'};
+  height: ${(props) => props.height || '4px'};
 `;
 
 export const MxmFormErrorMessage = styled(FormErrorMessage)`
@@ -36,7 +36,7 @@ export const MxmFormErrorMessage = styled(FormErrorMessage)`
 
 export const MxmSelect = styled(Select)`
   background-color: white !important;
-  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-radius: ${(props) => (props.border === 'rounded' ? '30px' : '4px')};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
@@ -45,7 +45,7 @@ export const MxmSelect = styled(Select)`
 `;
 
 export const MxmFormLabel = styled(FormLabel)<{ color: string }>`
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || 'white'};
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-size: 0.8em !important;
@@ -53,7 +53,7 @@ export const MxmFormLabel = styled(FormLabel)<{ color: string }>`
 
 export const MxmInput = styled(Input)<{ border: string }>`
   background-color: white !important;
-  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-radius: ${(props) => (props.border === 'rounded' ? '30px' : '4px')};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
@@ -66,7 +66,7 @@ export const MxmInput = styled(Input)<{ border: string }>`
 
 export const MxmNumberInputField = styled(NumberInputField)<{ border: string }>`
   background-color: white !important;
-  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-radius: ${(props) => (props.border === 'rounded' ? '30px' : '4px')};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
@@ -78,7 +78,7 @@ export const MxmNumberInputField = styled(NumberInputField)<{ border: string }>`
 `;
 
 export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
-  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-radius: ${(props) => (props.border === 'rounded' ? '30px' : '4px')};
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   & Input {
     /* height: 5vh !important; */
@@ -86,16 +86,15 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
     background-color: white;
     font-family: "Poppins", sans-serif;
     border-radius: ${(props) => {
-      let radius: string;
-      props.border === "rounded" ? (radius = "30px") : (radius = "4px");
-      if (props.addon === "left") {
-        return `0 ${radius} ${radius} 0`;
-      } else if (props.addon === "right") {
-        return `${radius} 0 0 ${radius}`;
-      } else {
-        return `${radius}`;
-      }
-    }};
+    let radius: string;
+    props.border === 'rounded' ? (radius = '30px') : (radius = '4px');
+    if (props.addon === 'left') {
+      return `0 ${radius} ${radius} 0`;
+    } if (props.addon === 'right') {
+      return `${radius} 0 0 ${radius}`;
+    }
+    return `${radius}`;
+  }};
     & ::placeholder {
       color: #cbd5e0;
     }
@@ -106,25 +105,23 @@ export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   & div {
     font-size: 0.9em !important;
     /* height: 5vh !important; */
-    background-color: ${(props) =>
-      props.addon === "icon" ? "transparant" : "#deefec"};
+    background-color: ${(props) => (props.addon === 'icon' ? 'transparant' : '#deefec')};
     border-radius: ${(props) => {
-      let radius: string;
-      props.border === "rounded" ? (radius = "30px") : (radius = "4px");
-      if (props.addon === "left") {
-        return `${radius} 0 0 ${radius}`;
-      } else if (props.addon === "right") {
-        return `0 ${radius} ${radius} 0`;
-      } else {
-        return `${radius}`;
-      }
-    }};
+    let radius: string;
+    props.border === 'rounded' ? (radius = '30px') : (radius = '4px');
+    if (props.addon === 'left') {
+      return `${radius} 0 0 ${radius}`;
+    } if (props.addon === 'right') {
+      return `0 ${radius} ${radius} 0`;
+    }
+    return `${radius}`;
+  }};
   }
 `;
 
 export const MxmTextarea = styled(Textarea)<{ border: string }>`
   background-color: white !important;
-  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-radius: ${(props) => (props.border === 'rounded' ? '30px' : '4px')};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;

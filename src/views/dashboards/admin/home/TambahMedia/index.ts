@@ -1,1 +1,1 @@
-export { default as TambahMedia } from "./TambahMedia";
+export { default as TambahMedia } from './TambahMedia';

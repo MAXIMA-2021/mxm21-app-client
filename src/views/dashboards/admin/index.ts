@@ -6,6 +6,8 @@ export {
   DaftarOrganisator,
   TambahPIC,
   DaftarPIC,
-} from "./state";
+} from './state';
 
-export { DaftarHome, EditHome, TambahHome, TambahMedia } from "./home";
+export {
+  DaftarHome, EditHome, TambahHome, TambahMedia,
+} from './home';

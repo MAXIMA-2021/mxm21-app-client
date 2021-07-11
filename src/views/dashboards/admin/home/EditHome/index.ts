@@ -1,1 +1,1 @@
-export { default as EditHome } from "./EditHome";
+export { default as EditHome } from './EditHome';

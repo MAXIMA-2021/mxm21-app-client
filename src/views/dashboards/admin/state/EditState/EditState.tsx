@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -14,15 +14,15 @@ import {
   NumberInputStepper,
   Button,
   Input,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   MxmContainers,
   MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import "./EditState.scss";
-import { MxmLogo } from "../../../../../assets";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import './EditState.scss';
+import { MxmLogo } from '../../../../../assets';
 import {
   MxmDivider,
   MxmFormErrorMessage,
@@ -30,8 +30,8 @@ import {
   MxmInput,
   MxmNumberInputField,
   MxmSelect,
-} from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/input';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const EditState: React.FC = () => {
   const {
@@ -42,7 +42,7 @@ const EditState: React.FC = () => {
   const onSubmit = (data: any) => {
     window.confirm(JSON.stringify(data));
   };
-  const [myUpload, setMyUpload] = useState("");
+  const [myUpload, setMyUpload] = useState('');
   const fileInput = useRef<HTMLInputElement>(null);
 
   return (
@@ -55,24 +55,24 @@ const EditState: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
-          md: "70%",
+          base: '100%',
+          md: '70%',
         }}
         direction="column"
         background="white"
         py="1.5rem"
         px="1.5rem"
         mt={{
-          base: "1rem",
-          md: "2.5rem",
+          base: '1rem',
+          md: '2.5rem',
         }}
         mb={{
-          base: "1rem",
-          md: "3rem",
+          base: '1rem',
+          md: '3rem',
         }}
         mx={{
-          base: "0.2rem",
-          md: "2rem",
+          base: '0.2rem',
+          md: '2rem',
         }}
         rounded={20}
       >
@@ -82,12 +82,12 @@ const EditState: React.FC = () => {
               mb={3}
               letterSpacing="0.05em"
               fontSize={{
-                base: "1.5em",
-                sm: "1.5em",
-                md: "1.5em",
-                lg: "1.5em",
-                xl: "1.7em",
-                "2xl": "1.7em",
+                base: '1.5em',
+                sm: '1.5em',
+                md: '1.5em',
+                lg: '1.5em',
+                xl: '1.7em',
+                '2xl': '1.7em',
               }}
             >
               Edit STATE
@@ -98,12 +98,12 @@ const EditState: React.FC = () => {
               alt="Logo MAXIMA 2021"
               h="100%"
               w={{
-                base: "4vw",
-                sm: "4vw",
-                md: "2.5vw",
-                lg: "2vw",
-                xl: "2vw",
-                "2xl": "1.2vw",
+                base: '4vw',
+                sm: '4vw',
+                md: '2.5vw',
+                lg: '2vw',
+                xl: '2vw',
+                '2xl': '1.2vw',
               }}
               mt={2}
             />
@@ -111,18 +111,18 @@ const EditState: React.FC = () => {
           <MxmDivider color="black" height="3px" margin="0 0 1.5em 0" />
           <Flex
             direction={{
-              base: "column",
-              sm: "column",
-              md: "row",
-              lg: "row",
-              xl: "row",
+              base: 'column',
+              sm: 'column',
+              md: 'row',
+              lg: 'row',
+              xl: 'row',
             }}
           >
             <FormControl mb={3} mr="5" isInvalid={errors.namaState}>
               <MxmFormLabel color="black">Nama State</MxmFormLabel>
               <MxmInput
                 value="Ultimagz"
-                {...register("namaState", { required: "Isi Nama STATE" })}
+                {...register('namaState', { required: 'Isi Nama STATE' })}
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.namaState && (
@@ -140,11 +140,11 @@ const EditState: React.FC = () => {
               <NumberInput allowMouseWheel defaultValue={100} min={0}>
                 <MxmNumberInputField
                   type="number"
-                  {...register("kuotaState", {
-                    required: "Isi Jumlah Kuota",
+                  {...register('kuotaState', {
+                    required: 'Isi Jumlah Kuota',
                     min: {
                       value: 1,
-                      message: "Jumlah Kuota Terlalu Sedikit",
+                      message: 'Jumlah Kuota Terlalu Sedikit',
                     },
                   })}
                 />
@@ -168,8 +168,8 @@ const EditState: React.FC = () => {
           <FormControl mb={3} isInvalid={errors.hariKegiatan}>
             <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
             <MxmSelect
-              {...register("hariKegiatan", {
-                required: "Pilih Hari Kegiatan STATE",
+              {...register('hariKegiatan', {
+                required: 'Pilih Hari Kegiatan STATE',
               })}
             >
               <option value="1">Hari-ke 1 (Rabu, 6 Agustus 2021)</option>
@@ -193,12 +193,12 @@ const EditState: React.FC = () => {
             <FormControl mb={3} isInvalid={errors.logo}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
               <input
-                {...register("logo", { required: "Pilih Logo STATE" })}
+                {...register('logo', { required: 'Pilih Logo STATE' })}
                 type="file"
                 name="image"
                 ref={fileInput}
                 onChange={(event) => setMyUpload(event.target.value)}
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
               />
               <Button
                 onClick={() => fileInput?.current?.click()}
@@ -206,15 +206,15 @@ const EditState: React.FC = () => {
                 color="white"
                 padding="1em"
                 boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                _hover={{ backgroundColor: "#2BAD96" }}
+                _hover={{ backgroundColor: '#2BAD96' }}
               >
                 Choose File Upload
               </Button>
               <span
                 style={{
-                  fontFamily: "Poppins",
-                  fontSize: "0.8em",
-                  marginLeft: "1em",
+                  fontFamily: 'Poppins',
+                  fontSize: '0.8em',
+                  marginLeft: '1em',
                 }}
               >
                 {myUpload}
@@ -235,7 +235,7 @@ const EditState: React.FC = () => {
             <MxmFormLabel color="black">Link Zoom</MxmFormLabel>
             <MxmInput
               value="https://mxm-one.zoom.us/j/4662717372?pwd=dTlPQSt1UHBHM1U3cDlYajZLTEJtdz09"
-              {...register("linkZoom", { required: "Isi Link ZOOM" })}
+              {...register('linkZoom', { required: 'Isi Link ZOOM' })}
             />
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.linkZoom && (
@@ -257,7 +257,7 @@ const EditState: React.FC = () => {
               borderRadius="30px"
               boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
               type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
+              _hover={{ backgroundColor: '#2BAD96' }}
             >
               SUBMIT
             </Button>

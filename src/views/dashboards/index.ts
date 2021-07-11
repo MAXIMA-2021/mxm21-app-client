@@ -10,4 +10,4 @@ export {
   EditHome,
   TambahHome,
   TambahMedia,
-} from "./admin";
+} from './admin';

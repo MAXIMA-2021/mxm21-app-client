@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Flex,
   Heading,
@@ -12,33 +12,33 @@ import {
   HStack,
   CloseButton,
   Text,
-} from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons';
+import { motion, AnimatePresence } from 'framer-motion';
+import MUIDataTable from 'mui-datatables';
 import {
   MxmContainers,
   MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
-import { MxmLogo } from "../../../../../assets";
-import "./DaftarPIC.scss";
-import MUIDataTable from "mui-datatables";
-import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+} from '../../../../../shared/styled/containers';
+import { Palette } from '../../../../../types/enums';
+import { MxmLogo } from '../../../../../assets';
+import './DaftarPIC.scss';
+import { MxmDivider } from '../../../../../shared/styled/input';
+import { DashboardFooter } from '../../../../../shared/component/DashboardFooter';
 
 const DaftarPIC: React.FC = () => {
   const responsiveData = {
-    base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
-    "2xl": "1.2em",
+    base: '1em',
+    sm: '1em',
+    md: '1em',
+    lg: '1em',
+    '2xl': '1.2em',
   };
 
   const tableColumns = [
     {
-      name: "namaPic",
-      label: "Nama PIC",
+      name: 'namaPic',
+      label: 'Nama PIC',
       options: {
         filter: true,
         sort: true,
@@ -53,7 +53,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: '350px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -61,8 +61,8 @@ const DaftarPIC: React.FC = () => {
       },
     },
     {
-      name: "nim",
-      label: "NIM",
+      name: 'nim',
+      label: 'NIM',
       options: {
         filter: true,
         sort: true,
@@ -77,7 +77,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: '200px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -86,8 +86,8 @@ const DaftarPIC: React.FC = () => {
     },
 
     {
-      name: "namaState",
-      label: "Nama STATE",
+      name: 'namaState',
+      label: 'Nama STATE',
       options: {
         filter: true,
         sort: true,
@@ -102,7 +102,7 @@ const DaftarPIC: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: '350px' },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -112,43 +112,43 @@ const DaftarPIC: React.FC = () => {
   ];
 
   const data = [
-    ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
+    ['Jane Cooper Krisna Cahyadi', '34242', 'jane.cooper@student.umn.ac.id'],
     [
-      "Maximilliano Adrian Stefan Gabrielsar",
-      "23231",
-      "jane.cooper@student.umn.ac.id",
+      'Maximilliano Adrian Stefan Gabrielsar',
+      '23231',
+      'jane.cooper@student.umn.ac.id',
     ],
-    ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    ['Carlos Cooper', '12121', 'jane.cooper@student.umn.ac.id'],
+    ['Jane Dharmawan Cooper', '56565', 'jane.cooper@student.umn.ac.id'],
+    ['Jane Cooper June Caaper', '35353', 'jane.cooper@student.umn.ac.id'],
     [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
+      'Jane Cooper Krisna Finantyo Chandra',
+      '35353',
+      'jane.cooper@student.umn.ac.id',
     ],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    ['Jane Dharmawan Cooper', '56565', 'jane.cooper@student.umn.ac.id'],
+    ['Jane Cooper June Caaper', '35353', 'jane.cooper@student.umn.ac.id'],
     [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
+      'Jane Cooper Krisna Finantyo Chandra',
+      '35353',
+      'jane.cooper@student.umn.ac.id',
     ],
-    ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
+    ['William Cooper', '34242', 'jane.cooper@student.umn.ac.id'],
     [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
+      'Jane Cooper Krisna Finantyo Chandra',
+      '35353',
+      'jane.cooper@student.umn.ac.id',
     ],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+    ['Jane Dharmawan Cooper', '56565', 'jane.cooper@student.umn.ac.id'],
+    ['Jane Cooper June Caaper', '35353', 'jane.cooper@student.umn.ac.id'],
     [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
+      'Jane Cooper Krisna Finantyo Chandra',
+      '35353',
+      'jane.cooper@student.umn.ac.id',
     ],
-    ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+    ['Jane Bonifasius', '23231', 'jane.cooper@student.umn.ac.id'],
+    ['Jane Cooper', '12121', 'jane.cooper@student.umn.ac.id'],
+    ['Gabrielsar Cooper', '56565', 'jane.cooper@student.umn.ac.id'],
   ];
 
   return (
@@ -165,16 +165,16 @@ const DaftarPIC: React.FC = () => {
           py="1.5rem"
           px="1.5rem"
           mt={{
-            base: "1rem",
-            md: "1rem",
+            base: '1rem',
+            md: '1rem',
           }}
           mb={{
-            base: "4.5rem",
-            md: "5rem",
+            base: '4.5rem',
+            md: '5rem',
           }}
           mx={{
-            base: "0.2rem",
-            md: "2rem",
+            base: '0.2rem',
+            md: '2rem',
           }}
           rounded={20}
         >
@@ -184,12 +184,12 @@ const DaftarPIC: React.FC = () => {
                 mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
-                  base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
-                  lg: "1.3em",
-                  xl: "1.5em",
-                  "2xl": "1.5em",
+                  base: '1.2em',
+                  sm: '1.2em',
+                  md: '1.2em',
+                  lg: '1.3em',
+                  xl: '1.5em',
+                  '2xl': '1.5em',
                 }}
               >
                 Daftar PIC Organisator
@@ -200,12 +200,12 @@ const DaftarPIC: React.FC = () => {
                 alt="Logo MAXIMA 2021"
                 h="100%"
                 w={{
-                  base: "4vw",
-                  sm: "4vw",
-                  md: "2.5vw",
-                  lg: "2vw",
-                  xl: "2vw",
-                  "2xl": "1.2vw",
+                  base: '4vw',
+                  sm: '4vw',
+                  md: '2.5vw',
+                  lg: '2vw',
+                  xl: '2vw',
+                  '2xl': '1.2vw',
                 }}
                 mt="0.4vh"
                 mb="1vh"

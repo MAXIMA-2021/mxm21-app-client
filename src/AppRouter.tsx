@@ -1,11 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "./views/auth";
-import * as Dashboards from "./views/dashboards";
-import { Home } from "./views";
-import { AdminRouters } from "./routers";
-import { AnimatePresence } from "framer-motion";
-import { DashboardNavigation } from "./shared/component/DashboardNavigation";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import * as Auth from './views/auth';
+import * as Dashboards from './views/dashboards';
+import { Home } from './views';
+import { AdminRouters } from './routers';
+import { DashboardNavigation } from './shared/component/DashboardNavigation';
 
 export default function AppRouter() {
   return (

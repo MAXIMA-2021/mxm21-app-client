@@ -1,30 +1,34 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import "./DashboardNavigation.scss";
-import { Flex, Spacer, Heading, Text, Box } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/media-query";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { AdminRouters } from "../../../routers";
+import React, { useState } from 'react';
+import {
+  Link, NavLink, BrowserRouter as Router, Route, Switch,
+} from 'react-router-dom';
+import './DashboardNavigation.scss';
+import {
+  Flex, Spacer, Heading, Text, Box,
+} from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/media-query';
 
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import AssessmentIcon from "@material-ui/icons/Assessment";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import FlightIcon from "@material-ui/icons/Flight";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import LinkIcon from "@material-ui/icons/Link";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
-import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
-import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
-import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
+import { AnimatePresence } from 'framer-motion';
+
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import FlightIcon from '@material-ui/icons/Flight';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import LinkIcon from '@material-ui/icons/Link';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import RadioButtonUncheckedOutlinedIcon from '@material-ui/icons/RadioButtonUncheckedOutlined';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import { AdminRouters } from '../../../routers';
 
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
-  const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
-  const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+  const [isSmallerThan450px] = useMediaQuery('(max-width: 28.125em)');
+  const [isLargerThan3000px] = useMediaQuery('(min-width: 3000px)');
 
   const sidebarShown = () => {
     setSidebarShow(false);
@@ -41,92 +45,92 @@ const DashboardNavigation: React.FC = () => {
     try {
       if (
         event.target.parentNode
-          .querySelector(".dropdown-items")
-          .classList.contains("dropdown-items_open")
+          .querySelector('.dropdown-items')
+          .classList.contains('dropdown-items_open')
       ) {
         event.target.parentNode
-          .querySelector(".dropdown-items")
-          .classList.remove("dropdown-items_open");
+          .querySelector('.dropdown-items')
+          .classList.remove('dropdown-items_open');
 
         event.target.parentNode
-          .querySelector(".dropdown-header")
-          .classList.remove("sidebar-nav_active");
+          .querySelector('.dropdown-header')
+          .classList.remove('sidebar-nav_active');
       } else {
         event.target.parentNode
-          .querySelector(".dropdown-items")
-          .classList.add("dropdown-items_open");
+          .querySelector('.dropdown-items')
+          .classList.add('dropdown-items_open');
 
         event.target.parentNode
-          .querySelector(".dropdown-header")
-          .classList.add("sidebar-nav_active");
+          .querySelector('.dropdown-header')
+          .classList.add('sidebar-nav_active');
         // console.log(event.target);
       }
     } catch {
       // DELETE THIS
-      console.log(`target null`);
+      console.log('target null');
     }
   };
 
   const sidebarDropdownActiveSvg = (event: any) => {
     try {
-      if (event.target.localName === "svg") {
+      if (event.target.localName === 'svg') {
         if (
           event.target.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.contains("dropdown-items_open")
+            .querySelector('.dropdown-items')
+            .classList.contains('dropdown-items_open')
         ) {
           event.target.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.remove("dropdown-items_open");
+            .querySelector('.dropdown-items')
+            .classList.remove('dropdown-items_open');
 
           event.target.parentNode.parentNode
-            .querySelector(".dropdown-header")
-            .classList.remove("sidebar-nav_active");
+            .querySelector('.dropdown-header')
+            .classList.remove('sidebar-nav_active');
         } else {
           event.target.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.add("dropdown-items_open");
+            .querySelector('.dropdown-items')
+            .classList.add('dropdown-items_open');
 
           event.target.parentNode.parentNode
-            .querySelector(".dropdown-header")
-            .classList.add("sidebar-nav_active");
+            .querySelector('.dropdown-header')
+            .classList.add('sidebar-nav_active');
           // console.log(event.target);
         }
-      } else if (event.target.localName === "path") {
+      } else if (event.target.localName === 'path') {
         if (
           event.target.parentNode.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.contains("dropdown-items_open")
+            .querySelector('.dropdown-items')
+            .classList.contains('dropdown-items_open')
         ) {
           event.target.parentNode.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.remove("dropdown-items_open");
+            .querySelector('.dropdown-items')
+            .classList.remove('dropdown-items_open');
 
           event.target.parentNode.parentNode.parentNode
-            .querySelector(".dropdown-header")
-            .classList.remove("sidebar-nav_active");
+            .querySelector('.dropdown-header')
+            .classList.remove('sidebar-nav_active');
         } else {
           event.target.parentNode.parentNode.parentNode
-            .querySelector(".dropdown-items")
-            .classList.add("dropdown-items_open");
+            .querySelector('.dropdown-items')
+            .classList.add('dropdown-items_open');
 
           event.target.parentNode.parentNode.parentNode
-            .querySelector(".dropdown-header")
-            .classList.add("sidebar-nav_active");
+            .querySelector('.dropdown-header')
+            .classList.add('sidebar-nav_active');
           // console.log(event.target);
         }
       }
     } catch {
       // DELETE THIS
-      console.log(`target null`);
+      console.log('target null');
     }
   };
 
   return (
-    <div style={{ backgroundColor: "#f4f4f4" }}>
+    <div style={{ backgroundColor: '#f4f4f4' }}>
       <header
         className={`navbar ${
-          isSmallerThan450px ? "close" : sidebarShow ? "open" : "close"
+          isSmallerThan450px ? 'close' : sidebarShow ? 'open' : 'close'
         }`}
       >
         <Flex align="center" className="navbar-flex-container">
@@ -153,16 +157,16 @@ const DashboardNavigation: React.FC = () => {
         className={`sidebar-container ${
           isSmallerThan450px
             ? sidebarShow
-              ? "open"
-              : "close"
+              ? 'open'
+              : 'close'
             : sidebarShow
-            ? "open"
-            : "close"
+              ? 'open'
+              : 'close'
         }`}
       >
         <Flex className="sidebar-header" align="center" justify="center">
           <h2>Dashboard Maxima 2021</h2>
-          {isSmallerThan450px ? <Spacer /> : ""}
+          {isSmallerThan450px ? <Spacer /> : ''}
           <CloseRoundedIcon onClick={closeSidebar} />
         </Flex>
         <Flex className="sidebar-menu" direction="column">
@@ -190,7 +194,7 @@ const DashboardNavigation: React.FC = () => {
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
               </NavLink>
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+              <li onClick={sidebarDropdownActive} className="dropdown">
                 <Flex className="dropdown-header">
                   <FlightIcon onClick={sidebarDropdownActiveSvg} />
                   STATE
@@ -245,7 +249,7 @@ const DashboardNavigation: React.FC = () => {
                 </ul>
               </li>
 
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+              <li onClick={sidebarDropdownActive} className="dropdown">
                 <Flex className="dropdown-header">
                   <HomeRoundedIcon onClick={sidebarDropdownActiveSvg} />
                   HoME
@@ -315,15 +319,15 @@ const DashboardNavigation: React.FC = () => {
         paddingLeft={
           isLargerThan3000px
             ? sidebarShow
-              ? "40rem"
-              : "0px"
+              ? '40rem'
+              : '0px'
             : isSmallerThan450px
-            ? sidebarShow
-              ? "0px"
-              : "0px"
-            : sidebarShow
-            ? "18rem"
-            : "0px"
+              ? sidebarShow
+                ? '0px'
+                : '0px'
+              : sidebarShow
+                ? '18rem'
+                : '0px'
         }
       >
         <AdminRouters show={sidebarShow} />

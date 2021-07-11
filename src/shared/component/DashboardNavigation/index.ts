@@ -1,1 +1,1 @@
-export { default as DashboardNavigation } from "./DashboardNavigation";
+export { default as DashboardNavigation } from './DashboardNavigation';

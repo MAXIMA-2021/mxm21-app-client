@@ -1,1 +1,1 @@
-export { default as DashboardFooter } from "./DashboardFooter";
+export { default as DashboardFooter } from './DashboardFooter';
