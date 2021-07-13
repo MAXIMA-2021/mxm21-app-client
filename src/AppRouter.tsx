@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as Auth from "./views/auth";
 import * as Dashboards from "./views/dashboards";
+import * as Beranda from "./views/beranda";
 import { Home } from "./views";
 import { AdminRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
@@ -21,7 +22,7 @@ export default function AppRouter() {
                   <DashboardNavigation />
                 </Switch>
               </Route>
-              <Route path="/" component={Home} />
+              <Route path="/" component={Beranda.Beranda} />
             </Switch>
           </AnimatePresence>
         )}

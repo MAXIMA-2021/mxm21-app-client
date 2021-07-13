@@ -7,9 +7,14 @@ import {
   MxmWhiteLogoText,
 } from "../../../assets";
 import "./Beranda.scss";
+import { HomeNavbar } from "../../../shared/component/HomeNavbar";
 
 const Beranda = () => {
-  return <div></div>;
+  return (
+    <>
+      <HomeNavbar />
+    </>
+  );
 };
 
 export default Beranda;

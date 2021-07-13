@@ -11,7 +11,6 @@
 .navbar {
   position: sticky;
   top: 0px;
-  // width: calc(100vw - var(--sidebar-width));
   height: var(--navbar-height);
   background: var(--Mxm-cyan);
   z-index: 999;
@@ -399,7 +398,7 @@
 @media screen and (max-width: 28.125em) {
   //450px
   .sidebar-header {
-    padding: 0 5vw; //change
+    padding: 0 5vw;
 
     & svg {
       display: block;
@@ -415,7 +414,7 @@
     overflow-y: scroll;
 
     & .sidebar-avatar {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
 
     &.close {
@@ -424,27 +423,27 @@
   }
 
   .sidebar-menu .sidebar-nav_header {
-    padding: 1.5vh 6vw; //change
+    padding: 1.5vh 6vw;
   }
 
   .sidebar-menu .main-navigation {
     & a {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
   }
 
   .sidebar-menu .dropdown {
     & .dropdown-header {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
 
     & .dropdown-items {
       & a {
-        padding: 1.4vh 6vw; //change
+        padding: 1.4vh 6vw;
         width: 100vw;
 
         & svg {
-          margin-right: 6vw; //change
+          margin-right: 6vw;
         }
       }
     }
