@@ -1,0 +1,76 @@
+:root {
+  --content-color: #d4e2ff;
+  --text-size: 1rem;
+}
+
+.footer-container {
+  font-family: "Poppins";
+  background-image: url(footer.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  width: 100vw;
+  color: var(--content-color);
+  padding: 8rem 2rem 2rem 2rem;
+}
+
+.copyright-footer {
+  font-size: var(--text-size);
+  font-weight: 500;
+  text-align: center;
+}
+
+.nav-footer {
+  text-decoration: none;
+  color: var(--content-color);
+  font-weight: 300;
+  position: relative;
+  text-align: center;
+  font-size: var(--text-size);
+}
+.nav-footer::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  border-bottom: 1px solid var(--content-color);
+  transition: 0.2s;
+}
+.nav-footer:hover::after {
+  width: 100%;
+}
+
+.icon {
+  transition: all 0.5s;
+}
+
+.line:hover {
+  color: #00b900;
+  transform: translate(0px, -5px);
+}
+
+.instagram:hover {
+  color: #cc2899;
+  transform: translate(0px, -5px);
+}
+
+.tiktok:hover {
+  color: white;
+  transform: translate(0px, -5px);
+}
+
+@media screen and (max-width: 405px) {
+  :root {
+    --text-size: 0.8rem;
+  }
+  .footer-container {
+    padding: 6rem 1rem 2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  :root {
+    --text-size: 0.799rem;
+  }
+}

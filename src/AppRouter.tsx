@@ -7,6 +7,7 @@ import { Home } from "./views";
 import { AdminRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";
+import { HomeFooter } from "./shared/component/HomeFooter";
 
 export default function AppRouter() {
   return (
@@ -17,6 +18,7 @@ export default function AppRouter() {
             <Switch location={location} key={location.pathname}>
               <Route path="/masuk" exact component={Auth.Login} />
               <Route path="/daftar" exact component={Auth.RegisterMaba} />
+              <Route path="/footer" exact component={HomeFooter} />
               <Route path="/admin/:path1?/:path2?/:path3?" exact>
                 <Switch>
                   <DashboardNavigation />
