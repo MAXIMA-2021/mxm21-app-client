@@ -1,0 +1,13 @@
+.Tilt-inner {
+  transform: translateZ(100px);
+  font-size: 100px;
+}
+
+.Tilt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  box-shadow: 0 20px 27px rgba(0, 0, 0, 0.05);
+  transform-style: preserve-3d;
+}

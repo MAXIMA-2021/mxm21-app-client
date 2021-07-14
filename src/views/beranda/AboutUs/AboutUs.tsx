@@ -6,11 +6,16 @@ import {
   MxmWhiteLogo,
   MxmWhiteLogoText,
 } from "../../../assets";
+import { Heading, Center } from "@chakra-ui/react";
 
 import "./AboutUs.scss";
 
 const AboutUs = () => {
-  return <div></div>;
+  return (
+    <Center>
+      <Heading>About Us</Heading>
+    </Center>
+  );
 };
 
 export default AboutUs;

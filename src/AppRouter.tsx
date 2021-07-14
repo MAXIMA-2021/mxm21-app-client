@@ -7,6 +7,7 @@ import { Home } from "./views";
 import { AdminRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";
+import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
 
 export default function AppRouter() {
@@ -24,7 +25,15 @@ export default function AppRouter() {
                   <DashboardNavigation />
                 </Switch>
               </Route>
-              <Route path="/" component={Beranda.Beranda} />
+              <Route>
+                <HomeNavbar />
+                <Switch>
+                  <Route path="/about-us" exact component={Beranda.AboutUs} />
+                  <Route path="/faq" exact component={Beranda.FAQ} />
+                  <Route path="/" component={Beranda.Beranda} />
+                </Switch>
+                <HomeFooter />
+              </Route>
             </Switch>
           </AnimatePresence>
         )}
