@@ -26,7 +26,7 @@ import Tilt from "react-tilt";
 
 const Beranda = () => {
   return (
-    <Center>
+    <Center style={{ minHeight: "100vh", position: "relative" }}>
       <SimpleGrid columns={2} spacing={10}>
         <Center>
           <Container>
