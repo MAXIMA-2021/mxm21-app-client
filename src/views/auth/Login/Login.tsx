@@ -30,11 +30,14 @@ import {
   MxmContainers,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
+import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import "./Login.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
+import authService from "../../../services/auth";
+import Swal from "sweetalert2";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -68,41 +71,44 @@ const buttonVariants = {
 };
 
 const Login: React.FC = () => {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
-  };
-
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   useEffect(() => {
-    document.title = "Halaman Masuk - MAXIMA 2021";
+    document.title = "Masuk - MAXIMA 2021";
   }, []);
 
-  const location = useLocation();
-  const [loading, setLoading] = useState(false);
-  // const onSubmit = async (data:any) => {
-  //   setLoading(true)
-  //   reset()
-  //   try {
-  //     const returnedData = await authService.login(data);
-  //     window.sessionStorage.setItem(
-  //       'token',
-  //       returnedData.accessToken,
-  //     );
-  //     window.sessionStorage.setItem('name', returnedData.name);
-  //     const decoded = jwtDecode(returnedData.accessToken);
-  //   } catch (error) {
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    reset();
+    try {
+      const returnedData = await authService.login(data);
+      window.sessionStorage.setItem("token", returnedData.accessToken);
+      window.sessionStorage.setItem("name", returnedData.name);
+      // const decoded = jwtDecode(returnedData.accessToken);
+      window.location = "/";
+      alert("berhasil login");
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
 
-  //   }
-  // }
+  // const onSubmit = (data: any) => {
+  //   window.confirm(JSON.stringify(data));
+  // };
 
   return (
     <MxmContainers>
