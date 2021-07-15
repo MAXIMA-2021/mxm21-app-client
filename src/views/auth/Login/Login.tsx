@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -17,8 +17,9 @@ import {
   Spacer,
   Divider,
   Text,
+  Alert,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -70,17 +71,38 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data: any) => {
     window.confirm(JSON.stringify(data));
   };
-  const [show, setShow] = React.useState(false);
+
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   useEffect(() => {
-    document.title = "Masuk - MAXIMA 2020";
+    document.title = "Halaman Masuk - MAXIMA 2021";
   }, []);
+
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+  // const onSubmit = async (data:any) => {
+  //   setLoading(true)
+  //   reset()
+  //   try {
+  //     const returnedData = await authService.login(data);
+  //     window.sessionStorage.setItem(
+  //       'token',
+  //       returnedData.accessToken,
+  //     );
+  //     window.sessionStorage.setItem('name', returnedData.name);
+  //     const decoded = jwtDecode(returnedData.accessToken);
+  //   } catch (error) {
+
+  //   }
+  // }
 
   return (
     <MxmContainers>
@@ -187,7 +209,12 @@ const Login: React.FC = () => {
                     my={6}
                   />
                 </Center>
-                <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
+                {location.data && (
+                  <Alert status={location.data.status} mb={3}>
+                    {location.data.message}
+                  </Alert>
+                )}
+                <FormControl isInvalid={errors.nim} mb={3}>
                   <MxmInputGroup addon="left">
                     <InputLeftAddon
                       size="base"
@@ -197,7 +224,7 @@ const Login: React.FC = () => {
                     <Input
                       type="number"
                       placeholder="5 angka terakhir NIM"
-                      {...register("nimMahasiswa", {
+                      {...register("nim", {
                         required: "Isi NIM kamu",
                         minLength: {
                           value: 5,
@@ -211,10 +238,10 @@ const Login: React.FC = () => {
                     />
                   </MxmInputGroup>
                   <MxmFormErrorMessage>
-                    {errors.nimMahasiswa && (
+                    {errors.nim && (
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.nimMahasiswa.message}
+                        {errors.nim.message}
                       </p>
                     )}
                   </MxmFormErrorMessage>
