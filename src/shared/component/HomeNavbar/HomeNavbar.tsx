@@ -75,13 +75,13 @@ const HomeNavbar = () => {
               </li>
               <li className="btn-main-nav-auth-container">
                 <NavLink
-                  to="/daftar"
+                  to="/auth/daftar"
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                 >
                   Daftar
                 </NavLink>
                 <NavLink
-                  to="/masuk"
+                  to="/auth/masuk"
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk

@@ -5,8 +5,8 @@ import * as Auth from ".././views/auth";
 export default function AuthRouters() {
   return (
     <>
-      <Route path="/masuk" exact component={Auth.Login} />
-      <Route path="/daftar" exact component={Auth.RegisterMaba} />
+      <Route path="/auth/masuk" exact component={Auth.Login} />
+      <Route path="/auth/daftar" exact component={Auth.RegisterMaba} />
     </>
   );
 }

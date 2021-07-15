@@ -18,25 +18,29 @@ export default function AppRouter() {
           render={({ location }) => (
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
-                <AuthRouters />
+                <Route path="/auth/:path1?">
+                  <Switch>
+                    <AuthRouters />
+                  </Switch>
+                </Route>
+                <Route path="/admin/:path1?/:path2?/:path3?" exact>
+                  <Switch>
+                    <DashboardNavigation />
+                  </Switch>
+                </Route>
+                <Route>
+                  <HomeNavbar />
+                  <Switch>
+                    <Route path="/about-us" exact component={Beranda.AboutUs} />
+                    <Route path="/faq" exact component={Beranda.FAQ} />
+                    <Route path="/" component={Beranda.Beranda} />
+                  </Switch>
+                  <HomeFooter />
+                </Route>
               </Switch>
             </AnimatePresence>
           )}
         />
-        <Route path="/admin/:path1?/:path2?/:path3?" exact>
-          <Switch>
-            <DashboardNavigation />
-          </Switch>
-        </Route>
-        <Route>
-          <HomeNavbar />
-          <Switch>
-            <Route path="/about-us" exact component={Beranda.AboutUs} />
-            <Route path="/faq" exact component={Beranda.FAQ} />
-            <Route path="/" component={Beranda.Beranda} />
-          </Switch>
-          <HomeFooter />
-        </Route>
       </Router>
     </Switch>
   );
