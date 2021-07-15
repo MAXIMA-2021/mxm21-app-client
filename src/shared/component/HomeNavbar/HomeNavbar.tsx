@@ -51,10 +51,7 @@ const HomeNavbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/home"
-                  className="btn-main-nav btn-styling-main-nav"
-                >
+                <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
                   HoME
                 </NavLink>
                 <NavLink

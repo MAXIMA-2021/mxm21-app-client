@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -77,6 +77,10 @@ const Login: React.FC = () => {
   };
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    document.title = "Masuk - MAXIMA 2020";
+  }, []);
 
   return (
     <MxmContainers>
