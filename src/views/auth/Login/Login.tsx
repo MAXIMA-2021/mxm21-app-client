@@ -18,6 +18,7 @@ import {
   Divider,
   Text,
   Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
@@ -35,7 +36,7 @@ import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import "./Login.scss";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { DataLogin, Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 
@@ -86,7 +87,7 @@ const Login: React.FC = () => {
     document.title = "Masuk - MAXIMA 2021";
   }, []);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: DataLogin) => {
     setLoading(true);
     reset();
     try {
@@ -115,6 +116,7 @@ const Login: React.FC = () => {
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
+            flexDir="column"
             height={{
               base: "100vh",
               sm: "100vh",
@@ -125,37 +127,37 @@ const Login: React.FC = () => {
             alignItems="center"
             justifyContent="center"
           >
+            {location.state && (
+              <Alert
+                fontFamily="Rubik"
+                fontSize="0.9rem"
+                status={location.state.status}
+                width={{ base: "20rem", lg: "max-content" }}
+              >
+                <AlertIcon />
+                {location.state.message}
+              </Alert>
+            )}
             <Flex
               direction="column"
               background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
               className="filter"
-              py={{
-                base: "3vh",
-                sm: "3vh",
-                md: "3vh",
-                lg: "3vh",
-                xl: "3vh",
-              }}
+              py="3vh"
               px={{
                 base: "5vw",
-                sm: "5vw",
                 md: "2vw",
-                lg: "2vw",
-                xl: "2vw",
               }}
-              my={{
+              mb={{
                 base: "1vh",
-                sm: "1vh",
                 md: "10vh",
-                lg: "10vh",
-                xl: "10vh",
+              }}
+              mt={{
+                base: "2rem",
+                md: "1rem",
               }}
               mx={{
                 base: "1vw",
-                sm: "1vw",
                 md: "10vw",
-                lg: "10vw",
-                xl: "10vw",
               }}
               rounded={25}
               style={{
@@ -215,11 +217,6 @@ const Login: React.FC = () => {
                     my={6}
                   />
                 </Center>
-                {location.data && (
-                  <Alert status={location.data.status} mb={3}>
-                    {location.data.message}
-                  </Alert>
-                )}
                 <FormControl isInvalid={errors.nim} mb={3}>
                   <MxmInputGroup addon="left">
                     <InputLeftAddon
@@ -281,14 +278,20 @@ const Login: React.FC = () => {
                   <MxmVerticalAlign variant="">
                     <Text color="white">
                       Belum punya akun?{" "}
-                      <Link to="/daftar" style={{ color: `${Palette.Cyan}` }}>
+                      <Link
+                        to="/auth/daftar"
+                        style={{ color: `${Palette.Cyan}` }}
+                      >
                         Daftar
                       </Link>
                     </Text>
                     {/* <Spacer /> */}
                     <Text color="white">
                       Lupa kata sandimu?{" "}
-                      <Link to="/reset" style={{ color: `${Palette.Cyan}` }}>
+                      <Link
+                        to="/auth/reset"
+                        style={{ color: `${Palette.Cyan}` }}
+                      >
                         Klik di sini
                       </Link>
                     </Text>

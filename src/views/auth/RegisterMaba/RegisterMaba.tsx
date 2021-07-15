@@ -29,9 +29,10 @@ import {
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo } from "../../../assets";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { DataRegisterMaba, Palette } from "../../../types/enums";
 import "./RegisterMaba.scss";
 import Swal from "sweetalert2";
+import authService from "../../../services/auth";
 
 // const IconShowPassword = createIcon({
 //   displayName: "ShowPassword",
@@ -95,23 +96,51 @@ const RegisterMaba: React.FC = () => {
 
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const onSubmit = async (data: any) => {
+
+  interface historyData {
+    status: string;
+    message: string;
+  }
+
+  const onSubmit = async (data: DataRegisterMaba) => {
     setLoading(true);
     reset();
-    const dataMaba = {
-      ...data,
+
+    const dataMaba: DataRegisterMaba = {
+      nim: data.nim.toString(),
+      name: data.name,
       email: `${data.email}@student.umn.ac.id`,
+      tempatLahir: data.tempatLahir,
+      tanggalLahir: data.tanggalLahir
+        .toString()
+        .replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2"),
+      jenisKelamin: data.jenisKelamin,
+      prodi: data.prodi,
+      whatsapp: data.whatsapp,
+      idLine: data.idLine,
+      idInstagram: data.idInstagram,
     };
+
+    // const dataMaba: DataRegisterMaba = {
+    //   nim: "42580",
+    //   name: "Adrian Finantyo",
+    //   email: "bonifasius.finantyo@student.umn.ac.id",
+    //   tempatLahir: "Tangerang",
+    //   tanggalLahir: "2002-06-05",
+    //   jenisKelamin: "L",
+    //   prodi: "IT",
+    //   whatsApp: "082114188134",
+    //   idLine: "adrianfinantyo",
+    //   idInstagram: "adrianfinantyo",
+    // };
+
+    console.log(JSON.stringify(dataMaba));
 
     try {
       await authService.daftar(dataMaba);
-      history.push({
-        pathname: "/masuk",
-        data: {
-          status: "info",
-          message:
-            "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
-        },
+      history.push("/auth/masuk", {
+        status: "success",
+        message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
       });
     } catch (error) {
       Swal.fire({
@@ -130,10 +159,7 @@ const RegisterMaba: React.FC = () => {
           <Flex
             height={{
               base: "100%",
-              sm: "100%",
               md: "80vh",
-              lg: "80vh",
-              xl: "80vh",
             }}
             alignItems="center"
             justifyContent="center"
@@ -141,33 +167,18 @@ const RegisterMaba: React.FC = () => {
             <Flex
               direction="column"
               background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-              py={{
-                base: "2vh",
-                sm: "2vh",
-                md: "2vh",
-                lg: "2vh",
-                xl: "2vh",
-              }}
+              py="2vh"
               px={{
                 base: "5vw",
-                sm: "5vw",
                 md: "2vw",
-                lg: "2vw",
-                xl: "2vw",
               }}
               my={{
                 base: "1vh",
-                sm: "1vh",
                 md: "10vh",
-                lg: "10vh",
-                xl: "10vh",
               }}
               mx={{
                 base: "1vw",
-                sm: "1vw",
                 md: "10vw",
-                lg: "10vw",
-                xl: "10vw",
               }}
               rounded={25}
               style={{
@@ -183,11 +194,7 @@ const RegisterMaba: React.FC = () => {
                     letterSpacing="0.05em"
                     fontSize={{
                       base: "1.5em",
-                      sm: "1.5em",
-                      md: "1.5em",
-                      lg: "1.5em",
                       xl: "1.7em",
-                      "2xl": "1.7em",
                     }}
                   >
                     Daftar
@@ -199,10 +206,8 @@ const RegisterMaba: React.FC = () => {
                     h="100%"
                     w={{
                       base: "4vw",
-                      sm: "4vw",
                       md: "2.5vw",
                       lg: "2vw",
-                      xl: "2vw",
                       "2xl": "1.2vw",
                     }}
                     mt={2}
@@ -216,10 +221,7 @@ const RegisterMaba: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.name}>
@@ -245,10 +247,8 @@ const RegisterMaba: React.FC = () => {
                     mb={3}
                     w={{
                       base: "100%",
-                      sm: "100%",
-                      md: "40%",
-                      lg: "30%",
-                      xl: "30%",
+                      md: "50%",
+                      xl: "40%",
                     }}
                   >
                     <MxmFormLabel>NIM Anda</MxmFormLabel>
@@ -287,10 +287,7 @@ const RegisterMaba: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
@@ -316,10 +313,7 @@ const RegisterMaba: React.FC = () => {
                     mr="5"
                     w={{
                       base: "100%",
-                      sm: "100%",
                       md: "60%",
-                      lg: "60%",
-                      xl: "60%",
                     }}
                     isInvalid={errors.tanggalLahir}
                   >
@@ -347,10 +341,7 @@ const RegisterMaba: React.FC = () => {
                     mb={3}
                     w={{
                       base: "100%",
-                      sm: "100%",
                       md: "50%",
-                      lg: "50%",
-                      xl: "50%",
                     }}
                     isInvalid={errors.jenisKelamin}
                   >
@@ -365,8 +356,8 @@ const RegisterMaba: React.FC = () => {
                       <option value="" selected disabled hidden>
                         L/P
                       </option>
-                      <option value="laki-laki">Laki-laki</option>
-                      <option value="perempuan">Perempuan</option>
+                      <option value="L">Laki-laki</option>
+                      <option value="P">Perempuan</option>
                     </MxmSelect>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.jenisKelamin && (
@@ -383,10 +374,7 @@ const RegisterMaba: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl
@@ -394,10 +382,7 @@ const RegisterMaba: React.FC = () => {
                     mr="5"
                     w={{
                       base: "100%",
-                      sm: "100%",
                       md: "60%",
-                      lg: "60%",
-                      xl: "60%",
                     }}
                     isInvalid={errors.prodi}
                   >
@@ -442,15 +427,12 @@ const RegisterMaba: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  <FormControl
+                  {/* <FormControl
                     mb={3}
                     mr="5"
                     w={{
                       base: "100%",
-                      sm: "100%",
                       md: "40%",
-                      lg: "40%",
-                      xl: "40%",
                     }}
                     isInvalid={errors.angkatan}
                   >
@@ -481,7 +463,7 @@ const RegisterMaba: React.FC = () => {
                         </Flex>
                       )}
                     </MxmFormErrorMessage>
-                  </FormControl>
+                  </FormControl> */}
                   <FormControl mb={3} isInvalid={errors.email}>
                     <MxmFormLabel>Email Student</MxmFormLabel>
                     <MxmInputGroup addon="right">
@@ -512,17 +494,14 @@ const RegisterMaba: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.whatsapp}>
                     <MxmFormLabel>Nomor HP (WhatsApp)</MxmFormLabel>
                     <MxmInput
                       placeholder="0XXX-XXXX-XXXX"
-                      {...register("whatsApp", {
+                      {...register("whatsapp", {
                         required: "Isi nomor whatsapp kamu",
                         minLength: {
                           value: 10,
@@ -577,7 +556,7 @@ const RegisterMaba: React.FC = () => {
                     <MxmFormLabel>Username Instagram</MxmFormLabel>
                     <MxmInput
                       placeholder="Tidak perlu menggunakan @"
-                      {...register("usernameIG", {
+                      {...register("idInstagram", {
                         required: "Isi username instagram kamu",
                         pattern: {
                           value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
@@ -606,14 +585,21 @@ const RegisterMaba: React.FC = () => {
                   <MxmVerticalAlign variant="">
                     <Text color="white">
                       Sudah punya akun?{" "}
-                      <Link to="/masuk" style={{ color: `${Palette.Cyan}` }}>
+                      <Link
+                        to="/auth/masuk"
+                        style={{ color: `${Palette.Cyan}` }}
+                      >
                         Masuk
                       </Link>
                     </Text>
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-navy">
+                    <MxmButton
+                      type="submit"
+                      variant="desktop"
+                      colorScheme="cyan-navy"
+                    >
                       Daftar
                     </MxmButton>
                   </motion.div>
