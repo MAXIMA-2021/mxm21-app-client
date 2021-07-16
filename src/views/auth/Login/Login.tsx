@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
-  Box,
   Center,
-  VStack,
-  HStack,
   Heading,
   Input,
   Button,
@@ -24,7 +21,6 @@ import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
-  MxmInput,
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
@@ -34,7 +30,6 @@ import {
 import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
-import "./Login.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { DataLogin, Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
@@ -285,7 +280,6 @@ const Login: React.FC = () => {
                         Daftar
                       </Link>
                     </Text>
-                    {/* <Spacer /> */}
                     <Text color="white">
                       Lupa kata sandimu?{" "}
                       <Link

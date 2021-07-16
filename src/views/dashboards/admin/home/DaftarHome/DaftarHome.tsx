@@ -1,28 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import {
   Flex,
   Heading,
   Spacer,
   Image,
-  Divider,
   Center,
   Button,
   HStack,
   CloseButton,
   Text,
-  Box,
 } from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
+import { EditIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
-import "./DaftarHome.scss";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
@@ -110,22 +101,6 @@ const DaftarHome: React.FC = () => {
         ),
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
-            {/* <Link
-              to={`/admin/state-detail/${tableMeta.rowData[0]}`}
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <Button
-                fontSize={responsiveData}
-                size="xs"
-                leftIcon={<InfoOutlineIcon />}
-                bgColor={Palette.Navy}
-                color="white"
-              >
-                Detail
-              </Button>
-            </Link> */}
             <Link
               to={`/admin/edit-home/${tableMeta.rowData[0]}`}
               style={{ textDecoration: "none" }}

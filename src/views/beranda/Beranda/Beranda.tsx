@@ -1,23 +1,9 @@
 import React from "react";
-import { Palette } from "../../../types/enums";
-import {
-  MxmLogo,
-  MxmLogoText,
-  MxmWhiteLogo,
-  MxmWhiteLogoText,
-} from "../../../assets";
 import "./Beranda.scss";
 import {
-  Flex,
   Heading,
-  Spacer,
-  Image,
-  Divider,
   Center,
-  Button,
-  HStack,
   SimpleGrid,
-  CloseButton,
   Box,
   Text,
   Container,
@@ -26,7 +12,7 @@ import Tilt from "react-tilt";
 
 const Beranda = () => {
   return (
-    <Center style={{ minHeight: "100vh", position: "relative" }}>
+    <Center>
       <SimpleGrid columns={2} spacing={10}>
         <Center>
           <Container>

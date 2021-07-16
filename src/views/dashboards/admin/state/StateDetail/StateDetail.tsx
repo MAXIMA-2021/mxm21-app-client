@@ -1,29 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import {
   Flex,
   Heading,
   Spacer,
   Image,
-  Divider,
   Center,
-  Button,
-  HStack,
-  CloseButton,
   Text,
   Container,
 } from "@chakra-ui/react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ClearIcon from "@material-ui/icons/Clear";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
-import "./StateDetail.scss";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { MxmDivider } from "../../../../../shared/styled/input";

@@ -8,6 +8,19 @@
   --dropdown-items-svg: 1.1rem;
 }
 
+body {
+  overflow-x: hidden;
+}
+// div#root {
+//   overflow-x: hidden;
+// }
+
+.container-dashboard-main {
+  background-color: #f4f4f4;
+  overflow-y: unset !important;
+  // min-height: 100vh;
+}
+
 .navbar {
   position: sticky;
   top: 0px;
@@ -16,7 +29,8 @@
   z-index: 999;
 
   &.open {
-    margin-left: var(--sidebar-width);
+    margin-left: auto;
+    width: calc(100% - var(--sidebar-width));
     transition: 0.235s ease-in-out;
   }
   &.close {
@@ -98,9 +112,6 @@
   background: var(--Mxm-navy);
   transition: all 0.2s ease-in-out;
   z-index: 999;
-
-  // overflow-y: scroll;
-  // overflow-x: hidden;
 
   font-family: Poppins, Arial, sans-serif;
 

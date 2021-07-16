@@ -1,27 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import {
-  Flex,
-  Heading,
-  Spacer,
-  Image,
-  Divider,
-  Center,
-  Button,
-  HStack,
-  CloseButton,
-  Text,
-} from "@chakra-ui/react";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../../../types/enums";
+import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
-import "./DaftarOrganisator.scss";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";

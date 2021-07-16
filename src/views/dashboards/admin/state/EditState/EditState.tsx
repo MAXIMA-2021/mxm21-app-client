@@ -13,15 +13,8 @@ import {
   NumberInput,
   NumberInputStepper,
   Button,
-  Input,
 } from "@chakra-ui/react";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
-import "./EditState.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
   MxmDivider,

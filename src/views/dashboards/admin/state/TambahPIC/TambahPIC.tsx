@@ -13,11 +13,6 @@ import {
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../../../shared/styled/containers";
-import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../../../types/enums";
 import "./TambahPIC.scss";
 import { MxmLogo } from "../../../../../assets";
@@ -25,8 +20,6 @@ import {
   MxmDivider,
   MxmFormErrorMessage,
   MxmFormLabel,
-  MxmInput,
-  MxmSelect,
 } from "../../../../../shared/styled/input";
 import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
@@ -44,18 +37,14 @@ const TambahPIC: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "100vw",
-        md: "79vw",
+        base: "calc(100vw-18rem)",
+        md: "calc(100vw-18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
       justifyContent="center"
     >
       <Flex
-        width={{
-          base: "100%",
-          md: "70%",
-        }}
         mt={{
           base: "1rem",
           md: "0rem",
@@ -71,7 +60,7 @@ const TambahPIC: React.FC = () => {
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="form_PIC">
-          <Flex>
+          <Flex alignItems="center">
             <Heading
               mb="1vh"
               letterSpacing="0.05em"
@@ -83,7 +72,6 @@ const TambahPIC: React.FC = () => {
             >
               Tambah PIC Organisator
             </Heading>
-            <Spacer />
             <Image
               src={MxmLogo}
               alt="Logo MAXIMA 2021"
@@ -96,6 +84,10 @@ const TambahPIC: React.FC = () => {
               }}
               mt="0.4vh"
               mb="1vh"
+              marginLeft={{
+                base: "5vw",
+                md: "30vw",
+              }}
             />
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />

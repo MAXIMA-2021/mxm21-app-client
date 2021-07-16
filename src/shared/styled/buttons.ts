@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Palette } from "../../types/enums"
+import { Palette } from "../../types/enums";
 
 export const MxmButton = styled("button")<{
   variant: string;
@@ -11,9 +11,6 @@ export const MxmButton = styled("button")<{
                  format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
-  /* min-width: 105px;
-  height: 43px; */
-  
   padding: 0.8vh 1vw;
   margin: 1rem;
 
@@ -199,13 +196,6 @@ export const MxmButton = styled("button")<{
 `;
 
 export const Container = styled.div`
-  /* height: 25vh;
-  width: 50vw;
-
-  margin: 25vh auto; */
-
-  /* background: #d1d1d1; */
-
   display: flex;
   place-items: center;
   justify-content: center;
