@@ -1,6 +1,8 @@
 import axios from "axios";
+require("dotenv").config();
 
-const baseUrl = "http://localhost:8080/api/mhs/acc";
+const { REACT_APP_BASE_URL } = process.env;
+const baseUrl = `${REACT_APP_BASE_URL}/api/mhs/acc`;
 
 const daftar = async (data) => {
   const request = await axios.post(`${baseUrl}/signup`, data);
