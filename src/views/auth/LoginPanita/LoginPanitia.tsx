@@ -24,12 +24,12 @@ import {
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
-  MxmContainers,
+  MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { MxmLogo, MxmLogoText } from "../../../assets";
+import { MxmLogoText } from "../../../assets";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
@@ -108,7 +108,7 @@ const LoginPanitia: React.FC = () => {
   // };
 
   return (
-    <MxmContainers>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -136,7 +136,7 @@ const LoginPanitia: React.FC = () => {
             )}
             <Flex
               direction="column"
-              background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
+              background={`${Palette.Cyan}`}
               className="filter"
               py="3vh"
               px={{
@@ -165,6 +165,8 @@ const LoginPanitia: React.FC = () => {
                 <Flex>
                   <Heading
                     mb={3}
+                    width="100%"
+                    textAlign="center"
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -176,23 +178,8 @@ const LoginPanitia: React.FC = () => {
                       "2xl": "1.7em",
                     }}
                   >
-                    Masuk
+                    Masuk Panitia
                   </Heading>
-                  <Spacer />
-                  <Image
-                    src={MxmLogo}
-                    alt="Logo MAXIMA 2021"
-                    h="100%"
-                    w={{
-                      base: "4vw",
-                      sm: "4vw",
-                      md: "2.5vw",
-                      lg: "2vw",
-                      xl: "2vw",
-                      "2xl": "1.2vw",
-                    }}
-                    mt={2}
-                  />
                 </Flex>
                 <Divider
                   colorScheme="whiteAlpha"
@@ -218,7 +205,7 @@ const LoginPanitia: React.FC = () => {
                     <InputLeftAddon
                       size="base"
                       children="000000"
-                      letterSpacing="0.05em"
+                      fontFamily="Poppins"
                     />
                     <Input
                       type="number"
@@ -279,8 +266,11 @@ const LoginPanitia: React.FC = () => {
                     <Text color="white">
                       Belum punya akun?{" "}
                       <Link
-                        to="/auth/daftar"
-                        style={{ color: `${Palette.Cyan}` }}
+                        to="/auth/panitia/daftar"
+                        style={{
+                          color: `${Palette.Navy}`,
+                          fontWeight: 600,
+                        }}
                       >
                         Daftar
                       </Link>
@@ -288,8 +278,8 @@ const LoginPanitia: React.FC = () => {
                     <Text color="white">
                       Lupa kata sandimu?{" "}
                       <Link
-                        to="/auth/reset"
-                        style={{ color: `${Palette.Cyan}` }}
+                        to="/auth/panitia/reset"
+                        style={{ color: `${Palette.Navy}`, fontWeight: 600 }}
                       >
                         Klik di sini
                       </Link>
@@ -298,7 +288,7 @@ const LoginPanitia: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-navy">
+                    <MxmButton variant="desktop" colorScheme="navy-white">
                       Masuk
                     </MxmButton>
                   </motion.div>
@@ -308,7 +298,7 @@ const LoginPanitia: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainers>
+    </MxmContainersPanitia>
   );
 };
 

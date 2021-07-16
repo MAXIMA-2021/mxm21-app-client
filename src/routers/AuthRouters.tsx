@@ -23,7 +23,9 @@ export default function AuthRouters() {
         exact
         component={Auth.RegisterOrganisator}
       />
-      <Route path="/auth" component={Auth.LoginMhs} />
+      {/* <Route path="/auth/organisator" component={Auth.LoginOrganisator} />
+      <Route path="/auth/panitia" component={Auth.LoginPanitia} />
+      <Route path="/auth" component={Auth.LoginMhs} /> */}
     </>
   );
 }

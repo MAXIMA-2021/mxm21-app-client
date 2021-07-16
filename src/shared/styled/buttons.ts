@@ -56,34 +56,17 @@ export const MxmButton = styled("button")<{
       : props.colorScheme === "yellow-red"
       ? ` 
       background: ${Palette.Yellow};
-    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
-    color: ${Palette.Red}B;
+    box-shadow: -3px 3px 0 0 ${Palette.Red};
+    color: ${Palette.Red};
 
     &:hover {
         background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-        box-shadow: -2px 2px 0 0 ${Palette.Red}B;
+        box-shadow: -2px 2px 0 0 ${Palette.Red};
         transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 ${Palette.Red}B;
-      transform: translate(0px, 0px);
-    }
-    `
-      : props.colorScheme === "navy-cyan"
-      ? `
-    background: ${Palette.Navy};
-    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
-    color: #FFFFFF;
-
-    &:hover {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
-      transform: translate(2px, -2px);
-    }
-
-    &:active {
-      box-shadow: 0 0 0 0 ${Palette.Cyan};
+      box-shadow: 0 0 0 0 ${Palette.Red};
       transform: translate(0px, 0px);
     }
     `
@@ -124,17 +107,17 @@ export const MxmButton = styled("button")<{
       : props.colorScheme === "white-red"
       ? `
     background: #FFFFFF;
-    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
-    color: ${Palette.Red}B;
+    box-shadow: -3px 3px 0 0 ${Palette.Red};
+    color: ${Palette.Red};
 
     &:hover {
       background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-      box-shadow: -2px 2px 0 0 ${Palette.Red}B;
+      box-shadow: -2px 2px 0 0 ${Palette.Red};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 ${Palette.Red}B;
+      box-shadow: 0 0 0 0 ${Palette.Red};
       transform: translate(0px, 0px);
     }
     `
@@ -152,6 +135,23 @@ export const MxmButton = styled("button")<{
 
     &:active {
       box-shadow: 0 0 0 0 ${Palette.Navy};
+      transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "cyan-white"
+      ? `
+    background: ${Palette.Cyan};
+    box-shadow: -3px 3px 0 0 #FFFFFF;
+    color: #FFFFFF;
+
+    &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 #FFFFFF;
+      transform: translate(2px, -2px);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0 #FFFFFF;
       transform: translate(0px, 0px);
     }
     `

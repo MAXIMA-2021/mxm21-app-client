@@ -24,12 +24,12 @@ import {
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
-  MxmContainers,
+  MxmContainersOrganisator,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { MxmLogo, MxmLogoText } from "../../../assets";
+import { MxmWhiteLogoText } from "../../../assets";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
@@ -108,7 +108,7 @@ const LoginOrganisator: React.FC = () => {
   // };
 
   return (
-    <MxmContainers>
+    <MxmContainersOrganisator>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -136,7 +136,7 @@ const LoginOrganisator: React.FC = () => {
             )}
             <Flex
               direction="column"
-              background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
+              background={`${Palette.Navy}`}
               className="filter"
               py="3vh"
               px={{
@@ -165,6 +165,8 @@ const LoginOrganisator: React.FC = () => {
                 <Flex>
                   <Heading
                     mb={3}
+                    width="100%"
+                    textAlign="center"
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -176,23 +178,8 @@ const LoginOrganisator: React.FC = () => {
                       "2xl": "1.7em",
                     }}
                   >
-                    Masuk
+                    Masuk Organisator
                   </Heading>
-                  <Spacer />
-                  <Image
-                    src={MxmLogo}
-                    alt="Logo MAXIMA 2021"
-                    h="100%"
-                    w={{
-                      base: "4vw",
-                      sm: "4vw",
-                      md: "2.5vw",
-                      lg: "2vw",
-                      xl: "2vw",
-                      "2xl": "1.2vw",
-                    }}
-                    mt={2}
-                  />
                 </Flex>
                 <Divider
                   colorScheme="whiteAlpha"
@@ -200,7 +187,7 @@ const LoginOrganisator: React.FC = () => {
                 />
                 <Center>
                   <Image
-                    src={MxmLogoText}
+                    src={MxmWhiteLogoText}
                     alt="Logo MAXIMA 2021"
                     w={{
                       base: "8vh",
@@ -218,7 +205,7 @@ const LoginOrganisator: React.FC = () => {
                     <InputLeftAddon
                       size="base"
                       children="000000"
-                      letterSpacing="0.05em"
+                      fontFamily="Poppins"
                     />
                     <Input
                       type="number"
@@ -279,7 +266,7 @@ const LoginOrganisator: React.FC = () => {
                     <Text color="white">
                       Belum punya akun?{" "}
                       <Link
-                        to="/auth/daftar"
+                        to="/auth/organisator/daftar"
                         style={{ color: `${Palette.Cyan}` }}
                       >
                         Daftar
@@ -288,7 +275,7 @@ const LoginOrganisator: React.FC = () => {
                     <Text color="white">
                       Lupa kata sandimu?{" "}
                       <Link
-                        to="/auth/reset"
+                        to="/auth/organisator/reset"
                         style={{ color: `${Palette.Cyan}` }}
                       >
                         Klik di sini
@@ -298,7 +285,7 @@ const LoginOrganisator: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-navy">
+                    <MxmButton variant="desktop" colorScheme="cyan-white">
                       Masuk
                     </MxmButton>
                   </motion.div>
@@ -308,7 +295,7 @@ const LoginOrganisator: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainers>
+    </MxmContainersOrganisator>
   );
 };
 

@@ -218,7 +218,7 @@ const LoginMhs: React.FC = () => {
                     <InputLeftAddon
                       size="base"
                       children="000000"
-                      letterSpacing="0.05em"
+                      fontFamily="Poppins"
                     />
                     <Input
                       type="number"

@@ -233,10 +233,7 @@ const RegisterMhs: React.FC = () => {
                   >
                     <MxmFormLabel>NIM Anda</MxmFormLabel>
                     <MxmInputGroup addon="left">
-                      <InputLeftAddon
-                        children="000000"
-                        letterSpacing="0.05em"
-                      />
+                      <InputLeftAddon children="000000" fontFamily="Poppins" />
                       <Input
                         type="number"
                         {...register("nim", {
@@ -407,43 +404,6 @@ const RegisterMhs: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  {/* <FormControl
-                    mb={3}
-                    mr="5"
-                    w={{
-                      base: "100%",
-                      md: "40%",
-                    }}
-                    isInvalid={errors.angkatan}
-                  >
-                    <MxmFormLabel>Angkatan</MxmFormLabel>
-                    <MxmSelect
-                      backgroundColor="white"
-                      {...register("angkatan", {
-                        required: "Pilih angkatan kamu",
-                      })}
-                      className="select"
-                      onChange={handleSelectChange}
-                    >
-                      <option value="" selected disabled hidden>
-                        Pilih Angkatan
-                      </option>
-                      <option value="2021">2021</option>
-                      <option value="2020">2020</option>
-                      <option value="2019">2019</option>
-                      <option value="2018">2018</option>
-                    </MxmSelect>
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.angkatan && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.angkatan.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl> */}
                   <FormControl mb={3} isInvalid={errors.email}>
                     <MxmFormLabel>Email Student</MxmFormLabel>
                     <MxmInputGroup addon="right">
