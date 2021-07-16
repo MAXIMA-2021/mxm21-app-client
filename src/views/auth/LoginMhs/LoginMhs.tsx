@@ -31,9 +31,10 @@ import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import { motion, AnimatePresence } from "framer-motion";
-import { DataLogin, Palette } from "../../../types/enums";
+import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
+import { DataLogin } from "../../../types/interfaces";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -66,7 +67,7 @@ const buttonVariants = {
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
-const Login: React.FC = () => {
+const LoginMhs: React.FC = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const {
@@ -86,7 +87,7 @@ const Login: React.FC = () => {
     setLoading(true);
     reset();
     try {
-      const returnedData = await authService.login(data);
+      const returnedData = await authService.loginMhs(data);
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.sessionStorage.setItem("name", returnedData.name);
       // const decoded = jwtDecode(returnedData.accessToken);
@@ -217,7 +218,7 @@ const Login: React.FC = () => {
                     <InputLeftAddon
                       size="base"
                       children="000000"
-                      letterSpacing="0.05em"
+                      fontFamily="Poppins"
                     />
                     <Input
                       type="number"
@@ -255,7 +256,11 @@ const Login: React.FC = () => {
                       type={show ? "text" : "password"}
                     />
                     <InputRightElement>
-                      <Button size="base" onClick={handleClick}>
+                      <Button
+                        className="show-password"
+                        size="base"
+                        onClick={handleClick}
+                      >
                         {show ? <IconHidePassword /> : <IconShowPassword />}
                       </Button>
                     </InputRightElement>
@@ -307,4 +312,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginMhs;

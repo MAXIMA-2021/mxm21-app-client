@@ -18,7 +18,7 @@ export default function AppRouter() {
           render={({ location }) => (
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
-                <Route path="/auth/:path1?">
+                <Route path="/auth/:path1?/:path2?">
                   <Switch>
                     <AuthRouters />
                   </Switch>

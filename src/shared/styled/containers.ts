@@ -16,6 +16,36 @@ export const MxmContainers = styled("div")`
   }
 `;
 
+export const MxmContainersPanitia = styled("div")`
+  background-color: #1f2c4c;
+  height: 100%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media only screen and (max-width: 767px) {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+  }
+`;
+
+export const MxmContainersOrganisator = styled("div")`
+  background-color: #41ceba;
+  height: 100%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media only screen and (max-width: 767px) {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+  }
+`;
+
 export const MxmVerticalAlign = styled("div")<{
   variant: string;
 }>`
