@@ -80,14 +80,14 @@ const LoginOrganisator: React.FC = () => {
   const handleClick = () => setShow(!show);
 
   useEffect(() => {
-    document.title = "Masuk - MAXIMA 2021";
+    document.title = "[Organisator] Masuk - MAXIMA 2021";
   }, []);
 
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
     reset();
     try {
-      const returnedData = await authService.login(data);
+      const returnedData = await authService.loginOrganisator(data);
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.sessionStorage.setItem("name", returnedData.name);
       // const decoded = jwtDecode(returnedData.accessToken);
@@ -243,11 +243,7 @@ const LoginOrganisator: React.FC = () => {
                       type={show ? "text" : "password"}
                     />
                     <InputRightElement>
-                      <Button
-                        className="show-password"
-                        size="base"
-                        onClick={handleClick}
-                      >
+                      <Button size="base" onClick={handleClick}>
                         {show ? <IconHidePassword /> : <IconShowPassword />}
                       </Button>
                     </InputRightElement>

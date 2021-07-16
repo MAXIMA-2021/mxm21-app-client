@@ -14,9 +14,9 @@ import {
   Text,
   InputRightElement,
   Button,
+  createIcon,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
-import { createIcon } from "@chakra-ui/react";
 import {
   MxmInput,
   MxmInputGroup,
@@ -90,16 +90,11 @@ const RegisterOrganisator: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Organisator] Daftar - MAXIMA 2021";
   }, []);
 
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-
-  interface historyData {
-    status: string;
-    message: string;
-  }
 
   const onSubmit = async (data: DataRegisterOrganisator) => {
     setLoading(true);
@@ -112,16 +107,6 @@ const RegisterOrganisator: React.FC = () => {
       password: data.password,
       stateID: data.stateID,
     };
-
-    // const dataOrganisator: DataRegisterOrganisator = {
-    //   nim: "42580",
-    //   name: "Adrian Finantyo",
-    //   email: "bonifasius.finantyo@student.umn.ac.id",
-    //   password: "secret",
-    //   stateID: "2",
-    // };
-
-    console.log(JSON.stringify(dataOrganisator));
 
     try {
       await authService.daftarOrganisator(dataOrganisator);
@@ -145,7 +130,7 @@ const RegisterOrganisator: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "100%",
+              base: "100vh",
               md: "80vh",
             }}
             alignItems="center"
@@ -234,8 +219,8 @@ const RegisterOrganisator: React.FC = () => {
                     mb={3}
                     w={{
                       base: "100%",
-                      md: "50%",
-                      xl: "40%",
+                      md: "60%",
+                      xl: "50%",
                     }}
                   >
                     <MxmFormLabel>NIM Anda</MxmFormLabel>
@@ -284,11 +269,20 @@ const RegisterOrganisator: React.FC = () => {
                     isInvalid={errors.stateID}
                   >
                     <MxmFormLabel>ID state</MxmFormLabel>
-                    <MxmInput
+                    <MxmSelect
+                      className="select"
                       {...register("stateID", {
-                        required: "Isi tempat lahir kamu",
+                        required: "Isi nama kegiatan STATE",
                       })}
-                    />
+                      onChange={handleSelectChange}
+                    >
+                      <option value="" selected disabled hidden>
+                        Pilih STATE
+                      </option>
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                    </MxmSelect>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.stateID && (
                         <Flex flexDirection="row" alignItems="center">
@@ -351,11 +345,7 @@ const RegisterOrganisator: React.FC = () => {
                         type={show ? "text" : "password"}
                       />
                       <InputRightElement>
-                        <Button
-                          className="show-password"
-                          size="base"
-                          onClick={handleClick}
-                        >
+                        <Button size="base" onClick={handleClick}>
                           {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>
                       </InputRightElement>

@@ -14,9 +14,9 @@ import {
   Text,
   InputRightElement,
   Button,
+  createIcon,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
-import { createIcon } from "@chakra-ui/react";
 import {
   MxmInput,
   MxmInputGroup,
@@ -90,16 +90,11 @@ const RegisterPanitia: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Panitia] Daftar - MAXIMA 2021";
   }, []);
 
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-
-  interface historyData {
-    status: string;
-    message: string;
-  }
 
   const onSubmit = async (data: DataRegisterPanitia) => {
     setLoading(true);
@@ -112,16 +107,6 @@ const RegisterPanitia: React.FC = () => {
       password: data.password,
       divisiID: data.divisiID,
     };
-
-    // const dataOrganisator: DataRegisterOrganisator = {
-    //   nim: "42580",
-    //   name: "Adrian Finantyo",
-    //   email: "bonifasius.finantyo@student.umn.ac.id",
-    //   password: "secret",
-    //   divisiID: "D05",
-    // };
-
-    console.log(JSON.stringify(dataPanitia));
 
     try {
       await authService.daftarPanitia(dataPanitia);
@@ -145,7 +130,7 @@ const RegisterPanitia: React.FC = () => {
         <motion.div variants={cardVariants}>
           <Flex
             height={{
-              base: "100%",
+              base: "100vh",
               md: "80vh",
             }}
             alignItems="center"
@@ -234,8 +219,8 @@ const RegisterPanitia: React.FC = () => {
                     mb={3}
                     w={{
                       base: "100%",
-                      md: "50%",
-                      xl: "40%",
+                      md: "60%",
+                      xl: "50%",
                     }}
                   >
                     <MxmFormLabel>NIM Anda</MxmFormLabel>
@@ -284,11 +269,20 @@ const RegisterPanitia: React.FC = () => {
                     isInvalid={errors.divisiID}
                   >
                     <MxmFormLabel>ID Divisi</MxmFormLabel>
-                    <MxmInput
+                    <MxmSelect
+                      className="select"
                       {...register("divisiID", {
-                        required: "Isi tempat lahir kamu",
+                        required: "Isi nama divisi kamu",
                       })}
-                    />
+                      onChange={handleSelectChange}
+                    >
+                      <option value="" selected disabled hidden>
+                        Pilih Divisi
+                      </option>
+                      {Divisi.map((divisi) => (
+                        <option value={divisi.id}>{divisi.nama}</option>
+                      ))}
+                    </MxmSelect>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.divisiID && (
                         <Flex flexDirection="row" alignItems="center">
@@ -351,11 +345,7 @@ const RegisterPanitia: React.FC = () => {
                         type={show ? "text" : "password"}
                       />
                       <InputRightElement>
-                        <Button
-                          className="show-password"
-                          size="base"
-                          onClick={handleClick}
-                        >
+                        <Button size="base" onClick={handleClick}>
                           {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>
                       </InputRightElement>
@@ -437,3 +427,20 @@ const RegisterPanitia: React.FC = () => {
 };
 
 export default RegisterPanitia;
+
+const Divisi = [
+  { nama: "Website", id: "D02" },
+  { nama: "Acara", id: "D03" },
+  { nama: "BPH", id: "D04" },
+  { nama: "Bazaar", id: "D05" },
+  { nama: "Dekorasi", id: "D06" },
+  { nama: "Dokumentasi", id: "D07" },
+  { nama: "Fresh Money", id: "D08" },
+  { nama: "Media Relations", id: "D09" },
+  { nama: "Merchandise", id: "D10" },
+  { nama: "Perlengkapan", id: "D11" },
+  { nama: "Publikasi", id: "D12" },
+  { nama: "Seccom", id: "D13" },
+  { nama: "Sponsor", id: "D14" },
+  { nama: "Visual", id: "D15" },
+];
