@@ -13,3 +13,20 @@ input::placeholder {
 input::-moz-placeholder {
   color: #777777;
 }
+
+.chakra-tabs__tab {
+  color: grey;
+
+  padding: 0.2rem 1rem !important;
+  & {
+    outline: none !important;
+  }
+}
+
+.chakra-tabs__tab[aria-selected="true"] {
+  color: black !important;
+}
+
+.MUIDataTableToolbar-actions-17 {
+  // display: none;
+}
