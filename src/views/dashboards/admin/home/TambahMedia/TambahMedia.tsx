@@ -113,7 +113,11 @@ const TambahMedia: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.linkMedia}>
             <MxmFormLabel color="black">Link Media</MxmFormLabel>
-            <UploadFiles />
+            <UploadFiles
+              maxfiles={5}
+              keterangan={true}
+              isiKeterangan={"Kamu bisa mengupload maksimal 5 gambar."}
+            />
             {/* <MxmInput
               {...register("linkMedia", {
                 required: "Isi Link Media",

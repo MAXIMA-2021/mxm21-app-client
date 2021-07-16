@@ -78,35 +78,49 @@ const EditHome: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: "400px" },
         }),
-        customBodyRender: (value: any) => (
-          <Image src={value} width={"clamp(100px, 300px, 300px)"}></Image>
+        customBodyRender: (value: any, tableMeta: any) => (
+          <>
+            <input
+              name={`linkMedia`}
+              id={`linkMedia${tableMeta.rowIndex}`}
+              type="file"
+              style={{ display: "none" }}
+            ></input>
+            <label htmlFor={`linkMedia${tableMeta.rowIndex}`}>
+              <Image
+                className="media-img"
+                src={value}
+                width={"clamp(100px, 300px, 300px)"}
+              ></Image>
+            </label>
+          </>
         ),
       },
     },
-    {
-      name: "linkMedia",
-      label: "Replace Image",
-      options: {
-        filter: true,
-        sort: true,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
-            {column.label}
-          </Text>
-        ),
-        setCellProps: () => ({
-          style: { minWidth: "200px" },
-        }),
-        customBodyRender: (value: any) => <input type="file" name="" id="" />,
-      },
-    },
+    // {
+    //   name: "linkMedia",
+    //   label: "Ganti Media",
+    //   options: {
+    //     filter: true,
+    //     sort: true,
+    //     customHeadLabelRender: ({ index, ...column }) => (
+    //       <Text
+    //         key={index}
+    //         fontWeight="bold"
+    //         fontFamily="Rubik"
+    //         fontSize="1.1em"
+    //       >
+    //         {column.label}
+    //       </Text>
+    //     ),
+    //     setCellProps: () => ({
+    //       style: { minWidth: "200px" },
+    //     }),
+    //     customBodyRender: (value: any) => <input type="file" name="" id="" />,
+    //   },
+    // },
     {
       name: "Actions",
       label: "Aksi",
@@ -127,8 +141,8 @@ const EditHome: React.FC = () => {
         ),
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
-            <button type="button">
-              <DeleteIcon style={{ marginLeft: 2, color: "red" }} />
+            <button type="button" className="delete-icon">
+              <DeleteIcon style={{ color: "red" }} />
             </button>
           </HStack>
         ),
@@ -189,6 +203,7 @@ const EditHome: React.FC = () => {
           }}
           rounded={25}
           // minHeight={editMediaTab ? `calc(100vh - 3.5rem)` : ``}
+          className="edit-home-card"
         >
           <Flex alignItems="center">
             <TabList>

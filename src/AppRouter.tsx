@@ -29,13 +29,19 @@ export default function AppRouter() {
                   </Switch>
                 </Route>
                 <Route>
-                  <HomeNavbar />
-                  <Switch>
-                    <Route path="/about-us" exact component={Beranda.AboutUs} />
-                    <Route path="/faq" exact component={Beranda.FAQ} />
-                    <Route path="/" component={Beranda.Beranda} />
-                  </Switch>
-                  <HomeFooter />
+                  <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
+                    <HomeNavbar />
+                    <Switch>
+                      <Route
+                        path="/about-us"
+                        exact
+                        component={Beranda.AboutUs}
+                      />
+                      <Route path="/faq" exact component={Beranda.FAQ} />
+                      <Route path="/" component={Beranda.Beranda} />
+                    </Switch>
+                    <HomeFooter />
+                  </div>
                 </Route>
               </Switch>
             </AnimatePresence>

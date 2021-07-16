@@ -15,7 +15,7 @@ input::-moz-placeholder {
 }
 
 .chakra-tabs__tab {
-  color: grey;
+  color: rgba(128, 128, 128, 0.404);
 
   padding: 0.2rem 1rem !important;
   & {
@@ -27,6 +27,15 @@ input::-moz-placeholder {
   color: black !important;
 }
 
-.MUIDataTableToolbar-actions-17 {
-  // display: none;
+.media-img {
+  transition: 0.1s ease;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1.6px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.delete-icon:hover {
+  background: rgba(128, 128, 128, 0.212);
+  border-radius: 4px;
 }
