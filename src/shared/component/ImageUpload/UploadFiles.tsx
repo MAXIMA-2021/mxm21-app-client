@@ -17,19 +17,33 @@ const IconUpload = createIcon({
 });
 
 const UploadFiles = (props: any) => {
-  // console.log(keterangan);
-  console.log(props.maxfiles);
-
   const [myFiles, setMyFiles] = useState<File[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setMyFiles([...myFiles, ...acceptedFiles]);
   }, []);
 
+  const onDragEnter = (event: any) => {
+    event.target.classList.remove("file-rejected");
+    event.target.classList.add("file-enters");
+  };
+
+  const onDragLeave = (event: any) => {
+    event.target.classList.remove("file-enters");
+  };
+
+  const onDropRejected = (fileRejections: any[], event: any) => {
+    event.target.classList.remove("file-enters");
+    event.target.classList.add("file-rejected");
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
     accept: "image/jpeg, image/png",
     maxFiles: props.maxfiles || 1,
+    onDragEnter,
+    onDragLeave,
+    onDrop,
+    onDropRejected,
   });
 
   const removeFile = (file: any) => () => {
