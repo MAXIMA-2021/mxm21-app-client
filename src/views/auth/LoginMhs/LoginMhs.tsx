@@ -91,6 +91,7 @@ const LoginMhs: React.FC = () => {
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.sessionStorage.setItem("name", returnedData.name);
       // const decoded = jwtDecode(returnedData.accessToken);
+      console.log(returnedData);
       window.location = "/";
       alert("berhasil login");
     } catch (error) {
@@ -115,10 +116,7 @@ const LoginMhs: React.FC = () => {
             flexDir="column"
             height={{
               base: "100vh",
-              sm: "100vh",
               md: "80vh",
-              lg: "80vh",
-              xl: "80vh",
             }}
             alignItems="center"
             justifyContent="center"

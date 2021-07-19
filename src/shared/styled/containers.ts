@@ -4,8 +4,8 @@ import { bgAuth } from "../../assets";
 export const MxmContainers = styled("div")`
   background-image: url(${bgAuth});
   height: 100%;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,8 +19,8 @@ export const MxmContainers = styled("div")`
 export const MxmContainersPanitia = styled("div")`
   background-color: #1f2c4c;
   height: 100%;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,8 +34,8 @@ export const MxmContainersPanitia = styled("div")`
 export const MxmContainersOrganisator = styled("div")`
   background-color: #41ceba;
   height: 100%;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

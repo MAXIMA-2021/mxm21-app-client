@@ -19,9 +19,13 @@ export default function AppRouter() {
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
                 <Route path="/auth/:path1?/:path2?">
-                  <Switch>
-                    <AuthRouters />
-                  </Switch>
+                  <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
+                    <HomeNavbar auth />
+                    <Switch>
+                      <AuthRouters />
+                    </Switch>
+                    <HomeFooter />
+                  </div>
                 </Route>
                 <Route path="/admin/:path1?/:path2?/:path3?" exact>
                   <Switch>

@@ -5,10 +5,8 @@ import {
   DataRegisterOrganisator,
   DataRegisterPanitia,
 } from "../types/interfaces";
-require("dotenv").config();
 
-const { REACT_APP_BASE_URL } = process.env;
-const baseUrl = `${REACT_APP_BASE_URL}/api`;
+const baseUrl = "https://dev.api.mxm.one/api";
 
 const daftarMhs = async (data: DataRegisterMaba) => {
   const request = await axios.post(`${baseUrl}/mhs/acc/signup`, data);

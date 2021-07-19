@@ -371,9 +371,8 @@ const RegisterOrganisator: React.FC = () => {
                     <MxmInputGroup>
                       <Input
                         type="password"
-                        placeholder="Masukkan ulang password kamu"
                         {...register("konfirmasiPassword", {
-                          required: "Masukkan ulang password kamu lagi",
+                          required: "Masukkan ulang password kamu",
                           validate: (value) =>
                             value === password.current || "Password belum sama",
                         })}

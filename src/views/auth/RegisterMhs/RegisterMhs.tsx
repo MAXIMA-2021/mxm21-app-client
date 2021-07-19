@@ -143,6 +143,14 @@ const RegisterMhs: React.FC = () => {
             }}
             alignItems="center"
             justifyContent="center"
+            paddingTop={{
+              base: "2rem",
+              md: "0",
+            }}
+            paddingBottom={{
+              base: "5rem",
+              md: "0",
+            }}
           >
             <Flex
               direction="column"
@@ -440,7 +448,7 @@ const RegisterMhs: React.FC = () => {
                   <FormControl mb={3} mr="5" isInvalid={errors.whatsapp}>
                     <MxmFormLabel>Nomor HP (WhatsApp)</MxmFormLabel>
                     <MxmInput
-                      placeholder="0XXX-XXXX-XXXX"
+                      placeholder="08XXXXXXXXXX"
                       {...register("whatsapp", {
                         required: "Isi nomor whatsapp kamu",
                         minLength: {
@@ -495,7 +503,7 @@ const RegisterMhs: React.FC = () => {
                   <FormControl mb={3} isInvalid={errors.idInstagram}>
                     <MxmFormLabel>Username Instagram</MxmFormLabel>
                     <MxmInput
-                      placeholder="Tidak perlu menggunakan @"
+                      placeholder="Isi tanpa @"
                       {...register("idInstagram", {
                         required: "Isi username instagram kamu",
                         pattern: {
