@@ -83,15 +83,9 @@ const UploadFiles = (props: any) => {
             <u>Klik Di Sini</u>
           </span>
         </p>
-        {props.keterangan === true ? (
-          <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
-            {props.isiKeterangan}
-          </em>
-        ) : (
-          <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
-            Kamu hanya bisa mengupload satu gambar saja.
-          </em>
-        )}
+        <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
+          maksimal upload : {props.isiKeterangan || "1 file"}
+        </em>
       </UploadContainer>
       {files}
     </div>

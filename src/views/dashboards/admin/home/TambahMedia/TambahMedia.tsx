@@ -112,32 +112,12 @@ const TambahMedia: React.FC = () => {
             </MxmFormErrorMessage>
           </FormControl>
           <FormControl mb={3} isInvalid={errors.linkMedia}>
-            <MxmFormLabel color="black">Link Media</MxmFormLabel>
+            <MxmFormLabel color="black">File Media</MxmFormLabel>
             <UploadFiles
               maxfiles={5}
               keterangan={true}
-              isiKeterangan={"Kamu bisa mengupload maksimal 5 gambar."}
+              isiKeterangan={"5 file"}
             />
-            {/* <MxmInput
-              {...register("linkMedia", {
-                required: "Isi Link Media",
-                pattern: {
-                  value:
-                    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-                  message: "Link Media Tidak Valid",
-                },
-              })}
-            />
-            <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.linkMedia && (
-                <Flex flexDirection="row" alignItems="center">
-                  <p>
-                    <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.linkMedia.message}
-                  </p>
-                </Flex>
-              )}
-            </MxmFormErrorMessage> */}
           </FormControl>
           <Flex mt={10}>
             <Spacer />
