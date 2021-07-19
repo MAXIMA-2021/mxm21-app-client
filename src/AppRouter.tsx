@@ -20,7 +20,7 @@ export default function AppRouter() {
               <Switch location={location} key={location.pathname}>
                 <Route path="/auth/:path1?/:path2?">
                   <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
-                    <HomeNavbar auth />
+                    <HomeNavbar />
                     <Switch>
                       <AuthRouters />
                     </Switch>

@@ -1,6 +1,6 @@
 :root {
   --navbar-padding-x: 9rem;
-  --homepage-navbar-height: 6rem;
+  --homepage-navbar-height: 5rem;
   --btn-main-nav-spacing-y: 2rem;
   --btn-main-nav-spacing-x: 3.375rem;
   --btn-main-nav-font-size: 1rem;
@@ -54,7 +54,7 @@
     box-shadow: 0 1.6px 6px 0 rgba(0, 0, 0, 0.2);
 
     & .navigation-list {
-      --homepage-navbar-height: 5rem;
+      --homepage-navbar-height: 4rem;
       transition: height 0.5s ease;
     }
   }
@@ -149,7 +149,7 @@
 @media screen and (max-width: 810px) {
   * {
     --navbar-padding-x: 2rem;
-    --homepage-navbar-height: 6rem;
+    --homepage-navbar-height: 4rem;
     --btn-main-nav-spacing-y: 2rem;
     --btn-main-nav-spacing-x: 1rem;
     --btn-main-nav-font-size: 1rem;
@@ -159,7 +159,7 @@
 
 @media screen and (max-width: 700px) {
   * {
-    --homepage-navbar-height: 4.5rem;
+    --homepage-navbar-height: 3.5rem;
   }
   .navigation-list li:not(:last-child):not(:first-child) {
     display: none;
@@ -182,7 +182,7 @@
 
   .nav-container.nav-sticky {
     & .navigation-list {
-      --homepage-navbar-height: 4rem;
+      --homepage-navbar-height: 3rem;
     }
     &.navbar-mobile {
       box-shadow: unset;
