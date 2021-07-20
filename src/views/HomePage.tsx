@@ -3,12 +3,12 @@ import { Heading } from "@chakra-ui/react";
 import { DashboardNavigation } from "../shared/component/DashboardNavigation";
 import { DashboardFooter } from "../shared/component/DashboardFooter";
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <>
-    <Heading>MAXIMA 2021</Heading>
+      <Heading>MAXIMA 2021</Heading>
     </>
   );
 };
 
-export default Home;
+export default HomePage;
