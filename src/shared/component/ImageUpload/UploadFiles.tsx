@@ -16,16 +16,36 @@ const IconUpload = createIcon({
   d: "M38.7 12.08C37.34 5.18 31.28 0 24 0C18.22 0 13.2 3.28 10.7 8.08C4.68 8.72 0 13.82 0 20C0 26.62 5.38 32 12 32H38C43.52 32 48 27.52 48 22C48 16.72 43.9 12.44 38.7 12.08ZM28 18V26H20V18H14L24 8L34 18H28Z",
 });
 
-const UploadFiles = () => {
+const UploadFiles = (props: any) => {
   const [myFiles, setMyFiles] = useState<File[]>([]);
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setMyFiles([...myFiles, ...acceptedFiles]);
   }, []);
+
+  const onDragEnter = (event: any) => {
+    event.target.classList.remove("file-rejected");
+    event.target.classList.add("file-enters");
+  };
+
+  const onDragLeave = (event: any) => {
+    event.target.classList.remove("file-enters");
+  };
+
+  const onDropRejected = (fileRejections: any[], event: any) => {
+    event.target.classList.remove("file-enters");
+    event.target.classList.add("file-rejected");
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
     accept: "image/jpeg, image/png",
-    maxFiles: 1,
+    maxFiles: props.maxfiles || 1,
+    onDragEnter,
+    onDragLeave,
+    onDrop,
+    onDropRejected,
   });
+
   const removeFile = (file: any) => () => {
     const newFiles = [...myFiles];
     newFiles.splice(newFiles.indexOf(file), 1);
@@ -45,6 +65,7 @@ const UploadFiles = () => {
         boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
         size="sm"
         _hover={{ backgroundColor: "#C71034" }}
+        marginTop={"10px"}
       >
         Hapus
       </Button>
@@ -63,7 +84,7 @@ const UploadFiles = () => {
           </span>
         </p>
         <em style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
-          Kamu hanya dapat mengirim satu gambar saja
+          maksimal upload : {props.isiKeterangan || "1 file"}
         </em>
       </UploadContainer>
       {files}

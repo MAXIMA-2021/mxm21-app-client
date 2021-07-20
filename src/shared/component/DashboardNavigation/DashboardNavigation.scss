@@ -8,16 +8,29 @@
   --dropdown-items-svg: 1.1rem;
 }
 
+body {
+  overflow-x: hidden;
+}
+// div#root {
+//   overflow-x: hidden;
+// }
+
+.container-dashboard-main {
+  background-color: #f4f4f4;
+  overflow-y: unset !important;
+  // min-height: 100vh;
+}
+
 .navbar {
   position: sticky;
   top: 0px;
-  // width: calc(100vw - var(--sidebar-width));
   height: var(--navbar-height);
   background: var(--Mxm-cyan);
   z-index: 999;
 
   &.open {
-    margin-left: var(--sidebar-width);
+    margin-left: auto;
+    width: calc(100% - var(--sidebar-width));
     transition: 0.235s ease-in-out;
   }
   &.close {
@@ -99,9 +112,6 @@
   background: var(--Mxm-navy);
   transition: all 0.2s ease-in-out;
   z-index: 999;
-
-  // overflow-y: scroll;
-  // overflow-x: hidden;
 
   font-family: Poppins, Arial, sans-serif;
 
@@ -399,7 +409,7 @@
 @media screen and (max-width: 28.125em) {
   //450px
   .sidebar-header {
-    padding: 0 5vw; //change
+    padding: 0 5vw;
 
     & svg {
       display: block;
@@ -415,7 +425,7 @@
     overflow-y: scroll;
 
     & .sidebar-avatar {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
 
     &.close {
@@ -424,27 +434,27 @@
   }
 
   .sidebar-menu .sidebar-nav_header {
-    padding: 1.5vh 6vw; //change
+    padding: 1.5vh 6vw;
   }
 
   .sidebar-menu .main-navigation {
     & a {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
   }
 
   .sidebar-menu .dropdown {
     & .dropdown-header {
-      padding: 2vh 5vw; //change
+      padding: 2vh 5vw;
     }
 
     & .dropdown-items {
       & a {
-        padding: 1.4vh 6vw; //change
+        padding: 1.4vh 6vw;
         width: 100vw;
 
         & svg {
-          margin-right: 6vw; //change
+          margin-right: 6vw;
         }
       }
     }

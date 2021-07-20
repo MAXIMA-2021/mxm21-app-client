@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
-  Box,
   Center,
-  VStack,
-  HStack,
   Heading,
   Input,
   Button,
@@ -17,23 +14,27 @@ import {
   Spacer,
   Divider,
   Text,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
-  MxmInput,
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
   MxmContainers,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
+import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
-import "./Login.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
+import authService from "../../../services/auth";
+import Swal from "sweetalert2";
+import { DataLogin } from "../../../types/interfaces";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -66,64 +67,91 @@ const buttonVariants = {
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
-const Login: React.FC = () => {
+const LoginMhs: React.FC = () => {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
-  };
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    document.title = "Masuk - MAXIMA 2021";
+  }, []);
+
+  const onSubmit = async (data: DataLogin) => {
+    setLoading(true);
+    reset();
+    try {
+      const returnedData = await authService.loginMhs(data);
+      window.sessionStorage.setItem("token", returnedData.accessToken);
+      window.sessionStorage.setItem("name", returnedData.name);
+      // const decoded = jwtDecode(returnedData.accessToken);
+      console.log(returnedData);
+      window.location = "/";
+      alert("berhasil login");
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
+
+  // const onSubmit = (data: any) => {
+  //   window.confirm(JSON.stringify(data));
+  // };
 
   return (
     <MxmContainers>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
+            flexDir="column"
             height={{
               base: "100vh",
-              sm: "100vh",
               md: "80vh",
-              lg: "80vh",
-              xl: "80vh",
             }}
             alignItems="center"
             justifyContent="center"
           >
+            {location.state && (
+              <Alert
+                fontFamily="Rubik"
+                fontSize="0.9rem"
+                status={location.state.status}
+                width={{ base: "20rem", lg: "max-content" }}
+              >
+                <AlertIcon />
+                {location.state.message}
+              </Alert>
+            )}
             <Flex
               direction="column"
               background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
               className="filter"
-              py={{
-                base: "3vh",
-                sm: "3vh",
-                md: "3vh",
-                lg: "3vh",
-                xl: "3vh",
-              }}
+              py="3vh"
               px={{
                 base: "5vw",
-                sm: "5vw",
                 md: "2vw",
-                lg: "2vw",
-                xl: "2vw",
               }}
-              my={{
+              mb={{
                 base: "1vh",
-                sm: "1vh",
                 md: "10vh",
-                lg: "10vh",
-                xl: "10vh",
+              }}
+              mt={{
+                base: "2rem",
+                md: "1rem",
               }}
               mx={{
                 base: "1vw",
-                sm: "1vw",
                 md: "10vw",
-                lg: "10vw",
-                xl: "10vw",
               }}
               rounded={25}
               style={{
@@ -183,17 +211,17 @@ const Login: React.FC = () => {
                     my={6}
                   />
                 </Center>
-                <FormControl isInvalid={errors.nimMahasiswa} mb={3}>
+                <FormControl isInvalid={errors.nim} mb={3}>
                   <MxmInputGroup addon="left">
                     <InputLeftAddon
                       size="base"
                       children="000000"
-                      letterSpacing="0.05em"
+                      fontFamily="Poppins"
                     />
                     <Input
                       type="number"
                       placeholder="5 angka terakhir NIM"
-                      {...register("nimMahasiswa", {
+                      {...register("nim", {
                         required: "Isi NIM kamu",
                         minLength: {
                           value: 5,
@@ -207,10 +235,10 @@ const Login: React.FC = () => {
                     />
                   </MxmInputGroup>
                   <MxmFormErrorMessage>
-                    {errors.nimMahasiswa && (
+                    {errors.nim && (
                       <p>
                         <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                        {errors.nimMahasiswa.message}
+                        {errors.nim.message}
                       </p>
                     )}
                   </MxmFormErrorMessage>
@@ -226,7 +254,11 @@ const Login: React.FC = () => {
                       type={show ? "text" : "password"}
                     />
                     <InputRightElement>
-                      <Button size="base" onClick={handleClick}>
+                      <Button
+                        className="show-password"
+                        size="base"
+                        onClick={handleClick}
+                      >
                         {show ? <IconHidePassword /> : <IconShowPassword />}
                       </Button>
                     </InputRightElement>
@@ -244,14 +276,19 @@ const Login: React.FC = () => {
                   <MxmVerticalAlign variant="">
                     <Text color="white">
                       Belum punya akun?{" "}
-                      <Link to="/daftar" style={{ color: `${Palette.Cyan}` }}>
+                      <Link
+                        to="/auth/daftar"
+                        style={{ color: `${Palette.Cyan}` }}
+                      >
                         Daftar
                       </Link>
                     </Text>
-                    {/* <Spacer /> */}
                     <Text color="white">
                       Lupa kata sandimu?{" "}
-                      <Link to="/reset" style={{ color: `${Palette.Cyan}` }}>
+                      <Link
+                        to="/auth/reset"
+                        style={{ color: `${Palette.Cyan}` }}
+                      >
                         Klik di sini
                       </Link>
                     </Text>
@@ -273,4 +310,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginMhs;

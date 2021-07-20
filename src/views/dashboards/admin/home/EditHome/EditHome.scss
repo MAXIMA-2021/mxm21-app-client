@@ -13,3 +13,29 @@ input::placeholder {
 input::-moz-placeholder {
   color: #777777;
 }
+
+.chakra-tabs__tab {
+  color: rgba(128, 128, 128, 0.404);
+
+  padding: 0.2rem 1rem !important;
+  & {
+    outline: none !important;
+  }
+}
+
+.chakra-tabs__tab[aria-selected="true"] {
+  color: black !important;
+}
+
+.media-img {
+  transition: 0.1s ease;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1.6px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.delete-icon:hover {
+  background: rgba(128, 128, 128, 0.212);
+  border-radius: 4px;
+}

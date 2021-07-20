@@ -1,11 +1,41 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { bgAuth } from "../../assets";
 
 export const MxmContainers = styled("div")`
   background-image: url(${bgAuth});
   height: 100%;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media only screen and (max-width: 767px) {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+  }
+`;
+
+export const MxmContainersPanitia = styled("div")`
+  background-color: #1f2c4c;
+  height: 100%;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media only screen and (max-width: 767px) {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+  }
+`;
+
+export const MxmContainersOrganisator = styled("div")`
+  background-color: #41ceba;
+  height: 100%;
+  padding-top: 5vh;
+  padding-bottom: 20vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,6 +70,39 @@ const getColor = (props: any) => {
   return "#eeeeee";
 };
 
+const svgOnDragEnter = keyframes`
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-3px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+`;
+
+const rejectFileAnimation = keyframes`
+ 0%{
+   transform: translateX(1px);
+ }
+ 25%{
+   transform: translateX(-1px);
+ }
+ 50%{
+   transform: translateX(1px);
+ }
+ 75%{
+   transform: translateX(-1px);
+ }
+ 100%{
+   transform: translateX(0px);
+ }
+
+`;
+
 export const UploadContainer = styled.div`
   flex: 1;
   display: flex;
@@ -50,10 +113,26 @@ export const UploadContainer = styled.div`
   border-radius: 2px;
   border-color: ${(props) => getColor(props)};
   border-style: dashed;
-  background-color: #fafafa;
+  background-color: #fafafa57;
   color: #bdbdbd;
   outline: none;
   transition: border 0.24s ease-in-out;
   cursor: pointer;
   margin-bottom: 1vh;
+
+  &.file-enters {
+    border-style: solid;
+    background: rgba(0, 167, 218, 0.05);
+
+    & svg {
+      animation: ${svgOnDragEnter} 0.8s infinite;
+    }
+  }
+
+  &.file-rejected {
+    border-style: dashed;
+    background: rgba(255, 27, 27, 0.021);
+
+    animation: ${rejectFileAnimation} 0.2s;
+  }
 `;

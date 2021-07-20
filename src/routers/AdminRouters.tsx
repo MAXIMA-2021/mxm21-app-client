@@ -1,39 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "../views/auth";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as Dashboards from "../views/dashboards";
-import { Home } from "../views";
-import { DashboardNavigation } from "../shared/component/DashboardNavigation";
-import { DashboardFooter } from "../shared/component/DashboardFooter";
-import { AnimatePresence } from "framer-motion";
-import { Container } from "@chakra-ui/react";
-import { Flex, Spacer, Box } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/media-query";
+import { Box } from "@chakra-ui/react";
 
 export default function AdminRouters(show: boolean) {
-  const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
-
   return (
     <div>
       <Router>
         <Box
-          // marginBottom="3vh"
-          // height={{
-          //   base: "100vh",
-          //   sm: "100vh",
-          //   md: "100vh",
-          //   lg: "92vh",
-          //   xl: "92vh",
-          // }}
-          // width={
-          //   isSmallerThan450px
-          //     ? show
-          //       ? "100vw"
-          //       : "100vw"
-          //     : show
-          //     ? "79vw"
-          //     : "100vw"
-          // }
           alignItems="center"
           justifyContent="center"
           backgroundColor="#f4f4f4"

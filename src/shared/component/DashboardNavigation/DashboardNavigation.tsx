@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./DashboardNavigation.scss";
-import { Flex, Spacer, Heading, Text, Box } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import { AdminRouters } from "../../../routers";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -123,7 +121,7 @@ const DashboardNavigation: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#f4f4f4" }}>
+    <div className="container-dashboard-main">
       <header
         className={`navbar ${
           isSmallerThan450px ? "close" : sidebarShow ? "open" : "close"

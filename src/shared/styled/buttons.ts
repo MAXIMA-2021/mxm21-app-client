@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Palette } from "../../types/enums"
+import { Palette } from "../../types/enums";
 
 export const MxmButton = styled("button")<{
   variant: string;
@@ -11,9 +11,6 @@ export const MxmButton = styled("button")<{
                  format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
-  /* min-width: 105px;
-  height: 43px; */
-  
   padding: 0.8vh 1vw;
   margin: 1rem;
 
@@ -59,34 +56,17 @@ export const MxmButton = styled("button")<{
       : props.colorScheme === "yellow-red"
       ? ` 
       background: ${Palette.Yellow};
-    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
-    color: ${Palette.Red}B;
+    box-shadow: -3px 3px 0 0 ${Palette.Red};
+    color: ${Palette.Red};
 
     &:hover {
         background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-        box-shadow: -2px 2px 0 0 ${Palette.Red}B;
+        box-shadow: -2px 2px 0 0 ${Palette.Red};
         transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 ${Palette.Red}B;
-      transform: translate(0px, 0px);
-    }
-    `
-      : props.colorScheme === "navy-cyan"
-      ? `
-    background: ${Palette.Navy};
-    box-shadow: -3px 3px 0 0 ${Palette.Cyan};
-    color: #FFFFFF;
-
-    &:hover {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-      box-shadow: -2px 2px 0 0 ${Palette.Cyan};
-      transform: translate(2px, -2px);
-    }
-
-    &:active {
-      box-shadow: 0 0 0 0 ${Palette.Cyan};
+      box-shadow: 0 0 0 0 ${Palette.Red};
       transform: translate(0px, 0px);
     }
     `
@@ -127,17 +107,17 @@ export const MxmButton = styled("button")<{
       : props.colorScheme === "white-red"
       ? `
     background: #FFFFFF;
-    box-shadow: -3px 3px 0 0 ${Palette.Red}B;
-    color: ${Palette.Red}B;
+    box-shadow: -3px 3px 0 0 ${Palette.Red};
+    color: ${Palette.Red};
 
     &:hover {
       background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-      box-shadow: -2px 2px 0 0 ${Palette.Red}B;
+      box-shadow: -2px 2px 0 0 ${Palette.Red};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 ${Palette.Red}B;
+      box-shadow: 0 0 0 0 ${Palette.Red};
       transform: translate(0px, 0px);
     }
     `
@@ -155,6 +135,23 @@ export const MxmButton = styled("button")<{
 
     &:active {
       box-shadow: 0 0 0 0 ${Palette.Navy};
+      transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "cyan-white"
+      ? `
+    background: ${Palette.Cyan};
+    box-shadow: -3px 3px 0 0 #FFFFFF;
+    color: #FFFFFF;
+
+    &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 #FFFFFF;
+      transform: translate(2px, -2px);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0 #FFFFFF;
       transform: translate(0px, 0px);
     }
     `
@@ -199,13 +196,6 @@ export const MxmButton = styled("button")<{
 `;
 
 export const Container = styled.div`
-  /* height: 25vh;
-  width: 50vw;
-
-  margin: 25vh auto; */
-
-  /* background: #d1d1d1; */
-
   display: flex;
   place-items: center;
   justify-content: center;

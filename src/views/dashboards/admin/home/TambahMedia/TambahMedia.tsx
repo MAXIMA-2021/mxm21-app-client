@@ -7,8 +7,6 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
-import { TextField } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
@@ -18,9 +16,9 @@ import {
   MxmFormLabel,
   MxmFormErrorMessage,
   MxmSelect,
-  MxmInput,
 } from "../../../../../shared/styled/input";
 import { Palette } from "../../../../../types/enums";
+import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 
 const TambahMedia: React.FC = () => {
   const {
@@ -34,18 +32,14 @@ const TambahMedia: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "100vw",
-        md: "79vw",
+        base: "calc(100vw-18rem)",
+        md: "calc(100vw-18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
       justifyContent="center"
     >
       <Flex
-        width={{
-          base: "100%",
-          md: "70%",
-        }}
         mt={{
           base: "1rem",
           md: "0rem",
@@ -61,7 +55,7 @@ const TambahMedia: React.FC = () => {
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Flex>
+          <Flex alignItems="center">
             <Heading
               mb="1vh"
               letterSpacing="0.05em"
@@ -73,7 +67,6 @@ const TambahMedia: React.FC = () => {
             >
               Tambah Media
             </Heading>
-            <Spacer />
             <Image
               src={MxmLogo}
               alt="Logo MAXIMA 2021"
@@ -86,6 +79,10 @@ const TambahMedia: React.FC = () => {
               }}
               mt="0.4vh"
               mb="1vh"
+              marginLeft={{
+                base: "5vw",
+                md: "40vw",
+              }}
             />
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
@@ -115,27 +112,12 @@ const TambahMedia: React.FC = () => {
             </MxmFormErrorMessage>
           </FormControl>
           <FormControl mb={3} isInvalid={errors.linkMedia}>
-            <MxmFormLabel color="black">Link Media</MxmFormLabel>
-            <MxmInput
-              {...register("linkMedia", {
-                required: "Isi Link Media",
-                pattern: {
-                  value:
-                    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-                  message: "Link Media Tidak Valid",
-                },
-              })}
+            <MxmFormLabel color="black">File Media</MxmFormLabel>
+            <UploadFiles
+              maxfiles={5}
+              keterangan={true}
+              isiKeterangan={"5 file"}
             />
-            <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.linkMedia && (
-                <Flex flexDirection="row" alignItems="center">
-                  <p>
-                    <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.linkMedia.message}
-                  </p>
-                </Flex>
-              )}
-            </MxmFormErrorMessage>
           </FormControl>
           <Flex mt={10}>
             <Spacer />
