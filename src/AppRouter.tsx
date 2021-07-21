@@ -4,7 +4,8 @@ import * as Auth from "./views/auth";
 import * as Dashboards from "./views/dashboards";
 import * as Beranda from "./views/beranda";
 import * as Home from "./views/home";
-import { HomePage } from "./views";
+//import { HomePage } from "./views";
+
 import { AuthRouters, AdminRouters, HomeRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";

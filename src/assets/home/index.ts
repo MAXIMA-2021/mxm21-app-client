@@ -9,3 +9,8 @@ export { default as cat6 } from "./home-cat6.png";
 export { default as cat7 } from "./home-cat7.png";
 export { default as cat8 } from "./home-cat8.png";
 export { default as arrow } from "./home-arrow.png";
+export { default as homeCoverGate } from "./home-cvr-gate.png";
+export { default as homeChapter1logo } from "./home-chapter1.png"; //placeholder
+export { default as campusVisitLogo } from "./campus_visit_logo.jpg"; //placeholder
+export { default as umnDocumLogo } from "./umn_docum_logo.jpg"; //placeholder
+export { default as homeMaxiTalk } from "./home-maxi-talk.png"; //belum transparan
