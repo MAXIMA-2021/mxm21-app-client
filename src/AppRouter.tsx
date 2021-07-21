@@ -30,6 +30,12 @@ export default function AppRouter() {
                   exact
                   component={Home.HomeWelcome}
                 />
+                <Route path="/home/finish" exact component={Home.HomeFinish} />
+                <Route
+                  path="/home/detail"
+                  exact
+                  component={Home.HomeOrganisatorDetail}
+                />
                 <Route path="/auth/:path1?/:path2?">
                   <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
                     <HomeNavbar />
