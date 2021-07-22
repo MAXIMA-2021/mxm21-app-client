@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   HStack,
   PinInput,
@@ -17,8 +18,11 @@ import { XimaFull, First, Second, Third } from "../../../assets/home";
 import "./HomeTwibbon.scss";
 import { Palette } from "../../../types/enums";
 import { MxmButton } from "../../../shared/styled/buttons";
+import { useHistory } from "react-router-dom";
 
 const HomeTwibbon = () => {
+  const history = useHistory();
+
   return (
     <>
       <Flex flexDir="column" className="box-flex">
@@ -122,6 +126,23 @@ const HomeTwibbon = () => {
             <Image src={Third} className="chapter" />
           </Box>
         </Grid>
+
+        <Flex mt={10}>
+          <MxmButton
+            onClick={history.goBack}
+            variant="desktop"
+            colorScheme="navy-white"
+            margin="0"
+          >
+            Back
+          </MxmButton>
+          <Spacer />
+          <NavLink to="/home/finish">
+            <MxmButton variant="desktop" colorScheme="navy-white" margin="0">
+              Finish
+            </MxmButton>
+          </NavLink>
+        </Flex>
       </Flex>
     </>
   );

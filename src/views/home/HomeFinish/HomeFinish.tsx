@@ -1,8 +1,10 @@
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { Box, Flex, Heading, Image, Spacer } from "@chakra-ui/react";
 import { bendera } from "../../../assets/home";
 import { MxmLogoText } from "../../../assets";
 import { Palette } from "../../../types/enums";
+import { MxmButton } from "../../../shared/styled/buttons";
 
 const HomeFinish = () => {
   return (
@@ -24,7 +26,7 @@ const HomeFinish = () => {
       >
         <Image
           title="Bendera Website MAXIMA"
-          h={{ base: "200px", md: "300px" }}
+          h={{ base: "200px", md: "200px" }}
           transform={{ base: "translateX(10px)", md: "translateX(20px)" }}
           src={bendera}
           mb={{ base: "-1.5rem", md: "-2.5rem" }}
@@ -40,7 +42,7 @@ const HomeFinish = () => {
         >
           <Heading
             fontSize={{ base: "1.8rem", md: "2rem" }}
-            padding={{ base: "0.75rem 1rem", md: "1.5rem 3rem" }}
+            padding={{ base: "0.75rem 1rem", md: "1rem 2rem" }}
             style={{
               fontFamily: "Poppins",
               fontWeight: 900,
@@ -67,6 +69,27 @@ const HomeFinish = () => {
             src={MxmLogoText}
           />
         </Box>
+        <Flex>
+          <NavLink to="/home/category">
+            <MxmButton
+              variant="desktop"
+              colorScheme="navy-white"
+              margin="1rem 1rem 1rem 0"
+            >
+              Back to Chapter Lists
+            </MxmButton>
+          </NavLink>
+          <Spacer />
+          <NavLink to="/">
+            <MxmButton
+              variant="desktop"
+              colorScheme="navy-white"
+              margin="1rem 0 1rem 1rem"
+            >
+              Finish HoME
+            </MxmButton>
+          </NavLink>
+        </Flex>
       </Flex>
     </Flex>
   );
