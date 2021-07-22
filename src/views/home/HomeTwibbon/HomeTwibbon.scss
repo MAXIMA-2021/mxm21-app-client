@@ -1,0 +1,106 @@
+.twibbon-head {
+  padding: 0 2.5rem;
+  background-color: #eb2378;
+  text-align: center;
+  border-radius: 1.5rem;
+  border: #eb2378 solid 0.4rem;
+  letter-spacing: 0.5rem;
+  font-family: "Poppins";
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #ffd008;
+  margin-bottom: -1rem;
+  z-index: 2;
+}
+
+.twibbon-body {
+  background-color: #74c8b9;
+  padding: 1rem 1rem 1rem 1rem;
+  color: #164273;
+  text-align: left;
+  border-radius: 2rem;
+  border: #eb2378 solid 0.5rem;
+  font-family: "Poppins";
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.box-flex {
+  margin: 1.5rem 5rem;
+}
+
+.xima-full {
+  width: auto;
+  height: 100%;
+}
+
+.chapter {
+  width: 170px;
+  &:hover {
+    animation: popup 2s infinite ease-in-out;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .twibbon-head {
+    padding: 0 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .twibbon-body {
+    font-size: 0.6rem;
+  }
+
+  .box-flex {
+    margin: 1rem 2rem;
+  }
+
+  .chapter {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .twibbon-head {
+    padding: 0 1rem;
+    font-size: 1.2rem;
+  }
+
+  .twibbon-body {
+    font-size: 0.8rem;
+  }
+
+  .box-flex {
+    margin: 0 1rem;
+  }
+
+  .xima-full {
+    width: 40%;
+    height: auto;
+  }
+
+  .chapter {
+    width: 130px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .twibbon-head {
+    border-radius: 1.5rem;
+    padding: 0.25rem 1.5rem;
+    font-size: 1rem;
+    margin-bottom: -3rem;
+    border: #eb2378 solid 0.2rem;
+  }
+
+  .twibbon-body {
+    font-size: 0.7rem;
+    padding: 3rem 1rem 1rem 1rem;
+    border: #eb2378 solid 0.5rem;
+  }
+
+  .chapter {
+    width: 95px;
+  }
+}
