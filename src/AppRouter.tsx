@@ -53,7 +53,7 @@ export default function AppRouter() {
                     </div>
                   </Switch>
                 </Route>
-                <Route path="/home/:path1?" exact>
+                <Route path="/home/:path1?/:path2?" exact>
                   <Switch>
                     <HomeRouters />
                   </Switch>

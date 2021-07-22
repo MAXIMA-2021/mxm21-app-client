@@ -1,5 +1,7 @@
 import { Flex, Image } from "@chakra-ui/react";
 import React from "react";
+import { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   cat1,
   cat2,
@@ -14,6 +16,13 @@ import {
 import "./HomeCategory.scss";
 
 const HomeCategory = () => {
+  const location = useLocation();
+  const history = useHistory();
+
+  const handleChapterClick = (chapter: string) => {
+    history.push(`/home/home-organisator-list/${chapter}`);
+  };
+
   return (
     <div>
       <Flex
@@ -37,10 +46,18 @@ const HomeCategory = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Image className="chapter" src={cat1} />
-          <Image className="chapter" src={cat2} />
-          <Image className="chapter" src={cat3} />
-          <Image className="chapter" src={cat4} />
+          <button onClick={() => handleChapterClick("c01")}>
+            <Image className="chapter" src={cat1} />
+          </button>
+          <button onClick={() => handleChapterClick("c02")}>
+            <Image className="chapter" src={cat2} />
+          </button>
+          <button onClick={() => handleChapterClick("c03")}>
+            <Image className="chapter" src={cat3} />
+          </button>
+          <button onClick={() => handleChapterClick("c04")}>
+            <Image className="chapter" src={cat4} />
+          </button>
         </Flex>
         <Flex
           flexDir={{ base: "column", md: "row" }}
@@ -60,10 +77,18 @@ const HomeCategory = () => {
             md: "2.5rem",
           }}
         >
-          <Image className="chapter" src={cat5} />
-          <Image className="chapter" src={cat6} />
-          <Image className="chapter" src={cat7} />
-          <Image className="chapter" src={cat8} />
+          <button onClick={() => handleChapterClick("c05")}>
+            <Image className="chapter" src={cat5} />
+          </button>
+          <button onClick={() => handleChapterClick("c06")}>
+            <Image className="chapter" src={cat6} />
+          </button>
+          <button onClick={() => handleChapterClick("c07")}>
+            <Image className="chapter" src={cat7} />
+          </button>
+          <button onClick={() => handleChapterClick("c08")}>
+            <Image className="chapter" src={cat8} />
+          </button>
         </Flex>
       </Flex>
       <footer>

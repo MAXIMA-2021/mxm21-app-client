@@ -292,23 +292,8 @@ const DashboardNavigation: React.FC = () => {
         </Flex>
       </aside>
       <Flex
-        // backgroundColor="red"
         alignItems="center"
         justifyContent="center"
-        // marginTop={{
-        //   base: "30vh",
-        //   sm: "20vh",
-        //   md: "20vh",
-        //   lg: "-3vh",
-        //   xl: "-3vh",
-        // }}
-        // marginBottom={{
-        //   base: "30vh",
-        //   sm: "20vh",
-        //   md: "20vh",
-        //   lg: "0vh",
-        //   xl: "0vh",
-        // }}
         paddingRight={0}
         paddingLeft={
           isLargerThan3000px

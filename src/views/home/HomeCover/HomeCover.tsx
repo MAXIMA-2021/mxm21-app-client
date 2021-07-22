@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomeCover.scss";
 import { Flex, Image } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import { Home } from "../../../assets";
 import { MxmLogoText } from "../../../assets";
 
+import { MxmButton } from "../../../shared/styled/buttons";
+import { Link, useHistory } from "react-router-dom";
+
 const HomeCover = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/home/home-welcome", {
+      status: true,
+      message: "go to next page: home-welcome",
+    });
+  };
+
+  useEffect(() => {
+    document.title = "Home Cover Page";
+  }, []);
+
   return (
     <Flex
       backgroundColor={Palette.Navy}
@@ -30,11 +46,13 @@ const HomeCover = () => {
             </h1>
           </div>
           <div className="home-cvr-btn">
-            <button
-              style={{ color: Palette.Yellow, backgroundColor: Palette.Red }}
+            <MxmButton
+              variant="desktop"
+              colorScheme="cyan-navy"
+              onClick={handleClick}
             >
               HoME 2021
-            </button>
+            </MxmButton>
           </div>
         </Flex>
       </Flex>

@@ -1,10 +1,26 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomeWelcome.scss";
 import { Palette } from "../../../types/enums";
 import { Maxi, Xima } from "../../../assets/home";
+import { MxmButton } from "../../../shared/styled/buttons";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const HomeWelcome = () => {
+  const location = useLocation();
+  const history = useHistory();
+  useEffect(() => {
+    document.title = "Home Welcome Page";
+
+    try {
+      if (!location.state) {
+        history.push("/home/home-cover");
+      }
+    } catch {
+      history.push("/home/home-cover");
+    }
+  }, []);
+
   return (
     <Flex
       w="100vw"
@@ -56,6 +72,9 @@ const HomeWelcome = () => {
             <b> persyaratan kelulusan HoME 2021</b>.
           </p>
         </Box>
+        <MxmButton variant="desktop" colorScheme="yellow-red">
+          NEXT
+        </MxmButton>
       </Flex>
     </Flex>
   );
