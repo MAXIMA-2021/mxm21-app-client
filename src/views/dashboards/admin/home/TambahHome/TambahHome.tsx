@@ -22,7 +22,6 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahHome: React.FC = () => {
   const {
@@ -333,7 +332,6 @@ const TambahHome: React.FC = () => {
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

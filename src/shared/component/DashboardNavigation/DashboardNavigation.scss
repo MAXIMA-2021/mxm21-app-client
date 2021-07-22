@@ -11,14 +11,10 @@
 body {
   overflow-x: hidden;
 }
-// div#root {
-//   overflow-x: hidden;
-// }
 
 .container-dashboard-main {
   background-color: #f4f4f4;
   overflow-y: unset !important;
-  // min-height: 100vh;
 }
 
 .navbar {
@@ -76,7 +72,6 @@ body {
         padding: 0 1rem;
 
         width: max-content;
-        // height: 1.875em;
         background-color: #ffffff;
 
         border-radius: 999px;

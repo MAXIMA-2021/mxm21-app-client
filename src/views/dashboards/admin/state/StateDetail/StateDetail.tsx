@@ -16,7 +16,6 @@ import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
@@ -224,7 +223,6 @@ const StateDetail: React.FC = () => {
             </Center>
           </form>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </>
   );

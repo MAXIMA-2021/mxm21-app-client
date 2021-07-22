@@ -10,7 +10,6 @@ import {
 import React from "react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 import {
   MxmDivider,
   MxmFormLabel,
@@ -135,7 +134,6 @@ const TambahMedia: React.FC = () => {
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

@@ -63,7 +63,9 @@ const HomeOrganisatorList = () => {
               </p>
             </div>
             <div className="home-orglist-arrow_icon">
-              <PlayArrowIcon />
+              <button>
+                <PlayArrowIcon />
+              </button>
             </div>
           </Grid>
           <Grid className="home-orglist-content-grid">
@@ -82,7 +84,53 @@ const HomeOrganisatorList = () => {
               </p>
             </div>
             <div className="home-orglist-arrow_icon">
-              <PlayArrowIcon />
+              <button>
+                <PlayArrowIcon />
+              </button>
+            </div>
+          </Grid>
+
+          <Grid className="home-orglist-content-grid">
+            <div className="content-org-logo">
+              <Image src={Home.umnDocumLogo} alt="logo organisator" />
+            </div>
+            <div
+              className="content-org-desc"
+              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
+            >
+              <h3>UMN Documentation</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
+                aspernatur officia, cupiditate saepe at soluta.
+              </p>
+            </div>
+            <div className="home-orglist-arrow_icon">
+              <button>
+                <PlayArrowIcon />
+              </button>
+            </div>
+          </Grid>
+
+          <Grid className="home-orglist-content-grid">
+            <div className="content-org-logo">
+              <Image src={Home.umnDocumLogo} alt="logo organisator" />
+            </div>
+            <div
+              className="content-org-desc"
+              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
+            >
+              <h3>UMN Documentation</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
+                aspernatur officia, cupiditate saepe at soluta.
+              </p>
+            </div>
+            <div className="home-orglist-arrow_icon">
+              <button>
+                <PlayArrowIcon />
+              </button>
             </div>
           </Grid>
         </Flex>

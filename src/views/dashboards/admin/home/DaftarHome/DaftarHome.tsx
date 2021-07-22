@@ -16,7 +16,6 @@ import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const DaftarHome: React.FC = () => {
   const responsiveData = {
@@ -221,7 +220,6 @@ const DaftarHome: React.FC = () => {
             </Center>
           </form>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </>
   );

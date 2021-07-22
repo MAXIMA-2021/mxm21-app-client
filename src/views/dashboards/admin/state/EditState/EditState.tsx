@@ -24,7 +24,6 @@ import {
   MxmNumberInputField,
   MxmSelect,
 } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const EditState: React.FC = () => {
   const {
@@ -257,7 +256,6 @@ const EditState: React.FC = () => {
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

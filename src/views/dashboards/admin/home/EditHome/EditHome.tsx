@@ -24,7 +24,6 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -578,7 +577,6 @@ const EditHome: React.FC = () => {
             </TabPanel>
           </TabPanels>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </Tabs>
   );
