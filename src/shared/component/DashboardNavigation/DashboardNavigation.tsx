@@ -17,7 +17,6 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
-import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
@@ -57,10 +56,8 @@ const DashboardNavigation: React.FC = () => {
         event.target.parentNode
           .querySelector(".dropdown-header")
           .classList.add("sidebar-nav_active");
-        // console.log(event.target);
       }
     } catch {
-      // DELETE THIS
       console.log(`target null`);
     }
   };
@@ -88,7 +85,6 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
-          // console.log(event.target);
         }
       } else if (event.target.localName === "path") {
         if (
@@ -111,11 +107,9 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
-          // console.log(event.target);
         }
       }
     } catch {
-      // DELETE THIS
       console.log(`target null`);
     }
   };
@@ -188,60 +182,6 @@ const DashboardNavigation: React.FC = () => {
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
               </NavLink>
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
-                <Flex className="dropdown-header">
-                  <FlightIcon onClick={sidebarDropdownActiveSvg} />
-                  STATE
-                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
-                </Flex>
-                <ul className="dropdown-items">
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-state"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah STATE
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-state"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar STATE
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-organisator"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar Akun Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah PIC Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar PIC Organisator
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
 
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
@@ -279,14 +219,121 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                 </ul>
               </li>
+
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                <Flex className="dropdown-header">
+                  <FlightIcon onClick={sidebarDropdownActiveSvg} />
+                  STATE
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
+                </Flex>
+                <ul className="dropdown-items">
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-state"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah STATE
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-state"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar STATE
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-pic"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah PIC Organisator
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-pic"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar PIC Organisator
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+
               <NavLink to="/shortener" activeClassName="sidebar-nav_active">
                 <LinkIcon />
                 Shortener
               </NavLink>
-              <NavLink to="/tambahAkun" activeClassName="sidebar-nav_active">
-                <PersonAddIcon />
-                Tambah Akun
-              </NavLink>
+
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                <Flex className="dropdown-header">
+                  <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
+                  Tambah Akun
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
+                </Flex>
+                <ul className="dropdown-items">
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-mahasiswa"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Mahasiswa
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-mahasiswa"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Mahasiswa
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-panitia"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Panitia
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-panitia"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Panitia
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-organisator"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Organisator
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-organisator"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Organisator
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </Flex>
         </Flex>

@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomeZeppelin.scss";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { Flex, Grid } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
+import { useHistory } from "react-router-dom";
 
 const HomeZeppelin = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/home/home-finish", {
+      status: true,
+      message: "go to next page: home-finish",
+    });
+  };
+
+  useEffect(() => {
+    document.title = "Home Zeppelin Page";
+  }, []);
+
   return (
     <Flex className="home-zep-outer-container">
       <Flex className="home-zep-inner-container">
@@ -47,6 +61,7 @@ const HomeZeppelin = () => {
           variant="desktop"
           colorScheme="cyan-navy"
           className="home-zep-next-btn"
+          onClick={handleClick}
         >
           <span>NEXT</span>
         </MxmButton>
