@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "./views/auth";
-import * as Dashboards from "./views/dashboards";
 import * as Beranda from "./views/beranda";
 import * as Home from "./views/home";
 //import { HomePage } from "./views";
@@ -20,22 +18,6 @@ export default function AppRouter() {
           render={({ location }) => (
             <AnimatePresence exitBeforeEnter initial={false}>
               <Switch location={location} key={location.pathname}>
-                <Route
-                  path="/home/category"
-                  exact
-                  component={Home.HomeCategory}
-                />
-                <Route
-                  path="/home/welcome"
-                  exact
-                  component={Home.HomeWelcome}
-                />
-                <Route path="/home/finish" exact component={Home.HomeFinish} />
-                <Route
-                  path="/home/detail"
-                  exact
-                  component={Home.HomeOrganisatorDetail}
-                />
                 <Route path="/auth/:path1?/:path2?">
                   <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
                     <HomeNavbar />

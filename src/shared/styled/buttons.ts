@@ -4,6 +4,7 @@ import { Palette } from "../../types/enums";
 export const MxmButton = styled("button")<{
   variant: string;
   colorScheme: string;
+  margin?: string;
 }>`
   /* 
     variant: either desktop (rounded) or mobile (more squared)
@@ -12,7 +13,7 @@ export const MxmButton = styled("button")<{
     */
 
   padding: 0.8vh 1vw;
-  margin: 1rem;
+  margin: ${(props) => props.margin || "1rem"};
 
   border-radius: ${(props) => (props.variant === "mobile" ? "10px" : "20px")};
 
