@@ -1,5 +1,6 @@
 import React from "react";
 import "./HomeZeppelin.scss";
+import { MxmButton } from "../../../shared/styled/buttons";
 import { Flex, Grid } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 
@@ -41,6 +42,14 @@ const HomeZeppelin = () => {
             </button>
           </div>
         </Grid>
+
+        <MxmButton
+          variant="desktop"
+          colorScheme="cyan-navy"
+          className="home-zep-next-btn"
+        >
+          <span>NEXT</span>
+        </MxmButton>
       </Flex>
     </Flex>
   );

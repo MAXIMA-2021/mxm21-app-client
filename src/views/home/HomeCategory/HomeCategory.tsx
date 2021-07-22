@@ -14,13 +14,15 @@ import {
   arrow,
 } from "../../../assets/home";
 import "./HomeCategory.scss";
+import { HomeChapter } from "../../../types/enums";
 
 const HomeCategory = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const handleChapterClick = (chapter: string) => {
-    history.push(`/home/home-organisator-list/${chapter}`);
+  const handleChapterClick = (homeChapter: string) => {
+    history.push(`/home/home-organisator-list/${homeChapter}`);
+    //NOT FINISHED
   };
 
   return (
@@ -46,16 +48,20 @@ const HomeCategory = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <button onClick={() => handleChapterClick("c01")}>
+          <button
+            onClick={() => handleChapterClick(HomeChapter.LostTreasureIsland)}
+          >
             <Image className="chapter" src={cat1} />
           </button>
-          <button onClick={() => handleChapterClick("c02")}>
+          <button onClick={() => handleChapterClick(HomeChapter.FantasyBridge)}>
             <Image className="chapter" src={cat2} />
           </button>
-          <button onClick={() => handleChapterClick("c03")}>
+          <button
+            onClick={() => handleChapterClick(HomeChapter.MedalistPlayground)}
+          >
             <Image className="chapter" src={cat3} />
           </button>
-          <button onClick={() => handleChapterClick("c04")}>
+          <button onClick={() => handleChapterClick(HomeChapter.RainbowMines)}>
             <Image className="chapter" src={cat4} />
           </button>
         </Flex>
@@ -77,16 +83,18 @@ const HomeCategory = () => {
             md: "2.5rem",
           }}
         >
-          <button onClick={() => handleChapterClick("c05")}>
+          <button onClick={() => handleChapterClick(HomeChapter.TomorrowVille)}>
             <Image className="chapter" src={cat5} />
           </button>
-          <button onClick={() => handleChapterClick("c06")}>
+          <button onClick={() => handleChapterClick(HomeChapter.AdventureLand)}>
             <Image className="chapter" src={cat6} />
           </button>
-          <button onClick={() => handleChapterClick("c07")}>
+          <button onClick={() => handleChapterClick(HomeChapter.TownArea)}>
             <Image className="chapter" src={cat7} />
           </button>
-          <button onClick={() => handleChapterClick("c08")}>
+          <button
+            onClick={() => handleChapterClick(HomeChapter.WonderousCampground)}
+          >
             <Image className="chapter" src={cat8} />
           </button>
         </Flex>

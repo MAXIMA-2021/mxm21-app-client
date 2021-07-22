@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomeOrganisatorList.scss";
 import { Palette } from "../../../types/enums";
 import { Flex, Image, Grid } from "@chakra-ui/react";
 import { Home } from "../../../assets";
 import { MxmDivider } from "../../../shared/styled/input";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import { MxmButton } from "../../../shared/styled/buttons";
 
 const HomeOrganisatorList = () => {
+  const { homeChapter } = useParams();
+
+  useEffect(() => {
+    document.title = `Organisator list ${homeChapter}`;
+  }, []);
+
   return (
     <Flex
       backgroundColor={Palette.Red}
@@ -134,6 +142,13 @@ const HomeOrganisatorList = () => {
             </div>
           </Grid>
         </Flex>
+        <MxmButton
+          variant="desktop"
+          colorScheme="cyan-navy"
+          className="home-orglist-back-btn"
+        >
+          BACK
+        </MxmButton>
       </Flex>
     </Flex>
   );

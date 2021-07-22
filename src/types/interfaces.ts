@@ -31,3 +31,5 @@ export interface DataRegisterOrganisator {
   password: string;
   stateID: string;
 }
+
+// export interface

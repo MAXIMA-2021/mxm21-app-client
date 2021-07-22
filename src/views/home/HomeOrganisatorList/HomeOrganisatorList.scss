@@ -156,6 +156,13 @@
   }
 }
 
+.home-orglist-back-btn {
+  //NOT FINISHED
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+}
+
 @media screen and(max-width: 1690px) {
   .home-orglist-content_container {
     width: 65%;
@@ -212,7 +219,7 @@
   }
   .home-orglist-chap-desc {
     & > .chap-desc-text {
-      width: 40ch;
+      width: 50ch;
     }
   }
 
@@ -254,5 +261,12 @@
 
       row-gap: 1rem;
     }
+  }
+
+  .home-orglist-back-btn {
+    //NOT FINISHED
+    position: fixed;
+    bottom: 1px;
+    left: 25px;
   }
 }

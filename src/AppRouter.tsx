@@ -54,9 +54,13 @@ export default function AppRouter() {
                   </Switch>
                 </Route>
                 <Route path="/home/:path1?/:path2?" exact>
+                  {/* <div style={{ minHeight: "100vh", paddingBottom: "22rem" }}> */}
+                  <HomeNavbar />
                   <Switch>
                     <HomeRouters />
                   </Switch>
+                  {/* <HomeFooter /> */}
+                  {/* </div> */}
                 </Route>
                 <Route>
                   <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
