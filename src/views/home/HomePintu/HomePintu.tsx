@@ -23,7 +23,7 @@ import {
   LeftGateMobile,
   RightGateMobile,
   StartMapMobile,
-} from "../../../assets/home-pintu";
+} from "../../../assets/home";
 import "./HomePintu.scss";
 
 const HomePintu = () => {
@@ -48,7 +48,7 @@ const HomePintu = () => {
       <Center>
         <Box boxSize="xs" my={20}>
           <Flex>
-            <NavLink to="/home/home-category">
+            <NavLink to="/home/category">
               <Image
                 srcSet={StartMapDesktop}
                 alt="start-map-mxm"

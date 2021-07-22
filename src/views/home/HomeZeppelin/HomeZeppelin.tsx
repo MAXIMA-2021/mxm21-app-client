@@ -9,9 +9,9 @@ const HomeZeppelin = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push("/home/home-finish", {
+    history.push("/home/finish", {
       status: true,
-      message: "go to next page: home-finish",
+      message: "go to next page: finish",
     });
   };
 

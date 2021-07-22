@@ -14,10 +14,10 @@ const HomeWelcome = () => {
 
     try {
       if (!location.state) {
-        history.push("/home/home-cover");
+        history.push("/home/cover");
       }
     } catch {
-      history.push("/home/home-cover");
+      history.push("/home/cover");
     }
   }, []);
 

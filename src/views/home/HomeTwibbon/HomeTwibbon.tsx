@@ -13,7 +13,7 @@ import {
   Spacer,
   Image,
 } from "@chakra-ui/react";
-import { Xima, First, Second, Third } from "../../../assets/home-twibbon";
+import { XimaFull, First, Second, Third } from "../../../assets/home";
 import "./HomeTwibbon.scss";
 import { Palette } from "../../../types/enums";
 import { MxmButton } from "../../../shared/styled/buttons";
@@ -29,7 +29,7 @@ const HomeTwibbon = () => {
             my={{ base: "2rem", md: 0 }}
           >
             <Image
-              src={Xima}
+              src={XimaFull}
               className="xima-full"
               w={{
                 base: "50%",

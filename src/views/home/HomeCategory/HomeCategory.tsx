@@ -21,7 +21,7 @@ const HomeCategory = () => {
   const history = useHistory();
 
   const handleChapterClick = (homeChapter: string) => {
-    history.push(`/home/home-organisator-list/${homeChapter}`);
+    history.push(`/home/organisator-list/${homeChapter}`);
     //NOT FINISHED
   };
 

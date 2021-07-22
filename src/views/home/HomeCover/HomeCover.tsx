@@ -12,9 +12,9 @@ const HomeCover = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push("/home/home-welcome", {
+    history.push("/home/welcome", {
       status: true,
-      message: "go to next page: home-welcome",
+      message: "go to next page: welcome",
     });
   };
 

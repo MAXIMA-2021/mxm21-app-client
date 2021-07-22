@@ -15,3 +15,15 @@ export { default as campusVisitLogo } from "./campus_visit_logo.jpg"; //placehol
 export { default as umnDocumLogo } from "./umn_docum_logo.jpg"; //placeholder
 export { default as homeMaxiTalk } from "./home-maxi-talk.png"; //belum transparan
 export { default as bendera } from "./home-bendera.png";
+export { default as MiddleGateDesktop } from "./gate-tengah-desktop.png";
+export { default as LeftGateDesktop } from "./gate-kiri-desktop.png";
+export { default as RightGateDesktop } from "./gate-kanan-desktop.png";
+export { default as StartMapDesktop } from "./peta-masuk-desktop.png";
+export { default as MiddleGateMobile } from "./gate-tengah-mobile.png";
+export { default as LeftGateMobile } from "./gate-kiri-mobile.png";
+export { default as RightGateMobile } from "./gate-kanan-mobile.png";
+export { default as StartMapMobile } from "./peta-masuk-mobile.png";
+export { default as XimaFull } from "./xima.png";
+export { default as First } from "./img1.png";
+export { default as Second } from "./img2.png";
+export { default as Third } from "./img3.png";
