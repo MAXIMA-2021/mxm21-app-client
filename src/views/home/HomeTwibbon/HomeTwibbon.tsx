@@ -14,7 +14,17 @@ import {
   Spacer,
   Image,
 } from "@chakra-ui/react";
-import { XimaFull, First, Second, Third } from "../../../assets/home";
+import {
+  XimaFull,
+  cat1,
+  cat2,
+  cat3,
+  cat4,
+  cat5,
+  cat6,
+  cat7,
+  cat8,
+} from "../../../assets/home";
 import "./HomeTwibbon.scss";
 import { Palette } from "../../../types/enums";
 import { MxmButton } from "../../../shared/styled/buttons";
@@ -22,6 +32,64 @@ import { useHistory } from "react-router-dom";
 
 const HomeTwibbon = () => {
   const history = useHistory();
+  var images = [];
+  var index = 0;
+  images[0] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat1} className="chapter" />
+    </Box>
+  );
+  images[1] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat1} className="chapter" />
+    </Box>
+  );
+  images[2] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat2} className="chapter" />
+    </Box>
+  );
+  images[3] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat3} className="chapter" />
+    </Box>
+  );
+  images[4] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat4} className="chapter" />
+    </Box>
+  );
+  images[5] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat5} className="chapter" />
+    </Box>
+  );
+  images[6] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat6} className="chapter" />
+    </Box>
+  );
+  images[7] = (
+    <Box justifyContent="center" width="100%" display="flex">
+      <Image src={cat7} className="chapter" />
+    </Box>
+  );
+
+  var temp1 = null,
+    temp2 = null;
+  const chapter: JSX.Element[] = [];
+  for (let i = 1; i <= 3; i++) {
+    do {
+      index = Math.floor(Math.random() * (7 - 0 + 1)) + 0;
+    } while (index === temp1 || index === temp2);
+
+    chapter.push(images[index]);
+    if (temp1 === null) {
+      temp1 = index;
+    } else {
+      temp2 = index;
+    }
+  }
 
   return (
     <>
@@ -116,15 +184,7 @@ const HomeTwibbon = () => {
           style={{ border: `2px solid ${Palette.Cyan}` }}
         />
         <Grid templateColumns="repeat(3, 1fr)" gap={2}>
-          <Box justifyContent="center" width="100%" display="flex">
-            <Image src={First} className="chapter" />
-          </Box>
-          <Box justifyContent="center" width="100%" display="flex">
-            <Image src={Second} className="chapter" />
-          </Box>
-          <Box justifyContent="center" width="100%" display="flex">
-            <Image src={Third} className="chapter" />
-          </Box>
+          {chapter}
         </Grid>
 
         <Flex mt={10}>

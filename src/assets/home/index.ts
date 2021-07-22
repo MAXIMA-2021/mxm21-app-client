@@ -10,7 +10,6 @@ export { default as cat7 } from "./home-cat7.png";
 export { default as cat8 } from "./home-cat8.png";
 export { default as arrow } from "./home-arrow.png";
 export { default as homeCoverGate } from "./home-cvr-gate.png";
-export { default as homeChapter1logo } from "./home-chapter1.png"; //placeholder
 export { default as campusVisitLogo } from "./campus_visit_logo.jpg"; //placeholder
 export { default as umnDocumLogo } from "./umn_docum_logo.jpg"; //placeholder
 export { default as homeMaxiTalk } from "./home-maxi-talk.png"; //belum transparan
@@ -24,6 +23,3 @@ export { default as LeftGateMobile } from "./gate-kiri-mobile.png";
 export { default as RightGateMobile } from "./gate-kanan-mobile.png";
 export { default as StartMapMobile } from "./peta-masuk-mobile.png";
 export { default as XimaFull } from "./xima.png";
-export { default as First } from "./img1.png";
-export { default as Second } from "./img2.png";
-export { default as Third } from "./img3.png";

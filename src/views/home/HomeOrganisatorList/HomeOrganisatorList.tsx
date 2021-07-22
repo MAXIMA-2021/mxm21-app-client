@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./HomeOrganisatorList.scss";
 import { Palette } from "../../../types/enums";
 import { Flex, Image, Grid } from "@chakra-ui/react";
-import { Home } from "../../../assets";
+import { cat1 } from "../../../assets/home";
 import { MxmDivider } from "../../../shared/styled/input";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { useHistory, useLocation, useParams } from "react-router-dom";
@@ -26,7 +26,7 @@ const HomeOrganisatorList = () => {
       <Flex className="home-orglist-inner_container">
         <Grid className="home-orglist-grid-header">
           <div className="home-orglist-chap-logo">
-            <Image src={Home.homeChapter1logo} alt="chapter logo" />
+            <Image src={cat1} alt="chapter logo" />
           </div>
           <div
             className="home-orglist-chap-desc"
