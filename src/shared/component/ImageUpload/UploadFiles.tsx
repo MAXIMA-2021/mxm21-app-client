@@ -4,6 +4,7 @@ import React, { useState, useCallback } from "react";
 import { FileError, useDropzone } from "react-dropzone";
 import { UploadContainer } from "../../styled/containers";
 import { Palette } from "../../../types/enums";
+import { useForm } from "react-hook-form";
 
 // interface UploadableFile {
 //   file: File;
@@ -18,6 +19,12 @@ const IconUpload = createIcon({
 
 const UploadFiles = (props: any) => {
   const [myFiles, setMyFiles] = useState<File[]>([]);
+  const { register } = useForm();
+  // const [inputFile, setInputFile] = useState("");
+
+  // const handleChange = (event: any) => {
+  //   console.log(event.target.value);
+  // };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setMyFiles([...myFiles, ...acceptedFiles]);
@@ -37,6 +44,11 @@ const UploadFiles = (props: any) => {
     event.target.classList.add("file-rejected");
   };
 
+  const onDropAccepted = (files: any[], event: any) => {
+    event.target.classList.remove("file-enters");
+    console.log(event);
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg, image/png",
     maxFiles: props.maxfiles || 1,
@@ -44,6 +56,7 @@ const UploadFiles = (props: any) => {
     onDragLeave,
     onDrop,
     onDropRejected,
+    onDropAccepted,
   });
 
   const removeFile = (file: any) => () => {
@@ -75,7 +88,12 @@ const UploadFiles = (props: any) => {
   return (
     <div>
       <UploadContainer {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
+        <input
+          {...getInputProps()}
+          // {...register("linkLogo", {
+          //   required: "Isi logo",
+          // })}
+        />
         <IconUpload boxSize="3.5em" />
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
           Drag and Drop atau{" "}

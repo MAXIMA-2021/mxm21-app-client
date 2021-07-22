@@ -15,7 +15,7 @@ const HomeRouters = () => {
         component={Home.HomeOrganisatorDetail}
       />
       <Route
-        path="/home/organisator-list"
+        path="/home/organisator-list/:homeChapter"
         exact
         component={Home.HomeOrganisatorList}
       />

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -22,6 +22,10 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
+import { DataHome } from "../../../../../types/interfaces";
+import homeService from "../../../../../services/home";
+import Swal from "sweetalert2";
+import { HomeChapter } from "../../../../../types/enums";
 
 const TambahHome: React.FC = () => {
   const {
@@ -29,9 +33,47 @@ const TambahHome: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
+
+  const history = useHistory();
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data: DataHome) => {
+    setLoading(true);
+
+    const dataHome: DataHome = {
+      homeID: data.homeID,
+      search_key: data.search_key,
+      linkLogo: data.linkLogo,
+      name: data.name,
+      kategori: data.kategori,
+      shortDesc: data.shortDesc,
+      longDesc: data.longDesc,
+      instagram: data.instagram,
+    };
+
+    try {
+      const token: any = window.sessionStorage?.getItem("token");
+      console.log(data.linkLogo);
+
+      //await homeService.tambahHome(dataHome, token);
+      // history.push("/auth/masuk", {
+      //   status: "success",
+      //   message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
+      // });
+
+      console.log(JSON.stringify(data));
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+
     window.confirm(JSON.stringify(data));
   };
+
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -127,18 +169,22 @@ const TambahHome: React.FC = () => {
                 <option value="" selected disabled hidden>
                   Pilih Kategori
                 </option>
-                <option value="UKM Sains dan Sosial">
+                <option value={HomeChapter.LostTreasureIsland}>
                   UKM Sains dan Sosial
                 </option>
-                <option value="UKM Seni dan Budaya">UKM Seni dan Budaya</option>
-                <option value="UKM Olahraga">UKM Olahraga</option>
-                <option value="Kegiatan Kemahasiswaan dan Lembaga Seni Otonom">
+                <option value={HomeChapter.FantasyBridge}>
+                  UKM Seni dan Budaya
+                </option>
+                <option value={HomeChapter.MedalistPlayground}>
+                  UKM Olahraga
+                </option>
+                <option value={HomeChapter.RainbowMines}>
                   Kegiatan Kemahasiswaan dan Lembaga Seni Otonom
                 </option>
-                <option value="Media Kampus">Media Kampus</option>
-                <option value="Komunitas">Komunitas</option>
-                <option value="Lembaga Kampus">Lembaga Kampus</option>
-                <option value="Organisasi dan Himpunan Mahasiswa">
+                <option value={HomeChapter.TomorrowVille}>Media Kampus</option>
+                <option value={HomeChapter.AdventureLand}>Komunitas</option>
+                <option value={HomeChapter.TownArea}>Lembaga Kampus</option>
+                <option value={HomeChapter.WonderousCampground}>
                   Organisasi dan Himpunan Mahasiswa
                 </option>
               </MxmSelect>
