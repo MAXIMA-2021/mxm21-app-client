@@ -2,7 +2,7 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import React from "react";
 import "./HomeWelcome.scss";
 import { Palette } from "../../../types/enums";
-import { Home } from "../../../assets";
+import { Maxi, Xima } from "../../../assets/home";
 
 const HomeWelcome = () => {
   return (
@@ -32,11 +32,11 @@ const HomeWelcome = () => {
           justifyContent="center"
           mb={{ base: "-0.25rem", md: "-0.5rem" }}
         >
-          <Image title="MAXI" src={Home.Maxi} />
+          <Image title="MAXI" src={Maxi} />
           <Image
             ml={{ base: "2rem", sm: "5rem", md: "8rem" }}
             title="XIMA"
-            src={Home.Xima}
+            src={Xima}
           />
         </Flex>
         <Box className="content-head">
