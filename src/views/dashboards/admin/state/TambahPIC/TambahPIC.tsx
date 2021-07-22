@@ -21,7 +21,6 @@ import {
   MxmFormErrorMessage,
   MxmFormLabel,
 } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahPIC: React.FC = () => {
   const {
@@ -194,7 +193,6 @@ const TambahPIC: React.FC = () => {
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };
