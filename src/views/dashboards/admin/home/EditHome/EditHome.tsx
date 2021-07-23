@@ -353,7 +353,7 @@ const EditHome: React.FC = () => {
                       })}
                       // className="select"
                       // onChange={handleSelectChange}
-                      defaultValue={homeDatabySearchKey["kategori"]}
+                      value={homeDatabySearchKey["kategori"]}
                     >
                       <option value="" selected disabled hidden>
                         Pilih Chapter

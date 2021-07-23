@@ -48,10 +48,16 @@ const updateHome = async (homeID: string, newObject: any) => {
   return request;
 };
 
+const deleteHome = async (homeID: string) => {
+  const request = await axios.delete(`${baseUrl}/panit/home/${homeID}`, config);
+  return request;
+};
+
 export default {
   tambahHome,
   tambahMedia,
   getAllHome,
   getHomeBySearchKey,
   updateHome,
+  deleteHome,
 };
