@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
@@ -9,6 +9,8 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
+  Spinner,
+  Text,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import "./TambahHome.scss";
@@ -23,7 +25,7 @@ import {
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import { DataHome } from "../../../../../types/interfaces";
-import homeService from "../../../../../services/home";
+import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
 import { HomeChapter } from "../../../../../types/enums";
 
@@ -31,47 +33,53 @@ const TambahHome: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.title = "[Dashboard] - Tambah HoME";
+  }, []);
 
   const onSubmit = async (data: DataHome) => {
     setLoading(true);
 
-    const dataHome: DataHome = {
-      name: data.name,
-      kategori: data.kategori,
-      shortDesc: data.shortDesc,
-      longDesc: data.longDesc,
-      linkYoutube: data.linkYoutube,
-      lineID: data.lineID,
-      instagram: data.instagram,
-      linkLogo: data.linkLogo[0],
-    };
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("kategori", data.kategori);
+    formData.append("shortDesc", data.shortDesc);
+    formData.append("longDesc", data.longDesc);
+    formData.append("linkYoutube", data.linkYoutube);
+    formData.append("lineID", data.lineID);
+    formData.append("instagram", data.instagram);
+    // formData.append("linkLogo", data.linkLogo[0]);
+    formData.append("linkLogo", files[0]);
+    reset();
 
     try {
-      const token: any = window.sessionStorage?.getItem("token");
-      console.log(dataHome.linkLogo);
-      console.log(token);
-
-      await homeService.tambahHome(dataHome, token);
-      history.push("/auth/masuk", {
-        status: "success",
-        message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
+      await adminService.tambahHome(formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil ditambahkan!",
+        showConfirmButton: false,
+        timer: 2000,
       });
-
-      // console.log(JSON.stringify(data));
+      setResetUpload(true);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.map((data: any) => `\n${data.message}`),
+        text: error.response?.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
     }
-    window.confirm(JSON.stringify(data));
+    setLoading(false);
+    setResetUpload(false);
   };
 
   const handleSelectChange = (event: any) => {
@@ -170,16 +178,16 @@ const TambahHome: React.FC = () => {
                   Pilih Kategori
                 </option>
                 <option value={HomeChapter.LostTreasureIsland}>
-                  Lost Treasure Island
+                  LostTreasure Island
                 </option>
-                <option value={HomeChapter.FantasyBridge}>
-                  Fantasy Bridge
-                </option>
+                <option value={HomeChapter.FantasyBridge}>Fantsy Bridge</option>
                 <option value={HomeChapter.MedalistPlayground}>
-                  Medalist Playground
+                  Medialist Playground
                 </option>
-                <option value={HomeChapter.RainbowMines}>Rainbow Mines</option>
-                <option value={HomeChapter.TomorrowVille}>Tomorrowville</option>
+                <option value={HomeChapter.RainbowMines}>Rainbows Mines</option>
+                <option value={HomeChapter.TomorrowVille}>
+                  Tomorrow Ville
+                </option>
                 <option value={HomeChapter.AdventureLand}>
                   Adventure Land
                 </option>
@@ -269,15 +277,7 @@ const TambahHome: React.FC = () => {
           >
             <FormControl mb={3} isInvalid={errors.linkLogo}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              {/* <UploadFiles /> */}
-              <input
-                type="file"
-                accept="image/*"
-                // multiple={true}
-                {...register("linkLogo", {
-                  required: "Isi Logonya dOnG!",
-                })}
-              />
+              {!resetUpload && <UploadFiles setFiles={setFiles} />}
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.linkLogo && (
                   <Flex flexDirection="row" alignItems="center">
@@ -380,19 +380,39 @@ const TambahHome: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
           </Flex>
-          <Flex mt={5}>
+          <Flex mt={5} alignItems="center">
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Flex mr="1rem" alignItems="center">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  w="2rem"
+                  h="2rem"
+                />
+                <Text
+                  fontFamily="Poppins"
+                  fontSize={{ base: "0.9rem", md: "1rem" }}
+                  ml="0.5rem"
+                >
+                  mengunggah data...
+                </Text>
+              </Flex>
+            ) : (
+              <Button
+                backgroundColor={Palette.Cyan}
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>

@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import "./HomeOrganisatorList.scss";
 import { Palette } from "../../../types/enums";
 import { Flex, Image, Grid } from "@chakra-ui/react";
-import { cat1 } from "../../../assets/home";
+import {
+  cat1,
+  homeMaxiTalk,
+  campusVisitLogo,
+  umnDocumLogo,
+} from "../../../assets/home";
 import { MxmDivider } from "../../../shared/styled/input";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
 
@@ -51,7 +55,7 @@ const HomeOrganisatorList = () => {
               className="chap-desc-image"
               style={{ backgroundColor: Palette.Yellow }}
             >
-              <Image src={Home.homeMaxiTalk} alt="maxi" width="100px" />
+              <Image src={homeMaxiTalk} alt="maxi" width="100px" />
             </div>
             <div className="chap-desc-text">
               <p style={{ color: Palette.Yellow }}>
@@ -72,7 +76,7 @@ const HomeOrganisatorList = () => {
         <Flex className="home-orglist-content_container">
           <Grid className="home-orglist-content-grid">
             <div className="content-org-logo">
-              <Image src={Home.campusVisitLogo} alt="logo organisator" />
+              <Image src={campusVisitLogo} alt="logo organisator" />
             </div>
             <div
               className="content-org-desc"
@@ -93,7 +97,7 @@ const HomeOrganisatorList = () => {
           </Grid>
           <Grid className="home-orglist-content-grid">
             <div className="content-org-logo">
-              <Image src={Home.umnDocumLogo} alt="logo organisator" />
+              <Image src={umnDocumLogo} alt="logo organisator" />
             </div>
             <div
               className="content-org-desc"
@@ -115,7 +119,7 @@ const HomeOrganisatorList = () => {
 
           <Grid className="home-orglist-content-grid">
             <div className="content-org-logo">
-              <Image src={Home.umnDocumLogo} alt="logo organisator" />
+              <Image src={umnDocumLogo} alt="logo organisator" />
             </div>
             <div
               className="content-org-desc"
@@ -137,7 +141,7 @@ const HomeOrganisatorList = () => {
 
           <Grid className="home-orglist-content-grid">
             <div className="content-org-logo">
-              <Image src={Home.umnDocumLogo} alt="logo organisator" />
+              <Image src={umnDocumLogo} alt="logo organisator" />
             </div>
             <div
               className="content-org-desc"

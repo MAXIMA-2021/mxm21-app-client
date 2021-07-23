@@ -4,12 +4,6 @@ import React, { useState, useCallback } from "react";
 import { FileError, useDropzone } from "react-dropzone";
 import { UploadContainer } from "../../styled/containers";
 import { Palette } from "../../../types/enums";
-import { useForm } from "react-hook-form";
-
-// interface UploadableFile {
-//   file: File;
-//   errors: FileError[];
-// }
 
 const IconUpload = createIcon({
   displayName: "Upload",
@@ -18,8 +12,7 @@ const IconUpload = createIcon({
 });
 
 const UploadFiles = (props: any) => {
-  const [myFiles, setMyFiles] = useState<File[]>([]);
-  const { register } = useForm();
+  const [myFiles, setMyFiles] = useState<any>([]);
   // const [inputFile, setInputFile] = useState("");
 
   // const handleChange = (event: any) => {
@@ -46,7 +39,6 @@ const UploadFiles = (props: any) => {
 
   const onDropAccepted = (files: any[], event: any) => {
     event.target.classList.remove("file-enters");
-    console.log(event);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -68,8 +60,7 @@ const UploadFiles = (props: any) => {
   //     setMyFiles([]);
   //   };
 
-  const files = myFiles.map((file) => {
-    console.log(file);
+  const files = myFiles.map((file: any) => {
     return (
       <Flex key={file.name} alignItems="center" justifyContent="space-between">
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>{file.name}</p>
@@ -87,6 +78,15 @@ const UploadFiles = (props: any) => {
       </Flex>
     );
   });
+
+  if (myFiles.length !== 0) {
+    props.setFiles(myFiles);
+  }
+
+  // if (props.resetUpload) {
+  //   setMyFiles([]);
+  //   console.log("reset");
+  // }
 
   return (
     <div>

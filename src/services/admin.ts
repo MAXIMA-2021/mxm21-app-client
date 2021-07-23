@@ -1,17 +1,38 @@
 import axios from "axios";
+import { Base } from "./BASE_URL";
 
-const baseUrl = "https://apimxm.loca.lt/api";
+const baseUrl = `${Base.Url}/api`;
 
-const token = window.sessionStorage.getItem("token");
+const token: any = window.sessionStorage?.getItem("token");
 const config = {
   headers: {
     "x-access-token": token,
   },
 };
 
-const getAllHome = async () => {
-  const request = axios.get(`${baseUrl}/public/home`, config);
+const tambahHome = async (data: unknown) => {
+  const request = await axios.post(`${baseUrl}/panit/home`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": token,
+    },
+  });
   return request;
+};
+
+const tambahMedia = async (data: unknown, homeID: number) => {
+  const request = await axios.post(`${baseUrl}/panit/home/${homeID}`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": token,
+    },
+  });
+  return request.data;
+};
+
+const getAllHome = async () => {
+  const request = await axios.get(`${baseUrl}/public/home`, config);
+  return request.data;
 };
 
 const getHomeBySearchKey = async (searchKey: string) => {
@@ -28,6 +49,8 @@ const updateHome = async (homeID: string, newObject: any) => {
 };
 
 export default {
+  tambahHome,
+  tambahMedia,
   getAllHome,
   getHomeBySearchKey,
   updateHome,

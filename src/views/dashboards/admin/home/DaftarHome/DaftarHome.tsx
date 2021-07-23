@@ -27,7 +27,7 @@ const DaftarHome: React.FC = () => {
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllHome();
-        setData(returnedData.data);
+        setData(returnedData);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
