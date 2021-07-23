@@ -40,7 +40,7 @@ const getHomeBySearchKey = async (searchKey: string) => {
     `${baseUrl}/public/home?organizator=${searchKey}`,
     config
   );
-  return request;
+  return request.data;
 };
 
 const updateHome = async (homeID: string, newObject: any) => {

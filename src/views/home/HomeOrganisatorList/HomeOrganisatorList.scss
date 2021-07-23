@@ -103,10 +103,10 @@
   align-items: center;
 
   overflow-y: scroll;
-  overflow-x: none;
+  overflow-x: hidden;
 
   & > .home-orglist-content-grid {
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content 40rem max-content;
     column-gap: 1.5rem;
 
     margin: 1rem 0 1.5rem 0;
@@ -121,6 +121,8 @@
 
     & > img {
       width: 100px;
+      height: 100px;
+      object-fit: cover;
     }
   }
 
@@ -178,9 +180,19 @@
       width: 80%;
     }
   }
-  @media screen and(max-width: 1047px) {
+  @media screen and(max-width: 1226px) {
     .home-orglist-content_container {
-      width: 85%;
+      & > .home-orglist-content-grid {
+        grid-template-columns: max-content 35rem max-content;
+      }
+    }
+  }
+
+  @media screen and(max-width: 1116px) {
+    .home-orglist-content_container {
+      & > .home-orglist-content-grid {
+        grid-template-columns: max-content 30rem max-content;
+      }
     }
   }
 

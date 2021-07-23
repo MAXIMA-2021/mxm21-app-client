@@ -85,10 +85,7 @@ const EditHome: React.FC = () => {
       try {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
 
-        //console.log(returnedData.data[0]);
-
-        sethomeDatabySearchKey(returnedData.data[0]);
-        //console.log(homeDatabySearchKey);
+        sethomeDatabySearchKey(returnedData[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

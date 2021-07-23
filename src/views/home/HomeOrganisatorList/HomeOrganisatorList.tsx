@@ -1,39 +1,80 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomeOrganisatorList.scss";
 import { Palette } from "../../../types/enums";
 import { Flex, Image, Grid } from "@chakra-ui/react";
 import {
   cat1,
+  cat2,
+  cat3,
+  cat4,
+  cat5,
+  cat6,
+  cat7,
+  cat8,
   homeMaxiTalk,
-  campusVisitLogo,
-  umnDocumLogo,
 } from "../../../assets/home";
 import { MxmDivider } from "../../../shared/styled/input";
-import { useMediaQuery } from "@chakra-ui/media-query";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
+import homeService from "../../../services/home";
+import Swal from "sweetalert2";
 
 const HomeOrganisatorList = () => {
+  const [data, setData] = useState([]);
+
   const { homeChapter } = useParams<{ homeChapter: string }>();
   const history = useHistory();
   const location = useLocation();
 
+  var images: any = [];
+
+  images[0] = <Image src={cat1} alt="chapter logo" />;
+  images[1] = <Image src={cat2} alt="chapter logo" />;
+  images[2] = <Image src={cat3} alt="chapter logo" />;
+  images[3] = <Image src={cat4} alt="chapter logo" />;
+  images[4] = <Image src={cat5} alt="chapter logo" />;
+  images[5] = <Image src={cat6} alt="chapter logo" />;
+  images[6] = <Image src={cat7} alt="chapter logo" />;
+  images[7] = <Image src={cat8} alt="chapter logo" />;
+
   useEffect(() => {
     document.title = `Organisator list ${homeChapter}`;
-    try {
-      if (!location.state) {
-        history.push("/home/cover");
+    const fetchData = async () => {
+      try {
+        if (!location.state) {
+          history.push("/home/cover");
+        } else {
+          const returnedData = await homeService.getHomeByCategory(homeChapter);
+          setData(returnedData);
+        }
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
       }
-    } catch {
-      history.push("/home/cover");
-    }
+    };
+
+    fetchData();
   }, []);
+
+  var chapter: JSX.Element = images[Number(homeChapter?.slice(-1)) - 1];
 
   const handleOnClick = (some: string) => {
     history.push(`/home/organisator/detail/${some}`, {
       status: true,
     });
+  };
+
+  const findSearchKey = (IDhome: any) => {
+    for (let homeDataX in data) {
+      if (data[homeDataX]["homeID"] == IDhome) {
+        return data[homeDataX]["search_key"];
+      }
+    }
   };
 
   return (
@@ -44,9 +85,7 @@ const HomeOrganisatorList = () => {
     >
       <Flex className="home-orglist-inner_container">
         <Grid className="home-orglist-grid-header">
-          <div className="home-orglist-chap-logo">
-            <Image src={cat1} alt="chapter logo" />
-          </div>
+          <div className="home-orglist-chap-logo">{chapter}</div>
           <div
             className="home-orglist-chap-desc"
             style={{ backgroundColor: Palette.Navy }}
@@ -74,92 +113,34 @@ const HomeOrganisatorList = () => {
           />
         </Grid>
         <Flex className="home-orglist-content_container">
-          <Grid className="home-orglist-content-grid">
-            <div className="content-org-logo">
-              <Image src={campusVisitLogo} alt="logo organisator" />
-            </div>
-            <div
-              className="content-org-desc"
-              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
-            >
-              <h3>Campus Visit</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
-                aspernatur officia, cupiditate saepe at soluta.
-              </p>
-            </div>
-            <div className="home-orglist-arrow_icon">
-              <button>
-                <PlayArrowIcon />
-              </button>
-            </div>
-          </Grid>
-          <Grid className="home-orglist-content-grid">
-            <div className="content-org-logo">
-              <Image src={umnDocumLogo} alt="logo organisator" />
-            </div>
-            <div
-              className="content-org-desc"
-              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
-            >
-              <h3>UMN Documentation</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
-                aspernatur officia, cupiditate saepe at soluta.
-              </p>
-            </div>
-            <div className="home-orglist-arrow_icon">
-              <button>
-                <PlayArrowIcon />
-              </button>
-            </div>
-          </Grid>
-
-          <Grid className="home-orglist-content-grid">
-            <div className="content-org-logo">
-              <Image src={umnDocumLogo} alt="logo organisator" />
-            </div>
-            <div
-              className="content-org-desc"
-              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
-            >
-              <h3>UMN Documentation</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
-                aspernatur officia, cupiditate saepe at soluta.
-              </p>
-            </div>
-            <div className="home-orglist-arrow_icon">
-              <button>
-                <PlayArrowIcon />
-              </button>
-            </div>
-          </Grid>
-
-          <Grid className="home-orglist-content-grid">
-            <div className="content-org-logo">
-              <Image src={umnDocumLogo} alt="logo organisator" />
-            </div>
-            <div
-              className="content-org-desc"
-              style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
-            >
-              <h3>UMN Documentation</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dignissimos cum consequuntur blanditiis obcaecati? Asperiores
-                aspernatur officia, cupiditate saepe at soluta.
-              </p>
-            </div>
-            <div className="home-orglist-arrow_icon">
-              <button>
-                <PlayArrowIcon />
-              </button>
-            </div>
-          </Grid>
+          {data.map((item: any, index: any) => (
+            <Grid className="home-orglist-content-grid" key={index}>
+              <div className="content-org-logo">
+                <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
+              </div>
+              <div
+                className="content-org-desc"
+                style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
+              >
+                <h3>{item?.name}</h3>
+                <p>{item?.shortDesc}</p>
+              </div>
+              <div className="home-orglist-arrow_icon">
+                <button
+                  onClick={() => {
+                    history.push(
+                      `/home/detail/${findSearchKey(item?.homeID)}`,
+                      {
+                        status: true,
+                      }
+                    );
+                  }}
+                >
+                  <PlayArrowIcon />
+                </button>
+              </div>
+            </Grid>
+          ))}
         </Flex>
         <MxmButton
           onClick={() =>
