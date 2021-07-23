@@ -53,7 +53,7 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.DaftarHome}
           />
           <Route
-            path="/admin/edit-home"
+            path="/admin/edit-home/:search_key"
             exact
             component={Dashboards.EditHome}
           />

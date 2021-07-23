@@ -110,6 +110,10 @@ body {
 
   font-family: Poppins, Arial, sans-serif;
 
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+
   color: #ffffff;
 }
 

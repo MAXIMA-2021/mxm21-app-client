@@ -50,3 +50,22 @@ export interface DataMediaHome {
   homeID: string;
   linkMedia: string;
 }
+
+export interface DataHomeBySearchKey {
+  homeID: string;
+  search_key: string;
+  linkLogo: any;
+  name: string;
+  kategori: string;
+  shortDesc: string;
+  longDesc: string;
+  instagram: string;
+  lineID: string;
+  linkYoutube: string;
+  home_media: [
+    {
+      photoID: string;
+      linkMedia: string;
+    }
+  ];
+}

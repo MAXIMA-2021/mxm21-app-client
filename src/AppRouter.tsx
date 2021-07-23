@@ -29,7 +29,7 @@ export default function AppRouter() {
                 </Route>
                 <Route path="/admin/:path1?/:path2?/:path3?" exact>
                   <Switch>
-                    <div style={{ minHeight: "100vh", paddingBottom: "1rem" }}>
+                    <div style={{ minHeight: "100vh" }}>
                       <DashboardNavigation />
                       <DashboardFooter />
                     </div>

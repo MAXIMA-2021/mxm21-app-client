@@ -21,7 +21,7 @@ const HomeWelcome = () => {
   }, []);
 
   const handleClick = () => {
-    history.push("/home/pintu", {
+    history.push("/home/enter", {
       status: true,
     });
   };

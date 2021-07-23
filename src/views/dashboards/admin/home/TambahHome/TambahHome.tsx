@@ -160,9 +160,9 @@ const TambahHome: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.kategori} mb={3}>
-              <MxmFormLabel color="black">Kategori</MxmFormLabel>
+              <MxmFormLabel color="black">Chapter</MxmFormLabel>
               <MxmSelect
-                {...register("kategori", { required: "Pilih Kategori" })}
+                {...register("kategori", { required: "Pilih Chapter" })}
                 className="select"
                 onChange={handleSelectChange}
               >
@@ -170,22 +170,22 @@ const TambahHome: React.FC = () => {
                   Pilih Kategori
                 </option>
                 <option value={HomeChapter.LostTreasureIsland}>
-                  UKM Sains dan Sosial
+                  Lost Treasure Island
                 </option>
                 <option value={HomeChapter.FantasyBridge}>
-                  UKM Seni dan Budaya
+                  Fantasy Bridge
                 </option>
                 <option value={HomeChapter.MedalistPlayground}>
-                  UKM Olahraga
+                  Medalist Playground
                 </option>
-                <option value={HomeChapter.RainbowMines}>
-                  Kegiatan Kemahasiswaan dan Lembaga Seni Otonom
+                <option value={HomeChapter.RainbowMines}>Rainbow Mines</option>
+                <option value={HomeChapter.TomorrowVille}>Tomorrowville</option>
+                <option value={HomeChapter.AdventureLand}>
+                  Adventure Land
                 </option>
-                <option value={HomeChapter.TomorrowVille}>Media Kampus</option>
-                <option value={HomeChapter.AdventureLand}>Komunitas</option>
-                <option value={HomeChapter.TownArea}>Lembaga Kampus</option>
+                <option value={HomeChapter.TownArea}>Town Area</option>
                 <option value={HomeChapter.WonderousCampground}>
-                  Organisasi dan Himpunan Mahasiswa
+                  Wonderous Campground
                 </option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>

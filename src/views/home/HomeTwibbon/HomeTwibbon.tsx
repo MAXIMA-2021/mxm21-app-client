@@ -41,37 +41,37 @@ const HomeTwibbon = () => {
   );
   images[1] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat1} className="chapter" />
+      <Image src={cat2} className="chapter" />
     </Box>
   );
   images[2] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat2} className="chapter" />
+      <Image src={cat3} className="chapter" />
     </Box>
   );
   images[3] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat3} className="chapter" />
+      <Image src={cat4} className="chapter" />
     </Box>
   );
   images[4] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat4} className="chapter" />
+      <Image src={cat5} className="chapter" />
     </Box>
   );
   images[5] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat5} className="chapter" />
+      <Image src={cat6} className="chapter" />
     </Box>
   );
   images[6] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat6} className="chapter" />
+      <Image src={cat7} className="chapter" />
     </Box>
   );
   images[7] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat7} className="chapter" />
+      <Image src={cat8} className="chapter" />
     </Box>
   );
 

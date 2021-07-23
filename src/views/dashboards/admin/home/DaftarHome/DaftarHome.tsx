@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Flex,
@@ -16,8 +16,39 @@ import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
 
 const DaftarHome: React.FC = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllHome();
+        setData(returnedData.data);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const findSearchKey = (IDhome: any) => {
+    for (let homeDataX in data) {
+      if (data[homeDataX]["homeID"] == IDhome) {
+        return data[homeDataX]["search_key"];
+      }
+    }
+  };
+
   const responsiveData = {
     base: "1em",
     sm: "1em",
@@ -25,7 +56,6 @@ const DaftarHome: React.FC = () => {
     lg: "1em",
     "2xl": "1.2em",
   };
-
   const tableColumns = [
     {
       name: "homeID",
@@ -101,7 +131,7 @@ const DaftarHome: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
             <Link
-              to={`/admin/edit-home/${tableMeta.rowData[0]}`}
+              to={`/admin/edit-home/${findSearchKey(tableMeta.rowData[0])}`}
               style={{ textDecoration: "none" }}
             >
               <Button
@@ -112,6 +142,7 @@ const DaftarHome: React.FC = () => {
                 color={Palette.Navy}
                 border="1px"
                 borderColor={Palette.Navy}
+                onClick={() => console.log(tableMeta.rowData)}
               >
                 Edit
               </Button>
@@ -125,24 +156,6 @@ const DaftarHome: React.FC = () => {
         ),
       },
     },
-  ];
-
-  const data = [
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
   ];
 
   return (
