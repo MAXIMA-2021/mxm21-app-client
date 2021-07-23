@@ -10,4 +10,7 @@ export {
   EditHome,
   TambahHome,
   TambahMedia,
+  TambahMahasiswa,
+  TambahPanitia,
+  TambahOrganisator,
 } from "./admin";

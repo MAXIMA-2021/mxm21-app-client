@@ -9,3 +9,5 @@ export {
 } from "./state";
 
 export { DaftarHome, EditHome, TambahHome, TambahMedia } from "./home";
+
+export { TambahMahasiswa, TambahPanitia, TambahOrganisator } from "./akun";

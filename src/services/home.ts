@@ -1,7 +1,7 @@
 import axios from "axios";
 import { DataHome, DataMediaHome } from "../types/interfaces";
 
-const baseUrl = "http://localhost:8080/api";
+const baseUrl = "https://dev.api.mxm.one/api";
 
 const tambahHome = async (data: DataHome, token: string) => {
   const request = await axios.post(`${baseUrl}/panit/home`, data, {

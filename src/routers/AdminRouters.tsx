@@ -67,6 +67,21 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.TambahMedia}
           />
+          <Route
+            path="/admin/tambah-mahasiswa"
+            exact
+            component={Dashboards.TambahMahasiswa}
+          />
+          <Route
+            path="/admin/tambah-panitia"
+            exact
+            component={Dashboards.TambahPanitia}
+          />
+          <Route
+            path="/admin/tambah-organisator"
+            exact
+            component={Dashboards.TambahOrganisator}
+          />
         </Box>
       </Router>
     </div>

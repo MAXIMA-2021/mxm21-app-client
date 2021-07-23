@@ -125,7 +125,7 @@ const RegisterMhs: React.FC = () => {
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.message,
+        text: error.response?.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
