@@ -45,15 +45,29 @@ const TambahHome: React.FC = () => {
     document.title = "[Dashboard] - Tambah HoME";
   }, []);
 
+  const getId = (url: any) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
   const onSubmit = async (data: DataHome) => {
     setLoading(true);
+
+    const linkYTEmbed: any = getId(data.linkYoutube);
+    console.log(linkYTEmbed);
 
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("kategori", data.kategori);
     formData.append("shortDesc", data.shortDesc);
     formData.append("longDesc", data.longDesc);
-    formData.append("linkYoutube", data.linkYoutube);
+    formData.append(
+      "linkYoutube",
+      `https://www.youtube.com/embed/${linkYTEmbed}`
+    );
     formData.append("lineID", data.lineID);
     formData.append("instagram", data.instagram);
     // formData.append("linkLogo", data.linkLogo[0]);

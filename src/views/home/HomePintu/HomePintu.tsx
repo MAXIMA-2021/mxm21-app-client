@@ -29,23 +29,13 @@ import { FaHandHolding } from "react-icons/fa";
 
 const HomePintu = () => {
   const history = useHistory();
-  const location = useLocation();
 
   useEffect(() => {
     document.title = "HoME Pintu Page";
-    try {
-      if (!location.state) {
-        history.push("/home/cover");
-      }
-    } catch {
-      history.push("/home/cover");
-    }
   }, []);
 
   const handleClickNext = () => {
-    history.push("/home/category", {
-      status: true,
-    });
+    history.push("/home/category");
   };
 
   let count = 0;

@@ -37,8 +37,7 @@ const getAllHome = async () => {
 
 const getHomeBySearchKey = async (searchKey: string) => {
   const request = await axios.get(
-    `${baseUrl}/public/home?organizator=${searchKey}`,
-    config
+    `${baseUrl}/public/home?organizator=${searchKey}`
   );
   return request.data;
 };
