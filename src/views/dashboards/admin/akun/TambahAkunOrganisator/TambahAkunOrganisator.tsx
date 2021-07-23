@@ -29,6 +29,7 @@ import {
 import { DataRegisterOrganisator } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
+import adminService from "../../../../../services/admin";
 import "./TambahAkunOrganisator.scss";
 
 const IconShowPassword = createIcon({
@@ -58,8 +59,24 @@ const TambahOrganisator: React.FC = () => {
     }
   };
 
+  const [data, setData] = useState([]);
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Organisator] Daftar - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllState();
+        setData(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
   }, []);
 
   const password = useRef({});
@@ -250,9 +267,11 @@ const TambahOrganisator: React.FC = () => {
                 <option value="" selected disabled hidden>
                   Pilih STATE
                 </option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
+                {data.map((index, key) => (
+                  <option value={index.stateID} id={key}>
+                    {index.stateID} - {index.name}
+                  </option>
+                ))}
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.stateID && (

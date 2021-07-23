@@ -48,10 +48,16 @@ const updateHome = async (homeID: string, newObject: any) => {
   return request;
 };
 
+const getAllState = async () => {
+  const request = await axios.get(`${baseUrl}/public/state`, config);
+  return request.data;
+};
+
 export default {
   tambahHome,
   tambahMedia,
   getAllHome,
+  getAllState,
   getHomeBySearchKey,
   updateHome,
 };
