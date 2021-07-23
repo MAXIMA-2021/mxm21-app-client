@@ -10,7 +10,11 @@ const HomeFinish = () => {
   return (
     <Flex
       w="100vw"
-      h="100vh"
+      h={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        lg: "calc(100vh - 5rem)",
+      }}
       alignItems="center"
       justifyContent="center"
       p={{ base: "1rem", md: "2rem", xl: "3rem" }}
@@ -40,19 +44,20 @@ const HomeFinish = () => {
             zIndex: 2,
           }}
         >
-          <Heading
-            fontSize={{ base: "1.8rem", md: "2rem" }}
-            padding={{ base: "0.75rem 1rem", md: "1rem 2rem" }}
-            style={{
-              fontFamily: "Poppins",
-              fontWeight: 900,
-
-              backgroundColor: "white",
-              borderRadius: "1rem",
-            }}
-          >
-            FINISH HOME 2021
-          </Heading>
+          <NavLink to="/">
+            <Heading
+              fontSize={{ base: "1.8rem", md: "2rem" }}
+              padding={{ base: "0.75rem 1rem", md: "1.5rem 3rem" }}
+              style={{
+                fontFamily: "Poppins",
+                fontWeight: 900,
+                backgroundColor: "white",
+                borderRadius: "1rem",
+              }}
+            >
+              FINISH HOME 2021
+            </Heading>
+          </NavLink>
         </Box>
         <Box
           mt={{ base: "2rem", md: "3rem", xl: "3rem" }}

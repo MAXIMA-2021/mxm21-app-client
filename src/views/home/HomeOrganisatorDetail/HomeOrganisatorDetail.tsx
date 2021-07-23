@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { AspectRatio, Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import { createIcon } from "@chakra-ui/icons";
-import { Corousell, maxIndex } from "./OrganisatorCorousell";
+import { Carousell, maxIndex } from "./OrganisatorCarousell";
+import { MxmButton } from "../../../shared/styled/buttons";
+import { useHistory, useLocation } from "react-router-dom";
 
 const HomeOrganisatorDetail = () => {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [rslide, setRslide] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
 
   const handleNext = () => {
     setRslide(true);
@@ -28,7 +32,7 @@ const HomeOrganisatorDetail = () => {
 
   useEffect(() => {
     document.title = "HoME - Organisator Detail";
-  });
+  }, []);
 
   return (
     <Flex
@@ -76,9 +80,9 @@ const HomeOrganisatorDetail = () => {
         <Box
           bgColor={Palette.Red}
           p={{
-            base: "3.5rem 1rem 1.5rem 1rem",
-            md: "3.5rem 7.5rem 1.5rem 7.5rem",
-            xl: "4.5rem 15rem 1.5rem 15rem",
+            base: "3.5rem 1rem 0rem 1rem",
+            md: "3.5rem 7.5rem 1rem 7.5rem",
+            xl: "4.5rem 15rem 1rem 15rem",
           }}
           borderRadius={{ base: "1.5rem", md: "3rem" }}
         >
@@ -121,7 +125,7 @@ const HomeOrganisatorDetail = () => {
                     : "translateX(-5rem)"
                 }
               >
-                <Corousell index={index} />
+                <Carousell index={index} />
               </AspectRatio>
               <button onClick={handleNext}>
                 <ArrowIcon
@@ -143,9 +147,15 @@ const HomeOrganisatorDetail = () => {
               // textAlign="justify"
               fontFamily="Poppins"
               fontSize={{ base: "0.9rem", md: "1rem" }}
+              mb={{ base: "2rem" }}
             >
               {contentData.description}
             </Text>
+            <MxmButton variant="dekstop" colorScheme="navy-cyan">
+              <Text fontSize="1rem" p="0.2rem 2rem">
+                TWIBBON
+              </Text>
+            </MxmButton>
           </Box>
         </Box>
       </Box>

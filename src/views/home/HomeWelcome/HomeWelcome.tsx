@@ -10,8 +10,7 @@ const HomeWelcome = () => {
   const location = useLocation();
   const history = useHistory();
   useEffect(() => {
-    document.title = "Home Welcome Page";
-
+    document.title = "HoME Welcome Page";
     try {
       if (!location.state) {
         history.push("/home/cover");
@@ -20,6 +19,12 @@ const HomeWelcome = () => {
       history.push("/home/cover");
     }
   }, []);
+
+  const handleClick = () => {
+    history.push("/home/pintu", {
+      status: true,
+    });
+  };
 
   return (
     <Flex
@@ -72,7 +77,11 @@ const HomeWelcome = () => {
             <b> persyaratan kelulusan HoME 2021</b>.
           </p>
         </Box>
-        <MxmButton variant="desktop" colorScheme="yellow-red">
+        <MxmButton
+          onClick={handleClick}
+          variant="desktop"
+          colorScheme="yellow-red"
+        >
           NEXT
         </MxmButton>
       </Flex>

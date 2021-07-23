@@ -41,36 +41,36 @@ const TambahHome: React.FC = () => {
     setLoading(true);
 
     const dataHome: DataHome = {
-      homeID: data.homeID,
-      search_key: data.search_key,
-      linkLogo: data.linkLogo,
       name: data.name,
       kategori: data.kategori,
       shortDesc: data.shortDesc,
       longDesc: data.longDesc,
+      linkYoutube: data.linkYoutube,
+      lineID: data.lineID,
       instagram: data.instagram,
+      linkLogo: data.linkLogo[0],
     };
 
     try {
       const token: any = window.sessionStorage?.getItem("token");
-      console.log(data.linkLogo);
+      console.log(dataHome.linkLogo);
+      console.log(token);
 
-      //await homeService.tambahHome(dataHome, token);
-      // history.push("/auth/masuk", {
-      //   status: "success",
-      //   message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
-      // });
+      await homeService.tambahHome(dataHome, token);
+      history.push("/auth/masuk", {
+        status: "success",
+        message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
+      });
 
-      console.log(JSON.stringify(data));
+      // console.log(JSON.stringify(data));
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.message,
+        text: error.response.data.map((data: any) => `\n${data.message}`),
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
     }
-
     window.confirm(JSON.stringify(data));
   };
 
@@ -267,9 +267,27 @@ const TambahHome: React.FC = () => {
               xl: "row",
             }}
           >
-            <FormControl mb={3} isInvalid={errors.logo}>
+            <FormControl mb={3} isInvalid={errors.linkLogo}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              <UploadFiles />
+              {/* <UploadFiles /> */}
+              <input
+                type="file"
+                accept="image/*"
+                // multiple={true}
+                {...register("linkLogo", {
+                  required: "Isi Logonya dOnG!",
+                })}
+              />
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.linkLogo && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.linkLogo.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
             </FormControl>
           </Flex>
           <Flex

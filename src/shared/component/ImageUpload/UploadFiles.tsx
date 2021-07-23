@@ -68,22 +68,25 @@ const UploadFiles = (props: any) => {
   //     setMyFiles([]);
   //   };
 
-  const files = myFiles.map((file) => (
-    <Flex key={file.name} alignItems="center" justifyContent="space-between">
-      <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>{file.name}</p>
-      <Button
-        backgroundColor={Palette.Red}
-        color="white"
-        onClick={removeFile(file)}
-        boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-        size="sm"
-        _hover={{ backgroundColor: "#C71034" }}
-        marginTop={"10px"}
-      >
-        Hapus
-      </Button>
-    </Flex>
-  ));
+  const files = myFiles.map((file) => {
+    console.log(file);
+    return (
+      <Flex key={file.name} alignItems="center" justifyContent="space-between">
+        <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>{file.name}</p>
+        <Button
+          backgroundColor={Palette.Red}
+          color="white"
+          onClick={removeFile(file)}
+          boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+          size="sm"
+          _hover={{ backgroundColor: "#C71034" }}
+          marginTop={"10px"}
+        >
+          Hapus
+        </Button>
+      </Flex>
+    );
+  });
 
   return (
     <div>

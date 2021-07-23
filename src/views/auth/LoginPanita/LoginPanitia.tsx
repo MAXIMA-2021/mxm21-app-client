@@ -89,9 +89,7 @@ const LoginPanitia: React.FC = () => {
     try {
       const returnedData = await authService.loginPanitia(data);
       window.sessionStorage.setItem("token", returnedData.token);
-      window.sessionStorage.setItem("name", returnedData.name);
-      console.log(window.sessionStorage.getItem("token"));
-
+      console.log(window.sessionStorage);
       // const decoded = jwtDecode(returnedData.accessToken);
       window.location = "/";
       alert("berhasil login");

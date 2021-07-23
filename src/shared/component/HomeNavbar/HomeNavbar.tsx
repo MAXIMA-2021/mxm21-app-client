@@ -8,7 +8,7 @@ import { useMediaQuery } from "@chakra-ui/media-query";
 
 import MenuIcon from "@material-ui/icons/Menu";
 
-const HomeNavbar = (props) => {
+const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
@@ -51,7 +51,10 @@ const HomeNavbar = (props) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
+                <NavLink
+                  to="/home/cover"
+                  className="btn-main-nav btn-styling-main-nav"
+                >
                   HoME
                 </NavLink>
                 <NavLink
@@ -73,24 +76,20 @@ const HomeNavbar = (props) => {
                   About Us
                 </NavLink>
               </li>
-              {props.auth ? (
-                ""
-              ) : (
-                <li className="btn-main-nav-auth-container">
-                  <NavLink
-                    to="/auth/daftar"
-                    className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
-                  >
-                    Daftar
-                  </NavLink>
-                  <NavLink
-                    to="/auth/masuk"
-                    className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-                  >
-                    Masuk
-                  </NavLink>
-                </li>
-              )}
+              <li className="btn-main-nav-auth-container">
+                <NavLink
+                  to="/auth/daftar"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
+                >
+                  Daftar
+                </NavLink>
+                <NavLink
+                  to="/auth/masuk"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                >
+                  Masuk
+                </NavLink>
+              </li>
 
               {isSmallerThan700px ? (
                 <li className="mobile-nav-menu-icon">

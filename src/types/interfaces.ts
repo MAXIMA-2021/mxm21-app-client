@@ -34,14 +34,14 @@ export interface DataRegisterOrganisator {
 
 //interface untuk HoME
 export interface DataHome {
-  homeID: string;
-  search_key: string;
-  linkLogo: string;
   name: string;
   kategori: string;
   shortDesc: string;
   longDesc: string;
+  linkYoutube: string;
+  lineID: string;
   instagram: string;
+  linkLogo: any;
 }
 
 export interface DataMediaHome {

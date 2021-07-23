@@ -10,14 +10,14 @@ const HomeRouters = () => {
       <Route path="/home/enter" exact component={Home.HomePintu} />
       <Route path="/home/category" exact component={Home.HomeCategory} />
       <Route
-        path="/home/organisator-detail"
-        exact
-        component={Home.HomeOrganisatorDetail}
-      />
-      <Route
         path="/home/organisator-list/:homeChapter"
         exact
         component={Home.HomeOrganisatorList}
+      />
+      <Route
+        path="/home/organisator-detail/:homeDetail"
+        exact
+        component={Home.HomeOrganisatorDetail}
       />
       <Route path="/home/twibbon" exact component={Home.HomeTwibbon} />
       <Route path="/home/zeppelin" exact component={Home.HomeZeppelin} />

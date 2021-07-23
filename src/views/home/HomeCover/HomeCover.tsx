@@ -14,12 +14,11 @@ const HomeCover = () => {
   const handleClick = () => {
     history.push("/home/welcome", {
       status: true,
-      message: "go to next page: welcome",
     });
   };
 
   useEffect(() => {
-    document.title = "Home Cover Page";
+    document.title = "HoME Cover Page";
   }, []);
 
   return (

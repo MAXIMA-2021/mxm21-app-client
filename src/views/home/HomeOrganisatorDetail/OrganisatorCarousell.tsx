@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "@chakra-ui/react";
 
-const CorousellData = {
+const CarousellData = {
   video: "https://www.youtube.com/embed/xk--UgIan4Y",
   media: [
     {
@@ -36,15 +36,15 @@ const CorousellData = {
   ],
 };
 
-export const maxIndex = Number(CorousellData.media.length);
+export const maxIndex = Number(CarousellData.media.length);
 
-export const Corousell = (props: { index: number }) => {
+export const Carousell = (props: { index: number }) => {
   if (props.index === 0)
-    return <iframe title="video" src={CorousellData.video} allowFullScreen />;
+    return <iframe title="video" src={CarousellData.video} allowFullScreen />;
   else
     return (
       <Image
-        src={CorousellData.media[props.index - 1].linkMedia}
+        src={CarousellData.media[props.index - 1].linkMedia}
         alt="Photo"
         objectFit="cover"
       />

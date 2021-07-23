@@ -6,7 +6,7 @@ import {
   DataRegisterPanitia,
 } from "../types/interfaces";
 
-const baseUrl = "https://dev.api.mxm.one/api";
+const baseUrl = "http://localhost:8080/api";
 
 const daftarMhs = async (data: DataRegisterMaba) => {
   const request = await axios.post(`${baseUrl}/mhs/acc/signup`, data);

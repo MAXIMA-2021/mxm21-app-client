@@ -11,11 +11,26 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
 
 const HomeOrganisatorList = () => {
-  const { homeChapter } = useParams();
+  const { homeChapter } = useParams<{ homeChapter: string }>();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     document.title = `Organisator list ${homeChapter}`;
+    try {
+      if (!location.state) {
+        history.push("/home/cover");
+      }
+    } catch {
+      history.push("/home/cover");
+    }
   }, []);
+
+  const handleOnClick = (some: string) => {
+    history.push(`/home/organisator/detail/${some}`, {
+      status: true,
+    });
+  };
 
   return (
     <Flex
@@ -143,6 +158,11 @@ const HomeOrganisatorList = () => {
           </Grid>
         </Flex>
         <MxmButton
+          onClick={() =>
+            history.push("/home/category", {
+              status: true,
+            })
+          }
           variant="desktop"
           colorScheme="cyan-navy"
           className="home-orglist-back-btn"

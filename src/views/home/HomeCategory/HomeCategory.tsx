@@ -1,5 +1,5 @@
 import { Flex, Image } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -20,8 +20,21 @@ const HomeCategory = () => {
   const location = useLocation();
   const history = useHistory();
 
+  useEffect(() => {
+    document.title = "HoME Category Page";
+    try {
+      if (!location.state) {
+        history.push("/home/cover");
+      }
+    } catch {
+      history.push("/home/cover");
+    }
+  }, []);
+
   const handleChapterClick = (homeChapter: string) => {
-    history.push(`/home/organisator-list/${homeChapter}`);
+    history.push(`/home/organisator-list/${homeChapter}`, {
+      status: true,
+    });
     //NOT FINISHED
   };
 

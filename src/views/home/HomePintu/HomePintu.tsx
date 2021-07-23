@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import {
   HStack,
   PinInput,
@@ -25,8 +25,29 @@ import {
   StartMapMobile,
 } from "../../../assets/home";
 import "./HomePintu.scss";
+import { FaHandHolding } from "react-icons/fa";
 
 const HomePintu = () => {
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = "HoME Pintu Page";
+    try {
+      if (!location.state) {
+        history.push("/home/cover");
+      }
+    } catch {
+      history.push("/home/cover");
+    }
+  }, []);
+
+  const handleClickNext = () => {
+    history.push("/home/category", {
+      status: true,
+    });
+  };
+
   let count = 0;
   const openGate = () => {
     count++;
@@ -48,14 +69,14 @@ const HomePintu = () => {
       <Center>
         <Box boxSize="xs" my={20}>
           <Flex>
-            <NavLink to="/home/category">
+            <button onClick={handleClickNext}>
               <Image
                 srcSet={StartMapDesktop}
                 alt="start-map-mxm"
                 className="start-map"
                 objectFit="cover"
               />
-            </NavLink>
+            </button>
             <Image
               srcSet={LeftGateDesktop}
               alt="left-gate-mxm"
