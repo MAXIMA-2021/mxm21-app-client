@@ -48,6 +48,11 @@ const updateHome = async (homeID: string, newObject: any) => {
   return request;
 };
 
+const deleteHome = async (homeID: string) => {
+  const request = await axios.delete(`${baseUrl}/panit/home/${homeID}`, config);
+  return request;
+};
+
 const getAllState = async () => {
   const request = await axios.get(`${baseUrl}/public/state`, config);
   return request.data;
@@ -60,4 +65,5 @@ export default {
   getAllState,
   getHomeBySearchKey,
   updateHome,
+  deleteHome,
 };

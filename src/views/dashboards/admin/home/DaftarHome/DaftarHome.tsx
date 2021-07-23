@@ -31,7 +31,7 @@ const DaftarHome: React.FC = () => {
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
-          text: error.response.data.message,
+          text: error.response?.data.message,
           icon: "error",
           confirmButtonText: "Coba lagi",
         });
@@ -40,6 +40,36 @@ const DaftarHome: React.FC = () => {
 
     fetchData();
   }, []);
+
+  const deleteHome = (IDhome: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteHome(IDhome);
+          const homeData = data.filter((item: any) => item.homeID !== IDhome);
+          setData(homeData);
+          Swal.fire("Data telah terhapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
 
   const findSearchKey = (IDhome: any) => {
     for (let homeDataX in data) {
@@ -88,7 +118,7 @@ const DaftarHome: React.FC = () => {
     },
     {
       name: "kategori",
-      label: "Kategori",
+      label: "Chapter",
       options: {
         filter: true,
         sort: true,
@@ -142,7 +172,6 @@ const DaftarHome: React.FC = () => {
                 color={Palette.Navy}
                 border="1px"
                 borderColor={Palette.Navy}
-                onClick={() => console.log(tableMeta.rowData)}
               >
                 Edit
               </Button>
@@ -151,6 +180,7 @@ const DaftarHome: React.FC = () => {
               size="sm"
               color={Palette.Red}
               style={{ marginLeft: 2 }}
+              onClick={() => deleteHome(tableMeta.rowData[0])}
             />
           </HStack>
         ),
