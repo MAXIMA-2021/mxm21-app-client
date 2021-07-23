@@ -3,11 +3,17 @@ export {
   DaftarState,
   StateDetail,
   EditState,
-  DaftarOrganisator,
   TambahPIC,
   DaftarPIC,
 } from "./state";
 
 export { DaftarHome, EditHome, TambahHome, TambahMedia } from "./home";
 
-export { TambahMahasiswa, TambahPanitia, TambahOrganisator } from "./akun";
+export {
+  TambahMahasiswa,
+  TambahPanitia,
+  TambahOrganisator,
+  DaftarMahasiswa,
+  DaftarPanitia,
+  DaftarOrganisator,
+} from "./akun";

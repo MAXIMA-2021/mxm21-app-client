@@ -3,7 +3,6 @@ export {
   DaftarState,
   StateDetail,
   EditState,
-  DaftarOrganisator,
   TambahPIC,
   DaftarPIC,
   DaftarHome,
@@ -13,4 +12,7 @@ export {
   TambahMahasiswa,
   TambahPanitia,
   TambahOrganisator,
+  DaftarMahasiswa,
+  DaftarPanitia,
+  DaftarOrganisator,
 } from "./admin";

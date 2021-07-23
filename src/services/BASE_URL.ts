@@ -1,3 +1,3 @@
 export enum Base {
-  Url = "https://apimxm.loca.lt",
+  Url = "http://localhost:8080",
 }

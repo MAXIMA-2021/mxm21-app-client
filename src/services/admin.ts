@@ -58,11 +58,35 @@ const getAllState = async () => {
   return request.data;
 };
 
+const getAllMahasiswa = async () => {
+  const request = await axios.get(
+    `${baseUrl}/panitia/acc/getMahasiswa`,
+    config
+  );
+  return request.data;
+};
+
+const getAllPanitia = async () => {
+  const request = await axios.get(`${baseUrl}/panitia/acc/getPanitia`, config);
+  return request.data;
+};
+
+const getAllOrganisator = async () => {
+  const request = await axios.get(
+    `${baseUrl}/organizator/acc/getOrganizator`,
+    config
+  );
+  return request.data;
+};
+
 export default {
   tambahHome,
   tambahMedia,
   getAllHome,
   getAllState,
+  getAllMahasiswa,
+  getAllPanitia,
+  getAllOrganisator,
   getHomeBySearchKey,
   updateHome,
   deleteHome,

@@ -33,11 +33,6 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.DaftarState}
           />
           <Route
-            path="/admin/daftar-organisator"
-            exact
-            component={Dashboards.DaftarOrganisator}
-          />
-          <Route
             path="/admin/daftar-pic"
             exact
             component={Dashboards.DaftarPIC}
@@ -81,6 +76,21 @@ export default function AdminRouters(show: boolean) {
             path="/admin/tambah-organisator"
             exact
             component={Dashboards.TambahOrganisator}
+          />
+          <Route
+            path="/admin/daftar-mahasiswa"
+            exact
+            component={Dashboards.DaftarMahasiswa}
+          />
+          <Route
+            path="/admin/daftar-panitia"
+            exact
+            component={Dashboards.DaftarPanitia}
+          />
+          <Route
+            path="/admin/daftar-organisator"
+            exact
+            component={Dashboards.DaftarOrganisator}
           />
         </Box>
       </Router>
