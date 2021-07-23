@@ -12,9 +12,7 @@ const HomeCover = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push("/home/welcome", {
-      status: true,
-    });
+    history.push("/home/welcome");
   };
 
   useEffect(() => {
@@ -26,8 +24,18 @@ const HomeCover = () => {
       backgroundColor={Palette.Navy}
       className="home-cvr-container"
       justifyContent="center"
+      minH={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
+      padding="1rem"
     >
-      <Flex backgroundColor="#fff" className="home-cvr-inner_container">
+      <Flex
+        backgroundColor="#fff"
+        className="home-cvr-inner_container"
+        alignItems="center"
+      >
         <Flex
           backgroundColor="transparent"
           className="home-cvr-middle_container"

@@ -1,35 +1,29 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import "./HomeWelcome.scss";
 import { Palette } from "../../../types/enums";
 import { Maxi, Xima } from "../../../assets/home";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const HomeWelcome = () => {
-  const location = useLocation();
   const history = useHistory();
   useEffect(() => {
     document.title = "HoME Welcome Page";
-    try {
-      if (!location.state) {
-        history.push("/home/cover");
-      }
-    } catch {
-      history.push("/home/cover");
-    }
   }, []);
 
   const handleClick = () => {
-    history.push("/home/enter", {
-      status: true,
-    });
+    history.push("/home/enter");
   };
 
   return (
     <Flex
-      w="100vw"
-      h="100vh"
+      w="100%"
+      h={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
       padding={{
         base: "1rem",
         md: "2rem",
@@ -82,7 +76,9 @@ const HomeWelcome = () => {
           variant="desktop"
           colorScheme="yellow-red"
         >
-          NEXT
+          <Text fontSize={{ base: "1rem", md: "2rem" }} p="0.2rem 2rem">
+            NEXT
+          </Text>
         </MxmButton>
       </Flex>
     </Flex>

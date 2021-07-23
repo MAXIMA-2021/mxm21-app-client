@@ -22,10 +22,8 @@ import Swal from "sweetalert2";
 
 const HomeOrganisatorList = () => {
   const [data, setData] = useState([]);
-
   const { homeChapter } = useParams<{ homeChapter: string }>();
   const history = useHistory();
-  const location = useLocation();
 
   var images: any = [];
 
@@ -42,12 +40,8 @@ const HomeOrganisatorList = () => {
     document.title = `Organisator list ${homeChapter}`;
     const fetchData = async () => {
       try {
-        if (!location.state) {
-          history.push("/home/cover");
-        } else {
-          const returnedData = await homeService.getHomeByCategory(homeChapter);
-          setData(returnedData);
-        }
+        const returnedData = await homeService.getHomeByCategory(homeChapter);
+        setData(returnedData);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -57,7 +51,6 @@ const HomeOrganisatorList = () => {
         });
       }
     };
-
     fetchData();
   }, []);
 
@@ -115,11 +108,23 @@ const HomeOrganisatorList = () => {
         <Flex className="home-orglist-content_container">
           {data.map((item: any, index: any) => (
             <Grid className="home-orglist-content-grid" key={index}>
-              <div className="content-org-logo">
+              <div
+                className="content-org-logo"
+                onClick={() => {
+                  history.push(
+                    `/home/organisator-detail/${findSearchKey(item?.homeID)}`
+                  );
+                }}
+              >
                 <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
               </div>
               <div
                 className="content-org-desc"
+                onClick={() => {
+                  history.push(
+                    `/home/organisator-detail/${findSearchKey(item?.homeID)}`
+                  );
+                }}
                 style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
               >
                 <h3>{item?.name}</h3>
@@ -129,10 +134,7 @@ const HomeOrganisatorList = () => {
                 <button
                   onClick={() => {
                     history.push(
-                      `/home/detail/${findSearchKey(item?.homeID)}`,
-                      {
-                        status: true,
-                      }
+                      `/home/organisator-detail/${findSearchKey(item?.homeID)}`
                     );
                   }}
                 >
@@ -143,11 +145,7 @@ const HomeOrganisatorList = () => {
           ))}
         </Flex>
         <MxmButton
-          onClick={() =>
-            history.push("/home/category", {
-              status: true,
-            })
-          }
+          onClick={() => history.push("/home/category")}
           variant="desktop"
           colorScheme="cyan-navy"
           className="home-orglist-back-btn"

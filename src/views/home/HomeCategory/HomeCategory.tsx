@@ -17,24 +17,14 @@ import "./HomeCategory.scss";
 import { HomeChapter } from "../../../types/enums";
 
 const HomeCategory = () => {
-  const location = useLocation();
   const history = useHistory();
 
   useEffect(() => {
     document.title = "HoME Category Page";
-    try {
-      if (!location.state) {
-        history.push("/home/cover");
-      }
-    } catch {
-      history.push("/home/cover");
-    }
   }, []);
 
   const handleChapterClick = (homeChapter: string) => {
-    history.push(`/home/organisator-list/${homeChapter}`, {
-      status: true,
-    });
+    history.push(`/home/organisator-list/${homeChapter}`);
     //NOT FINISHED
   };
 
