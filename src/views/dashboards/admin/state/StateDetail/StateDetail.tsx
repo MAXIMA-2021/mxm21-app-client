@@ -37,15 +37,14 @@ const colorTheme = createMuiTheme({
 const StateDetail: React.FC = () => {
   const { stateID }: any = useParams();
   const [detailState, setDetailState] = useState<any>([]);
+  const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataDetail = async () => {
       try {
-        const returnedData = await adminService.getSpecificState(stateID);
+        const returnedDataState = await adminService.getSpecificState(stateID);
 
-        console.log(returnedData);
-
-        setDetailState(returnedData[0]);
+        setDetailState(returnedDataState[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -55,7 +54,27 @@ const StateDetail: React.FC = () => {
         });
       }
     };
-    fetchData();
+
+    const fetchDataMhs = async () => {
+      try {
+        const returnedDataMhs = await adminService.getRegistrationStateMhs(
+          stateID
+        );
+
+        setDataKehadiranMhs(returnedDataMhs);
+        console.log(dataKehadiranMhs);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchDataDetail();
+    fetchDataMhs();
     document.title = `State Detail ${detailState?.name}`;
   }, []);
 
@@ -103,7 +122,7 @@ const StateDetail: React.FC = () => {
       },
     },
     {
-      name: "attendance",
+      name: "inEventAttendance",
       label: "Kehadiran",
       options: {
         filter: true,
@@ -138,13 +157,13 @@ const StateDetail: React.FC = () => {
     },
   ];
 
-  const data = [
-    ["Bukan Jane Cooper", "32323", true],
-    ["Bukan Jane Cooper", "45454", false],
-    ["Bukan Jane Cooper", "95959", true],
-    ["Bukan Jane Cooper", "56565", false],
-    ["Bukan Jane Cooper", "46464", true],
-  ];
+  // const data = [
+  //   ["Bukan Jane Cooper", "32323", true],
+  //   ["Bukan Jane Cooper", "45454", false],
+  //   ["Bukan Jane Cooper", "95959", true],
+  //   ["Bukan Jane Cooper", "56565", false],
+  //   ["Bukan Jane Cooper", "46464", true],
+  // ];
 
   return (
     <>
@@ -238,7 +257,7 @@ const StateDetail: React.FC = () => {
             </Text>
             <Center>
               <MUIDataTable
-                data={data}
+                data={dataKehadiranMhs}
                 columns={tableColumns}
                 options={{
                   selectableRows: false,

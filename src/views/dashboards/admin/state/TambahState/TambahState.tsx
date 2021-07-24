@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -13,6 +12,8 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
+  Text,
+  Spinner,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import "./TambahState.scss";
@@ -26,16 +27,60 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
+import { DataState } from "../../../../../types/interfaces";
 
 const TambahState: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
+
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.title = "[Dashboard] - Tambah STATE";
+  }, []);
+
+  const onSubmit = async (data: DataState) => {
+    // window.confirm(JSON.stringify(data));
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("zoomLink", data.zoomLink);
+    formData.append("day", data.day);
+    formData.append("stateLogo", files[0]);
+    formData.append("quota", data.quota);
+    reset();
+
+    try {
+      await adminService.tambahState(formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil ditambahkan!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setResetUpload(true);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+    setLoading(false);
+    setResetUpload(false);
   };
+
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -109,26 +154,26 @@ const TambahState: React.FC = () => {
               xl: "row",
             }}
           >
-            <FormControl mb={3} mr="5" isInvalid={errors.nama}>
+            <FormControl mb={3} mr="5" isInvalid={errors.name}>
               <MxmFormLabel color="black">Nama STATE</MxmFormLabel>
-              <MxmInput {...register("nama", { required: "Isi Nama STATE" })} />
+              <MxmInput {...register("name", { required: "Isi Nama STATE" })} />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
-                {errors.nama && (
+                {errors.name && (
                   <Flex flexDirection="row" alignItems="center">
                     <p>
                       <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                      {errors.nama.message}
+                      {errors.name.message}
                     </p>
                   </Flex>
                 )}
               </MxmFormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.kuota} mb={3}>
+            <FormControl isInvalid={errors.quota} mb={3}>
               <MxmFormLabel color="black">Kuota</MxmFormLabel>
               <NumberInput allowMouseWheel defaultValue={0} min={0}>
                 <MxmNumberInputField
                   type="number"
-                  {...register("kuota", {
+                  {...register("quota", {
                     required: "Isi Jumlah Kuota",
                     min: {
                       value: 1,
@@ -142,11 +187,11 @@ const TambahState: React.FC = () => {
                 </NumberInputStepper>
               </NumberInput>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
-                {errors.kuota && (
+                {errors.quota && (
                   <Flex flexDirection="row" alignItems="center">
                     <p>
                       <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                      {errors.kuota.message}
+                      {errors.quota.message}
                     </p>
                   </Flex>
                 )}
@@ -162,10 +207,10 @@ const TambahState: React.FC = () => {
               xl: "row",
             }}
           >
-            <FormControl mb={3} isInvalid={errors.hari}>
+            <FormControl mb={3} isInvalid={errors.day}>
               <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
               <MxmSelect
-                {...register("hari", { required: "Pilih Hari Kegiatan" })}
+                {...register("day", { required: "Pilih Hari Kegiatan" })}
                 className="select"
                 onChange={handleSelectChange}
               >
@@ -179,11 +224,44 @@ const TambahState: React.FC = () => {
                 <option value="5">Hari ke-5</option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
-                {errors.hari && (
+                {errors.day && (
                   <Flex flexDirection="row" alignItems="center">
                     <p>
                       <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                      {errors.hari.message}
+                      {errors.day.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
+            </FormControl>
+          </Flex>
+          <Flex
+            direction={{
+              base: "column",
+              sm: "column",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+          >
+            <FormControl mb={3} isInvalid={errors.zoomLink}>
+              <MxmFormLabel color="black">Link Zoom</MxmFormLabel>
+              <MxmInput
+                {...register("zoomLink", {
+                  required: "Isi Link Zoom",
+                  pattern: {
+                    value:
+                      /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
+                    message: "Link Zoom Tidak Valid",
+                  },
+                })}
+              />
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.zoomLink && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.zoomLink.message}
                     </p>
                   </Flex>
                 )}
@@ -201,22 +279,42 @@ const TambahState: React.FC = () => {
           >
             <FormControl mb={3} isInvalid={errors.logo}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              <UploadFiles />
+              {!resetUpload && <UploadFiles setFiles={setFiles} />}
             </FormControl>
           </Flex>
           <Flex mt={5}>
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Flex mr="1rem" alignItems="center">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  w="2rem"
+                  h="2rem"
+                />
+                <Text
+                  fontFamily="Poppins"
+                  fontSize={{ base: "0.9rem", md: "1rem" }}
+                  ml="0.5rem"
+                >
+                  mengunggah data...
+                </Text>
+              </Flex>
+            ) : (
+              <Button
+                backgroundColor={Palette.Cyan}
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>

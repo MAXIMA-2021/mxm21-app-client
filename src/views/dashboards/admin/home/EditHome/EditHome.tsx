@@ -12,6 +12,8 @@ import {
   Button,
   Text,
   HStack,
+  Box,
+  Spinner,
 } from "@chakra-ui/react";
 import { Palette, HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
@@ -50,19 +52,34 @@ const EditHome: React.FC = () => {
     formState: { errors },
   } = useForm();
 
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+
   const onSubmit = async (data: any) => {
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("kategori", data.kategori);
+    formData.append("shortDesc", data.shortDesc);
+    formData.append("longDesc", data.longDesc);
+    formData.append("linkYoutube", data.linkYoutube);
+    formData.append("lineID", data.lineID);
+    formData.append("instagram", data.instagram);
+    formData.append("linkLogo", files[0]);
     reset();
 
-    const newData = {
-      ...FormData,
-      // linkLogo: FormData.linkLogo.replace(originUrl, cdnUrl),
-      // linkYoutube: FormData.linkYoutube.replace(ytUrl, embedYtUrl),
-    };
-    console.log(newData);
-
     try {
-      await adminService.updateHome(homeDatabySearchKey.homeID, newData);
-
+      await adminService.updateHome(homeDatabySearchKey.homeID, formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setResetUpload(true);
       history.push("/admin/daftar-home", {
         status: "success",
         message: "Kamu berhasil mengedit",
@@ -75,8 +92,8 @@ const EditHome: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
-
-    window.confirm(JSON.stringify(data));
+    setLoading(false);
+    setResetUpload(false);
   };
 
   useEffect(() => {
@@ -97,14 +114,6 @@ const EditHome: React.FC = () => {
     };
     fetchData();
   }, []);
-
-  const responsiveData = {
-    base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
-    "2xl": "1.2em",
-  };
 
   const tableColumns = [
     {
@@ -150,28 +159,6 @@ const EditHome: React.FC = () => {
         ),
       },
     },
-    // {
-    //   name: "linkMedia",
-    //   label: "Ganti Media",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //     customHeadLabelRender: ({ index, ...column }) => (
-    //       <Text
-    //         key={index}
-    //         fontWeight="bold"
-    //         fontFamily="Rubik"
-    //         fontSize="1.1em"
-    //       >
-    //         {column.label}
-    //       </Text>
-    //     ),
-    //     setCellProps: () => ({
-    //       style: { minWidth: "200px" },
-    //     }),
-    //     customBodyRender: (value: any) => <input type="file" name="" id="" />,
-    //   },
-    // },
     {
       name: "Actions",
       label: "Aksi",
@@ -201,24 +188,26 @@ const EditHome: React.FC = () => {
     },
   ];
 
-  const data = [
-    [
-      "P0001",
-      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    ],
-    [
-      "P0002",
-      "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
-    ],
-    [
-      "P0003",
-      "https://images.unsplash.com/photo-1626180874495-0fe651f60ecb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
-    ],
-    [
-      "P0004",
-      "https://images.unsplash.com/photo-1625959276519-15fe73b6fe96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80",
-    ],
-  ];
+  // const data = [
+  //   [
+  //     "P0001",
+  //     "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+  //   ],
+  //   [
+  //     "P0002",
+  //     "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
+  //   ],
+  //   [
+  //     "P0003",
+  //     "https://images.unsplash.com/photo-1626180874495-0fe651f60ecb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
+  //   ],
+  //   [
+  //     "P0004",
+  //     "https://images.unsplash.com/photo-1625959276519-15fe73b6fe96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80",
+  //   ],
+  // ];
+
+  console.log(files);
 
   return (
     <Tabs defaultIndex={0}>
@@ -307,10 +296,7 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.name}>
@@ -336,16 +322,13 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
                     <MxmFormLabel color="black">Chapter</MxmFormLabel>
                     <MxmSelect
-                      {...register("Kategori", {
+                      {...register("kategori", {
                         required: "Pilih Chapter",
                       })}
                       // className="select"
@@ -393,7 +376,7 @@ const EditHome: React.FC = () => {
                     <MxmFormLabel color="black">Kata Kunci</MxmFormLabel>
                     <MxmInput
                       defaultValue={homeDatabySearchKey["search_key"]}
-                      {...register("Name", {
+                      {...register("searchKey", {
                         required: "Isi Search Key",
                       })}
                     />
@@ -412,17 +395,14 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.shortDesc}>
                     <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                     <MxmInput
                       defaultValue={homeDatabySearchKey["shortDesc"]}
-                      {...register("ShortDesc", {
+                      {...register("shortDesc", {
                         required: "Isi Narasi Pendek",
                       })}
                     />
@@ -441,17 +421,14 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.longDesc}>
                     <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
                     <MxmTextarea
                       resize="vertical"
-                      {...register("LongDesc", {
+                      {...register("longDesc", {
                         required: "Isi Narasi Panjang",
                       })}
                       defaultValue={homeDatabySearchKey["longDesc"]}
@@ -472,24 +449,31 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
-                  <FormControl mb={3} isInvalid={errors.logo}>
+                  <FormControl mb={3}>
                     <MxmFormLabel color="black">Logo</MxmFormLabel>
-                    <UploadFiles />
+                    <Flex alignItems={files[0] ? "flex-start" : "center"}>
+                      <Image
+                        mr="1rem"
+                        w="15%"
+                        src={
+                          files[0]
+                            ? URL.createObjectURL(files[0])
+                            : homeDatabySearchKey?.linkLogo
+                        }
+                      />
+                      <Box w="85%">
+                        {!resetUpload && <UploadFiles setFiles={setFiles} />}
+                      </Box>
+                    </Flex>
                   </FormControl>
                 </Flex>
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.linkYoutube}>
@@ -497,7 +481,7 @@ const EditHome: React.FC = () => {
                       Link Video Youtube
                     </MxmFormLabel>
                     <MxmInput
-                      {...register("LinkYoutube", {
+                      {...register("linkYoutube", {
                         required: "Isi Link Video",
                         pattern: {
                           value:
@@ -522,10 +506,7 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
@@ -601,7 +582,7 @@ const EditHome: React.FC = () => {
               <form className="form_daftar-state">
                 <Center>
                   <MUIDataTable
-                    data={data}
+                    data={homeDatabySearchKey?.home_media}
                     columns={tableColumns}
                     options={{
                       selectableRows: false,
@@ -619,17 +600,37 @@ const EditHome: React.FC = () => {
                 </Center>
                 <Flex mt={5}>
                   <Spacer />
-                  <Button
-                    backgroundColor={Palette.Cyan}
-                    color="white"
-                    padding="1em 2em 1em 2em"
-                    borderRadius="999px"
-                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                    type="submit"
-                    _hover={{ backgroundColor: "#2BAD96" }}
-                  >
-                    SUBMIT
-                  </Button>
+                  {loading ? (
+                    <Flex mr="1rem" alignItems="center">
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        w="2rem"
+                        h="2rem"
+                      />
+                      <Text
+                        fontFamily="Poppins"
+                        fontSize={{ base: "0.9rem", md: "1rem" }}
+                        ml="0.5rem"
+                      >
+                        mengunggah data...
+                      </Text>
+                    </Flex>
+                  ) : (
+                    <Button
+                      backgroundColor={Palette.Cyan}
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                      type="submit"
+                      _hover={{ backgroundColor: "#2BAD96" }}
+                    >
+                      SUBMIT
+                    </Button>
+                  )}
                 </Flex>
               </form>
             </TabPanel>

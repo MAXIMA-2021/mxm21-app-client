@@ -1,7 +1,6 @@
 import axios from "axios";
-import { Base } from "./BASE_URL";
 
-const baseUrl = `${Base.Url}/api`;
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
 const token: any = window.sessionStorage?.getItem("token");
 const config = {
@@ -43,7 +42,16 @@ const getHomeBySearchKey = async (searchKey: string) => {
 };
 
 const updateHome = async (homeID: string, newObject: any) => {
-  const request = await axios.put(`${baseUrl}/panit/home/${homeID}`, newObject);
+  const request = await axios.put(
+    `${baseUrl}/panit/home/${homeID}`,
+    newObject,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-access-token": token,
+      },
+    }
+  );
   return request;
 };
 
@@ -60,6 +68,14 @@ const getAllState = async () => {
 const getAllMahasiswa = async () => {
   const request = await axios.get(
     `${baseUrl}/panitia/acc/getMahasiswa`,
+    config
+  );
+  return request.data;
+};
+
+const getRegistrationStateMhs = async (stateID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/panit/state/registration?stateID=${stateID}`,
     config
   );
   return request.data;
@@ -85,12 +101,23 @@ const getAllOrganisator = async () => {
   );
   return request.data;
 };
+
 const deleteState = async (stateID: string) => {
   const request = await axios.delete(
     `${baseUrl}/state/activities${stateID}`,
     config
   );
   return request;
+};
+
+const tambahState = async (data: unknown) => {
+  const request = await axios.post(`${baseUrl}/state/activities`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": token,
+    },
+  });
+  return request.data;
 };
 
 export default {
@@ -106,4 +133,6 @@ export default {
   deleteHome,
   deleteState,
   getSpecificState,
+  tambahState,
+  getRegistrationStateMhs,
 };

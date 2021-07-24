@@ -5,9 +5,8 @@ import {
   DataRegisterOrganisator,
   DataRegisterPanitia,
 } from "../types/interfaces";
-import { Base } from "./BASE_URL";
 
-const baseUrl = `${Base.Url}/api`;
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api`;
 
 const daftarMhs = async (data: DataRegisterMaba) => {
   const request = await axios.post(`${baseUrl}/mhs/acc/signup`, data);
