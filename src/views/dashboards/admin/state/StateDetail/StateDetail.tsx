@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import {
   Flex,
   Heading,
@@ -20,6 +20,8 @@ import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
 
 const colorTheme = createMuiTheme({
   palette: {
@@ -33,6 +35,30 @@ const colorTheme = createMuiTheme({
 });
 
 const StateDetail: React.FC = () => {
+  const { stateID }: any = useParams();
+  const [detailState, setDetailState] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getSpecificState(stateID);
+
+        console.log(returnedData);
+
+        setDetailState(returnedData[0]);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+    fetchData();
+    document.title = `State Detail ${detailState?.name}`;
+  }, []);
+
   const tableColumns = [
     {
       name: "name",
@@ -181,27 +207,28 @@ const StateDetail: React.FC = () => {
             <MxmDivider color="black" height="3px" margin="1rem 0 1.5rem 0" />
             <Flex direction="row">
               <img
-                src="https://ultimagz.com/wp-content/uploads/cropped-thumbnail_Logo-Ultimagz-01.png"
+                src={detailState?.stateLogo}
                 style={{ maxWidth: "50%", height: "100%" }}
                 alt="logoState"
               />
               <Container pl="1rem">
-                <Heading>Ultimagz</Heading>
+                <Heading>{detailState?.name}</Heading>
                 <Text mt="1.5rem">
-                  <EventOutlinedIcon /> Hari ke-1 (Rabu, 6 Agustus 2021)
+                  <EventOutlinedIcon /> Hari ke-{detailState?.day} (Rabu, 6
+                  Agustus 2021)
                 </Text>
                 <Flex direction="row" my="1rem">
                   <Text>
-                    <PeopleAltOutlinedIcon /> 100
+                    <PeopleAltOutlinedIcon /> {detailState?.quota}
                   </Text>
                   <Text ml="2rem">
-                    <VpnKeyOutlinedIcon /> ULA326
+                    <VpnKeyOutlinedIcon /> {detailState?.attendanceCode}
                   </Text>
                 </Flex>
                 <Flex direction="row">
                   <VideocamOutlinedIcon />
                   <Text ml="0.5rem" wordBreak="break-all">
-                    https://mxm-one.zoom.us/j/4662717372?pwd=dTlPQSt1UHBHM1U3cDlYajZLTEJtdz09
+                    {detailState?.zoomLink}
                   </Text>
                 </Flex>
               </Container>

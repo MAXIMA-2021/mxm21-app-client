@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Flex,
@@ -16,8 +16,64 @@ import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
 
 const DaftarState: React.FC = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    document.title = "Daftar STATE - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllState();
+        setData(returnedData);
+        console.log(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const deleteState = (stateID: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteState(stateID);
+          const stateData = data.filter(
+            (item: any) => item.stateID !== stateID
+          );
+          setData(stateData);
+          Swal.fire("Data telah dihapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
+
   const responsiveData = {
     base: "1em",
     sm: "1em",
@@ -33,7 +89,7 @@ const DaftarState: React.FC = () => {
       options: { display: false },
     },
     {
-      name: "namaState",
+      name: "name",
       label: "Nama STATE",
       options: {
         filter: true,
@@ -57,7 +113,7 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kuotaTerisi",
+      name: "quota",
       label: "Kuota Terisi",
       options: {
         filter: true,
@@ -81,7 +137,7 @@ const DaftarState: React.FC = () => {
       },
     },
     {
-      name: "kodePresensi",
+      name: "attendanceCode",
       label: "Kode Presensi",
       options: {
         filter: true,
@@ -157,29 +213,12 @@ const DaftarState: React.FC = () => {
               size="sm"
               color={Palette.Red}
               style={{ marginLeft: 2 }}
+              onClick={() => deleteState(tableMeta.rowData[0])}
             />
           </HStack>
         ),
       },
     },
-  ];
-
-  const data = [
-    ["U0001", "Ultimagz", 100, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0002", "J-Cafe Cosplay", 50, "IF430"],
-    ["U0003", "Ultima Sonora", 90, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0004", "Teater Katak", 60, "IF430"],
-    ["U0005", "Game Development Club", 70, "IF430"],
-    ["U0001", "Ultimagz", 100, "IF430"],
   ];
 
   return (
