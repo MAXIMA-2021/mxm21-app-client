@@ -28,6 +28,7 @@ const DaftarHome: React.FC = () => {
       try {
         const returnedData = await adminService.getAllHome();
         setData(returnedData);
+        console.log(data);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -56,7 +57,7 @@ const DaftarHome: React.FC = () => {
           await adminService.deleteHome(IDhome);
           const homeData = data.filter((item: any) => item.homeID !== IDhome);
           setData(homeData);
-          Swal.fire("Data telah terhapus!", "", "success");
+          Swal.fire("Data telah dihapus!", "", "success");
         } else if (result.isDenied) {
           Swal.fire("Perubahan belum tersimpan", "", "info");
         }

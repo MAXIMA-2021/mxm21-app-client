@@ -53,13 +53,21 @@ const deleteHome = async (homeID: string) => {
 };
 
 const getAllState = async () => {
-  const request = await axios.get(`${baseUrl}/public/state`, config);
+  const request = await axios.get(`${baseUrl}/state/activities`, config);
   return request.data;
 };
 
 const getAllMahasiswa = async () => {
   const request = await axios.get(
     `${baseUrl}/panitia/acc/getMahasiswa`,
+    config
+  );
+  return request.data;
+};
+
+const getSpecificState = async (stateID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/state/activities?param=${stateID}`,
     config
   );
   return request.data;
@@ -77,6 +85,13 @@ const getAllOrganisator = async () => {
   );
   return request.data;
 };
+const deleteState = async (stateID: string) => {
+  const request = await axios.delete(
+    `${baseUrl}/state/activities${stateID}`,
+    config
+  );
+  return request;
+};
 
 export default {
   tambahHome,
@@ -89,4 +104,6 @@ export default {
   getHomeBySearchKey,
   updateHome,
   deleteHome,
+  deleteState,
+  getSpecificState,
 };

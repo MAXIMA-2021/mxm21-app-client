@@ -38,7 +38,7 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.DaftarPIC}
           />
           <Route
-            path="/admin/state-detail"
+            path="/admin/state-detail/:stateID"
             exact
             component={Dashboards.StateDetail}
           />
