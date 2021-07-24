@@ -65,6 +65,14 @@ const getAllMahasiswa = async () => {
   return request.data;
 };
 
+const getRegistrationStateMhs = async (stateID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/panit/state/registration?stateID=${stateID}`,
+    config
+  );
+  return request.data;
+};
+
 const getSpecificState = async (stateID: string) => {
   const request = await axios.get(
     `${baseUrl}/state/activities?param=${stateID}`,
@@ -85,6 +93,7 @@ const getAllOrganisator = async () => {
   );
   return request.data;
 };
+
 const deleteState = async (stateID: string) => {
   const request = await axios.delete(
     `${baseUrl}/state/activities${stateID}`,
@@ -106,4 +115,5 @@ export default {
   deleteHome,
   deleteState,
   getSpecificState,
+  getRegistrationStateMhs,
 };
