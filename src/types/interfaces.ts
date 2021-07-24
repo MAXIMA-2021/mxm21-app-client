@@ -45,7 +45,6 @@ export interface DataHome {
 }
 
 export interface DataMediaHome {
-  //masih belum selesai
   photoID: string;
   homeID: string;
   linkMedia: string;
@@ -68,4 +67,11 @@ export interface DataHomeBySearchKey {
       linkMedia: string;
     }
   ];
+}
+
+export interface DataState {
+  name: string;
+  zoomLink: string;
+  day: string;
+  quota: string;
 }

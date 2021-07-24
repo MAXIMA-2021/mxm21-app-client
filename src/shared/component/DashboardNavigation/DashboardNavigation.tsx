@@ -245,24 +245,6 @@ const DashboardNavigation: React.FC = () => {
                       Daftar STATE
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah PIC Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar PIC Organisator
-                    </NavLink>
-                  </li>
                 </ul>
               </li>
 

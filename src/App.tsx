@@ -3,6 +3,7 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 // import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import AppRouter from "./AppRouter";
+require("dotenv").config();
 
 export const App = () => (
   <AnimatePresence>
