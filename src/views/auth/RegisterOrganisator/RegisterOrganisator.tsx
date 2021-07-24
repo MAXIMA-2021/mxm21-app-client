@@ -37,6 +37,9 @@ import Swal from "sweetalert2";
 import authService from "../../../services/auth";
 import adminService from "../../../services/admin";
 import { DataRegisterOrganisator } from "../../../types/interfaces";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
+import { useMediaQuery } from "@chakra-ui/media-query";
 
 const transition = {
   duration: 0.5,
@@ -77,6 +80,7 @@ const RegisterOrganisator: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -286,6 +290,48 @@ const RegisterOrganisator: React.FC = () => {
                     isInvalid={errors.stateID}
                   >
                     <MxmFormLabel>ID state</MxmFormLabel>
+                    {/* <Autocomplete
+                      id="stateList-combo-box"
+                      options={data}
+                      getOptionLabel={(option) => option.name}
+                      renderOption={(option) => (
+                        <Flex alignItems="center">
+                          <img
+                            src={option.stateLogo}
+                            width={isLargerThan3000px ? 80 : 35}
+                            height={isLargerThan3000px ? 80 : 35}
+                            alt="logo"
+                          />
+                          <p
+                            style={
+                              isLargerThan3000px
+                                ? {
+                                    fontSize: "2rem",
+                                    fontFamily: "Poppins",
+                                    marginLeft: "1em",
+                                  }
+                                : {
+                                    fontSize: "0.8em",
+                                    fontFamily: "Poppins",
+                                    marginLeft: "1em",
+                                  }
+                            }
+                          >
+                            {option.stateID} - {option.name}
+                          </p>
+                        </Flex>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="filled"
+                          {...register("stateID", {
+                            required: "Isi nama kegiatan STATE",
+                          })}
+                          onChange={handleSelectChange}
+                        />
+                      )}
+                    /> */}
                     <MxmSelect
                       className="select"
                       {...register("stateID", {

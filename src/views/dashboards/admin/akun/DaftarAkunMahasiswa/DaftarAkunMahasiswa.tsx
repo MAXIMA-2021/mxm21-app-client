@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Spacer,
+  Image,
+  Center,
+  Text,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
+import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+import { Palette } from "../../../../../types/enums";
 
 const DaftarAkunMahasiswa: React.FC = () => {
   const responsiveData = {
@@ -83,7 +94,6 @@ const DaftarAkunMahasiswa: React.FC = () => {
         ),
       },
     },
-
     {
       name: "email",
       label: "Alamat Email",
@@ -105,6 +115,43 @@ const DaftarAkunMahasiswa: React.FC = () => {
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
+    },
+    {
+      name: "Actions",
+      label: "Aksi",
+      options: {
+        print: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        customBodyRender: (value: any, tableMeta: any) => (
+          <HStack spacing={2}>
+            <Link
+              to={`/admin/edit-mahasiswa/${tableMeta.rowData[0]}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                fontSize={responsiveData}
+                size="xs"
+                leftIcon={<EditIcon />}
+                bgColor="white"
+                color={Palette.Navy}
+                border="1px"
+                borderColor={Palette.Navy}
+              >
+                Edit
+              </Button>
+            </Link>
+          </HStack>
         ),
       },
     },
