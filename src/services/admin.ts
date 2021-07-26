@@ -41,6 +41,31 @@ const getHomeBySearchKey = async (searchKey: string) => {
   return request.data;
 };
 
+const getMahasiswaByNim = async (nim: string) => {
+  const request = await axios.get(
+    `${baseUrl}/panitia/acc/getMahasiswa?param=${nim}`,
+    config
+  );
+  return request.data;
+};
+
+const getAllMahasiswa = async () => {
+  const request = await axios.get(
+    `${baseUrl}/panitia/acc/getMahasiswa`,
+    config
+  );
+  return request.data;
+};
+
+const updateMahasiswa = async (nim: string, newObject: any) => {
+  const request = await axios.put(
+    `${baseUrl}/panitia/acc/editMahasiswa/${nim}`,
+    newObject,
+    config
+  );
+  return request;
+};
+
 const updateHome = async (homeID: string, newObject: any) => {
   const request = await axios.put(
     `${baseUrl}/panit/home/${homeID}`,
@@ -89,14 +114,6 @@ const deleteHomeMedia = async (photoID: string) => {
 
 const getAllState = async () => {
   const request = await axios.get(`${baseUrl}/state/activities`, config);
-  return request.data;
-};
-
-const getAllMahasiswa = async () => {
-  const request = await axios.get(
-    `${baseUrl}/panitia/acc/getMahasiswa`,
-    config
-  );
   return request.data;
 };
 
@@ -156,6 +173,8 @@ export default {
   getAllPanitia,
   getAllOrganisator,
   getHomeBySearchKey,
+  getMahasiswaByNim,
+  updateMahasiswa,
   updateHome,
   deleteHome,
   deleteState,

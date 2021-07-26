@@ -96,10 +96,7 @@ const EditHome: React.FC = () => {
         timer: 2000,
       });
       setResetUpload(true);
-      history.push("/admin/daftar-home", {
-        status: "success",
-        message: "Kamu berhasil mengedit",
-      });
+      history.push("/admin/daftar-home");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -117,7 +114,6 @@ const EditHome: React.FC = () => {
     const fetchData = async () => {
       try {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
-
         sethomeDatabySearchKey(returnedData[0]);
         setHomeMedia(returnedData[0]?.home_media);
         // console.log(homeMedia);

@@ -92,6 +92,11 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.DaftarOrganisator}
           />
+          <Route
+            path="/admin/edit-mahasiswa/:nim"
+            exact
+            component={Dashboards.EditMahasiswa}
+          />
         </Box>
       </Router>
     </div>

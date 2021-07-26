@@ -15,4 +15,5 @@ export {
   DaftarMahasiswa,
   DaftarPanitia,
   DaftarOrganisator,
+  EditMahasiswa,
 } from "./admin";

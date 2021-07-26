@@ -136,7 +136,7 @@ const DaftarAkunMahasiswa: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
             <Link
-              to={`/admin/edit-mahasiswa/${tableMeta.rowData[0]}`}
+              to={`/admin/edit-mahasiswa/${tableMeta.rowData[1]}`}
               style={{ textDecoration: "none" }}
             >
               <Button

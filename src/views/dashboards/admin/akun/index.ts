@@ -4,3 +4,4 @@ export { TambahOrganisator } from "./TambahAkunOrganisator";
 export { DaftarMahasiswa } from "./DaftarAkunMahasiswa";
 export { DaftarPanitia } from "./DaftarAkunPanitia";
 export { DaftarOrganisator } from "./DaftarAkunOrganisator";
+export { EditMahasiswa } from "./EditAkunMahasiswa";
