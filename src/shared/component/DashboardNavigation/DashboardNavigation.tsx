@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -17,11 +17,30 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import Swal from "sweetalert2";
 
 const DashboardNavigation: React.FC = () => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    Swal.fire({
+      title:
+        '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Keluar</span>`,
+      confirmButtonColor: "#e40000",
+      denyButtonColor: "#fff",
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        window.sessionStorage.removeItem("token");
+        history.push("/");
+      }
+    });
+  };
 
   const sidebarShown = () => {
     setSidebarShow(false);
@@ -134,7 +153,7 @@ const DashboardNavigation: React.FC = () => {
               <h4>Bukan Tiara Andini</h4>
             </Flex>
 
-            <button className="navbar-logout-btn">
+            <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
               <ExitToAppIcon />
             </button>

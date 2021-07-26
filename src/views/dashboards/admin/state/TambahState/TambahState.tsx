@@ -36,12 +36,17 @@ const TambahState: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
+
+  useEffect(() => {
+    setValue("quota", 0);
+  }, [resetUpload]);
 
   useEffect(() => {
     document.title = "[Dashboard] - Tambah STATE";
@@ -69,6 +74,7 @@ const TambahState: React.FC = () => {
         timer: 2000,
       });
       setResetUpload(true);
+      setFiles([]);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

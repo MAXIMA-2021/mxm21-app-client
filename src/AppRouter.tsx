@@ -9,6 +9,7 @@ import { DashboardNavigation } from "./shared/component/DashboardNavigation";
 import { DashboardFooter } from "./shared/component/DashboardFooter";
 import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
+import { DashboardProtectedRoute } from "./routers/DashboardProtectedRouters";
 
 export default function AppRouter() {
   return (
@@ -27,14 +28,17 @@ export default function AppRouter() {
                     <HomeFooter />
                   </div>
                 </Route>
-                <Route path="/admin/:path1?/:path2?/:path3?" exact>
+                <DashboardProtectedRoute
+                  path="/admin/:path1?/:path2?/:path3?"
+                  exact
+                >
                   <Switch>
                     <div style={{ minHeight: "100vh", background: "#f4f4f4" }}>
                       <DashboardNavigation />
                       <DashboardFooter />
                     </div>
                   </Switch>
-                </Route>
+                </DashboardProtectedRoute>
                 <Route path="/home/:path1?/:path2?" exact>
                   {/* <div style={{ minHeight: "100vh", paddingBottom: "22rem" }}> */}
                   <HomeNavbar />

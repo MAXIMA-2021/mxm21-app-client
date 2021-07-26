@@ -164,6 +164,20 @@ const tambahState = async (data: unknown) => {
   return request.data;
 };
 
+const updateState = async (stateID: number, data: unknown) => {
+  const request = await axios.put(
+    `${baseUrl}/state/activities/${stateID}`,
+    data,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-access-token": token,
+      },
+    }
+  );
+  return request.data;
+};
+
 export default {
   tambahHome,
   tambahMedia,
@@ -183,4 +197,5 @@ export default {
   getRegistrationStateMhs,
   updateHomeMedia,
   deleteHomeMedia,
+  updateState,
 };

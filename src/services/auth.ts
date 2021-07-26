@@ -7,6 +7,7 @@ import {
 } from "../types/interfaces";
 
 const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api`;
+const token: any = window.sessionStorage?.getItem("token");
 
 const daftarMhs = async (data: DataRegisterMaba) => {
   const request = await axios.post(`${baseUrl}/mhs/acc/signup`, data);
@@ -38,6 +39,24 @@ const loginOrganisator = async (data: DataLogin) => {
   return request.data;
 };
 
+const checkTokenPanitia = async () => {
+  const request = await axios.get(`${baseUrl}/panitia/acc/checkToken`, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+  return request.data;
+};
+
+const checkTokenOrganisator = async () => {
+  const request = await axios.get(`${baseUrl}/organizator/acc/checkToken`, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+  return request.data;
+};
+
 export default {
   daftarMhs,
   loginMhs,
@@ -45,4 +64,6 @@ export default {
   loginPanitia,
   daftarOrganisator,
   loginOrganisator,
+  checkTokenPanitia,
+  checkTokenOrganisator,
 };

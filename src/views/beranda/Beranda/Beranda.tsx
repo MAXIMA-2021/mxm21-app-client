@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Beranda.scss";
 import {
   Heading,
@@ -9,8 +9,21 @@ import {
   Container,
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
+import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Beranda = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = "Beranda - MAXIMA 2021";
+    location.state &&
+      Swal.fire({
+        title: location?.state?.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+  }, []);
   return (
     <Center>
       <SimpleGrid columns={2} spacing={10}>

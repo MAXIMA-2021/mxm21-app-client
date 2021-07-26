@@ -96,6 +96,7 @@ const EditHome: React.FC = () => {
         timer: 2000,
       });
       setResetUpload(true);
+      setFiles([]);
       history.push("/admin/daftar-home");
     } catch (error) {
       Swal.fire({

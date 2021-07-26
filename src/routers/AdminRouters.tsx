@@ -23,7 +23,7 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.TambahPIC}
           />
           <Route
-            path="/admin/edit-state"
+            path="/admin/edit-state/:stateID"
             exact
             component={Dashboards.EditState}
           />

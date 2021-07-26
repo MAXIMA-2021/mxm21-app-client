@@ -70,6 +70,7 @@ const TambahMedia: React.FC = () => {
         timer: 2000,
       });
       setResetUpload(true);
+      setFiles([]);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
