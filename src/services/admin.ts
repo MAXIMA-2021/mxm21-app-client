@@ -60,6 +60,33 @@ const deleteHome = async (homeID: string) => {
   return request;
 };
 
+const updateHomeMedia = async (homeID: string, newObject: any) => {
+  const request = await axios.put(
+    `${baseUrl}/panit/home/linkMedia/${homeID}`,
+    newObject,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-access-token": token,
+      },
+    }
+  );
+  return request;
+};
+
+const deleteHomeMedia = async (photoID: string) => {
+  const request = await axios.delete(
+    `${baseUrl}/panit/home/linkMedia/${photoID}`,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-access-token": token,
+      },
+    }
+  );
+  return request;
+};
+
 const getAllState = async () => {
   const request = await axios.get(`${baseUrl}/state/activities`, config);
   return request.data;
@@ -135,4 +162,6 @@ export default {
   getSpecificState,
   tambahState,
   getRegistrationStateMhs,
+  updateHomeMedia,
+  deleteHomeMedia,
 };

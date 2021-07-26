@@ -56,7 +56,6 @@ const TambahHome: React.FC = () => {
     setLoading(true);
 
     const linkYTEmbed: any = getId(data.linkYoutube);
-    console.log(linkYTEmbed);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -69,7 +68,6 @@ const TambahHome: React.FC = () => {
     );
     formData.append("lineID", data.lineID);
     formData.append("instagram", data.instagram);
-    // formData.append("linkLogo", data.linkLogo[0]);
     formData.append("linkLogo", files[0]);
     reset();
 

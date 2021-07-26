@@ -44,31 +44,47 @@ const EditHome: React.FC = () => {
 
   const history = useHistory();
   const [homeDatabySearchKey, sethomeDatabySearchKey] = useState<any>({});
+  const [homeMedia, setHomeMedia] = useState<any>({});
+
   const { search_key }: any = useParams();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
 
+  const getId = (url: any) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
   const onSubmit = async (data: any) => {
     setLoading(true);
+
+    const linkYTEmbed: any = getId(data.linkYoutube);
 
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("kategori", data.kategori);
+    formData.append("searchKey", data.searh_key);
     formData.append("shortDesc", data.shortDesc);
     formData.append("longDesc", data.longDesc);
-    formData.append("linkYoutube", data.linkYoutube);
+    formData.append(
+      "linkYoutube",
+      `https://www.youtube.com/embed/${linkYTEmbed}`
+    );
     formData.append("lineID", data.lineID);
     formData.append("instagram", data.instagram);
     formData.append("linkLogo", files[0]);
-    reset();
 
     try {
       await adminService.updateHome(homeDatabySearchKey.homeID, formData);
@@ -103,6 +119,8 @@ const EditHome: React.FC = () => {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
 
         sethomeDatabySearchKey(returnedData[0]);
+        setHomeMedia(returnedData[0]?.home_media);
+        // console.log(homeMedia);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -112,8 +130,56 @@ const EditHome: React.FC = () => {
         });
       }
     };
+
     fetchData();
+    console.log(homeMedia);
   }, []);
+
+  useEffect(() => {
+    setValue("name", homeDatabySearchKey?.name);
+    setValue("kategori", homeDatabySearchKey?.kategori);
+    setValue("searchKey", homeDatabySearchKey?.search_key);
+    setValue("shortDesc", homeDatabySearchKey?.shortDesc);
+    setValue("longDesc", homeDatabySearchKey?.longDesc);
+    setValue("linkYoutube", homeDatabySearchKey?.linkYoutube);
+    setValue("lineID", homeDatabySearchKey?.lineID);
+    setValue("instagram", homeDatabySearchKey?.instagram);
+  }, [homeDatabySearchKey]);
+
+  // const onMediaSubmit = async (data: any) =>{
+  //   setLoading(true);
+  // }
+  const deleteHomeMedia = (photoId: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteHomeMedia(photoId);
+          const homeDataMedia = homeDatabySearchKey?.home_media.filter(
+            (item: any) => item.photoID !== photoId
+          );
+          setHomeMedia(homeDataMedia);
+          Swal.fire("Media telah dihapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
 
   const tableColumns = [
     {
@@ -179,7 +245,11 @@ const EditHome: React.FC = () => {
         ),
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
-            <button type="button" className="delete-icon">
+            <button
+              type="button"
+              className="delete-icon"
+              // onClick={() => deleteHomeMedia(tableMeta.rowData[0])}
+            >
               <DeleteIcon style={{ color: "red" }} />
             </button>
           </HStack>
@@ -206,8 +276,6 @@ const EditHome: React.FC = () => {
   //     "https://images.unsplash.com/photo-1625959276519-15fe73b6fe96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80",
   //   ],
   // ];
-
-  console.log(files);
 
   return (
     <Tabs defaultIndex={0}>
@@ -302,7 +370,6 @@ const EditHome: React.FC = () => {
                   <FormControl mb={3} isInvalid={errors.name}>
                     <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
                     <MxmInput
-                      defaultValue={homeDatabySearchKey.name}
                       {...register("name", {
                         required: "Isi Nama Organisator",
                       })}
@@ -319,79 +386,53 @@ const EditHome: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
-                <Flex
-                  direction={{
-                    base: "column",
-                    md: "row",
-                  }}
-                >
-                  <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
-                    <MxmFormLabel color="black">Chapter</MxmFormLabel>
-                    <MxmSelect
-                      {...register("kategori", {
-                        required: "Pilih Chapter",
-                      })}
-                      // className="select"
-                      // onChange={handleSelectChange}
-                      value={homeDatabySearchKey["kategori"]}
-                    >
-                      <option value="" selected disabled hidden>
-                        Pilih Chapter
-                      </option>
-                      <option value={HomeChapter.LostTreasureIsland}>
-                        Lost Treasure Island
-                      </option>
-                      <option value={HomeChapter.FantasyBridge}>
-                        Fantasy Bridge
-                      </option>
-                      <option value={HomeChapter.MedalistPlayground}>
-                        Medalist Playground
-                      </option>
-                      <option value={HomeChapter.RainbowMines}>
-                        Rainbow Mines
-                      </option>
-                      <option value={HomeChapter.TomorrowVille}>
-                        Tomorrowville
-                      </option>
-                      <option value={HomeChapter.AdventureLand}>
-                        Adventure Land
-                      </option>
-                      <option value={HomeChapter.TownArea}>Town Area</option>
-                      <option value={HomeChapter.WonderousCampground}>
-                        Wonderous Campground
-                      </option>
-                    </MxmSelect>
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.kategori && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.kategori.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                  <FormControl mb={3} isInvalid={errors.searchKey}>
-                    <MxmFormLabel color="black">Kata Kunci</MxmFormLabel>
-                    <MxmInput
-                      defaultValue={homeDatabySearchKey["search_key"]}
-                      {...register("searchKey", {
-                        required: "Isi Search Key",
-                      })}
-                    />
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.searchKey && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.searchKey.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                </Flex>
+
+                <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
+                  <MxmFormLabel color="black">Chapter</MxmFormLabel>
+                  <MxmSelect
+                    {...register("kategori", {
+                      required: "Pilih Chapter",
+                    })}
+                    // className="select"
+                    // onChange={handleSelectChange}
+                  >
+                    <option value="" selected disabled hidden>
+                      Pilih Chapter
+                    </option>
+                    <option value={HomeChapter.LostTreasureIsland}>
+                      Lost Treasure Island
+                    </option>
+                    <option value={HomeChapter.FantasyBridge}>
+                      Fantasy Bridge
+                    </option>
+                    <option value={HomeChapter.MedalistPlayground}>
+                      Medalist Playground
+                    </option>
+                    <option value={HomeChapter.RainbowMines}>
+                      Rainbow Mines
+                    </option>
+                    <option value={HomeChapter.TomorrowVille}>
+                      Tomorrowville
+                    </option>
+                    <option value={HomeChapter.AdventureLand}>
+                      Adventure Land
+                    </option>
+                    <option value={HomeChapter.TownArea}>Town Area</option>
+                    <option value={HomeChapter.WonderousCampground}>
+                      Wonderous Campground
+                    </option>
+                  </MxmSelect>
+                  <MxmFormErrorMessage fontSize="xs" mt={1}>
+                    {errors.kategori && (
+                      <Flex flexDirection="row" alignItems="center">
+                        <p>
+                          <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                          {errors.kategori.message}
+                        </p>
+                      </Flex>
+                    )}
+                  </MxmFormErrorMessage>
+                </FormControl>
                 <Flex
                   direction={{
                     base: "column",
@@ -401,7 +442,6 @@ const EditHome: React.FC = () => {
                   <FormControl mb={3} isInvalid={errors.shortDesc}>
                     <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                     <MxmInput
-                      defaultValue={homeDatabySearchKey["shortDesc"]}
                       {...register("shortDesc", {
                         required: "Isi Narasi Pendek",
                       })}
@@ -431,7 +471,6 @@ const EditHome: React.FC = () => {
                       {...register("longDesc", {
                         required: "Isi Narasi Panjang",
                       })}
-                      defaultValue={homeDatabySearchKey["longDesc"]}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.longDesc && (
@@ -489,7 +528,6 @@ const EditHome: React.FC = () => {
                           message: "Link Video Youtube tidak valid",
                         },
                       })}
-                      defaultValue={homeDatabySearchKey["linkYoutube"]}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.linkYoutube && (
@@ -521,7 +559,6 @@ const EditHome: React.FC = () => {
                           message: "ID LINE tidak valid",
                         },
                       })}
-                      defaultValue={homeDatabySearchKey["lineID"]}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.lineID && (
@@ -547,7 +584,6 @@ const EditHome: React.FC = () => {
                         },
                       })}
                       placeholder="Tidak perlu menggunakan @"
-                      defaultValue={homeDatabySearchKey["instagram"]}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.instagram && (
@@ -582,7 +618,7 @@ const EditHome: React.FC = () => {
               <form className="form_daftar-state">
                 <Center>
                   <MUIDataTable
-                    data={homeDatabySearchKey?.home_media}
+                    data={homeMedia}
                     columns={tableColumns}
                     options={{
                       selectableRows: false,
