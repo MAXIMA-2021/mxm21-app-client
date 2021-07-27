@@ -32,6 +32,7 @@ import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
+import { url } from "inspector";
 
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
@@ -53,6 +54,8 @@ const EditHome: React.FC = () => {
   const [files, setFiles] = useState<any>([]);
   const [mediaFiles, setMediaFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState(true);
+  const [mediaFiles, setMediaFiles] = useState<any>([]);
 
   const getId = (url: any) => {
     const regExp =
@@ -136,23 +139,29 @@ const EditHome: React.FC = () => {
     setValue("instagram", homeDatabySearchKey?.instagram);
   }, [homeDatabySearchKey]);
 
-  const onMediaSubmit = async (data: any) => {
-    // setLoading(true);
-    const formData = new FormData();
-    for (let i = 0; i < homeDatabySearchKey?.home_media.length; i++) {
-      if (data.linkMedia[i] !== "" || data.linkMedia[i] !== undefined) {
-        formData.append(`linkMedia${[i]}`, mediaFiles[i]);
-      }
-    }
-    // formData.append(`linkMedia${[0]}`, data.linkMedia[0]);
-    console.log(formData);
-
-    try {
-      // await adminService.updateHomeMedia(
-      //   ,
-
-      //   formData
-      // );
+  const onMediaSubmit = async () => {
+    const loopData = () => {
+      mediaFiles.forEach(async (data: any) => {
+        const formData = new FormData();
+        formData.append("linkMedia", data.files);
+        console.log(data);
+        try {
+          await adminService.updateHomeMedia(data.id, formData);
+        } catch (error) {
+          Swal.fire({
+            title: "Perhatian!",
+            text: error.response.data.message,
+            icon: "error",
+            confirmButtonText: "Coba lagi",
+          });
+          setSubmitStatus(false);
+        }
+      });
+      setLoading(true);
+    };
+    await loopData();
+    setLoading(false);
+    if (submitStatus) {
       Swal.fire({
         position: "center",
         icon: "success",
@@ -160,21 +169,34 @@ const EditHome: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      setResetUpload(true);
-      history.push("/admin/daftar-home", {
-        status: "success",
-        message: "Kamu berhasil mengedit",
-      });
-    } catch (error) {
-      Swal.fire({
-        title: "Perhatian!",
-        text: error.response.data.message,
-        icon: "error",
-        confirmButtonText: "Coba lagi",
-      });
     }
-    setLoading(false);
-    setResetUpload(false);
+  };
+
+  const handleChangeMedia = (item: unknown, id: number) => {
+    const data = { id: id, files: item };
+    const tempMediaFiles = mediaFiles;
+    if (tempMediaFiles.length === 0) {
+      tempMediaFiles.push(data);
+    } else {
+      for (let i = 0; i < tempMediaFiles.length; i++) {
+        if (tempMediaFiles[i].id === id) tempMediaFiles[i] = data;
+        else tempMediaFiles.push(data);
+        break;
+      }
+    }
+    setMediaFiles(tempMediaFiles);
+    const tempMedia = homeDatabySearchKey.home_media;
+    for (let i = 0; i < tempMedia.length; i++) {
+      if (tempMedia[i].photoID === id) {
+        tempMedia[i].linkMedia = URL.createObjectURL(data.files);
+        sethomeDatabySearchKey({
+          ...homeDatabySearchKey,
+          home_media: tempMedia,
+        });
+        break;
+      }
+    }
+    console.log(mediaFiles);
   };
 
   const deleteHomeMedia = (photoId: any) => {
@@ -250,13 +272,13 @@ const EditHome: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <>
             <input
-              // name={`linkMedia`}
+              name={`linkMedia${tableMeta.rowData[0]}`}
               id={`linkMedia${tableMeta.rowData[0]}`}
               type="file"
-              // style={{ display: "none" }}
-              {...register(`linkMedia${tableMeta.rowData[0]}`, {
-                required: "Pilih Chapter",
-              })}
+              style={{ display: "none" }}
+              onChange={(event) =>
+                handleChangeMedia(event?.target?.files[0], tableMeta.rowData[0])
+              }
             />
             <label htmlFor={`linkMedia${tableMeta.rowData[0]}`}>
               <Image
@@ -337,8 +359,15 @@ const EditHome: React.FC = () => {
     },
   ];
 
+  console.log(editMediaTab);
+
   return (
-    <Tabs defaultIndex={0}>
+    <Tabs
+      defaultIndex={0}
+      onChange={(index) =>
+        index === 0 ? setEditMediaTab(false) : setEditMediaTab(true)
+      }
+    >
       <Flex
         width={{
           base: "100vw",
@@ -374,7 +403,7 @@ const EditHome: React.FC = () => {
         >
           <Flex alignItems="center">
             <TabList>
-              <Tab onClick={() => setEditMediaTab(false)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -387,7 +416,7 @@ const EditHome: React.FC = () => {
                   Edit HoME
                 </Heading>
               </Tab>
-              <Tab onClick={() => setEditMediaTab(true)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -419,14 +448,40 @@ const EditHome: React.FC = () => {
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
           <TabPanels>
-            {editMediaTab === false ? (
-              <TabPanel>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
+            <TabPanel>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} isInvalid={errors.name}>
+                    <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
+                    <MxmInput
+                      {...register("name", {
+                        required: "Isi Nama Organisator",
+                      })}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.name && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.name.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                </Flex>
+
+                <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
+                  <MxmFormLabel color="black">Chapter</MxmFormLabel>
+                  <MxmSelect
+                    {...register("kategori", {
+                      required: "Pilih Chapter",
+                    })}
                   >
                     <FormControl mb={3} isInvalid={errors.name}>
                       <MxmFormLabel color="black">
@@ -494,157 +549,18 @@ const EditHome: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
-                  >
-                    <FormControl mb={3} isInvalid={errors.shortDesc}>
-                      <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
-                      <MxmInput
-                        {...register("shortDesc", {
-                          required: "Isi Narasi Pendek",
-                        })}
-                      />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.shortDesc && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.shortDesc.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                  </Flex>
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
-                  >
-                    <FormControl mb={3} isInvalid={errors.longDesc}>
-                      <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
-                      <MxmTextarea
-                        resize="vertical"
-                        {...register("longDesc", {
-                          required: "Isi Narasi Panjang",
-                        })}
-                      />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.longDesc && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.longDesc.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                  </Flex>
-
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
-                  >
-                    <FormControl mb={3}>
-                      <MxmFormLabel color="black">Logo</MxmFormLabel>
-                      <Flex alignItems={files[0] ? "flex-start" : "center"}>
-                        <Image
-                          mr="1rem"
-                          w="15%"
-                          src={
-                            files[0]
-                              ? URL.createObjectURL(files[0])
-                              : homeDatabySearchKey?.linkLogo
-                          }
-                        />
-                        <Box w="85%">
-                          {!resetUpload && <UploadFiles setFiles={setFiles} />}
-                        </Box>
-                      </Flex>
-                    </FormControl>
-                  </Flex>
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
-                  >
-                    <FormControl mb={3} isInvalid={errors.linkYoutube}>
-                      <MxmFormLabel color="black">
-                        Link Video Youtube
-                      </MxmFormLabel>
-                      <MxmInput
-                        {...register("linkYoutube", {
-                          required: "Isi Link Video",
-                          pattern: {
-                            value:
-                              /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/g,
-                            message: "Link Video Youtube tidak valid",
-                          },
-                        })}
-                      />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.linkYoutube && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.linkYoutube.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                  </Flex>
-                  <Flex
-                    direction={{
-                      base: "column",
-                      md: "row",
-                    }}
-                  >
-                    <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
-                      <MxmFormLabel color="black">
-                        Media Sosial (LINE)
-                      </MxmFormLabel>
-                      <MxmInput
-                        {...register("lineID", {
-                          required: "Isi Line Id",
-                          pattern: {
-                            value: /^([0-9]||[a-z]||[-_.])+$/,
-                            message: "ID LINE tidak valid",
-                          },
-                        })}
-                      />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.lineID && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.lineID.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                    <FormControl mb={3} isInvalid={errors.instagram}>
-                      <MxmFormLabel color="black">
-                        Media Sosial (Instagram)
-                      </MxmFormLabel>
-                      <MxmInput
-                        {...register("instagram", {
-                          required: "Isi Akun Instagram",
-                          pattern: {
-                            value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
-                            message: "Username Instagram tidak valid",
-                          },
-                        })}
-                        placeholder="Tidak perlu menggunakan @"
+                </Flex>
+                <Flex mt={5}>
+                  <Spacer />
+                  {loading ? (
+                    <Flex mr="1rem" alignItems="center">
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        w="2rem"
+                        h="2rem"
                       />
                       <MxmFormErrorMessage fontSize="xs" mt={1}>
                         {errors.instagram && (
@@ -688,42 +604,81 @@ const EditHome: React.FC = () => {
                         type="submit"
                         _hover={{ backgroundColor: "#2BAD96" }}
                       >
-                        SUBMIT
-                      </Button>
-                    )}
-                  </Flex>
-                </form>
-              </TabPanel>
-            ) : (
-              <></>
-            )}
+                        mengunggah data...
+                      </Text>
+                    </Flex>
+                  ) : (
+                    <Button
+                      backgroundColor={Palette.Cyan}
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                      type="submit"
+                      _hover={{ backgroundColor: "#2BAD96" }}
+                    >
+                      SUBMIT
+                    </Button>
+                  )}
+                </Flex>
+              </form>
+            </TabPanel>
 
-            {editMediaTab ? (
-              <TabPanel>
-                <form onSubmit={handleSubmit(onMediaSubmit)}>
-                  <Center>
-                    <MUIDataTable
-                      data={homeDatabySearchKey?.home_media}
-                      columns={tableColumns}
-                      options={{
-                        selectableRows: false,
-                        download: false,
-                        print: false,
-                        sort: false,
-                        search: false,
-                        filter: false,
-                        viewColumns: false,
-                        title: false,
-                        pagination: false,
-                        elevation: 0,
-                      }}
+            <TabPanel>
+              <Center>
+                <MUIDataTable
+                  data={homeDatabySearchKey?.home_media}
+                  columns={tableColumns}
+                  options={{
+                    selectableRows: false,
+                    download: false,
+                    print: false,
+                    sort: false,
+                    search: false,
+                    filter: false,
+                    viewColumns: false,
+                    title: false,
+                    pagination: false,
+                    elevation: 0,
+                  }}
+                />
+              </Center>
+              <Flex mt={5}>
+                <Spacer />
+                {loading ? (
+                  <Flex mr="1rem" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      w="2rem"
+                      h="2rem"
                     />
-                  </Center>
-                </form>
-              </TabPanel>
-            ) : (
-              <></>
-            )}
+                    <Text
+                      fontFamily="Poppins"
+                      fontSize={{ base: "0.9rem", md: "1rem" }}
+                      ml="0.5rem"
+                    >
+                      mengunggah data...
+                    </Text>
+                  </Flex>
+                ) : (
+                  <Button
+                    backgroundColor={Palette.Cyan}
+                    color="white"
+                    padding="1em 2em 1em 2em"
+                    borderRadius="999px"
+                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                    type="submit"
+                    _hover={{ backgroundColor: "#2BAD96" }}
+                    onClick={onMediaSubmit}
+                  >
+                    SUBMIT
+                  </Button>
+                )}
+              </Flex>
+            </TabPanel>
           </TabPanels>
         </Flex>
       </Flex>
