@@ -21,20 +21,26 @@ const HomeCover = () => {
 
   return (
     <Flex
-      backgroundColor={Palette.Navy}
-      className="home-cvr-container"
-      justifyContent="center"
-      minH={{
-        base: "calc(100vh - 3.5rem)",
-        md: "calc(100vh - 4rem)",
-        xl: "calc(100vh - 5rem)",
+      w="100%"
+      h="calc(100vh - 3.5rem)"
+      padding={{
+        base: "1rem",
+        md: "2rem",
       }}
-      padding="1rem"
+      bgColor={Palette.Navy}
+      alignItems="center"
+      justifyContent="center"
+      className="home-cvr-outer_container"
     >
       <Flex
-        backgroundColor="#fff"
-        className="home-cvr-inner_container"
+        w="100%"
+        h="100%"
+        flexDir="column"
+        bgColor="white"
+        borderRadius="1rem"
         alignItems="center"
+        justifyContent="center"
+        // padding="2rem"
       >
         <Flex
           backgroundColor="transparent"

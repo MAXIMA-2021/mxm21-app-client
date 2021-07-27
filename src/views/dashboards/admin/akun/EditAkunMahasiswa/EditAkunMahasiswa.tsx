@@ -291,7 +291,6 @@ const EditMahasiswa: React.FC = () => {
                 {...register("tanggalLahir", {
                   required: "Isi tanggal lahir kamu",
                 })}
-                className="select"
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.tanggalLahir && (
@@ -317,7 +316,6 @@ const EditMahasiswa: React.FC = () => {
                 {...register("jenisKelamin", {
                   required: "Pilih jenis kelamin kamu",
                 })}
-                className="select"
               >
                 <option value="" selected disabled hidden>
                   L/P
@@ -358,7 +356,6 @@ const EditMahasiswa: React.FC = () => {
                 {...register("prodi", {
                   required: "Pilih program studi kamu",
                 })}
-                className="select"
               >
                 <option value="" selected disabled hidden>
                   Pilih Program Studi

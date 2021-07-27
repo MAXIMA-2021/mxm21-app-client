@@ -187,7 +187,7 @@ const TambahHome: React.FC = () => {
                 onChange={handleSelectChange}
               >
                 <option value="" selected disabled hidden>
-                  Pilih Kategori
+                  Pilih Chapter
                 </option>
                 <option value={HomeChapter.LostTreasureIsland}>
                   LostTreasure Island
