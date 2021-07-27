@@ -174,7 +174,6 @@ const StateDetail: React.FC = () => {
         height="100%"
       >
         <Flex
-          maxWidth="60%"
           direction="column"
           background="white"
           py="1.5rem"

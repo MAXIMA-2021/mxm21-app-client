@@ -1,11 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Spacer,
+  Image,
+  Center,
+  Text,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
+import { RepeatIcon } from "@chakra-ui/icons";
+import { Palette } from "../../../../../types/enums";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import ClearIcon from "@material-ui/icons/Clear";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const colorTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: `#13DF80`,
+    },
+    secondary: {
+      main: `${Palette.Red}`,
+    },
+  },
+});
 
 const DaftarAkunOrganisator: React.FC = () => {
   const responsiveData = {
@@ -14,25 +39,45 @@ const DaftarAkunOrganisator: React.FC = () => {
   };
 
   const [data, setData] = useState([]);
+  const fetchData = async () => {
+    try {
+      const returnedData = await adminService.getAllOrganisator();
+      setData(returnedData);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
 
   useEffect(() => {
     document.title = "Daftar Organisator HoME - MAXIMA 2021";
-    const fetchData = async () => {
-      try {
-        const returnedData = await adminService.getAllOrganisator();
-        setData(returnedData);
-      } catch (error) {
-        Swal.fire({
-          title: "Perhatian!",
-          text: error.response?.data.message,
-          icon: "error",
-          confirmButtonText: "Coba lagi",
-        });
-      }
-    };
-
     fetchData();
   }, []);
+
+  const verifyThis = async (nim: string) => {
+    try {
+      await adminService.verifyOrganisator(nim, data);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      fetchData();
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
 
   const tableColumns = [
     {
@@ -76,14 +121,13 @@ const DaftarAkunOrganisator: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: "100px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
         ),
       },
     },
-
     {
       name: "state",
       label: "Kegiatan STATE",
@@ -108,47 +152,53 @@ const DaftarAkunOrganisator: React.FC = () => {
         ),
       },
     },
+    {
+      name: "verified",
+      label: "Verified",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "100px" },
+        }),
+        customBodyRender: (value: any, tableMeta: any) => (
+          <HStack spacing={10}>
+            <Text ml={6}>
+              {value ? (
+                <ThemeProvider theme={colorTheme}>
+                  <CheckCircleOutlineIcon color="primary" />
+                </ThemeProvider>
+              ) : (
+                <ThemeProvider theme={colorTheme}>
+                  <ClearIcon color="secondary" />
+                </ThemeProvider>
+              )}
+            </Text>
+            <Button
+              fontSize={responsiveData}
+              size="xs"
+              leftIcon={<RepeatIcon />}
+              bgColor={Palette.Navy}
+              color="white"
+              onClick={() => verifyThis(tableMeta.rowData[1])}
+            >
+              Verify
+            </Button>
+          </HStack>
+        ),
+      },
+    },
   ];
-
-  // const data = [
-  //   ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Maximilliano Adrian Stefan Gabrielsar",
-  //     "23231",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  // ];
 
   return (
     <>

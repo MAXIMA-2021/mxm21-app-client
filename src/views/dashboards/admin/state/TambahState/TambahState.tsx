@@ -99,7 +99,7 @@ const TambahState: React.FC = () => {
         base: "calc(100vw-18rem)",
         md: "calc(100vw-18rem)",
       }}
-      height="calc(100vh - 3.75rem - 3.5rem)"
+      height="100%"
       alignItems="center"
       justifyContent="center"
     >

@@ -84,6 +84,7 @@ const TambahMahasiswa: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
+      history.push("/admin/daftar-mahasiswa");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

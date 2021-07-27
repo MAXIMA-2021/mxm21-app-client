@@ -92,6 +92,7 @@ const TambahPanitia: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
+      history.push("/admin/daftar-panitia");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

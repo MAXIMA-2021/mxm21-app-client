@@ -17,22 +17,7 @@ export const MxmContainers = styled("div")`
 `;
 
 export const MxmContainersPanitia = styled("div")`
-  background-color: #1f2c4c;
-  height: 100%;
-  padding-top: 5vh;
-  padding-bottom: 20vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  @media only screen and (max-width: 767px) {
-    padding-top: 0vh;
-    padding-bottom: 0vh;
-  }
-`;
-
-export const MxmContainersOrganisator = styled("div")`
-  background-color: #41ceba;
+  background-color: #164273;
   height: 100%;
   padding-top: 5vh;
   padding-bottom: 20vh;

@@ -99,6 +99,24 @@ const updateHomeMedia = async (homeID: string, newObject: any) => {
   return request;
 };
 
+const verifyPanitia = async (nim: string, temp: any) => {
+  const request = await axios.put(
+    `${baseUrl}/panitia/acc/verify/${nim}`,
+    temp,
+    config
+  );
+  return request;
+};
+
+const verifyOrganisator = async (nim: string, temp: any) => {
+  const request = await axios.put(
+    `${baseUrl}/organizator/acc/verify/${nim}`,
+    temp,
+    config
+  );
+  return request;
+};
+
 const deleteHomeMedia = async (photoID: string) => {
   const request = await axios.delete(
     `${baseUrl}/panit/home/linkMedia/${photoID}`,
@@ -198,4 +216,6 @@ export default {
   updateHomeMedia,
   deleteHomeMedia,
   updateState,
+  verifyPanitia,
+  verifyOrganisator,
 };

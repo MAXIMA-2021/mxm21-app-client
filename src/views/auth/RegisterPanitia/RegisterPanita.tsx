@@ -138,7 +138,7 @@ const RegisterPanitia: React.FC = () => {
           >
             <Flex
               direction="column"
-              background={`${Palette.Cyan}`}
+              background="#212529"
               py="2vh"
               px={{
                 base: "5vw",
@@ -399,7 +399,7 @@ const RegisterPanitia: React.FC = () => {
                       Sudah punya akun?{" "}
                       <Link
                         to="/auth/panitia/masuk"
-                        style={{ color: `${Palette.Navy}`, fontWeight: 600 }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Masuk
                       </Link>

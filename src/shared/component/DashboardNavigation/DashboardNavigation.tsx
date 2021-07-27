@@ -172,7 +172,7 @@ const DashboardNavigation: React.FC = () => {
         }`}
       >
         <Flex className="sidebar-header" align="center" justify="center">
-          <h2>Dashboard Maxima 2021</h2>
+          <h2>Dashboard MAXIMA 2021</h2>
           {isSmallerThan450px ? <Spacer /> : ""}
           <CloseRoundedIcon onClick={closeSidebar} />
         </Flex>
@@ -275,7 +275,7 @@ const DashboardNavigation: React.FC = () => {
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
                   <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
-                  Tambah Akun
+                  Akun MAXIMA 2021
                   <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
                 </Flex>
                 <ul className="dropdown-items">

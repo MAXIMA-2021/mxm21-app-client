@@ -5,7 +5,7 @@ import * as Home from "../views/home";
 const HomeRouters = () => {
   return (
     <>
-      <Route path="/home/cover" exact component={Home.HomeCover} />
+      <Route path="/home" exact component={Home.HomeCover} />
       <Route path="/home/welcome" exact component={Home.HomeWelcome} />
       <Route path="/home/enter" exact component={Home.HomePintu} />
       <Route path="/home/category" exact component={Home.HomeCategory} />

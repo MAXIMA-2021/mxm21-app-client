@@ -24,7 +24,7 @@ import {
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
-  MxmContainersOrganisator,
+  MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import jwtDecode from "jwt-decode";
@@ -108,7 +108,7 @@ const LoginOrganisator: React.FC = () => {
   // };
 
   return (
-    <MxmContainersOrganisator>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -136,7 +136,7 @@ const LoginOrganisator: React.FC = () => {
             )}
             <Flex
               direction="column"
-              background={`${Palette.Navy}`}
+              background="#212529"
               className="filter"
               py="3vh"
               px={{
@@ -263,7 +263,7 @@ const LoginOrganisator: React.FC = () => {
                       Belum punya akun?{" "}
                       <Link
                         to="/auth/organisator/daftar"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue" }}
                       >
                         Daftar
                       </Link>
@@ -272,7 +272,7 @@ const LoginOrganisator: React.FC = () => {
                       Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/organisator/reset"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue" }}
                       >
                         Klik di sini
                       </Link>
@@ -281,7 +281,7 @@ const LoginOrganisator: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-white">
+                    <MxmButton variant="desktop" colorScheme="navy-white">
                       Masuk
                     </MxmButton>
                   </motion.div>
@@ -291,7 +291,7 @@ const LoginOrganisator: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainersOrganisator>
+    </MxmContainersPanitia>
   );
 };
 

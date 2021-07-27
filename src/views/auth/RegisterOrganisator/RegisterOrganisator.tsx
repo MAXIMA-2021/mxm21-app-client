@@ -25,7 +25,7 @@ import {
   MxmFormErrorMessage,
 } from "../../../shared/styled/input";
 import {
-  MxmContainersOrganisator,
+  MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
@@ -146,7 +146,7 @@ const RegisterOrganisator: React.FC = () => {
   };
 
   return (
-    <MxmContainersOrganisator>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -159,7 +159,7 @@ const RegisterOrganisator: React.FC = () => {
           >
             <Flex
               direction="column"
-              background={`${Palette.Navy}`}
+              background="#212529"
               py="2vh"
               px={{
                 base: "5vw",
@@ -464,7 +464,7 @@ const RegisterOrganisator: React.FC = () => {
                       Sudah punya akun?{" "}
                       <Link
                         to="/auth/organisator/masuk"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue" }}
                       >
                         Masuk
                       </Link>
@@ -475,7 +475,7 @@ const RegisterOrganisator: React.FC = () => {
                     <MxmButton
                       type="submit"
                       variant="desktop"
-                      colorScheme="cyan-white"
+                      colorScheme="navy-white"
                     >
                       Daftar
                     </MxmButton>
@@ -486,7 +486,7 @@ const RegisterOrganisator: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainersOrganisator>
+    </MxmContainersPanitia>
   );
 };
 

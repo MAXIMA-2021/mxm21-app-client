@@ -86,7 +86,25 @@ const DaftarState: React.FC = () => {
     {
       name: "stateID",
       label: "ID STATE",
-      options: { display: false },
+      options: {
+        display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "50px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
     },
     {
       name: "name",

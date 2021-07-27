@@ -52,7 +52,7 @@ const HomeNavbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/home/cover"
+                  to="/home"
                   className="btn-main-nav btn-styling-main-nav"
                 >
                   HoME
