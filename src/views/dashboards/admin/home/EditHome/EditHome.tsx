@@ -52,7 +52,6 @@ const EditHome: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
-  const [mediaFiles, setMediaFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState(true);
   const [mediaFiles, setMediaFiles] = useState<any>([]);
@@ -287,41 +286,6 @@ const EditHome: React.FC = () => {
                 width={"clamp(100px, 300px, 300px)"}
               ></Image>
             </label>
-
-            <Flex mt={5} justifyContent="center">
-              {/* <Spacer /> */}
-              {loading ? (
-                <Flex mr="1rem" alignItems="center">
-                  <Spinner
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="blue.500"
-                    w="2rem"
-                    h="2rem"
-                  />
-                  <Text
-                    fontFamily="Poppins"
-                    fontSize={{ base: "0.9rem", md: "1rem" }}
-                    ml="0.5rem"
-                  >
-                    mengunggah data...
-                  </Text>
-                </Flex>
-              ) : (
-                <Button
-                  backgroundColor={Palette.Cyan}
-                  color="white"
-                  padding="1em 2em 1em 2em"
-                  borderRadius="999px"
-                  boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                  type="submit"
-                  _hover={{ backgroundColor: "#2BAD96" }}
-                >
-                  SUBMIT
-                </Button>
-              )}
-            </Flex>
           </>
         ),
       },
@@ -483,67 +447,201 @@ const EditHome: React.FC = () => {
                       required: "Pilih Chapter",
                     })}
                   >
-                    <FormControl mb={3} isInvalid={errors.name}>
-                      <MxmFormLabel color="black">
-                        Nama Organisator
-                      </MxmFormLabel>
-                      <MxmInput
-                        {...register("name", {
-                          required: "Isi Nama Organisator",
-                        })}
-                      />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.name && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.name.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                  </Flex>
-
-                  <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
-                    <MxmFormLabel color="black">Chapter</MxmFormLabel>
-                    <MxmSelect
-                      {...register("kategori", {
-                        required: "Pilih Chapter",
+                    <option value="" selected disabled hidden>
+                      Pilih Chapter
+                    </option>
+                    <option value={HomeChapter.LostTreasureIsland}>
+                      Lost Treasure Island
+                    </option>
+                    <option value={HomeChapter.FantasyBridge}>
+                      Fantasy Bridge
+                    </option>
+                    <option value={HomeChapter.MedalistPlayground}>
+                      Medalist Playground
+                    </option>
+                    <option value={HomeChapter.RainbowMines}>
+                      Rainbow Mines
+                    </option>
+                    <option value={HomeChapter.TomorrowVille}>
+                      Tomorrowville
+                    </option>
+                    <option value={HomeChapter.AdventureLand}>
+                      Adventure Land
+                    </option>
+                    <option value={HomeChapter.TownArea}>Town Area</option>
+                    <option value={HomeChapter.WonderousCampground}>
+                      Wonderous Campground
+                    </option>
+                  </MxmSelect>
+                  <MxmFormErrorMessage fontSize="xs" mt={1}>
+                    {errors.kategori && (
+                      <Flex flexDirection="row" alignItems="center">
+                        <p>
+                          <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                          {errors.kategori.message}
+                        </p>
+                      </Flex>
+                    )}
+                  </MxmFormErrorMessage>
+                </FormControl>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} isInvalid={errors.shortDesc}>
+                    <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
+                    <MxmInput
+                      {...register("shortDesc", {
+                        required: "Isi Narasi Pendek",
                       })}
-                    >
-                      <option value="" selected disabled hidden>
-                        Pilih Chapter
-                      </option>
-                      <option value={HomeChapter.LostTreasureIsland}>
-                        Lost Treasure Island
-                      </option>
-                      <option value={HomeChapter.FantasyBridge}>
-                        Fantasy Bridge
-                      </option>
-                      <option value={HomeChapter.MedalistPlayground}>
-                        Medalist Playground
-                      </option>
-                      <option value={HomeChapter.RainbowMines}>
-                        Rainbow Mines
-                      </option>
-                      <option value={HomeChapter.TomorrowVille}>
-                        Tomorrowville
-                      </option>
-                      <option value={HomeChapter.AdventureLand}>
-                        Adventure Land
-                      </option>
-                      <option value={HomeChapter.TownArea}>Town Area</option>
-                      <option value={HomeChapter.WonderousCampground}>
-                        Wonderous Campground
-                      </option>
-                    </MxmSelect>
+                    />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.kategori && (
+                      {errors.shortDesc && (
                         <Flex flexDirection="row" alignItems="center">
                           <p>
                             <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.kategori.message}
+                            {errors.shortDesc.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                </Flex>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} isInvalid={errors.longDesc}>
+                    <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
+                    <MxmTextarea
+                      resize="vertical"
+                      {...register("longDesc", {
+                        required: "Isi Narasi Panjang",
+                      })}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.longDesc && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.longDesc.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                </Flex>
+
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3}>
+                    <MxmFormLabel color="black">Logo</MxmFormLabel>
+                    <Flex alignItems={files[0] ? "flex-start" : "center"}>
+                      <Image
+                        mr="1rem"
+                        w="15%"
+                        src={
+                          files[0]
+                            ? URL.createObjectURL(files[0])
+                            : homeDatabySearchKey?.linkLogo
+                        }
+                      />
+                      <Box w="85%">
+                        {!resetUpload && <UploadFiles setFiles={setFiles} />}
+                      </Box>
+                    </Flex>
+                  </FormControl>
+                </Flex>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} isInvalid={errors.linkYoutube}>
+                    <MxmFormLabel color="black">
+                      Link Video Youtube
+                    </MxmFormLabel>
+                    <MxmInput
+                      {...register("linkYoutube", {
+                        required: "Isi Link Video",
+                        pattern: {
+                          value:
+                            /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/g,
+                          message: "Link Video Youtube tidak valid",
+                        },
+                      })}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.linkYoutube && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.linkYoutube.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                </Flex>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
+                    <MxmFormLabel color="black">
+                      Media Sosial (LINE)
+                    </MxmFormLabel>
+                    <MxmInput
+                      {...register("lineID", {
+                        required: "Isi Line Id",
+                        pattern: {
+                          value: /^([0-9]||[a-z]||[-_.])+$/,
+                          message: "ID LINE tidak valid",
+                        },
+                      })}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.lineID && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.lineID.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                  <FormControl mb={3} isInvalid={errors.instagram}>
+                    <MxmFormLabel color="black">
+                      Media Sosial (Instagram)
+                    </MxmFormLabel>
+                    <MxmInput
+                      {...register("instagram", {
+                        required: "Isi Akun Instagram",
+                        pattern: {
+                          value: /^([0-9]||[a-z]||[-_.]||[A-Z])+$/,
+                          message: "Username Instagram tidak valid",
+                        },
+                      })}
+                      placeholder="Tidak perlu menggunakan @"
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.instagram && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.instagram.message}
                           </p>
                         </Flex>
                       )}
@@ -562,47 +660,10 @@ const EditHome: React.FC = () => {
                         w="2rem"
                         h="2rem"
                       />
-                      <MxmFormErrorMessage fontSize="xs" mt={1}>
-                        {errors.instagram && (
-                          <Flex flexDirection="row" alignItems="center">
-                            <p>
-                              <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                              {errors.instagram.message}
-                            </p>
-                          </Flex>
-                        )}
-                      </MxmFormErrorMessage>
-                    </FormControl>
-                  </Flex>
-                  <Flex mt={5}>
-                    <Spacer />
-                    {loading ? (
-                      <Flex mr="1rem" alignItems="center">
-                        <Spinner
-                          thickness="4px"
-                          speed="0.65s"
-                          emptyColor="gray.200"
-                          color="blue.500"
-                          w="2rem"
-                          h="2rem"
-                        />
-                        <Text
-                          fontFamily="Poppins"
-                          fontSize={{ base: "0.9rem", md: "1rem" }}
-                          ml="0.5rem"
-                        >
-                          mengunggah data...
-                        </Text>
-                      </Flex>
-                    ) : (
-                      <Button
-                        backgroundColor={Palette.Cyan}
-                        color="white"
-                        padding="1em 2em 1em 2em"
-                        borderRadius="999px"
-                        boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                        type="submit"
-                        _hover={{ backgroundColor: "#2BAD96" }}
+                      <Text
+                        fontFamily="Poppins"
+                        fontSize={{ base: "0.9rem", md: "1rem" }}
+                        ml="0.5rem"
                       >
                         mengunggah data...
                       </Text>
