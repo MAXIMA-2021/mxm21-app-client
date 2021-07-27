@@ -85,10 +85,10 @@ const deleteHome = async (homeID: string) => {
   return request;
 };
 
-const updateHomeMedia = async (homeID: string, newObject: any) => {
+const updateHomeMedia = async (photoID: number, data: any) => {
   const request = await axios.put(
-    `${baseUrl}/panit/home/linkMedia/${homeID}`,
-    newObject,
+    `${baseUrl}/panit/home/linkMedia/${photoID}`,
+    data,
     {
       headers: {
         "Content-Type": "multipart/form-data",

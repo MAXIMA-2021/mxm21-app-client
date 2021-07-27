@@ -32,19 +32,14 @@ import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { DataHomeBySearchKey } from "../../../../../types/interfaces";
+import { url } from "inspector";
 
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
-  const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
-    }
-  };
 
   const history = useHistory();
   const [homeDatabySearchKey, sethomeDatabySearchKey] = useState<any>({});
-  const [homeMedia, setHomeMedia] = useState<any>({});
+  const [submitEditBtn, setSubmitEditBtn] = useState<boolean>(false);
 
   const { search_key }: any = useParams();
   const {
@@ -58,6 +53,8 @@ const EditHome: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState(true);
+  const [mediaFiles, setMediaFiles] = useState<any>([]);
 
   const getId = (url: any) => {
     const regExp =
@@ -68,6 +65,7 @@ const EditHome: React.FC = () => {
   };
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     setLoading(true);
 
     const linkYTEmbed: any = getId(data.linkYoutube);
@@ -116,8 +114,6 @@ const EditHome: React.FC = () => {
       try {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
         sethomeDatabySearchKey(returnedData[0]);
-        setHomeMedia(returnedData[0]?.home_media);
-        // console.log(homeMedia);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -129,7 +125,6 @@ const EditHome: React.FC = () => {
     };
 
     fetchData();
-    console.log(homeMedia);
   }, []);
 
   useEffect(() => {
@@ -143,9 +138,66 @@ const EditHome: React.FC = () => {
     setValue("instagram", homeDatabySearchKey?.instagram);
   }, [homeDatabySearchKey]);
 
-  // const onMediaSubmit = async (data: any) =>{
-  //   setLoading(true);
-  // }
+  const onMediaSubmit = async () => {
+    const loopData = () => {
+      mediaFiles.forEach(async (data: any) => {
+        const formData = new FormData();
+        formData.append("linkMedia", data.files);
+        console.log(data);
+        try {
+          await adminService.updateHomeMedia(data.id, formData);
+        } catch (error) {
+          Swal.fire({
+            title: "Perhatian!",
+            text: error.response.data.message,
+            icon: "error",
+            confirmButtonText: "Coba lagi",
+          });
+          setSubmitStatus(false);
+        }
+      });
+      setLoading(true);
+    };
+    await loopData();
+    setLoading(false);
+    if (submitStatus) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  };
+
+  const handleChangeMedia = (item: unknown, id: number) => {
+    const data = { id: id, files: item };
+    const tempMediaFiles = mediaFiles;
+    if (tempMediaFiles.length === 0) {
+      tempMediaFiles.push(data);
+    } else {
+      for (let i = 0; i < tempMediaFiles.length; i++) {
+        if (tempMediaFiles[i].id === id) tempMediaFiles[i] = data;
+        else tempMediaFiles.push(data);
+        break;
+      }
+    }
+    setMediaFiles(tempMediaFiles);
+    const tempMedia = homeDatabySearchKey.home_media;
+    for (let i = 0; i < tempMedia.length; i++) {
+      if (tempMedia[i].photoID === id) {
+        tempMedia[i].linkMedia = URL.createObjectURL(data.files);
+        sethomeDatabySearchKey({
+          ...homeDatabySearchKey,
+          home_media: tempMedia,
+        });
+        break;
+      }
+    }
+    console.log(mediaFiles);
+  };
+
   const deleteHomeMedia = (photoId: any) => {
     try {
       Swal.fire({
@@ -159,10 +211,23 @@ const EditHome: React.FC = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           await adminService.deleteHomeMedia(photoId);
-          const homeDataMedia = homeDatabySearchKey?.home_media.filter(
-            (item: any) => item.photoID !== photoId
+
+          const newHomeObject = homeDatabySearchKey;
+          const deletedMediaIndex = homeDatabySearchKey?.home_media.findIndex(
+            (item: any, index: any) => item.photoID === photoId
           );
-          setHomeMedia(homeDataMedia);
+
+          for (const key in newHomeObject) {
+            if (key === "home_media") {
+              newHomeObject[key].splice(deletedMediaIndex, 1);
+            }
+          }
+
+          sethomeDatabySearchKey({
+            ...homeDatabySearchKey,
+            home_media: newHomeObject?.home_media,
+          });
+
           Swal.fire("Media telah dihapus!", "", "success");
         } else if (result.isDenied) {
           Swal.fire("Perubahan belum tersimpan", "", "info");
@@ -206,12 +271,15 @@ const EditHome: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <>
             <input
-              name={`linkMedia`}
-              id={`linkMedia${tableMeta.rowIndex}`}
+              name={`linkMedia${tableMeta.rowData[0]}`}
+              id={`linkMedia${tableMeta.rowData[0]}`}
               type="file"
               style={{ display: "none" }}
-            ></input>
-            <label htmlFor={`linkMedia${tableMeta.rowIndex}`}>
+              onChange={(event) =>
+                handleChangeMedia(event?.target?.files[0], tableMeta.rowData[0])
+              }
+            />
+            <label htmlFor={`linkMedia${tableMeta.rowData[0]}`}>
               <Image
                 className="media-img"
                 src={value}
@@ -245,7 +313,7 @@ const EditHome: React.FC = () => {
             <button
               type="button"
               className="delete-icon"
-              // onClick={() => deleteHomeMedia(tableMeta.rowData[0])}
+              onClick={() => deleteHomeMedia(tableMeta.rowData[0])}
             >
               <DeleteIcon style={{ color: "red" }} />
             </button>
@@ -255,27 +323,15 @@ const EditHome: React.FC = () => {
     },
   ];
 
-  // const data = [
-  //   [
-  //     "P0001",
-  //     "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  //   ],
-  //   [
-  //     "P0002",
-  //     "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
-  //   ],
-  //   [
-  //     "P0003",
-  //     "https://images.unsplash.com/photo-1626180874495-0fe651f60ecb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
-  //   ],
-  //   [
-  //     "P0004",
-  //     "https://images.unsplash.com/photo-1625959276519-15fe73b6fe96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80",
-  //   ],
-  // ];
+  console.log(editMediaTab);
 
   return (
-    <Tabs defaultIndex={0}>
+    <Tabs
+      defaultIndex={0}
+      onChange={(index) =>
+        index === 0 ? setEditMediaTab(false) : setEditMediaTab(true)
+      }
+    >
       <Flex
         width={{
           base: "100vw",
@@ -311,7 +367,7 @@ const EditHome: React.FC = () => {
         >
           <Flex alignItems="center">
             <TabList>
-              <Tab onClick={() => setEditMediaTab(false)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -324,7 +380,7 @@ const EditHome: React.FC = () => {
                   Edit HoME
                 </Heading>
               </Tab>
-              <Tab onClick={() => setEditMediaTab(true)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -357,7 +413,7 @@ const EditHome: React.FC = () => {
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
           <TabPanels>
             <TabPanel>
-              <form onSubmit={handleSubmit(onSubmit)} className="form_state">
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <Flex
                   direction={{
                     base: "column",
@@ -390,8 +446,6 @@ const EditHome: React.FC = () => {
                     {...register("kategori", {
                       required: "Pilih Chapter",
                     })}
-                    // className="select"
-                    // onChange={handleSelectChange}
                   >
                     <option value="" selected disabled hidden>
                       Pilih Chapter
@@ -596,43 +650,6 @@ const EditHome: React.FC = () => {
                 </Flex>
                 <Flex mt={5}>
                   <Spacer />
-                  <Button
-                    backgroundColor={Palette.Cyan}
-                    color="white"
-                    padding="1em 2em 1em 2em"
-                    borderRadius="999px"
-                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                    type="submit"
-                    _hover={{ backgroundColor: "#2BAD96" }}
-                  >
-                    SUBMIT
-                  </Button>
-                </Flex>
-              </form>
-            </TabPanel>
-
-            <TabPanel>
-              <form className="form_daftar-state">
-                <Center>
-                  <MUIDataTable
-                    data={homeMedia}
-                    columns={tableColumns}
-                    options={{
-                      selectableRows: false,
-                      download: false,
-                      print: false,
-                      sort: false,
-                      search: false,
-                      filter: false,
-                      viewColumns: false,
-                      title: false,
-                      pagination: false,
-                      elevation: 0,
-                    }}
-                  />
-                </Center>
-                <Flex mt={5}>
-                  <Spacer />
                   {loading ? (
                     <Flex mr="1rem" alignItems="center">
                       <Spinner
@@ -666,6 +683,62 @@ const EditHome: React.FC = () => {
                   )}
                 </Flex>
               </form>
+            </TabPanel>
+
+            <TabPanel>
+              <Center>
+                <MUIDataTable
+                  data={homeDatabySearchKey?.home_media}
+                  columns={tableColumns}
+                  options={{
+                    selectableRows: false,
+                    download: false,
+                    print: false,
+                    sort: false,
+                    search: false,
+                    filter: false,
+                    viewColumns: false,
+                    title: false,
+                    pagination: false,
+                    elevation: 0,
+                  }}
+                />
+              </Center>
+              <Flex mt={5}>
+                <Spacer />
+                {loading ? (
+                  <Flex mr="1rem" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      w="2rem"
+                      h="2rem"
+                    />
+                    <Text
+                      fontFamily="Poppins"
+                      fontSize={{ base: "0.9rem", md: "1rem" }}
+                      ml="0.5rem"
+                    >
+                      mengunggah data...
+                    </Text>
+                  </Flex>
+                ) : (
+                  <Button
+                    backgroundColor={Palette.Cyan}
+                    color="white"
+                    padding="1em 2em 1em 2em"
+                    borderRadius="999px"
+                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                    type="submit"
+                    _hover={{ backgroundColor: "#2BAD96" }}
+                    onClick={onMediaSubmit}
+                  >
+                    SUBMIT
+                  </Button>
+                )}
+              </Flex>
             </TabPanel>
           </TabPanels>
         </Flex>
