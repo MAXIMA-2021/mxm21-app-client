@@ -1,0 +1,5 @@
+.detail-mhs-baru-card {
+  & *[disabled] {
+    opacity: 1 !important;
+  }
+}
