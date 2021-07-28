@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -27,71 +27,62 @@ import {
 import { DataRegisterMaba } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
-import "./TambahAkunMahasiswa.scss";
+import adminService from "../../../../../services/admin";
+import "./DetailMahasiswaBaru.scss";
 
-const TambahMahasiswa: React.FC = () => {
+const DetailMahasiswaBaru: React.FC = () => {
+  const history = useHistory();
+  const [mahasiswaByNim, setMahasiswaByNim] = useState<any>({});
+  const { nim }: any = useParams();
   const {
     register,
-    handleSubmit,
     watch,
-    reset,
     formState: { errors },
+    setValue,
   } = useForm();
 
-  const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
-    }
-  };
-
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "Edit Akun Mahasiswa - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        let returnedData = await adminService.getMahasiswaByNim(nim);
+        returnedData[0].email = returnedData[0]?.email.replace(
+          "@student.umn.ac.id",
+          ""
+        );
+        returnedData[0].tanggalLahir = new Date(returnedData[0].tanggalLahir)
+          .toISOString()
+          .split("T")[0];
+        setMahasiswaByNim(returnedData[0]);
+        console.log(returnedData[0]);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
   }, []);
 
   const password = useRef({});
   password.current = watch("password", "");
 
-  const location = useLocation();
-  const history = useHistory();
-  const [loading, setLoading] = useState(false);
-  const onSubmit = async (data: DataRegisterMaba) => {
-    setLoading(true);
-    reset();
-
-    const dataMaba: DataRegisterMaba = {
-      nim: data.nim.toString(),
-      name: data.name,
-      email: `${data.email}@student.umn.ac.id`,
-      tempatLahir: data.tempatLahir,
-      tanggalLahir: data.tanggalLahir
-        .toString()
-        .replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2"),
-      jenisKelamin: data.jenisKelamin,
-      prodi: data.prodi,
-      whatsapp: data.whatsapp,
-      idLine: data.idLine,
-      idInstagram: data.idInstagram,
-    };
-
-    try {
-      await authService.daftarMhs(dataMaba);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Akun Mahasiswa MAXIMA 2021 berhasil dibuat!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-      history.push("/admin/daftar-mahasiswa");
-    } catch (error) {
-      Swal.fire({
-        title: "Perhatian!",
-        text: error.response?.data.message,
-        icon: "error",
-        confirmButtonText: "Coba lagi",
-      });
-    }
-  };
+  useEffect(() => {
+    setValue("name", mahasiswaByNim?.name);
+    setValue("nim", mahasiswaByNim?.nim);
+    setValue("email", mahasiswaByNim?.email);
+    setValue("tempatLahir", mahasiswaByNim?.tempatLahir);
+    setValue("tanggalLahir", mahasiswaByNim?.tanggalLahir);
+    setValue("jenisKelamin", mahasiswaByNim?.jenisKelamin);
+    setValue("prodi", mahasiswaByNim?.prodi);
+    setValue("whatsapp", mahasiswaByNim?.whatsapp);
+    setValue("idLine", mahasiswaByNim?.idLine);
+    setValue("idInstagram", mahasiswaByNim?.idInstagram);
+  }, [mahasiswaByNim]);
 
   return (
     <Flex
@@ -100,6 +91,7 @@ const TambahMahasiswa: React.FC = () => {
       backgroundColor="#f4f4f4"
       height="100%"
       direction="column"
+      className="detail-mhs-baru-card"
     >
       <Flex
         direction="column"
@@ -120,7 +112,7 @@ const TambahMahasiswa: React.FC = () => {
         }}
         rounded={20}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form>
           <Flex alignItems="center">
             <Heading
               mb="1vh"
@@ -131,7 +123,7 @@ const TambahMahasiswa: React.FC = () => {
                 xl: "1.5em",
               }}
             >
-              Tambah Akun Mahasiswa
+              Detail Mahasiswa Baru
             </Heading>
             <Image
               src={MxmLogo}
@@ -164,6 +156,7 @@ const TambahMahasiswa: React.FC = () => {
                 {...register("name", {
                   required: "Isi nama lengkap kamu",
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.name && (
@@ -201,6 +194,7 @@ const TambahMahasiswa: React.FC = () => {
                       message: "Masukkan 5 angka terakhir dari NIM kamu",
                     },
                   })}
+                  disabled
                 />
               </MxmInputGroup>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -254,8 +248,6 @@ const TambahMahasiswa: React.FC = () => {
                 {...register("tanggalLahir", {
                   required: "Isi tanggal lahir kamu",
                 })}
-                className="select"
-                onChange={handleSelectChange}
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.tanggalLahir && (
@@ -281,8 +273,6 @@ const TambahMahasiswa: React.FC = () => {
                 {...register("jenisKelamin", {
                   required: "Pilih jenis kelamin kamu",
                 })}
-                className="select"
-                onChange={handleSelectChange}
               >
                 <option value="" selected disabled hidden>
                   L/P
@@ -323,8 +313,6 @@ const TambahMahasiswa: React.FC = () => {
                 {...register("prodi", {
                   required: "Pilih program studi kamu",
                 })}
-                className="select"
-                onChange={handleSelectChange}
               >
                 <option value="" selected disabled hidden>
                   Pilih Program Studi
@@ -369,6 +357,7 @@ const TambahMahasiswa: React.FC = () => {
                       message: "Alamat email tidak perlu mencantumkan domain",
                     },
                   })}
+                  disabled
                 />
                 <InputRightAddon children="@student.umn.ac.id" />
               </MxmInputGroup>
@@ -467,24 +456,10 @@ const TambahMahasiswa: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
           </Flex>
-          <Flex mt={2}>
-            <Spacer />
-            <Button
-              backgroundColor="#41CEBA"
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
-          </Flex>
         </form>
       </Flex>
     </Flex>
   );
 };
 
-export default TambahMahasiswa;
+export default DetailMahasiswaBaru;

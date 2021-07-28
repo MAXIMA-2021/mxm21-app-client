@@ -203,7 +203,7 @@ const DashboardNavigation: React.FC = () => {
               </NavLink>
 
               <NavLink
-                to="/admin/mahasiswa-baru"
+                to="/admin/daftar-maba"
                 activeClassName="sidebar-nav_active"
               >
                 <ContactsIcon />

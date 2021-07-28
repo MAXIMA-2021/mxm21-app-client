@@ -28,8 +28,6 @@ const HomeCover = () => {
         md: "2rem",
       }}
       bgColor={Palette.Navy}
-      alignItems="center"
-      justifyContent="center"
       className="home-cvr-outer_container"
     >
       <Flex
@@ -40,7 +38,6 @@ const HomeCover = () => {
         borderRadius="1rem"
         alignItems="center"
         justifyContent="center"
-        // padding="2rem"
       >
         <Flex
           backgroundColor="transparent"

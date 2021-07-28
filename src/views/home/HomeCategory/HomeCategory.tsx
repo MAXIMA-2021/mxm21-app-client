@@ -31,7 +31,6 @@ const HomeCategory = () => {
     <div>
       <Flex
         className="main-content"
-        // bgColor="green"
         flexDir={{ base: "row", md: "column" }}
         alignItems="center"
         justifyContent="center"

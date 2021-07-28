@@ -17,4 +17,6 @@ export {
   DaftarOrganisator,
   EditMahasiswa,
   EditAkun,
+  DaftarMahasiswaBaru,
+  DetailMahasiswaBaru,
 } from "./admin";

@@ -43,6 +43,16 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.StateDetail}
           />
           <Route
+            path="/admin/daftar-maba"
+            exact
+            component={Dashboards.DaftarMahasiswaBaru}
+          />
+          <Route
+            path="/admin/detail-maba/:nim"
+            exact
+            component={Dashboards.DetailMahasiswaBaru}
+          />
+          <Route
             path="/admin/daftar-home"
             exact
             component={Dashboards.DaftarHome}
