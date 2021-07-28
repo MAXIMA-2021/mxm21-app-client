@@ -29,49 +29,77 @@ import "./HomeTwibbon.scss";
 import { Palette } from "../../../types/enums";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { useHistory } from "react-router-dom";
+import { HomeChapter } from "../../../types/enums";
 
 const HomeTwibbon = () => {
   const history = useHistory();
   var images = [];
   var index = 0;
+
+  const handleChapterClick = (homeChapter: string) => {
+    history.push(`/home/organisator-list/${homeChapter}`);
+  };
+
   images[0] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat1} className="chapter" />
+      <button
+        onClick={() => handleChapterClick(HomeChapter.LostTreasureIsland)}
+      >
+        <Image src={cat1} className="chapter" />
+      </button>
     </Box>
   );
   images[1] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat2} className="chapter" />
+      <button onClick={() => handleChapterClick(HomeChapter.FantasyBridge)}>
+        <Image src={cat2} className="chapter" />
+      </button>
     </Box>
   );
   images[2] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat3} className="chapter" />
+      <button
+        onClick={() => handleChapterClick(HomeChapter.MedalistPlayground)}
+      >
+        <Image src={cat3} className="chapter" />
+      </button>
     </Box>
   );
   images[3] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat4} className="chapter" />
+      <button onClick={() => handleChapterClick(HomeChapter.RainbowMines)}>
+        <Image src={cat4} className="chapter" />
+      </button>
     </Box>
   );
   images[4] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat5} className="chapter" />
+      <button onClick={() => handleChapterClick(HomeChapter.TomorrowVille)}>
+        <Image src={cat5} className="chapter" />
+      </button>
     </Box>
   );
   images[5] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat6} className="chapter" />
+      <button onClick={() => handleChapterClick(HomeChapter.AdventureLand)}>
+        <Image src={cat6} className="chapter" />
+      </button>
     </Box>
   );
   images[6] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat7} className="chapter" />
+      <button onClick={() => handleChapterClick(HomeChapter.TownArea)}>
+        <Image src={cat7} className="chapter" />
+      </button>
     </Box>
   );
   images[7] = (
     <Box justifyContent="center" width="100%" display="flex">
-      <Image src={cat8} className="chapter" />
+      <button
+        onClick={() => handleChapterClick(HomeChapter.WonderousCampground)}
+      >
+        <Image src={cat8} className="chapter" />
+      </button>
     </Box>
   );
 
@@ -197,9 +225,9 @@ const HomeTwibbon = () => {
             Back
           </MxmButton>
           <Spacer />
-          <NavLink to="/home/finish">
+          <NavLink to="/home/zeppelin">
             <MxmButton variant="desktop" colorScheme="navy-white" margin="0">
-              Finish
+              Next
             </MxmButton>
           </NavLink>
         </Flex>

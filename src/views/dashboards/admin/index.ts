@@ -18,3 +18,5 @@ export {
   DaftarOrganisator,
   EditMahasiswa,
 } from "./akun";
+
+export { EditAkun } from "./profile";

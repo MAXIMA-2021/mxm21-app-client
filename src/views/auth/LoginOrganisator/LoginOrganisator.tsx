@@ -263,7 +263,7 @@ const LoginOrganisator: React.FC = () => {
                       Belum punya akun?{" "}
                       <Link
                         to="/auth/organisator/daftar"
-                        style={{ color: "cornflowerblue" }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Daftar
                       </Link>
@@ -272,7 +272,7 @@ const LoginOrganisator: React.FC = () => {
                       Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/organisator/reset"
-                        style={{ color: "cornflowerblue" }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Klik di sini
                       </Link>

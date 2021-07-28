@@ -97,6 +97,11 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.EditMahasiswa}
           />
+          <Route
+            path="/admin/edit-akun"
+            exact
+            component={Dashboards.EditAkun}
+          />
         </Box>
       </Router>
     </div>

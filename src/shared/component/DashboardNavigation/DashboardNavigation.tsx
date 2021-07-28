@@ -12,6 +12,7 @@ import AssessmentIcon from "@material-ui/icons/Assessment";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import FlightIcon from "@material-ui/icons/Flight";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import Face from "@material-ui/icons/Face";
 import LinkIcon from "@material-ui/icons/Link";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
@@ -146,12 +147,14 @@ const DashboardNavigation: React.FC = () => {
           </button>
 
           <Flex className="navbar-menu">
-            <Flex align="center" className="navbar-avatar">
-              <div className="navbar-avatar-image">
-                <AccountCircleIcon />
-              </div>
-              <h4>Bukan Tiara Andini</h4>
-            </Flex>
+            <NavLink to="/admin/edit-akun">
+              <Flex align="center" className="navbar-avatar">
+                <div className="navbar-avatar-image">
+                  <AccountCircleIcon />
+                </div>
+                <h4>Bukan Tiara Andini</h4>
+              </Flex>
+            </NavLink>
 
             <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
@@ -177,25 +180,30 @@ const DashboardNavigation: React.FC = () => {
           <CloseRoundedIcon onClick={closeSidebar} />
         </Flex>
         <Flex className="sidebar-menu" direction="column">
-          <div className="sidebar-avatar">
-            <div className="sidebar-avatar_image">
-              <AccountCircleIcon />
+          <NavLink to="/admin/edit-akun">
+            <div className="sidebar-avatar">
+              <div className="sidebar-avatar_image">
+                <AccountCircleIcon />
+              </div>
+              <h4>Bukan Tiara Andini</h4>
+              <h6>Panitia</h6>
             </div>
-            <h4>Bukan Tiara Andini</h4>
-            <h6>Panitia</h6>
-          </div>
+          </NavLink>
           <Flex className="sidebar-nav_header">
             <h3>MENU NAVIGASI</h3>
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
-              <NavLink to="/dashboard" activeClassName="sidebar-nav_active">
+              <NavLink
+                to="/admin/dashboard"
+                activeClassName="sidebar-nav_active"
+              >
                 <AssessmentIcon />
                 Dashboard
               </NavLink>
 
               <NavLink
-                to="/daftarMahasiswaBaru"
+                to="/admin/mahasiswa-baru"
                 activeClassName="sidebar-nav_active"
               >
                 <ContactsIcon />
@@ -335,6 +343,14 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                 </ul>
               </li>
+
+              <NavLink
+                to="/admin/edit-akun"
+                activeClassName="sidebar-nav_active"
+              >
+                <Face />
+                Edit Akun Kamu
+              </NavLink>
             </ul>
           </Flex>
         </Flex>

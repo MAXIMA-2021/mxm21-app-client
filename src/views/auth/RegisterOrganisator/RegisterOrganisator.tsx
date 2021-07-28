@@ -464,7 +464,7 @@ const RegisterOrganisator: React.FC = () => {
                       Sudah punya akun?{" "}
                       <Link
                         to="/auth/organisator/masuk"
-                        style={{ color: "cornflowerblue" }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Masuk
                       </Link>
