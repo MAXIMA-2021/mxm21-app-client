@@ -28,10 +28,14 @@ const EditAkun: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
-  };
+  const [loading, setLoading] = useState(false);
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
+
+  const onSubmit = (data: any) => {
+    setLoading(true);
+    window.confirm(JSON.stringify(data));
+    setLoading(false);
+  };
 
   return (
     <Flex
@@ -128,17 +132,34 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <Flex mt={10}>
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Submitting"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>

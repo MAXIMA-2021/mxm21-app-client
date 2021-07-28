@@ -73,7 +73,6 @@ const TambahPanitia: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterPanitia) => {
     setLoading(true);
-    reset();
 
     const dataPanitia: DataRegisterPanitia = {
       nim: data.nim.toString(),
@@ -85,6 +84,7 @@ const TambahPanitia: React.FC = () => {
 
     try {
       await authService.daftarPanitia(dataPanitia);
+      reset();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -101,6 +101,7 @@ const TambahPanitia: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -361,17 +362,34 @@ const TambahPanitia: React.FC = () => {
           </Flex>
           <Flex mt={2}>
             <Spacer />
-            <Button
-              backgroundColor="#41CEBA"
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Submitting"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>

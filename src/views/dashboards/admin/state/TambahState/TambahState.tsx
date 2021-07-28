@@ -62,10 +62,10 @@ const TambahState: React.FC = () => {
     formData.append("day", data.day);
     formData.append("stateLogo", files[0]);
     formData.append("quota", data.quota);
-    reset();
 
     try {
       await adminService.tambahState(formData);
+      reset();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -291,26 +291,23 @@ const TambahState: React.FC = () => {
           <Flex mt={5}>
             <Spacer />
             {loading ? (
-              <Flex mr="1rem" alignItems="center">
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  w="2rem"
-                  h="2rem"
-                />
-                <Text
-                  fontFamily="Poppins"
-                  fontSize={{ base: "0.9rem", md: "1rem" }}
-                  ml="0.5rem"
-                >
-                  mengunggah data...
-                </Text>
-              </Flex>
+              <Button
+                isLoading
+                loadingText="Submitting"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                SUBMIT
+              </Button>
             ) : (
               <Button
-                backgroundColor={Palette.Cyan}
+                backgroundColor="#41ceba"
                 color="white"
                 padding="1em 2em 1em 2em"
                 borderRadius="999px"
