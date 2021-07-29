@@ -19,7 +19,14 @@ export const DashboardProtectedRoute = (props: any, { ...options }) => {
         setLoading(false);
       }
     };
-    auth();
+    if (window.sessionStorage.getItem("token")) {
+      auth();
+    } else {
+      history.push("/", {
+        title: "",
+        message: "Harap Login Kembali",
+      });
+    }
   }, []);
 
   useEffect(() => {

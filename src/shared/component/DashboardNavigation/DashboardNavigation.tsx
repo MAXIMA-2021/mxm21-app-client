@@ -35,6 +35,7 @@ const DashboardNavigation: React.FC = () => {
       confirmButtonColor: "#e40000",
       denyButtonColor: "#fff",
       showCancelButton: true,
+      reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
         window.sessionStorage.removeItem("token");

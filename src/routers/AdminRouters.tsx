@@ -112,6 +112,7 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.EditAkun}
           />
+          <Route path="/admin" exact component={Dashboards.LandingDashboard} />
         </Box>
       </Router>
     </div>

@@ -20,5 +20,5 @@ export {
 } from "./akun";
 
 export { EditAkun } from "./profile";
-
 export { DaftarMahasiswaBaru, DetailMahasiswaBaru } from "./mahasiswaBaru";
+export { LandingDashboard } from "./landing-dashboard";

@@ -19,4 +19,5 @@ export {
   EditAkun,
   DaftarMahasiswaBaru,
   DetailMahasiswaBaru,
+  LandingDashboard,
 } from "./admin";

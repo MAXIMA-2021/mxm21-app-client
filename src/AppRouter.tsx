@@ -9,7 +9,7 @@ import { DashboardNavigation } from "./shared/component/DashboardNavigation";
 import { DashboardFooter } from "./shared/component/DashboardFooter";
 import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
-import { DashboardProtectedRoute } from "./routers/DashboardProtectedRouters";
+import { DashboardProtectedRoute } from "./routers/DashboardProtectedRoute";
 
 export default function AppRouter() {
   return (
