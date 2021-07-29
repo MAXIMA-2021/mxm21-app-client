@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
 import authService from "../services/auth";
+import Swal from "sweetalert2";
 
 export const DashboardProtectedRoute = (props: any, { ...options }) => {
   const history = useHistory();
@@ -10,11 +11,16 @@ export const DashboardProtectedRoute = (props: any, { ...options }) => {
   useEffect(() => {
     const auth = async () => {
       try {
-        const panitia = await authService.checkTokenPanitia();
-        panitia.message === "true" && setStatus(true);
-      } catch {
-        const organisator = await authService.checkTokenOrganisator();
-        organisator.message === "true" && setStatus(true);
+        const user = await authService.checkToken();
+        (user.role === "panitia" || user.role === "organizator") &&
+          setStatus(true);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
       } finally {
         setLoading(false);
       }

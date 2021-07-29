@@ -39,17 +39,8 @@ const loginOrganisator = async (data: DataLogin) => {
   return request.data;
 };
 
-const checkTokenPanitia = async () => {
-  const request = await axios.get(`${baseUrl}/panitia/acc/checkToken`, {
-    headers: {
-      "x-access-token": token,
-    },
-  });
-  return request.data;
-};
-
-const checkTokenOrganisator = async () => {
-  const request = await axios.get(`${baseUrl}/organizator/acc/checkToken`, {
+const checkToken = async () => {
+  const request = await axios.get(`${baseUrl}/public/acc/checkToken`, {
     headers: {
       "x-access-token": token,
     },
@@ -64,6 +55,5 @@ export default {
   loginPanitia,
   daftarOrganisator,
   loginOrganisator,
-  checkTokenPanitia,
-  checkTokenOrganisator,
+  checkToken,
 };

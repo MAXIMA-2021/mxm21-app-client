@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
@@ -21,6 +21,8 @@ import {
   MxmFormLabel,
   MxmInput,
 } from "../../../../shared/styled/input";
+import authService from "../../../../services/auth";
+import adminService from "../../../../services/admin";
 
 const EditAkun: React.FC = () => {
   const {
@@ -31,8 +33,14 @@ const EditAkun: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setLoading(true);
+    const user = await authService.checkToken();
+    if (user.role === "panitia") {
+      await adminService.updatePanitia(data);
+    } else if (user.role === "organisator") {
+      await adminService.updateOrganisator(data);
+    }
     window.confirm(JSON.stringify(data));
     setLoading(false);
   };
