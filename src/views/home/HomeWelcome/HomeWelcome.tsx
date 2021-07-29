@@ -1,5 +1,5 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import "./HomeWelcome.scss";
 import { Palette } from "../../../types/enums";
 import { Maxi, Xima } from "../../../assets/home";

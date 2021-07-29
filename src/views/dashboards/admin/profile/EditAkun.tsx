@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
@@ -23,25 +23,70 @@ import {
 } from "../../../../shared/styled/input";
 import authService from "../../../../services/auth";
 import adminService from "../../../../services/admin";
+import Swal from "sweetalert2";
 
 const EditAkun: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const [loading, setLoading] = useState(false);
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
+  const [data, setData] = useState<any>("");
+
+  useEffect(() => {
+    document.title = "Edit Akun Kamu - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const user = await authService.checkToken();
+        setData(user.name);
+        setValue("name", user.name);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onSubmit = async (data: any) => {
     setLoading(true);
     const user = await authService.checkToken();
-    if (user.role === "panitia") {
-      await adminService.updatePanitia(data);
-    } else if (user.role === "organisator") {
-      await adminService.updateOrganisator(data);
+    try {
+      if (user.role === "panitia") {
+        await adminService.updatePanitia(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Akun kamu berhasil diperbaharui!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else if (user.role === "organisator") {
+        await adminService.updateOrganisator(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Akun kamu berhasil diperbaharui!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
     }
-    window.confirm(JSON.stringify(data));
     setLoading(false);
   };
 
@@ -122,11 +167,7 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.password}>
             <MxmFormLabel color="black">Password Akun</MxmFormLabel>
-            <MxmInput
-              {...register("password", {
-                required: "Isi password kamu",
-              })}
-            />
+            <MxmInput {...register("password")} />
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.password && (
                 <Flex flexDirection="row" alignItems="center">
