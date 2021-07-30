@@ -21,11 +21,11 @@ const HomeCover = () => {
 
   return (
     <Flex
-      // h={{
-      //   base: "calc(100vh - 3.5rem)",
-      //   md: "calc(100vh - 4rem)",
-      //   xl: "calc(100vh - 5rem)",
-      // }}
+      h={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
       padding={{
         base: "1rem",
         md: "2rem",

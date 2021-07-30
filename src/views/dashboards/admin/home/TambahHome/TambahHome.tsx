@@ -192,7 +192,9 @@ const TambahHome: React.FC = () => {
                 <option value={HomeChapter.LostTreasureIsland}>
                   LostTreasure Island
                 </option>
-                <option value={HomeChapter.FantasyBridge}>Fantsy Bridge</option>
+                <option value={HomeChapter.FantasyBridge}>
+                  Fantasy Bridge
+                </option>
                 <option value={HomeChapter.MedalistPlayground}>
                   Medialist Playground
                 </option>
