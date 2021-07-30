@@ -38,8 +38,7 @@ const DashboardNavigation: React.FC = () => {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        window.sessionStorage.removeItem("token");
-        history.push("/");
+        window.location.href = "/auth/keluar";
       }
     });
   };

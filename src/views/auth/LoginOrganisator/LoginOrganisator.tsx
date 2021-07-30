@@ -85,15 +85,12 @@ const LoginOrganisator: React.FC = () => {
 
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
+    reset();
 
     try {
       const returnedData = await authService.loginOrganisator(data);
-      reset();
       window.sessionStorage.setItem("token", returnedData.accessToken);
-      window.sessionStorage.setItem("name", returnedData.name);
-      // const decoded = jwtDecode(returnedData.accessToken);
-      window.location = "/";
-      alert("berhasil login");
+      window.location.href = "/admin";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -101,13 +98,10 @@ const LoginOrganisator: React.FC = () => {
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
 
   return (
     <MxmContainersPanitia>

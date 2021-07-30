@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -27,7 +27,6 @@ import {
   MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogoText } from "../../../assets";
 import { motion, AnimatePresence } from "framer-motion";
@@ -85,15 +84,12 @@ const LoginPanitia: React.FC = () => {
 
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
+    reset();
 
     try {
       const returnedData = await authService.loginPanitia(data);
-      reset();
       window.sessionStorage.setItem("token", returnedData.token);
-      console.log(window.sessionStorage);
-      // const decoded = jwtDecode(returnedData.accessToken);
-      window.location = "/";
-      alert("berhasil login");
+      window.location.href = "/admin";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -101,13 +97,10 @@ const LoginPanitia: React.FC = () => {
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
 
   return (
     <MxmContainersPanitia>
