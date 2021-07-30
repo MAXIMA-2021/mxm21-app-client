@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -20,11 +20,10 @@ import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUnch
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import Swal from "sweetalert2";
 
-const DashboardNavigation: React.FC = () => {
+const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
-  const history = useHistory();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -152,7 +151,7 @@ const DashboardNavigation: React.FC = () => {
                 <div className="navbar-avatar-image">
                   <AccountCircleIcon />
                 </div>
-                <h4>Bukan Tiara Andini</h4>
+                <h4>{props.name}</h4>
               </Flex>
             </NavLink>
 
@@ -185,7 +184,7 @@ const DashboardNavigation: React.FC = () => {
               <div className="sidebar-avatar_image">
                 <AccountCircleIcon />
               </div>
-              <h4>Bukan Tiara Andini</h4>
+              <h4>{props.name}</h4>
               <h6>Panitia</h6>
             </div>
           </NavLink>

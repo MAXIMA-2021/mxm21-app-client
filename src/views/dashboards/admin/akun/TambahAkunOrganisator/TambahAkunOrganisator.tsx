@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -13,8 +12,6 @@ import {
   InputLeftAddon,
   InputRightAddon,
   InputRightElement,
-  Alert,
-  AlertIcon,
   createIcon,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
@@ -85,8 +82,6 @@ const TambahOrganisator: React.FC = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  const location = useLocation();
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterOrganisator) => {
     setLoading(true);

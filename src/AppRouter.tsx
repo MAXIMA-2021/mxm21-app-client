@@ -31,14 +31,7 @@ export default function AppRouter() {
                 <DashboardProtectedRoute
                   path="/admin/:path1?/:path2?/:path3?"
                   exact
-                >
-                  <Switch>
-                    <div style={{ minHeight: "100vh", background: "#f4f4f4" }}>
-                      <DashboardNavigation />
-                      <DashboardFooter />
-                    </div>
-                  </Switch>
-                </DashboardProtectedRoute>
+                />
                 <Route path="/home/:path1?/:path2?" exact>
                   <HomeNavbar />
                   <Switch>

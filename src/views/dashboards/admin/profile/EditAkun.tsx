@@ -79,6 +79,8 @@ const EditAkun: React.FC = () => {
           timer: 2000,
         });
       }
+      window.sessionStorage.setItem("name", data.name);
+      window.location.href = "/admin/dashboard";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

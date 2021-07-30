@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as Dashboards from "../views/dashboards";
 import { Box } from "@chakra-ui/react";
 
-export default function AdminRouters(show: boolean) {
+const AdminRouters = (props: any) => {
   return (
     <div>
       <Router>
@@ -117,4 +117,6 @@ export default function AdminRouters(show: boolean) {
       </Router>
     </div>
   );
-}
+};
+
+export default AdminRouters;
