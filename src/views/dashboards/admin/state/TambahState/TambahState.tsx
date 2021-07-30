@@ -293,7 +293,7 @@ const TambahState: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Tambah STATE"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"

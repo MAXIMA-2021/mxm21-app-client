@@ -473,7 +473,7 @@ const TambahMahasiswa: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Tambah Akun"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"

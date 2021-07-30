@@ -504,7 +504,7 @@ const EditMahasiswa: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Update Akun"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"

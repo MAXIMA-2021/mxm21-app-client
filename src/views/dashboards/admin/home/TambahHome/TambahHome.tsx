@@ -397,7 +397,7 @@ const TambahHome: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Tambah HoME"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"

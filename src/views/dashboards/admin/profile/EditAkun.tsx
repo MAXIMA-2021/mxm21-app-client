@@ -184,7 +184,7 @@ const EditAkun: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Update Akun"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"
@@ -194,7 +194,7 @@ const EditAkun: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Update Akun
               </Button>
             ) : (
               <Button
@@ -206,7 +206,7 @@ const EditAkun: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Update Akun
               </Button>
             )}
           </Flex>

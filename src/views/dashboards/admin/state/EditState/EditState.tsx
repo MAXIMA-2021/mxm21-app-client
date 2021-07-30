@@ -288,7 +288,7 @@ const EditState: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Update STATE"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"

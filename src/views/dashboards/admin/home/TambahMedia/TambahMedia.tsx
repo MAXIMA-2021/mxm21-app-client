@@ -179,7 +179,7 @@ const TambahMedia: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Submitting"
+                loadingText="Tambah Media"
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"
