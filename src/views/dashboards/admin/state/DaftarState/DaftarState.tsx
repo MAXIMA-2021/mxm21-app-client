@@ -107,6 +107,13 @@ const DaftarState: React.FC = () => {
       },
     },
     {
+      name: "registered",
+      label: "registered",
+      options: {
+        display: false,
+      },
+    },
+    {
       name: "name",
       label: "Nama STATE",
       options: {
@@ -149,8 +156,10 @@ const DaftarState: React.FC = () => {
         setCellProps: () => ({
           style: { minWidth: "195px" },
         }),
-        customBodyRender: (value: any) => (
-          <Text fontSize={responsiveData}>{value}/100</Text>
+        customBodyRender: (value: any, tableMeta: any) => (
+          <Text fontSize={responsiveData}>
+            {tableMeta.rowData[1]}/{value}
+          </Text>
         ),
       },
     },

@@ -19,10 +19,12 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
 import homeService from "../../../services/home";
 import Swal from "sweetalert2";
+import { MxmLogo } from "../../../assets";
 
 const HomeOrganisatorList = () => {
   const [data, setData] = useState([]);
   const { homeChapter } = useParams<{ homeChapter: string }>();
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   var images: any = [];
@@ -38,6 +40,7 @@ const HomeOrganisatorList = () => {
 
   useEffect(() => {
     document.title = `Organisator list ${homeChapter}`;
+    setLoading(true);
     const fetchData = async () => {
       try {
         const returnedData = await homeService.getHomeByCategory(homeChapter);
@@ -51,6 +54,7 @@ const HomeOrganisatorList = () => {
         });
       }
     };
+    setLoading(false);
     fetchData();
   }, []);
 
@@ -116,7 +120,11 @@ const HomeOrganisatorList = () => {
                   );
                 }}
               >
-                <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
+                {loading ? (
+                  <Image src={item?.linkLogo} alt={`skeleton`} />
+                ) : (
+                  <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
+                )}
               </div>
               <div
                 className="content-org-desc"

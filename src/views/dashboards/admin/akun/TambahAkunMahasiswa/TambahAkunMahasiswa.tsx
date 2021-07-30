@@ -14,6 +14,7 @@ import {
   InputRightAddon,
   Alert,
   AlertIcon,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -37,7 +38,7 @@ const TambahMahasiswa: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
-
+  const toast = useToast();
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -75,12 +76,12 @@ const TambahMahasiswa: React.FC = () => {
     try {
       await authService.daftarMhs(dataMaba);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Akun Mahasiswa MAXIMA 2021 berhasil dibuat!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
       });
       window.location.href = "/admin/daftar-mahasiswa";
     } catch (error) {

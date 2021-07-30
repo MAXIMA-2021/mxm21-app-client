@@ -14,6 +14,7 @@ import {
   InputRightAddon,
   Alert,
   AlertIcon,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -33,6 +34,7 @@ import "./EditAkunMahasiswa.scss";
 const EditMahasiswa: React.FC = () => {
   const history = useHistory();
   const [mahasiswaByNim, setMahasiswaByNim] = useState<any>({});
+  const toast = useToast();
   const { nim }: any = useParams();
   const {
     register,
@@ -97,12 +99,12 @@ const EditMahasiswa: React.FC = () => {
     try {
       await adminService.updateMahasiswa(nim, formData);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Akun Mahasiswa berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       window.location.href = "/admin/daftar-mahasiswa";
     } catch (error) {

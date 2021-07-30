@@ -16,6 +16,7 @@ import {
   Alert,
   AlertIcon,
   createIcon,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -51,7 +52,7 @@ const TambahPanitia: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
-
+  const toast = useToast();
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -85,12 +86,12 @@ const TambahPanitia: React.FC = () => {
     try {
       await authService.daftarPanitia(dataPanitia);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
       });
       window.location.href = "/admin/daftar-panitia";
     } catch (error) {

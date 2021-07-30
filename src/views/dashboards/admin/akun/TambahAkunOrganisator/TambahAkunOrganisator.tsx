@@ -13,6 +13,7 @@ import {
   InputRightAddon,
   InputRightElement,
   createIcon,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -49,6 +50,7 @@ const TambahOrganisator: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const toast = useToast();
 
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
@@ -97,13 +99,12 @@ const TambahOrganisator: React.FC = () => {
     try {
       await authService.daftarOrganisator(dataOrganisator);
       reset();
-
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Akun Organisator MAXIMA 2021 berhasil dibuat!",
-        showConfirmButton: false,
-        timer: 2000,
+      toast({
+        title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
+        position: "bottom",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
       });
       window.location.href = "/admin/daftar-organisator";
     } catch (error) {
