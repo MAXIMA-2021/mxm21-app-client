@@ -24,6 +24,23 @@ export const MxmButton = styled(Button)<{
     props.colorScheme === "cyan-navy"
       ? `
     background: ${Palette.Cyan};
+    box-shadow: -3px 3px 0 0 ${Palette.Navy};
+    color: white;
+
+    &:hover {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Navy};
+        transform: translate(2px, -2px);
+    }
+
+    &:active {
+        box-shadow: 0 0 0 0 ${Palette.Navy};
+        transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "cyan-white"
+      ? `
+    background: ${Palette.Cyan};
     box-shadow: -3px 3px 0 0 #ffffff;
     color: white;
 

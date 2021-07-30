@@ -175,7 +175,7 @@
 }
 
 .home-orglist-back-btn {
-  position: fixed;
+  position: absolute !important;
   bottom: 50px;
   left: 50px;
   padding: 0.5rem 2.5rem !important;

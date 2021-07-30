@@ -551,7 +551,7 @@ const RegisterMhs: React.FC = () => {
                         spinnerPlacement="start"
                         type="submit"
                         variant="desktop"
-                        colorScheme="cyan-navy"
+                        colorScheme="cyan-white"
                       >
                         Daftar
                       </MxmButton>
@@ -559,7 +559,7 @@ const RegisterMhs: React.FC = () => {
                       <MxmButton
                         type="submit"
                         variant="desktop"
-                        colorScheme="cyan-navy"
+                        colorScheme="cyan-white"
                       >
                         Daftar
                       </MxmButton>

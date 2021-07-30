@@ -20,7 +20,14 @@ const HomeZeppelin = () => {
   }, []);
 
   return (
-    <Flex className="home-zep-outer-container">
+    <Flex
+      className="home-zep-outer-container"
+      h={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
+    >
       <Flex className="home-zep-inner-container">
         <Flex className="home-zep-header" color={Palette.Red}>
           <h1>Zeppelin</h1>

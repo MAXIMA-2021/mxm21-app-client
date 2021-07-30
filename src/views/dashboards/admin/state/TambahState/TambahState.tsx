@@ -53,7 +53,6 @@ const TambahState: React.FC = () => {
   }, []);
 
   const onSubmit = async (data: DataState) => {
-    // window.confirm(JSON.stringify(data));
     setLoading(true);
 
     const formData = new FormData();

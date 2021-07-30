@@ -1,22 +1,19 @@
 @media screen and (min-width: 820px) {
   .home-cvr-outer_container {
-    height: max-content;
   }
 }
 
 .home-cvr-middle_container {
   width: 100%;
-  // height: 100vh;
   margin: 0 auto;
-  // padding: 3rem;
 
   align-items: center;
-  // justify-content: center;
 }
+
 .home-cvr-header {
   display: flex;
-  // width: 80ch;
   margin: 2rem 0 1rem 0;
+  width: 50vw;
   & h1 {
     font-size: 1.7rem;
     font-family: Rubik, Arial, sans-serif;
@@ -27,9 +24,9 @@
 
 @media screen and (max-width: 942px) {
   .home-cvr-header {
+    width: 80vw;
     & h1 {
       font-size: 1.5rem;
-      width: 80vw;
     }
   }
 }
@@ -66,16 +63,16 @@
     }
   }
   .home-cvr-gate {
-    margin-top: 4rem;
+    margin-top: 2rem;
     & img {
       width: 300px;
     }
   }
 
   .home-cvr-header {
+    width: 80vw;
     & h1 {
       font-size: 1.5rem;
-      width: 80vw;
     }
   }
 
@@ -88,23 +85,23 @@
 
 @media screen and(max-width: 620px) {
   .home-cvr-mxm-logo {
-    margin-top: 2rem;
+    margin-top: 0;
     & img {
       height: 100px;
     }
   }
   .home-cvr-gate {
-    margin-top: 4rem;
+    margin-top: 2rem;
     & img {
       width: 200px;
     }
   }
 
   .home-cvr-header {
+    width: 80vw;
     justify-content: center;
     & h1 {
       font-size: 1.5rem;
-      width: 80vw;
     }
   }
 
@@ -123,7 +120,7 @@
     }
   }
   .home-cvr-gate {
-    margin-top: 5rem;
+    margin-top: 1.5rem;
     & img {
       width: 200px;
     }
@@ -138,6 +135,16 @@
   .home-cvr-btn {
     & button {
       font-size: 0.8rem;
+      padding: 0.2rem 1rem;
+    }
+  }
+}
+
+@media screen and (max-height: 568px) {
+  .home-cvr-gate {
+    margin-top: 0;
+    & img {
+      width: 200px;
     }
   }
 }

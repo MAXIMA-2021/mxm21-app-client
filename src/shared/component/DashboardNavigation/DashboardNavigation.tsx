@@ -43,8 +43,6 @@ const DashboardNavigation: React.FC = () => {
     });
   };
 
-  // use(() => {}, []);
-
   const sidebarShown = () => {
     setSidebarShow(false);
     if (sidebarShow === false) {
