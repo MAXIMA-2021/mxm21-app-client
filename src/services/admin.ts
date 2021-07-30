@@ -59,7 +59,16 @@ const getAllMahasiswa = async () => {
 
 const updateMahasiswa = async (nim: string, newObject: any) => {
   const request = await axios.put(
-    `${baseUrl}/panitia/acc/editProfile`,
+    `${baseUrl}/panitia/acc/editMahasiswa/${nim}`,
+    newObject,
+    config
+  );
+  return request;
+};
+
+const updateMahasiswaByPanitia = async (newObject: any) => {
+  const request = await axios.put(
+    `${baseUrl}/mhs/acc/editProfile`,
     newObject,
     config
   );
@@ -225,6 +234,7 @@ export default {
   getHomeBySearchKey,
   getMahasiswaByNim,
   updateMahasiswa,
+  updateMahasiswaByPanitia,
   updateHome,
   updatePanitia,
   updateOrganisator,

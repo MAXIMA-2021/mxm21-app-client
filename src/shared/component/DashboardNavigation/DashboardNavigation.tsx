@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
@@ -43,6 +43,8 @@ const DashboardNavigation: React.FC = () => {
       }
     });
   };
+
+  // use(() => {}, []);
 
   const sidebarShown = () => {
     setSidebarShow(false);
