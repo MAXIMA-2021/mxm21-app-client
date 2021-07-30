@@ -98,7 +98,6 @@ const RegisterPanitia: React.FC = () => {
 
   const onSubmit = async (data: DataRegisterPanitia) => {
     setLoading(true);
-    reset();
 
     const dataPanitia: DataRegisterPanitia = {
       nim: data.nim.toString(),
@@ -109,6 +108,7 @@ const RegisterPanitia: React.FC = () => {
     };
 
     try {
+      reset();
       await authService.daftarPanitia(dataPanitia);
       history.push("/auth/panitia/masuk", {
         status: "success",
@@ -122,6 +122,7 @@ const RegisterPanitia: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -407,13 +408,26 @@ const RegisterPanitia: React.FC = () => {
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton
-                      type="submit"
-                      variant="desktop"
-                      colorScheme="navy-white"
-                    >
-                      Daftar
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Daftar"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

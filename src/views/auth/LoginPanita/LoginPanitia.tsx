@@ -85,9 +85,10 @@ const LoginPanitia: React.FC = () => {
 
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
-    reset();
+
     try {
       const returnedData = await authService.loginPanitia(data);
+      reset();
       window.sessionStorage.setItem("token", returnedData.token);
       console.log(window.sessionStorage);
       // const decoded = jwtDecode(returnedData.accessToken);
@@ -101,6 +102,7 @@ const LoginPanitia: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   // const onSubmit = (data: any) => {
@@ -284,9 +286,26 @@ const LoginPanitia: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="navy-white">
-                      Masuk
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Masuk"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

@@ -84,7 +84,6 @@ const RegisterMhs: React.FC = () => {
 
   const onSubmit = async (data: DataRegisterMaba) => {
     setLoading(true);
-    reset();
 
     const dataMaba: DataRegisterMaba = {
       nim: data.nim.toString(),
@@ -118,6 +117,7 @@ const RegisterMhs: React.FC = () => {
 
     try {
       await authService.daftarMhs(dataMaba);
+      reset();
       history.push("/auth/masuk", {
         status: "success",
         message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
@@ -130,6 +130,7 @@ const RegisterMhs: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -543,13 +544,26 @@ const RegisterMhs: React.FC = () => {
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton
-                      type="submit"
-                      variant="desktop"
-                      colorScheme="cyan-navy"
-                    >
-                      Daftar
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Daftar"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

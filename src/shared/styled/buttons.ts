@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Palette } from "../../types/enums";
+import { Button } from "@chakra-ui/react";
 
-export const MxmButton = styled("button")<{
+export const MxmButton = styled(Button)<{
   variant: string;
   colorScheme: string;
   margin?: string;
@@ -9,7 +10,7 @@ export const MxmButton = styled("button")<{
   /* 
     variant: either desktop (rounded) or mobile (more squared)
     colorScheme: format1 -> frontcolor-backcolor, 
-                 format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
+    format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
   padding: 0.8vh 1vw;
@@ -23,17 +24,17 @@ export const MxmButton = styled("button")<{
     props.colorScheme === "cyan-navy"
       ? `
     background: ${Palette.Cyan};
-    box-shadow: -3px 3px 0 0 ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 #ffffff;
     color: white;
 
     &:hover {
         background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-        box-shadow: -2px 2px 0 0 ${Palette.Navy};
+        box-shadow: -2px 2px 0 0 #ffffff;
         transform: translate(2px, -2px);
     }
 
     &:active {
-        box-shadow: 0 0 0 0 ${Palette.Navy};
+        box-shadow: 0 0 0 0 #ffffff;
         transform: translate(0px, 0px);
     }
     `

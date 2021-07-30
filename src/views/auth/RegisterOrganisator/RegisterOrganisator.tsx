@@ -119,7 +119,6 @@ const RegisterOrganisator: React.FC = () => {
 
   const onSubmit = async (data: DataRegisterOrganisator) => {
     setLoading(true);
-    reset();
 
     const dataOrganisator: DataRegisterOrganisator = {
       nim: data.nim.toString(),
@@ -131,6 +130,7 @@ const RegisterOrganisator: React.FC = () => {
 
     try {
       await authService.daftarOrganisator(dataOrganisator);
+      reset();
       history.push("/auth/organisator/masuk", {
         status: "success",
         message: "Akun Organisator MAXIMA 2021 berhasil dibuat! Silakan masuk.",
@@ -143,6 +143,7 @@ const RegisterOrganisator: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -472,13 +473,26 @@ const RegisterOrganisator: React.FC = () => {
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton
-                      type="submit"
-                      variant="desktop"
-                      colorScheme="navy-white"
-                    >
-                      Daftar
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Daftar"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

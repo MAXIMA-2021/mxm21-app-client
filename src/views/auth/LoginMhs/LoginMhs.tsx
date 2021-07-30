@@ -85,9 +85,10 @@ const LoginMhs: React.FC = () => {
 
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
-    reset();
+
     try {
       const returnedData = await authService.loginMhs(data);
+      reset();
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.sessionStorage.setItem("name", returnedData.name);
       // const decoded = jwtDecode(returnedData.accessToken);
@@ -97,11 +98,12 @@ const LoginMhs: React.FC = () => {
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.message,
+        text: error.response?.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   // const onSubmit = (data: any) => {
@@ -296,9 +298,26 @@ const LoginMhs: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-navy">
-                      Masuk
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Masuk"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>
