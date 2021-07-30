@@ -407,7 +407,7 @@ const TambahHome: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah HoME
               </Button>
             ) : (
               <Button
@@ -419,7 +419,7 @@ const TambahHome: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah HoME
               </Button>
             )}
           </Flex>

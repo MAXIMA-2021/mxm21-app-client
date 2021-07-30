@@ -678,7 +678,7 @@ const EditHome: React.FC = () => {
                       type="submit"
                       _hover={{ backgroundColor: "#2BAD96" }}
                     >
-                      SUBMIT
+                      Update HoME
                     </Button>
                   )}
                 </Flex>
@@ -735,7 +735,7 @@ const EditHome: React.FC = () => {
                     _hover={{ backgroundColor: "#2BAD96" }}
                     onClick={onMediaSubmit}
                   >
-                    SUBMIT
+                    Update Media
                   </Button>
                 )}
               </Flex>

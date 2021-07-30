@@ -221,6 +221,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                 {...register("tempatLahir", {
                   required: "Isi tempat lahir kamu",
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.tempatLahir && (
@@ -248,6 +249,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                 {...register("tanggalLahir", {
                   required: "Isi tanggal lahir kamu",
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.tanggalLahir && (
@@ -273,6 +275,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                 {...register("jenisKelamin", {
                   required: "Pilih jenis kelamin kamu",
                 })}
+                disabled
               >
                 <option value="" selected disabled hidden>
                   L/P
@@ -313,6 +316,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                 {...register("prodi", {
                   required: "Pilih program studi kamu",
                 })}
+                disabled
               >
                 <option value="" selected disabled hidden>
                   Pilih Program Studi
@@ -398,6 +402,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                     message: "Nomor whatsapp harus berupa angka",
                   },
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.whatsapp && (
@@ -420,6 +425,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                     message: "ID LINE tidak valid",
                   },
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.idLine && (
@@ -443,6 +449,7 @@ const DetailMahasiswaBaru: React.FC = () => {
                     message: "Username Instagram tidak valid",
                   },
                 })}
+                disabled
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.idInstagram && (

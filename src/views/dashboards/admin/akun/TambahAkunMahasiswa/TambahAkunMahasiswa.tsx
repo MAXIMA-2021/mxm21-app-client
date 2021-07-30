@@ -82,7 +82,7 @@ const TambahMahasiswa: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      history.push("/admin/daftar-mahasiswa");
+      window.location.href = "/admin/daftar-mahasiswa";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -483,7 +483,7 @@ const TambahMahasiswa: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             ) : (
               <Button
@@ -495,7 +495,7 @@ const TambahMahasiswa: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             )}
           </Flex>

@@ -102,6 +102,7 @@ const TambahOrganisator: React.FC = () => {
     try {
       await authService.daftarOrganisator(dataOrganisator);
       reset();
+
       Swal.fire({
         position: "center",
         icon: "success",
@@ -109,7 +110,7 @@ const TambahOrganisator: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      history.push("/admin/daftar-organisator");
+      window.location.href = "/admin/daftar-organisator";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -394,7 +395,7 @@ const TambahOrganisator: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             ) : (
               <Button
@@ -406,7 +407,7 @@ const TambahOrganisator: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             )}
           </Flex>

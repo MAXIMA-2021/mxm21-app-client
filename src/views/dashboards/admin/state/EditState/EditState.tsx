@@ -285,17 +285,34 @@ const EditState: React.FC = () => {
           </FormControl>
           <Flex mt={5}>
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="30px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Submitting"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Update STATE
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Update STATE
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>

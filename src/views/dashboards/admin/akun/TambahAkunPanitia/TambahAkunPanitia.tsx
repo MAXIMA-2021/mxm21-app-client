@@ -92,7 +92,7 @@ const TambahPanitia: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      history.push("/admin/daftar-panitia");
+      window.location.href = "/admin/daftar-panitia";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -375,7 +375,7 @@ const TambahPanitia: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             ) : (
               <Button
@@ -387,7 +387,7 @@ const TambahPanitia: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Akun
               </Button>
             )}
           </Flex>

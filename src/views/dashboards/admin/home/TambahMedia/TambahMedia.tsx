@@ -189,7 +189,7 @@ const TambahMedia: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Media
               </Button>
             ) : (
               <Button
@@ -201,7 +201,7 @@ const TambahMedia: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah Media
               </Button>
             )}
           </Flex>

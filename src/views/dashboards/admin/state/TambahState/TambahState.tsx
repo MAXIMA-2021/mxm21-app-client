@@ -303,7 +303,7 @@ const TambahState: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah STATE
               </Button>
             ) : (
               <Button
@@ -315,7 +315,7 @@ const TambahState: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                SUBMIT
+                Tambah STATE
               </Button>
             )}
           </Flex>
