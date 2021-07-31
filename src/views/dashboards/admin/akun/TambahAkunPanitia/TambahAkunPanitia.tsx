@@ -50,6 +50,8 @@ const TambahPanitia: React.FC = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
   const toast = useToast();
@@ -69,8 +71,6 @@ const TambahPanitia: React.FC = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  const location = useLocation();
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterPanitia) => {
     setLoading(true);
@@ -103,6 +103,9 @@ const TambahPanitia: React.FC = () => {
       });
     }
     setLoading(false);
+
+    setValue("divisiID", "");
+    setFocus("name");
   };
 
   return (

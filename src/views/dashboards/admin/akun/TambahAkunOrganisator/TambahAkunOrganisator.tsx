@@ -48,6 +48,8 @@ const TambahOrganisator: React.FC = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
   const toast = useToast();
@@ -116,6 +118,9 @@ const TambahOrganisator: React.FC = () => {
       });
     }
     setLoading(false);
+
+    setValue("stateID", "");
+    setFocus("name");
   };
 
   return (

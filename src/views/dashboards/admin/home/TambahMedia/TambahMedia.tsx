@@ -7,8 +7,6 @@ import {
   FormErrorIcon,
   Button,
   Image,
-  Text,
-  Spinner,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
@@ -33,6 +31,8 @@ const TambahMedia: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    setFocus,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -81,6 +81,8 @@ const TambahMedia: React.FC = () => {
     }
     setLoading(false);
     setResetUpload(false);
+    setValue("homeID", "");
+    setFocus("homeID");
   };
 
   return (
