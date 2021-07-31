@@ -100,8 +100,17 @@ const DaftarAkunOrganisator: React.FC = () => {
         setCellProps: () => ({
           style: { minWidth: "350px" },
         }),
-        customBodyRender: (value: any) => (
-          <Text fontSize={responsiveData}>{value}</Text>
+        customBodyRender: (value: any, tableMeta: any) => (
+          <Text fontSize={responsiveData}>
+            {value}{" "}
+            {tableMeta.rowData[3] ? (
+              <ThemeProvider theme={colorTheme}>
+                <CheckCircleOutlineIcon color="primary" />
+              </ThemeProvider>
+            ) : (
+              <></>
+            )}
+          </Text>
         ),
       },
     },
@@ -155,7 +164,7 @@ const DaftarAkunOrganisator: React.FC = () => {
     },
     {
       name: "verified",
-      label: "Verified",
+      label: "Active Toggle",
       options: {
         filter: true,
         sort: true,
@@ -173,18 +182,7 @@ const DaftarAkunOrganisator: React.FC = () => {
           style: { minWidth: "100px" },
         }),
         customBodyRender: (value: any, tableMeta: any) => (
-          <HStack spacing={10}>
-            <Text ml={6}>
-              {value ? (
-                <ThemeProvider theme={colorTheme}>
-                  <CheckCircleOutlineIcon color="primary" />
-                </ThemeProvider>
-              ) : (
-                <ThemeProvider theme={colorTheme}>
-                  <ClearIcon color="secondary" />
-                </ThemeProvider>
-              )}
-            </Text>
+          <Text ml={9}>
             {value ? (
               <Switch
                 isChecked
@@ -197,7 +195,7 @@ const DaftarAkunOrganisator: React.FC = () => {
                 onChange={() => verifyThis(tableMeta.rowData[1])}
               />
             )}
-          </HStack>
+          </Text>
         ),
       },
     },
