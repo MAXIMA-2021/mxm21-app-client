@@ -33,6 +33,8 @@ const TambahHome: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
 
@@ -70,9 +72,11 @@ const TambahHome: React.FC = () => {
     formData.append("instagram", data.instagram);
     formData.append("linkLogo", files[0]);
 
+    reset();
+    setValue("kategori", "");
+
     try {
       await adminService.tambahHome(formData);
-      reset();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -92,6 +96,8 @@ const TambahHome: React.FC = () => {
     }
     setLoading(false);
     setResetUpload(false);
+
+    setFocus("name");
   };
 
   const handleSelectChange = (event: any) => {

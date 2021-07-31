@@ -12,8 +12,6 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
-  Text,
-  Spinner,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import "./TambahState.scss";
@@ -37,16 +35,13 @@ const TambahState: React.FC = () => {
     handleSubmit,
     reset,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
-
-  useEffect(() => {
-    setValue("quota", 0);
-  }, [resetUpload]);
 
   useEffect(() => {
     document.title = "[Dashboard] - Tambah STATE";
@@ -84,6 +79,9 @@ const TambahState: React.FC = () => {
     }
     setLoading(false);
     setResetUpload(false);
+
+    setValue("quota", 0);
+    setFocus("name");
   };
 
   const handleSelectChange = (event: any) => {

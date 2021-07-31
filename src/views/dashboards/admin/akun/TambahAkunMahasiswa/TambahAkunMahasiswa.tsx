@@ -36,6 +36,8 @@ const TambahMahasiswa: React.FC = () => {
     handleSubmit,
     watch,
     reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
   const toast = useToast();
@@ -52,8 +54,6 @@ const TambahMahasiswa: React.FC = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const location = useLocation();
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterMaba) => {
     setLoading(true);
@@ -93,6 +93,10 @@ const TambahMahasiswa: React.FC = () => {
       });
     }
     setLoading(false);
+
+    setValue("jenisKelamin", "");
+    setValue("prodi", "");
+    setFocus("name");
   };
 
   return (
