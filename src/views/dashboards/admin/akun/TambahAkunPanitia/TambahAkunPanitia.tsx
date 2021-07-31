@@ -242,7 +242,7 @@ const TambahPanitia: React.FC = () => {
               mr="5"
               isInvalid={errors.divisiID}
             >
-              <MxmFormLabel color="black">ID Divisi</MxmFormLabel>
+              <MxmFormLabel color="black">Divisi</MxmFormLabel>
               <MxmSelect
                 className="select"
                 {...register("divisiID", {

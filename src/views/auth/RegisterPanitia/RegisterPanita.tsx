@@ -112,7 +112,8 @@ const RegisterPanitia: React.FC = () => {
       await authService.daftarPanitia(dataPanitia);
       history.push("/auth/panitia/masuk", {
         status: "success",
-        message: "Akun Panitia MAXIMA 2021 berhasil dibuat! Silakan masuk.",
+        message:
+          "Akun Panitia MAXIMA 2021 berhasil dibuat! Silakan tunggu verifikasi dari pihak Web MAXIMA 2021.",
       });
     } catch (error) {
       Swal.fire({
@@ -198,7 +199,7 @@ const RegisterPanitia: React.FC = () => {
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.name}>
-                    <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
+                    <MxmFormLabel>Nama Lengkap</MxmFormLabel>
                     <MxmInput
                       {...register("name", {
                         required: "Isi nama lengkap kamu",
@@ -269,7 +270,7 @@ const RegisterPanitia: React.FC = () => {
                     mr="5"
                     isInvalid={errors.divisiID}
                   >
-                    <MxmFormLabel>ID Divisi</MxmFormLabel>
+                    <MxmFormLabel>Divisi</MxmFormLabel>
                     <MxmSelect
                       className="select"
                       {...register("divisiID", {

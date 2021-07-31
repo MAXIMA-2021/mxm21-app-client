@@ -133,7 +133,8 @@ const RegisterOrganisator: React.FC = () => {
       reset();
       history.push("/auth/organisator/masuk", {
         status: "success",
-        message: "Akun Organisator MAXIMA 2021 berhasil dibuat! Silakan masuk.",
+        message:
+          "Akun Organisator MAXIMA 2021 berhasil dibuat! Silakan tunggu verifikasi dari pihak Web MAXIMA 2021.",
       });
     } catch (error) {
       Swal.fire({
@@ -290,7 +291,7 @@ const RegisterOrganisator: React.FC = () => {
                     mr="5"
                     isInvalid={errors.stateID}
                   >
-                    <MxmFormLabel>ID state</MxmFormLabel>
+                    <MxmFormLabel>STATE</MxmFormLabel>
                     {/* <Autocomplete
                       id="stateList-combo-box"
                       options={data}

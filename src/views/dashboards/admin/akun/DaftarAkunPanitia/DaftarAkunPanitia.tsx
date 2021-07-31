@@ -9,6 +9,7 @@ import {
   Text,
   HStack,
   Button,
+  Switch,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
@@ -184,16 +185,18 @@ const DaftarAkunPanitia: React.FC = () => {
                 </ThemeProvider>
               )}
             </Text>
-            <Button
-              fontSize={responsiveData}
-              size="xs"
-              leftIcon={<RepeatIcon />}
-              bgColor={Palette.Navy}
-              color="white"
-              onClick={() => verifyThis(tableMeta.rowData[1])}
-            >
-              Verify
-            </Button>
+            {value ? (
+              <Switch
+                isChecked
+                colorScheme="facebook"
+                onChange={() => verifyThis(tableMeta.rowData[1])}
+              />
+            ) : (
+              <Switch
+                colorScheme="facebook"
+                onChange={() => verifyThis(tableMeta.rowData[1])}
+              />
+            )}
           </HStack>
         ),
       },

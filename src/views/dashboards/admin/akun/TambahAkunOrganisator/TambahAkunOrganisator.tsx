@@ -255,7 +255,7 @@ const TambahOrganisator: React.FC = () => {
               mr="5"
               isInvalid={errors.stateID}
             >
-              <MxmFormLabel color="black">ID state</MxmFormLabel>
+              <MxmFormLabel color="black">STATE</MxmFormLabel>
               <MxmSelect
                 className="select"
                 {...register("stateID", {
