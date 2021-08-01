@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as Auth from "./views/auth";
-import * as Dashboards from "./views/dashboards";
 import * as Beranda from "./views/beranda";
-import { Home } from "./views";
-import { AuthRouters, AdminRouters } from "./routers";
+import * as Home from "./views/home";
+
+import { AuthRouters, AdminRouters, HomeRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";
+import { DashboardFooter } from "./shared/component/DashboardFooter";
 import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
+import { DashboardProtectedRoute } from "./routers/DashboardProtectedRoute";
 
 export default function AppRouter() {
   return (
@@ -27,9 +28,14 @@ export default function AppRouter() {
                     <HomeFooter />
                   </div>
                 </Route>
-                <Route path="/admin/:path1?/:path2?/:path3?" exact>
+                <DashboardProtectedRoute
+                  path="/admin/:path1?/:path2?/:path3?"
+                  exact
+                />
+                <Route path="/home/:path1?/:path2?" exact>
+                  <HomeNavbar />
                   <Switch>
-                    <DashboardNavigation />
+                    <HomeRouters />
                   </Switch>
                 </Route>
                 <Route>

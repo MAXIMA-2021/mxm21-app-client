@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import * as Auth from ".././views/auth";
 
 export default function AuthRouters() {
@@ -23,9 +28,15 @@ export default function AuthRouters() {
         exact
         component={Auth.RegisterOrganisator}
       />
-      {/* <Route path="/auth/organisator" component={Auth.LoginOrganisator} />
-      <Route path="/auth/panitia" component={Auth.LoginPanitia} />
-      <Route path="/auth" component={Auth.LoginMhs} /> */}
+      <Route
+        path="/auth/keluar"
+        exact
+        strict
+        render={() => {
+          window.sessionStorage.clear();
+          return <Redirect to="/" />;
+        }}
+      />
     </>
   );
 }

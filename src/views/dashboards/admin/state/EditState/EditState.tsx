@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -13,6 +13,7 @@ import {
   NumberInput,
   NumberInputStepper,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
@@ -24,19 +25,89 @@ import {
   MxmNumberInputField,
   MxmSelect,
 } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 
 const EditState: React.FC = () => {
+  const { stateID }: any = useParams();
+  const [state, setState] = useState<any>({});
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getSpecificState(stateID);
+        setState(returnedData[0]);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setValue("name", state?.name);
+    setValue("quota", state?.quota);
+    setValue("day", state?.day);
+    setValue("stateLogo", state?.stateLogo);
+    setValue("zoomLink", state?.zoomLink);
+  }, [state]);
+
+  const onSubmit = async (data: any) => {
+    // window.confirm(JSON.stringify(data));
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("zoomLink", data.zoomLink);
+    formData.append("day", data.day);
+    formData.append("stateLogo", files[0]);
+    formData.append("quota", data.quota);
+
+    try {
+      await adminService.updateState(state.stateID, formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setResetUpload(true);
+      setFiles([]);
+      history.push("/admin/daftar-state", {
+        status: "success",
+        message: "Kamu berhasil mengedit",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
   };
-  const [myUpload, setMyUpload] = useState("");
-  const fileInput = useRef<HTMLInputElement>(null);
+
+  console.log(files);
 
   return (
     <Flex
@@ -111,29 +182,26 @@ const EditState: React.FC = () => {
               xl: "row",
             }}
           >
-            <FormControl mb={3} mr="5" isInvalid={errors.namaState}>
+            <FormControl mb={3} mr="5" isInvalid={errors.name}>
               <MxmFormLabel color="black">Nama State</MxmFormLabel>
-              <MxmInput
-                value="Ultimagz"
-                {...register("namaState", { required: "Isi Nama STATE" })}
-              />
+              <MxmInput {...register("name", { required: "Isi Nama STATE" })} />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
-                {errors.namaState && (
+                {errors.name && (
                   <Flex flexDirection="row" alignItems="center">
                     <p>
                       <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                      {errors.namaState.message}
+                      {errors.name.message}
                     </p>
                   </Flex>
                 )}
               </MxmFormErrorMessage>
             </FormControl>
-            <FormControl mb={3} isInvalid={errors.kuotaState}>
+            <FormControl mb={3} isInvalid={errors.quota}>
               <MxmFormLabel color="black">Kuota</MxmFormLabel>
-              <NumberInput allowMouseWheel defaultValue={100} min={0}>
+              <NumberInput allowMouseWheel min={0}>
                 <MxmNumberInputField
                   type="number"
-                  {...register("kuotaState", {
+                  {...register("quota", {
                     required: "Isi Jumlah Kuota",
                     min: {
                       value: 1,
@@ -147,7 +215,7 @@ const EditState: React.FC = () => {
                 </NumberInputStepper>
               </NumberInput>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
-                {errors.kuotaState && (
+                {errors.quota && (
                   <Flex flexDirection="row" alignItems="center">
                     <p>
                       <FormErrorIcon fontSize="xs" mt="-0.1em" />
@@ -158,10 +226,10 @@ const EditState: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
           </Flex>
-          <FormControl mb={3} isInvalid={errors.hariKegiatan}>
+          <FormControl mb={3} isInvalid={errors.day}>
             <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
             <MxmSelect
-              {...register("hariKegiatan", {
+              {...register("day", {
                 required: "Pilih Hari Kegiatan STATE",
               })}
             >
@@ -172,70 +240,44 @@ const EditState: React.FC = () => {
               <option value="5">Hari-ke 5 (Minggu, 10 Agustus 2021)</option>
             </MxmSelect>
             <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.hariKegiatan && (
+              {errors.day && (
                 <Flex flexDirection="row" alignItems="center">
                   <p>
                     <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.hariKegiatan.message}
+                    {errors.day.message}
                   </p>
                 </Flex>
               )}
             </MxmFormErrorMessage>
           </FormControl>
           <Flex>
-            <FormControl mb={3} isInvalid={errors.logo}>
+            <FormControl mb={3}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              <input
-                {...register("logo", { required: "Pilih Logo STATE" })}
-                type="file"
-                name="image"
-                ref={fileInput}
-                onChange={(event) => setMyUpload(event.target.value)}
-                style={{ display: "none" }}
-              />
-              <Button
-                onClick={() => fileInput?.current?.click()}
-                backgroundColor={Palette.Cyan}
-                color="white"
-                padding="1em"
-                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                _hover={{ backgroundColor: "#2BAD96" }}
-              >
-                Choose File Upload
-              </Button>
-              <span
-                style={{
-                  fontFamily: "Poppins",
-                  fontSize: "0.8em",
-                  marginLeft: "1em",
-                }}
-              >
-                {myUpload}
-              </span>
-              <MxmFormErrorMessage fontSize="xs" mt={1.5}>
-                {errors.logo && (
-                  <Flex flexDirection="row" alignItems="center">
-                    <p>
-                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                      {errors.logo.message}
-                    </p>
-                  </Flex>
-                )}
-              </MxmFormErrorMessage>
+              <Flex alignItems={files[0] ? "flex-start" : "center"}>
+                <Image
+                  mr="1rem"
+                  w="15%"
+                  src={
+                    files[0] ? URL.createObjectURL(files[0]) : state?.stateLogo
+                  }
+                />
+                <Box w="85%">
+                  {!resetUpload && <UploadFiles setFiles={setFiles} />}
+                </Box>
+              </Flex>
             </FormControl>
           </Flex>
-          <FormControl mb={3} isInvalid={errors.linkZoom}>
+          <FormControl mb={3} isInvalid={errors.zoomLink}>
             <MxmFormLabel color="black">Link Zoom</MxmFormLabel>
             <MxmInput
-              value="https://mxm-one.zoom.us/j/4662717372?pwd=dTlPQSt1UHBHM1U3cDlYajZLTEJtdz09"
-              {...register("linkZoom", { required: "Isi Link ZOOM" })}
+              {...register("zoomLink", { required: "Isi Link ZOOM" })}
             />
             <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.linkZoom && (
+              {errors.zoomLink && (
                 <Flex flexDirection="row" alignItems="center">
                   <p>
                     <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.linkZoom.message}
+                    {errors.zoomLink.message}
                   </p>
                 </Flex>
               )}
@@ -243,21 +285,37 @@ const EditState: React.FC = () => {
           </FormControl>
           <Flex mt={5}>
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="30px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Update STATE"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Update STATE
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Update STATE
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

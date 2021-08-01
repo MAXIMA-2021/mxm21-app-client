@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Flex,
@@ -16,9 +16,69 @@ import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
 
 const DaftarHome: React.FC = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllHome();
+        setData(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const deleteHome = (IDhome: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteHome(IDhome);
+          const homeData = data.filter((item: any) => item.homeID !== IDhome);
+          setData(homeData);
+          Swal.fire("Data telah dihapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
+
+  const findSearchKey = (IDhome: any) => {
+    for (let homeDataX in data) {
+      if (data[homeDataX]["homeID"] == IDhome) {
+        return data[homeDataX]["search_key"];
+      }
+    }
+  };
+
   const responsiveData = {
     base: "1em",
     sm: "1em",
@@ -26,12 +86,29 @@ const DaftarHome: React.FC = () => {
     lg: "1em",
     "2xl": "1.2em",
   };
-
   const tableColumns = [
     {
       name: "homeID",
       label: "ID HoME",
-      options: { display: false },
+      options: {
+        display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "50px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
     },
     {
       name: "name",
@@ -59,7 +136,7 @@ const DaftarHome: React.FC = () => {
     },
     {
       name: "kategori",
-      label: "Kategori",
+      label: "Chapter",
       options: {
         filter: true,
         sort: true,
@@ -102,7 +179,7 @@ const DaftarHome: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
             <Link
-              to={`/admin/edit-home/${tableMeta.rowData[0]}`}
+              to={`/admin/edit-home/${findSearchKey(tableMeta.rowData[0])}`}
               style={{ textDecoration: "none" }}
             >
               <Button
@@ -121,29 +198,12 @@ const DaftarHome: React.FC = () => {
               size="sm"
               color={Palette.Red}
               style={{ marginLeft: 2 }}
+              onClick={() => deleteHome(tableMeta.rowData[0])}
             />
           </HStack>
         ),
       },
     },
-  ];
-
-  const data = [
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0002", "J-Cafe Cosplay", "UKM Coba-coba UMN", "IF430"],
-    ["H0003", "Ultima Sonora", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0004", "Teater Katak", "UKM Coba-coba UMN", "IF430"],
-    ["H0005", "Game Development Club", "UKM Coba-coba UMN", "IF430"],
-    ["H0001", "Ultimagz", "UKM Coba-coba UMN", "IF430"],
   ];
 
   return (
@@ -221,7 +281,6 @@ const DaftarHome: React.FC = () => {
             </Center>
           </form>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </>
   );

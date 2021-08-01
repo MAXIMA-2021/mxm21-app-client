@@ -12,17 +12,35 @@ import AssessmentIcon from "@material-ui/icons/Assessment";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import FlightIcon from "@material-ui/icons/Flight";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import Face from "@material-ui/icons/Face";
 import LinkIcon from "@material-ui/icons/Link";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
-import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
+import Swal from "sweetalert2";
 
-const DashboardNavigation: React.FC = () => {
+const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+
+  const handleLogOut = () => {
+    Swal.fire({
+      title:
+        '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Keluar</span>`,
+      confirmButtonColor: "#e40000",
+      denyButtonColor: "#fff",
+      showCancelButton: true,
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        window.location.href = "/auth/keluar";
+      }
+    });
+  };
 
   const sidebarShown = () => {
     setSidebarShow(false);
@@ -57,10 +75,8 @@ const DashboardNavigation: React.FC = () => {
         event.target.parentNode
           .querySelector(".dropdown-header")
           .classList.add("sidebar-nav_active");
-        // console.log(event.target);
       }
     } catch {
-      // DELETE THIS
       console.log(`target null`);
     }
   };
@@ -88,7 +104,6 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
-          // console.log(event.target);
         }
       } else if (event.target.localName === "path") {
         if (
@@ -111,11 +126,9 @@ const DashboardNavigation: React.FC = () => {
           event.target.parentNode.parentNode.parentNode
             .querySelector(".dropdown-header")
             .classList.add("sidebar-nav_active");
-          // console.log(event.target);
         }
       }
     } catch {
-      // DELETE THIS
       console.log(`target null`);
     }
   };
@@ -133,14 +146,16 @@ const DashboardNavigation: React.FC = () => {
           </button>
 
           <Flex className="navbar-menu">
-            <Flex align="center" className="navbar-avatar">
-              <div className="navbar-avatar-image">
-                <AccountCircleIcon />
-              </div>
-              <h4>Bukan Tiara Andini</h4>
-            </Flex>
+            <NavLink to="/admin/edit-akun">
+              <Flex align="center" className="navbar-avatar">
+                <div className="navbar-avatar-image">
+                  <AccountCircleIcon />
+                </div>
+                <h4>{props.name}</h4>
+              </Flex>
+            </NavLink>
 
-            <button className="navbar-logout-btn">
+            <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
               <ExitToAppIcon />
             </button>
@@ -159,89 +174,40 @@ const DashboardNavigation: React.FC = () => {
         }`}
       >
         <Flex className="sidebar-header" align="center" justify="center">
-          <h2>Dashboard Maxima 2021</h2>
+          <h2>Dashboard MAXIMA 2021</h2>
           {isSmallerThan450px ? <Spacer /> : ""}
           <CloseRoundedIcon onClick={closeSidebar} />
         </Flex>
         <Flex className="sidebar-menu" direction="column">
-          <div className="sidebar-avatar">
-            <div className="sidebar-avatar_image">
-              <AccountCircleIcon />
+          <NavLink to="/admin/edit-akun">
+            <div className="sidebar-avatar">
+              <div className="sidebar-avatar_image">
+                <AccountCircleIcon />
+              </div>
+              <h4>{props.name}</h4>
+              <h6>Panitia</h6>
             </div>
-            <h4>Bukan Tiara Andini</h4>
-            <h6>Panitia</h6>
-          </div>
+          </NavLink>
           <Flex className="sidebar-nav_header">
             <h3>MENU NAVIGASI</h3>
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
-              <NavLink to="/dashboard" activeClassName="sidebar-nav_active">
+              <NavLink
+                to="/admin/dashboard"
+                activeClassName="sidebar-nav_active"
+              >
                 <AssessmentIcon />
                 Dashboard
               </NavLink>
 
               <NavLink
-                to="/daftarMahasiswaBaru"
+                to="/admin/daftar-maba"
                 activeClassName="sidebar-nav_active"
               >
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
               </NavLink>
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
-                <Flex className="dropdown-header">
-                  <FlightIcon onClick={sidebarDropdownActiveSvg} />
-                  STATE
-                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
-                </Flex>
-                <ul className="dropdown-items">
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-state"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah STATE
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-state"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar STATE
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-organisator"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar Akun Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah PIC Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-pic"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar PIC Organisator
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
 
               <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
@@ -279,36 +245,118 @@ const DashboardNavigation: React.FC = () => {
                   </li>
                 </ul>
               </li>
+
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                <Flex className="dropdown-header">
+                  <FlightIcon onClick={sidebarDropdownActiveSvg} />
+                  STATE
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
+                </Flex>
+                <ul className="dropdown-items">
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-state"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah STATE
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-state"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar STATE
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+
               <NavLink to="/shortener" activeClassName="sidebar-nav_active">
                 <LinkIcon />
                 Shortener
               </NavLink>
-              <NavLink to="/tambahAkun" activeClassName="sidebar-nav_active">
-                <PersonAddIcon />
-                Tambah Akun
+
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                <Flex className="dropdown-header">
+                  <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
+                  Akun MAXIMA 2021
+                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
+                </Flex>
+                <ul className="dropdown-items">
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-mahasiswa"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Mahasiswa
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-mahasiswa"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Mahasiswa
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-panitia"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Panitia
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-panitia"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Panitia
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/tambah-organisator"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Tambah Akun Organisator
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-organisator"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Akun Organisator
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+
+              <NavLink
+                to="/admin/edit-akun"
+                activeClassName="sidebar-nav_active"
+              >
+                <Face />
+                Edit Akun Kamu
               </NavLink>
             </ul>
           </Flex>
         </Flex>
       </aside>
       <Flex
-        // backgroundColor="red"
         alignItems="center"
         justifyContent="center"
-        // marginTop={{
-        //   base: "30vh",
-        //   sm: "20vh",
-        //   md: "20vh",
-        //   lg: "-3vh",
-        //   xl: "-3vh",
-        // }}
-        // marginBottom={{
-        //   base: "30vh",
-        //   sm: "20vh",
-        //   md: "20vh",
-        //   lg: "0vh",
-        //   xl: "0vh",
-        // }}
         paddingRight={0}
         paddingLeft={
           isLargerThan3000px

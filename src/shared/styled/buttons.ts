@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { Palette } from "../../types/enums";
+import { Button } from "@chakra-ui/react";
 
-export const MxmButton = styled("button")<{
+export const MxmButton = styled(Button)<{
   variant: string;
   colorScheme: string;
+  margin?: string;
 }>`
   /* 
     variant: either desktop (rounded) or mobile (more squared)
     colorScheme: format1 -> frontcolor-backcolor, 
-                 format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
+    format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
   padding: 0.8vh 1vw;
-  margin: 1rem;
+  margin: ${(props) => props.margin || "1rem"};
 
   border-radius: ${(props) => (props.variant === "mobile" ? "10px" : "20px")};
 
@@ -33,6 +35,23 @@ export const MxmButton = styled("button")<{
 
     &:active {
         box-shadow: 0 0 0 0 ${Palette.Navy};
+        transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "cyan-white"
+      ? `
+    background: ${Palette.Cyan};
+    box-shadow: -3px 3px 0 0 #ffffff;
+    color: white;
+
+    &:hover {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 #ffffff;
+        transform: translate(2px, -2px);
+    }
+
+    &:active {
+        box-shadow: 0 0 0 0 #ffffff;
         transform: translate(0px, 0px);
     }
     `

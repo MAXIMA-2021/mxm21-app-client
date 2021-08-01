@@ -1,0 +1,15 @@
+.select {
+  color: black;
+
+  & option {
+    color: black;
+  }
+}
+
+input::placeholder {
+  color: black;
+}
+
+input::-moz-placeholder {
+  color: black;
+}

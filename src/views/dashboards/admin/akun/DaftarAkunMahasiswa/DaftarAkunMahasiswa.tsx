@@ -1,24 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Spacer,
+  Image,
+  Center,
+  Text,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
+import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+import { Palette } from "../../../../../types/enums";
 
-const DaftarOrganisator: React.FC = () => {
+const DaftarAkunMahasiswa: React.FC = () => {
   const responsiveData = {
     base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
     "2xl": "1.2em",
   };
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllMahasiswa();
+        setData(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const tableColumns = [
     {
-      name: "namaOrganisator",
-      label: "Nama Organisator",
+      name: "name",
+      label: "Nama Mahasiswa",
       options: {
         filter: true,
         sort: true,
@@ -64,7 +94,6 @@ const DaftarOrganisator: React.FC = () => {
         ),
       },
     },
-
     {
       name: "email",
       label: "Alamat Email",
@@ -89,47 +118,84 @@ const DaftarOrganisator: React.FC = () => {
         ),
       },
     },
+    {
+      name: "Actions",
+      label: "Aksi",
+      options: {
+        print: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        customBodyRender: (value: any, tableMeta: any) => (
+          <HStack spacing={2}>
+            <Link
+              to={`/admin/edit-mahasiswa/${tableMeta.rowData[1]}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                fontSize={responsiveData}
+                size="xs"
+                leftIcon={<EditIcon />}
+                bgColor="white"
+                color={Palette.Navy}
+                border="1px"
+                borderColor={Palette.Navy}
+              >
+                Edit
+              </Button>
+            </Link>
+          </HStack>
+        ),
+      },
+    },
   ];
 
-  const data = [
-    ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
-    [
-      "Maximilliano Adrian Stefan Gabrielsar",
-      "23231",
-      "jane.cooper@student.umn.ac.id",
-    ],
-    ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-    [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
-    ],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-    [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
-    ],
-    ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
-    [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
-    ],
-    ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-    [
-      "Jane Cooper Krisna Finantyo Chandra",
-      "35353",
-      "jane.cooper@student.umn.ac.id",
-    ],
-    ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
-    ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-    ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  ];
+  // const data = [
+  //   ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
+  //   [
+  //     "Maximilliano Adrian Stefan Gabrielsar",
+  //     "23231",
+  //     "jane.cooper@student.umn.ac.id",
+  //   ],
+  //   ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
+  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+  //   [
+  //     "Jane Cooper Krisna Finantyo Chandra",
+  //     "35353",
+  //     "jane.cooper@student.umn.ac.id",
+  //   ],
+  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+  //   [
+  //     "Jane Cooper Krisna Finantyo Chandra",
+  //     "35353",
+  //     "jane.cooper@student.umn.ac.id",
+  //   ],
+  //   ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
+  //   [
+  //     "Jane Cooper Krisna Finantyo Chandra",
+  //     "35353",
+  //     "jane.cooper@student.umn.ac.id",
+  //   ],
+  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
+  //   [
+  //     "Jane Cooper Krisna Finantyo Chandra",
+  //     "35353",
+  //     "jane.cooper@student.umn.ac.id",
+  //   ],
+  //   ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
+  //   ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
+  //   ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
+  // ];
 
   return (
     <>
@@ -173,7 +239,7 @@ const DaftarOrganisator: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar Akun Organisator
+                Daftar Akun Mahasiswa
               </Heading>
               <Spacer />
               <Image
@@ -207,10 +273,9 @@ const DaftarOrganisator: React.FC = () => {
             </Center>
           </form>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </>
   );
 };
 
-export default DaftarOrganisator;
+export default DaftarAkunMahasiswa;

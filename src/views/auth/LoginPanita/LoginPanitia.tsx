@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -27,9 +27,8 @@ import {
   MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { MxmLogoText } from "../../../assets";
+import { MxmWhiteLogoText } from "../../../assets";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
@@ -86,26 +85,22 @@ const LoginPanitia: React.FC = () => {
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
     reset();
+
     try {
       const returnedData = await authService.loginPanitia(data);
-      window.sessionStorage.setItem("token", returnedData.accessToken);
-      window.sessionStorage.setItem("name", returnedData.name);
-      // const decoded = jwtDecode(returnedData.accessToken);
-      window.location = "/";
-      alert("berhasil login");
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.location.href = "/admin";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.message,
+        text: error.response?.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
+    } finally {
+      setLoading(false);
     }
   };
-
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
 
   return (
     <MxmContainersPanitia>
@@ -136,7 +131,7 @@ const LoginPanitia: React.FC = () => {
             )}
             <Flex
               direction="column"
-              background={`${Palette.Cyan}`}
+              background="#212529"
               className="filter"
               py="3vh"
               px={{
@@ -187,7 +182,7 @@ const LoginPanitia: React.FC = () => {
                 />
                 <Center>
                   <Image
-                    src={MxmLogoText}
+                    src={MxmWhiteLogoText}
                     alt="Logo MAXIMA 2021"
                     w={{
                       base: "8vh",
@@ -264,7 +259,7 @@ const LoginPanitia: React.FC = () => {
                       <Link
                         to="/auth/panitia/daftar"
                         style={{
-                          color: `${Palette.Navy}`,
+                          color: "cornflowerblue",
                           fontWeight: 600,
                         }}
                       >
@@ -275,7 +270,7 @@ const LoginPanitia: React.FC = () => {
                       Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/panitia/reset"
-                        style={{ color: `${Palette.Navy}`, fontWeight: 600 }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Klik di sini
                       </Link>
@@ -284,9 +279,26 @@ const LoginPanitia: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="navy-white">
-                      Masuk
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Masuk"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

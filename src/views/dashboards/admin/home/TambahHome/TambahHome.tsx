@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -9,6 +8,8 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
+  Spinner,
+  Text,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import "./TambahHome.scss";
@@ -22,17 +23,83 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
+import { DataHome } from "../../../../../types/interfaces";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
+import { HomeChapter } from "../../../../../types/enums";
 
 const TambahHome: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
+    setValue,
+    setFocus,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
+
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.title = "[Dashboard] - Tambah HoME";
+  }, []);
+
+  const getId = (url: any) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
   };
+
+  const onSubmit = async (data: DataHome) => {
+    setLoading(true);
+
+    const linkYTEmbed: any = getId(data.linkYoutube);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("kategori", data.kategori);
+    formData.append("shortDesc", data.shortDesc);
+    formData.append("longDesc", data.longDesc);
+    formData.append(
+      "linkYoutube",
+      `https://www.youtube.com/embed/${linkYTEmbed}`
+    );
+    formData.append("lineID", data.lineID);
+    formData.append("instagram", data.instagram);
+    formData.append("linkLogo", files[0]);
+
+    reset();
+    setValue("kategori", "");
+
+    try {
+      await adminService.tambahHome(formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil ditambahkan!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setResetUpload(true);
+      setFiles([]);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+    setLoading(false);
+    setResetUpload(false);
+
+    setFocus("name");
+  };
+
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -119,28 +186,34 @@ const TambahHome: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.kategori} mb={3}>
-              <MxmFormLabel color="black">Kategori</MxmFormLabel>
+              <MxmFormLabel color="black">Chapter</MxmFormLabel>
               <MxmSelect
-                {...register("kategori", { required: "Pilih Kategori" })}
+                {...register("kategori", { required: "Pilih Chapter" })}
                 className="select"
                 onChange={handleSelectChange}
               >
                 <option value="" selected disabled hidden>
-                  Pilih Kategori
+                  Pilih Chapter
                 </option>
-                <option value="UKM Sains dan Sosial">
-                  UKM Sains dan Sosial
+                <option value={HomeChapter.LostTreasureIsland}>
+                  LostTreasure Island
                 </option>
-                <option value="UKM Seni dan Budaya">UKM Seni dan Budaya</option>
-                <option value="UKM Olahraga">UKM Olahraga</option>
-                <option value="Kegiatan Kemahasiswaan dan Lembaga Seni Otonom">
-                  Kegiatan Kemahasiswaan dan Lembaga Seni Otonom
+                <option value={HomeChapter.FantasyBridge}>
+                  Fantasy Bridge
                 </option>
-                <option value="Media Kampus">Media Kampus</option>
-                <option value="Komunitas">Komunitas</option>
-                <option value="Lembaga Kampus">Lembaga Kampus</option>
-                <option value="Organisasi dan Himpunan Mahasiswa">
-                  Organisasi dan Himpunan Mahasiswa
+                <option value={HomeChapter.MedalistPlayground}>
+                  Medialist Playground
+                </option>
+                <option value={HomeChapter.RainbowMines}>Rainbows Mines</option>
+                <option value={HomeChapter.TomorrowVille}>
+                  Tomorrow Ville
+                </option>
+                <option value={HomeChapter.AdventureLand}>
+                  Adventure Land
+                </option>
+                <option value={HomeChapter.TownArea}>Town Area</option>
+                <option value={HomeChapter.WonderousCampground}>
+                  Wonderous Campground
                 </option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -222,9 +295,19 @@ const TambahHome: React.FC = () => {
               xl: "row",
             }}
           >
-            <FormControl mb={3} isInvalid={errors.logo}>
+            <FormControl mb={3} isInvalid={errors.linkLogo}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              <UploadFiles />
+              {!resetUpload && <UploadFiles setFiles={setFiles} />}
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.linkLogo && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.linkLogo.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
             </FormControl>
           </Flex>
           <Flex
@@ -317,23 +400,39 @@ const TambahHome: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
           </Flex>
-          <Flex mt={5}>
+          <Flex mt={5} alignItems="center">
             <Spacer />
-            <Button
-              backgroundColor={Palette.Cyan}
-              color="white"
-              padding="1em 2em 1em 2em"
-              borderRadius="999px"
-              boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-              type="submit"
-              _hover={{ backgroundColor: "#2BAD96" }}
-            >
-              SUBMIT
-            </Button>
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Tambah HoME"
+                spinnerPlacement="start"
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Tambah HoME
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="#41ceba"
+                color="white"
+                padding="1em 2em 1em 2em"
+                borderRadius="999px"
+                boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                type="submit"
+                _hover={{ backgroundColor: "#2BAD96" }}
+              >
+                Tambah HoME
+              </Button>
+            )}
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

@@ -6,7 +6,8 @@ import {
   DataRegisterPanitia,
 } from "../types/interfaces";
 
-const baseUrl = "https://dev.api.mxm.one/api";
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api`;
+const token: any = window.sessionStorage?.getItem("token");
 
 const daftarMhs = async (data: DataRegisterMaba) => {
   const request = await axios.post(`${baseUrl}/mhs/acc/signup`, data);
@@ -38,6 +39,15 @@ const loginOrganisator = async (data: DataLogin) => {
   return request.data;
 };
 
+const checkToken = async () => {
+  const request = await axios.get(`${baseUrl}/public/acc/checkToken`, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+  return request.data;
+};
+
 export default {
   daftarMhs,
   loginMhs,
@@ -45,4 +55,5 @@ export default {
   loginPanitia,
   daftarOrganisator,
   loginOrganisator,
+  checkToken,
 };

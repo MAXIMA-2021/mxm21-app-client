@@ -25,7 +25,7 @@ import {
   MxmFormErrorMessage,
 } from "../../../shared/styled/input";
 import {
-  MxmContainersOrganisator,
+  MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
@@ -35,7 +35,11 @@ import { Palette } from "../../../types/enums";
 import "./RegisterOrganisator.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
+import adminService from "../../../services/admin";
 import { DataRegisterOrganisator } from "../../../types/interfaces";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
+import { useMediaQuery } from "@chakra-ui/media-query";
 
 const transition = {
   duration: 0.5,
@@ -76,6 +80,7 @@ const RegisterOrganisator: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -89,8 +94,24 @@ const RegisterOrganisator: React.FC = () => {
     }
   };
 
+  const [data, setData] = useState([]);
   useEffect(() => {
     document.title = "[Organisator] Daftar - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllState();
+        setData(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
   }, []);
 
   const history = useHistory();
@@ -98,7 +119,6 @@ const RegisterOrganisator: React.FC = () => {
 
   const onSubmit = async (data: DataRegisterOrganisator) => {
     setLoading(true);
-    reset();
 
     const dataOrganisator: DataRegisterOrganisator = {
       nim: data.nim.toString(),
@@ -110,9 +130,11 @@ const RegisterOrganisator: React.FC = () => {
 
     try {
       await authService.daftarOrganisator(dataOrganisator);
+      reset();
       history.push("/auth/organisator/masuk", {
         status: "success",
-        message: "Akun Organisator MAXIMA 2021 berhasil dibuat! Silakan masuk.",
+        message:
+          "Akun Organisator MAXIMA 2021 berhasil dibuat! Silakan tunggu verifikasi dari pihak Web MAXIMA 2021.",
       });
     } catch (error) {
       Swal.fire({
@@ -122,10 +144,11 @@ const RegisterOrganisator: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
-    <MxmContainersOrganisator>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -138,7 +161,7 @@ const RegisterOrganisator: React.FC = () => {
           >
             <Flex
               direction="column"
-              background={`${Palette.Navy}`}
+              background="#212529"
               py="2vh"
               px={{
                 base: "5vw",
@@ -268,7 +291,49 @@ const RegisterOrganisator: React.FC = () => {
                     mr="5"
                     isInvalid={errors.stateID}
                   >
-                    <MxmFormLabel>ID state</MxmFormLabel>
+                    <MxmFormLabel>STATE</MxmFormLabel>
+                    {/* <Autocomplete
+                      id="stateList-combo-box"
+                      options={data}
+                      getOptionLabel={(option) => option.name}
+                      renderOption={(option) => (
+                        <Flex alignItems="center">
+                          <img
+                            src={option.stateLogo}
+                            width={isLargerThan3000px ? 80 : 35}
+                            height={isLargerThan3000px ? 80 : 35}
+                            alt="logo"
+                          />
+                          <p
+                            style={
+                              isLargerThan3000px
+                                ? {
+                                    fontSize: "2rem",
+                                    fontFamily: "Poppins",
+                                    marginLeft: "1em",
+                                  }
+                                : {
+                                    fontSize: "0.8em",
+                                    fontFamily: "Poppins",
+                                    marginLeft: "1em",
+                                  }
+                            }
+                          >
+                            {option.stateID} - {option.name}
+                          </p>
+                        </Flex>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="filled"
+                          {...register("stateID", {
+                            required: "Isi nama kegiatan STATE",
+                          })}
+                          onChange={handleSelectChange}
+                        />
+                      )}
+                    /> */}
                     <MxmSelect
                       className="select"
                       {...register("stateID", {
@@ -279,9 +344,11 @@ const RegisterOrganisator: React.FC = () => {
                       <option value="" selected disabled hidden>
                         Pilih STATE
                       </option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
+                      {data.map((index, key) => (
+                        <option value={index.stateID} id={key}>
+                          {index.stateID} - {index.name}
+                        </option>
+                      ))}
                     </MxmSelect>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.stateID && (
@@ -399,7 +466,7 @@ const RegisterOrganisator: React.FC = () => {
                       Sudah punya akun?{" "}
                       <Link
                         to="/auth/organisator/masuk"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Masuk
                       </Link>
@@ -407,13 +474,26 @@ const RegisterOrganisator: React.FC = () => {
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton
-                      type="submit"
-                      variant="desktop"
-                      colorScheme="cyan-white"
-                    >
-                      Daftar
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Daftar"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>
@@ -421,7 +501,7 @@ const RegisterOrganisator: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainersOrganisator>
+    </MxmContainersPanitia>
   );
 };
 

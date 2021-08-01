@@ -24,7 +24,7 @@ import {
   MxmInputGroup,
 } from "../../../shared/styled/input";
 import {
-  MxmContainersOrganisator,
+  MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import jwtDecode from "jwt-decode";
@@ -86,13 +86,11 @@ const LoginOrganisator: React.FC = () => {
   const onSubmit = async (data: DataLogin) => {
     setLoading(true);
     reset();
+
     try {
       const returnedData = await authService.loginOrganisator(data);
       window.sessionStorage.setItem("token", returnedData.accessToken);
-      window.sessionStorage.setItem("name", returnedData.name);
-      // const decoded = jwtDecode(returnedData.accessToken);
-      window.location = "/";
-      alert("berhasil login");
+      window.location.href = "/admin";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -100,15 +98,13 @@ const LoginOrganisator: React.FC = () => {
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
-
   return (
-    <MxmContainersOrganisator>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -136,7 +132,7 @@ const LoginOrganisator: React.FC = () => {
             )}
             <Flex
               direction="column"
-              background={`${Palette.Navy}`}
+              background="#212529"
               className="filter"
               py="3vh"
               px={{
@@ -263,7 +259,7 @@ const LoginOrganisator: React.FC = () => {
                       Belum punya akun?{" "}
                       <Link
                         to="/auth/organisator/daftar"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Daftar
                       </Link>
@@ -272,7 +268,7 @@ const LoginOrganisator: React.FC = () => {
                       Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/organisator/reset"
-                        style={{ color: `${Palette.Cyan}` }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Klik di sini
                       </Link>
@@ -281,9 +277,26 @@ const LoginOrganisator: React.FC = () => {
                   <Spacer />
 
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton variant="desktop" colorScheme="cyan-white">
-                      Masuk
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Masuk"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Masuk
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>
@@ -291,7 +304,7 @@ const LoginOrganisator: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainersOrganisator>
+    </MxmContainersPanitia>
   );
 };
 

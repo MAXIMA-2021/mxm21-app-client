@@ -98,7 +98,6 @@ const RegisterPanitia: React.FC = () => {
 
   const onSubmit = async (data: DataRegisterPanitia) => {
     setLoading(true);
-    reset();
 
     const dataPanitia: DataRegisterPanitia = {
       nim: data.nim.toString(),
@@ -109,10 +108,12 @@ const RegisterPanitia: React.FC = () => {
     };
 
     try {
+      reset();
       await authService.daftarPanitia(dataPanitia);
       history.push("/auth/panitia/masuk", {
         status: "success",
-        message: "Akun Panitia MAXIMA 2021 berhasil dibuat! Silakan masuk.",
+        message:
+          "Akun Panitia MAXIMA 2021 berhasil dibuat! Silakan tunggu verifikasi dari pihak Web MAXIMA 2021.",
       });
     } catch (error) {
       Swal.fire({
@@ -122,6 +123,7 @@ const RegisterPanitia: React.FC = () => {
         confirmButtonText: "Coba lagi",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -138,7 +140,7 @@ const RegisterPanitia: React.FC = () => {
           >
             <Flex
               direction="column"
-              background={`${Palette.Cyan}`}
+              background="#212529"
               py="2vh"
               px={{
                 base: "5vw",
@@ -197,7 +199,7 @@ const RegisterPanitia: React.FC = () => {
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.name}>
-                    <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
+                    <MxmFormLabel>Nama Lengkap</MxmFormLabel>
                     <MxmInput
                       {...register("name", {
                         required: "Isi nama lengkap kamu",
@@ -268,7 +270,7 @@ const RegisterPanitia: React.FC = () => {
                     mr="5"
                     isInvalid={errors.divisiID}
                   >
-                    <MxmFormLabel>ID Divisi</MxmFormLabel>
+                    <MxmFormLabel>Divisi</MxmFormLabel>
                     <MxmSelect
                       className="select"
                       {...register("divisiID", {
@@ -399,7 +401,7 @@ const RegisterPanitia: React.FC = () => {
                       Sudah punya akun?{" "}
                       <Link
                         to="/auth/panitia/masuk"
-                        style={{ color: `${Palette.Navy}`, fontWeight: 600 }}
+                        style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Masuk
                       </Link>
@@ -407,13 +409,26 @@ const RegisterPanitia: React.FC = () => {
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    <MxmButton
-                      type="submit"
-                      variant="desktop"
-                      colorScheme="navy-white"
-                    >
-                      Daftar
-                    </MxmButton>
+                    {loading ? (
+                      <MxmButton
+                        isLoading
+                        loadingText="Daftar"
+                        spinnerPlacement="start"
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    ) : (
+                      <MxmButton
+                        type="submit"
+                        variant="desktop"
+                        colorScheme="cyan-navy"
+                      >
+                        Daftar
+                      </MxmButton>
+                    )}
                   </motion.div>
                 </Flex>
               </form>

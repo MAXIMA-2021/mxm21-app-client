@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as Dashboards from "../views/dashboards";
 import { Box } from "@chakra-ui/react";
 
-export default function AdminRouters(show: boolean) {
+const AdminRouters = (props: any) => {
   return (
     <div>
       <Router>
@@ -23,7 +23,7 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.TambahPIC}
           />
           <Route
-            path="/admin/edit-state"
+            path="/admin/edit-state/:stateID"
             exact
             component={Dashboards.EditState}
           />
@@ -33,19 +33,24 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.DaftarState}
           />
           <Route
-            path="/admin/daftar-organisator"
-            exact
-            component={Dashboards.DaftarOrganisator}
-          />
-          <Route
             path="/admin/daftar-pic"
             exact
             component={Dashboards.DaftarPIC}
           />
           <Route
-            path="/admin/state-detail"
+            path="/admin/state-detail/:stateID"
             exact
             component={Dashboards.StateDetail}
+          />
+          <Route
+            path="/admin/daftar-maba"
+            exact
+            component={Dashboards.DaftarMahasiswaBaru}
+          />
+          <Route
+            path="/admin/detail-maba/:nim"
+            exact
+            component={Dashboards.DetailMahasiswaBaru}
           />
           <Route
             path="/admin/daftar-home"
@@ -53,7 +58,7 @@ export default function AdminRouters(show: boolean) {
             component={Dashboards.DaftarHome}
           />
           <Route
-            path="/admin/edit-home"
+            path="/admin/edit-home/:search_key"
             exact
             component={Dashboards.EditHome}
           />
@@ -67,8 +72,51 @@ export default function AdminRouters(show: boolean) {
             exact
             component={Dashboards.TambahMedia}
           />
+          <Route
+            path="/admin/tambah-mahasiswa"
+            exact
+            component={Dashboards.TambahMahasiswa}
+          />
+          <Route
+            path="/admin/tambah-panitia"
+            exact
+            component={Dashboards.TambahPanitia}
+          />
+          <Route
+            path="/admin/tambah-organisator"
+            exact
+            component={Dashboards.TambahOrganisator}
+          />
+          <Route
+            path="/admin/daftar-mahasiswa"
+            exact
+            component={Dashboards.DaftarMahasiswa}
+          />
+          <Route
+            path="/admin/daftar-panitia"
+            exact
+            component={Dashboards.DaftarPanitia}
+          />
+          <Route
+            path="/admin/daftar-organisator"
+            exact
+            component={Dashboards.DaftarOrganisator}
+          />
+          <Route
+            path="/admin/edit-mahasiswa/:nim"
+            exact
+            component={Dashboards.EditMahasiswa}
+          />
+          <Route
+            path="/admin/edit-akun"
+            exact
+            component={Dashboards.EditAkun}
+          />
+          <Route path="/admin" exact component={Dashboards.LandingDashboard} />
         </Box>
       </Router>
     </div>
   );
-}
+};
+
+export default AdminRouters;

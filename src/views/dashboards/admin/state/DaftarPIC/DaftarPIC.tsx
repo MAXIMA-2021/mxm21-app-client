@@ -4,7 +4,6 @@ import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const DaftarPIC: React.FC = () => {
   const responsiveData = {
@@ -206,7 +205,6 @@ const DaftarPIC: React.FC = () => {
             </Center>
           </form>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </>
   );

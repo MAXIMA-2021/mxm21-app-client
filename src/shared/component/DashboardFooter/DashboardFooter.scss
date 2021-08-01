@@ -4,8 +4,10 @@
   background-color: var(--Mxm-navy);
   z-index: 1;
 
-  position: fixed;
+  position: absolute;
   bottom: 0;
+
+  margin-bottom: 0;
 
   color: #ffffff;
 

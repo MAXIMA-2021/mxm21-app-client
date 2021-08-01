@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -11,8 +12,10 @@ import {
   Button,
   Text,
   HStack,
+  Box,
+  Spinner,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
+import { Palette, HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -24,35 +27,227 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  useToast,
+} from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
+import adminService from "../../../../../services/admin";
+import Swal from "sweetalert2";
+import { url } from "inspector";
 
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
-  console.log(editMediaTab);
 
+  const history = useHistory();
+  const [homeDatabySearchKey, sethomeDatabySearchKey] = useState<any>({});
+  const [submitEditBtn, setSubmitEditBtn] = useState<boolean>(false);
+
+  const { search_key }: any = useParams();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
+    setValue,
   } = useForm();
-  const onSubmit = (data: any) => {
-    window.confirm(JSON.stringify(data));
+
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState<any>([]);
+  const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState(true);
+  const [mediaFiles, setMediaFiles] = useState<any>([]);
+
+  const getId = (url: any) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
   };
-  const handleSelectChange = (event: any) => {
-    if (event.target.value !== "") {
-      event.target.style.color = "black";
+
+  const onSubmit = async (data: any) => {
+    console.log(data);
+    setLoading(true);
+
+    const linkYTEmbed: any = getId(data.linkYoutube);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("kategori", data.kategori);
+    formData.append("searchKey", data.searh_key);
+    formData.append("shortDesc", data.shortDesc);
+    formData.append("longDesc", data.longDesc);
+    formData.append(
+      "linkYoutube",
+      `https://www.youtube.com/embed/${linkYTEmbed}`
+    );
+    formData.append("lineID", data.lineID);
+    formData.append("instagram", data.instagram);
+    formData.append("linkLogo", files[0]);
+
+    try {
+      await adminService.updateHome(homeDatabySearchKey.homeID, formData);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setResetUpload(true);
+      setFiles([]);
+      history.push("/admin/daftar-home");
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+    setLoading(false);
+    setResetUpload(false);
+  };
+
+  useEffect(() => {
+    document.title = "Edit Organisator HoME - MAXIMA 2021";
+    const fetchData = async () => {
+      try {
+        let returnedData = await adminService.getHomeBySearchKey(search_key);
+        sethomeDatabySearchKey(returnedData[0]);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setValue("name", homeDatabySearchKey?.name);
+    setValue("kategori", homeDatabySearchKey?.kategori);
+    setValue("searchKey", homeDatabySearchKey?.search_key);
+    setValue("shortDesc", homeDatabySearchKey?.shortDesc);
+    setValue("longDesc", homeDatabySearchKey?.longDesc);
+    setValue("linkYoutube", homeDatabySearchKey?.linkYoutube);
+    setValue("lineID", homeDatabySearchKey?.lineID);
+    setValue("instagram", homeDatabySearchKey?.instagram);
+  }, [homeDatabySearchKey]);
+
+  const onMediaSubmit = async () => {
+    const loopData = () => {
+      mediaFiles.forEach(async (data: any) => {
+        const formData = new FormData();
+        formData.append("linkMedia", data.files);
+        console.log(data);
+        try {
+          await adminService.updateHomeMedia(data.id, formData);
+        } catch (error) {
+          Swal.fire({
+            title: "Perhatian!",
+            text: error.response.data.message,
+            icon: "error",
+            confirmButtonText: "Coba lagi",
+          });
+          setSubmitStatus(false);
+        }
+      });
+      setLoading(true);
+    };
+    await loopData();
+    setLoading(false);
+    if (submitStatus) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Data berhasil diperbaharui!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
 
-  const responsiveData = {
-    base: "1em",
-    sm: "1em",
-    md: "1em",
-    lg: "1em",
-    "2xl": "1.2em",
+  const handleChangeMedia = (item: unknown, id: number) => {
+    const data = { id: id, files: item };
+    const tempMediaFiles = mediaFiles;
+    if (tempMediaFiles.length === 0) {
+      tempMediaFiles.push(data);
+    } else {
+      for (let i = 0; i < tempMediaFiles.length; i++) {
+        if (tempMediaFiles[i].id === id) tempMediaFiles[i] = data;
+        else tempMediaFiles.push(data);
+        break;
+      }
+    }
+    setMediaFiles(tempMediaFiles);
+    const tempMedia = homeDatabySearchKey.home_media;
+    for (let i = 0; i < tempMedia.length; i++) {
+      if (tempMedia[i].photoID === id) {
+        tempMedia[i].linkMedia = URL.createObjectURL(data.files);
+        sethomeDatabySearchKey({
+          ...homeDatabySearchKey,
+          home_media: tempMedia,
+        });
+        break;
+      }
+    }
+    console.log(mediaFiles);
+  };
+
+  const deleteHomeMedia = (photoId: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteHomeMedia(photoId);
+
+          const newHomeObject = homeDatabySearchKey;
+          const deletedMediaIndex = homeDatabySearchKey?.home_media.findIndex(
+            (item: any, index: any) => item.photoID === photoId
+          );
+
+          for (const key in newHomeObject) {
+            if (key === "home_media") {
+              newHomeObject[key].splice(deletedMediaIndex, 1);
+            }
+          }
+
+          sethomeDatabySearchKey({
+            ...homeDatabySearchKey,
+            home_media: newHomeObject?.home_media,
+          });
+
+          Swal.fire("Media telah dihapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
   };
 
   const tableColumns = [
@@ -83,12 +278,15 @@ const EditHome: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <>
             <input
-              name={`linkMedia`}
-              id={`linkMedia${tableMeta.rowIndex}`}
+              name={`linkMedia${tableMeta.rowData[0]}`}
+              id={`linkMedia${tableMeta.rowData[0]}`}
               type="file"
               style={{ display: "none" }}
-            ></input>
-            <label htmlFor={`linkMedia${tableMeta.rowIndex}`}>
+              onChange={(event) =>
+                handleChangeMedia(event?.target?.files[0], tableMeta.rowData[0])
+              }
+            />
+            <label htmlFor={`linkMedia${tableMeta.rowData[0]}`}>
               <Image
                 className="media-img"
                 src={value}
@@ -99,28 +297,6 @@ const EditHome: React.FC = () => {
         ),
       },
     },
-    // {
-    //   name: "linkMedia",
-    //   label: "Ganti Media",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //     customHeadLabelRender: ({ index, ...column }) => (
-    //       <Text
-    //         key={index}
-    //         fontWeight="bold"
-    //         fontFamily="Rubik"
-    //         fontSize="1.1em"
-    //       >
-    //         {column.label}
-    //       </Text>
-    //     ),
-    //     setCellProps: () => ({
-    //       style: { minWidth: "200px" },
-    //     }),
-    //     customBodyRender: (value: any) => <input type="file" name="" id="" />,
-    //   },
-    // },
     {
       name: "Actions",
       label: "Aksi",
@@ -141,7 +317,11 @@ const EditHome: React.FC = () => {
         ),
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
-            <button type="button" className="delete-icon">
+            <button
+              type="button"
+              className="delete-icon"
+              onClick={() => deleteHomeMedia(tableMeta.rowData[0])}
+            >
               <DeleteIcon style={{ color: "red" }} />
             </button>
           </HStack>
@@ -150,27 +330,15 @@ const EditHome: React.FC = () => {
     },
   ];
 
-  const data = [
-    [
-      "P0001",
-      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    ],
-    [
-      "P0002",
-      "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
-    ],
-    [
-      "P0003",
-      "https://images.unsplash.com/photo-1626180874495-0fe651f60ecb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
-    ],
-    [
-      "P0004",
-      "https://images.unsplash.com/photo-1625959276519-15fe73b6fe96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80",
-    ],
-  ];
+  console.log(editMediaTab);
 
   return (
-    <Tabs defaultIndex={0}>
+    <Tabs
+      defaultIndex={0}
+      onChange={(index) =>
+        index === 0 ? setEditMediaTab(false) : setEditMediaTab(true)
+      }
+    >
       <Flex
         width={{
           base: "100vw",
@@ -202,12 +370,11 @@ const EditHome: React.FC = () => {
             md: "5rem",
           }}
           rounded={25}
-          // minHeight={editMediaTab ? `calc(100vh - 3.5rem)` : ``}
           className="edit-home-card"
         >
           <Flex alignItems="center">
             <TabList>
-              <Tab onClick={() => setEditMediaTab(false)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -220,7 +387,7 @@ const EditHome: React.FC = () => {
                   Edit HoME
                 </Heading>
               </Tab>
-              <Tab onClick={() => setEditMediaTab(true)}>
+              <Tab>
                 <Heading
                   mb="1vh"
                   letterSpacing="0.05em"
@@ -253,22 +420,18 @@ const EditHome: React.FC = () => {
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
           <TabPanels>
             <TabPanel>
-              <form onSubmit={handleSubmit(onSubmit)} className="form_state">
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.name}>
                     <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
                     <MxmInput
-                      value="Ultimagz"
                       {...register("name", {
-                        required: "Isi Narasi Pendek",
+                        required: "Isi Nama Organisator",
                       })}
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -283,89 +446,61 @@ const EditHome: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                 </Flex>
+
+                <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
+                  <MxmFormLabel color="black">Chapter</MxmFormLabel>
+                  <MxmSelect
+                    {...register("kategori", {
+                      required: "Pilih Chapter",
+                    })}
+                  >
+                    <option value="" selected disabled hidden>
+                      Pilih Chapter
+                    </option>
+                    <option value={HomeChapter.LostTreasureIsland}>
+                      Lost Treasure Island
+                    </option>
+                    <option value={HomeChapter.FantasyBridge}>
+                      Fantasy Bridge
+                    </option>
+                    <option value={HomeChapter.MedalistPlayground}>
+                      Medalist Playground
+                    </option>
+                    <option value={HomeChapter.RainbowMines}>
+                      Rainbow Mines
+                    </option>
+                    <option value={HomeChapter.TomorrowVille}>
+                      Tomorrowville
+                    </option>
+                    <option value={HomeChapter.AdventureLand}>
+                      Adventure Land
+                    </option>
+                    <option value={HomeChapter.TownArea}>Town Area</option>
+                    <option value={HomeChapter.WonderousCampground}>
+                      Wonderous Campground
+                    </option>
+                  </MxmSelect>
+                  <MxmFormErrorMessage fontSize="xs" mt={1}>
+                    {errors.kategori && (
+                      <Flex flexDirection="row" alignItems="center">
+                        <p>
+                          <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                          {errors.kategori.message}
+                        </p>
+                      </Flex>
+                    )}
+                  </MxmFormErrorMessage>
+                </FormControl>
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
-                  }}
-                >
-                  <FormControl mr="5" isInvalid={errors.kategori} mb={3}>
-                    <MxmFormLabel color="black">Kategori</MxmFormLabel>
-                    <MxmSelect
-                      {...register("Kategori", {
-                        required: "Pilih Kategori",
-                      })}
-                      // className="select"
-                      // onChange={handleSelectChange}
-                    >
-                      <option value="" disabled hidden>
-                        Pilih Kategori
-                      </option>
-                      <option value="UKM Sains dan Sosial">
-                        UKM Sains dan Sosial
-                      </option>
-                      <option value="UKM Seni dan Budaya" selected>
-                        UKM Seni dan Budaya
-                      </option>
-                      <option value="UKM Olahraga">UKM Olahraga</option>
-                      <option value="Kegiatan Kemahasiswaan dan Lembaga Seni Otonom">
-                        Kegiatan Kemahasiswaan dan Lembaga Seni Otonom
-                      </option>
-                      <option value="Media Kampus">Media Kampus</option>
-                      <option value="Komunitas">Komunitas</option>
-                      <option value="Lembaga Kampus">Lembaga Kampus</option>
-                      <option value="Organisasi dan Himpunan Mahasiswa">
-                        Organisasi dan Himpunan Mahasiswa
-                      </option>
-                    </MxmSelect>
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.kategori && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.kategori.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                  <FormControl mb={3} isInvalid={errors.searchKey}>
-                    <MxmFormLabel color="black">Kata Kunci</MxmFormLabel>
-                    <MxmInput
-                      value="ultimagz"
-                      {...register("Name", {
-                        required: "Isi Nama Organisator",
-                      })}
-                    />
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.searchKey && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.searchKey.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                </Flex>
-                <Flex
-                  direction={{
-                    base: "column",
-                    sm: "column",
-                    md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.shortDesc}>
                     <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
                     <MxmInput
-                      value="narasi pendek"
-                      {...register("ShortDesc", {
+                      {...register("shortDesc", {
                         required: "Isi Narasi Pendek",
                       })}
                     />
@@ -384,20 +519,16 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.longDesc}>
                     <MxmFormLabel color="black">Narasi Panjang</MxmFormLabel>
                     <MxmTextarea
                       resize="vertical"
-                      {...register("LongDesc", {
+                      {...register("longDesc", {
                         required: "Isi Narasi Panjang",
                       })}
-                      value="narasi panjang"
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.longDesc && (
@@ -415,24 +546,31 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
-                  <FormControl mb={3} isInvalid={errors.logo}>
+                  <FormControl mb={3}>
                     <MxmFormLabel color="black">Logo</MxmFormLabel>
-                    <UploadFiles />
+                    <Flex alignItems={files[0] ? "flex-start" : "center"}>
+                      <Image
+                        mr="1rem"
+                        w="15%"
+                        src={
+                          files[0]
+                            ? URL.createObjectURL(files[0])
+                            : homeDatabySearchKey?.linkLogo
+                        }
+                      />
+                      <Box w="85%">
+                        {!resetUpload && <UploadFiles setFiles={setFiles} />}
+                      </Box>
+                    </Flex>
                   </FormControl>
                 </Flex>
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} isInvalid={errors.linkYoutube}>
@@ -440,7 +578,7 @@ const EditHome: React.FC = () => {
                       Link Video Youtube
                     </MxmFormLabel>
                     <MxmInput
-                      {...register("LinkYoutube", {
+                      {...register("linkYoutube", {
                         required: "Isi Link Video",
                         pattern: {
                           value:
@@ -448,7 +586,6 @@ const EditHome: React.FC = () => {
                           message: "Link Video Youtube tidak valid",
                         },
                       })}
-                      value="https://www.youtube.com/watch?v=g6rQFP9zCAM&list=WL&index=91"
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.linkYoutube && (
@@ -465,10 +602,7 @@ const EditHome: React.FC = () => {
                 <Flex
                   direction={{
                     base: "column",
-                    sm: "column",
                     md: "row",
-                    lg: "row",
-                    xl: "row",
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.lineID}>
@@ -477,13 +611,12 @@ const EditHome: React.FC = () => {
                     </MxmFormLabel>
                     <MxmInput
                       {...register("lineID", {
-                        required: "Isi Nama Organisator",
+                        required: "Isi Line Id",
                         pattern: {
                           value: /^([0-9]||[a-z]||[-_.])+$/,
                           message: "ID LINE tidak valid",
                         },
                       })}
-                      value="ultimagzLine"
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.lineID && (
@@ -509,7 +642,6 @@ const EditHome: React.FC = () => {
                         },
                       })}
                       placeholder="Tidak perlu menggunakan @"
-                      value="ultimagz"
                     />
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.instagram && (
@@ -525,43 +657,81 @@ const EditHome: React.FC = () => {
                 </Flex>
                 <Flex mt={5}>
                   <Spacer />
-                  <Button
-                    backgroundColor={Palette.Cyan}
-                    color="white"
-                    padding="1em 2em 1em 2em"
-                    borderRadius="999px"
-                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-                    type="submit"
-                    _hover={{ backgroundColor: "#2BAD96" }}
-                  >
-                    SUBMIT
-                  </Button>
+                  {loading ? (
+                    <Flex mr="1rem" alignItems="center">
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        w="2rem"
+                        h="2rem"
+                      />
+                      <Text
+                        fontFamily="Poppins"
+                        fontSize={{ base: "0.9rem", md: "1rem" }}
+                        ml="0.5rem"
+                      >
+                        mengunggah data...
+                      </Text>
+                    </Flex>
+                  ) : (
+                    <Button
+                      backgroundColor={Palette.Cyan}
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                      type="submit"
+                      _hover={{ backgroundColor: "#2BAD96" }}
+                    >
+                      Update HoME
+                    </Button>
+                  )}
                 </Flex>
               </form>
             </TabPanel>
 
             <TabPanel>
-              <form className="form_daftar-state">
-                <Center>
-                  <MUIDataTable
-                    data={data}
-                    columns={tableColumns}
-                    options={{
-                      selectableRows: false,
-                      download: false,
-                      print: false,
-                      sort: false,
-                      search: false,
-                      filter: false,
-                      viewColumns: false,
-                      title: false,
-                      pagination: false,
-                      elevation: 0,
-                    }}
-                  />
-                </Center>
-                <Flex mt={5}>
-                  <Spacer />
+              <Center>
+                <MUIDataTable
+                  data={homeDatabySearchKey?.home_media}
+                  columns={tableColumns}
+                  options={{
+                    selectableRows: false,
+                    download: false,
+                    print: false,
+                    sort: false,
+                    search: false,
+                    filter: false,
+                    viewColumns: false,
+                    title: false,
+                    pagination: false,
+                    elevation: 0,
+                  }}
+                />
+              </Center>
+              <Flex mt={5}>
+                <Spacer />
+                {loading ? (
+                  <Flex mr="1rem" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      w="2rem"
+                      h="2rem"
+                    />
+                    <Text
+                      fontFamily="Poppins"
+                      fontSize={{ base: "0.9rem", md: "1rem" }}
+                      ml="0.5rem"
+                    >
+                      mengunggah data...
+                    </Text>
+                  </Flex>
+                ) : (
                   <Button
                     backgroundColor={Palette.Cyan}
                     color="white"
@@ -570,15 +740,15 @@ const EditHome: React.FC = () => {
                     boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                     type="submit"
                     _hover={{ backgroundColor: "#2BAD96" }}
+                    onClick={onMediaSubmit}
                   >
-                    SUBMIT
+                    Update Media
                   </Button>
-                </Flex>
-              </form>
+                )}
+              </Flex>
             </TabPanel>
           </TabPanels>
         </Flex>
-        <DashboardFooter />
       </Flex>
     </Tabs>
   );

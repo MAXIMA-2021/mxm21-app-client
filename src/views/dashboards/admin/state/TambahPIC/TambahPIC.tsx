@@ -21,7 +21,6 @@ import {
   MxmFormErrorMessage,
   MxmFormLabel,
 } from "../../../../../shared/styled/input";
-import { DashboardFooter } from "../../../../../shared/component/DashboardFooter";
 
 const TambahPIC: React.FC = () => {
   const {
@@ -101,9 +100,6 @@ const TambahPIC: React.FC = () => {
                 <p style={{ fontSize: isLargerThan3000px ? "2rem" : "" }}>
                   {option.name} ({option.nim})
                 </p>
-                // <p style={isLargerThan3000px ? { fontSize: "2rem" } : ""}>
-                //   {option.name} ({option.nim})
-                // </p>
               )}
               renderInput={(params) => (
                 <TextField
@@ -194,7 +190,6 @@ const TambahPIC: React.FC = () => {
           </Flex>
         </form>
       </Flex>
-      <DashboardFooter />
     </Flex>
   );
 };

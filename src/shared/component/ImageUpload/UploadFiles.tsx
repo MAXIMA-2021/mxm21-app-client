@@ -5,11 +5,6 @@ import { FileError, useDropzone } from "react-dropzone";
 import { UploadContainer } from "../../styled/containers";
 import { Palette } from "../../../types/enums";
 
-// interface UploadableFile {
-//   file: File;
-//   errors: FileError[];
-// }
-
 const IconUpload = createIcon({
   displayName: "Upload",
   viewBox: "0 0 48 32",
@@ -17,7 +12,12 @@ const IconUpload = createIcon({
 });
 
 const UploadFiles = (props: any) => {
-  const [myFiles, setMyFiles] = useState<File[]>([]);
+  const [myFiles, setMyFiles] = useState<any>([]);
+  // const [inputFile, setInputFile] = useState("");
+
+  // const handleChange = (event: any) => {
+  //   console.log(event.target.value);
+  // };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setMyFiles([...myFiles, ...acceptedFiles]);
@@ -37,6 +37,10 @@ const UploadFiles = (props: any) => {
     event.target.classList.add("file-rejected");
   };
 
+  const onDropAccepted = (files: any[], event: any) => {
+    event.target.classList.remove("file-enters");
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg, image/png",
     maxFiles: props.maxfiles || 1,
@@ -44,6 +48,7 @@ const UploadFiles = (props: any) => {
     onDragLeave,
     onDrop,
     onDropRejected,
+    onDropAccepted,
   });
 
   const removeFile = (file: any) => () => {
@@ -55,27 +60,43 @@ const UploadFiles = (props: any) => {
   //     setMyFiles([]);
   //   };
 
-  const files = myFiles.map((file) => (
-    <Flex key={file.name} alignItems="center" justifyContent="space-between">
-      <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>{file.name}</p>
-      <Button
-        backgroundColor={Palette.Red}
-        color="white"
-        onClick={removeFile(file)}
-        boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
-        size="sm"
-        _hover={{ backgroundColor: "#C71034" }}
-        marginTop={"10px"}
-      >
-        Hapus
-      </Button>
-    </Flex>
-  ));
+  const files = myFiles.map((file: any) => {
+    return (
+      <Flex key={file.name} alignItems="center" justifyContent="space-between">
+        <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>{file.name}</p>
+        <Button
+          backgroundColor={Palette.Red}
+          color="white"
+          onClick={removeFile(file)}
+          boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+          size="sm"
+          _hover={{ backgroundColor: "#C71034" }}
+          marginTop={"10px"}
+        >
+          Hapus
+        </Button>
+      </Flex>
+    );
+  });
+
+  if (myFiles.length !== 0) {
+    props.setFiles(myFiles);
+  }
+
+  // if (props.resetUpload) {
+  //   setMyFiles([]);
+  //   console.log("reset");
+  // }
 
   return (
     <div>
       <UploadContainer {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
+        <input
+          {...getInputProps()}
+          // {...register("linkLogo", {
+          //   required: "Isi logo",
+          // })}
+        />
         <IconUpload boxSize="3.5em" />
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
           Drag and Drop atau{" "}
