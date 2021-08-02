@@ -3,7 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import * as Home from "./views/home";
 
-import { AuthRouters, AdminRouters, HomeRouters } from "./routers";
+import {
+  AuthRouters,
+  AdminRouters,
+  HomeRouters,
+  StateRouters,
+} from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";
 import { DashboardFooter } from "./shared/component/DashboardFooter";
@@ -36,6 +41,12 @@ export default function AppRouter() {
                   <HomeNavbar />
                   <Switch>
                     <HomeRouters />
+                  </Switch>
+                </Route>
+                <Route path="/state/:path1?/:path2?" exact>
+                  <HomeNavbar />
+                  <Switch>
+                    <StateRouters />
                   </Switch>
                 </Route>
                 <Route>
