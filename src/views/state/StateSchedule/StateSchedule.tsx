@@ -1,18 +1,47 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Image,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
 import { MxmWhiteLogoText } from "../../../assets";
 import { MxmButton } from "../../../shared/styled/buttons";
 import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
+import stateService from "../../../services/state";
+import Swal from "sweetalert2";
+import { StateModal } from "../../../shared/component/StateModal";
 
 // Ini Adalah Komponen Utama Dari Halaman StateSchedule
 const StateSchedule = () => {
+  const [stateData, setStateData] = useState<any>({});
+
   useEffect(() => {
     document.title = "STATE - Jadwal STATE";
+
+    const fetchData = async () => {
+      try {
+        const data = await stateService.getStateReistration();
+        console.log(data.state[0]);
+        console.log(data.state[1]);
+        console.log(data.state[2]);
+        setStateData(data);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
+    fetchData();
   }, []);
 
   return (
@@ -31,10 +60,11 @@ const StateSchedule = () => {
     >
       <Image src={MxmWhiteLogoText} w={{ base: "80px", md: "100px" }} />
       <Heading
+        fontSize="1.4rem"
         fontFamily="Rubik"
         fontWeight="bold"
         color="white"
-        padding="2rem 0"
+        padding="1rem 0 2rem 0"
       >
         STATE
       </Heading>
@@ -57,22 +87,20 @@ const StateSchedule = () => {
           JADWAL STATE
         </Heading>
         <Flex flexDir={{ base: "column", md: "row" }}>
-          <BoxJadwal index="0" />
-          <BoxJadwal
-            index="1"
-            status="filled"
-            image="https://ultimagz.com/wp-content/uploads/cropped-thumbnail_Logo-Ultimagz-01.png"
-          />
-          <BoxJadwal
-            index="2"
-            status="active"
-            image="https://uscope.umn.ac.id/assets/images/photos/activities/ultima-sonora/logo.png"
-            presence="true"
-          />
+          <BoxJadwal stateData={stateData} i="0" setStateData={setStateData} />
+          <BoxJadwal stateData={stateData} i="1" setStateData={setStateData} />
+          <BoxJadwal stateData={stateData} i="2" setStateData={setStateData} />
         </Flex>
         <Box>
-          <Text fontWeight="medium">Sisa Token Anda: 1</Text>
-          <MxmButton colorScheme="yellow-navy" variant="mobile" w="max-content">
+          <Text fontWeight="medium">
+            Sisa Token Anda: {stateData ? stateData.remainingToken : "-"}
+          </Text>
+          <MxmButton
+            colorScheme="yellow-navy"
+            variant="mobile"
+            w="max-content"
+            margin="1rem 0 0 0"
+          >
             <Text margin="1rem">Pilih STATE</Text>
           </MxmButton>
         </Box>
@@ -84,119 +112,188 @@ const StateSchedule = () => {
 export default StateSchedule;
 
 // Ini Adalah Komponen BoxJadwal Untuk Menampilkan Info Dari State Yang Terpilih
-const BoxJadwal = (props: {
-  image?: string;
-  status?: string;
-  index: string;
-  presence?: string;
-}) => {
+const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
   const defaultImage = [State.Maxi, "", State.Xima];
-  const handleCancel = () => {};
+  const [loading, setLoading] = useState(false);
+  const [cancelStatus, setCancelStatus] = useState(false);
+
+  const handleCancel = async (id: number) => {
+    try {
+      setLoading(true);
+      // await stateService.deleteStateRegistration(id);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    } finally {
+      setLoading(false);
+      const tempData = props.stateData.state.filter(
+        (data: any) => data.stateData.stateID !== id
+      );
+      props.setStateData({ ...props.stateData, state: tempData });
+      console.log({ ...props.stateData, state: tempData });
+    }
+  };
+
   const handleZoom = () => {};
   const handleToken = () => {};
+  const i = Number(props.i);
 
-  return (
-    <Flex flexDir="column" margin={{ base: "1rem 0", md: "2rem 0 1rem 0" }}>
-      <Box
-        boxSize={{ base: "18rem", md: "12rem", xl: "18rem" }}
-        borderRadius="1rem"
-        border={props.status ? `3px solid ${Palette.Navy}` : ""}
-        margin={{ base: "0 1rem", md: "0 1rem" }}
-        fontFamily="Poppins"
-        fontWeight="medium"
-        textAlign="center"
-        color="white"
-        bgColor={props.status ? "white" : Palette.Navy}
-        bgImage={props.status ? "" : defaultImage[Number(props.index)]}
-        bgRepeat="no-repeat"
-        bgPosition="bottom"
-        bgSize="90%"
-        boxShadow="inset 0px -5rem 2rem -1rem rgba(0, 0, 0, 0.5), -1.2px 1.6px 6px rgba(0, 0, 0, 0.25)"
-        overflow="hidden"
-      >
-        {props.status ? (
-          <Flex
-            h="100%"
-            flexDir="column"
-            justifyContent="space-between"
-            alignItems="center"
-            padding="1rem"
-          >
-            <Flex w="100%" justifyContent="flex-end">
-              {props.presence === "true" ? (
-                <Flex
-                  boxSize="2rem"
-                  borderRadius="50%"
-                  bgColor="#39DA79"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <CheckIcon />
-                </Flex>
-              ) : props.presence === "false" ? (
-                <Flex
-                  boxSize="2rem"
-                  borderRadius="50%"
-                  bgColor="#F4224B"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <ClearIcon />
-                </Flex>
-              ) : (
-                <Text
-                  bgColor={Palette.Red}
-                  borderRadius="1rem"
-                  padding="0.2rem 1rem"
-                  fontSize="0.8rem"
-                >
-                  Day-3
-                </Text>
-              )}
+  const day = ["Hari ke-1", "Hari ke-2", "Hari ke-3", "Hari ke-4", "Hari ke-5"];
+
+  if (props.stateData.state) {
+    return (
+      <Flex flexDir="column" margin={{ base: "1rem 0", md: "2rem 0 1rem 0" }}>
+        <StateModal.CancelState
+          isOpen={cancelStatus}
+          onClose={() => setCancelStatus(false)}
+          handleCancel={() =>
+            handleCancel(props.stateData.state[i].stateData.stateID)
+          }
+          data={props.stateData.state[i].stateData}
+        />
+        <Box
+          boxSize={{ base: "15rem", md: "12rem", xl: "18rem" }}
+          borderRadius="1rem"
+          border={props.stateData.state[i] ? `3px solid ${Palette.Navy}` : ""}
+          margin={{ base: "0 1rem", md: "0 1rem" }}
+          fontFamily="Poppins"
+          fontWeight="medium"
+          textAlign="center"
+          color="white"
+          bgColor={props.stateData.state[i] ? "white" : Palette.Navy}
+          bgImage={props.stateData.state[i] ? "" : defaultImage[i]}
+          bgRepeat="no-repeat"
+          bgPosition="bottom"
+          bgSize="90%"
+          boxShadow="inset 0px -5rem 2rem -1rem rgba(0, 0, 0, 0.5), -1.2px 1.6px 6px rgba(0, 0, 0, 0.25)"
+          overflow="hidden"
+        >
+          {props.stateData.state[i] ? (
+            <Flex
+              h="100%"
+              flexDir="column"
+              justifyContent="space-between"
+              alignItems="center"
+              padding="1rem"
+            >
+              <Flex w="100%" justifyContent="flex-end">
+                {props.stateData.state[i].stateData.expired === 0 &&
+                props.stateData.state[i].stateData.exitAttendance === 1 ? (
+                  <Flex
+                    boxSize="2rem"
+                    borderRadius="50%"
+                    bgColor="#39DA79"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <CheckIcon />
+                  </Flex>
+                ) : props.stateData.state[i].stateData.exitAttendance === 0 &&
+                  props.stateData.state[i].stateData.open === "close" ? (
+                  <Flex
+                    boxSize="2rem"
+                    borderRadius="50%"
+                    bgColor="#F4224B"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <ClearIcon />
+                  </Flex>
+                ) : (
+                  <Text
+                    bgColor={Palette.Red}
+                    borderRadius="1rem"
+                    padding="0.2rem 1rem"
+                    fontSize="0.8rem"
+                  >
+                    {
+                      day[
+                        Number(
+                          props.stateData.state[i].stateData.day.slice(-1)
+                        ) - 1
+                      ]
+                    }
+                  </Text>
+                )}
+              </Flex>
+              <Image
+                src={props.stateData.state[i].stateData.stateLogo}
+                maxW="100%"
+                maxH="50%"
+              />
+              <Box>
+                <Text>{props.stateData.state[i].stateData.name}</Text>
+                <Text>{props.stateData.state[i].stateData.tanggal}</Text>
+              </Box>
             </Flex>
-            <Image src={props.image} maxW="100%" maxH="50%" />
-            <Box>
-              <Text>ULTIMAGZ</Text>
-              <Text>Kamis, 31 Juli 2021</Text>
-            </Box>
-          </Flex>
+          ) : (
+            <Flex
+              h="100%"
+              justifyContent="center"
+              alignItems="flex-end"
+              padding="1rem"
+            >
+              <Text>Kamu belum memilih STATE</Text>
+            </Flex>
+          )}
+        </Box>
+        {props.stateData.state[i] ? (
+          props.stateData.state[i].stateData.open === "prepare" ? (
+            <MxmButton
+              colorScheme="red-yellow"
+              variant="mobile"
+              onClick={() => setCancelStatus(true)}
+            >
+              Cancel
+            </MxmButton>
+          ) : (
+            (props.stateData.state[i].stateData.open === "ready" ||
+              props.stateData.state[i].stateData.open === "open" ||
+              props.stateData.state[i].stateData.open === "close") && (
+              <Flex justifyContent="space-between" padding="0 1rem" m="1rem 0">
+                <MxmButton
+                  w="45%"
+                  margin="0"
+                  colorScheme="cyan-navy"
+                  variant="mobile"
+                  isDisabled={
+                    props.stateData.state[i].stateData.open === "open"
+                      ? props.stateData.state[i].stateData.exitAttendance ===
+                          false && false
+                      : true
+                  }
+                  onClick={() => handleZoom()}
+                >
+                  ZOOM
+                </MxmButton>
+                <MxmButton
+                  w="45%"
+                  margin="0"
+                  colorScheme="yellow-red"
+                  variant="mobile"
+                  isDisabled={
+                    props.stateData.state[i].stateData.open === "open"
+                      ? props.stateData.state[i].stateData.exitAttendance ===
+                          false && false
+                      : true
+                  }
+                  onClick={() => handleToken()}
+                >
+                  TOKEN
+                </MxmButton>
+              </Flex>
+            )
+          )
         ) : (
-          <Flex
-            h="100%"
-            justifyContent="center"
-            alignItems="flex-end"
-            padding="1rem"
-          >
-            <Text>Kamu belum memilih STATE</Text>
-          </Flex>
+          ""
         )}
-      </Box>
-      {props.status === "filled" ? (
-        <MxmButton colorScheme="red-yellow" variant="mobile">
-          Cancel
-        </MxmButton>
-      ) : props.status === "active" ? (
-        <Flex justifyContent="space-between">
-          <MxmButton
-            w="50%"
-            colorScheme="cyan-navy"
-            variant="mobile"
-            isDisabled={props.presence ? true : false}
-          >
-            ZOOM
-          </MxmButton>
-          <MxmButton
-            w="50%"
-            colorScheme="yellow-red"
-            variant="mobile"
-            isDisabled={props.presence ? true : false}
-          >
-            TOKEN
-          </MxmButton>
-        </Flex>
-      ) : (
-        ""
-      )}
-    </Flex>
-  );
+      </Flex>
+    );
+  } else {
+    return <></>;
+  }
 };

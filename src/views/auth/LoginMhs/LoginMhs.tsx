@@ -88,13 +88,13 @@ const LoginMhs: React.FC = () => {
 
     try {
       const returnedData = await authService.loginMhs(data);
+      console.log(returnedData);
       reset();
 
       window.sessionStorage.setItem("token", returnedData.token);
       window.sessionStorage.setItem("name", returnedData.nama);
-
       console.log(returnedData);
-      window.location = "/";
+      window.location.href = "/";
       alert("berhasil login");
     } catch (error) {
       Swal.fire({
@@ -128,11 +128,11 @@ const LoginMhs: React.FC = () => {
               <Alert
                 fontFamily="Rubik"
                 fontSize="0.9rem"
-                status={location.state.status}
+                status={location.state?.status}
                 width={{ base: "20rem", lg: "max-content" }}
               >
                 <AlertIcon />
-                {location.state.message}
+                {location.state?.message}
               </Alert>
             )}
             <Flex
