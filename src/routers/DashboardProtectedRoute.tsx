@@ -4,6 +4,7 @@ import authService from "../services/auth";
 import Swal from "sweetalert2";
 import { DashboardFooter } from "../shared/component/DashboardFooter";
 import { DashboardNavigation } from "../shared/component/DashboardNavigation";
+import jwtDecode from "jwt-decode";
 
 export const DashboardProtectedRoute = ({ ...options }) => {
   const history = useHistory();
@@ -16,11 +17,12 @@ export const DashboardProtectedRoute = ({ ...options }) => {
   useEffect(() => {
     const auth = async () => {
       try {
-        const user = await authService.checkToken();
-        window.sessionStorage.setItem("name", user.name);
-        (user.role === "panitia" || user.role === "organizator") &&
+        const decoded: any = jwtDecode(
+          window.sessionStorage.getItem("token") || ""
+        );
+        (decoded?.division !== "" || decoded?.division !== null) &&
           setStatus(true);
-        setName(user.name);
+        setName(window.sessionStorage.getItem("name") || "");
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

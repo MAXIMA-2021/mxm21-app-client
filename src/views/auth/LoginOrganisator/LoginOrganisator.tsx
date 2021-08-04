@@ -89,6 +89,7 @@ const LoginOrganisator: React.FC = () => {
 
     try {
       const returnedData = await authService.loginOrganisator(data);
+      window.sessionStorage.setItem("name", returnedData.nama);
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.location.href = "/admin";
     } catch (error) {

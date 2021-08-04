@@ -89,9 +89,10 @@ const LoginMhs: React.FC = () => {
     try {
       const returnedData = await authService.loginMhs(data);
       reset();
-      window.sessionStorage.setItem("token", returnedData.accessToken);
-      window.sessionStorage.setItem("name", returnedData.name);
-      // const decoded = jwtDecode(returnedData.accessToken);
+
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("name", returnedData.nama);
+
       console.log(returnedData);
       window.location = "/";
       alert("berhasil login");

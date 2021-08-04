@@ -196,7 +196,7 @@ const TambahHome: React.FC = () => {
                   Pilih Chapter
                 </option>
                 <option value={HomeChapter.LostTreasureIsland}>
-                  LostTreasure Island
+                  Lost Treasure Island
                 </option>
                 <option value={HomeChapter.FantasyBridge}>
                   Fantasy Bridge

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Beranda.scss";
 import {
   Heading,
@@ -7,16 +7,31 @@ import {
   Box,
   Text,
   Container,
+  HStack,
+  PinInput,
+  PinInputField,
+  Image,
+  Flex,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import { MxmButton } from "../../../shared/styled/buttons";
 
 const Beranda = () => {
   const location = useLocation();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     document.title = "Beranda - MAXIMA 2021";
+    // onOpen();
     location.state &&
       Swal.fire({
         title: location?.state?.message,
@@ -24,8 +39,10 @@ const Beranda = () => {
         confirmButtonText: "Coba lagi",
       });
   }, []);
+
   return (
     <Center>
+      {/*       
       <SimpleGrid columns={2} spacing={10}>
         <Center>
           <Container>
@@ -73,7 +90,137 @@ const Beranda = () => {
             </Box>
           </Tilt>
         </Container>
-      </SimpleGrid>
+      </SimpleGrid> */}
+
+      {/* INI MODAL BUAT NGEBATALIN STATE */}
+      <MxmButton onClick={onOpen}>Batal STATE</MxmButton>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        size={"lg"}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={6} pt={16}>
+            <Flex
+              flexDir="column"
+              alignItems="center"
+              className="modal-batalkan-body"
+            >
+              <div className="modal-image-container">
+                <Image src="https://uscope.umn.ac.id/assets/images/photos/activities/obscura/logo.png" />
+              </div>
+              <h2>Obscura</h2>
+              <h4>Kamis, 29 Juli 2021</h4>
+              <h4>Apakah Anda yakin ingin membatalkan STATE ini?</h4>
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter>
+            <MxmButton
+              onClick={onClose}
+              colorScheme="white-navy"
+              variant="mobile"
+            >
+              Kembali
+            </MxmButton>
+            <MxmButton colorScheme="red-yellow" variant="mobile">
+              Batalkan
+            </MxmButton>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* MODAL UNTUK JOIN ZOOM */}
+      {/* <MxmButton onClick={onOpen}>Join Zoom</MxmButton>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={6} pt={16}>
+            <Flex
+              flexDir="column"
+              alignItems="center"
+              className="modal-batalkan-body"
+            >
+              <div className="modal-image-container">
+                <Image src="https://uscope.umn.ac.id/assets/images/photos/activities/obscura/logo.png" />
+              </div>
+              <h2 style={{ marginBottom: "1rem" }}>Isi Kode Presensi</h2>
+              <HStack>
+                <PinInput type="alphanumeric">
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                </PinInput>
+              </HStack>
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter>
+            <MxmButton
+              onClick={onClose}
+              colorScheme="white-navy"
+              variant="mobile"
+            >
+              Kembali
+            </MxmButton>
+            <MxmButton colorScheme="navy-cyan" variant="mobile">
+              Verifikasi
+            </MxmButton>
+          </ModalFooter>
+        </ModalContent>
+      </Modal> */}
+
+      {/* MODAL SAAT PILIH STATE */}
+      {/* <MxmButton onClick={onOpen}>Pilih STATE</MxmButton>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={4} pt={16}>
+            <Flex
+              flexDir="column"
+              alignItems="center"
+              className="modal-batalkan-body"
+            >
+              <div className="modal-image-container">
+                <Image src="https://uscope.umn.ac.id/assets/images/photos/activities/obscura/logo.png" />
+              </div>
+              <h2>Obscura</h2>
+              <h4>Kamis, 29 Juli 2021</h4>
+              <h4>Apakah Anda yakin ingin mengambil STATE ini?</h4>
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter>
+            <MxmButton
+              onClick={onClose}
+              colorScheme="white-navy"
+              variant="mobile"
+            >
+              Kembali
+            </MxmButton>
+            <MxmButton colorScheme="navy-cyan" variant="mobile">
+              Ya, Ambil
+            </MxmButton>
+          </ModalFooter>
+        </ModalContent>
+      </Modal> */}
     </Center>
   );
 };

@@ -24,18 +24,18 @@ export const MxmButton = styled(Button)<{
     props.colorScheme === "cyan-navy"
       ? `
     background: ${Palette.Cyan};
-    box-shadow: -3px 3px 0 0 ${Palette.Navy};
+    box-shadow: -3px 3px 0 0 ${Palette.Navy} !important;
     color: white;
 
     &:hover {
         background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-        box-shadow: -2px 2px 0 0 ${Palette.Navy};
-        transform: translate(2px, -2px);
+        box-shadow: -2px 2px 0 0 ${Palette.Navy} !important;
+        transform: translate(2px, -2px) !important;
     }
 
     &:active {
-        box-shadow: 0 0 0 0 ${Palette.Navy};
-        transform: translate(0px, 0px);
+        box-shadow: 0 0 0 0 ${Palette.Navy} !important;
+        transform: translate(0px, 0px) !important;
     }
     `
       : props.colorScheme === "cyan-white"
@@ -86,6 +86,23 @@ export const MxmButton = styled(Button)<{
 
     &:active {
       box-shadow: 0 0 0 0 ${Palette.Red};
+      transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "red-yellow"
+      ? ` 
+      background: ${Palette.Red};
+    box-shadow: -3px 3px 0 0 ${Palette.Yellow};
+    color: ${Palette.Yellow};
+
+    &:hover {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Yellow};
+        transform: translate(2px, -2px);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0 ${Palette.Yellow};
       transform: translate(0px, 0px);
     }
     `
@@ -142,6 +159,7 @@ export const MxmButton = styled(Button)<{
     `
       : props.colorScheme === "white-navy"
       ? `
+      border: 1px solid ${Palette.Navy};
     background: #FFFFFF;
     box-shadow: -3px 3px 0 0 ${Palette.Navy};
     color: ${Palette.Navy};
@@ -232,15 +250,17 @@ transform: translate(0px, 0px);
     color: white;
 
     &:hover {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      background: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
       box-shadow: -2px 2px 0 0 ${Palette.Cyan};
       transform: translate(2px, -2px);
     }
 
     &:active {
-      box-shadow: 0 0 0 0 ${Palette.Cyan};
-      transform: translate(0px, 0px);
-    }`}
+      box-shadow: 0 0 0 0 ${Palette.Cyan} !important;
+      transform: translate(0px, 0px) !important;
+    }
+   
+    `}
 
   font-family: Rubik, Arial,  sans-serif;
   font-size: 1rem;
