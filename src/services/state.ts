@@ -13,8 +13,37 @@ const getStateReistration = async () => {
 };
 
 const deleteStateRegistration = async (stateID: number) => {
-  const request = await axios.get(
+  const request = await axios.delete(
     `${baseUrl}/mhs/state/registration/cancelState/${stateID}`,
+    {
+      headers: {
+        "x-access-token": token,
+      },
+    }
+  );
+  return request.data;
+};
+
+const updateZoomAttendence = async (stateID: number) => {
+  const request = await axios.put(
+    `${baseUrl}/mhs/state/registration/attendZoom/${stateID}`,
+    "",
+    {
+      headers: {
+        "x-access-token": token,
+      },
+    }
+  );
+  return request.data;
+};
+
+const updateVerifyAbsence = async (
+  stateID: number,
+  data: { attendanceCode: string }
+) => {
+  const request = await axios.put(
+    `${baseUrl}/mhs/state/registration/verifyAttendance/${stateID}`,
+    data,
     {
       headers: {
         "x-access-token": token,
@@ -27,4 +56,6 @@ const deleteStateRegistration = async (stateID: number) => {
 export default {
   getStateReistration,
   deleteStateRegistration,
+  updateZoomAttendence,
+  updateVerifyAbsence,
 };

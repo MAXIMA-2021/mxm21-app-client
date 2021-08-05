@@ -48,6 +48,11 @@ const checkToken = async () => {
   return request.data;
 };
 
+const getPublicState = async () => {
+  const request = await axios.get(`${baseUrl}/public/state`);
+  return request.data;
+};
+
 export default {
   daftarMhs,
   loginMhs,
@@ -56,4 +61,5 @@ export default {
   daftarOrganisator,
   loginOrganisator,
   checkToken,
+  getPublicState,
 };

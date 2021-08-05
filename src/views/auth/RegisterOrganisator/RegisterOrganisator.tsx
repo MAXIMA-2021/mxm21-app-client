@@ -35,7 +35,6 @@ import { Palette } from "../../../types/enums";
 import "./RegisterOrganisator.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
-import adminService from "../../../services/admin";
 import { DataRegisterOrganisator } from "../../../types/interfaces";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
@@ -99,7 +98,7 @@ const RegisterOrganisator: React.FC = () => {
     document.title = "[Organisator] Daftar - MAXIMA 2021";
     const fetchData = async () => {
       try {
-        const returnedData = await adminService.getAllState();
+        const returnedData = await authService.getPublicState();
         setData(returnedData);
       } catch (error) {
         Swal.fire({
@@ -344,9 +343,9 @@ const RegisterOrganisator: React.FC = () => {
                       <option value="" selected disabled hidden>
                         Pilih STATE
                       </option>
-                      {data.map((index, key) => (
-                        <option value={index.stateID} id={key}>
-                          {index.stateID} - {index.name}
+                      {data.map((data: any, key: number) => (
+                        <option value={data.stateID} id={`${key}`}>
+                          {data.stateID} - {data.name}
                         </option>
                       ))}
                     </MxmSelect>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./StateModal.scss";
 import {
   // Heading,
@@ -20,8 +20,12 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  FormControl,
+  FormErrorIcon,
 } from "@chakra-ui/react";
 import { MxmButton } from "../../styled/buttons";
+import { useForm } from "react-hook-form";
+import { MxmFormErrorMessage } from "../../styled/input";
 
 export const CancelState = (props: any) => {
   return (
@@ -61,7 +65,7 @@ export const CancelState = (props: any) => {
           <MxmButton
             colorScheme="red-yellow"
             variant="mobile"
-            onClick={props.handleCancel}
+            onClick={() => props.handleCancel(props.data.stateID)}
           >
             Batalkan
           </MxmButton>
@@ -71,7 +75,18 @@ export const CancelState = (props: any) => {
   );
 };
 
-export const JoinZoom = (props: any) => {
+export const TokenState = (props: any) => {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState("");
+
+  const onSubmit = () => {
+    if (input.length < 6) {
+      setError("Isi token absensi kamu");
+    } else {
+      props.handleToken(props.data.stateID, input);
+    }
+  };
+
   return (
     <Modal
       closeOnOverlayClick={false}
@@ -89,16 +104,33 @@ export const JoinZoom = (props: any) => {
             className="modal-batalkan-body"
           >
             <div className="modal-image-container">
-              <Image src="https://uscope.umn.ac.id/assets/images/photos/activities/obscura/logo.png" />
+              <Image src={props.data.stateLogo} />
             </div>
             <h2 style={{ marginBottom: "1rem" }}>Isi Kode Presensi</h2>
             <HStack>
-              <PinInput type="alphanumeric">
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-              </PinInput>
+              <FormControl isInvalid={error ? true : false}>
+                <PinInput
+                  type="alphanumeric"
+                  onChange={(event) => setInput(event)}
+                >
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                </PinInput>
+                <MxmFormErrorMessage fontSize="xs" mt={1}>
+                  {error && (
+                    <Flex flexDirection="row" alignItems="center">
+                      <p>
+                        <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                        {error}
+                      </p>
+                    </Flex>
+                  )}
+                </MxmFormErrorMessage>
+              </FormControl>
             </HStack>
           </Flex>
         </ModalBody>
@@ -111,7 +143,11 @@ export const JoinZoom = (props: any) => {
           >
             Kembali
           </MxmButton>
-          <MxmButton colorScheme="navy-cyan" variant="mobile">
+          <MxmButton
+            colorScheme="navy-cyan"
+            variant="mobile"
+            onClick={onSubmit}
+          >
             Verifikasi
           </MxmButton>
         </ModalFooter>

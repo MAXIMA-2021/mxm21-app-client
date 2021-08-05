@@ -15,6 +15,7 @@ import { DashboardFooter } from "./shared/component/DashboardFooter";
 import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
 import { DashboardProtectedRoute } from "./routers/DashboardProtectedRoute";
+import { StateProtectedRoute } from "./routers/StateProtectedRoute";
 
 export default function AppRouter() {
   return (
@@ -43,12 +44,12 @@ export default function AppRouter() {
                     <HomeRouters />
                   </Switch>
                 </Route>
-                <Route path="/state/:path1?/:path2?" exact>
+                <StateProtectedRoute path="/state/:path1?/:path2?" exact>
                   <HomeNavbar />
                   <Switch>
                     <StateRouters />
                   </Switch>
-                </Route>
+                </StateProtectedRoute>
                 <Route>
                   <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                     <HomeNavbar />

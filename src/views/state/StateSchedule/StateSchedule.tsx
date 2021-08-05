@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Image,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Image, useToast } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
 import { MxmWhiteLogoText } from "../../../assets";
@@ -28,9 +20,6 @@ const StateSchedule = () => {
     const fetchData = async () => {
       try {
         const data = await stateService.getStateReistration();
-        console.log(data.state[0]);
-        console.log(data.state[1]);
-        console.log(data.state[2]);
         setStateData(data);
       } catch (error) {
         Swal.fire({
@@ -41,7 +30,8 @@ const StateSchedule = () => {
         });
       }
     };
-    fetchData();
+
+    window.sessionStorage.getItem("token") && fetchData();
   }, []);
 
   return (
@@ -72,10 +62,12 @@ const StateSchedule = () => {
         flexDir="column"
         bgColor="white"
         h="max-content"
+        w={{ base: "100%", md: "max-content" }}
         padding={{ base: "2rem 1rem", md: "2rem" }}
         borderRadius="1rem"
         textAlign="center"
-        justifyContent="space"
+        justifyContent="space-between"
+        alignItems="center"
         fontFamily="Rubik"
       >
         <Heading
@@ -83,6 +75,7 @@ const StateSchedule = () => {
           fontSize="2rem"
           fontWeight="bold"
           color={Palette.Navy}
+          mb={{ base: "1rem", md: "0" }}
         >
           JADWAL STATE
         </Heading>
@@ -112,15 +105,32 @@ const StateSchedule = () => {
 export default StateSchedule;
 
 // Ini Adalah Komponen BoxJadwal Untuk Menampilkan Info Dari State Yang Terpilih
+//
+//
+//
+//
+// Ini Adalah Komponen BoxJadwal Untuk Menampilkan Info Dari State Yang Terpilih
 const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
-  const defaultImage = [State.Maxi, "", State.Xima];
+  const defaultImage = [State.Maxi, State.Icon, State.Xima];
+  const i = Number(props.i);
+  const day = ["Hari ke-1", "Hari ke-2", "Hari ke-3", "Hari ke-4", "Hari ke-5"];
+
   const [loading, setLoading] = useState(false);
   const [cancelStatus, setCancelStatus] = useState(false);
+  const [tokenModalStatus, setTokenModalStatus] = useState(false);
+
+  const toast = useToast();
 
   const handleCancel = async (id: number) => {
     try {
       setLoading(true);
-      // await stateService.deleteStateRegistration(id);
+      setCancelStatus(false);
+      await stateService.deleteStateRegistration(id);
+      const tempData = props.stateData.state.filter(
+        (data: any) => data.stateData === null || data.stateData.stateID !== id
+      );
+      tempData.push({ hasRegistered: 0, stateData: null });
+      props.setStateData({ ...props.stateData, state: tempData });
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -130,49 +140,85 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
       });
     } finally {
       setLoading(false);
-      const tempData = props.stateData.state.filter(
-        (data: any) => data.stateData.stateID !== id
-      );
-      props.setStateData({ ...props.stateData, state: tempData });
-      console.log({ ...props.stateData, state: tempData });
     }
   };
 
-  const handleZoom = () => {};
-  const handleToken = () => {};
-  const i = Number(props.i);
+  const handleZoom = async (id: number, zoomLink: string) => {
+    try {
+      setLoading(true);
+      await stateService.updateZoomAttendence(id);
+      window.open(zoomLink);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const day = ["Hari ke-1", "Hari ke-2", "Hari ke-3", "Hari ke-4", "Hari ke-5"];
+  const handleToken = async (id: number, token: string) => {
+    const data = { attendanceCode: token };
+    const tempData = props.stateData.state;
+    try {
+      setLoading(true);
+      setTokenModalStatus(false);
+      await stateService.updateVerifyAbsence(id, data);
+      tempData[i].stateData.exitAttendance = 1;
+      props.setStateData({ ...props.stateData, state: tempData });
+      toast({
+        title: `Absensi STATE ${props.stateData.state[i].stateData.name} berhasil!`,
+        position: "bottom",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (props.stateData.state) {
     return (
       <Flex flexDir="column" margin={{ base: "1rem 0", md: "2rem 0 1rem 0" }}>
-        <StateModal.CancelState
-          isOpen={cancelStatus}
-          onClose={() => setCancelStatus(false)}
-          handleCancel={() =>
-            handleCancel(props.stateData.state[i].stateData.stateID)
-          }
-          data={props.stateData.state[i].stateData}
-        />
         <Box
           boxSize={{ base: "15rem", md: "12rem", xl: "18rem" }}
           borderRadius="1rem"
-          border={props.stateData.state[i] ? `3px solid ${Palette.Navy}` : ""}
+          border={
+            props.stateData.state[i].hasRegistered === 1
+              ? `3px solid ${Palette.Navy}`
+              : ""
+          }
           margin={{ base: "0 1rem", md: "0 1rem" }}
           fontFamily="Poppins"
           fontWeight="medium"
           textAlign="center"
           color="white"
-          bgColor={props.stateData.state[i] ? "white" : Palette.Navy}
-          bgImage={props.stateData.state[i] ? "" : defaultImage[i]}
+          bgColor={
+            props.stateData.state[i].hasRegistered === 1
+              ? "white"
+              : Palette.Navy
+          }
+          bgImage={
+            props.stateData.state[i].hasRegistered === 1 ? "" : defaultImage[i]
+          }
           bgRepeat="no-repeat"
-          bgPosition="bottom"
-          bgSize="90%"
+          bgPosition="center"
+          bgSize="100%"
           boxShadow="inset 0px -5rem 2rem -1rem rgba(0, 0, 0, 0.5), -1.2px 1.6px 6px rgba(0, 0, 0, 0.25)"
           overflow="hidden"
         >
-          {props.stateData.state[i] ? (
+          {props.stateData.state[i].hasRegistered === 1 ? (
             <Flex
               h="100%"
               flexDir="column"
@@ -181,8 +227,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
               padding="1rem"
             >
               <Flex w="100%" justifyContent="flex-end">
-                {props.stateData.state[i].stateData.expired === 0 &&
-                props.stateData.state[i].stateData.exitAttendance === 1 ? (
+                {props.stateData.state[i].stateData.exitAttendance === 1 ? (
                   <Flex
                     boxSize="2rem"
                     borderRadius="50%"
@@ -241,47 +286,74 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
             </Flex>
           )}
         </Box>
-        {props.stateData.state[i] ? (
+        {props.stateData.state[i].hasRegistered === 1 ? (
           props.stateData.state[i].stateData.open === "prepare" ? (
-            <MxmButton
-              colorScheme="red-yellow"
-              variant="mobile"
-              onClick={() => setCancelStatus(true)}
-            >
-              Cancel
-            </MxmButton>
+            <>
+              <StateModal.CancelState
+                isOpen={cancelStatus}
+                onClose={() => setCancelStatus(false)}
+                data={props.stateData.state[i].stateData}
+                handleCancel={handleCancel}
+              />
+              <MxmButton
+                isLoading={loading ? true : false}
+                loadingText={loading ? "Pembatalan Diproses" : ""}
+                colorScheme="red-yellow"
+                variant="mobile"
+                onClick={() => setCancelStatus(true)}
+              >
+                Cancel
+              </MxmButton>
+            </>
           ) : (
             (props.stateData.state[i].stateData.open === "ready" ||
               props.stateData.state[i].stateData.open === "open" ||
               props.stateData.state[i].stateData.open === "close") && (
               <Flex justifyContent="space-between" padding="0 1rem" m="1rem 0">
                 <MxmButton
+                  isLoading={loading ? true : false}
+                  loadingText={loading ? "ZOOM" : ""}
                   w="45%"
                   margin="0"
                   colorScheme="cyan-navy"
                   variant="mobile"
                   isDisabled={
                     props.stateData.state[i].stateData.open === "open"
-                      ? props.stateData.state[i].stateData.exitAttendance ===
-                          false && false
+                      ? props.stateData.state[i].stateData.exitAttendance === 0
+                        ? false
+                        : true
                       : true
                   }
-                  onClick={() => handleZoom()}
+                  onClick={() =>
+                    handleZoom(
+                      props.stateData.state[i].stateData.stateID,
+                      props.stateData.state[i].stateData.zoomLink
+                    )
+                  }
                 >
                   ZOOM
                 </MxmButton>
+                <StateModal.TokenState
+                  isOpen={tokenModalStatus}
+                  onClose={() => setTokenModalStatus(false)}
+                  data={props.stateData.state[i].stateData}
+                  handleToken={handleToken}
+                />
                 <MxmButton
+                  isLoading={loading ? true : false}
+                  loadingText={loading ? "Token Diproses" : ""}
                   w="45%"
                   margin="0"
                   colorScheme="yellow-red"
                   variant="mobile"
                   isDisabled={
                     props.stateData.state[i].stateData.open === "open"
-                      ? props.stateData.state[i].stateData.exitAttendance ===
-                          false && false
+                      ? props.stateData.state[i].stateData.exitAttendance === 0
+                        ? false
+                        : true
                       : true
                   }
-                  onClick={() => handleToken()}
+                  onClick={() => setTokenModalStatus(true)}
                 >
                   TOKEN
                 </MxmButton>

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./HomeNavbar.scss";
 
 import { MxmLogo } from "../../../assets";
 import { Image, Grid } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import jwtDecode from "jwt-decode";
 
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -12,6 +13,19 @@ const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
+  const [isMahasiswa, setIsMahasiswa] = useState(false);
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem("token")) {
+      const decoded: any = jwtDecode(
+        window.sessionStorage.getItem("token") || ""
+      );
+      decoded.nim &&
+        !decoded.division &&
+        !decoded.stateID &&
+        setIsMahasiswa(true);
+    }
+  }, []);
 
   const navbarAnimation = (event: any) => {
     if (window.scrollY > 0) {
@@ -57,12 +71,14 @@ const HomeNavbar = () => {
                 >
                   HoME
                 </NavLink>
-                <NavLink
-                  to="/state"
-                  className="btn-main-nav btn-styling-main-nav"
-                >
-                  STATE
-                </NavLink>
+                {isMahasiswa && (
+                  <NavLink
+                    to="/state"
+                    className="btn-main-nav btn-styling-main-nav"
+                  >
+                    STATE
+                  </NavLink>
+                )}
                 <NavLink
                   to="/faq"
                   className="btn-main-nav btn-styling-main-nav"
@@ -143,9 +159,11 @@ const HomeNavbar = () => {
           <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
             HoME
           </NavLink>
-          <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
-            STATE
-          </NavLink>
+          {isMahasiswa && (
+            <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
+              STATE
+            </NavLink>
+          )}
           <NavLink to="/FAQ" className="btn-main-nav btn-styling-main-nav">
             FAQ
           </NavLink>
