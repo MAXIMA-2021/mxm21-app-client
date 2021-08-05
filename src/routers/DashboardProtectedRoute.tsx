@@ -56,7 +56,13 @@ export const DashboardProtectedRoute = ({ ...options }) => {
   return (
     <Route {...options}>
       <Switch>
-        <div style={{ minHeight: "100vh", background: "#f4f4f4" }}>
+        <div
+          style={{
+            minHeight: "100vh",
+            background: "#f4f4f4",
+            paddingBottom: "2rem",
+          }}
+        >
           <DashboardNavigation name={name} />
           <DashboardFooter />
         </div>

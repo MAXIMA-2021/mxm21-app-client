@@ -121,7 +121,7 @@ const HomeOrganisatorList = () => {
                 }}
               >
                 {loading ? (
-                  <Image src={item?.linkLogo} alt={`skeleton`} />
+                  <Image src={MxmLogo} alt={`skeleton`} opacity={0.7} />
                 ) : (
                   <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
                 )}

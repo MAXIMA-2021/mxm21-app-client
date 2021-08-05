@@ -45,6 +45,7 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
 
         setDetailState(returnedDataState[0]);
+        console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -231,6 +232,9 @@ const StateDetail: React.FC = () => {
               />
               <Container pl="1rem">
                 <Heading>{detailState?.name}</Heading>
+                <Heading fontSize={"1.2rem"} fontWeight={600} mt={"0.2rem"}>
+                  {detailState?.category}
+                </Heading>
                 <Text mt="1.5rem">
                   <EventOutlinedIcon /> Hari ke-{detailState?.day} (Rabu, 6
                   Agustus 2021)
@@ -249,9 +253,24 @@ const StateDetail: React.FC = () => {
                     {detailState?.zoomLink}
                   </Text>
                 </Flex>
+                <Heading mt="1rem" fontSize={"1rem"}>
+                  Deskripsi Pendek
+                </Heading>
+                <Text wordBreak="break-all">{detailState?.shortDesc}</Text>
               </Container>
             </Flex>
-            <Text fontWeight="bold" fontSize="1.2em" mt="5rem">
+            <Flex
+              height={"200px"}
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              mt={"2rem"}
+            >
+              <img
+                src={detailState?.coverPhoto}
+                style={{ width: "100%", height: "100%" }}
+                alt="logoState"
+              />
+            </Flex>
+            <Text fontWeight="bold" fontSize="1.2em" mt="3rem">
               Peserta Registrasi STATE
             </Text>
             <Center>

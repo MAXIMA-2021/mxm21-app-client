@@ -34,7 +34,8 @@ const EditState: React.FC = () => {
   const { stateID }: any = useParams();
   const [state, setState] = useState<any>({});
   const [loading, setLoading] = useState(false);
-  const [files, setFiles] = useState<any>([]);
+  const [logo, setLogo] = useState<any>([]);
+  const [cover, setCover] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
   const history = useHistory();
 
@@ -50,6 +51,7 @@ const EditState: React.FC = () => {
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getSpecificState(stateID);
+        console.log(returnedData);
         setState(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -66,21 +68,26 @@ const EditState: React.FC = () => {
   useEffect(() => {
     setValue("name", state?.name);
     setValue("quota", state?.quota);
-    setValue("day", state?.day);
-    setValue("stateLogo", state?.stateLogo);
+    setValue("day", state?.day?.substr(1, 1));
+    setValue("category", state?.category);
+    setValue("shortDesc", state?.shortDesc);
     setValue("zoomLink", state?.zoomLink);
+    setValue("stateLogo", state?.stateLogo);
+    setValue("coverPhoto", state?.coverPhoto);
   }, [state]);
 
   const onSubmit = async (data: any) => {
-    // window.confirm(JSON.stringify(data));
     setLoading(true);
 
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("zoomLink", data.zoomLink);
     formData.append("day", data.day);
-    formData.append("stateLogo", files[0]);
     formData.append("quota", data.quota);
+    formData.append("category", data.category);
+    formData.append("shortDesc", data.shortDesc);
+    formData.append("stateLogo", logo[0]);
+    formData.append("coverPhoto", cover[0]);
 
     try {
       await adminService.updateState(state.stateID, formData);
@@ -92,7 +99,7 @@ const EditState: React.FC = () => {
         timer: 2000,
       });
       setResetUpload(true);
-      setFiles([]);
+      setLogo([]);
       history.push("/admin/daftar-state", {
         status: "success",
         message: "Kamu berhasil mengedit",
@@ -107,15 +114,15 @@ const EditState: React.FC = () => {
     }
   };
 
-  console.log(files);
-
   return (
     <Flex
+      width={{
+        base: "calc(100vw-18rem)",
+        md: "calc(100vw-18rem)",
+      }}
+      height="100%"
       alignItems="center"
       justifyContent="center"
-      backgroundColor="#f4f4f4"
-      width="79vw"
-      height="calc(100vh - 3.75rem - 3.5rem)"
     >
       <Flex
         width={{
@@ -226,43 +233,96 @@ const EditState: React.FC = () => {
               </MxmFormErrorMessage>
             </FormControl>
           </Flex>
-          <FormControl mb={3} isInvalid={errors.day}>
-            <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
-            <MxmSelect
-              {...register("day", {
-                required: "Pilih Hari Kegiatan STATE",
-              })}
-            >
-              <option value="1">Hari-ke 1 (Rabu, 6 Agustus 2021)</option>
-              <option value="2">Hari-ke 2 (Kamis, 7 Agustus 2021)</option>
-              <option value="3">Hari-ke 3 (Jumat, 8 Agustus 2021)</option>
-              <option value="4">Hari-ke 4 (Sabtu, 9 Agustus 2021)</option>
-              <option value="5">Hari-ke 5 (Minggu, 10 Agustus 2021)</option>
-            </MxmSelect>
-            <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.day && (
-                <Flex flexDirection="row" alignItems="center">
-                  <p>
-                    <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.day.message}
-                  </p>
-                </Flex>
-              )}
-            </MxmFormErrorMessage>
-          </FormControl>
+          <Flex
+            direction={{
+              base: "column",
+              sm: "column",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+          >
+            <FormControl mb={3} mr={5} isInvalid={errors.day}>
+              <MxmFormLabel color="black">Hari Kegiatan</MxmFormLabel>
+              <MxmSelect
+                {...register("day", {
+                  required: "Pilih Hari Kegiatan STATE",
+                })}
+              >
+                <option value="1">Hari-ke 1 (Rabu, 6 Agustus 2021)</option>
+                <option value="2">Hari-ke 2 (Kamis, 7 Agustus 2021)</option>
+                <option value="3">Hari-ke 3 (Jumat, 8 Agustus 2021)</option>
+                <option value="4">Hari-ke 4 (Sabtu, 9 Agustus 2021)</option>
+                <option value="5">Hari-ke 5 (Minggu, 10 Agustus 2021)</option>
+              </MxmSelect>
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.day && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.day.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
+            </FormControl>
+            <FormControl mb={3} isInvalid={errors.day}>
+              <MxmFormLabel color="black">Kategori</MxmFormLabel>
+              <MxmSelect
+                {...register("category", { required: "Pilih Kategori STATE" })}
+              >
+                <option value="" selected disabled hidden>
+                  Pilih Kategori STATE
+                </option>
+                <option value="UKM Olahraga">UKM Olahraga</option>
+                <option value="UKM Sains dan Sosial">
+                  UKM Sains dan Sosial
+                </option>
+                <option value="Media Kampus">Media Kampus</option>
+                <option value="UKM Seni dan Budaya">UKM Seni dan Budaya</option>
+              </MxmSelect>
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.day && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.day.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
+            </FormControl>
+          </Flex>
           <Flex>
             <FormControl mb={3}>
               <MxmFormLabel color="black">Logo</MxmFormLabel>
-              <Flex alignItems={files[0] ? "flex-start" : "center"}>
+              <Flex alignItems={logo[0] ? "flex-start" : "center"}>
                 <Image
                   mr="1rem"
                   w="15%"
                   src={
-                    files[0] ? URL.createObjectURL(files[0]) : state?.stateLogo
+                    logo[0] ? URL.createObjectURL(logo[0]) : state?.stateLogo
                   }
                 />
                 <Box w="85%">
-                  {!resetUpload && <UploadFiles setFiles={setFiles} />}
+                  {!resetUpload && <UploadFiles setFiles={setLogo} />}
+                </Box>
+              </Flex>
+            </FormControl>
+          </Flex>
+          <Flex>
+            <FormControl mb={3}>
+              <MxmFormLabel color="black">foto kegiatan</MxmFormLabel>
+              <Flex alignItems={cover[0] ? "flex-start" : "center"}>
+                <Image
+                  mr="1rem"
+                  w="15%"
+                  src={
+                    cover[0] ? URL.createObjectURL(cover[0]) : state?.coverPhoto
+                  }
+                />
+                <Box w="85%">
+                  {!resetUpload && <UploadFiles setFiles={setCover} />}
                 </Box>
               </Flex>
             </FormControl>
@@ -283,6 +343,34 @@ const EditState: React.FC = () => {
               )}
             </MxmFormErrorMessage>
           </FormControl>
+          <Flex
+            direction={{
+              base: "column",
+              sm: "column",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+          >
+            <FormControl mb={3} isInvalid={errors.shortDesc}>
+              <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
+              <MxmInput
+                {...register("shortDesc", {
+                  required: "Isi Narasi Pendek",
+                })}
+              />
+              <MxmFormErrorMessage fontSize="xs" mt={1}>
+                {errors.shortDesc && (
+                  <Flex flexDirection="row" alignItems="center">
+                    <p>
+                      <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                      {errors.shortDesc.message}
+                    </p>
+                  </Flex>
+                )}
+              </MxmFormErrorMessage>
+            </FormControl>
+          </Flex>
           <Flex mt={5}>
             <Spacer />
             {loading ? (
