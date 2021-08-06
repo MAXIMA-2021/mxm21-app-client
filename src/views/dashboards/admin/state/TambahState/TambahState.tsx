@@ -100,8 +100,8 @@ const TambahState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw-18rem)",
-        md: "calc(100vw-18rem)",
+        base: "calc(100vw - 18rem)",
+        md: "calc(100vw - 18rem)",
       }}
       height="100%"
       alignItems="center"
@@ -260,9 +260,8 @@ const TambahState: React.FC = () => {
                 </option>
                 <option value="Media Kampus">Media Kampus</option>
                 <option value="Kegiatan Kemahasiswaan">
-                  Kegiatan Kemahasiswaan
+                  Kegiatan Kemahasiswaan & LSO
                 </option>
-                {/*INI LANJUTANNYA APA YA */}
                 <option value="UKM Olahraga">UKM Olahraga</option>
                 <option value="UKM Sains dan Sosial">
                   UKM Sains dan Sosial

@@ -109,8 +109,8 @@ const TambahHome: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw-18rem)",
-        md: "calc(100vw-18rem)",
+        base: "calc(100vw - 18rem)",
+        md: "calc(100vw - 18rem)",
       }}
       height="100%"
       alignItems="center"
@@ -157,6 +157,10 @@ const TambahHome: React.FC = () => {
               }}
               mt="0.4vh"
               mb="1vh"
+              marginLeft={{
+                base: "5vw",
+                md: "40vw",
+              }}
             />
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />

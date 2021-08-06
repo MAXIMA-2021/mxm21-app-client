@@ -117,8 +117,8 @@ const EditState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw-18rem)",
-        md: "calc(100vw-18rem)",
+        base: "calc(100vw - 18rem)",
+        md: "calc(100vw - 18rem)",
       }}
       height="100%"
       alignItems="center"
@@ -249,11 +249,11 @@ const EditState: React.FC = () => {
                   required: "Pilih Hari Kegiatan STATE",
                 })}
               >
-                <option value="1">Hari-ke 1 (Rabu, 6 Agustus 2021)</option>
-                <option value="2">Hari-ke 2 (Kamis, 7 Agustus 2021)</option>
-                <option value="3">Hari-ke 3 (Jumat, 8 Agustus 2021)</option>
-                <option value="4">Hari-ke 4 (Sabtu, 9 Agustus 2021)</option>
-                <option value="5">Hari-ke 5 (Minggu, 10 Agustus 2021)</option>
+                <option value="1">Hari-ke 1</option>
+                <option value="2">Hari-ke 2</option>
+                <option value="3">Hari-ke 3</option>
+                <option value="4">Hari-ke 4</option>
+                <option value="5">Hari-ke 5</option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.day && (
@@ -280,9 +280,8 @@ const EditState: React.FC = () => {
                 </option>
                 <option value="Media Kampus">Media Kampus</option>
                 <option value="Kegiatan Kemahasiswaan">
-                  Kegiatan Kemahasiswaan
+                  Kegiatan Kemahasiswaan & LSO
                 </option>
-                {/*INI LANJUTANNYA APA YA */}
                 <option value="UKM Olahraga">UKM Olahraga</option>
                 <option value="UKM Sains dan Sosial">
                   UKM Sains dan Sosial

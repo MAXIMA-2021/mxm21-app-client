@@ -14,9 +14,7 @@ footer {
 
 .chapter {
   width: var(--image-size);
-  // transition: all 0.4s ease-in-out;
   &:hover {
-    // transform: translateY(-2rem);
     animation: popup 2s infinite ease-in-out;
     cursor: pointer;
   }

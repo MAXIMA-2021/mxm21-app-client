@@ -23,6 +23,7 @@ import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
+import { grey } from "@material-ui/core/colors";
 
 const colorTheme = createMuiTheme({
   palette: {
@@ -40,7 +41,7 @@ const StateDetail: React.FC = () => {
   const [detailState, setDetailState] = useState<any>([]);
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
   const [isSmallerThan600px] = useMediaQuery("(max-width: 600px)");
-  const [isSmallerThan700px] = useMediaQuery("(max-width: 700px)");
+  const [isSmallerThan800px] = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
     const fetchDataDetail = async () => {
@@ -186,7 +187,7 @@ const StateDetail: React.FC = () => {
             md: "2rem",
           }}
           rounded={20}
-          minW={isSmallerThan700px ? "" : "700px"}
+          minW={isSmallerThan800px ? "" : "800px"}
         >
           <form>
             <Flex mb="1vh" alignItems="center">
@@ -222,7 +223,7 @@ const StateDetail: React.FC = () => {
                   <img
                     src={detailState?.stateLogo}
                     style={{
-                      maxWidth: "50%",
+                      maxWidth: "40%",
                       height: "100%",
                     }}
                     alt={`Logo ${detailState?.name}`}
@@ -232,7 +233,7 @@ const StateDetail: React.FC = () => {
                 <img
                   src={detailState?.stateLogo}
                   style={{
-                    maxWidth: "50%",
+                    maxWidth: "40%",
                     height: "100%",
                     marginRight: "1.5rem",
                   }}
@@ -282,17 +283,35 @@ const StateDetail: React.FC = () => {
                 </Text>
               </Container>
             </Flex>
-            <Flex
-              height={"200px"}
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              mt={"2rem"}
-            >
+
+            {detailState?.coverPhoto === "" ? (
+              <div
+                style={{
+                  backgroundColor: "grey",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "1.2rem",
+                  height: "250px",
+                  marginTop: "1.4rem",
+                }}
+              >
+                Foto Cover tidak ditemukan
+              </div>
+            ) : (
               <img
                 src={detailState?.coverPhoto}
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  height: "300px",
+                  marginTop: "1.4rem",
+                }}
                 alt={`Cover ${detailState?.name}`}
               />
-            </Flex>
+            )}
+
             <Text fontWeight="bold" fontSize="1.2em" mt="3rem">
               Peserta Registrasi STATE
             </Text>

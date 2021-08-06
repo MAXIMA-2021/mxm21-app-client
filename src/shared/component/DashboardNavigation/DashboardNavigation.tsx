@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -24,6 +24,8 @@ const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+
+  const location = useLocation();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -235,13 +237,17 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/admin/daftar-home"
-                      activeClassName="dropdown-item_active"
+                    <a
+                      href="/admin/daftar-home"
+                      className={
+                        location.pathname === "/admin/daftar-home"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -263,13 +269,17 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/admin/daftar-state"
-                      activeClassName="dropdown-item_active"
+                    <a
+                      href="/admin/daftar-state"
+                      className={
+                        location.pathname === "/admin/daftar-state"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar STATE
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </li>
