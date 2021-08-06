@@ -53,9 +53,33 @@ const updateVerifyAbsence = async (
   return request.data;
 };
 
+const getStateList = async () => {
+  const request = await axios.get(`${baseUrl}/state/activities`, {
+    headers: {
+      "x-access-token": token,
+    },
+  });
+  return request.data;
+};
+
+const registerState = async (data: any) => {
+  const request = await axios.post(
+    `${baseUrl}/mhs/state/registration/registerState`,
+    data,
+    {
+      headers: {
+        "x-access-token": token,
+      },
+    }
+  );
+  return request.data;
+};
+
 export default {
   getStateReistration,
   deleteStateRegistration,
   updateZoomAttendence,
   updateVerifyAbsence,
+  getStateList,
+  registerState,
 };

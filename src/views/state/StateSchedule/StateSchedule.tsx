@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Box, Flex, Heading, Text, Image, useToast } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
@@ -46,7 +47,7 @@ const StateSchedule = () => {
       justifyContent="center"
       alignItems="center"
       flexDir="column"
-      padding={{ base: "2rem 0", "2xl": "0" }}
+      padding={{ base: "2rem 0.5rem", "2xl": "0" }}
     >
       <Image src={MxmWhiteLogoText} w={{ base: "80px", md: "100px" }} />
       <Heading
@@ -88,14 +89,16 @@ const StateSchedule = () => {
           <Text fontWeight="medium">
             Sisa Token Anda: {stateData ? stateData.remainingToken : "-"}
           </Text>
-          <MxmButton
-            colorScheme="yellow-navy"
-            variant="mobile"
-            w="max-content"
-            margin="1rem 0 0 0"
-          >
-            <Text margin="1rem">Pilih STATE</Text>
-          </MxmButton>
+          <NavLink to="/state/lists">
+            <MxmButton
+              colorScheme="yellow-navy"
+              variant="mobile"
+              w="max-content"
+              margin="1rem 0 0 0"
+            >
+              <Text margin="1rem">Pilih STATE</Text>
+            </MxmButton>
+          </NavLink>
         </Box>
       </Flex>
     </Flex>

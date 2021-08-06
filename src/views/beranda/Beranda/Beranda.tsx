@@ -25,6 +25,7 @@ import Tilt from "react-tilt";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MxmButton } from "../../../shared/styled/buttons";
+import { StateModal } from "../../../shared/component/StateModal";
 
 const Beranda = () => {
   const location = useLocation();
@@ -83,6 +84,13 @@ const Beranda = () => {
             </Box>
           </Tilt>
         </Container>
+        <MxmButton onClick={onOpen}>Pilih STATE</MxmButton>
+        <StateModal.PilihState
+          closeOnOverlayClick={false}
+          isOpen={isOpen}
+          onClose={onClose}
+          isCentered
+        />
       </SimpleGrid>
     </Center>
   );

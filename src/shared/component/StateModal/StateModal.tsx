@@ -174,10 +174,10 @@ export const PilihState = (props: any) => {
             className="modal-batalkan-body"
           >
             <div className="modal-image-container">
-              <Image src="https://uscope.umn.ac.id/assets/images/photos/activities/obscura/logo.png" />
+              <Image src={props.stateLogo} />
             </div>
-            <h2>Obscura</h2>
-            <h4>Kamis, 29 Juli 2021</h4>
+            <h2>{props.name}</h2>
+            <h4>{props.tanggal}</h4>
             <h4>Apakah Anda yakin ingin mengambil STATE ini?</h4>
           </Flex>
         </ModalBody>
@@ -190,7 +190,11 @@ export const PilihState = (props: any) => {
           >
             Kembali
           </MxmButton>
-          <MxmButton colorScheme="navy-cyan" variant="mobile">
+          <MxmButton
+            colorScheme="navy-cyan"
+            variant="mobile"
+            onClick={() => props.handleRegister(props.stateID)}
+          >
             Ya, Ambil
           </MxmButton>
         </ModalFooter>

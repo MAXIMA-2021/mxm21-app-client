@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { bgAuth } from "../../assets";
+import { Heading } from "@chakra-ui/react";
+import { Palette } from "../../types/enums";
 
 export const MxmContainers = styled("div")`
   background-image: url(${bgAuth});
@@ -174,4 +176,15 @@ export const UploadContainer = styled.div`
 
     animation: ${rejectFileAnimation} 0.2s;
   }
+`;
+
+export const MxmHeading = styled(Heading)`
+  font-size: 1.8rem;
+  background-color: ${Palette.Navy};
+  padding: 0.8rem 2rem;
+  width: 100%;
+  border-radius: 15px;
+  font-family: "Rubik";
+  text-align: center;
+  color: white;
 `;
