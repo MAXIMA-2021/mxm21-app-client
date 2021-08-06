@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./HomeOrganisatorList.scss";
 import { Palette } from "../../../types/enums";
-import { Flex, Image, Grid } from "@chakra-ui/react";
+import { Flex, Image, Grid, Skeleton } from "@chakra-ui/react";
 import {
   cat1,
   cat2,
@@ -121,10 +121,21 @@ const HomeOrganisatorList = () => {
                 }}
               >
                 {loading ? (
-                  <Image src={MxmLogo} alt={`skeleton`} opacity={0.7} />
+                  <Skeleton
+                    startColor={Palette.Cyan}
+                    endColor={Palette.Navy}
+                    height="100px"
+                    width="100px"
+                  />
                 ) : (
                   <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
                 )}
+                {/* <Skeleton
+                  startColor={Palette.Cyan}
+                  endColor={Palette.Navy}
+                  height="100px"
+                  width="100px"
+                /> */}
               </div>
               <div
                 className="content-org-desc"
