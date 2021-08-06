@@ -17,13 +17,67 @@ export const MxmContainers = styled("div")`
 `;
 
 export const MxmContainersPanitia = styled("div")`
-  background-color: #164273;
+  /* background-color: #164273; */
   height: 100%;
   padding-top: 5vh;
   padding-bottom: 20vh;
-  background-position: center;
+  /* background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+
+  /* background-color: rgba(229, 229, 247, 0.2); */
+  /* background-color: rgba(22, 66, 115, 0.5); */
+  background-color: #000000;
+  background-image: linear-gradient(
+      30deg,
+      #164273 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #164273 87.5%,
+      #164273
+    ),
+    linear-gradient(
+      150deg,
+      #164273 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #164273 87.5%,
+      #164273
+    ),
+    linear-gradient(
+      30deg,
+      #164273 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #164273 87.5%,
+      #164273
+    ),
+    linear-gradient(
+      150deg,
+      #164273 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #164273 87.5%,
+      #164273
+    ),
+    linear-gradient(
+      60deg,
+      #16427377 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #16427377 75%,
+      #16427377
+    ),
+    linear-gradient(
+      60deg,
+      #16427377 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #16427377 75%,
+      #16427377
+    );
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
 
   @media only screen and (max-width: 767px) {
     padding-top: 0vh;

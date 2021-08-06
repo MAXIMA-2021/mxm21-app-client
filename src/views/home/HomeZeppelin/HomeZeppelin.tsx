@@ -59,7 +59,7 @@ const HomeZeppelin = () => {
           </div>
           <div className="home-zep-bukti-btn">
             <button>
-              Download Form Bukti <span>(pdf)</span>
+              Form Bukti Zeppelin HoME Competition <span>(Google Form)</span>
             </button>
           </div>
         </Grid>

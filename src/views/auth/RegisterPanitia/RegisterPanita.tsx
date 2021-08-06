@@ -161,9 +161,8 @@ const RegisterPanitia: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -184,7 +183,7 @@ const RegisterPanitia: React.FC = () => {
                       lg: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    mt={2}
+                    // mt={2}
                   />
                 </Flex>
                 <Divider

@@ -254,12 +254,21 @@ const TambahState: React.FC = () => {
                 <option value="" selected disabled hidden>
                   Pilih Kategori STATE
                 </option>
+                <option value="Lembaga Kampus">Lembaga Kampus</option>
+                <option value="Organisasi dan Himpunan">
+                  Organisasi dan Himpunan
+                </option>
+                <option value="Media Kampus">Media Kampus</option>
+                <option value="Kegiatan Kemahasiswaan">
+                  Kegiatan Kemahasiswaan
+                </option>
+                {/*INI LANJUTANNYA APA YA */}
                 <option value="UKM Olahraga">UKM Olahraga</option>
                 <option value="UKM Sains dan Sosial">
                   UKM Sains dan Sosial
                 </option>
-                <option value="Media Kampus">Media Kampus</option>
                 <option value="UKM Seni dan Budaya">UKM Seni dan Budaya</option>
+                <option value="Komunitas">Komunitas</option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
                 {errors.day && (
@@ -316,10 +325,10 @@ const TambahState: React.FC = () => {
             }}
           >
             <FormControl mb={3} isInvalid={errors.shortDesc}>
-              <MxmFormLabel color="black">Narasi Pendek</MxmFormLabel>
+              <MxmFormLabel color="black">Deskripsi</MxmFormLabel>
               <MxmInput
                 {...register("shortDesc", {
-                  required: "Isi Narasi Pendek",
+                  required: "Isi Deskripsi",
                 })}
               />
               <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -358,7 +367,7 @@ const TambahState: React.FC = () => {
             }}
           >
             <FormControl mb={3} isInvalid={errors.logo}>
-              <MxmFormLabel color="black">Foto Kegiatan</MxmFormLabel>
+              <MxmFormLabel color="black">Foto Kegiatan (cover)</MxmFormLabel>
               {!resetUpload && <UploadFiles setFiles={setCover} />}
             </FormControl>
           </Flex>

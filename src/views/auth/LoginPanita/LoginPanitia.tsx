@@ -158,9 +158,8 @@ const LoginPanitia: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     width="100%"
                     textAlign="center"
                     color="white"
