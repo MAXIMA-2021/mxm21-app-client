@@ -14,10 +14,15 @@ const HomeNavbar = () => {
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
   let isMahasiswa = false;
+  let isLoggedIn = false;
 
   const token: string | null = window.sessionStorage.getItem("token");
   const decoded: any = token !== null && jwtDecode(token);
   decoded.nim && !decoded.division && !decoded.stateID && (isMahasiswa = true);
+  if (token !== null) {
+    isLoggedIn = true;
+  }
+  console.log(isLoggedIn);
 
   const navbarAnimation = (event: any) => {
     if (window.scrollY > 0) {
@@ -85,18 +90,29 @@ const HomeNavbar = () => {
                 </NavLink>
               </li>
               <li className="btn-main-nav-auth-container">
-                <NavLink
-                  to="/auth/daftar"
-                  className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
-                >
-                  Daftar
-                </NavLink>
-                <NavLink
-                  to="/auth/masuk"
-                  className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-                >
-                  Masuk
-                </NavLink>
+                {isLoggedIn ? (
+                  <NavLink
+                    to="/auth/keluar"
+                    className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                  >
+                    Keluar
+                  </NavLink>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/auth/daftar"
+                      className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
+                    >
+                      Daftar
+                    </NavLink>
+                    <NavLink
+                      to="/auth/masuk"
+                      className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                    >
+                      Masuk
+                    </NavLink>
+                  </>
+                )}
               </li>
 
               {isSmallerThan700px ? (
@@ -163,18 +179,29 @@ const HomeNavbar = () => {
             About Us
           </NavLink>
           <div className="btn-main-nav-auth-container-mobile">
-            <NavLink
-              to="/daftar"
-              className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
-            >
-              Daftar
-            </NavLink>
-            <NavLink
-              to="/masuk"
-              className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-            >
-              Masuk
-            </NavLink>
+            {isLoggedIn ? (
+              <NavLink
+                to="/auth/keluar"
+                className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+              >
+                Keluar
+              </NavLink>
+            ) : (
+              <>
+                <NavLink
+                  to="/auth/daftar"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
+                >
+                  Daftar
+                </NavLink>
+                <NavLink
+                  to="/auth/masuk"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                >
+                  Masuk
+                </NavLink>
+              </>
+            )}
           </div>
         </Grid>
       </div>
