@@ -28,6 +28,7 @@ export default function AuthRouters() {
         exact
         component={Auth.RegisterOrganisator}
       />
+      <Route path="/auth/reset" exact component={Auth.ResetPassword} />
       <Route
         path="/auth/keluar"
         exact

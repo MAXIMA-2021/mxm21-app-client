@@ -266,7 +266,7 @@ const LoginOrganisator: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?{" "}
+                      Lupa kata sandimu?
                       <Link
                         to="/auth/organisator/reset"
                         style={{ color: "cornflowerblue", fontWeight: 600 }}

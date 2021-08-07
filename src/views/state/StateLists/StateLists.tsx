@@ -132,13 +132,14 @@ const Card = (props: any) => {
               }}
             ></div>
             <div className="card-img">
-              {/* <img src={props.stateLogo} alt="logo" /> */}
-              <SkeletonCircle size="56px" />
+              {loading ? (
+                <SkeletonCircle size="56px" />
+              ) : (
+                <img src={props.stateLogo} alt="logo" />
+              )}
             </div>
             <div className="card-text">
-              <SkeletonText noOfLines={1} width={6}>
-                <div className="name">{props.name}</div>
-              </SkeletonText>
+              <div className="name">{props.name}</div>
               <div className="category">{props.category}</div>
               <div className="desc">{props.shortDesc}</div>
             </div>
