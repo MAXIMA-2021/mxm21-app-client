@@ -23,7 +23,6 @@ import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { grey } from "@material-ui/core/colors";
 
 const colorTheme = createMuiTheme({
   palette: {

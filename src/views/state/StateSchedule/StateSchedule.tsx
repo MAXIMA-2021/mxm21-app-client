@@ -138,11 +138,12 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
       const tempData = props.stateData.state.filter(
         (data: any) => data.stateData === null || data.stateData.stateID !== id
       );
-
       tempData.push({ hasRegistered: 0, stateData: null });
-
-      props.setStateData({ ...props.stateData, state: tempData });
-
+      props.setStateData({
+        ...props.stateData,
+        state: tempData,
+        remainingToken: props.stateData.remainingToken + 1,
+      });
       Swal.fire({
         position: "center",
         icon: "success",

@@ -14,7 +14,7 @@ export const DashboardProtectedRoute = (props: any, { ...options }) => {
         to={{
           pathname: "/",
           state: {
-            title: "Token Invalid",
+            title: token !== null ? "Token Invalid" : "Harap Login Kembali",
             icon: "error",
             confirmButtonText: "Kembali",
           },

@@ -80,7 +80,6 @@ const EditHome: React.FC = () => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("kategori", data.kategori);
-    formData.append("searchKey", data.searh_key);
     formData.append("shortDesc", data.shortDesc);
     formData.append("longDesc", data.longDesc);
     formData.append(
@@ -146,33 +145,24 @@ const EditHome: React.FC = () => {
   }, [homeDatabySearchKey]);
 
   const onMediaSubmit = async () => {
-    // const loopData = () => {
-    //   mediaFiles.forEach(async (data: any) => {
-    //     const formData = new FormData();
-    //     formData.append("linkMedia", data.files);
-    //     console.log(data);
-    //     try {
-    //       await adminService.updateHomeMedia(data.id, formData);
-    //     } catch (error) {
-    //       Swal.fire({
-    //         title: "Perhatian!",
-    //         text: error.response.data.message,
-    //         icon: "error",
-    //         confirmButtonText: "Coba lagi",
-    //       });
-    //       setSubmitStatus(false);
-    //     }
-    //   });
-    //   setLoading(true);
-    // };
-    // await loopData();
-    // setLoading(false);
     const formData = new FormData();
     mediaFiles.forEach((data: any) => {
       formData.append("photoID", data.id);
       formData.append("linkMedia", data.files);
     });
-    setSubmitStatus(true);
+
+    try {
+      await adminService.updateHomeMedia(formData);
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+      setSubmitStatus(false);
+    }
+
     if (submitStatus) {
       Swal.fire({
         position: "center",

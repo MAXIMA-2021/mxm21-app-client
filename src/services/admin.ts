@@ -95,7 +95,7 @@ const updateOrganisator = async (newObject: any) => {
 
 const updateHome = async (homeID: string, newObject: any) => {
   const request = await axios.put(
-    `${baseUrl}/panit/home/${homeID}`,
+    `${baseUrl}/panit/home/information/${homeID}`,
     newObject,
     {
       headers: {
@@ -112,17 +112,13 @@ const deleteHome = async (homeID: string) => {
   return request;
 };
 
-const updateHomeMedia = async (photoID: number, data: any) => {
-  const request = await axios.put(
-    `${baseUrl}/panit/home/linkMedia/${photoID}`,
-    data,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "x-access-token": token,
-      },
-    }
-  );
+const updateHomeMedia = async (data: any) => {
+  const request = await axios.put(`${baseUrl}/panit/home/media`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-access-token": token,
+    },
+  });
   return request;
 };
 

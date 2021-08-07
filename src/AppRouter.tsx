@@ -16,6 +16,7 @@ import { HomeNavbar } from "./shared/component/HomeNavbar";
 import { HomeFooter } from "./shared/component/HomeFooter";
 import { DashboardProtectedRoute } from "./routers/DashboardProtectedRoute";
 import { StateProtectedRoute } from "./routers/StateProtectedRoute";
+import { ErrorPage } from "./views/error";
 
 export default function AppRouter() {
   return (
@@ -75,7 +76,7 @@ export default function AppRouter() {
                         component={Beranda.AboutUs}
                       />
                       <Route path="/faq" exact component={Beranda.FAQ} />
-                      <Route path="/" component={Beranda.Beranda} />
+                      <Route path="/" component={ErrorPage} />
                     </Switch>
                     <HomeFooter />
                   </div>

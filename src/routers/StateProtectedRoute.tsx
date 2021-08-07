@@ -1,43 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
-import { DashboardFooter } from "../shared/component/DashboardFooter";
-import { DashboardNavigation } from "../shared/component/DashboardNavigation";
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 export const StateProtectedRoute = (props: any, { ...options }) => {
-  const history = useHistory();
-  const [status, setStatus] = useState<boolean>(false);
-  const [loading, setLoading] = useState(true);
+  const token: string | null = window.sessionStorage.getItem("token");
+  const decoded: any = token !== null && jwtDecode(token);
 
-  useEffect(() => {
-    const auth = () => {
-      const decoded: any = jwtDecode(
-        window.sessionStorage.getItem("token") || ""
-      );
-      decoded.nim && !decoded.division && !decoded.stateID && setStatus(true);
-      setLoading(false);
-    };
-
-    if (window.sessionStorage.getItem("token")) {
-      auth();
-    } else {
-      history.push("/", {
-        title: "Harap Login Kembali",
-        icon: "error",
-        confirmButtonText: "Kembali",
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!status && !loading) {
-      history.push("/", {
-        title: "Token Invalid",
-        icon: "error",
-        confirmButtonText: "Kembali",
-      });
-    }
-  }, [loading]);
-
-  return <Route {...options}>{props.children}</Route>;
+  if (decoded.nim && !decoded.division && !decoded.stateID) {
+    return <Route {...options}>{props.children}</Route>;
+  } else {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+          state: {
+            title: token !== null ? "Token Invalid" : "Harap Login Kembali",
+            icon: "error",
+            confirmButtonText: "Kembali",
+          },
+        }}
+      />
+    );
+  }
 };
