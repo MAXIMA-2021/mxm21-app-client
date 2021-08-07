@@ -49,7 +49,7 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
 
         setDetailState(returnedDataState[0]);
-        console.log(returnedDataState);
+        // console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -316,7 +316,7 @@ const StateDetail: React.FC = () => {
               Peserta Registrasi STATE
             </Text>
             <Center>
-              <MUIDataTables
+              <MUIDataTable
                 data={dataKehadiranMhs}
                 columns={tableColumns}
                 options={{

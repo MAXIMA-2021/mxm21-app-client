@@ -65,7 +65,7 @@ const HomeZeppelin = () => {
         </Grid>
 
         <MxmButton
-          variant="desktop"
+          variant="rounded"
           colorScheme="cyan-navy"
           className="home-zep-next-btn"
           onClick={handleClick}

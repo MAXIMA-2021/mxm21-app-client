@@ -304,7 +304,7 @@ const LoginMhs: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Masuk
@@ -312,7 +312,7 @@ const LoginMhs: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Masuk

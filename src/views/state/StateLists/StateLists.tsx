@@ -99,7 +99,7 @@ const Card = (props: any) => {
         icon: "success",
         title: `State ${props.name} berhasil diambil!`,
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1000,
       });
     } catch (error) {
       Swal.fire({
@@ -168,7 +168,7 @@ const StateLists = () => {
     try {
       const returnedData = await stateService.getStateList();
       setData(returnedData);
-      console.log(returnedData);
+      // console.log(returnedData);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

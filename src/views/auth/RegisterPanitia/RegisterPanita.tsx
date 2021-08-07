@@ -414,7 +414,7 @@ const RegisterPanitia: React.FC = () => {
                         loadingText="Daftar"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar
@@ -422,7 +422,7 @@ const RegisterPanitia: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar

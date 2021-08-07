@@ -479,7 +479,7 @@ const RegisterOrganisator: React.FC = () => {
                         loadingText="Daftar"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar
@@ -487,7 +487,7 @@ const RegisterOrganisator: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar

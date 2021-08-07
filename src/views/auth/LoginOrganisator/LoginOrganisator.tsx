@@ -284,7 +284,7 @@ const LoginOrganisator: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk
@@ -292,7 +292,7 @@ const LoginOrganisator: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk

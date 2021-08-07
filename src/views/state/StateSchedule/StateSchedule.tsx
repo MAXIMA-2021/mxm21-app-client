@@ -92,7 +92,7 @@ const StateSchedule = () => {
           <NavLink to="/state/lists">
             <MxmButton
               colorScheme="yellow-navy"
-              variant="mobile"
+              variant="squared"
               w="max-content"
               margin="1rem 0 0 0"
             >
@@ -128,12 +128,28 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
     try {
       setLoading(true);
       setCancelStatus(false);
+
       await stateService.deleteStateRegistration(id);
+
+      const deletedState = props.stateData.state.find(
+        (item: any) => item.stateData.stateID === id
+      );
+
       const tempData = props.stateData.state.filter(
         (data: any) => data.stateData === null || data.stateData.stateID !== id
       );
+
       tempData.push({ hasRegistered: 0, stateData: null });
+
       props.setStateData({ ...props.stateData, state: tempData });
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `State ${deletedState?.stateData.name} berhasil dibatalkan!`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -302,7 +318,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                 isLoading={loading ? true : false}
                 loadingText={loading ? "Pembatalan Diproses" : ""}
                 colorScheme="red-yellow"
-                variant="mobile"
+                variant="squared"
                 onClick={() => setCancelStatus(true)}
               >
                 Cancel
@@ -319,7 +335,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                   w="45%"
                   margin="0"
                   colorScheme="cyan-navy"
-                  variant="mobile"
+                  variant="squared"
                   isDisabled={
                     props.stateData.state[i].stateData.open === "open"
                       ? props.stateData.state[i].stateData.exitAttendance === 0
@@ -348,7 +364,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                   w="45%"
                   margin="0"
                   colorScheme="yellow-red"
-                  variant="mobile"
+                  variant="squared"
                   isDisabled={
                     props.stateData.state[i].stateData.open === "open"
                       ? props.stateData.state[i].stateData.exitAttendance === 0

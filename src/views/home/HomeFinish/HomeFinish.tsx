@@ -77,7 +77,7 @@ const HomeFinish = () => {
         <Flex>
           <NavLink to="/home/category">
             <MxmButton
-              variant="desktop"
+              variant="rounded"
               colorScheme="navy-white"
               margin="1rem 1rem 1rem 0"
             >
@@ -87,7 +87,7 @@ const HomeFinish = () => {
           <Spacer />
           <NavLink to="/">
             <MxmButton
-              variant="desktop"
+              variant="rounded"
               colorScheme="navy-white"
               margin="1rem 0 1rem 1rem"
             >

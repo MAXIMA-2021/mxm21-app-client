@@ -73,7 +73,7 @@ const HomeWelcome = () => {
         </Box>
         <MxmButton
           onClick={handleClick}
-          variant="desktop"
+          variant="rounded"
           colorScheme="yellow-red"
         >
           <Text fontSize={{ base: "1rem", md: "2rem" }} p="0.2rem 2rem">

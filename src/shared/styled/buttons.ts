@@ -17,7 +17,7 @@ export const MxmButton = styled(Button)<{
   padding: 0.8vh 1vw;
   margin: ${(props) => props.margin || "1rem"};
 
-  border-radius: ${(props) => (props.variant === "mobile" ? "10px" : "20px")};
+  border-radius: ${(props) => (props.variant === "squared" ? "10px" : "20px")};
 
   transform: translate(3px, -3px);
 
@@ -259,24 +259,37 @@ export const MxmButton = styled(Button)<{
       : props.colorScheme === "yellow-navy"
       ? ` 
     background: ${Palette.Yellow};
-  box-shadow: -3px 3px 0 0 ${Palette.Navy};
-  color: ${Palette.Navy};
-
-  &:hover {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
-      box-shadow: -2px 2px 0 0 ${Palette.Navy};
-      transform: translate(2px, -2px);
-  }
-
-  &:active {
-    box-shadow: 0 0 0 0 ${Palette.Navy} !important;
-    transform: translate(0px, 0px);
-  }
-  
-  &:focus {
     box-shadow: -3px 3px 0 0 ${Palette.Navy};
-  }
-  `
+    color: ${Palette.Navy};
+
+    &:hover {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        box-shadow: -2px 2px 0 0 ${Palette.Navy};
+        transform: translate(2px, -2px);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0 ${Palette.Navy};
+      transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "red-yellow"
+      ? ` 
+    background: ${Palette.Red};
+    box-shadow: -3px 3px 0 0 ${Palette.Yellow};
+    color: ${Palette.Yellow};
+    
+    &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Yellow};
+      transform: translate(2px, -2px);
+    }
+    
+    &:active {
+    box-shadow: 0 0 0 0 ${Palette.Yellow};
+    transform: translate(0px, 0px);
+    }
+    `
       : `
     
     background: ${Palette.Navy};

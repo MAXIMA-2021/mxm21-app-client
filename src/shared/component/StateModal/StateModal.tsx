@@ -58,13 +58,13 @@ export const CancelState = (props: any) => {
           <MxmButton
             onClick={props.onClose}
             colorScheme="white-navy"
-            variant="mobile"
+            variant="squared"
           >
             Kembali
           </MxmButton>
           <MxmButton
             colorScheme="red-yellow"
-            variant="mobile"
+            variant="squared"
             onClick={() => props.handleCancel(props.data.stateID)}
           >
             Batalkan
@@ -139,13 +139,13 @@ export const TokenState = (props: any) => {
           <MxmButton
             onClick={props.onClose}
             colorScheme="white-navy"
-            variant="mobile"
+            variant="squared"
           >
             Kembali
           </MxmButton>
           <MxmButton
             colorScheme="navy-cyan"
-            variant="mobile"
+            variant="squared"
             onClick={onSubmit}
           >
             Verifikasi
@@ -186,13 +186,13 @@ export const PilihState = (props: any) => {
           <MxmButton
             onClick={props.onClose}
             colorScheme="white-navy"
-            variant="mobile"
+            variant="squared"
           >
             Kembali
           </MxmButton>
           <MxmButton
             colorScheme="navy-cyan"
-            variant="mobile"
+            variant="squared"
             onClick={() => props.handleRegister(props.stateID)}
           >
             Ya, Ambil

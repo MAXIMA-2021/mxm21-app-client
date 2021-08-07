@@ -2,6 +2,7 @@ import * as React from "react";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 // import { ColorModeSwitcher } from "./ColorModeSwitcher"
+import "./GlobalStyling.scss";
 import AppRouter from "./AppRouter";
 require("dotenv").config();
 

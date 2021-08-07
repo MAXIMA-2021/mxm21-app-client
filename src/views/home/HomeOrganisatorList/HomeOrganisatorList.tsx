@@ -25,6 +25,7 @@ const HomeOrganisatorList = () => {
   const [data, setData] = useState<any>();
   const { homeChapter } = useParams<{ homeChapter: string }>();
   const [loading, setLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
   const history = useHistory();
 
   var images: any = [];
@@ -41,6 +42,7 @@ const HomeOrganisatorList = () => {
   useEffect(() => {
     document.title = `Organisator list ${homeChapter}`;
     setLoading(true);
+    setImageLoading(true);
     const fetchData = async () => {
       try {
         const returnedData = await homeService.getChapterData(homeChapter);
@@ -67,6 +69,17 @@ const HomeOrganisatorList = () => {
         return data[homeDataX]["search_key"];
       }
     }
+  };
+
+  const showSkeleton = () => {
+    return (
+      <Skeleton
+        startColor={Palette.Cyan}
+        endColor={Palette.Navy}
+        height="100px"
+        width="100px"
+      />
+    );
   };
 
   return (
@@ -109,7 +122,7 @@ const HomeOrganisatorList = () => {
                   history.push(`/home/organisator-detail/${item?.search_key}`);
                 }}
               >
-                {loading ? (
+                {imageLoading ? (
                   <Skeleton
                     startColor={Palette.Cyan}
                     endColor={Palette.Navy}
@@ -117,14 +130,14 @@ const HomeOrganisatorList = () => {
                     width="100px"
                   />
                 ) : (
-                  <Image src={item?.linkLogo} alt={`foto ${item?.name}`} />
+                  <Image src={item?.linkLogo} alt={`logo ${item?.name}`} />
                 )}
-                {/* <Skeleton
-                  startColor={Palette.Cyan}
-                  endColor={Palette.Navy}
-                  height="100px"
-                  width="100px"
-                /> */}
+                <Image
+                  src={item?.linkLogo}
+                  alt={`logo ${item?.name}`}
+                  onLoad={() => setImageLoading(false)}
+                  style={{ display: "none" }}
+                />
               </div>
               <div
                 className="content-org-desc"
@@ -152,7 +165,7 @@ const HomeOrganisatorList = () => {
         </Flex>
         <MxmButton
           onClick={() => history.push("/home/category")}
-          variant="desktop"
+          variant="rounded"
           colorScheme="cyan-navy"
           className="home-orglist-back-btn"
         >
@@ -164,3 +177,6 @@ const HomeOrganisatorList = () => {
 };
 
 export default HomeOrganisatorList;
+function useRemoteData(): { data: any; loading: any; error: any } {
+  throw new Error("Function not implemented.");
+}

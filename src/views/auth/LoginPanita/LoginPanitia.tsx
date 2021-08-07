@@ -285,7 +285,7 @@ const LoginPanitia: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk
@@ -293,7 +293,7 @@ const LoginPanitia: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk
