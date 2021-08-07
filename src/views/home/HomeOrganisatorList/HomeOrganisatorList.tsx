@@ -22,7 +22,7 @@ import Swal from "sweetalert2";
 import { MxmLogo } from "../../../assets";
 
 const HomeOrganisatorList = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>();
   const { homeChapter } = useParams<{ homeChapter: string }>();
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -43,8 +43,9 @@ const HomeOrganisatorList = () => {
     setLoading(true);
     const fetchData = async () => {
       try {
-        const returnedData = await homeService.getHomeByCategory(homeChapter);
-        setData(returnedData);
+        const returnedData = await homeService.getChapterData(homeChapter);
+        console.log(returnedData[0].home);
+        setData(returnedData[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -59,12 +60,6 @@ const HomeOrganisatorList = () => {
   }, []);
 
   var chapter: JSX.Element = images[Number(homeChapter?.slice(-1)) - 1];
-
-  const handleOnClick = (some: string) => {
-    history.push(`/home/organisator/detail/${some}`, {
-      status: true,
-    });
-  };
 
   const findSearchKey = (IDhome: any) => {
     for (let homeDataX in data) {
@@ -94,12 +89,7 @@ const HomeOrganisatorList = () => {
               <Image src={homeMaxiTalk} alt="maxi" width="100px" />
             </div>
             <div className="chap-desc-text">
-              <p style={{ color: Palette.Yellow }}>
-                Tadaa, selamat datang di Zona pertama! Lost Treasure Island
-                sendiri adalah Zona Lembaga Kampus yang saat ini terbagi menjadi
-                Campus Visit dan UMN Documentation untuk memperkenalkan
-                lingkungan UMN melalui sudut pandang yang menarik.
-              </p>
+              <p style={{ color: Palette.Yellow }}>{data?.message}</p>
             </div>
           </div>
           <MxmDivider
@@ -110,14 +100,13 @@ const HomeOrganisatorList = () => {
           />
         </Grid>
         <Flex className="home-orglist-content_container">
-          {data.map((item: any, index: any) => (
+          {data?.home.map((item: any, index: any) => (
             <Grid className="home-orglist-content-grid" key={index}>
+              {console.log(item)}
               <div
                 className="content-org-logo"
                 onClick={() => {
-                  history.push(
-                    `/home/organisator-detail/${findSearchKey(item?.homeID)}`
-                  );
+                  history.push(`/home/organisator-detail/${item?.search_key}`);
                 }}
               >
                 {loading ? (
@@ -140,9 +129,7 @@ const HomeOrganisatorList = () => {
               <div
                 className="content-org-desc"
                 onClick={() => {
-                  history.push(
-                    `/home/organisator-detail/${findSearchKey(item?.homeID)}`
-                  );
+                  history.push(`/home/organisator-detail/${item?.search_key}`);
                 }}
                 style={{ backgroundColor: Palette.Yellow, color: Palette.Navy }}
               >
@@ -153,7 +140,7 @@ const HomeOrganisatorList = () => {
                 <button
                   onClick={() => {
                     history.push(
-                      `/home/organisator-detail/${findSearchKey(item?.homeID)}`
+                      `/home/organisator-detail/${item?.search_key}`
                     );
                   }}
                 >

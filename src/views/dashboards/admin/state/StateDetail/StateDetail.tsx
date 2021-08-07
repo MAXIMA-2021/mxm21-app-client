@@ -241,7 +241,7 @@ const StateDetail: React.FC = () => {
                 />
               )}
 
-              <Container pl="1rem">
+              <Container pl="1rem" m="0">
                 <Heading
                   style={{ letterSpacing: "0.022em" }}
                   textAlign={isSmallerThan600px ? "center" : "left"}
@@ -316,7 +316,7 @@ const StateDetail: React.FC = () => {
               Peserta Registrasi STATE
             </Text>
             <Center>
-              <MUIDataTable
+              <MUIDataTables
                 data={dataKehadiranMhs}
                 columns={tableColumns}
                 options={{

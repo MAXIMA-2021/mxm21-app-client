@@ -13,19 +13,11 @@ const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
-  const [isMahasiswa, setIsMahasiswa] = useState(false);
+  let isMahasiswa = false;
 
-  useEffect(() => {
-    if (window.sessionStorage.getItem("token")) {
-      const decoded: any = jwtDecode(
-        window.sessionStorage.getItem("token") || ""
-      );
-      decoded.nim &&
-        !decoded.division &&
-        !decoded.stateID &&
-        setIsMahasiswa(true);
-    }
-  }, []);
+  const token: string | null = window.sessionStorage.getItem("token");
+  const decoded: any = token !== null && jwtDecode(token);
+  decoded.nim && !decoded.division && !decoded.stateID && (isMahasiswa = true);
 
   const navbarAnimation = (event: any) => {
     if (window.scrollY > 0) {
