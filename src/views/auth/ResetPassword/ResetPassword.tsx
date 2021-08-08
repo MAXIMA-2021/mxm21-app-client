@@ -12,8 +12,12 @@ import {
   InputGroup,
   InputLeftAddon,
   FormErrorIcon,
+  Spacer,
   Button,
+  HStack,
   InputRightElement,
+  PinInput,
+  PinInputField,
 } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -52,6 +56,7 @@ const OTPComponent = (props: any) => {
     try {
       const returnedData = await authService.getOTP(data);
       reset();
+      alert(returnedData["otp"]);
       props.setRole(returnedData["role"]);
       props.setHasOTP(true);
     } catch (error) {
@@ -71,7 +76,13 @@ const OTPComponent = (props: any) => {
         color={Palette.Navy}
         fontFamily="Rubik"
         fontWeight="500"
-        fontSize={{ base: "2rem", md: "2.5rem", "2xl": "4rem" }}
+        fontSize={{
+          base: "1.6rem",
+          sm: "2.4rem",
+          md: "2.1rem",
+          lg: "2.5rem",
+          "2xl": "4rem",
+        }}
         letterSpacing="0.1rem"
       >
         Kamu lupa password?
@@ -151,22 +162,25 @@ const PassComponent = (props: any) => {
     reset,
     formState: { errors },
   } = useForm();
-
+  const [OTP, setOTP] = React.useState("");
   const password = useRef({});
   password.current = watch("password", "");
-
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const handleOTP = (OTP: any) => {
+    setOTP(OTP);
+  };
+
   const onSubmit = async (data: unknown) => {
     setLoading(true);
     data["role"] = props.role;
+    data["otp"] = OTP;
 
     try {
-      const returnedData = await authService.verifyOTP(data);
+      await authService.verifyOTP(data);
       reset();
-      console.log(returnedData);
       Swal.fire({
         position: "center",
         icon: "success",
@@ -178,7 +192,7 @@ const PassComponent = (props: any) => {
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response.data.message,
+        text: "Kode OTP belum tepat",
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
@@ -256,7 +270,7 @@ const PassComponent = (props: any) => {
             </FormControl>
             <FormControl isInvalid={errors.konfirmasiPassword}>
               <MxmFormLabel color={Palette.Navy}>
-                Konfirmasi Password Baru
+                Konfirmasi Password
               </MxmFormLabel>
               <InputGroup
                 addon="left"
@@ -282,37 +296,50 @@ const PassComponent = (props: any) => {
               </MxmFormErrorMessage>
             </FormControl>
           </Grid>
-          <FormControl isInvalid={errors.otp}>
-            <MxmFormLabel color={Palette.Navy}>Kode OTP</MxmFormLabel>
-            <InputGroup
-              addon="left"
-              border="1px solid #164273"
-              borderRadius="7.5px"
+          <Flex>
+            <FormControl isInvalid={errors.otp}>
+              <MxmFormLabel color={Palette.Navy}>Kode OTP</MxmFormLabel>
+              <HStack>
+                <PinInput
+                  value={OTP}
+                  onChange={handleOTP}
+                  type="alphanumeric"
+                  otp
+                  size={{ base: "sm", lg: "md" }}
+                >
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                  <PinInputField />
+                </PinInput>
+              </HStack>
+              <MxmFormErrorMessage>
+                {errors.otp && (
+                  <p>
+                    <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                    {errors.otp.message}
+                  </p>
+                )}
+              </MxmFormErrorMessage>
+            </FormControl>
+            <Spacer />
+            <Flex
+              display="flex"
+              justifyContent="center"
+              mt={{ base: "12px", lg: "24px" }}
             >
-              <Input
-                {...register("otp", {
-                  required: "Isi kode OTP kamu",
-                })}
-              />
-            </InputGroup>
-            <MxmFormErrorMessage>
-              {errors.otp && (
-                <p>
-                  <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                  {errors.otp.message}
-                </p>
-              )}
-            </MxmFormErrorMessage>
-          </FormControl>
-          <Flex display="flex" justifyContent="center" mt="20px">
-            <MxmButton
-              type="submit"
-              variant="squared"
-              margin="0 0 0 1rem"
-              colorScheme="yellow-red"
-            >
-              Ubah Password
-            </MxmButton>
+              <MxmButton
+                type="submit"
+                variant="squared"
+                margin="0 0 0 1rem"
+                colorScheme="yellow-red"
+                fontSize={{ base: "0.8rem", lg: "1rem" }}
+              >
+                Ubah Password
+              </MxmButton>
+            </Flex>
           </Flex>
         </Flex>
       </form>
@@ -342,15 +369,21 @@ const ResetPassword: React.FC = () => {
         padding="2rem"
       >
         <Flex
-          // alignItems="center"
+          alignItems={{ base: "center", md: "initial" }}
           justifyContent="space-between"
-          flexDir={{ base: "column", md: "row" }}
+          flexDir={{ base: "column-reverse", md: "row" }}
           w={{ base: "100%", lg: "90%", xl: "70%" }}
         >
-          <Box width="50%">
+          <Box
+            width={{ base: "80%", md: "50%" }}
+            mt={{ base: "6rem", sm: "3rem", md: "0" }}
+          >
             <ResetIlust />
           </Box>
-          <Box w="50%" textAlign={{ base: "center", md: "center" }}>
+          <Box
+            w={{ base: "100%", sm: "80%", md: "50%" }}
+            textAlign={{ base: "center", md: "center" }}
+          >
             {hasOTP ? (
               <PassComponent setHasOTP={setHasOTP} role={role} />
             ) : (

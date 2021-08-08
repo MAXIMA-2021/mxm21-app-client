@@ -7,6 +7,8 @@ export const MxmButton = styled(Button)<{
   colorScheme: string;
   margin?: string;
   isDisabled?: boolean;
+  fontSize?: string;
+  padding?: string;
 }>`
   /* 
     variant: either desktop (rounded) or mobile (more squared)
@@ -14,7 +16,7 @@ export const MxmButton = styled(Button)<{
     format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
-  padding: 0.8vh 1vw;
+  padding: ${(props) => props.padding || "0.8vh 1vw"};
   margin: ${(props) => props.margin || "1rem"};
 
   border-radius: ${(props) => (props.variant === "squared" ? "10px" : "20px")};
@@ -314,7 +316,7 @@ export const MxmButton = styled(Button)<{
     `}
 
   font-family: Rubik, Arial,  sans-serif;
-  font-size: 1rem;
+  font-size: ${(props) => props.fontSize || "1rem"};
   font-weight: 500;
   transition: all 0.2s;
 `;

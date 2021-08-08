@@ -12,107 +12,72 @@ const AdminRouters = (props: any) => {
           justifyContent="center"
           backgroundColor="#f4f4f4"
         >
+          <Route path="/admin" exact component={Dashboards.LandingDashboard} />
           <Route
             path="/admin/tambah-state"
-            exact
             component={Dashboards.TambahState}
           />
-          <Route
-            path="/admin/tambah-pic"
-            exact
-            component={Dashboards.TambahPIC}
-          />
+          <Route path="/admin/tambah-pic" component={Dashboards.TambahPIC} />
           <Route
             path="/admin/edit-state/:stateID"
-            exact
             component={Dashboards.EditState}
           />
           <Route
             path="/admin/daftar-state"
-            exact
             component={Dashboards.DaftarState}
           />
-          <Route
-            path="/admin/daftar-pic"
-            exact
-            component={Dashboards.DaftarPIC}
-          />
+          <Route path="/admin/daftar-pic" component={Dashboards.DaftarPIC} />
           <Route
             path="/admin/state-detail/:stateID"
-            exact
             component={Dashboards.StateDetail}
           />
           <Route
             path="/admin/daftar-maba"
-            exact
             component={Dashboards.DaftarMahasiswaBaru}
           />
           <Route
             path="/admin/detail-maba/:nim"
-            exact
             component={Dashboards.DetailMahasiswaBaru}
           />
-          <Route
-            path="/admin/daftar-home"
-            exact
-            component={Dashboards.DaftarHome}
-          />
+          <Route path="/admin/daftar-home" component={Dashboards.DaftarHome} />
           <Route
             path="/admin/edit-home/:search_key"
-            exact
             component={Dashboards.EditHome}
           />
-          <Route
-            path="/admin/tambah-home"
-            exact
-            component={Dashboards.TambahHome}
-          />
+          <Route path="/admin/tambah-home" component={Dashboards.TambahHome} />
           <Route
             path="/admin/tambah-media"
-            exact
             component={Dashboards.TambahMedia}
           />
           <Route
             path="/admin/tambah-mahasiswa"
-            exact
             component={Dashboards.TambahMahasiswa}
           />
           <Route
             path="/admin/tambah-panitia"
-            exact
             component={Dashboards.TambahPanitia}
           />
           <Route
             path="/admin/tambah-organisator"
-            exact
             component={Dashboards.TambahOrganisator}
           />
           <Route
             path="/admin/daftar-mahasiswa"
-            exact
             component={Dashboards.DaftarMahasiswa}
           />
           <Route
             path="/admin/daftar-panitia"
-            exact
             component={Dashboards.DaftarPanitia}
           />
           <Route
             path="/admin/daftar-organisator"
-            exact
             component={Dashboards.DaftarOrganisator}
           />
           <Route
             path="/admin/edit-mahasiswa/:nim"
-            exact
             component={Dashboards.EditMahasiswa}
           />
-          <Route
-            path="/admin/edit-akun"
-            exact
-            component={Dashboards.EditAkun}
-          />
-          <Route path="/admin" exact component={Dashboards.LandingDashboard} />
+          <Route path="/admin/edit-akun" component={Dashboards.EditAkun} />
         </Box>
       </Router>
     </div>

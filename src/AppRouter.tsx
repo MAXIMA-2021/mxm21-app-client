@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import * as Home from "./views/home";
+import * as Auth from "./views/auth";
 
 import {
   AuthRouters,
@@ -70,13 +71,10 @@ export default function AppRouter() {
                   <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                     <HomeNavbar />
                     <Switch>
-                      <Route
-                        path="/about-us"
-                        exact
-                        component={Beranda.AboutUs}
-                      />
-                      <Route path="/faq" exact component={Beranda.FAQ} />
-                      <Route path="/" component={ErrorPage} />
+                      <Route path="/" exact component={Beranda.Beranda} />
+                      <Route path="/about-us" component={Beranda.AboutUs} />
+                      <Route path="/faq" component={Beranda.FAQ} />
+                      <Route component={ErrorPage} />
                     </Switch>
                     <HomeFooter />
                   </div>
