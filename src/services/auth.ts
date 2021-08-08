@@ -53,6 +53,16 @@ const getPublicState = async () => {
   return request.data;
 };
 
+const getOTP = async (nim: number) => {
+  const request = await axios.post(`${baseUrl}/public/forgetPassword`, nim);
+  return request.data;
+};
+
+const verifyOTP = async (data: any) => {
+  const request = await axios.post(`${baseUrl}/public/verifyOTP`, data);
+  return request.data;
+};
+
 export default {
   daftarMhs,
   loginMhs,
@@ -62,4 +72,6 @@ export default {
   loginOrganisator,
   checkToken,
   getPublicState,
+  getOTP,
+  verifyOTP,
 };
