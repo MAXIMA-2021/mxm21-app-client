@@ -31,7 +31,6 @@ import {
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo } from "../../../assets";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
 import "./RegisterPanitia.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
@@ -161,9 +160,8 @@ const RegisterPanitia: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -184,7 +182,6 @@ const RegisterPanitia: React.FC = () => {
                       lg: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    mt={2}
                   />
                 </Flex>
                 <Divider
@@ -361,14 +358,7 @@ const RegisterPanitia: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  <FormControl
-                    // w={{
-                    //   base: "100%",
-                    //   md: "95%",
-                    // }}
-                    mb={3}
-                    isInvalid={errors.konfirmasiPassword}
-                  >
+                  <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
                     <MxmFormLabel>Konfirmasi Password</MxmFormLabel>
                     <MxmInputGroup>
                       <Input
@@ -415,7 +405,7 @@ const RegisterPanitia: React.FC = () => {
                         loadingText="Daftar"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar
@@ -423,7 +413,7 @@ const RegisterPanitia: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Daftar

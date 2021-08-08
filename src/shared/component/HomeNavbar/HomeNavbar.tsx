@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./HomeNavbar.scss";
 
 import { MxmLogo } from "../../../assets";
 import { Image, Grid } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
-
-import MenuIcon from "@material-ui/icons/Menu";
+import jwtDecode from "jwt-decode";
 
 const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
+  let isMahasiswa = false;
+  let isLoggedIn = false;
+
+  const token: string | null = window.sessionStorage.getItem("token");
+  const decoded: any = token !== null && jwtDecode(token);
+  decoded.nim && !decoded.division && !decoded.stateID && (isMahasiswa = true);
+  if (token !== null) {
+    isLoggedIn = true;
+  }
 
   const navbarAnimation = (event: any) => {
     if (window.scrollY > 0) {
@@ -57,12 +65,14 @@ const HomeNavbar = () => {
                 >
                   HoME
                 </NavLink>
-                <NavLink
-                  to="/state"
-                  className="btn-main-nav btn-styling-main-nav"
-                >
-                  STATE
-                </NavLink>
+                {isMahasiswa && (
+                  <NavLink
+                    to="/state"
+                    className="btn-main-nav btn-styling-main-nav"
+                  >
+                    STATE
+                  </NavLink>
+                )}
                 <NavLink
                   to="/faq"
                   className="btn-main-nav btn-styling-main-nav"
@@ -77,18 +87,29 @@ const HomeNavbar = () => {
                 </NavLink>
               </li>
               <li className="btn-main-nav-auth-container">
-                <NavLink
-                  to="/auth/daftar"
-                  className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
-                >
-                  Daftar
-                </NavLink>
-                <NavLink
-                  to="/auth/masuk"
-                  className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-                >
-                  Masuk
-                </NavLink>
+                {isLoggedIn ? (
+                  <NavLink
+                    to="/auth/keluar"
+                    className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                  >
+                    Keluar
+                  </NavLink>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/auth/daftar"
+                      className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
+                    >
+                      Daftar
+                    </NavLink>
+                    <NavLink
+                      to="/auth/masuk"
+                      className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                    >
+                      Masuk
+                    </NavLink>
+                  </>
+                )}
               </li>
 
               {isSmallerThan700px ? (
@@ -143,9 +164,11 @@ const HomeNavbar = () => {
           <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
             HoME
           </NavLink>
-          <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
-            STATE
-          </NavLink>
+          {isMahasiswa && (
+            <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
+              STATE
+            </NavLink>
+          )}
           <NavLink to="/FAQ" className="btn-main-nav btn-styling-main-nav">
             FAQ
           </NavLink>
@@ -153,18 +176,29 @@ const HomeNavbar = () => {
             About Us
           </NavLink>
           <div className="btn-main-nav-auth-container-mobile">
-            <NavLink
-              to="/daftar"
-              className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
-            >
-              Daftar
-            </NavLink>
-            <NavLink
-              to="/masuk"
-              className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-            >
-              Masuk
-            </NavLink>
+            {isLoggedIn ? (
+              <NavLink
+                to="/auth/keluar"
+                className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+              >
+                Keluar
+              </NavLink>
+            ) : (
+              <>
+                <NavLink
+                  to="/auth/daftar"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
+                >
+                  Daftar
+                </NavLink>
+                <NavLink
+                  to="/auth/masuk"
+                  className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                >
+                  Masuk
+                </NavLink>
+              </>
+            )}
           </div>
         </Grid>
       </div>

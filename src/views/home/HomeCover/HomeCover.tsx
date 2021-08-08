@@ -60,7 +60,7 @@ const HomeCover = () => {
           </div>
           <div className="home-cvr-btn">
             <MxmButton
-              variant="desktop"
+              variant="rounded"
               colorScheme="cyan-navy"
               onClick={handleClick}
             >

@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -29,8 +29,7 @@ import {
 } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";
@@ -88,6 +87,7 @@ const LoginPanitia: React.FC = () => {
 
     try {
       const returnedData = await authService.loginPanitia(data);
+      window.sessionStorage.setItem("name", returnedData.nama);
       window.sessionStorage.setItem("token", returnedData.token);
       window.location.href = "/admin";
     } catch (error) {
@@ -157,9 +157,8 @@ const LoginPanitia: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     width="100%"
                     textAlign="center"
                     color="white"
@@ -267,7 +266,7 @@ const LoginPanitia: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?{" "}
+                      Lupa kata sandimu?
                       <Link
                         to="/auth/panitia/reset"
                         style={{ color: "cornflowerblue", fontWeight: 600 }}
@@ -285,7 +284,7 @@ const LoginPanitia: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk
@@ -293,7 +292,7 @@ const LoginPanitia: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk

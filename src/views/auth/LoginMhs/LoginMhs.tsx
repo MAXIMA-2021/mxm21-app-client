@@ -27,10 +27,9 @@ import {
   MxmContainers,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
@@ -88,12 +87,13 @@ const LoginMhs: React.FC = () => {
 
     try {
       const returnedData = await authService.loginMhs(data);
-      reset();
-      window.sessionStorage.setItem("token", returnedData.accessToken);
-      window.sessionStorage.setItem("name", returnedData.name);
-      // const decoded = jwtDecode(returnedData.accessToken);
       console.log(returnedData);
-      window.location = "/";
+      reset();
+
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("name", returnedData.nama);
+      console.log(returnedData);
+      window.location.href = "/";
       alert("berhasil login");
     } catch (error) {
       Swal.fire({
@@ -105,10 +105,6 @@ const LoginMhs: React.FC = () => {
     }
     setLoading(false);
   };
-
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
 
   return (
     <MxmContainers>
@@ -127,11 +123,11 @@ const LoginMhs: React.FC = () => {
               <Alert
                 fontFamily="Rubik"
                 fontSize="0.9rem"
-                status={location.state.status}
+                status={location.state?.status}
                 width={{ base: "20rem", lg: "max-content" }}
               >
                 <AlertIcon />
-                {location.state.message}
+                {location.state?.message}
               </Alert>
             )}
             <Flex
@@ -162,9 +158,8 @@ const LoginMhs: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -191,7 +186,6 @@ const LoginMhs: React.FC = () => {
                       xl: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    mt={2}
                   />
                 </Flex>
                 <Divider
@@ -286,7 +280,7 @@ const LoginMhs: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?{" "}
+                      Lupa kata sandimu?
                       <Link
                         to="/auth/reset"
                         style={{ color: `${Palette.Cyan}` }}
@@ -304,7 +298,7 @@ const LoginMhs: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Masuk
@@ -312,7 +306,7 @@ const LoginMhs: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Masuk

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -19,11 +19,19 @@ import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import Swal from "sweetalert2";
+import jwtDecode from "jwt-decode";
 
 const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+  let isAdmin = false;
+
+  const token: string | null = window.sessionStorage.getItem("token");
+  const decoded: any = token !== null && jwtDecode(token);
+  decoded.division === "D01" && (isAdmin = true);
+
+  const location = useLocation();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -235,13 +243,17 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/admin/daftar-home"
-                      activeClassName="dropdown-item_active"
+                    <a
+                      href="/admin/daftar-home"
+                      className={
+                        location.pathname === "/admin/daftar-home"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -263,13 +275,17 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/admin/daftar-state"
-                      activeClassName="dropdown-item_active"
+                    <a
+                      href="/admin/daftar-state"
+                      className={
+                        location.pathname === "/admin/daftar-state"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar STATE
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -279,69 +295,73 @@ const DashboardNavigation = (props: any) => {
                 Shortener
               </NavLink>
 
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
-                <Flex className="dropdown-header">
-                  <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
-                  Akun MAXIMA 2021
-                  <ArrowBackIosRoundedIcon onClick={sidebarDropdownActiveSvg} />
-                </Flex>
-                <ul className="dropdown-items">
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-mahasiswa"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah Akun Mahasiswa
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-mahasiswa"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar Akun Mahasiswa
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-panitia"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah Akun Panitia
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-panitia"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar Akun Panitia
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/tambah-organisator"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Tambah Akun Organisator
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/admin/daftar-organisator"
-                      activeClassName="dropdown-item_active"
-                    >
-                      <RadioButtonUncheckedOutlinedIcon />
-                      Daftar Akun Organisator
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
+              {isAdmin && (
+                <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                  <Flex className="dropdown-header">
+                    <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
+                    Akun MAXIMA 2021
+                    <ArrowBackIosRoundedIcon
+                      onClick={sidebarDropdownActiveSvg}
+                    />
+                  </Flex>
+                  <ul className="dropdown-items">
+                    <li>
+                      <NavLink
+                        to="/admin/tambah-mahasiswa"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Tambah Akun Mahasiswa
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/daftar-mahasiswa"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Daftar Akun Mahasiswa
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/tambah-panitia"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Tambah Akun Panitia
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/daftar-panitia"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Daftar Akun Panitia
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/tambah-organisator"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Tambah Akun Organisator
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/daftar-organisator"
+                        activeClassName="dropdown-item_active"
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Daftar Akun Organisator
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              )}
 
               <NavLink
                 to="/admin/edit-akun"

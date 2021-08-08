@@ -1,0 +1,36 @@
+.chakra-modal__footer {
+  width: unset !important;
+  justify-content: center !important;
+}
+
+.modal-image-container {
+  & img {
+    height: 200px;
+    object-fit: cover;
+  }
+  margin-bottom: 1.2rem;
+}
+
+.modal-batalkan-body {
+  & > h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+  }
+
+  & > h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+
+    &:first-of-type {
+      margin-bottom: 2rem;
+      font-weight: 600;
+      font-family: Rubik, Arial, Helvetica, sans-serif;
+    }
+  }
+}
+
+.chakra-modal__content {
+  color: #143458 !important;
+}

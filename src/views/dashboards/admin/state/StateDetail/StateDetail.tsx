@@ -8,6 +8,7 @@ import {
   Center,
   Text,
   Container,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -38,6 +39,8 @@ const StateDetail: React.FC = () => {
   const { stateID }: any = useParams();
   const [detailState, setDetailState] = useState<any>([]);
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
+  const [isSmallerThan600px] = useMediaQuery("(max-width: 600px)");
+  const [isSmallerThan800px] = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
     const fetchDataDetail = async () => {
@@ -45,6 +48,7 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
 
         setDetailState(returnedDataState[0]);
+        // console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -62,7 +66,6 @@ const StateDetail: React.FC = () => {
         );
 
         setDataKehadiranMhs(returnedDataMhs);
-        console.log(dataKehadiranMhs);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -157,14 +160,6 @@ const StateDetail: React.FC = () => {
     },
   ];
 
-  // const data = [
-  //   ["Bukan Jane Cooper", "32323", true],
-  //   ["Bukan Jane Cooper", "45454", false],
-  //   ["Bukan Jane Cooper", "95959", true],
-  //   ["Bukan Jane Cooper", "56565", false],
-  //   ["Bukan Jane Cooper", "46464", true],
-  // ];
-
   return (
     <>
       <Flex
@@ -191,11 +186,11 @@ const StateDetail: React.FC = () => {
             md: "2rem",
           }}
           rounded={20}
+          minW={isSmallerThan800px ? "" : "800px"}
         >
           <form>
-            <Flex>
+            <Flex mb="1vh" alignItems="center">
               <Heading
-                mb="1vh"
                 letterSpacing="0.05em"
                 fontSize={{
                   base: "1.2em",
@@ -205,7 +200,7 @@ const StateDetail: React.FC = () => {
               >
                 Detail Kegiatan dan Peserta Registrasi STATE
               </Heading>
-              <Spacer />
+              <Spacer basis={500} />
               <Image
                 src={MxmLogo}
                 alt="Logo MAXIMA 2021"
@@ -218,28 +213,58 @@ const StateDetail: React.FC = () => {
                   xl: "2vw",
                   "2xl": "1.2vw",
                 }}
-                mt="0.4vh"
-                mb="1vh"
               />
             </Flex>
             <MxmDivider color="black" height="3px" margin="1rem 0 1.5rem 0" />
-            <Flex direction="row">
-              <img
-                src={detailState?.stateLogo}
-                style={{ maxWidth: "50%", height: "100%" }}
-                alt="logoState"
-              />
-              <Container pl="1rem">
-                <Heading>{detailState?.name}</Heading>
-                <Text mt="1.5rem">
-                  <EventOutlinedIcon /> Hari ke-{detailState?.day} (Rabu, 6
-                  Agustus 2021)
+            <Flex direction={isSmallerThan600px ? "column" : "row"}>
+              {isSmallerThan600px ? (
+                <Flex justifyContent="center">
+                  <img
+                    src={detailState?.stateLogo}
+                    style={{
+                      maxWidth: "40%",
+                      height: "100%",
+                    }}
+                    alt={`Logo ${detailState?.name}`}
+                  />
+                </Flex>
+              ) : (
+                <img
+                  src={detailState?.stateLogo}
+                  style={{
+                    maxWidth: "40%",
+                    height: "100%",
+                    marginRight: "1.5rem",
+                  }}
+                  alt={`Logo ${detailState?.name}`}
+                />
+              )}
+
+              <Container pl="1rem" m="0">
+                <Heading
+                  style={{ letterSpacing: "0.022em" }}
+                  textAlign={isSmallerThan600px ? "center" : "left"}
+                  mt={isSmallerThan600px ? "0.5rem" : ""}
+                >
+                  {detailState?.name}
+                </Heading>
+                <Heading
+                  fontSize={"1.2rem"}
+                  fontWeight={600}
+                  mt={"0.2rem"}
+                  textAlign={isSmallerThan600px ? "center" : "left"}
+                >
+                  {detailState?.category}
+                </Heading>
+                <Text mt="1.2rem">
+                  <EventOutlinedIcon /> Hari ke-{detailState?.day?.substr(1, 1)}{" "}
+                  ({detailState?.tanggal})
                 </Text>
                 <Flex direction="row" my="1rem">
                   <Text>
                     <PeopleAltOutlinedIcon /> {detailState?.quota}
                   </Text>
-                  <Text ml="2rem">
+                  <Text ml="6rem">
                     <VpnKeyOutlinedIcon /> {detailState?.attendanceCode}
                   </Text>
                 </Flex>
@@ -249,9 +274,44 @@ const StateDetail: React.FC = () => {
                     {detailState?.zoomLink}
                   </Text>
                 </Flex>
+                <Heading mt="1.2rem" fontSize={"1rem"} fontWeight={700}>
+                  Deskripsi Pendek
+                </Heading>
+                <Text wordBreak="break-all" mt="0.2rem">
+                  {detailState?.shortDesc}
+                </Text>
               </Container>
             </Flex>
-            <Text fontWeight="bold" fontSize="1.2em" mt="5rem">
+
+            {detailState?.coverPhoto === "" ? (
+              <div
+                style={{
+                  backgroundColor: "grey",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "1.2rem",
+                  height: "250px",
+                  marginTop: "1.4rem",
+                }}
+              >
+                Foto Cover tidak ditemukan
+              </div>
+            ) : (
+              <img
+                src={detailState?.coverPhoto}
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  height: "300px",
+                  marginTop: "1.4rem",
+                }}
+                alt={`Cover ${detailState?.name}`}
+              />
+            )}
+
+            <Text fontWeight="bold" fontSize="1.2em" mt="3rem">
               Peserta Registrasi STATE
             </Text>
             <Center>

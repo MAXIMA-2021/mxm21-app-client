@@ -71,7 +71,9 @@ export interface DataHomeBySearchKey {
 
 export interface DataState {
   name: string;
+  category: string;
   zoomLink: string;
+  shortDesc: string;
   day: string;
   quota: string;
 }

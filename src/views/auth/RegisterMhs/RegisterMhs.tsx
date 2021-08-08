@@ -14,7 +14,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
-import { createIcon } from "@chakra-ui/react";
 import {
   MxmInput,
   MxmInputGroup,
@@ -99,20 +98,6 @@ const RegisterMhs: React.FC = () => {
       idLine: data.idLine,
       idInstagram: data.idInstagram,
     };
-
-    // const dataMaba: DataRegisterMaba = {
-    //   nim: "42580",
-    //   name: "Adrian Finantyo",
-    //   email: "bonifasius.finantyo@student.umn.ac.id",
-    //   tempatLahir: "Tangerang",
-    //   tanggalLahir: "2002-06-05",
-    //   jenisKelamin: "L",
-    //   prodi: "IT",
-    //   whatsApp: "082114188134",
-    //   idLine: "adrianfinantyo",
-    //   idInstagram: "adrianfinantyo",
-    // };
-
     console.log(JSON.stringify(dataMaba));
 
     try {
@@ -176,9 +161,8 @@ const RegisterMhs: React.FC = () => {
               }}
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex>
+                <Flex mb={3} alignItems="center">
                   <Heading
-                    mb={3}
                     color="white"
                     letterSpacing="0.05em"
                     fontSize={{
@@ -199,7 +183,6 @@ const RegisterMhs: React.FC = () => {
                       lg: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    mt={2}
                   />
                 </Flex>
                 <Divider
@@ -550,7 +533,7 @@ const RegisterMhs: React.FC = () => {
                         loadingText="Daftar"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Daftar
@@ -558,7 +541,7 @@ const RegisterMhs: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-white"
                       >
                         Daftar

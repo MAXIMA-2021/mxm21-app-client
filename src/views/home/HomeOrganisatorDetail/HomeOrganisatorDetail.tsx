@@ -192,7 +192,7 @@ const HomeOrganisatorDetail = () => {
                   status: true,
                 })
               }
-              variant="dekstop"
+              variant="rounded"
               colorScheme="navy-cyan"
             >
               <Text fontSize="1rem" p="0.2rem 2rem">

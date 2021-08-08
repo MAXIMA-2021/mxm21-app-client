@@ -27,11 +27,9 @@ import {
   MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";
@@ -89,6 +87,7 @@ const LoginOrganisator: React.FC = () => {
 
     try {
       const returnedData = await authService.loginOrganisator(data);
+      window.sessionStorage.setItem("name", returnedData.nama);
       window.sessionStorage.setItem("token", returnedData.accessToken);
       window.location.href = "/admin";
     } catch (error) {
@@ -265,7 +264,7 @@ const LoginOrganisator: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?{" "}
+                      Lupa kata sandimu?
                       <Link
                         to="/auth/organisator/reset"
                         style={{ color: "cornflowerblue", fontWeight: 600 }}
@@ -283,7 +282,7 @@ const LoginOrganisator: React.FC = () => {
                         loadingText="Masuk"
                         spinnerPlacement="start"
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk
@@ -291,7 +290,7 @@ const LoginOrganisator: React.FC = () => {
                     ) : (
                       <MxmButton
                         type="submit"
-                        variant="desktop"
+                        variant="rounded"
                         colorScheme="cyan-navy"
                       >
                         Masuk

@@ -101,7 +101,11 @@ const HomeCategory = () => {
         </Flex>
       </Flex>
       <footer>
-        <Image className="arrow-btn" src={arrow} />
+        <Image
+          className="arrow-btn"
+          src={arrow}
+          onClick={() => history.push("/home/enter")}
+        />
       </footer>
     </div>
   );

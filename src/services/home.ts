@@ -7,6 +7,12 @@ const getHomeByCategory = async (chapter: string) => {
   return request.data;
 };
 
+const getChapterData = async (chapter: string) => {
+  const request = await axios.get(`${baseUrl}/public/chapter/${chapter}`);
+  return request.data;
+};
+
 export default {
   getHomeByCategory,
+  getChapterData,
 };

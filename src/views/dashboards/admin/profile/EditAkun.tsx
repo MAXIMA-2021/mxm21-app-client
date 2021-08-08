@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { TextField } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Palette } from "../../../../types/enums";
 import { MxmLogo } from "../../../../assets";
 import {
@@ -24,6 +23,7 @@ import {
 import authService from "../../../../services/auth";
 import adminService from "../../../../services/admin";
 import Swal from "sweetalert2";
+import jwtDecode from "jwt-decode";
 
 const EditAkun: React.FC = () => {
   const {
@@ -40,9 +40,11 @@ const EditAkun: React.FC = () => {
     document.title = "Edit Akun Kamu - MAXIMA 2021";
     const fetchData = async () => {
       try {
-        const user = await authService.checkToken();
-        setData(user.name);
-        setValue("name", user.name);
+        const decoded: any = jwtDecode(
+          window.sessionStorage.getItem("token") || ""
+        );
+        setData(window.sessionStorage.getItem("name") || "");
+        setValue("name", window.sessionStorage.getItem("name") || "");
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -58,9 +60,9 @@ const EditAkun: React.FC = () => {
 
   const onSubmit = async (data: any) => {
     setLoading(true);
-    const user = await authService.checkToken();
+    const user: any = jwtDecode(window.sessionStorage.getItem("token") || "");
     try {
-      if (user.role === "panitia") {
+      if (user?.division) {
         await adminService.updatePanitia(data);
         Swal.fire({
           position: "center",
@@ -69,7 +71,7 @@ const EditAkun: React.FC = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-      } else if (user.role === "organisator") {
+      } else if (user?.stateID) {
         await adminService.updateOrganisator(data);
         Swal.fire({
           position: "center",
@@ -95,8 +97,8 @@ const EditAkun: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw-18rem)",
-        md: "calc(100vw-18rem)",
+        base: "calc(100vw - 18rem)",
+        md: "calc(100vw - 18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
       alignItems="center"
@@ -219,18 +221,3 @@ const EditAkun: React.FC = () => {
 };
 
 export default EditAkun;
-
-const stateList = [
-  { name: "Ultimagz", day: "1" },
-  { name: "Ultima Sonora", day: "2" },
-  { name: "Teater Katak", day: "3" },
-  { name: "UMN Radion", day: "4" },
-];
-
-const organisatorList = [
-  { name: "Bonifasius Ariesto Adrian Finantyo", nim: "42580" },
-  { name: "Bapak Budi", nim: "32580" },
-  { name: "Ibu Budi", nim: "22580" },
-  { name: "Ini Budi", nim: "12580" },
-  { name: "Bukan Tiara Andini", nim: "52580" },
-];

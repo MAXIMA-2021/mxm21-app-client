@@ -188,7 +188,7 @@ const HomeTwibbon = () => {
               <br />
               <Flex>
                 <MxmButton
-                  variant="desktop"
+                  variant="rounded"
                   colorScheme="navy-white"
                   margin="0"
                 >
@@ -196,7 +196,7 @@ const HomeTwibbon = () => {
                 </MxmButton>
                 <Spacer />
                 <MxmButton
-                  variant="desktop"
+                  variant="rounded"
                   colorScheme="navy-white"
                   margin="0"
                 >
@@ -218,7 +218,7 @@ const HomeTwibbon = () => {
         <Flex mt={10}>
           <MxmButton
             onClick={history.goBack}
-            variant="desktop"
+            variant="rounded"
             colorScheme="navy-white"
             margin="0"
           >
