@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./HomeNavbar.scss";
 
 import { MxmLogo } from "../../../assets";
 import { Image, Grid } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import jwtDecode from "jwt-decode";
-
-import MenuIcon from "@material-ui/icons/Menu";
 
 const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");

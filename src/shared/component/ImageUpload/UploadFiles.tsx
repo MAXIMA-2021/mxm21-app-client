@@ -1,7 +1,7 @@
 import { createIcon } from "@chakra-ui/icons";
 import { Flex, Button } from "@chakra-ui/react";
 import React, { useState, useCallback } from "react";
-import { FileError, useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import { UploadContainer } from "../../styled/containers";
 import { Palette } from "../../../types/enums";
 
@@ -13,11 +13,6 @@ const IconUpload = createIcon({
 
 const UploadFiles = (props: any) => {
   const [myFiles, setMyFiles] = useState<any>([]);
-  // const [inputFile, setInputFile] = useState("");
-
-  // const handleChange = (event: any) => {
-  //   console.log(event.target.value);
-  // };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setMyFiles([...myFiles, ...acceptedFiles]);
@@ -56,10 +51,6 @@ const UploadFiles = (props: any) => {
     newFiles.splice(newFiles.indexOf(file), 1);
     setMyFiles(newFiles);
   };
-  //   const removeAll = () => {
-  //     setMyFiles([]);
-  //   };
-
   const files = myFiles.map((file: any) => {
     return (
       <Flex key={file.name} alignItems="center" justifyContent="space-between">
@@ -83,20 +74,10 @@ const UploadFiles = (props: any) => {
     props.setFiles(myFiles);
   }
 
-  // if (props.resetUpload) {
-  //   setMyFiles([]);
-  //   console.log("reset");
-  // }
-
   return (
     <div>
       <UploadContainer {...getRootProps({ className: "dropzone" })}>
-        <input
-          {...getInputProps()}
-          // {...register("linkLogo", {
-          //   required: "Isi logo",
-          // })}
-        />
+        <input {...getInputProps()} />
         <IconUpload boxSize="3.5em" />
         <p style={{ fontFamily: "Poppins", fontSize: "0.8em" }}>
           Drag and Drop atau{" "}

@@ -1,7 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Route } from "react-router-dom";
 import * as State from "../views/state";
-import { ErrorPage } from "../views/error";
 
 const StateRouters = () => {
   return (

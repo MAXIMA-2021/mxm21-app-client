@@ -52,28 +52,18 @@ const Beranda = () => {
             <iframe
               width="486"
               height="262"
-              src="https://www.youtube.com/embed/q94Pl_g-p2g"
+              src="https://www.youtube.com/embed/JGz46gSAlEo"
             ></iframe>
           </Tilt>
         </Container>
         <Container>
           <Tilt className="Tilt" options={{ max: 25 }}>
-            <Box
-              bg="gray"
-              width="470"
-              height="262"
-              src="https://www.youtube.com/embed/q94Pl_g-p2g"
-            ></Box>
+            <Box bg="gray" width="470" height="262"></Box>
           </Tilt>
         </Container>
         <Container>
           <Tilt className="Tilt" options={{ max: 25 }}>
-            <Box
-              bg="gray"
-              width="470"
-              height="262"
-              src="https://www.youtube.com/embed/q94Pl_g-p2g"
-            >
+            <Box bg="gray" width="470" height="262">
               <Center height="100%">
                 <div className="Tilt-inner">
                   <Center>
@@ -84,13 +74,6 @@ const Beranda = () => {
             </Box>
           </Tilt>
         </Container>
-        <MxmButton onClick={onOpen}>Pilih STATE</MxmButton>
-        <StateModal.PilihState
-          closeOnOverlayClick={false}
-          isOpen={isOpen}
-          onClose={onClose}
-          isCentered
-        />
       </SimpleGrid>
     </Center>
   );

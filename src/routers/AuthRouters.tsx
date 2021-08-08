@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Redirect, Route } from "react-router-dom";
 import * as Auth from ".././views/auth";
-import { ErrorPage } from "../views/error";
 
 export default function AuthRouters() {
   return (

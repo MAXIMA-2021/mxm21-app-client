@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import "./StateModal.scss";
 import {
-  // Heading,
-  // Center,
-  // SimpleGrid,
-  // Box,
-  // Text,
-  // Container,
   HStack,
   PinInput,
   PinInputField,
   Image,
   Flex,
-  useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
-  // ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
@@ -24,7 +16,6 @@ import {
   FormErrorIcon,
 } from "@chakra-ui/react";
 import { MxmButton } from "../../styled/buttons";
-import { useForm } from "react-hook-form";
 import { MxmFormErrorMessage } from "../../styled/input";
 
 export const CancelState = (props: any) => {
