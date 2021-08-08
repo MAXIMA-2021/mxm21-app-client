@@ -46,19 +46,18 @@ const OTPComponent = (props: any) => {
   } = useForm();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: unknown) => {
     setLoading(true);
 
     try {
       const returnedData = await authService.getOTP(data);
       reset();
-      console.log(returnedData);
-      alert(returnedData["otp"]);
+      props.setRole(returnedData["role"]);
       props.setHasOTP(true);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response?.data.message,
+        text: error.response.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
@@ -160,8 +159,9 @@ const PassComponent = (props: any) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: unknown) => {
     setLoading(true);
+    data["role"] = props.role;
 
     try {
       const returnedData = await authService.verifyOTP(data);
@@ -178,7 +178,7 @@ const PassComponent = (props: any) => {
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response?.data.message,
+        text: error.response.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
@@ -322,6 +322,7 @@ const PassComponent = (props: any) => {
 
 const ResetPassword: React.FC = () => {
   const [hasOTP, setHasOTP] = useState(false);
+  const [role, setRole] = useState();
   useEffect(() => {
     document.title = "Reset Password - MAXIMA 2021";
   }, []);
@@ -351,9 +352,9 @@ const ResetPassword: React.FC = () => {
           </Box>
           <Box w="50%" textAlign={{ base: "center", md: "center" }}>
             {hasOTP ? (
-              <PassComponent setHasOTP={setHasOTP} />
+              <PassComponent setHasOTP={setHasOTP} role={role} />
             ) : (
-              <OTPComponent setHasOTP={setHasOTP} />
+              <OTPComponent setHasOTP={setHasOTP} setRole={setRole} />
             )}
           </Box>
         </Flex>

@@ -22,7 +22,6 @@ const HomeNavbar = () => {
   if (token !== null) {
     isLoggedIn = true;
   }
-  console.log(isLoggedIn);
 
   const navbarAnimation = (event: any) => {
     if (window.scrollY > 0) {
