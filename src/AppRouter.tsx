@@ -1,15 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as Beranda from "./views/beranda";
-import * as Home from "./views/home";
-import * as Auth from "./views/auth";
-
-import {
-  AuthRouters,
-  AdminRouters,
-  HomeRouters,
-  StateRouters,
-} from "./routers";
+import { AuthRouters, HomeRouters, StateRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";
 import { DashboardNavigation } from "./shared/component/DashboardNavigation";
 import { DashboardFooter } from "./shared/component/DashboardFooter";

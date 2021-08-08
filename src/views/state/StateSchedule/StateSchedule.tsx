@@ -11,7 +11,6 @@ import stateService from "../../../services/state";
 import Swal from "sweetalert2";
 import { StateModal } from "../../../shared/component/StateModal";
 
-// Ini Adalah Komponen Utama Dari Halaman StateSchedule
 const StateSchedule = () => {
   const [stateData, setStateData] = useState<any>({});
 
@@ -107,12 +106,6 @@ const StateSchedule = () => {
 
 export default StateSchedule;
 
-// Ini Adalah Komponen BoxJadwal Untuk Menampilkan Info Dari State Yang Terpilih
-//
-//
-//
-//
-// Ini Adalah Komponen BoxJadwal Untuk Menampilkan Info Dari State Yang Terpilih
 const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
   const defaultImage = [State.Maxi, State.Icon, State.Xima];
   const i = Number(props.i);

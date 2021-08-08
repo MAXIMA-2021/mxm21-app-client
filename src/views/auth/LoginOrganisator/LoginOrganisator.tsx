@@ -27,11 +27,9 @@ import {
   MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";

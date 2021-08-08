@@ -27,10 +27,9 @@ import {
   MxmContainers,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
-import jwtDecode from "jwt-decode";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
@@ -106,10 +105,6 @@ const LoginMhs: React.FC = () => {
     }
     setLoading(false);
   };
-
-  // const onSubmit = (data: any) => {
-  //   window.confirm(JSON.stringify(data));
-  // };
 
   return (
     <MxmContainers>
@@ -191,7 +186,6 @@ const LoginMhs: React.FC = () => {
                       xl: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    // mt={2}
                   />
                 </Flex>
                 <Divider

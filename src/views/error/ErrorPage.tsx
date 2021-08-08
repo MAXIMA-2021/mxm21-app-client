@@ -66,10 +66,6 @@ const ErrorPage = () => {
 
 export default ErrorPage;
 
-const ErrorText = () => {
-  return <Heading>404</Heading>;
-};
-
 const ErrorIlust = (props: { width?: string; height?: string }) => {
   return (
     <svg

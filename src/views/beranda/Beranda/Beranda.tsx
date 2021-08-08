@@ -7,29 +7,13 @@ import {
   Box,
   Text,
   Container,
-  HStack,
-  PinInput,
-  PinInputField,
-  Image,
-  Flex,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import { MxmButton } from "../../../shared/styled/buttons";
-import { StateModal } from "../../../shared/component/StateModal";
 
 const Beranda = () => {
   const location = useLocation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     document.title = "Beranda - MAXIMA 2021";
     location.state && Swal.fire(location?.state);

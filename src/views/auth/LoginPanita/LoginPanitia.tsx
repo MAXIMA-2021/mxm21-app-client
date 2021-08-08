@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -29,8 +29,7 @@ import {
 } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogoText } from "../../../assets";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette } from "../../../types/enums";
+import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";

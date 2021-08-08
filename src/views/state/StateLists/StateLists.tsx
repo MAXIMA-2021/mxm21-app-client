@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -11,7 +10,6 @@ import {
   Tabs,
   TabList,
   TabPanels,
-  Tab,
   TabPanel,
   chakra,
   useTab,
@@ -19,7 +17,6 @@ import {
   useDisclosure,
   Skeleton,
   SkeletonCircle,
-  SkeletonText,
 } from "@chakra-ui/react";
 import { MxmHeading } from "../../../shared/styled/containers";
 import { createIcon } from "@chakra-ui/icons";
