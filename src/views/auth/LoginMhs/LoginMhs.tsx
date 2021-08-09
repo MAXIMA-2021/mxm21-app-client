@@ -280,7 +280,7 @@ const LoginMhs: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?
+                      Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/reset"
                         style={{ color: `${Palette.Cyan}` }}
