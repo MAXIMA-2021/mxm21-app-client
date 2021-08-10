@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   Flex,
   Heading,
@@ -15,6 +16,8 @@ import {
   MxmFormLabel,
   MxmFormErrorMessage,
   MxmSelect,
+  MxmInput,
+  MxmTextarea,
 } from "../../../../../shared/styled/input";
 import { Palette } from "../../../../../types/enums";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
@@ -22,10 +25,10 @@ import Swal from "sweetalert2";
 import adminService from "../../../../../services/admin";
 
 const EditNarasi: React.FC = () => {
-  const [homeData, setHomeData] = useState<any[]>([]);
+  const { homeChapterID }: any = useParams();
+  const [dialogue, setDialogue] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<any>([]);
-  const [resetUpload, setResetUpload] = useState<boolean>(false);
 
   const {
     register,
@@ -40,8 +43,8 @@ const EditNarasi: React.FC = () => {
     document.title = "[Dashboard] - Tambah Media";
     const fetchData = async () => {
       try {
-        const data = await adminService.getAllHome();
-        setHomeData(data);
+        const data = await adminService.getChapterById(homeChapterID);
+        setDialogue(data[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -54,13 +57,19 @@ const EditNarasi: React.FC = () => {
     fetchData();
   }, []);
 
-  const onSubmit = async (data: { homeID: number }) => {
+  useEffect(() => {
+    setValue("title", dialogue?.title);
+    setValue("message", dialogue?.message);
+    console.log(dialogue.title);
+    console.log(dialogue.message);
+  }, [dialogue]);
+
+  const onSubmit = async (data: any) => {
     setLoading(true);
     const formData = new FormData();
-    files.map((data: File) => formData.append("linkMedia", data));
 
     try {
-      await adminService.tambahMedia(formData, data.homeID);
+      await adminService.updateChapterById(homeChapterID, data);
       reset();
       Swal.fire({
         position: "center",
@@ -69,26 +78,22 @@ const EditNarasi: React.FC = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      setResetUpload(true);
-      setFiles([]);
+      window.location.href = "/admin/daftar-narasi";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
-        text: error.response?.data.message,
+        text: error.response.data.message,
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
     }
     setLoading(false);
-    setResetUpload(false);
-    setValue("homeID", "");
-    setFocus("homeID");
   };
 
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
@@ -108,6 +113,7 @@ const EditNarasi: React.FC = () => {
         backgroundColor="#FFFFFF"
         py="1.5rem"
         px="1.5rem"
+        width={{ base: "95vw", md: "initial" }}
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -142,39 +148,38 @@ const EditNarasi: React.FC = () => {
             />
           </Flex>
           <MxmDivider color="black" height="3px" margin="1vh 0 2.8vh 0" />
-          <FormControl mb={3} isInvalid={errors.homeID}>
-            <MxmFormLabel color="black">Nama Organisator</MxmFormLabel>
-            <MxmSelect
-              {...register("homeID", {
-                required: "Pilih Nama Organisator",
-              })}
-            >
-              <option value="" selected disabled hidden></option>
-              {homeData.map((data) => (
-                <option value={data.homeID}>{data.name}</option>
-              ))}
-            </MxmSelect>
+          <FormControl mb={3} mr="5" isInvalid={errors.title}>
+            <MxmFormLabel color="black">Chapter</MxmFormLabel>
+            <MxmInput
+              {...register("title", { required: "Isi judul Chapter" })}
+            />
             <MxmFormErrorMessage fontSize="xs" mt={1}>
-              {errors.homeID && (
+              {errors.title && (
                 <Flex flexDirection="row" alignItems="center">
                   <p>
                     <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                    {errors.homeID.message}
+                    {errors.title.message}
                   </p>
                 </Flex>
               )}
             </MxmFormErrorMessage>
           </FormControl>
-          <FormControl mb={3} isInvalid={errors.linkMedia}>
-            <MxmFormLabel color="black">File Media</MxmFormLabel>
-            {!resetUpload && (
-              <UploadFiles
-                maxfiles={5}
-                keterangan={true}
-                isiKeterangan={"5 file"}
-                setFiles={setFiles}
-              />
-            )}
+          <FormControl mb={3} mr="5" isInvalid={errors.message}>
+            <MxmFormLabel color="black">Narasi</MxmFormLabel>
+            <MxmTextarea
+              height={{ base: "16rem", md: "8.5rem" }}
+              {...register("message", { required: "Isi narasi Chapter" })}
+            />
+            <MxmFormErrorMessage fontSize="xs" mt={1}>
+              {errors.message && (
+                <Flex flexDirection="row" alignItems="center">
+                  <p>
+                    <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                    {errors.message.message}
+                  </p>
+                </Flex>
+              )}
+            </MxmFormErrorMessage>
           </FormControl>
           <Flex mt={10}>
             <Spacer />

@@ -51,7 +51,6 @@ const EditState: React.FC = () => {
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getSpecificState(stateID);
-        console.log(returnedData);
         setState(returnedData[0]);
       } catch (error) {
         Swal.fire({

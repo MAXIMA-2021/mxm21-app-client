@@ -88,6 +88,29 @@ const DaftarNarasi: React.FC = () => {
   };
   const tableColumns = [
     {
+      name: "homeChapterID",
+      label: "ID Chapter",
+      options: {
+        display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "50px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
+    },
+    {
       name: "title",
       label: "Chapter",
       options: {
@@ -156,7 +179,7 @@ const DaftarNarasi: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
             <Link
-              to={`/admin/edit-home/${findSearchKey(tableMeta.rowData[0])}`}
+              to={`/admin/edit-narasi/${tableMeta.rowData[0]}`}
               style={{ textDecoration: "none" }}
             >
               <Button
@@ -208,7 +231,6 @@ const DaftarNarasi: React.FC = () => {
             base: "0.2rem",
             md: "2rem",
           }}
-          width="99vw"
           rounded={20}
         >
           <form className="form_daftar-state">

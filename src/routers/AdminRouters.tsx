@@ -54,7 +54,7 @@ const AdminRouters = (props: any) => {
             component={Dashboards.DaftarNarasi}
           />
           <Route
-            path="/admin/edit-narasi/:chapter"
+            path="/admin/edit-narasi/:homeChapterID"
             component={Dashboards.EditNarasi}
           />
           <Route
