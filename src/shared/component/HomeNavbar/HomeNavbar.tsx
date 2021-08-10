@@ -3,14 +3,38 @@ import { NavLink } from "react-router-dom";
 import "./HomeNavbar.scss";
 
 import { MxmLogo } from "../../../assets";
-import { Image, Grid } from "@chakra-ui/react";
+import { Image, Grid, Skeleton } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import jwtDecode from "jwt-decode";
+import { Palette } from "../../../types/enums";
+import { motion } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const navbarVariants = {
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
+const buttonVariants = {
+  rest: { x: 100, opacity: 0, transition },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+  exit: { x: -100, opacity: 1, transition: { delay: 0.2, ...transition } },
+};
 
 const HomeNavbar = () => {
   const [isSmallerThan700px] = useMediaQuery("(max-width: 43.75em)");
   const [navbarSticks, setNavbarSticks] = useState(false);
   const [mobileMenuShow, setMobileMenuShow] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
   let isMahasiswa = false;
   let isLoggedIn = false;
 
@@ -41,21 +65,33 @@ const HomeNavbar = () => {
 
   return (
     <>
-      <nav
+      <motion.nav
         className={`nav-container ${navbarSticks ? "nav-sticky" : ""} ${
           mobileMenuShow ? "navbar-mobile" : ""
         }`}
+        variants={navbarVariants}
+        initial="rest"
+        animate="enter"
+        exit="exit"
       >
         <header>
           <div className="navbar-container">
             <ul className="navigation-list">
               <li className="navigation-btn-homepage-logo">
                 <NavLink to="/" className="navigation-btn-homepage-mxm-logo">
-                  <Image
-                    src={MxmLogo}
-                    alt="Logo MAXIMA 2021"
-                    boxSize={isSmallerThan700px ? "30px" : "44px"}
-                  />
+                  <Skeleton
+                    startColor={Palette.Cyan}
+                    endColor={Palette.Navy}
+                    isLoaded={!imageLoading}
+                    borderRadius="50%"
+                  >
+                    <Image
+                      src={MxmLogo}
+                      alt="Logo MAXIMA 2021"
+                      onLoad={() => setImageLoading(false)}
+                      boxSize={isSmallerThan700px ? "30px" : "44px"}
+                    />
+                  </Skeleton>
                 </NavLink>
               </li>
               <li>
@@ -86,7 +122,13 @@ const HomeNavbar = () => {
                   About Us
                 </NavLink>
               </li>
-              <li className="btn-main-nav-auth-container">
+              <motion.li
+                className="btn-main-nav-auth-container"
+                variants={buttonVariants}
+                initial="rest"
+                animate="enter"
+                exit="exit"
+              >
                 {isLoggedIn ? (
                   <NavLink
                     to="/auth/keluar"
@@ -110,7 +152,7 @@ const HomeNavbar = () => {
                     </NavLink>
                   </>
                 )}
-              </li>
+              </motion.li>
 
               {isSmallerThan700px ? (
                 <li className="mobile-nav-menu-icon">
@@ -154,7 +196,7 @@ const HomeNavbar = () => {
             </ul>
           </div>
         </header>
-      </nav>
+      </motion.nav>
       <div
         className={`mobile-nav-menu-container ${mobileMenuShow ? "open" : ""} ${
           navbarSticks ? "menu-sticky" : ""
@@ -165,7 +207,7 @@ const HomeNavbar = () => {
             HoME
           </NavLink>
           {isMahasiswa && (
-            <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
+            <NavLink to="/state" className="btn-main-nav btn-styling-main-nav">
               STATE
             </NavLink>
           )}

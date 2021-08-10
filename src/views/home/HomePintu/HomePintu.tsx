@@ -25,7 +25,22 @@ import {
   StartMapMobile,
 } from "../../../assets/home";
 import "./HomePintu.scss";
-import { FaHandHolding } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const cardVariants = {
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "-15%",
+    opacity: 1,
+    transition,
+  },
+};
 
 const HomePintu = () => {
   const history = useHistory();
@@ -55,7 +70,12 @@ const HomePintu = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial="rest"
+      animate="enter"
+      exit="exit"
+      variants={cardVariants}
+    >
       <Center>
         <Box boxSize="xs" my={20}>
           <Flex>
@@ -92,7 +112,7 @@ const HomePintu = () => {
           </Flex>
         </Box>
       </Center>
-    </>
+    </motion.div>
   );
 };
 

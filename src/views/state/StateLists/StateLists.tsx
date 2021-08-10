@@ -24,6 +24,28 @@ import "./StateLists.scss";
 import Swal from "sweetalert2";
 import stateService from "../../../services/state";
 import { StateModal } from "../../../shared/component/StateModal";
+import { motion } from "framer-motion";
+import { MxmButton } from "../../../shared/styled/buttons";
+import { NavLink } from "react-router-dom";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const cardVariants = {
+  exit: { y: "50%", opacity: 0, ...transition },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
+const buttonVariants = {
+  exit: { x: 100, opacity: 0, transition },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+};
 
 const XimaIcon = createIcon({
   displayName: "XimaIcon",
@@ -165,7 +187,6 @@ const StateLists = () => {
     try {
       const returnedData = await stateService.getStateList();
       setData(returnedData);
-      // console.log(returnedData);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -178,203 +199,294 @@ const StateLists = () => {
 
   useEffect(() => {
     document.title = "Daftar STATE - MAXIMA 2021";
-
     fetchData();
   }, []);
 
   return (
-    <Flex direction="column" mb="2.5rem">
-      <Center>
-        <Tabs>
-          <Center my="2rem">
-            <MxmHeading>Pilih STATE</MxmHeading>
-          </Center>
+    <Box overflow="hidden">
+      <motion.div
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        variants={cardVariants}
+      >
+        <Flex direction="column" mb="2.5rem">
           <Center>
-            <Heading fontSize="1rem" mt="-1.5rem" mb="2rem">
-              Silakan pilih STATE yang kamu mau!
-              <Skeleton />
-            </Heading>
+            <Tabs>
+              <Center my="2rem">
+                <MxmHeading>Pilih STATE</MxmHeading>
+              </Center>
+              <Center>
+                <Heading fontSize="1rem" mt="-1.5rem" mb="2rem">
+                  Silakan pilih STATE yang kamu mau!
+                  <Skeleton />
+                </Heading>
+              </Center>
+              <Flex
+                direction="column"
+                px="2rem"
+                py="1rem"
+                background="#F9F9F9"
+                borderRadius={15}
+                border="2px solid #164273"
+                className="light"
+              >
+                <TabList>
+                  <CustomTab>Hari ke-1</CustomTab>
+                  <CustomTab>Hari ke-2</CustomTab>
+                  <CustomTab>Hari ke-3</CustomTab>
+                  <CustomTab>Hari ke-4</CustomTab>
+                  <CustomTab>Hari ke-5</CustomTab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel
+                    pt="0.5rem"
+                    pb="0.5rem"
+                    px="0"
+                    justifyContent="center"
+                    display="flex"
+                  >
+                    <Flex direction="column">
+                      <Text
+                        background="#164273"
+                        color="white"
+                        textAlign="center"
+                        width="100%"
+                        mt="1rem"
+                        mb="1.5rem"
+                        fontSize="1.05rem"
+                        fontWeight="500"
+                        borderRadius="5px"
+                        py="0.3rem"
+                      >
+                        STATE Hari ke-1: 5 Agustus 2021
+                      </Text>
+                      <Grid
+                        templateColumns={{
+                          sm: "repeat(2, 1fr)",
+                          md: "repeat(3, 1fr)",
+                          lg: "repeat(4, 1fr)",
+                        }}
+                        gap={8}
+                      >
+                        {data
+                          .filter((card) => card.day === "D1")
+                          .map((card) => {
+                            return card.quota === card.registered ? (
+                              <Card
+                                fetchData={fetchData}
+                                {...card}
+                                status="full"
+                              />
+                            ) : (
+                              <Card fetchData={fetchData} {...card} />
+                            );
+                          })}
+                      </Grid>
+                    </Flex>
+                  </TabPanel>
+                  <TabPanel
+                    pt="0.5rem"
+                    pb="0.5rem"
+                    px="0"
+                    justifyContent="center"
+                    display="flex"
+                  >
+                    <Flex direction="column">
+                      <Text
+                        background="#164273"
+                        color="white"
+                        textAlign="center"
+                        width="100%"
+                        mt="1rem"
+                        mb="1.5rem"
+                        fontSize="1.05rem"
+                        fontWeight="500"
+                        borderRadius="5px"
+                        py="0.3rem"
+                      >
+                        STATE Hari ke-2: 5 Agustus 2021
+                      </Text>
+                      <Grid
+                        templateColumns={{
+                          sm: "repeat(2, 1fr)",
+                          md: "repeat(3, 1fr)",
+                          lg: "repeat(4, 1fr)",
+                        }}
+                        gap={8}
+                      >
+                        {data
+                          .filter((card) => card.day === "D2")
+                          .map((card) => {
+                            return card.quota === card.registered ? (
+                              <Card
+                                fetchData={fetchData}
+                                {...card}
+                                status="full"
+                              />
+                            ) : (
+                              <Card fetchData={fetchData} {...card} />
+                            );
+                          })}
+                      </Grid>
+                    </Flex>
+                  </TabPanel>
+                  <TabPanel
+                    pt="0.5rem"
+                    pb="0.5rem"
+                    px="0"
+                    justifyContent="center"
+                    display="flex"
+                  >
+                    <Flex direction="column">
+                      <Text
+                        background="#164273"
+                        color="white"
+                        textAlign="center"
+                        width="100%"
+                        mt="1rem"
+                        mb="1.5rem"
+                        fontSize="1.05rem"
+                        fontWeight="500"
+                        borderRadius="5px"
+                        py="0.3rem"
+                      >
+                        STATE Hari ke-3: 5 Agustus 2021
+                      </Text>
+                      <Grid
+                        templateColumns={{
+                          sm: "repeat(2, 1fr)",
+                          md: "repeat(3, 1fr)",
+                          lg: "repeat(4, 1fr)",
+                        }}
+                        gap={8}
+                      >
+                        {data
+                          .filter((card) => card.day === "D3")
+                          .map((card) => {
+                            return card.quota === card.registered ? (
+                              <Card
+                                fetchData={fetchData}
+                                {...card}
+                                status="full"
+                              />
+                            ) : (
+                              <Card fetchData={fetchData} {...card} />
+                            );
+                          })}
+                      </Grid>
+                    </Flex>
+                  </TabPanel>
+                  <TabPanel
+                    pt="0.5rem"
+                    pb="0.5rem"
+                    px="0"
+                    justifyContent="center"
+                    display="flex"
+                  >
+                    <Flex direction="column">
+                      <Text
+                        background="#164273"
+                        color="white"
+                        textAlign="center"
+                        width="100%"
+                        mt="1rem"
+                        mb="1.5rem"
+                        fontSize="1.05rem"
+                        fontWeight="500"
+                        borderRadius="5px"
+                        py="0.3rem"
+                      >
+                        STATE Hari ke-4: 5 Agustus 2021
+                      </Text>
+                      <Grid
+                        templateColumns={{
+                          sm: "repeat(2, 1fr)",
+                          md: "repeat(3, 1fr)",
+                          lg: "repeat(4, 1fr)",
+                        }}
+                        gap={8}
+                      >
+                        {data
+                          .filter((card) => card.day === "D4")
+                          .map((card) => {
+                            return card.quota === card.registered ? (
+                              <Card
+                                fetchData={fetchData}
+                                {...card}
+                                status="full"
+                              />
+                            ) : (
+                              <Card fetchData={fetchData} {...card} />
+                            );
+                          })}
+                      </Grid>
+                    </Flex>
+                  </TabPanel>
+                  <TabPanel
+                    pt="0.5rem"
+                    pb="0.5rem"
+                    px="0"
+                    justifyContent="center"
+                    display="flex"
+                  >
+                    <Flex direction="column">
+                      <Text
+                        background="#164273"
+                        color="white"
+                        textAlign="center"
+                        width="100%"
+                        mt="1rem"
+                        mb="1.5rem"
+                        fontSize="1.05rem"
+                        fontWeight="500"
+                        borderRadius="5px"
+                        py="0.3rem"
+                      >
+                        STATE Hari ke-5: 5 Agustus 2021
+                      </Text>
+                      <Grid
+                        templateColumns={{
+                          sm: "repeat(2, 1fr)",
+                          md: "repeat(3, 1fr)",
+                          lg: "repeat(4, 1fr)",
+                        }}
+                        gap={8}
+                      >
+                        {data
+                          .filter((card) => card.day === "D5")
+                          .map((card) => {
+                            return card.quota === card.registered ? (
+                              <Card
+                                fetchData={fetchData}
+                                {...card}
+                                status="full"
+                              />
+                            ) : (
+                              <Card fetchData={fetchData} {...card} />
+                            );
+                          })}
+                      </Grid>
+                    </Flex>
+                  </TabPanel>
+                </TabPanels>
+              </Flex>
+              <motion.div
+                style={{ width: "100% !impotant" }}
+                initial="exit"
+                animate="enter"
+                exit="exit"
+                variants={buttonVariants}
+              >
+                <NavLink to="/state">
+                  <MxmButton variant="squared">Kembali</MxmButton>
+                </NavLink>
+              </motion.div>
+            </Tabs>
           </Center>
-          <Flex
-            direction="column"
-            px="2rem"
-            py="1rem"
-            background="#F9F9F9"
-            borderRadius={15}
-            border="2px solid #164273"
-            className="light"
-          >
-            <TabList>
-              <CustomTab>Hari ke-1</CustomTab>
-              <CustomTab>Hari ke-2</CustomTab>
-              <CustomTab>Hari ke-3</CustomTab>
-              <CustomTab>Hari ke-4</CustomTab>
-              <CustomTab>Hari ke-5</CustomTab>
-            </TabList>
-            <Text
-              background="#164273"
-              color="white"
-              textAlign="center"
-              width="100%"
-              mt="1.5rem"
-              fontSize="1.05rem"
-              fontWeight="500"
-              borderRadius="5px"
-              py="0.3rem"
-            >
-              STATE Hari ke-1: 5 Agustus 2021
-            </Text>
-            <TabPanels>
-              <TabPanel
-                pt="0.5rem"
-                pb="0.5rem"
-                px="0"
-                justifyContent="center"
-                display="flex"
-              >
-                <Flex direction="column">
-                  <br />
-                  <Grid
-                    templateColumns={{
-                      sm: "repeat(2, 1fr)",
-                      md: "repeat(3, 1fr)",
-                      lg: "repeat(4, 1fr)",
-                    }}
-                    gap={8}
-                  >
-                    {data
-                      .filter((card) => card.day === "D1")
-                      .map((card) => {
-                        return card.quota === card.registered ? (
-                          <Card fetchData={fetchData} {...card} status="full" />
-                        ) : (
-                          <Card fetchData={fetchData} {...card} />
-                        );
-                      })}
-                  </Grid>
-                </Flex>
-              </TabPanel>
-              <TabPanel
-                pt="0.5rem"
-                pb="0.5rem"
-                px="0"
-                justifyContent="center"
-                display="flex"
-              >
-                <Flex direction="column">
-                  <br />
-                  <Grid
-                    templateColumns={{
-                      sm: "repeat(2, 1fr)",
-                      md: "repeat(3, 1fr)",
-                      lg: "repeat(4, 1fr)",
-                    }}
-                    gap={8}
-                  >
-                    {data
-                      .filter((card) => card.day === "D2")
-                      .map((card) => {
-                        return card.quota === card.registered ? (
-                          <Card fetchData={fetchData} {...card} status="full" />
-                        ) : (
-                          <Card fetchData={fetchData} {...card} />
-                        );
-                      })}
-                  </Grid>
-                </Flex>
-              </TabPanel>
-              <TabPanel
-                pt="0.5rem"
-                pb="0.5rem"
-                px="0"
-                justifyContent="center"
-                display="flex"
-              >
-                <Flex direction="column">
-                  <br />
-                  <Grid
-                    templateColumns={{
-                      sm: "repeat(2, 1fr)",
-                      md: "repeat(3, 1fr)",
-                      lg: "repeat(4, 1fr)",
-                    }}
-                    gap={8}
-                  >
-                    {data
-                      .filter((card) => card.day === "D3")
-                      .map((card) => {
-                        return card.quota === card.registered ? (
-                          <Card fetchData={fetchData} {...card} status="full" />
-                        ) : (
-                          <Card fetchData={fetchData} {...card} />
-                        );
-                      })}
-                  </Grid>
-                </Flex>
-              </TabPanel>
-              <TabPanel
-                pt="0.5rem"
-                pb="0.5rem"
-                px="0"
-                justifyContent="center"
-                display="flex"
-              >
-                <Flex direction="column">
-                  <br />
-                  <Grid
-                    templateColumns={{
-                      sm: "repeat(2, 1fr)",
-                      md: "repeat(3, 1fr)",
-                      lg: "repeat(4, 1fr)",
-                    }}
-                    gap={8}
-                  >
-                    {data
-                      .filter((card) => card.day === "D4")
-                      .map((card) => {
-                        return card.quota === card.registered ? (
-                          <Card fetchData={fetchData} {...card} status="full" />
-                        ) : (
-                          <Card fetchData={fetchData} {...card} />
-                        );
-                      })}
-                  </Grid>
-                </Flex>
-              </TabPanel>
-              <TabPanel
-                pt="0.5rem"
-                pb="0.5rem"
-                px="0"
-                justifyContent="center"
-                display="flex"
-              >
-                <Flex direction="column">
-                  <br />
-                  <Grid
-                    templateColumns={{
-                      sm: "repeat(2, 1fr)",
-                      md: "repeat(3, 1fr)",
-                      lg: "repeat(4, 1fr)",
-                    }}
-                    gap={8}
-                  >
-                    {data
-                      .filter((card) => card.day === "D5")
-                      .map((card) => {
-                        return card.quota === card.registered ? (
-                          <Card fetchData={fetchData} {...card} status="full" />
-                        ) : (
-                          <Card fetchData={fetchData} {...card} />
-                        );
-                      })}
-                  </Grid>
-                </Flex>
-              </TabPanel>
-            </TabPanels>
-          </Flex>
-        </Tabs>
-      </Center>
-    </Flex>
+        </Flex>
+      </motion.div>
+    </Box>
   );
 };
 

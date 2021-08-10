@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./ErrorPage.scss";
 
 const ErrorPage = () => {
@@ -20,7 +21,7 @@ const ErrorPage = () => {
         alignItems="center"
         justifyContent="space-between"
         flexDir={{ base: "column-reverse", md: "row" }}
-        w={{ base: "100%", lg: "90%", xl: "70%" }}
+        w={{ base: "100%", md: "90%", lg: "80%", xl: "70%" }}
       >
         <Box w="60%" textAlign={{ base: "center", md: "left" }}>
           <Flex
@@ -53,10 +54,20 @@ const ErrorPage = () => {
             fontSize={{ base: "0.8rem", md: "1rem", "2xl": "1.5rem" }}
             maxW={{ base: "100%", md: "85%" }}
             mt="1rem"
+            mb="1rem"
           >
             Halaman yang kamu cari tidak dapat ditemukan. Silakan kembali ke
             halaman sebelumnya atau coba telusuri halaman lainnya.
           </Text>
+          <NavLink to="/">
+            <Text
+              className="navigasi"
+              fontFamily="Rubik"
+              fontSize={{ base: "0.8rem", md: "1rem", "2xl": "1.5rem" }}
+            >
+              Kembali Ke Beranda
+            </Text>
+          </NavLink>
         </Box>
         <ErrorIlust width="40%" />
       </Flex>
