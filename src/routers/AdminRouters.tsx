@@ -50,6 +50,14 @@ const AdminRouters = (props: any) => {
             component={Dashboards.TambahMedia}
           />
           <Route
+            path="/admin/daftar-narasi"
+            component={Dashboards.DaftarNarasi}
+          />
+          <Route
+            path="/admin/edit-narasi/:chapter"
+            component={Dashboards.EditNarasi}
+          />
+          <Route
             path="/admin/tambah-mahasiswa"
             component={Dashboards.TambahMahasiswa}
           />

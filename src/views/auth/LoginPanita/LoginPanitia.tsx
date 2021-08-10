@@ -266,9 +266,9 @@ const LoginPanitia: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?
+                      Lupa kata sandimu?{" "}
                       <Link
-                        to="/auth/panitia/reset"
+                        to="/auth/reset"
                         style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Klik di sini

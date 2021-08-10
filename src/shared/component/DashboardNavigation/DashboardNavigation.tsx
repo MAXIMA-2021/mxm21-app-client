@@ -45,7 +45,8 @@ const DashboardNavigation = (props: any) => {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        window.location.href = "/auth/keluar";
+        window.sessionStorage.clear();
+        window.location.href = "/";
       }
     });
   };
@@ -253,6 +254,19 @@ const DashboardNavigation = (props: any) => {
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/admin/daftar-narasi"
+                      className={
+                        location.pathname === "/admin/daftar-narasi"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Narasi HoME
                     </a>
                   </li>
                 </ul>

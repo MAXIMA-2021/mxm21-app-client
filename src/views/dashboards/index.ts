@@ -9,6 +9,8 @@ export {
   EditHome,
   TambahHome,
   TambahMedia,
+  DaftarNarasi,
+  EditNarasi,
   TambahMahasiswa,
   TambahPanitia,
   TambahOrganisator,

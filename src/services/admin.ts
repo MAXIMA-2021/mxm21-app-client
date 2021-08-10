@@ -179,6 +179,14 @@ const getAllPanitia = async () => {
   return request.data;
 };
 
+const getChapterById = async (chapterID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/public/chapter/${chapterID}`,
+    config
+  );
+  return request.data;
+};
+
 const getAllOrganisator = async () => {
   const request = await axios.get(
     `${baseUrl}/organizator/acc/getOrganizator`,
@@ -227,6 +235,7 @@ export default {
   getAllMahasiswa,
   getAllPanitia,
   getAllOrganisator,
+  getChapterById,
   getHomeBySearchKey,
   getMahasiswaByNim,
   updateMahasiswa,
