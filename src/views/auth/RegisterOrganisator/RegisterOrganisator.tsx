@@ -31,13 +31,10 @@ import {
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogo } from "../../../assets";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
 import "./RegisterOrganisator.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
 import { DataRegisterOrganisator } from "../../../types/interfaces";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { TextField } from "@material-ui/core";
 import { useMediaQuery } from "@chakra-ui/media-query";
 
 const transition = {
@@ -98,8 +95,7 @@ const RegisterOrganisator: React.FC = () => {
     document.title = "[Organisator] Daftar - MAXIMA 2021";
     const fetchData = async () => {
       try {
-        const returnedData = await adminService.getAllState();
-        console.log(returnedData);
+        const returnedData = await authService.getPublicState();
         setData(returnedData);
       } catch (error) {
         Swal.fire({

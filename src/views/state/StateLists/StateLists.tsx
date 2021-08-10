@@ -165,7 +165,6 @@ const StateLists = () => {
     try {
       const returnedData = await stateService.getStateList();
       setData(returnedData);
-      // console.log(returnedData);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

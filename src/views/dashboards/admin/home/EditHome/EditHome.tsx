@@ -27,19 +27,11 @@ import {
   MxmDivider,
 } from "../../../../../shared/styled/input";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  useToast,
-} from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { url } from "inspector";
 
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
@@ -72,7 +64,6 @@ const EditHome: React.FC = () => {
   };
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     setLoading(true);
 
     const linkYTEmbed: any = getId(data.linkYoutube);
@@ -198,7 +189,6 @@ const EditHome: React.FC = () => {
         break;
       }
     }
-    console.log(mediaFiles);
   };
 
   const deleteHomeMedia = (photoId: any) => {
@@ -325,8 +315,6 @@ const EditHome: React.FC = () => {
       },
     },
   ];
-
-  console.log(editMediaTab);
 
   return (
     <Tabs

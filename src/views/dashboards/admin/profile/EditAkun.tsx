@@ -15,8 +15,6 @@ import {
   InputGroup,
 } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { TextField } from "@material-ui/core";
-import { Palette } from "../../../../types/enums";
 import { MxmLogo } from "../../../../assets";
 import {
   MxmDivider,
@@ -25,7 +23,6 @@ import {
   MxmInput,
   MxmInputGroup,
 } from "../../../../shared/styled/input";
-import authService from "../../../../services/auth";
 import adminService from "../../../../services/admin";
 import Swal from "sweetalert2";
 import jwtDecode from "jwt-decode";

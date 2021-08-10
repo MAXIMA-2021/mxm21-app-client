@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
   Center,
   Heading,
@@ -18,7 +18,7 @@ import {
   MxmSelect,
   MxmFormErrorMessage,
 } from "../../../shared/styled/input";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { GoogleLogin } from "react-google-login";

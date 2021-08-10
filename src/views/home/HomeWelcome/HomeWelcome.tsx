@@ -56,8 +56,7 @@ const HomeWelcome = () => {
         </Flex>
         <Box className="content-head">
           Hai MAXIMERS,
-          <br />
-          kenalin kami MAXI dan XIMA!
+          <br /> kenalin kami MAXI dan XIMA!
         </Box>
         <Box className="content-body">
           <p>

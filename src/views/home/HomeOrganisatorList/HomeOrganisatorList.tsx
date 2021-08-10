@@ -14,12 +14,11 @@ import {
   homeMaxiTalk,
 } from "../../../assets/home";
 import { MxmDivider } from "../../../shared/styled/input";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
 import homeService from "../../../services/home";
 import Swal from "sweetalert2";
-import { MxmLogo } from "../../../assets";
 
 const HomeOrganisatorList = () => {
   const [data, setData] = useState<any>();
@@ -46,7 +45,6 @@ const HomeOrganisatorList = () => {
     const fetchData = async () => {
       try {
         const returnedData = await homeService.getChapterData(homeChapter);
-        console.log(returnedData[0].home);
         setData(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -115,7 +113,6 @@ const HomeOrganisatorList = () => {
         <Flex className="home-orglist-content_container">
           {data?.home.map((item: any, index: any) => (
             <Grid className="home-orglist-content-grid" key={index}>
-              {console.log(item)}
               <div
                 className="content-org-logo"
                 onClick={() => {

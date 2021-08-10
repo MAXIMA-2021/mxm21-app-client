@@ -87,12 +87,10 @@ const LoginMhs: React.FC = () => {
 
     try {
       const returnedData = await authService.loginMhs(data);
-      console.log(returnedData);
       reset();
 
       window.sessionStorage.setItem("token", returnedData.token);
       window.sessionStorage.setItem("name", returnedData.nama);
-      console.log(returnedData);
       window.location.href = "/";
       alert("berhasil login");
     } catch (error) {

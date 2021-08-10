@@ -4,7 +4,7 @@ import { Palette } from "../../../types/enums";
 import { createIcon } from "@chakra-ui/icons";
 import { Carousell } from "./OrganisatorCarousell";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import adminService from "../../../services/admin";
 

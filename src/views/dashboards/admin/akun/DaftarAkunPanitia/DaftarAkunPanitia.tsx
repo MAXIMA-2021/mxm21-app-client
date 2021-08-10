@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Flex,
   Heading,
@@ -7,8 +6,6 @@ import {
   Image,
   Center,
   Text,
-  HStack,
-  Button,
   Switch,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
@@ -16,10 +13,8 @@ import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { RepeatIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import ClearIcon from "@material-ui/icons/Clear";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const colorTheme = createMuiTheme({

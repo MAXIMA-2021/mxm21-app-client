@@ -1,5 +1,5 @@
 import { Flex, HStack, Image } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import "./HomeFooter.scss";
 import { MxmWhiteLogoText } from "../../../assets";
 import { InstagramIcon, LineIcon, LoveIcon, TiktokIcon } from "./icon";

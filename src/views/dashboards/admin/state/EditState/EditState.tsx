@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -15,7 +15,6 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import {
   MxmDivider,

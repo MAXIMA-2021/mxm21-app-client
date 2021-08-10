@@ -3,7 +3,7 @@
   --homepage-navbar-height: 5rem;
   --btn-main-nav-spacing-y: 2rem;
   --btn-main-nav-spacing-x: 3.375rem;
-  --btn-main-nav-font-size: 1rem;
+  --btn-main-nav-font-size: 0.875rem;
   --btn-main-nav-auth-mg-x: 1rem;
 }
 
@@ -16,6 +16,7 @@
   top: 0;
   transition: background 0.5s ease;
   z-index: 3;
+  font-size: var(--btn-main-nav-font-size);
 
   & .btn-main-nav {
     margin: var(--btn-main-nav-spacing-y) var(--btn-main-nav-spacing-x);
@@ -24,7 +25,7 @@
   }
 
   & .btn-main-nav-auth {
-    font-weight: 500;
+    font-weight: 400;
     margin: 0 var(--btn-main-nav-auth-mg-x);
   }
 
@@ -135,7 +136,7 @@
 
 @media screen and (max-width: 1200px) {
   * {
-    --btn-main-nav-spacing-x: 2rem;
+    --btn-main-nav-spacing-x: 3rem;
   }
 }
 
@@ -152,7 +153,7 @@
     --homepage-navbar-height: 4rem;
     --btn-main-nav-spacing-y: 2rem;
     --btn-main-nav-spacing-x: 1rem;
-    --btn-main-nav-font-size: 1rem;
+    --btn-main-nav-font-size: 0.875rem;
     --btn-main-nav-auth-mg-x: 0.5rem;
   }
 }
@@ -190,6 +191,9 @@
 
     z-index: 3;
   }
+  .mobile-nav-menu-container.open.menu-sticky {
+    top: 3rem;
+  }
 
   .nav-container.navbar-mobile {
     background-color: white;
@@ -207,10 +211,6 @@
   .mobile-nav-menu-container.open {
     top: var(--homepage-navbar-height);
     transition: all 0.6s ease-in-out;
-  }
-
-  .mobile-nav-menu-container.open.menu-sticky {
-    top: 4rem;
   }
 
   .mobile-nav-menu-container {

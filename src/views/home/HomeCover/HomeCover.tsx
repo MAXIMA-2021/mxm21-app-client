@@ -6,7 +6,7 @@ import { Home } from "../../../assets";
 import { MxmLogoText } from "../../../assets";
 
 import { MxmButton } from "../../../shared/styled/buttons";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const HomeCover = () => {
   const history = useHistory();

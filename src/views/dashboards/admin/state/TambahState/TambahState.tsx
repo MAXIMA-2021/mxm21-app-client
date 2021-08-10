@@ -13,7 +13,6 @@ import {
   NumberInput,
   Button,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import "./TambahState.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -60,8 +59,6 @@ const TambahState: React.FC = () => {
     formData.append("shortDesc", data.shortDesc);
     formData.append("stateLogo", logo[0]);
     formData.append("coverPhoto", cover[0]);
-
-    console.log(data);
 
     try {
       await adminService.tambahState(formData);

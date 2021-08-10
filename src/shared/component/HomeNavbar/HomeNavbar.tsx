@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./HomeNavbar.scss";
 
 import { MxmLogo } from "../../../assets";
@@ -162,7 +162,12 @@ const HomeNavbar = () => {
           navbarSticks ? "menu-sticky" : ""
         }`}
       >
-        <Grid templateRows="repeat(4, 1fr) 1.3fr" className="mobile-menu-grid">
+        <Grid
+          templateRows={
+            isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
+          }
+          className="mobile-menu-grid"
+        >
           <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
             HoME
           </NavLink>

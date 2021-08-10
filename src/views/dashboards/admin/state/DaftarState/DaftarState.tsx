@@ -28,7 +28,6 @@ const DaftarState: React.FC = () => {
       try {
         const returnedData = await adminService.getAllState();
         setData(returnedData);
-        console.log(returnedData);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

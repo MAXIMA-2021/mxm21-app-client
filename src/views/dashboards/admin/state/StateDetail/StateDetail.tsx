@@ -48,7 +48,6 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
 
         setDetailState(returnedDataState[0]);
-        // console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

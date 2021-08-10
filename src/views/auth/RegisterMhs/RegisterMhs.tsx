@@ -98,7 +98,6 @@ const RegisterMhs: React.FC = () => {
       idLine: data.idLine,
       idInstagram: data.idInstagram,
     };
-    console.log(JSON.stringify(dataMaba));
 
     try {
       await authService.daftarMhs(dataMaba);
