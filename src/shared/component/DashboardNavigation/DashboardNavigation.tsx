@@ -155,14 +155,14 @@ const DashboardNavigation = (props: any) => {
           </button>
 
           <Flex className="navbar-menu">
-            <NavLink to="/admin/edit-akun">
+            {/* <NavLink to="/admin/edit-akun">
               <Flex align="center" className="navbar-avatar">
                 <div className="navbar-avatar-image">
                   <AccountCircleIcon />
                 </div>
                 <h4>{props.name}</h4>
               </Flex>
-            </NavLink>
+            </NavLink> */}
 
             <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>

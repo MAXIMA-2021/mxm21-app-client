@@ -355,7 +355,7 @@ const EditHome: React.FC = () => {
                   base: "",
                   md: "",
                 }
-              : { base: "100%", md: "70%" }
+              : { base: "95%", md: "70%" }
           }
           mt={{
             base: "1rem",

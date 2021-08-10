@@ -24,19 +24,19 @@ const DaftarNarasi: React.FC = () => {
 
   useEffect(() => {
     document.title = "Daftar Organisator HoME - MAXIMA 2021";
-    // const fetchData = async () => {
-    //   try {
-    //     const returnedData = await adminService.getChapterById();
-    //     setData(returnedData);
-    //   } catch (error) {
-    //     Swal.fire({
-    //       title: "Perhatian!",
-    //       text: error.response?.data.message,
-    //       icon: "error",
-    //       confirmButtonText: "Coba lagi",
-    //     });
-    //   }
-    // };
+    const fetchData = async () => {
+      try {
+        const returnedData = await adminService.getAllChapter();
+        setData(returnedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Perhatian!",
+          text: error.response?.data.message,
+          icon: "error",
+          confirmButtonText: "Coba lagi",
+        });
+      }
+    };
 
     fetchData();
   }, []);
@@ -88,31 +88,8 @@ const DaftarNarasi: React.FC = () => {
   };
   const tableColumns = [
     {
-      name: "homeID",
-      label: "ID HoME",
-      options: {
-        display: false,
-        customHeadLabelRender: ({ index, ...column }) => (
-          <Text
-            key={index}
-            fontWeight="bold"
-            fontFamily="Rubik"
-            fontSize="1.1em"
-          >
-            {column.label}
-          </Text>
-        ),
-        setCellProps: () => ({
-          style: { minWidth: "50px" },
-        }),
-        customBodyRender: (value: any) => (
-          <Text fontSize={responsiveData}>{value}</Text>
-        ),
-      },
-    },
-    {
-      name: "name",
-      label: "Nama Organisator",
+      name: "title",
+      label: "Chapter",
       options: {
         filter: true,
         sort: true,
@@ -127,7 +104,7 @@ const DaftarNarasi: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: "200px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -135,8 +112,8 @@ const DaftarNarasi: React.FC = () => {
       },
     },
     {
-      name: "kategori",
-      label: "Chapter",
+      name: "message",
+      label: "Narasi",
       options: {
         filter: true,
         sort: true,
@@ -164,7 +141,7 @@ const DaftarNarasi: React.FC = () => {
       options: {
         print: false,
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: "100px" },
         }),
         customHeadLabelRender: ({ index, ...column }) => (
           <Text
@@ -194,12 +171,12 @@ const DaftarNarasi: React.FC = () => {
                 Edit
               </Button>
             </Link>
-            <CloseButton
+            {/* <CloseButton
               size="sm"
               color={Palette.Red}
               style={{ marginLeft: 2 }}
               onClick={() => deleteHome(tableMeta.rowData[0])}
-            />
+            /> */}
           </HStack>
         ),
       },
@@ -231,6 +208,7 @@ const DaftarNarasi: React.FC = () => {
             base: "0.2rem",
             md: "2rem",
           }}
+          width="99vw"
           rounded={20}
         >
           <form className="form_daftar-state">

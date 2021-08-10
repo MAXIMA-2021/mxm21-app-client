@@ -88,7 +88,7 @@ const TambahMedia: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
@@ -106,6 +106,7 @@ const TambahMedia: React.FC = () => {
         }}
         direction="column"
         backgroundColor="#FFFFFF"
+        width={{ base: "95vw", md: "initial" }}
         py="1.5rem"
         px="1.5rem"
         rounded={25}

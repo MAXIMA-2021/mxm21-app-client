@@ -227,6 +227,11 @@ const updateState = async (stateID: number, data: unknown) => {
   return request.data;
 };
 
+const getAllChapter = async () => {
+  const request = await axios.get(`${baseUrl}/panit/chapter/`, config);
+  return request.data;
+};
+
 export default {
   tambahHome,
   tambahMedia,
@@ -236,6 +241,7 @@ export default {
   getAllPanitia,
   getAllOrganisator,
   getChapterById,
+  getAllChapter,
   getHomeBySearchKey,
   getMahasiswaByNim,
   updateMahasiswa,

@@ -124,6 +124,7 @@ const TambahMahasiswa: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>

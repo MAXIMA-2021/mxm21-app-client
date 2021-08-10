@@ -10,6 +10,7 @@ import {
   FormErrorIcon,
   Button,
   createIcon,
+  InputRightElement,
   Input,
   InputGroup,
 } from "@chakra-ui/react";
@@ -52,6 +53,10 @@ const EditAkun: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
   const [data, setData] = useState<any>("");
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const [showNew, setShowNew] = useState(false);
+  const handleClickNew = () => setShowNew(!showNew);
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -117,7 +122,7 @@ const EditAkun: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
@@ -127,7 +132,7 @@ const EditAkun: React.FC = () => {
       <Flex
         mt={{
           base: "1rem",
-          md: "0rem",
+          md: "3rem",
         }}
         mb={{
           base: "1rem",
@@ -137,6 +142,7 @@ const EditAkun: React.FC = () => {
         backgroundColor="#FFFFFF"
         py="1.5rem"
         px="1.5rem"
+        width={{ base: "95vw", md: "initial" }}
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="form_PIC">
@@ -191,11 +197,21 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.oldPassword}>
             <MxmFormLabel color="black">Password Saat Ini</MxmFormLabel>
-            <MxmInput
-              {...register("oldPassword", {
-                required: "Masukkan password kamu saat ini ",
-              })}
-            />
+            <MxmInputGroup addon="icon">
+              <MxmInput
+                {...register("oldPassword")}
+                type={show ? "text" : "password"}
+              />
+              <InputRightElement>
+                <Button
+                  className="show-password"
+                  size="base"
+                  onClick={handleClick}
+                >
+                  {show ? <IconHidePassword /> : <IconShowPassword />}
+                </Button>
+              </InputRightElement>
+            </MxmInputGroup>
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.oldPassword && (
                 <Flex flexDirection="row" alignItems="center">
@@ -209,16 +225,26 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.password}>
             <MxmFormLabel color="black">Password Baru</MxmFormLabel>
-            <MxmInput
-              type="password"
-              {...register("password", {
-                required: "Masukkan password baru kamu ",
-                minLength: {
-                  value: 8,
-                  message: "Password minimal 8 karakter",
-                },
-              })}
-            />
+            <MxmInputGroup addon="icon">
+              <MxmInput
+                type={showNew ? "text" : "password"}
+                {...register("password", {
+                  minLength: {
+                    value: 8,
+                    message: "Password minimal 8 karakter",
+                  },
+                })}
+              />
+              <InputRightElement>
+                <Button
+                  className="show-password"
+                  size="base"
+                  onClick={handleClickNew}
+                >
+                  {showNew ? <IconHidePassword /> : <IconShowPassword />}
+                </Button>
+              </InputRightElement>
+            </MxmInputGroup>
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.password && (
                 <Flex flexDirection="row" alignItems="center">
@@ -238,7 +264,6 @@ const EditAkun: React.FC = () => {
               <MxmInput
                 type="password"
                 {...register("konfirmasiPassword", {
-                  required: "Masukkan ulang password baru kamu ",
                   validate: (value) =>
                     value === password.current || "Password belum sama",
                 })}

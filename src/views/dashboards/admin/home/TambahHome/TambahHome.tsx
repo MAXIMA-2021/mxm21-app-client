@@ -109,7 +109,7 @@ const TambahHome: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -127,6 +127,7 @@ const TambahHome: React.FC = () => {
         }}
         direction="column"
         backgroundColor="#FFFFFF"
+        width={{ base: "95vw", md: "initial" }}
         py="1.5rem"
         px="1.5rem"
         rounded={25}

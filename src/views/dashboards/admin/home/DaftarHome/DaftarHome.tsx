@@ -231,6 +231,7 @@ const DaftarHome: React.FC = () => {
             base: "0.2rem",
             md: "2rem",
           }}
+          width="99vw"
           rounded={20}
         >
           <form className="form_daftar-state">

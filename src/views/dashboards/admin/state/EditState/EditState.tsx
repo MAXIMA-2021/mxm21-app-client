@@ -117,7 +117,7 @@ const EditState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -126,7 +126,7 @@ const EditState: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
+          base: "95vw",
           md: "70%",
         }}
         direction="column"
