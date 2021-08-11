@@ -14,7 +14,7 @@ import {
   homeMaxiTalk,
 } from "../../../assets/home";
 import { MxmDivider } from "../../../shared/styled/input";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { MxmButton } from "../../../shared/styled/buttons";
 import homeService from "../../../services/home";
@@ -67,7 +67,6 @@ const HomeOrganisatorList = () => {
     const fetchData = async () => {
       try {
         const returnedData = await homeService.getChapterData(homeChapter);
-        console.log(returnedData[0].home);
         setData(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -122,6 +121,22 @@ const HomeOrganisatorList = () => {
               className="home-orglist-chap-desc"
               style={{ backgroundColor: Palette.Navy }}
             >
+              <Image src={homeMaxiTalk} alt="maxi" width="100px" />
+            </div>
+            <div className="chap-desc-text">
+              <p style={{ color: Palette.Yellow }}>{data?.message}</p>
+            </div>
+          </div>
+          <MxmDivider
+            color={Palette.Yellow}
+            margin={"2rem 0 1rem 0"}
+            height={"5px"}
+            className="home-orglist-divider"
+          />
+        </Grid>
+        <Flex className="home-orglist-content_container">
+          {data?.home.map((item: any, index: any) => (
+            <Grid className="home-orglist-content-grid" key={index}>
               <div
                 className="chap-desc-image"
                 style={{ backgroundColor: Palette.Yellow }}

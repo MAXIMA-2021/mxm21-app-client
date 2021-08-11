@@ -6,31 +6,27 @@ import {
   Spacer,
   Image,
   Center,
-  Text,
-  HStack,
   Button,
+  HStack,
+  CloseButton,
+  Text,
 } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
+import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Palette } from "../../../../../types/enums";
 
-const DaftarMahasiswaBaru: React.FC = () => {
-  const responsiveData = {
-    base: "1em",
-    "2xl": "1.2em",
-  };
-
+const DaftarNarasi: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     document.title = "Daftar Organisator HoME - MAXIMA 2021";
     const fetchData = async () => {
       try {
-        const returnedData = await adminService.getAllMahasiswa();
+        const returnedData = await adminService.getAllChapter();
         setData(returnedData);
       } catch (error) {
         Swal.fire({
@@ -45,10 +41,78 @@ const DaftarMahasiswaBaru: React.FC = () => {
     fetchData();
   }, []);
 
+  const deleteHome = (IDhome: any) => {
+    try {
+      Swal.fire({
+        title:
+          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+        confirmButtonColor: "#e40000",
+        denyButtonColor: "#fff",
+        showCancelButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await adminService.deleteHome(IDhome);
+          const homeData = data.filter((item: any) => item.homeID !== IDhome);
+          setData(homeData);
+          Swal.fire("Data telah dihapus!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan belum tersimpan", "", "info");
+        }
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
+
+  const findSearchKey = (IDhome: any) => {
+    for (let homeDataX in data) {
+      if (data[homeDataX]["homeID"] == IDhome) {
+        return data[homeDataX]["search_key"];
+      }
+    }
+  };
+
+  const responsiveData = {
+    base: "1em",
+    sm: "1em",
+    md: "1em",
+    lg: "1em",
+    "2xl": "1.2em",
+  };
   const tableColumns = [
     {
-      name: "name",
-      label: "Nama Mahasiswa",
+      name: "homeChapterID",
+      label: "ID Chapter",
+      options: {
+        display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "50px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
+    },
+    {
+      name: "title",
+      label: "Chapter",
       options: {
         filter: true,
         sort: true,
@@ -63,27 +127,16 @@ const DaftarMahasiswaBaru: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: "200px" },
         }),
-        customBodyRender: (value: any, tableMeta: any) => (
-          <Text fontSize={responsiveData}>
-            {value} - {tableMeta.rowData[1]}
-          </Text>
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
         ),
       },
     },
     {
-      name: "nim",
-      label: "NIM",
-      options: {
-        filter: true,
-        sort: true,
-        display: false,
-      },
-    },
-    {
-      name: "idInstagram",
-      label: "Instagram",
+      name: "message",
+      label: "Narasi",
       options: {
         filter: true,
         sort: true,
@@ -110,6 +163,9 @@ const DaftarMahasiswaBaru: React.FC = () => {
       label: "Aksi",
       options: {
         print: false,
+        setCellProps: () => ({
+          style: { minWidth: "100px" },
+        }),
         customHeadLabelRender: ({ index, ...column }) => (
           <Text
             key={index}
@@ -123,21 +179,27 @@ const DaftarMahasiswaBaru: React.FC = () => {
         customBodyRender: (value: any, tableMeta: any) => (
           <HStack spacing={2}>
             <Link
-              to={`/admin/detail-maba/${tableMeta.rowData[1]}`}
-              style={{
-                textDecoration: "none",
-              }}
+              to={`/admin/edit-narasi/${tableMeta.rowData[0]}`}
+              style={{ textDecoration: "none" }}
             >
               <Button
                 fontSize={responsiveData}
                 size="xs"
-                leftIcon={<InfoOutlineIcon />}
-                bgColor={Palette.Navy}
-                color="white"
+                leftIcon={<EditIcon />}
+                bgColor="white"
+                color={Palette.Navy}
+                border="1px"
+                borderColor={Palette.Navy}
               >
-                Detail
+                Edit
               </Button>
             </Link>
+            {/* <CloseButton
+              size="sm"
+              color={Palette.Red}
+              style={{ marginLeft: 2 }}
+              onClick={() => deleteHome(tableMeta.rowData[0])}
+            /> */}
           </HStack>
         ),
       },
@@ -147,13 +209,12 @@ const DaftarMahasiswaBaru: React.FC = () => {
   return (
     <>
       <Flex
-        backgroundColor="#f4f4f4"
         alignItems="center"
         justifyContent="center"
+        backgroundColor="#f4f4f4"
         height="100%"
       >
         <Flex
-          backgroundColor="#f4f4f4"
           direction="column"
           background="white"
           py="1.5rem"
@@ -172,7 +233,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
           }}
           rounded={20}
         >
-          <form>
+          <form className="form_daftar-state">
             <Flex>
               <Heading
                 mb="1vh"
@@ -186,7 +247,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar Mahasiswa Baru
+                Daftar Narasi HoME
               </Heading>
               <Spacer />
               <Image
@@ -225,4 +286,4 @@ const DaftarMahasiswaBaru: React.FC = () => {
   );
 };
 
-export default DaftarMahasiswaBaru;
+export default DaftarNarasi;

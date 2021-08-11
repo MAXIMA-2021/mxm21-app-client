@@ -63,6 +63,11 @@ const verifyOTP = async (data: any) => {
   return request.data;
 };
 
+const loginGoogle = async (data: any) => {
+  const request = await axios.post(`${baseUrl}/mhs/acc/gauth`, data);
+  return request.data;
+};
+
 export default {
   daftarMhs,
   loginMhs,
@@ -74,4 +79,5 @@ export default {
   getPublicState,
   getOTP,
   verifyOTP,
+  loginGoogle,
 };

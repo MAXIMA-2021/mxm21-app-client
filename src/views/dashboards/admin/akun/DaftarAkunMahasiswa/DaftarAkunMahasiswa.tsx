@@ -15,7 +15,7 @@ import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+import { EditIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
 
 const DaftarAkunMahasiswa: React.FC = () => {

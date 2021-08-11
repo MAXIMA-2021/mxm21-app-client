@@ -154,14 +154,14 @@ const DashboardNavigation = (props: any) => {
           </button>
 
           <Flex className="navbar-menu">
-            <NavLink to="/admin/edit-akun">
+            {/* <NavLink to="/admin/edit-akun">
               <Flex align="center" className="navbar-avatar">
                 <div className="navbar-avatar-image">
                   <AccountCircleIcon />
                 </div>
                 <h4>{props.name}</h4>
               </Flex>
-            </NavLink>
+            </NavLink> */}
 
             <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
@@ -253,6 +253,19 @@ const DashboardNavigation = (props: any) => {
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/admin/daftar-narasi"
+                      className={
+                        location.pathname === "/admin/daftar-narasi"
+                          ? "dropdown-item_active"
+                          : ""
+                      }
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Narasi HoME
                     </a>
                   </li>
                 </ul>

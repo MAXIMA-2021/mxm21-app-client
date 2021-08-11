@@ -1,28 +1,11 @@
 import React, { useEffect } from "react";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
-import {
-  HStack,
-  PinInput,
-  PinInputField,
-  Center,
-  Heading,
-  VStack,
-  Box,
-  Grid,
-  Image,
-  Container,
-  Flex,
-  Button,
-} from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+import { Center, Box, Image, Flex } from "@chakra-ui/react";
 import {
   MiddleGateDesktop,
   LeftGateDesktop,
   RightGateDesktop,
   StartMapDesktop,
-  MiddleGateMobile,
-  LeftGateMobile,
-  RightGateMobile,
-  StartMapMobile,
 } from "../../../assets/home";
 import "./HomePintu.scss";
 import { motion } from "framer-motion";

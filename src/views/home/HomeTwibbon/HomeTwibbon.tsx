@@ -1,12 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
-  HStack,
-  PinInput,
-  PinInputField,
-  Center,
   Heading,
-  VStack,
   Flex,
   Box,
   Grid,

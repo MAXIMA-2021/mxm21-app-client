@@ -6,6 +6,7 @@ import { Home } from "../../../assets";
 import { MxmLogoText } from "../../../assets";
 
 import { MxmButton } from "../../../shared/styled/buttons";
+import { useHistory } from "react-router-dom";
 import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 

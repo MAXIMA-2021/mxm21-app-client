@@ -13,7 +13,6 @@ import {
   NumberInput,
   Button,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import "./TambahState.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -61,8 +60,6 @@ const TambahState: React.FC = () => {
     formData.append("stateLogo", logo[0]);
     formData.append("coverPhoto", cover[0]);
 
-    console.log(data);
-
     try {
       await adminService.tambahState(formData);
       reset();
@@ -100,7 +97,7 @@ const TambahState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -120,6 +117,7 @@ const TambahState: React.FC = () => {
         backgroundColor="#FFFFFF"
         py="1.5rem"
         px="1.5rem"
+        width={{ base: "95vw", md: "initial" }}
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="form_state">

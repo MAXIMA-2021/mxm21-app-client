@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -12,8 +12,6 @@ import {
   Input,
   InputLeftAddon,
   InputRightAddon,
-  Alert,
-  AlertIcon,
   useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
@@ -27,7 +25,6 @@ import {
 } from "../../../../../shared/styled/input";
 import { DataRegisterMaba } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
-import authService from "../../../../../services/auth";
 import adminService from "../../../../../services/admin";
 import "./EditAkunMahasiswa.scss";
 
@@ -64,7 +61,6 @@ const EditMahasiswa: React.FC = () => {
           .toISOString()
           .split("T")[0];
         setMahasiswaByNim(returnedData[0]);
-        console.log(returnedData[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -156,6 +152,7 @@ const EditMahasiswa: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>

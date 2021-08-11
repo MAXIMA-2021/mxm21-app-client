@@ -6,6 +6,7 @@ export default function AuthRouters() {
   return (
     <Switch>
       <Route path="/auth" exact component={Auth.LoginMhs} />
+      <Route path="/auth/google" exact component={Auth.GoogleAuth} />
       <Route path="/auth/masuk" component={Auth.LoginMhs} />
       <Route path="/auth/daftar" component={Auth.RegisterMhs} />
       <Route path="/auth/panitia" exact component={Auth.LoginPanitia} />

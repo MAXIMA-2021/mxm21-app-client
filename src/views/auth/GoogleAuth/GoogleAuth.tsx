@@ -1,19 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useRef } from "react";
 import {
-  Flex,
+  Center,
   Heading,
+  Flex,
+  Spacer,
+  Image,
   Input,
+  InputLeftAddon,
+  Divider,
   FormControl,
   FormErrorIcon,
-  InputLeftAddon,
-  InputRightAddon,
-  Divider,
-  Image,
-  Spacer,
-  Text,
 } from "@chakra-ui/react";
-import { Link, useHistory } from "react-router-dom";
 import {
   MxmInput,
   MxmInputGroup,
@@ -21,18 +18,18 @@ import {
   MxmSelect,
   MxmFormErrorMessage,
 } from "../../../shared/styled/input";
-import {
-  MxmContainers,
-  MxmVerticalAlign,
-} from "../../../shared/styled/containers";
-import { MxmButton } from "../../../shared/styled/buttons";
-import { MxmLogo } from "../../../assets";
+import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
-import "./RegisterMhs.scss";
-import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import { GoogleLogin } from "react-google-login";
+import { GoogleLogout } from "react-google-login";
+import { MxmContainers } from "../../../shared/styled/containers";
+import { MxmButton } from "../../../shared/styled/buttons";
+import { MxmLogo, MxmLogoText } from "../../../assets";
 import authService from "../../../services/auth";
-import { DataRegisterMaba } from "../../../types/interfaces";
+import Swal from "sweetalert2";
+
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const transition = {
   duration: 0.5,
@@ -53,7 +50,189 @@ const buttonVariants = {
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
-const RegisterMhs: React.FC = () => {
+const Login = (props: any) => {
+  const [loading, setLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const [show, setShow] = useState(false);
+
+  //   const onSubmit = async () => {
+  //     setLoading(true);
+
+  //     try {
+  //       const returnedData = await authService.loginGoogle(data);
+  //       console.log(returnedData);
+  //       reset();
+
+  //       window.sessionStorage.setItem("token", returnedData.token);
+  //       window.sessionStorage.setItem("name", returnedData.nama);
+  //       console.log(returnedData);
+  //       window.location.href = "/";
+  //       alert("berhasil login");
+  //     } catch (error) {
+  //       Swal.fire({
+  //         title: "Perhatian!",
+  //         text: error.response?.data.message,
+  //         icon: "error",
+  //         confirmButtonText: "Coba lagi",
+  //       });
+  //     }
+  //     setLoading(false);
+  //   };
+
+  const onSuccess = async (res) => {
+    console.log("[Login Success] currentUser: ", res.profileObj);
+    console.log(res.profileObj["name"]);
+    console.log(res.profileObj["email"]);
+    console.log(res.profileObj["googleId"]);
+
+    const data = { token: res.getAuthResponse().id_token };
+    props.setToken(res.getAuthResponse().id_token);
+    console.log(data);
+
+    try {
+      const returnedData = await authService.loginGoogle(data);
+      console.log(returnedData["message"]);
+
+      if (returnedData["message"] === "no GoogleID") {
+        console.log("daftar duluuuuuuuuu");
+        props.setName(res.profileObj["name"]);
+        props.setEmail(res.profileObj["email"]);
+        props.setGoogleId(res.profileObj["googleId"]);
+        props.setHasId(true);
+      } else if (returnedData["message"] === "Berhasil Login") {
+        console.log("asik bisa masuk");
+        window.sessionStorage.setItem("token", returnedData.token);
+        window.sessionStorage.setItem("name", returnedData.name);
+        window.sessionStorage.setItem("role", returnedData.role);
+        window.location.href = "/";
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Perhatian!",
+        text: error.response?.data.message,
+        icon: "error",
+        confirmButtonText: "Coba lagi",
+      });
+    }
+  };
+
+  const onFailure = (res) => {
+    console.log("[Login Failed] res: ", res);
+  };
+
+  return (
+    <MxmContainers>
+      <motion.div initial="exit" animate="enter" exit="exit">
+        <motion.div variants={cardVariants}>
+          <Flex
+            flexDir="column"
+            height={{
+              base: "100vh",
+              md: "80vh",
+            }}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Flex
+              direction="column"
+              background="linear-gradient(180deg, rgba(65, 206, 186, 0.7) 44.79%, rgba(31, 44, 76, 0.7) 100%);"
+              className="filter"
+              py="3vh"
+              px={{
+                base: "5vw",
+                md: "2vw",
+              }}
+              mb={{
+                base: "1vh",
+                md: "10vh",
+              }}
+              mt={{
+                base: "2rem",
+                md: "1rem",
+              }}
+              mx={{
+                base: "1vw",
+                md: "10vw",
+              }}
+              rounded={25}
+              style={{
+                WebkitBackdropFilter: "blur(4px)",
+                backdropFilter: "blur(4px)",
+              }}
+            >
+              <form>
+                <Flex mb={3} alignItems="center">
+                  <Heading
+                    color="white"
+                    letterSpacing="0.05em"
+                    fontSize={{
+                      base: "1.5em",
+                      sm: "1.5em",
+                      md: "1.5em",
+                      lg: "1.5em",
+                      xl: "1.7em",
+                      "2xl": "1.7em",
+                    }}
+                  >
+                    Masuk
+                  </Heading>
+                  <Spacer />
+                  <Image
+                    src={MxmLogo}
+                    alt="Logo MAXIMA 2021"
+                    h="100%"
+                    w={{
+                      base: "4vw",
+                      sm: "4vw",
+                      md: "2.5vw",
+                      lg: "2vw",
+                      xl: "2vw",
+                      "2xl": "1.2vw",
+                    }}
+                  />
+                </Flex>
+                <Divider
+                  colorScheme="whiteAlpha"
+                  style={{ border: "2px solid white" }}
+                />
+                <Center>
+                  <Image
+                    src={MxmLogoText}
+                    alt="Logo MAXIMA 2021"
+                    w={{
+                      base: "8vh",
+                      sm: "8vh",
+                      md: "8vh",
+                      lg: "10vh",
+                      xl: "10vh",
+                      "2xl": "10vh",
+                    }}
+                    my={6}
+                  />
+                </Center>
+                <GoogleLogin
+                  clientId={clientId}
+                  buttonText="Sign in with Google"
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                  cookiePolicy="http://localhost:5500"
+                  isSignedIn={true}
+                />
+              </form>
+            </Flex>
+          </Flex>
+        </motion.div>
+      </motion.div>
+    </MxmContainers>
+  );
+};
+
+const Register = (props: any) => {
   const {
     register,
     handleSubmit,
@@ -74,10 +253,6 @@ const RegisterMhs: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
-  }, []);
-
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
@@ -86,8 +261,8 @@ const RegisterMhs: React.FC = () => {
 
     const dataMaba: DataRegisterMaba = {
       nim: data.nim.toString(),
-      name: data.name,
-      email: `${data.email}@student.umn.ac.id`,
+      name: props.name,
+      email: props.email,
       tempatLahir: data.tempatLahir,
       tanggalLahir: data.tanggalLahir
         .toString()
@@ -97,15 +272,25 @@ const RegisterMhs: React.FC = () => {
       whatsapp: data.whatsapp,
       idLine: data.idLine,
       idInstagram: data.idInstagram,
+      GoogleID: props.googleId,
     };
+    console.log(JSON.stringify(dataMaba));
 
     try {
       await authService.daftarMhs(dataMaba);
       reset();
-      history.push("/auth/masuk", {
-        status: "success",
-        message: "Kamu berhasil mendaftarkan akun MAXIMA 2021. Silakan masuk.",
-      });
+
+      const data = { token: props.token };
+
+      const returnedData = await authService.loginGoogle(data);
+      console.log(returnedData["message"]);
+
+      console.log("asik bisa masuk");
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("name", returnedData.name);
+      window.sessionStorage.setItem("role", returnedData.role);
+
+      history.push("/");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -116,7 +301,8 @@ const RegisterMhs: React.FC = () => {
     }
     setLoading(false);
   };
-
+  console.log(props.name);
+  console.log(props.email);
   return (
     <MxmContainers>
       <motion.div initial="exit" animate="enter" exit="exit">
@@ -189,38 +375,22 @@ const RegisterMhs: React.FC = () => {
                   style={{ border: "2px solid white" }}
                   mb={3}
                 />
+
                 <Flex
                   direction={{
                     base: "column",
                     md: "row",
                   }}
                 >
-                  <FormControl mb={3} mr="5" isInvalid={errors.name}>
-                    <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
-                    <MxmInput
-                      {...register("name", {
-                        required: "Isi nama lengkap kamu",
-                      })}
-                    />
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.name && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.name.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
+                  {" "}
                   <FormControl
                     isInvalid={errors.nim}
                     mb={3}
                     w={{
                       base: "100%",
-                      md: "50%",
-                      xl: "40%",
+                      md: "30%",
                     }}
+                    mr="5"
                   >
                     <MxmFormLabel>NIM Anda</MxmFormLabel>
                     <MxmInputGroup addon="left">
@@ -251,107 +421,13 @@ const RegisterMhs: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                </Flex>
-                <Flex
-                  direction={{
-                    base: "column",
-                    md: "row",
-                  }}
-                >
-                  <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
-                    <MxmFormLabel>Tempat Lahir</MxmFormLabel>
-                    <MxmInput
-                      {...register("tempatLahir", {
-                        required: "Isi tempat lahir kamu",
-                      })}
-                    />
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.tempatLahir && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.tempatLahir.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    mb={3}
-                    mr="5"
-                    w={{
-                      base: "100%",
-                      md: "60%",
-                    }}
-                    isInvalid={errors.tanggalLahir}
-                  >
-                    <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
-                    <MxmInput
-                      type="date"
-                      {...register("tanggalLahir", {
-                        required: "Isi tanggal lahir kamu",
-                      })}
-                      className="select"
-                      onChange={handleSelectChange}
-                    />
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.tanggalLahir && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.tanggalLahir.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
                   <FormControl
                     mb={3}
                     w={{
                       base: "100%",
                       md: "50%",
                     }}
-                    isInvalid={errors.jenisKelamin}
-                  >
-                    <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
-                    <MxmSelect
-                      {...register("jenisKelamin", {
-                        required: "Pilih jenis kelamin kamu",
-                      })}
-                      className="select"
-                      onChange={handleSelectChange}
-                    >
-                      <option value="" selected disabled hidden>
-                        L/P
-                      </option>
-                      <option value="L">Laki-laki</option>
-                      <option value="P">Perempuan</option>
-                    </MxmSelect>
-                    <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.jenisKelamin && (
-                        <Flex flexDirection="row" alignItems="center">
-                          <p>
-                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.jenisKelamin.message}
-                          </p>
-                        </Flex>
-                      )}
-                    </MxmFormErrorMessage>
-                  </FormControl>
-                </Flex>
-                <Flex
-                  direction={{
-                    base: "column",
-                    md: "row",
-                  }}
-                >
-                  <FormControl
-                    mb={3}
                     mr="5"
-                    w={{
-                      base: "100%",
-                      md: "60%",
-                    }}
                     isInvalid={errors.prodi}
                   >
                     <MxmFormLabel>Program Studi</MxmFormLabel>
@@ -362,8 +438,9 @@ const RegisterMhs: React.FC = () => {
                       })}
                       className="select"
                       onChange={handleSelectChange}
+                      defaultValue=""
                     >
-                      <option value="" selected disabled hidden>
+                      <option value="" disabled hidden>
                         Pilih Program Studi
                       </option>
                       <option value="Desain Komunikasi Visual">
@@ -394,28 +471,96 @@ const RegisterMhs: React.FC = () => {
                         </Flex>
                       )}
                     </MxmFormErrorMessage>
-                  </FormControl>
-                  <FormControl mb={3} isInvalid={errors.email}>
-                    <MxmFormLabel>Email Student</MxmFormLabel>
-                    <MxmInputGroup addon="right">
-                      <Input
-                        {...register("email", {
-                          required: "Isi email student kamu",
-                          pattern: {
-                            value: /^[^@]+$/g,
-                            message:
-                              "Alamat email tidak perlu mencantumkan domain",
-                          },
-                        })}
-                      />
-                      <InputRightAddon children="@student.umn.ac.id" />
-                    </MxmInputGroup>
+                  </FormControl>{" "}
+                  <FormControl
+                    mb={3}
+                    w={{
+                      base: "100%",
+                      md: "20%",
+                    }}
+                    isInvalid={errors.jenisKelamin}
+                  >
+                    <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
+                    <MxmSelect
+                      {...register("jenisKelamin", {
+                        required: "Pilih jenis kelamin kamu",
+                      })}
+                      className="select"
+                      onChange={handleSelectChange}
+                      defaultValue=""
+                    >
+                      <option value="" disabled hidden>
+                        L/P
+                      </option>
+                      <option value="L">Laki-laki</option>
+                      <option value="P">Perempuan</option>
+                    </MxmSelect>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
-                      {errors.email && (
+                      {errors.jenisKelamin && (
                         <Flex flexDirection="row" alignItems="center">
                           <p>
                             <FormErrorIcon fontSize="xs" mt="-0.1em" />
-                            {errors.email.message}
+                            {errors.jenisKelamin.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                </Flex>
+                <Flex
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
+                    <MxmFormLabel
+                      w={{
+                        base: "100%",
+                        md: "40%",
+                      }}
+                    >
+                      Tempat Lahir
+                    </MxmFormLabel>
+                    <MxmInput
+                      {...register("tempatLahir", {
+                        required: "Isi tempat lahir kamu",
+                      })}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.tempatLahir && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.tempatLahir.message}
+                          </p>
+                        </Flex>
+                      )}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    mb={3}
+                    w={{
+                      base: "100%",
+                      md: "60%",
+                    }}
+                    isInvalid={errors.tanggalLahir}
+                  >
+                    <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
+                    <MxmInput
+                      type="date"
+                      {...register("tanggalLahir", {
+                        required: "Isi tanggal lahir kamu",
+                      })}
+                      className="select"
+                      onChange={handleSelectChange}
+                    />
+                    <MxmFormErrorMessage fontSize="xs" mt={1}>
+                      {errors.tanggalLahir && (
+                        <Flex flexDirection="row" alignItems="center">
+                          <p>
+                            <FormErrorIcon fontSize="xs" mt="-0.1em" />
+                            {errors.tanggalLahir.message}
                           </p>
                         </Flex>
                       )}
@@ -513,17 +658,6 @@ const RegisterMhs: React.FC = () => {
                   fontSize="0.8em"
                   mt={1}
                 >
-                  <MxmVerticalAlign variant="">
-                    <Text color="white">
-                      Sudah punya akun?{" "}
-                      <Link
-                        to="/auth/masuk"
-                        style={{ color: `${Palette.Cyan}` }}
-                      >
-                        Masuk
-                      </Link>
-                    </Text>
-                  </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
                     {loading ? (
@@ -557,4 +691,28 @@ const RegisterMhs: React.FC = () => {
   );
 };
 
-export default RegisterMhs;
+const GoogleAuth: React.FC = () => {
+  const [hasId, setHasId] = useState(false);
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [googleId, setGoogleId] = useState();
+  const [token, setToken] = useState();
+
+  return (
+    <>
+      {hasId ? (
+        <Register name={name} email={email} googleId={googleId} token={token} />
+      ) : (
+        <Login
+          setHasId={setHasId}
+          setName={setName}
+          setEmail={setEmail}
+          setGoogleId={setGoogleId}
+          setToken={setToken}
+        />
+      )}
+    </>
+  );
+};
+
+export default GoogleAuth;

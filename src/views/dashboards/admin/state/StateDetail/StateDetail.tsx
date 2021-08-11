@@ -48,7 +48,6 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
 
         setDetailState(returnedDataState[0]);
-        // console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -185,6 +184,7 @@ const StateDetail: React.FC = () => {
             base: "0.2rem",
             md: "2rem",
           }}
+          width={{ base: "95vw", md: "initial" }}
           rounded={20}
           minW={isSmallerThan800px ? "" : "800px"}
         >

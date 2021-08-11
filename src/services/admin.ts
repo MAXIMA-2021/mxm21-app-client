@@ -219,6 +219,28 @@ const updateState = async (stateID: number, data: unknown) => {
   return request.data;
 };
 
+const getChapterById = async (chapterID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/public/chapter/${chapterID}`,
+    config
+  );
+  return request.data;
+};
+
+const getAllChapter = async () => {
+  const request = await axios.get(`${baseUrl}/panit/chapter/`, config);
+  return request.data;
+};
+
+const updateChapterById = async (homeChapterID: string, data: any) => {
+  const request = await axios.put(
+    `${baseUrl}/panit/chapter/${homeChapterID}`,
+    data,
+    config
+  );
+  return request;
+};
+
 export default {
   tambahHome,
   tambahMedia,
@@ -227,6 +249,8 @@ export default {
   getAllMahasiswa,
   getAllPanitia,
   getAllOrganisator,
+  getChapterById,
+  getAllChapter,
   getHomeBySearchKey,
   getMahasiswaByNim,
   updateMahasiswa,
@@ -234,6 +258,7 @@ export default {
   updateHome,
   updatePanitia,
   updateOrganisator,
+  updateChapterById,
   deleteHome,
   deleteState,
   getSpecificState,

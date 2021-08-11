@@ -87,12 +87,10 @@ const LoginMhs: React.FC = () => {
 
     try {
       const returnedData = await authService.loginMhs(data);
-      console.log(returnedData);
       reset();
 
       window.sessionStorage.setItem("token", returnedData.token);
       window.sessionStorage.setItem("name", returnedData.nama);
-      console.log(returnedData);
       window.location.href = "/";
     } catch (error) {
       Swal.fire({
@@ -279,7 +277,7 @@ const LoginMhs: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?
+                      Lupa kata sandimu?{" "}
                       <Link
                         to="/auth/reset"
                         style={{ color: `${Palette.Cyan}` }}

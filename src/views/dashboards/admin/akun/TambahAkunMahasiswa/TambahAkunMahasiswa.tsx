@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -124,6 +123,7 @@ const TambahMahasiswa: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>

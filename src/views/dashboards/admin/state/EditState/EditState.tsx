@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -15,7 +15,6 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import {
   MxmDivider,
@@ -51,7 +50,6 @@ const EditState: React.FC = () => {
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getSpecificState(stateID);
-        console.log(returnedData);
         setState(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -117,7 +115,7 @@ const EditState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -126,7 +124,7 @@ const EditState: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
+          base: "95vw",
           md: "70%",
         }}
         direction="column"
