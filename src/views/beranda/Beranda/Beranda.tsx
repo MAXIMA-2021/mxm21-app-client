@@ -10,8 +10,14 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
-import { timeline1, timeline2, timeline3 } from "../../../assets/beranda";
+import {
+  imgFAQ,
+  timeline1,
+  timeline2,
+  timeline3,
+} from "../../../assets/beranda";
 import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const HeroContainer = () => {
   return (
@@ -105,7 +111,7 @@ const FaqSection = () => {
         <Flex className="faq-illustration">
           <div className="faq-illustration-item">
             <img
-              src={timeline1}
+              src={imgFAQ}
               alt="placeholder ilustrasi"
               width={"285px"}
               height={"366px"}

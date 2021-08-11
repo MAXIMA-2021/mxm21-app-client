@@ -28,6 +28,7 @@ import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmLogo, MxmLogoText } from "../../../assets";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
+import { DataRegisterMaba } from "../../../types/interfaces";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -84,7 +85,7 @@ const Login = (props: any) => {
   //     setLoading(false);
   //   };
 
-  const onSuccess = async (res) => {
+  const onSuccess = async (res: any) => {
     console.log("[Login Success] currentUser: ", res.profileObj);
     console.log(res.profileObj["name"]);
     console.log(res.profileObj["email"]);
@@ -121,7 +122,7 @@ const Login = (props: any) => {
     }
   };
 
-  const onFailure = (res) => {
+  const onFailure = (res: any) => {
     console.log("[Login Failed] res: ", res);
   };
 
@@ -290,7 +291,7 @@ const Register = (props: any) => {
       window.sessionStorage.setItem("name", returnedData.name);
       window.sessionStorage.setItem("role", returnedData.role);
 
-      history.push("/");
+      window.location.href = "/";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api`;
-const token: any = window.sessionStorage?.getItem("token");
 
 const getStateReistration = async () => {
   const request = await axios.get(`${baseUrl}/mhs/state/registration`, {
     headers: {
-      "x-access-token": token,
+      "x-access-token": window?.sessionStorage?.getItem("token"),
     },
   });
   return request.data;
@@ -17,7 +16,7 @@ const deleteStateRegistration = async (stateID: number) => {
     `${baseUrl}/mhs/state/registration/cancelState/${stateID}`,
     {
       headers: {
-        "x-access-token": token,
+        "x-access-token": window?.sessionStorage?.getItem("token"),
       },
     }
   );
@@ -30,7 +29,7 @@ const updateZoomAttendence = async (stateID: number) => {
     "",
     {
       headers: {
-        "x-access-token": token,
+        "x-access-token": window?.sessionStorage?.getItem("token"),
       },
     }
   );
@@ -46,7 +45,7 @@ const updateVerifyAbsence = async (
     data,
     {
       headers: {
-        "x-access-token": token,
+        "x-access-token": window?.sessionStorage?.getItem("token"),
       },
     }
   );
@@ -56,7 +55,7 @@ const updateVerifyAbsence = async (
 const getStateList = async () => {
   const request = await axios.get(`${baseUrl}/state/activities`, {
     headers: {
-      "x-access-token": token,
+      "x-access-token": window?.sessionStorage?.getItem("token"),
     },
   });
   return request.data;
@@ -68,7 +67,7 @@ const registerState = async (data: any) => {
     data,
     {
       headers: {
-        "x-access-token": token,
+        "x-access-token": window?.sessionStorage?.getItem("token"),
       },
     }
   );

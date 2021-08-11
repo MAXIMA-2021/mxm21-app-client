@@ -9,6 +9,7 @@ export interface DataRegisterMaba {
   whatsapp: string;
   idLine: string;
   idInstagram: string;
+  GoogleID: string;
 }
 
 export interface DataLogin {
