@@ -68,6 +68,22 @@ const HomeTwibbon = () => {
     history.push(`/home/organisator-list/${homeChapter}`);
   };
 
+  const handleDownloadTwibbon = () => {
+    const chapterStorage = window?.sessionStorage?.getItem("chapter") || "";
+    const anchor = document.createElement("a");
+    anchor.href = downloadTwibbon[Number(chapterStorage?.slice(-1)) - 1].path;
+    anchor.download =
+      downloadTwibbon[Number(chapterStorage?.slice(-1)) - 1].name;
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  };
+
+  const handleAutomatedTwibbon = () => {
+    const chapterStorage = window?.sessionStorage?.getItem("chapter") || "";
+    window.open(automatedTwibbon[Number(chapterStorage?.slice(-1)) - 1]);
+  };
+
   images[0] = (
     <Box justifyContent="center" width="100%" display="flex">
       <button
@@ -242,6 +258,7 @@ const HomeTwibbon = () => {
                       margin="0"
                       padding="1rem 2rem"
                       fontSize={{ base: "0.8rem", md: "1rem" }}
+                      onClick={handleDownloadTwibbon}
                     >
                       DOWNLOAD TWIBBON
                     </MxmButton>
@@ -252,6 +269,7 @@ const HomeTwibbon = () => {
                       margin="0"
                       padding="1rem 2rem"
                       fontSize={{ base: "0.8rem", md: "1rem" }}
+                      onClick={handleAutomatedTwibbon}
                     >
                       AUTOMATED TWIBBON
                     </MxmButton>
@@ -315,3 +333,49 @@ const HomeTwibbon = () => {
 };
 
 export default HomeTwibbon;
+
+const downloadTwibbon: string | any = [
+  {
+    path: "/files/twibbon/twibbon-01.png",
+    name: "Twibbon-MAXIMA_Lost-Treasure-Island.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-02.png",
+    name: "Twibbon-MAXIMA_Fantasy-Bridge.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-03.png",
+    name: "Twibbon-MAXIMA_Medalist-Playground.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-04.png",
+    name: "Twibbon-MAXIMA_Rainbow-Mines.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-05.png",
+    name: "Twibbon-MAXIMA_Tomorrow-Ville.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-06.png",
+    name: "Twibbon-MAXIMA_Adventure-Land.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-07.png",
+    name: "Twibbon-MAXIMA_Town-Area.png",
+  },
+  {
+    path: "/files/twibbon/twibbon-08.png",
+    name: "Twibbon-MAXIMA_Wondrous-Campground.png",
+  },
+];
+
+const automatedTwibbon: { [index: number]: string } = [
+  "https://twb.nz/home2021-lost-treasure-island",
+  "https://twb.nz/home2021-fantasy-bridge",
+  "https://twb.nz/home2021-medalist-playground",
+  "https://twb.nz/home2021-rainbow-mines",
+  "https://twb.nz/home2021-tomorrowville",
+  "https://twb.nz/home2021-adventure-land",
+  "https://twb.nz/home2021-town-area",
+  "https://twb.nz/home2021-wondrous-campground",
+];

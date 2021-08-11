@@ -41,6 +41,8 @@
 }
 
 .home-cvr-gate {
+  display: flex;
+  justify-content: center;
   & img {
     width: 300px;
   }

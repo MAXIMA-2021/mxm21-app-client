@@ -96,7 +96,13 @@ const HomeZeppelin = () => {
                 animate="enter"
                 exit="exit"
               >
-                <button>
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://maxima2021-assets.s3.ap-southeast-1.amazonaws.com/Zeppelin+Home+Competition.pdf"
+                    )
+                  }
+                >
                   Download Regulasi <span>(pdf)</span>
                 </button>
               </motion.div>
@@ -107,7 +113,9 @@ const HomeZeppelin = () => {
                 animate="enter"
                 exit="exit"
               >
-                <button>
+                <button
+                  onClick={() => window.open("http://bit.ly/FormZeppelin")}
+                >
                   Form Bukti Zeppelin HoME Competition{" "}
                   <span>(Google Form)</span>
                 </button>

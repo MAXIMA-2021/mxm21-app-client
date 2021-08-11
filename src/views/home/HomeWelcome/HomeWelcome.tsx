@@ -12,13 +12,25 @@ const transition = {
 };
 
 const cardVariants = {
-  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
-  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  exit: { y: -100, opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: 100, opacity: 0 },
   enter: {
-    y: "0%",
+    y: 0,
     opacity: 1,
-    transition,
+    transition: { delay: 0.2, ...transition },
   },
+};
+
+const buttonVariantsTwo = {
+  rest: { y: 100, opacity: 0, transition },
+  enter: { y: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+  exit: { y: 100, opacity: 0, transition: { delay: 0.2, ...transition } },
+};
+
+const frameVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.2, ...transition } },
 };
 
 const HomeWelcome = () => {
@@ -34,7 +46,10 @@ const HomeWelcome = () => {
   return (
     <motion.div
       className="main-container"
-      exit={{ opacity: 0, transition: { delay: 0.2, ...transition } }}
+      variants={frameVariants}
+      initial="rest"
+      animate="enter"
+      exit="exit"
     >
       <Flex
         w="100%"
@@ -94,15 +109,22 @@ const HomeWelcome = () => {
                 <b> persyaratan kelulusan HoME 2021</b>.
               </p>
             </Box>
-            <MxmButton
-              onClick={handleClick}
-              variant="rounded"
-              colorScheme="yellow-red"
+            <motion.div
+              variants={buttonVariantsTwo}
+              initial="rest"
+              animate="enter"
+              exit="exit"
             >
-              <Text fontSize={{ base: "1rem", md: "2rem" }} p="0.2rem 2rem">
-                NEXT
-              </Text>
-            </MxmButton>
+              <MxmButton
+                onClick={handleClick}
+                variant="rounded"
+                colorScheme="yellow-red"
+              >
+                <Text fontSize={{ base: "1rem", md: "2rem" }} p="0.2rem 2rem">
+                  NEXT
+                </Text>
+              </MxmButton>
+            </motion.div>
           </motion.div>
         </Box>
       </Flex>

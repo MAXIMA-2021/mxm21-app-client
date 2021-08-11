@@ -60,6 +60,8 @@ const HomeOrganisatorList = () => {
   images[6] = <Image src={cat7} alt="chapter logo" />;
   images[7] = <Image src={cat8} alt="chapter logo" />;
 
+  window.sessionStorage.setItem("chapter", homeChapter);
+
   useEffect(() => {
     document.title = `HoME Organisator list ${homeChapter}`;
     setLoading(true);

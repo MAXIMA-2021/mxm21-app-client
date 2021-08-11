@@ -15,13 +15,31 @@ const transition = {
 };
 
 const cardVariants = {
-  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
-  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.4, ...transition } },
+  rest: { y: "50%", opacity: 0 },
   enter: {
     y: "0%",
     opacity: 1,
-    transition,
+    transition: { delay: 0.2, ...transition },
   },
+};
+
+const buttonVariantsTwo = {
+  rest: { y: 100, opacity: 0, transition },
+  enter: { y: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+  exit: { y: 100, opacity: 0, transition: { delay: 0.4, ...transition } },
+};
+
+const logoVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0.4, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.2, ...transition } },
+};
+
+const frameVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.6, ...transition } },
 };
 
 const HomeCover = () => {
@@ -36,53 +54,72 @@ const HomeCover = () => {
   }, []);
 
   return (
-    <Flex
-      h={{
-        base: "calc(100vh - 3.5rem)",
-        md: "calc(100vh - 4rem)",
-        xl: "calc(100vh - 5rem)",
-      }}
-      padding={{
-        base: "1rem",
-        md: "2rem",
-      }}
-      bgColor={Palette.Navy}
-      className="home-cvr-outer_container"
-      overflow="hidden"
+    <motion.div
+      variants={frameVariants}
+      initial="rest"
+      animate="enter"
+      exit="exit"
     >
       <Flex
-        w="100%"
-        h="100%"
-        flexDir="column"
-        bgColor="white"
-        borderRadius="1rem"
-        alignItems="center"
-        justifyContent="center"
+        h={{
+          base: "calc(100vh - 3.5rem)",
+          md: "calc(100vh - 4rem)",
+          xl: "calc(100vh - 5rem)",
+        }}
+        padding={{
+          base: "1rem",
+          md: "2rem",
+        }}
+        bgColor={Palette.Navy}
+        className="home-cvr-outer_container"
         overflow="hidden"
       >
-        <motion.div
-          initial="rest"
-          animate="enter"
-          exit="exit"
-          variants={cardVariants}
+        <Flex
+          w="100%"
+          h="100%"
+          flexDir="column"
+          bgColor="white"
+          borderRadius="1rem"
+          alignItems="center"
+          justifyContent="center"
+          overflow="hidden"
         >
           <Flex
             backgroundColor="transparent"
             className="home-cvr-middle_container"
             flexDirection="column"
           >
-            <div className="home-cvr-mxm-logo">
+            <motion.div
+              className="home-cvr-mxm-logo"
+              variants={logoVariants}
+              initial="rest"
+              animate="enter"
+              exit="exit"
+            >
               <Image src={MxmLogoText} alt="maxima logo text" />
-            </div>
-            <div className="home-cvr-gate">
-              <Image src={Home.homeCoverGate} alt="home cover gate" />
-            </div>
-            <div className="home-cvr-header">
-              <h1 style={{ color: Palette.Red }}>
-                START THE JOURNEY TOWARDS YOUR DREAM WITH MAXIMA 2021!
-              </h1>
-            </div>
-            <div className="home-cvr-btn">
+            </motion.div>
+            <motion.div
+              variants={cardVariants}
+              initial="rest"
+              animate="enter"
+              exit="exit"
+            >
+              <div className="home-cvr-gate">
+                <Image src={Home.homeCoverGate} alt="home cover gate" />
+              </div>
+              <div className="home-cvr-header">
+                <h1 style={{ color: Palette.Red }}>
+                  START THE JOURNEY TOWARDS YOUR DREAM WITH MAXIMA 2021!
+                </h1>
+              </div>
+            </motion.div>
+            <motion.div
+              className="home-cvr-btn"
+              variants={buttonVariantsTwo}
+              initial="rest"
+              animate="enter"
+              exit="exit"
+            >
               <MxmButton
                 variant="rounded"
                 colorScheme="cyan-navy"
@@ -90,11 +127,11 @@ const HomeCover = () => {
               >
                 HoME 2021
               </MxmButton>
-            </div>
+            </motion.div>
           </Flex>
-        </motion.div>
+        </Flex>
       </Flex>
-    </Flex>
+    </motion.div>
   );
 };
 
