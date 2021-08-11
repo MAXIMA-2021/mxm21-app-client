@@ -87,8 +87,10 @@ const LoginOrganisator: React.FC = () => {
 
     try {
       const returnedData = await authService.loginOrganisator(data);
+
       window.sessionStorage.setItem("name", returnedData.nama);
-      window.sessionStorage.setItem("token", returnedData.accessToken);
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("role", returnedData.role);
       window.location.href = "/admin";
     } catch (error) {
       Swal.fire({

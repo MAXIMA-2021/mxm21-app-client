@@ -11,10 +11,10 @@ import {
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
 import {
-  imgFAQ,
   timeline1,
   timeline2,
   timeline3,
+  faqIllustration,
 } from "../../../assets/beranda";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -35,8 +35,8 @@ const HeroContainer = () => {
           <button className="btn-linear-gradient">Daftarkan dirimu!</button>
         </Flex>
       </Flex>
-      <Flex alignItems="center">
-        <Tilt className="Tilt" options={{ max: 25 }}>
+      <Flex alignItems="center" className="hero-container-vid">
+        <Tilt className="Tilt " options={{ max: 25 }}>
           <iframe src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
         </Tilt>
       </Flex>
@@ -63,7 +63,7 @@ const MaximaTimeline = () => {
     {
       header: "Malam Puncak",
       image: timeline3,
-      subheader: "",
+      subheader: "STARRING: Nama guest star",
       startDate: "18 September",
       endDate: "",
     },
@@ -79,7 +79,11 @@ const MaximaTimeline = () => {
         <Flex className="timeline-content-container">
           <Flex className="timeline-content-item">
             {timelineMaxima.map((item, index) => (
-              <Flex className="card-timeline" id={`timeline-card-${index}`}>
+              <Flex
+                className="card-timeline"
+                id={`timeline-card-${index}`}
+                key={index}
+              >
                 <img src={item.image} alt="" />
                 <Flex className="blur-background-container">
                   <h4>{item.header}</h4>
@@ -111,10 +115,10 @@ const FaqSection = () => {
         <Flex className="faq-illustration">
           <div className="faq-illustration-item">
             <img
-              src={imgFAQ}
+              src={faqIllustration}
               alt="placeholder ilustrasi"
-              width={"285px"}
-              height={"366px"}
+              width={"85%"}
+              // height={"366px"}
             />
           </div>
         </Flex>
@@ -124,7 +128,7 @@ const FaqSection = () => {
             <h3>
               Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
             </h3>
-            <button className="btn-linear-gradient">FAQ</button>
+            <button>Kunjungi FAQ</button>
           </Flex>
         </Flex>
       </Flex>
@@ -141,9 +145,11 @@ const Beranda = () => {
 
   return (
     <>
-      <HeroContainer />
-      <MaximaTimeline />
-      <FaqSection />
+      <div className="homepage">
+        <HeroContainer />
+        <MaximaTimeline />
+        <FaqSection />
+      </div>
     </>
     // <Center>
     //   <SimpleGrid columns={2} spacing={10}>

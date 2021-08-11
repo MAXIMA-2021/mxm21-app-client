@@ -17,6 +17,7 @@ import {
   useDisclosure,
   Skeleton,
   SkeletonCircle,
+  SkeletonText,
 } from "@chakra-ui/react";
 import { MxmHeading } from "../../../shared/styled/containers";
 import { createIcon } from "@chakra-ui/icons";
@@ -102,6 +103,7 @@ const CustomTab: any = React.forwardRef((props, ref) => {
 
 const Card = (props: any) => {
   const [loading, setLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
   const [registerStatus, setRegisterStatus] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -152,16 +154,22 @@ const Card = (props: any) => {
               }}
             ></div>
             <div className="card-img">
-              {loading ? (
-                <SkeletonCircle size="56px" />
-              ) : (
-                <img src={props.stateLogo} alt="logo" />
-              )}
+              <SkeletonCircle size="56px" isLoaded={!imageLoading}>
+                <img
+                  src={props.stateLogo}
+                  alt="logo"
+                  onLoad={() => setImageLoading(false)}
+                />
+              </SkeletonCircle>
             </div>
             <div className="card-text">
               <div className="name">{props.name}</div>
               <div className="category">{props.category}</div>
-              <div className="desc">{props.shortDesc}</div>
+              {loading ? (
+                <SkeletonText mt="4" noOfLines={5} spacing="" />
+              ) : (
+                <div className="desc">{props.shortDesc}</div>
+              )}
             </div>
             <div className={props.status === "full" ? "kuota full" : "kuota"}>
               {props.status === "full" ? (

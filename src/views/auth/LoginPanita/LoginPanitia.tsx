@@ -89,6 +89,7 @@ const LoginPanitia: React.FC = () => {
       const returnedData = await authService.loginPanitia(data);
       window.sessionStorage.setItem("name", returnedData.nama);
       window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("role", returnedData.role);
       window.location.href = "/admin";
     } catch (error) {
       Swal.fire({

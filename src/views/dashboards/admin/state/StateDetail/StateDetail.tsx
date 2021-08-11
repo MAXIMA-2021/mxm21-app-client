@@ -59,10 +59,18 @@ const StateDetail: React.FC = () => {
     };
 
     const fetchDataMhs = async () => {
+      const role = window.sessionStorage.getItem("role");
       try {
-        const returnedDataMhs = await adminService.getRegistrationStateMhs(
-          stateID
-        );
+        let returnedDataMhs = "";
+        if (role === "panitia") {
+          returnedDataMhs = await adminService.getRegistrationStateMhsPanit(
+            stateID
+          );
+        } else if (role === "organizator") {
+          returnedDataMhs = await adminService.getRegistrationStateMhsOrg(
+            stateID
+          );
+        }
 
         setDataKehadiranMhs(returnedDataMhs);
       } catch (error) {

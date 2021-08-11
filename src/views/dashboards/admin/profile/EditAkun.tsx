@@ -14,7 +14,6 @@ import {
   Input,
   InputGroup,
 } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/media-query";
 import { MxmLogo } from "../../../../assets";
 import {
   MxmDivider,
@@ -26,6 +25,7 @@ import {
 import adminService from "../../../../services/admin";
 import Swal from "sweetalert2";
 import jwtDecode from "jwt-decode";
+import { Palette } from "../../../../types/enums";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -48,7 +48,6 @@ const EditAkun: React.FC = () => {
     watch,
   } = useForm();
   const [loading, setLoading] = useState(false);
-  const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
   const [data, setData] = useState<any>("");
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);

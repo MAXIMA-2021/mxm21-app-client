@@ -21,22 +21,29 @@
   top: 19vw;
   left: 24.425%;
   width: 14.6%;
-  -webkit-transform: scaleX(-1);
+
   transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
 
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
+
   transform-origin: right center;
+  -webkit-transform-origin: right center;
   -moz-transform-origin: right center;
+
   transition: transform 0.5s, box-shadow 0.5s;
   -moz-transition: transform 0.5s, box-shadow 0.5s;
+  -webkit-transition: transform 0.5s, box-shadow 0.5s;
   z-index: 2;
 }
 
 .left-gate-open {
   transform: perspective(1200px) rotateY(35deg);
   -moz-transform: perspective(1200px) rotateY(35deg);
+  -webkit-transform: perspective(1200px) rotateY(35deg);
 }
 
 .right-gate {
@@ -45,18 +52,27 @@
   right: 24.425%;
   width: 14.7%;
   -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
   transform: scaleX(-1);
 
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+
   transform-origin: left center;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+
   transition: transform 0.5s, box-shadow 0.5s;
   -moz-transition: transform 0.5s, box-shadow 0.5s;
+  -webkit-transition: transform 0.5s, box-shadow 0.5s;
   z-index: 2;
 }
 
 .right-gate-open {
   transform: perspective(1200px) rotateY(-35deg);
   -moz-transform: perspective(1200px) rotateY(-35deg);
+  -webkit-transform: perspective(1200px) rotateY(-35deg);
 }
 
 @media screen and (max-width: 1024px) {

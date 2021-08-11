@@ -53,12 +53,21 @@ const DaftarState: React.FC = () => {
         showCancelButton: true,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await adminService.deleteState(stateID);
-          const stateData = data.filter(
-            (item: any) => item.stateID !== stateID
-          );
-          setData(stateData);
-          Swal.fire("Data telah dihapus!", "", "success");
+          try {
+            await adminService.deleteState(stateID);
+            const stateData = data.filter(
+              (item: any) => item.stateID !== stateID
+            );
+            setData(stateData);
+            Swal.fire("Data telah dihapus!", "", "success");
+          } catch (error) {
+            Swal.fire({
+              title: "Perhatian!",
+              text: error.response?.data.message,
+              icon: "error",
+              confirmButtonText: "Coba lagi",
+            });
+          }
         } else if (result.isDenied) {
           Swal.fire("Perubahan belum tersimpan", "", "info");
         }

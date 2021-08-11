@@ -8,7 +8,8 @@
 }
 
 h1,
-h2 {
+h2,
+h4 {
   font-family: Rubik, Arial, Helvetica, sans-serif;
 }
 
@@ -18,7 +19,7 @@ h6 {
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
-::-moz-selection {
+.homepage *::-moz-selection {
   background-image: white;
   -webkit-text-fill-color: white;
   text-fill-color: white;
@@ -27,7 +28,7 @@ h6 {
   background: #74c8b9;
 }
 
-::selection {
+.homepage *::selection {
   background-image: white;
   -webkit-text-fill-color: white;
   text-fill-color: white;
@@ -56,10 +57,21 @@ h6 {
 
 .hero-container {
   flex-direction: row;
-  padding: 10rem 0 12rem 0;
+  padding: 8rem 0 12rem 0;
+  & .Tilt,
+  & iframe {
+    border-radius: 20px;
+  }
   & iframe {
     width: 650px;
     height: 350.41px;
+  }
+
+  @media screen and (max-width: 1600px) {
+    & iframe {
+      width: 550px;
+      height: 296.5px;
+    }
   }
 
   @media screen and (max-width: 1486px) {
@@ -69,6 +81,27 @@ h6 {
   }
 
   @media screen and (max-width: 1350px) {
+    & iframe {
+      width: 550px;
+      height: 296.5px;
+    }
+  }
+
+  @media screen and (max-width: 1230px) {
+    & iframe {
+      width: 550px;
+      height: 296.5px;
+    }
+  }
+
+  // @media screen and (max-width: 1120px) {
+  //   & iframe {
+  //     width: 500px;
+  //     height: 269.55px;
+  //   }
+  // }
+
+  @media screen and (max-width: 1210px) {
     & iframe {
       width: 500px;
       height: 269.55px;
@@ -155,6 +188,11 @@ h6 {
   }
 }
 
+.hero-container-vid {
+  position: relative;
+  left: -10px;
+}
+
 .hero-side-container {
   width: 50%;
   background: radial-gradient(
@@ -180,11 +218,15 @@ h6 {
     text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     -webkit-text-fill-color: transparent;
-    line-height: 80px;
+    line-height: 75px;
     letter-spacing: 0.01em;
 
     &:not(strong) {
       font-weight: 500;
+    }
+
+    @media screen and (max-width: 446px) {
+      line-height: 60px;
     }
   }
 
@@ -195,11 +237,11 @@ h6 {
     // line-height: 150%;
     width: 50ch;
 
-    margin-top: 1.5rem;
+    margin-top: 2rem;
   }
 
   & > button {
-    margin-top: 2rem;
+    margin-top: 3rem;
     padding: 0.4rem 1.4rem;
     width: max-content;
 
@@ -211,10 +253,11 @@ h6 {
     background-size: 150% 250%;
     background-position: 50% 100%;
 
+    box-shadow: 0 5px 4px -8px rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
 
     &:hover {
-      background-position: 100% 150%;
+      background-position: 100% 250%;
       box-shadow: 0 10px 4px -8px rgba(0, 0, 0, 0.25);
     }
   }
@@ -222,10 +265,15 @@ h6 {
 
 //timeline
 .timeline-outer-container {
+  // background: linear-gradient(
+  //   180deg,
+  //   rgba(65, 206, 186, 0.15) 0%,
+  //   rgba(212, 226, 255, 0) 100%
+  // );
   background: linear-gradient(
     180deg,
-    rgba(65, 206, 186, 0.15) 0%,
-    rgba(212, 226, 255, 0) 100%
+    rgba(255, 0, 94, 0.117) 12.9%,
+    rgba(255, 0, 94, 0) 70.07%
   );
   height: max-content;
   width: 100%;
@@ -247,27 +295,29 @@ h6 {
 
   & > h1 {
     font-size: var(--timeline-h1-font-size);
-    background-image: linear-gradient(
-      180deg,
-      rgba(5, 66, 57, 0) 0%,
-      #41ceba 0.01%
-    );
-    background-color: linear-gradient(
-      180deg,
-      rgba(5, 66, 57, 0) 0%,
-      #41ceba 0.01%
-    );
+    color: #c5034a;
     font-weight: bold;
     text-align: center;
 
-    background-size: 100%;
-    background-repeat: repeat;
-    background-clip: text;
-    -moz-background-clip: text;
-    -webkit-background-clip: text;
-    text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
+    // background-image: linear-gradient(
+    //   180deg,
+    //   rgba(5, 66, 57, 0) 0%,
+    //   #41ceba 0.01%
+    // );
+    // background-color: linear-gradient(
+    //   180deg,
+    //   rgba(5, 66, 57, 0) 0%,
+    //   #41ceba 0.01%
+    // );
+
+    // background-size: 100%;
+    // background-repeat: repeat;
+    // background-clip: text;
+    // -moz-background-clip: text;
+    // -webkit-background-clip: text;
+    // text-fill-color: transparent;
+    // -moz-text-fill-color: transparent;
+    // -webkit-text-fill-color: transparent;
 
     width: 10ch;
     line-height: 130%;
@@ -276,24 +326,33 @@ h6 {
 
   & h3 {
     padding-top: 0.625rem;
-    color: rgba(1, 33, 43, 1);
+    // color: rgba(1, 33, 43, 1);
+    color: rgba(39, 22, 64, 1);
 
     text-align: center;
     margin-bottom: 2rem;
 
-    @media screen and (max-width: 630px) {
+    @media screen and (max-width: 700px) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 90%;
+    }
+
+    @media screen and (max-width: 400px) {
       width: 95%;
     }
   }
 }
 
 .timeline-content-container {
-  width: 100vw;
+  width: calc(100vw - 8px);
 }
 
 .timeline-content-item {
   margin: 0 auto;
-  width: 85%;
+  width: 80%;
   padding: 2rem;
   justify-content: space-evenly;
   @media screen and (max-width: 1600px) {
@@ -331,80 +390,125 @@ h6 {
 
   flex-direction: row;
   justify-content: center;
-  box-shadow: 0px 10px 20px -5px rgba(255, 214, 40, 0.5);
+  box-shadow: 0px 10px 6px -5px rgba(255, 214, 40, 0.65);
   border-radius: 10px;
 
   & img {
     border-radius: 10px;
     object-fit: cover;
     object-position: 90% 50%;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0px 12px 15px -3px rgba(255, 214, 40, 0.3);
+    }
   }
 
   & .blur-background-container {
     position: absolute;
-    width: 80%;
-    height: 115px;
+    width: 100%;
+    height: 132px;
+    transition: box-shadow 0.3s ease;
 
-    align-items: center;
-    bottom: 5%;
+    &:hover {
+      box-shadow: 0px 12px 15px -3px rgba(255, 214, 40, 0.3);
+    }
 
-    border-radius: 20px;
+    // align-items: center;
+    bottom: 0px;
+
+    border-radius: 2px 2px 6px 6px;
 
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(50px);
+    background: #ffd628;
+    // background: rgba(255, 255, 255, 0.2);
+    // backdrop-filter: blur(50px);
 
-    padding: 0.7rem;
+    padding: 16px 18px;
 
     & > h4 {
-      color: rgba(255, 214, 40, 1);
+      // color: rgba(255, 214, 40, 1);
+      color: rgba(31, 44, 76, 1);
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: bold;
       line-height: 130%;
+      letter-spacing: 0.03em;
     }
 
     & > h6:first-of-type {
       text-transform: uppercase;
-      font-size: 0.8rem;
-      color: rgb(41, 35, 7);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 0.7rem;
+      // color: rgb(41, 35, 7);
+      color: rgba(31, 44, 76, 1);
       letter-spacing: 0.1rem;
       margin-bottom: 1rem;
     }
 
     & > h6 {
+      color: rgba(31, 44, 76, 1);
       font-size: 0.9rem;
       letter-spacing: 0.03rem;
-      color: white;
+    }
+
+    & > h6:last-child {
+      text-align: right;
+      margin-top: auto;
+      font-size: 0.8rem;
     }
   }
 
   &#timeline-card-1 {
-    box-shadow: 0px 10px 20px -5px rgba(31, 44, 76, 0.5);
+    box-shadow: 0px 10px 6px -5px rgba(31, 44, 76, 0.5);
 
     & img {
       object-position: 60% 100%;
+      &:hover {
+        box-shadow: 0px 12px 15px -3px rgba(31, 44, 76, 0.3);
+      }
     }
 
     & .blur-background-container {
+      background: #1f2c4c;
+      &:hover {
+        box-shadow: 0px 12px 15px -3px rgba(31, 44, 76, 0.3);
+      }
       & > h4 {
-        color: rgba(31, 44, 76, 1);
+        color: #ffd008;
+        // color: rgba(31, 44, 76, 1);
       }
 
-      & > h6:first-of-type {
-        color: rgba(8, 22, 57, 1);
+      & > h6 {
+        color: #ffd008;
+        // color: rgba(8, 22, 57, 1);
       }
     }
   }
 
   &#timeline-card-2 {
+    box-shadow: 0px 10px 6px -5px rgba(255, 71, 139, 0.5);
     & img {
       object-position: 25% 100%;
+      &:hover {
+        box-shadow: 0px 12px 15px -3px rgba(255, 71, 139, 0.3);
+      }
     }
 
-    box-shadow: 0px 10px 20px -5px rgba(255, 71, 139, 0.5);
     & .blur-background-container {
+      background: #ff478b;
+      &:hover {
+        box-shadow: 0px 12px 15px -3px rgba(255, 71, 139, 0.3);
+      }
       & > h4 {
-        color: rgba(255, 71, 139, 1);
+        color: #242021;
+        letter-spacing: 0em;
+        // color: rgba(255, 71, 139, 1);
+      }
+
+      & > h6 {
+        color: #242021;
+
+        // color: rgba(8, 22, 57, 1);
       }
     }
   }
@@ -413,8 +517,6 @@ h6 {
     margin: 0 1.5rem;
 
     & .blur-background-container {
-      width: 90%;
-
       & > h6:first-of-type {
         font-size: 0.7rem;
       }
@@ -425,8 +527,6 @@ h6 {
     margin: 0 1rem;
 
     & .blur-background-container {
-      width: 90%;
-
       & > h6:first-of-type {
         font-size: 0.65rem;
       }
@@ -454,37 +554,58 @@ h6 {
 
 //faq section
 .faq-outer-container {
-  width: 100vw;
+  width: calc(100vw - 8px);
   justify-content: center;
 }
 
 .faq-inner-container {
-  width: 70%;
+  width: 67%;
+  // background: linear-gradient(
+  //   79.43deg,
+  //   rgba(255, 0, 94, 0.39) 36.1%,
+  //   rgba(255, 0, 94, 0.0741) 100%
+  // );
   background: linear-gradient(
-    79.43deg,
-    rgba(255, 0, 94, 0.39) 36.1%,
-    rgba(255, 0, 94, 0.0741) 100%
+    259.27deg,
+    rgba(65, 206, 186, 0.1) 0%,
+    rgba(65, 206, 186, 0.25) 52.19%
   );
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 5rem 0;
 
   & .faq-illustration {
-    width: 40%;
+    width: 50%;
     justify-content: center;
     align-items: center;
-    & > .faq-illustration-item {
+
+    & .faq-illustration-item {
+      display: flex;
+      justify-content: center;
     }
   }
 
-  @media screen and (max-width: 1545px) {
+  @media screen and (max-width: 1600px) {
     & {
       width: 80%;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    & {
+      width: 85%;
     }
   }
 
   @media screen and (max-width: 1385px) {
     & {
       width: 90%;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    & {
+      width: 95%;
     }
   }
 
@@ -503,22 +624,24 @@ h6 {
 }
 
 .faq-side-container {
-  width: 60%;
+  width: 50%;
   & .faq-side-item {
     flex-direction: column;
     height: max-content;
     padding: 2.5rem 0;
-    width: 90%;
+    width: 95%;
 
     & > h1 {
-      color: rgba(255, 71, 139, 1);
+      // color: rgba(255, 71, 139, 1);
+      color: #247c70;
       font-weight: 700;
       font-size: var(--faq-h1-font-size);
       margin-bottom: 1.4rem;
     }
 
     & > h3 {
-      color: rgba(39, 22, 64, 1);
+      // color: rgba(39, 22, 64, 1);
+      color: rgba(1, 33, 43, 1);
       font-size: var(--faq-h3-font-size);
       font-weight: 500;
 
@@ -526,20 +649,29 @@ h6 {
     }
 
     & > button {
+      background: linear-gradient(90deg, #12e9b7 0%, #00c7d1 100%);
       width: max-content;
-      padding: 0.7rem 1.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 99px;
       color: white;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 1rem;
       transition: all 0.3s ease;
 
+      box-shadow: 0 5px 4px -8px rgba(0, 0, 0, 0.3);
+
       background-size: 150% 250%;
-      background-position: 50% 100%;
+      background-position: 70% 100%;
 
       &:hover {
         background-position: 100% 150%;
-        box-shadow: 0 10px 4px -8px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 4px -8px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    @media screen and (max-width: 1838px) {
+      & {
+        width: 98%;
       }
     }
 

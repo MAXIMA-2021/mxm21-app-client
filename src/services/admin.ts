@@ -158,9 +158,17 @@ const getAllState = async () => {
   return request.data;
 };
 
-const getRegistrationStateMhs = async (stateID: string) => {
+const getRegistrationStateMhsPanit = async (stateID: string) => {
   const request = await axios.get(
     `${baseUrl}/panit/state/registration?stateID=${stateID}`,
+    config
+  );
+  return request.data;
+};
+
+const getRegistrationStateMhsOrg = async (stateID: string) => {
+  const request = await axios.get(
+    `${baseUrl}/organizator/state/registration?stateID=${stateID}`,
     config
   );
   return request.data;
@@ -189,7 +197,7 @@ const getAllOrganisator = async () => {
 
 const deleteState = async (stateID: string) => {
   const request = await axios.delete(
-    `${baseUrl}/state/activities${stateID}`,
+    `${baseUrl}/state/activities/${stateID}`,
     config
   );
   return request;
@@ -263,7 +271,8 @@ export default {
   deleteState,
   getSpecificState,
   tambahState,
-  getRegistrationStateMhs,
+  getRegistrationStateMhsPanit,
+  getRegistrationStateMhsOrg,
   updateHomeMedia,
   deleteHomeMedia,
   updateState,
