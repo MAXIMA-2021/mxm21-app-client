@@ -19,15 +19,6 @@ import { ErrorPage } from "./views/error";
 export default function AppRouter() {
   return (
     <Switch>
-      <Route path="/auth/:path1?/:path2?">
-        <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
-          <HomeNavbar />
-          <Switch>
-            <AuthRouters />
-          </Switch>
-          <HomeFooter />
-        </div>
-      </Route>
       <DashboardProtectedRoute path="/admin/:path1?/:path2?/:path3?" exact>
         <Switch>
           <div
@@ -44,29 +35,52 @@ export default function AppRouter() {
           </div>
         </Switch>
       </DashboardProtectedRoute>
-      <Route path="/home/:path1?/:path2?" exact>
-        <HomeNavbar />
-        <Switch>
-          <HomeRouters />
-        </Switch>
-      </Route>
-      <StateProtectedRoute path="/state/:path1?/:path2?" exact>
-        <HomeNavbar />
-        <Switch>
-          <StateRouters />
-        </Switch>
-      </StateProtectedRoute>
+      <Route
+        strict
+        path="/auth/keluar"
+        render={() => {
+          window.sessionStorage.clear();
+          return <Redirect to="/" />;
+        }}
+      />
+      <Route path="/404" exact component={ErrorPage} />
       <Route>
-        <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
-          <HomeNavbar />
-          <Switch>
-            <Route path="/" exact component={Beranda.Beranda} />
-            <Route path="/about-us" component={Beranda.AboutUs} />
-            <Route path="/faq" component={Beranda.FAQ} />
-            <Route component={ErrorPage} />
-          </Switch>
-          <HomeFooter />
-        </div>
+        <HomeNavbar />
+        <Switch>
+          <Route
+            render={({ location }) => (
+              <AnimatePresence exitBeforeEnter initial={false}>
+                <Switch location={location} key={location.pathname}>
+                  <Route path="/home/:path1?/:path2?" exact>
+                    <HomeRouters />
+                  </Route>
+                  <StateProtectedRoute path="/state/:path1?/:path2?" exact>
+                    <StateRouters />
+                  </StateProtectedRoute>
+                  <Route path="/auth/:path1?/:path2?" exact>
+                    <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
+                      <AuthRouters />
+                      <HomeFooter />
+                    </div>
+                  </Route>
+                  <Route>
+                    <div
+                      style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}
+                    >
+                      <Switch>
+                        <Route path="/" exact component={Beranda.Beranda} />
+                        <Route path="/about-us" component={Beranda.AboutUs} />
+                        <Route path="/faq" component={Beranda.FAQ} />
+                        <Route render={() => <Redirect to="/404" />} />
+                      </Switch>
+                      <HomeFooter />
+                    </div>
+                  </Route>
+                </Switch>
+              </AnimatePresence>
+            )}
+          />
+        </Switch>
       </Route>
     </Switch>
   );

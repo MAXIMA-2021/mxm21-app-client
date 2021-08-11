@@ -94,7 +94,6 @@ const LoginMhs: React.FC = () => {
       window.sessionStorage.setItem("name", returnedData.nama);
       console.log(returnedData);
       window.location.href = "/";
-      alert("berhasil login");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

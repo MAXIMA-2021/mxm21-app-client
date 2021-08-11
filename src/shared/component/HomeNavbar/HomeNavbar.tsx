@@ -8,6 +8,7 @@ import { useMediaQuery } from "@chakra-ui/media-query";
 import jwtDecode from "jwt-decode";
 import { Palette } from "../../../types/enums";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const transition = {
   duration: 0.5,
@@ -39,10 +40,25 @@ const HomeNavbar = () => {
   let isLoggedIn = false;
 
   const token: string | null = window.sessionStorage.getItem("token");
-  const decoded: any = token !== null && jwtDecode(token);
-  decoded.nim && !decoded.division && !decoded.stateID && (isMahasiswa = true);
-  if (token !== null) {
-    isLoggedIn = true;
+  let decoded: any = null;
+
+  try {
+    token !== null && (decoded = jwtDecode(token));
+  } catch (error) {
+    window.sessionStorage.clear();
+    Swal.fire({
+      icon: "error",
+      title: "Token Invalid",
+      confirmButtonText: "Kembali",
+    });
+  } finally {
+    if (decoded !== null) {
+      isLoggedIn = true;
+      decoded.nim &&
+        !decoded.division &&
+        !decoded.stateID &&
+        (isMahasiswa = true);
+    }
   }
 
   const navbarAnimation = (event: any) => {

@@ -34,7 +34,8 @@ const transition = {
 };
 
 const cardVariants = {
-  exit: { y: "50%", opacity: 0, ...transition },
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
@@ -182,6 +183,7 @@ const Card = (props: any) => {
 
 const StateLists = () => {
   const [data, setData] = useState([]);
+  const [hari, setHari] = useState(0);
 
   const fetchData = async () => {
     try {
@@ -205,14 +207,14 @@ const StateLists = () => {
   return (
     <Box overflow="hidden">
       <motion.div
-        initial="exit"
+        initial="rest"
         animate="enter"
         exit="exit"
         variants={cardVariants}
       >
         <Flex direction="column" mb="2.5rem">
           <Center>
-            <Tabs>
+            <Tabs defaultIndex={0} onChange={(index) => setHari(index + 1)}>
               <Center my="2rem">
                 <MxmHeading>Pilih STATE</MxmHeading>
               </Center>
@@ -238,6 +240,20 @@ const StateLists = () => {
                   <CustomTab>Hari ke-4</CustomTab>
                   <CustomTab>Hari ke-5</CustomTab>
                 </TabList>
+                <Text
+                  background="#164273"
+                  color="white"
+                  textAlign="center"
+                  width="100%"
+                  mt="1.5rem"
+                  mb="1rem"
+                  fontSize="1.05rem"
+                  fontWeight="500"
+                  borderRadius="5px"
+                  py="0.3rem"
+                >
+                  STATE Hari ke-{hari}: {5 + hari} September 2021
+                </Text>
                 <TabPanels>
                   <TabPanel
                     pt="0.5rem"
@@ -247,20 +263,6 @@ const StateLists = () => {
                     display="flex"
                   >
                     <Flex direction="column">
-                      <Text
-                        background="#164273"
-                        color="white"
-                        textAlign="center"
-                        width="100%"
-                        mt="1rem"
-                        mb="1.5rem"
-                        fontSize="1.05rem"
-                        fontWeight="500"
-                        borderRadius="5px"
-                        py="0.3rem"
-                      >
-                        STATE Hari ke-1: 5 Agustus 2021
-                      </Text>
                       <Grid
                         templateColumns={{
                           sm: "repeat(2, 1fr)",
@@ -293,20 +295,6 @@ const StateLists = () => {
                     display="flex"
                   >
                     <Flex direction="column">
-                      <Text
-                        background="#164273"
-                        color="white"
-                        textAlign="center"
-                        width="100%"
-                        mt="1rem"
-                        mb="1.5rem"
-                        fontSize="1.05rem"
-                        fontWeight="500"
-                        borderRadius="5px"
-                        py="0.3rem"
-                      >
-                        STATE Hari ke-2: 5 Agustus 2021
-                      </Text>
                       <Grid
                         templateColumns={{
                           sm: "repeat(2, 1fr)",
@@ -339,20 +327,6 @@ const StateLists = () => {
                     display="flex"
                   >
                     <Flex direction="column">
-                      <Text
-                        background="#164273"
-                        color="white"
-                        textAlign="center"
-                        width="100%"
-                        mt="1rem"
-                        mb="1.5rem"
-                        fontSize="1.05rem"
-                        fontWeight="500"
-                        borderRadius="5px"
-                        py="0.3rem"
-                      >
-                        STATE Hari ke-3: 5 Agustus 2021
-                      </Text>
                       <Grid
                         templateColumns={{
                           sm: "repeat(2, 1fr)",
@@ -385,20 +359,6 @@ const StateLists = () => {
                     display="flex"
                   >
                     <Flex direction="column">
-                      <Text
-                        background="#164273"
-                        color="white"
-                        textAlign="center"
-                        width="100%"
-                        mt="1rem"
-                        mb="1.5rem"
-                        fontSize="1.05rem"
-                        fontWeight="500"
-                        borderRadius="5px"
-                        py="0.3rem"
-                      >
-                        STATE Hari ke-4: 5 Agustus 2021
-                      </Text>
                       <Grid
                         templateColumns={{
                           sm: "repeat(2, 1fr)",
@@ -431,20 +391,6 @@ const StateLists = () => {
                     display="flex"
                   >
                     <Flex direction="column">
-                      <Text
-                        background="#164273"
-                        color="white"
-                        textAlign="center"
-                        width="100%"
-                        mt="1rem"
-                        mb="1.5rem"
-                        fontSize="1.05rem"
-                        fontWeight="500"
-                        borderRadius="5px"
-                        py="0.3rem"
-                      >
-                        STATE Hari ke-5: 5 Agustus 2021
-                      </Text>
                       <Grid
                         templateColumns={{
                           sm: "repeat(2, 1fr)",

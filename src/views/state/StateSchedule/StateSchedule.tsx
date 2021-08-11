@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Box, Flex, Heading, Text, Image, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Image,
+  useToast,
+  SkeletonCircle,
+} from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
 import { MxmWhiteLogoText } from "../../../assets";
@@ -23,8 +31,8 @@ const stateCard = {
 };
 
 const cardVariants = {
-  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
-  rest: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
@@ -185,6 +193,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
   const [loading, setLoading] = useState(false);
   const [cancelStatus, setCancelStatus] = useState(false);
   const [tokenModalStatus, setTokenModalStatus] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const toast = useToast();
 
@@ -349,10 +358,18 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                   </Text>
                 )}
               </Flex>
+              <SkeletonCircle
+                startColor={Palette.Cyan}
+                endColor={Palette.Navy}
+                size="50%"
+                display={isLoaded ? "none" : ""}
+              />
               <Image
+                onLoad={() => setIsLoaded(true)}
                 src={props.stateData.state[i].stateData.stateLogo}
                 maxW="100%"
                 maxH="50%"
+                display={isLoaded ? "" : "none"}
               />
               <Box>
                 <Text>{props.stateData.state[i].stateData.name}</Text>
