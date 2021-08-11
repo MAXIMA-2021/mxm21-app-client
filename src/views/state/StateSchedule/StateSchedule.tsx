@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Box, Flex, Heading, Text, Image, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Image,
+  useToast,
+  SkeletonCircle,
+} from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
 import { MxmWhiteLogoText } from "../../../assets";
@@ -10,6 +18,32 @@ import ClearIcon from "@material-ui/icons/Clear";
 import stateService from "../../../services/state";
 import Swal from "sweetalert2";
 import { StateModal } from "../../../shared/component/StateModal";
+import { motion } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const stateCard = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05, y: -10, transition },
+};
+
+const cardVariants = {
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
+const buttonVariants = {
+  exit: { x: 100, opacity: 0, transition },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+};
 
 const StateSchedule = () => {
   const [stateData, setStateData] = useState<any>({});
@@ -35,72 +69,117 @@ const StateSchedule = () => {
   }, []);
 
   return (
-    <Flex
-      minH={{
-        base: "calc(100vh - 3.5rem)",
-        md: "calc(100vh - 4rem)",
-        xl: "calc(100vh - 5rem)",
-      }}
-      w="100%"
-      bgColor={Palette.Navy}
-      justifyContent="center"
-      alignItems="center"
-      flexDir="column"
-      padding={{ base: "2rem 0.5rem", "2xl": "0" }}
-    >
-      <Image src={MxmWhiteLogoText} w={{ base: "80px", md: "100px" }} />
-      <Heading
-        fontSize="1.4rem"
-        fontFamily="Rubik"
-        fontWeight="bold"
-        color="white"
-        padding="1rem 0 2rem 0"
+    <Box bgColor={Palette.Navy} overflow="hidden">
+      <motion.div
+        initial="rest"
+        animate="enter"
+        exit="exit"
+        variants={cardVariants}
       >
-        STATE
-      </Heading>
-      <Flex
-        flexDir="column"
-        bgColor="white"
-        h="max-content"
-        w={{ base: "100%", md: "max-content" }}
-        padding={{ base: "2rem 1rem", md: "2rem" }}
-        borderRadius="1rem"
-        textAlign="center"
-        justifyContent="space-between"
-        alignItems="center"
-        fontFamily="Rubik"
-      >
-        <Heading
-          fontFamily="Rubik"
-          fontSize="2rem"
-          fontWeight="bold"
-          color={Palette.Navy}
-          mb={{ base: "1rem", md: "0" }}
+        <Flex
+          minH={{
+            base: "calc(100vh - 3.5rem)",
+            md: "calc(100vh - 4rem)",
+            xl: "calc(100vh - 5rem)",
+          }}
+          w="100%"
+          justifyContent="center"
+          alignItems="center"
+          flexDir="column"
+          padding={{ base: "2rem 0.5rem", "2xl": "0" }}
         >
-          JADWAL STATE
-        </Heading>
-        <Flex flexDir={{ base: "column", md: "row" }}>
-          <BoxJadwal stateData={stateData} i="0" setStateData={setStateData} />
-          <BoxJadwal stateData={stateData} i="1" setStateData={setStateData} />
-          <BoxJadwal stateData={stateData} i="2" setStateData={setStateData} />
-        </Flex>
-        <Box>
-          <Text fontWeight="medium">
-            Sisa Token Anda: {stateData ? stateData.remainingToken : "-"}
-          </Text>
-          <NavLink to="/state/lists">
-            <MxmButton
-              colorScheme="yellow-navy"
-              variant="squared"
-              w="max-content"
-              margin="1rem 0 0 0"
+          <Image src={MxmWhiteLogoText} w={{ base: "80px", md: "100px" }} />
+          <Heading
+            fontSize="1.4rem"
+            fontFamily="Rubik"
+            fontWeight="bold"
+            color="white"
+            padding="1rem 0 2rem 0"
+          >
+            STATE
+          </Heading>
+          <Flex
+            flexDir="column"
+            bgColor="white"
+            h="max-content"
+            w={{ base: "100%", md: "max-content" }}
+            padding={{ base: "2rem 1rem", md: "2rem" }}
+            borderRadius="1rem"
+            textAlign="center"
+            justifyContent="space-between"
+            alignItems="center"
+            fontFamily="Rubik"
+          >
+            <Heading
+              fontFamily="Rubik"
+              fontSize="2rem"
+              fontWeight="bold"
+              color={Palette.Navy}
+              mb={{ base: "1rem", md: "0" }}
             >
-              <Text margin="1rem">Pilih STATE</Text>
-            </MxmButton>
-          </NavLink>
-        </Box>
-      </Flex>
-    </Flex>
+              JADWAL STATE
+            </Heading>
+            <Flex flexDir={{ base: "column", md: "row" }}>
+              <motion.div
+                variants={stateCard}
+                initial="rest"
+                whileHover="hover"
+              >
+                <BoxJadwal
+                  stateData={stateData}
+                  i="0"
+                  setStateData={setStateData}
+                />
+              </motion.div>
+              <motion.div
+                variants={stateCard}
+                initial="rest"
+                whileHover="hover"
+              >
+                <BoxJadwal
+                  stateData={stateData}
+                  i="1"
+                  setStateData={setStateData}
+                />
+              </motion.div>
+              <motion.div
+                variants={stateCard}
+                initial="rest"
+                whileHover="hover"
+              >
+                <BoxJadwal
+                  stateData={stateData}
+                  i="2"
+                  setStateData={setStateData}
+                />
+              </motion.div>
+            </Flex>
+            <Box>
+              <Text fontWeight="medium">
+                Sisa Token Anda: {stateData ? stateData.remainingToken : "-"}
+              </Text>
+              <motion.div
+                variants={buttonVariants}
+                initial="exit"
+                animate="enter"
+                exit="exit"
+              >
+                <NavLink to="/state/lists">
+                  <MxmButton
+                    colorScheme="yellow-navy"
+                    variant="squared"
+                    w="max-content"
+                    margin="1rem 0 0 0"
+                  >
+                    <Text margin="1rem">Pilih STATE</Text>
+                  </MxmButton>
+                </NavLink>
+              </motion.div>
+            </Box>
+          </Flex>
+        </Flex>
+      </motion.div>
+    </Box>
   );
 };
 
@@ -114,6 +193,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
   const [loading, setLoading] = useState(false);
   const [cancelStatus, setCancelStatus] = useState(false);
   const [tokenModalStatus, setTokenModalStatus] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const toast = useToast();
 
@@ -278,10 +358,18 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                   </Text>
                 )}
               </Flex>
+              <SkeletonCircle
+                startColor={Palette.Cyan}
+                endColor={Palette.Navy}
+                size="50%"
+                display={isLoaded ? "none" : ""}
+              />
               <Image
+                onLoad={() => setIsLoaded(true)}
                 src={props.stateData.state[i].stateData.stateLogo}
                 maxW="100%"
                 maxH="50%"
+                display={isLoaded ? "" : "none"}
               />
               <Box>
                 <Text>{props.stateData.state[i].stateData.name}</Text>

@@ -3,10 +3,31 @@ import React from "react";
 import "./HomeFooter.scss";
 import { MxmWhiteLogoText } from "../../../assets";
 import { InstagramIcon, LineIcon, LoveIcon, TiktokIcon } from "./icon";
+import { motion } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const footerVariants = {
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
 
 const HomeFooter: React.FC = () => {
   return (
-    <div className="footer-container">
+    <motion.div
+      className="footer-container"
+      variants={footerVariants}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+    >
       <Flex justifyContent="center" alignItems="center" flexDir="column">
         <Image src={MxmWhiteLogoText} alt="MAXIMA 2021" height="150px" />
         <HStack margin="2.5rem 0" spacing={{ base: "2rem", md: "3rem" }}>
@@ -41,7 +62,7 @@ const HomeFooter: React.FC = () => {
           Created with <LoveIcon color="#FF0000" /> by WEB MAXIMA 2021 Team
         </h5>
       </Flex>
-    </div>
+    </motion.div>
   );
 };
 
