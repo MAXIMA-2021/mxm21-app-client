@@ -227,7 +227,7 @@ const HomeNavbar = () => {
           }
           className="mobile-menu-grid"
         >
-          <NavLink to="/" className="btn-main-nav btn-styling-main-nav">
+          <NavLink to="/home" className="btn-main-nav btn-styling-main-nav">
             HoME
           </NavLink>
           {isMahasiswa && (

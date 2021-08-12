@@ -112,108 +112,110 @@ const HomeOrganisatorList = () => {
       exit="exit"
       variants={cardVariants}
     >
-      <Flex
-        backgroundColor={Palette.Red}
-        className="home-orglist-outer_container"
-        justifyContent="center"
-      >
-        <Flex className="home-orglist-inner_container">
-          <Grid className="home-orglist-grid-header">
-            <div className="home-orglist-chap-logo">{chapter}</div>
-            <div
-              className="home-orglist-chap-desc"
-              style={{ backgroundColor: Palette.Navy }}
-            >
+      <div style={{ height: "100vh" }}>
+        <Flex
+          bg={"#FBCF10"}
+          className="home-orglist-outer_container"
+          justifyContent="center"
+        >
+          <Flex className="home-orglist-inner_container">
+            <Grid className="home-orglist-grid-header">
+              <div className="home-orglist-chap-logo">{chapter}</div>
               <div
-                className="chap-desc-image"
-                style={{ backgroundColor: Palette.Yellow }}
+                className="home-orglist-chap-desc"
+                style={{ backgroundColor: Palette.Navy }}
               >
-                <Image src={homeMaxiTalk} alt="maxi" width="100px" />
-              </div>
-              <div className="chap-desc-text">
-                <p style={{ color: Palette.Yellow }}>{data?.message}</p>
-              </div>
-            </div>
-            <MxmDivider
-              color={Palette.Yellow}
-              margin={"2rem 0 1rem 0"}
-              height={"5px"}
-              className="home-orglist-divider"
-            />
-          </Grid>
-          <Flex className="home-orglist-content_container">
-            {data?.home.map((item: any, index: any) => (
-              <Grid className="home-orglist-content-grid" key={index}>
-                {console.log(item)}
                 <div
-                  className="content-org-logo"
-                  onClick={() => {
-                    history.push(
-                      `/home/organisator-detail/${item?.search_key}`
-                    );
-                  }}
+                  className="chap-desc-image"
+                  style={{ backgroundColor: Palette.Yellow }}
                 >
-                  <Skeleton
-                    startColor={Palette.Cyan}
-                    endColor={Palette.Navy}
-                    height="100px"
-                    width="100px"
-                    isLoaded={!imageLoading}
-                    borderRadius="10px"
-                  >
-                    <Image
-                      src={item?.linkLogo}
-                      alt={`logo ${item?.name}`}
-                      onLoad={() => setImageLoading(false)}
-                    />
-                  </Skeleton>
+                  <Image src={homeMaxiTalk} alt="maxi" width="100px" />
                 </div>
-                <div
-                  className="content-org-desc"
-                  onClick={() => {
-                    history.push(
-                      `/home/organisator-detail/${item?.search_key}`
-                    );
-                  }}
-                  style={{
-                    backgroundColor: Palette.Yellow,
-                    color: Palette.Navy,
-                  }}
-                >
-                  <h3>{item?.name}</h3>
-                  <p>{item?.shortDesc}</p>
+                <div className="chap-desc-text">
+                  <p style={{ color: Palette.Yellow }}>{data?.message}</p>
                 </div>
-                <div className="home-orglist-arrow_icon">
-                  <button
+              </div>
+              <MxmDivider
+                color={Palette.Yellow}
+                margin={"2rem 0 1rem 0"}
+                height={"5px"}
+                className="home-orglist-divider"
+              />
+            </Grid>
+            <Flex className="home-orglist-content_container">
+              {data?.home.map((item: any, index: any) => (
+                <Grid className="home-orglist-content-grid" key={index}>
+                  {console.log(item)}
+                  <div
+                    className="content-org-logo"
                     onClick={() => {
                       history.push(
                         `/home/organisator-detail/${item?.search_key}`
                       );
                     }}
                   >
-                    <PlayArrowIcon />
-                  </button>
-                </div>
-              </Grid>
-            ))}
-          </Flex>
-          <motion.div
-            className="home-orglist-back-btn"
-            variants={buttonVariants}
-            initial="rest"
-            animate="enter"
-            exit="exit"
-          >
-            <MxmButton
-              onClick={() => history.push("/home/category")}
-              variant="rounded"
-              colorScheme="cyan-navy"
+                    <Skeleton
+                      startColor={Palette.Cyan}
+                      endColor={Palette.Navy}
+                      height="100px"
+                      width="100px"
+                      isLoaded={!imageLoading}
+                      borderRadius="10px"
+                    >
+                      <Image
+                        src={item?.linkLogo}
+                        alt={`logo ${item?.name}`}
+                        onLoad={() => setImageLoading(false)}
+                      />
+                    </Skeleton>
+                  </div>
+                  <div
+                    className="content-org-desc"
+                    onClick={() => {
+                      history.push(
+                        `/home/organisator-detail/${item?.search_key}`
+                      );
+                    }}
+                    style={{
+                      backgroundColor: Palette.Yellow,
+                      color: Palette.Navy,
+                    }}
+                  >
+                    <h3>{item?.name}</h3>
+                    <p>{item?.shortDesc}</p>
+                  </div>
+                  <div className="home-orglist-arrow_icon">
+                    <button
+                      onClick={() => {
+                        history.push(
+                          `/home/organisator-detail/${item?.search_key}`
+                        );
+                      }}
+                    >
+                      <PlayArrowIcon />
+                    </button>
+                  </div>
+                </Grid>
+              ))}
+            </Flex>
+            <motion.div
+              className="home-orglist-back-btn"
+              variants={buttonVariants}
+              initial="rest"
+              animate="enter"
+              exit="exit"
             >
-              Kembali
-            </MxmButton>
-          </motion.div>
+              <MxmButton
+                onClick={() => history.push("/home/category")}
+                variant="squared"
+                colorScheme="cyan-navy"
+              >
+                Kembali
+              </MxmButton>
+            </motion.div>
+          </Flex>
         </Flex>
-      </Flex>
+      </div>
     </motion.div>
   );
 };

@@ -8,6 +8,7 @@ import { MxmLogoText } from "../../../assets";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
+import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 
 const transition = {
   duration: 0.5,
@@ -70,7 +71,7 @@ const HomeCover = () => {
           base: "1rem",
           md: "2rem",
         }}
-        bgColor={Palette.Navy}
+        bg={"linear-gradient(180deg, #74C8B9 0%, #164273 56.25%)"}
         className="home-cvr-outer_container"
         overflow="hidden"
       >
@@ -108,7 +109,7 @@ const HomeCover = () => {
                 <Image src={Home.homeCoverGate} alt="home cover gate" />
               </div>
               <div className="home-cvr-header">
-                <h1 style={{ color: Palette.Red }}>
+                <h1 style={{ color: Palette.Navy }}>
                   START THE JOURNEY TOWARDS YOUR DREAM WITH MAXIMA 2021!
                 </h1>
               </div>
@@ -120,13 +121,10 @@ const HomeCover = () => {
               animate="enter"
               exit="exit"
             >
-              <MxmButton
-                variant="rounded"
-                colorScheme="cyan-navy"
-                onClick={handleClick}
-              >
-                HoME 2021
-              </MxmButton>
+              <button onClick={handleClick} style={{ color: "white" }}>
+                Enter HoME
+                <ArrowForwardRoundedIcon />
+              </button>
             </motion.div>
           </Flex>
         </Flex>

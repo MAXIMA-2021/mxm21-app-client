@@ -287,10 +287,6 @@
     padding: unset;
   }
 
-  .home-orglist-divider {
-    width: 80vw;
-  }
-
   .home-orglist-chap-desc {
     margin-top: 2rem;
 
@@ -321,7 +317,37 @@
   .home-orglist-back-btn {
     position: fixed;
     bottom: 1px;
-    left: 25px;
+    left: 0;
+    margin: 0 !important;
+  }
+
+  .content-org-desc {
+    width: 375px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .content-org-desc {
+    width: calc(100vw - 70px);
+  }
+}
+
+@media screen and (max-width: 421px) {
+  .content-org-desc {
+    width: calc(100vw - 50px);
+  }
+}
+
+@media screen and (max-width: 395px) {
+  .home-orglist-content_container {
+    overflow-x: unset;
+    width: 100%;
+  }
+  .content-org-desc {
+    width: calc(100vw - 25px);
+  }
+  .home-orglist-divider {
+    width: 90vw !important;
   }
 }
 
