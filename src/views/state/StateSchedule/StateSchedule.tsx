@@ -32,16 +32,17 @@ const stateCard = {
 
 const cardVariants = {
   exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
-  rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "50%", opacity: 0 },
   enter: {
     y: "0%",
     opacity: 1,
-    transition,
+    transition: { delay: 0.2, ...transition },
   },
 };
 
 const buttonVariants = {
-  exit: { x: 100, opacity: 0, transition },
+  rest: { x: 100, opacity: 0 },
+  exit: { x: 100, opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
@@ -49,7 +50,7 @@ const StateSchedule = () => {
   const [stateData, setStateData] = useState<any>({});
 
   useEffect(() => {
-    document.title = "STATE - Jadwal STATE";
+    document.title = "Jadwal STATE";
 
     const fetchData = async () => {
       try {

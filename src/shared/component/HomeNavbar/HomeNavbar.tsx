@@ -59,7 +59,6 @@ const HomeNavbar = () => {
         !decoded.division &&
         !decoded.stateID &&
         (isMahasiswa = true);
-      console.log("rerendered");
     }
   }
 

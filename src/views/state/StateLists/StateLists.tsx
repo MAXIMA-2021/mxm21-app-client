@@ -208,7 +208,7 @@ const StateLists = () => {
   };
 
   useEffect(() => {
-    document.title = "Daftar STATE - MAXIMA 2021";
+    document.title = "Daftar STATE";
     fetchData();
   }, []);
 

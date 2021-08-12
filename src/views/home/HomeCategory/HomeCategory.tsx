@@ -37,6 +37,11 @@ const buttonVariants = {
   exit: { x: -100, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
+const titleVariants = {
+  rest: { opacity: 0, transition },
+  enter: { opacity: 1, transition: { delay: 0.5, ...transition } },
+};
+
 const HomeCategory = () => {
   const history = useHistory();
 
@@ -49,19 +54,54 @@ const HomeCategory = () => {
   };
 
   return (
-    <Box overflow={{ md: "hidden" }}>
+    <Box
+      overflow={{ md: "hidden" }}
+      className="main-bg"
+      h={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
+    >
       <motion.div
         initial="rest"
         animate="enter"
         exit="exit"
         variants={cardVariants}
+        className="content-container"
       >
+        <motion.div variants={titleVariants} initial="rest" animate="enter">
+          <Flex
+            w="100%"
+            alignItems="center"
+            flexDir="column"
+            mb={{ base: "1rem", md: "3rem" }}
+          >
+            <Text
+              fontFamily="Rubik"
+              color="#164273"
+              fontWeight="bold"
+              textAlign="center"
+              fontSize={{ base: "1.2rem", md: "2.5rem", xl: "3rem" }}
+            >
+              Selamat Datang di Hocus Pocus
+            </Text>
+            <Text
+              fontFamily="Rubik"
+              color="white"
+              bgColor="#164273"
+              borderRadius="5px"
+              padding="0.2rem 0.5rem"
+              fontWeight="medium"
+              w="max-content"
+              textAlign="center"
+              fontSize={{ base: "0.8rem", md: "1rem", xl: "1.2rem" }}
+            >
+              Pilih chapter yang kamu mau!
+            </Text>
+          </Flex>
+        </motion.div>
         <Flex
-          h={{
-            base: "calc(100vh - 3.5rem)",
-            md: "calc(100vh - 4rem)",
-            xl: "calc(100vh - 5rem)",
-          }}
           flexDir={{ base: "row", md: "column" }}
           alignItems="center"
           justifyContent="center"
@@ -72,17 +112,17 @@ const HomeCategory = () => {
             className="category"
             flexDir={{ base: "column", md: "row" }}
             height={{
-              base: "90%",
+              base: "100%",
               md: "max-content",
             }}
             width={{
               base: "100%",
-              md: "80%",
+              md: "90%",
               xl: "70%",
             }}
             justifyContent={{ base: "flex-end ", md: "space-between" }}
             alignItems={{ base: "center", md: "flex-end " }}
-            fontSize={{ base: "0.8rem", md: "1rem" }}
+            fontSize={{ base: "0.6rem", xl: "0.8rem" }}
           >
             <Box
               textAlign="center"
@@ -125,12 +165,12 @@ const HomeCategory = () => {
             className="category"
             flexDir={{ base: "column", md: "row" }}
             height={{
-              base: "90%",
+              base: "100%",
               md: "max-content",
             }}
             width={{
               base: "100%",
-              md: "80%",
+              md: "90%",
               xl: "70%",
             }}
             justifyContent={{ base: "flex-end ", md: "space-between" }}
@@ -139,7 +179,7 @@ const HomeCategory = () => {
               base: "0",
               md: "2.5rem",
             }}
-            fontSize={{ base: "0.8rem", md: "1rem" }}
+            fontSize={{ base: "0.6rem", xl: "0.8rem" }}
           >
             <Box
               textAlign="center"
@@ -181,27 +221,27 @@ const HomeCategory = () => {
             </Box>
           </Flex>
         </Flex>
-        <motion.div
-          variants={buttonVariants}
-          initial="rest"
-          animate="enter"
-          exit="exit"
-          style={{
-            position: "absolute",
-            bottom: "0",
-            left: "0",
-            height: "max-content",
-          }}
-        >
-          <Image
-            height={{ base: "2rem", md: "3rem", "2xl": "5rem" }}
-            mb={{ base: "1rem", md: "2rem" }}
-            ml={{ base: "1rem", md: "2rem" }}
-            className="arrow-btn"
-            src={arrow}
-            onClick={() => history.push("/home/enter")}
-          />
-        </motion.div>
+      </motion.div>
+      <motion.div
+        variants={buttonVariants}
+        initial="rest"
+        animate="enter"
+        exit="exit"
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          height: "max-content",
+        }}
+      >
+        <Image
+          height={{ base: "1.5rem", md: "2.5rem", "2xl": "5rem" }}
+          mb={{ base: "1rem", md: "2rem" }}
+          ml={{ base: "1rem", md: "2rem" }}
+          className="arrow-btn"
+          src={arrow}
+          onClick={() => history.push("/home/enter")}
+        />
       </motion.div>
     </Box>
   );
