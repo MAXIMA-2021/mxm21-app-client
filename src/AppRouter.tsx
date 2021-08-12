@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  useLocation,
 } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import { AuthRouters, HomeRouters, StateRouters } from "./routers";
@@ -17,6 +18,7 @@ import { StateProtectedRoute } from "./routers/StateProtectedRoute";
 import { ErrorPage } from "./views/error";
 
 export default function AppRouter() {
+  const location = useLocation();
   return (
     <Switch>
       <DashboardProtectedRoute path="/admin/:path1?/:path2?/:path3?" exact>
@@ -46,41 +48,33 @@ export default function AppRouter() {
       <Route path="/404" exact component={ErrorPage} />
       <Route>
         <HomeNavbar />
-        <Switch>
-          <Route
-            render={({ location }) => (
-              <AnimatePresence exitBeforeEnter initial={false}>
-                <Switch location={location} key={location.pathname}>
-                  <Route path="/home/:path1?/:path2?" exact>
-                    <HomeRouters />
-                  </Route>
-                  <StateProtectedRoute path="/state/:path1?/:path2?" exact>
-                    <StateRouters />
-                  </StateProtectedRoute>
-                  <Route path="/auth/:path1?/:path2?" exact>
-                    <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
-                      <AuthRouters />
-                      <HomeFooter />
-                    </div>
-                  </Route>
-                  <Route>
-                    <div
-                      style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}
-                    >
-                      <Switch>
-                        <Route path="/" exact component={Beranda.Beranda} />
-                        <Route path="/about-us" component={Beranda.AboutUs} />
-                        <Route path="/faq" component={Beranda.FAQ} />
-                        <Route render={() => <Redirect to="/404" />} />
-                      </Switch>
-                      <HomeFooter />
-                    </div>
-                  </Route>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <Switch location={location} key={location.pathname}>
+            <Route path="/home/:path1?/:path2?" exact>
+              <HomeRouters />
+            </Route>
+            <StateProtectedRoute path="/state/:path1?/:path2?" exact>
+              <StateRouters />
+            </StateProtectedRoute>
+            <Route path="/auth/:path1?/:path2?" exact>
+              <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
+                <AuthRouters />
+                <HomeFooter />
+              </div>
+            </Route>
+            <Route>
+              <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
+                <Switch>
+                  <Route path="/" exact component={Beranda.Beranda} />
+                  <Route path="/about-us" component={Beranda.AboutUs} />
+                  <Route path="/faq" component={Beranda.FAQ} />
+                  <Route render={() => <Redirect to="/404" />} />
                 </Switch>
-              </AnimatePresence>
-            )}
-          />
-        </Switch>
+                <HomeFooter />
+              </div>
+            </Route>
+          </Switch>
+        </AnimatePresence>
       </Route>
     </Switch>
   );

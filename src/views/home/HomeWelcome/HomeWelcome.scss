@@ -1,6 +1,10 @@
 .main-container {
-  background-color: #eb2378;
-  overflow: hidden;
+  background: rgb(246, 104, 59);
+  background: linear-gradient(
+    180deg,
+    rgba(246, 104, 59, 1) 0%,
+    rgba(235, 35, 120, 1) 75%
+  );
 }
 
 .content-head {
