@@ -22,20 +22,18 @@ export default function AppRouter() {
   return (
     <Switch>
       <DashboardProtectedRoute path="/admin/:path1?/:path2?/:path3?" exact>
-        <Switch>
-          <div
-            style={{
-              minHeight: "100vh",
-              background: "#f4f4f4",
-              paddingBottom: "2rem",
-            }}
-          >
-            <DashboardNavigation
-              name={window.sessionStorage?.getItem("name") || ""}
-            />
-            <DashboardFooter />
-          </div>
-        </Switch>
+        <div
+          style={{
+            minHeight: "100vh",
+            background: "#f4f4f4",
+            paddingBottom: "2rem",
+          }}
+        >
+          <DashboardNavigation
+            name={window.sessionStorage?.getItem("name") || ""}
+          />
+          <DashboardFooter />
+        </div>
       </DashboardProtectedRoute>
       <Route
         strict

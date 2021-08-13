@@ -85,6 +85,8 @@ const TambahState: React.FC = () => {
     setResetUpload(false);
 
     setValue("quota", 0);
+    setValue("day", "");
+    setValue("category", "");
     setFocus("name");
   };
 

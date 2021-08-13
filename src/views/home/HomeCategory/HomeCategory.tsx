@@ -54,15 +54,7 @@ const HomeCategory = () => {
   };
 
   return (
-    <Box
-      overflow={{ md: "hidden" }}
-      className="main-bg"
-      h={{
-        base: "calc(100vh - 3.5rem)",
-        md: "calc(100vh - 4rem)",
-        xl: "calc(100vh - 5rem)",
-      }}
-    >
+    <Box overflow={{ md: "hidden" }} className="main-bg">
       <motion.div
         initial="rest"
         animate="enter"
@@ -122,7 +114,7 @@ const HomeCategory = () => {
             }}
             justifyContent={{ base: "flex-end ", md: "space-between" }}
             alignItems={{ base: "center", md: "flex-end " }}
-            fontSize={{ base: "0.6rem", xl: "0.8rem" }}
+            fontSize={{ base: "0.5rem", xl: "0.8rem" }}
           >
             <Box
               textAlign="center"
@@ -179,7 +171,7 @@ const HomeCategory = () => {
               base: "0",
               md: "2.5rem",
             }}
-            fontSize={{ base: "0.6rem", xl: "0.8rem" }}
+            fontSize={{ base: "0.5rem", xl: "0.8rem" }}
           >
             <Box
               textAlign="center"

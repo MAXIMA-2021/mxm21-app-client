@@ -1,17 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import * as Dashboards from "../views/dashboards";
 import { Box } from "@chakra-ui/react";
 
 const AdminRouters = (props: any) => {
   return (
     <div>
-      <Router>
-        <Box
-          alignItems="center"
-          justifyContent="center"
-          backgroundColor="#f4f4f4"
-        >
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="#f4f4f4"
+      >
+        <Switch>
           <Route path="/admin" exact component={Dashboards.LandingDashboard} />
           <Route
             path="/admin/tambah-state"
@@ -86,8 +86,8 @@ const AdminRouters = (props: any) => {
             component={Dashboards.EditMahasiswa}
           />
           <Route path="/admin/edit-akun" component={Dashboards.EditAkun} />
-        </Box>
-      </Router>
+        </Switch>
+      </Box>
     </div>
   );
 };

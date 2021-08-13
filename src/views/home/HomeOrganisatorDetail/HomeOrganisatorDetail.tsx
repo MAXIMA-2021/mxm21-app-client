@@ -63,6 +63,13 @@ const HomeOrganisatorDetail = () => {
           icon: "error",
           confirmButtonText: "Coba lagi",
         });
+      } finally {
+        if (!isLoaded && !visible) {
+          setTimeout(() => {
+            setVisible(true);
+            setIsLoaded(true);
+          }, 10000);
+        }
       }
     };
     fetchData();
