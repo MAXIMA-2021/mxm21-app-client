@@ -8,6 +8,10 @@
   --dropdown-items-svg: 1.1rem;
 }
 
+.hide {
+  display: none !important;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -69,7 +73,7 @@ body {
       }
 
       & .navbar-logout-btn {
-        padding: 0 1rem;
+        padding: 0.4rem 1rem;
 
         width: max-content;
         background-color: #ffffff;

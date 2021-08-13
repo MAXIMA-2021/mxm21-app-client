@@ -1,6 +1,7 @@
 export interface DataRegisterMaba {
   name: string;
   nim: string;
+  password: string;
   tempatLahir: string;
   tanggalLahir: string;
   jenisKelamin: string;
@@ -9,7 +10,6 @@ export interface DataRegisterMaba {
   whatsapp: string;
   idLine: string;
   idInstagram: string;
-  GoogleID: string;
 }
 
 export interface DataLogin {
