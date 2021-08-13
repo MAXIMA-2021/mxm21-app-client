@@ -27,6 +27,7 @@ import { useHistory } from "react-router-dom";
 import { HomeChapter } from "../../../types/enums";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { DownloadIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 
 const transition = {
   duration: 0.5,
@@ -74,8 +75,11 @@ const HomeTwibbon = () => {
     history.push(`/home/organisator-list/${homeChapter}`);
   };
 
+  const randomNumber = () => Math.random() * 7 + 1;
+
   const handleDownloadTwibbon = () => {
-    const chapterStorage = window?.sessionStorage?.getItem("chapter") || "";
+    const chapterStorage =
+      window?.sessionStorage?.getItem("chapter") || `C0${randomNumber()}`;
     const anchor = document.createElement("a");
     anchor.href = downloadTwibbon[Number(chapterStorage?.slice(-1)) - 1].path;
     anchor.download =
@@ -86,7 +90,8 @@ const HomeTwibbon = () => {
   };
 
   const handleAutomatedTwibbon = () => {
-    const chapterStorage = window?.sessionStorage?.getItem("chapter") || "";
+    const chapterStorage =
+      window?.sessionStorage?.getItem("chapter") || `C0${randomNumber()}`;
     window.open(automatedTwibbon[Number(chapterStorage?.slice(-1)) - 1]);
   };
 

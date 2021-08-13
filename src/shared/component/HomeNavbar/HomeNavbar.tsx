@@ -147,23 +147,23 @@ const HomeNavbar = () => {
                 exit="exit"
               >
                 {isLoggedIn ? (
-                  // <NavLink
-                  //   to="/auth/keluar"
-                  //   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-                  // >
-                  //   Keluar
-                  // </NavLink>
-                  <GoogleLogoutBtn />
+                  <NavLink
+                    to="/auth/keluar"
+                    className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+                  >
+                    Keluar
+                  </NavLink>
                 ) : (
+                  // <GoogleLogoutBtn />
                   <>
-                    {/* <NavLink
+                    <NavLink
                       to="/auth/daftar"
                       className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                     >
                       Daftar
-                    </NavLink> */}
+                    </NavLink>
                     <NavLink
-                      to="/auth/google"
+                      to="/auth/masuk"
                       className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                     >
                       Masuk
@@ -242,23 +242,23 @@ const HomeNavbar = () => {
           </NavLink>
           <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
-              // <NavLink
-              //   to="/auth/keluar"
-              //   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
-              // >
-              //   Keluar
-              // </NavLink>
-              <GoogleLogoutBtn />
+              <NavLink
+                to="/auth/keluar"
+                className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
+              >
+                Keluar
+              </NavLink>
             ) : (
+              // <GoogleLogoutBtn />
               <>
-                {/* <NavLink
+                <NavLink
                   to="/auth/daftar"
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                 >
                   Daftar
-                </NavLink> */}
+                </NavLink>
                 <NavLink
-                  to="/auth/google"
+                  to="/auth/masuk"
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk

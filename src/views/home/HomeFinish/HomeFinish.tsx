@@ -165,13 +165,15 @@ const HomeFinish = () => {
                   initial={{ x: -100, opacity: 0 }}
                   animate="enter"
                   exit="exit"
+                  style={{ width: "100%" }}
                 >
                   <NavLink to="/home/category">
                     <MxmButton
                       variant="rounded"
                       colorScheme="navy-cyan"
-                      margin="3rem 0 0 0"
+                      margin="2rem 0 0 0"
                       padding="1rem"
+                      width="90%"
                     >
                       Back to Chapter Lists
                     </MxmButton>
@@ -186,13 +188,24 @@ const HomeFinish = () => {
                     opacity: 0,
                     transition: { delay: 0.2, ...transition },
                   }}
+                  style={{
+                    width: "100%",
+                  }}
                 >
-                  <NavLink to="/">
+                  <NavLink
+                    to="/"
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "flex-end",
+                    }}
+                  >
                     <MxmButton
                       variant="rounded"
                       colorScheme="navy-cyan"
-                      margin={{ base: "1rem 0 0 0", md: "3rem 0 0 0" }}
+                      margin={{ base: "1rem 0 0 0", md: "2rem 0 0 0" }}
                       padding="1rem"
+                      width="90%"
                     >
                       Finish HoME
                     </MxmButton>

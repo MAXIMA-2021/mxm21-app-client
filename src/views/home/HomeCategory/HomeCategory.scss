@@ -64,8 +64,10 @@
 }
 
 .arrow-btn {
+  transition: all 0.3s ease-in-out;
   &:hover {
     cursor: pointer;
+    transform: translateX(-0.5rem);
   }
 }
 

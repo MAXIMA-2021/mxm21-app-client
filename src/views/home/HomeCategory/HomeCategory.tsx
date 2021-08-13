@@ -229,7 +229,7 @@ const HomeCategory = () => {
         <Image
           height={{ base: "1.5rem", md: "2.5rem", "2xl": "5rem" }}
           mb={{ base: "1rem", md: "2rem" }}
-          ml={{ base: "1rem", md: "2rem" }}
+          ml={{ base: "2rem", md: "4rem" }}
           className="arrow-btn"
           src={arrow}
           onClick={() => history.push("/home/enter")}

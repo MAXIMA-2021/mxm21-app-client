@@ -45,7 +45,7 @@ const DashboardNavigation = (props: any) => {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        window.location.href = "/keluar";
+        window.location.href = "/auth/keluar";
       }
     });
   };
