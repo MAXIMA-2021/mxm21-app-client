@@ -67,11 +67,11 @@ const HomeFinish = () => {
       >
         <Flex
           w="100%"
-          h={{
-            base: "calc(100vh - 3.5rem)",
-            md: "calc(100vh - 4rem)",
-            lg: "calc(100vh - 5rem)",
-          }}
+          // h={{
+          //   base: "calc(100vh - 3.5rem)",
+          //   md: "calc(100vh - 4rem)",
+          //   lg: "calc(100vh - 5rem)",
+          // }}
           padding={{
             base: "1rem",
             md: "2rem",

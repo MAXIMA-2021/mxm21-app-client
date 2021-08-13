@@ -99,7 +99,7 @@ const OTPComponent = (props: any) => {
         Tenang aja! Reset password kamu disini
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex mt="2rem">
+        <Flex mt="2rem" direction={{ base: "column", lg: "row" }}>
           <FormControl isInvalid={errors.nim}>
             <MxmFormLabel color={Palette.Navy}>NIM Kamu</MxmFormLabel>
             <InputGroup
@@ -138,12 +138,19 @@ const OTPComponent = (props: any) => {
               )}
             </MxmFormErrorMessage>
           </FormControl>
-          <Flex display="flex" justifyContent="center" mt="27px">
+          <Flex
+            display="flex"
+            justifyContent="center"
+            mt={{ base: "0", lg: "27px" }}
+          >
             <MxmButton
-              variant="squared"
-              margin="0 0 0 1rem"
-              colorScheme="yellow-red"
               type="submit"
+              variant="squared"
+              margin={{ base: "1rem 0 0 0", lg: "0 0 0 1rem" }}
+              colorScheme="yellow-red"
+              padding={{ base: "0 1rem", lg: "0 1rem" }}
+              fontSize={{ base: "0.9rem", lg: "1rem" }}
+              width="100%"
             >
               Kirim OTP
             </MxmButton>

@@ -93,15 +93,15 @@ const HomeZeppelin = () => {
     >
       <Flex
         className="home-zep-outer-container"
-        h={
-          isSmallerThan620px
-            ? "max-content"
-            : {
-                base: "calc(100vh - 3.5rem)",
-                md: "calc(100vh - 4rem)",
-                xl: "calc(100vh - 5rem)",
-              }
-        }
+        // h={
+        //   isSmallerThan620px
+        //     ? "max-content"
+        //     : {
+        //         base: "calc(100vh - 3.5rem)",
+        //         md: "calc(100vh - 4rem)",
+        //         xl: "calc(100vh - 5rem)",
+        //       }
+        // }
         padding={{
           base: "1rem",
           md: "2rem",
@@ -113,6 +113,7 @@ const HomeZeppelin = () => {
           background="white"
           w="100%"
           h="100%"
+          pb="1.4rem"
         >
           <motion.div variants={titleVariants}>
             <Flex

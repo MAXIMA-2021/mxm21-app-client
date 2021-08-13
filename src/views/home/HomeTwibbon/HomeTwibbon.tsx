@@ -306,7 +306,7 @@ const HomeTwibbon = () => {
                               height={{
                                 base: "initial",
                                 md: "2rem",
-                                lg: "initial",
+                                lg: "2rem",
                               }}
                               fontSize={{
                                 base: "0.8rem",
@@ -330,7 +330,7 @@ const HomeTwibbon = () => {
                               height={{
                                 base: "initial",
                                 md: "2rem",
-                                lg: "initial",
+                                lg: "2rem",
                               }}
                               fontSize={{
                                 base: "0.8rem",
@@ -372,7 +372,21 @@ const HomeTwibbon = () => {
                           variant="rounded"
                           colorScheme="navy-white"
                           margin="0"
-                          padding="1rem"
+                          padding={{
+                            base: "1rem 2rem",
+                            md: "0 1rem",
+                            lg: "1rem 2rem",
+                          }}
+                          height={{
+                            base: "initial",
+                            md: "2rem",
+                            lg: "2rem",
+                          }}
+                          fontSize={{
+                            base: "0.8rem",
+                            md: "0.5rem",
+                            lg: "1rem",
+                          }}
                         >
                           Back
                         </MxmButton>
@@ -390,7 +404,21 @@ const HomeTwibbon = () => {
                             variant="desktop"
                             colorScheme="navy-white"
                             margin="0"
-                            padding="1rem"
+                            padding={{
+                              base: "1rem 2rem",
+                              md: "0 1rem",
+                              lg: "1rem 2rem",
+                            }}
+                            height={{
+                              base: "initial",
+                              md: "2rem",
+                              lg: "2rem",
+                            }}
+                            fontSize={{
+                              base: "0.8rem",
+                              md: "0.5rem",
+                              lg: "1rem",
+                            }}
                           >
                             Next
                           </MxmButton>

@@ -27,7 +27,7 @@ import stateService from "../../../services/state";
 import { StateModal } from "../../../shared/component/StateModal";
 import { motion } from "framer-motion";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const transition = {
   duration: 0.5,
@@ -106,6 +106,7 @@ const Card = (props: any) => {
   const [imageLoading, setImageLoading] = useState(true);
   const [registerStatus, setRegisterStatus] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
 
   const handleRegister = async () => {
     try {
@@ -123,7 +124,7 @@ const Card = (props: any) => {
         showConfirmButton: false,
         timer: 1000,
       });
-      window.location.href = "/state";
+      history.push("/state");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -147,7 +148,7 @@ const Card = (props: any) => {
       />
       <button onClick={() => setRegisterStatus(true)}>
         <div className={props.status === "full" ? "card full" : "card"}>
-          <div className="container">
+          <div className="container-card">
             <div
               className="header"
               style={{

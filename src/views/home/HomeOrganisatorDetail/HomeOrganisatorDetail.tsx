@@ -253,15 +253,16 @@ const HomeOrganisatorDetail = () => {
                 height={{
                   base: "initial",
                   md: "2rem",
-                  lg: "initial",
+                  lg: "2rem",
                 }}
                 fontSize={{
                   base: "0.8rem",
                   md: "0.5rem",
-                  lg: "1rem",
+                  lg: "0.9rem",
                 }}
+                onClick={() => history.goBack()}
               >
-                Back to Chapter
+                Kembali ke Zona
               </MxmButton>
               <Spacer />
               <MxmButton
@@ -271,20 +272,25 @@ const HomeOrganisatorDetail = () => {
                 padding={{
                   base: "1rem 2rem",
                   md: "0 1rem",
-                  lg: "1rem 2rem",
+                  lg: "0rem 2rem",
                 }}
                 height={{
                   base: "initial",
                   md: "2rem",
-                  lg: "initial",
+                  lg: "2rem",
                 }}
                 fontSize={{
                   base: "0.8rem",
                   md: "0.5rem",
-                  lg: "1rem",
+                  lg: "0.9rem",
                 }}
+                onClick={() =>
+                  history.push("/home/twibbon", {
+                    status: true,
+                  })
+                }
               >
-                Go to Twibbon
+                Dapatkan Twibbon
               </MxmButton>
             </Flex>
           </Flex>
