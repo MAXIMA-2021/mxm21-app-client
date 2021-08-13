@@ -17,6 +17,10 @@ import {
   Alert,
   AlertIcon,
   useMediaQuery,
+  Stack,
+  InputGroup,
+  FormLabel,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
@@ -29,11 +33,17 @@ import {
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { MxmWhiteLogoText } from "../../../assets";
+import { MxmWhiteLogo, MxmWhiteLogoText, MxmLogo } from "../../../assets";
 import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";
+
+//YANG DARI OPREC
+import { LoginFormCard } from "../../../shared/styled/containers";
+import { formLabelStyle } from "../../../shared/styled/input";
+import { formHeaderStyle } from "../../../shared/styled/input";
+import { UnlockIcon } from "@chakra-ui/icons";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -128,12 +138,13 @@ const LoginPanitia: React.FC = () => {
                 fontSize="0.9rem"
                 status={location.state.status}
                 width={{ base: "20rem", lg: "max-content" }}
+                marginBottom="1rem"
               >
                 <AlertIcon />
                 {location.state.message}
               </Alert>
             )}
-            <Flex
+            {/* <Flex
               direction="column"
               background="#212529"
               className="filter"
@@ -315,7 +326,100 @@ const LoginPanitia: React.FC = () => {
                   </motion.div>
                 </Flex>
               </form>
-            </Flex>
+            </Flex> */}
+            <LoginFormCard>
+              <Image src={MxmLogo} width={50} height="auto" />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Text style={formHeaderStyle}>Masuk ke akun Anda</Text>
+                <Stack spacing={4}>
+                  <FormControl id="nim_koor" isInvalid={errors.nim}>
+                    <FormLabel style={formLabelStyle}>NIM</FormLabel>
+                    <InputGroup>
+                      <InputLeftAddon
+                        size="base"
+                        children="000000"
+                        fontFamily="Rubik"
+                      />
+                      <Input
+                        autoFocus
+                        type="number"
+                        {...register("nim", {
+                          required: "Isi NIM kamu",
+                          minLength: {
+                            value: 5,
+                            message: "Masukkan 5 angka terakhir dari NIM kamu",
+                          },
+                          maxLength: {
+                            value: 5,
+                            message: "Masukkan 5 angka terakhir dari NIM kamu",
+                          },
+                        })}
+                      />
+                    </InputGroup>
+                    <FormErrorMessage>
+                      {errors.nim && errors.nim.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl
+                    isInvalid={errors.password}
+                    paddingBottom="0.5rem"
+                  >
+                    <FormLabel style={formLabelStyle}>Password</FormLabel>
+                    <InputGroup size="md" addon="icon">
+                      <Input
+                        pr="4.5rem"
+                        type={show ? "text" : "password"}
+                        {...register("password", {
+                          required: "Isi password kamu",
+                        })}
+                      />
+                      <InputRightElement width="4.5rem">
+                        <Button h="1.75rem" size="sm" onClick={handleClick}>
+                          {show ? "Hide" : "Show"}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                    <FormErrorMessage>
+                      {errors.password && errors.password.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  {loading ? (
+                    <Button
+                      isLoading
+                      loadingText="Masuk"
+                      spinnerPlacement="start"
+                      type="submit"
+                      colorScheme="teal"
+                    >
+                      Masuk
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      colorScheme="teal"
+                      leftIcon={<UnlockIcon />}
+                    >
+                      Masuk
+                    </Button>
+                  )}
+                </Stack>
+              </form>
+              <Center mt={8}>
+                <Stack spacing={1}>
+                  <Link to="/auth/panitia/daftar">
+                    <Text fontSize="xs" textAlign="center" color="blue.500">
+                      Belum memiliki akun? Daftar di sini
+                    </Text>
+                  </Link>
+                  <Link to="/auth/reset">
+                    <Text fontSize="xs" textAlign="center" color="blue.500">
+                      Lupa password kamu? Klik di sini
+                    </Text>
+                  </Link>
+                </Stack>
+              </Center>
+            </LoginFormCard>
           </Flex>
         </motion.div>
       </motion.div>

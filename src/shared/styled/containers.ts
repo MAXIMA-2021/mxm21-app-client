@@ -3,6 +3,29 @@ import { bgAuth } from "../../assets";
 import { Heading } from "@chakra-ui/react";
 import { Palette } from "../../types/enums";
 
+export const LoginFormCard = styled.div`
+  background-color: #fafafa;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  transition: 0.3s;
+  padding: 2.5em 3em 2.5em 3em;
+  border-radius: 7px;
+
+  @media (max-width: 520px) {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+
+    /* margin: 5rem 0; */
+  }
+
+  @media (max-width: 450px) {
+    padding: 1.5em;
+  }
+`;
+
 export const MxmContainers = styled("div")`
   background-image: url(${bgAuth});
   height: 100%;
@@ -29,6 +52,11 @@ export const MxmContainersPanitia = styled("div")`
 
   /* background-color: rgba(229, 229, 247, 0.2); */
   /* background-color: rgba(22, 66, 115, 0.5); */
+
+  /* @media screen and (max-width: 520px) {
+    padding-top: 7vh;
+  } */
+
   background-color: #000000;
   background-image: linear-gradient(
       30deg,
