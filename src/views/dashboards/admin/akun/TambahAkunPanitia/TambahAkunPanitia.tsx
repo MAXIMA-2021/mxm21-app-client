@@ -335,14 +335,7 @@ const TambahPanitia: React.FC = () => {
                 )}
               </MxmFormErrorMessage>
             </FormControl>
-            <FormControl
-              // w={{
-              //   base: "100%",
-              //   md: "95%",
-              // }}
-              mb={3}
-              isInvalid={errors.konfirmasiPassword}
-            >
+            <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
               <MxmFormLabel color="black">Konfirmasi Password</MxmFormLabel>
               <MxmInputGroup>
                 <Input

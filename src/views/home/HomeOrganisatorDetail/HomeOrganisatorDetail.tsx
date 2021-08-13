@@ -222,7 +222,6 @@ const HomeOrganisatorDetail = () => {
               fontFamily="Rubik"
               fontWeight="700"
               fontSize={{ base: "2rem", md: "2.15rem", "2xl": "4rem" }}
-              // letterSpacing="0.1rem"
               textAlign="left"
               width="100%"
               mt="1rem"

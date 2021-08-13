@@ -33,7 +33,6 @@ export interface DataRegisterOrganisator {
   stateID: string;
 }
 
-//interface untuk HoME
 export interface DataHome {
   name: string;
   kategori: string;

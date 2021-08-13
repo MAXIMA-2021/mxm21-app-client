@@ -198,46 +198,6 @@ const DaftarAkunPanitia: React.FC = () => {
     },
   ];
 
-  // const data = [
-  //   ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Maximilliano Adrian Stefan Gabrielsar",
-  //     "23231",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  // ];
-
   return (
     <>
       <Flex

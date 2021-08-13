@@ -201,7 +201,6 @@ const RegisterOrganisator: React.FC = () => {
                       lg: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    // mt={2}
                   />
                 </Flex>
                 <Divider
@@ -422,14 +421,7 @@ const RegisterOrganisator: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  <FormControl
-                    // w={{
-                    //   base: "100%",
-                    //   md: "95%",
-                    // }}
-                    mb={3}
-                    isInvalid={errors.konfirmasiPassword}
-                  >
+                  <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
                     <MxmFormLabel>Konfirmasi Password</MxmFormLabel>
                     <MxmInputGroup>
                       <Input

@@ -4,6 +4,8 @@ import "./HomeFooter.scss";
 import { MxmWhiteLogoText } from "../../../assets";
 import { InstagramIcon, LineIcon, LoveIcon, TiktokIcon } from "./icon";
 import { motion } from "framer-motion";
+import jwtDecode from "jwt-decode";
+import Swal from "sweetalert2";
 
 const transition = {
   duration: 0.5,
@@ -20,6 +22,31 @@ const footerVariants = {
 };
 
 const HomeFooter: React.FC = () => {
+  let isMahasiswa = false;
+  let isLoggedIn = false;
+
+  const token: string | null = window.sessionStorage.getItem("token");
+  let decoded: any = null;
+
+  try {
+    token !== null && (decoded = jwtDecode(token));
+  } catch (error) {
+    window.sessionStorage.clear();
+    Swal.fire({
+      icon: "error",
+      title: "Token Invalid",
+      confirmButtonText: "Kembali",
+    });
+  } finally {
+    if (decoded !== null) {
+      isLoggedIn = true;
+      decoded.nim &&
+        !decoded.division &&
+        !decoded.stateID &&
+        (isMahasiswa = true);
+    }
+  }
+
   return (
     <motion.div
       className="footer-container"
@@ -34,9 +61,12 @@ const HomeFooter: React.FC = () => {
           <a href="/" className="nav-footer">
             HoME
           </a>
-          <a href="/" className="nav-footer">
-            STATE
-          </a>
+          {isMahasiswa && (
+            <a href="/" className="nav-footer">
+              STATE
+            </a>
+          )}
+
           <a href="/" className="nav-footer">
             FAQ
           </a>
