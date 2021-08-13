@@ -62,9 +62,6 @@ const HomeOrganisatorDetail = () => {
   const history = useHistory();
 
   const [images, setImages] = useState([]);
-  const validator =
-    /(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/;
-  let [validation, setValidation] = useState(null);
   useEffect(() => {
     document.title = "HoME Organisator Detail";
 
@@ -80,9 +77,6 @@ const HomeOrganisatorDetail = () => {
             { original: media.linkMedia },
           ]);
         }
-        console.log(images);
-        validation = homeDetail.linkYoutube.match(validator);
-        console.log(validation);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -187,18 +181,12 @@ const HomeOrganisatorDetail = () => {
               height="100%"
             >
               <div className="container">
-                {validation !== null ? (
-                  <iframe
-                    title="video"
-                    src={homeDetail.linkYoutube}
-                    allowFullScreen
-                    className="responsive-iframe"
-                  />
-                ) : (
-                  <Flex w="100%" h="100%" bgColor="grey">
-                    Video tidak dapat dimuat
-                  </Flex>
-                )}
+                <iframe
+                  title="video"
+                  src={homeDetail.linkYoutube}
+                  allowFullScreen
+                  className="responsive-iframe"
+                />
                 <iframe
                   title="video"
                   src={homeDetail.linkYoutube}
