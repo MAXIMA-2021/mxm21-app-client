@@ -25,27 +25,11 @@ const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
-
-  const location = useLocation();
-
   let isAdmin = false;
-  let isPanitia = true;
-  const token: string | null = window.sessionStorage.getItem("token");
-  let decoded: any = null;
 
-  try {
-    token !== null && (decoded = jwtDecode(token));
-  } catch (error) {
-    window.sessionStorage.clear();
-    Swal.fire({
-      icon: "error",
-      title: "Token Invalid",
-      confirmButtonText: "Kembali",
-    });
-  } finally {
-    decoded.division === "D01" && (isAdmin = true);
-    decoded.stateID && (isPanitia = false);
-  }
+  const token: string | null = window.sessionStorage.getItem("token");
+  const decoded: any = token !== null && jwtDecode(token);
+  decoded.division === "D01" && (isAdmin = true);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -59,8 +43,7 @@ const DashboardNavigation = (props: any) => {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        window.sessionStorage.clear();
-        window.location.href = "/";
+        window.location.href = "/auth/keluar";
       }
     });
   };
@@ -216,7 +199,10 @@ const DashboardNavigation = (props: any) => {
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
-              <NavLink to="/admin" activeClassName="sidebar-nav_active">
+              <NavLink
+                to="/admin/dashboard"
+                activeClassName="sidebar-nav_active"
+              >
                 <AssessmentIcon />
                 Dashboard
               </NavLink>
@@ -224,16 +210,12 @@ const DashboardNavigation = (props: any) => {
               <NavLink
                 to="/admin/daftar-maba"
                 activeClassName="sidebar-nav_active"
-                className={`${!isPanitia && "hide"} daftar-maba`}
               >
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
               </NavLink>
 
-              <li
-                onClick={sidebarDropdownActive}
-                className={`dropdown ${!isPanitia && "hide"}`}
-              >
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
                   <HomeRoundedIcon onClick={sidebarDropdownActiveSvg} />
                   HoME
@@ -279,10 +261,7 @@ const DashboardNavigation = (props: any) => {
                 </ul>
               </li>
 
-              <li
-                onClick={sidebarDropdownActive}
-                className={`dropdown ${!isPanitia && "hide"}`}
-              >
+              <li onClick={sidebarDropdownActive} className={`dropdown`}>
                 <Flex className="dropdown-header">
                   <FlightIcon onClick={sidebarDropdownActiveSvg} />
                   STATE
@@ -310,20 +289,13 @@ const DashboardNavigation = (props: any) => {
                 </ul>
               </li>
 
-              {/* <NavLink
-                to="/shortener"
-                activeClassName="sidebar-nav_active"
-                className={`${!isPanitia && "hide"}`}
-              >
+              <NavLink to="/shortener" activeClassName="sidebar-nav_active">
                 <LinkIcon />
                 Shortener
-              </NavLink> */}
+              </NavLink>
 
               {isAdmin && (
-                <li
-                  onClick={sidebarDropdownActive}
-                  className={`dropdown ${!isPanitia && "hide"}`}
-                >
+                <li onClick={sidebarDropdownActive} className={`dropdown`}>
                   <Flex className="dropdown-header">
                     <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
                     Akun MAXIMA 2021
@@ -419,11 +391,7 @@ const DashboardNavigation = (props: any) => {
             : "0px"
         }
       >
-        <AdminRouters
-          show={sidebarShow}
-          isPanitia={isPanitia}
-          stateID={decoded.stateID || null}
-        />
+        <AdminRouters show={sidebarShow} />
       </Flex>
     </div>
   );
