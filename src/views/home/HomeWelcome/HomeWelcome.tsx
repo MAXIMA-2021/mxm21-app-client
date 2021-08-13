@@ -105,12 +105,6 @@ const HomeWelcome = () => {
                   yang masing-masing mewakili Kategori Organisasi yang ada di{" "}
                   <b>UMN</b>.
                 </p>
-                <p style={{ marginTop: "0.5rem" }}>
-                  Nah, Sebelum kita jalan-jalan nanti, <b>MAXI</b> dan{" "}
-                  <b>XIMA</b> mau ngajak <b>MAXIMERS</b> untuk membuat akun pada
-                  website MAXIMA sebagai
-                  <b> persyaratan kelulusan HoME 2021</b>.
-                </p>
               </Box>
               <motion.div
                 variants={buttonVariantsTwo}
@@ -122,9 +116,11 @@ const HomeWelcome = () => {
                   onClick={handleClick}
                   variant="squared"
                   colorScheme="yellow-red"
-                  padding="1.5rem"
+                  padding="1.2rem 2.2rem"
                 >
-                  <Text fontSize={{ base: "1rem", md: "2rem" }}>Let's Go!</Text>
+                  <Text fontSize={{ base: "1rem", md: "1.5rem" }}>
+                    Ayo Pergi!
+                  </Text>
                 </MxmButton>
               </motion.div>
             </motion.div>

@@ -1,8 +1,9 @@
 :root {
   --footer-height: 4rem;
   --footer-bottom: 1.5rem;
-  --image-size: 150px;
+  --image-size: 210px;
   --translate-anim: -2rem;
+  --container-height: calc(100vh - 5rem);
 }
 
 .main-bg {
@@ -14,21 +15,21 @@
   // );
 }
 
-.chapter {
-  height: 100% !important;
-  width: auto;
-  &:hover {
-    animation: popup 2s infinite ease-in-out;
-    cursor: pointer;
-  }
-}
-
 .content-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  min-height: var(--container-height);
   justify-content: center;
+}
+
+.chapter {
+  height: auto;
+  width: 100%;
+  &:hover {
+    animation: popup 2s infinite ease-in-out;
+    cursor: pointer;
+  }
 }
 
 .category {
@@ -36,10 +37,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: max-content;
+    width: var(--image-size);
 
     & p {
-      // max-width: 90%;
+      width: 100%;
       // display: none;
       text-align: center;
       color: white;
@@ -68,16 +69,34 @@
   }
 }
 
+@media screen and (max-width: 47em) {
+  :root {
+    --image-size: 120px;
+    --container-height: calc(100vh - 3.5rem);
+  }
+}
+
+@media screen and (max-width: 79em) {
+  :root {
+    --image-size: 140px;
+    --container-height: calc(100vh - 4rem);
+  }
+}
+
+@media screen and (min-width: 80em) {
+  :root {
+    --container-height: calc(100vh - 5rem);
+  }
+}
+
 @media screen and (max-width: 1020px) {
   :root {
-    --image-size: 160px;
     --translate-anim: -1.5rem;
   }
 }
 
 @media screen and (max-width: 830px) and (max-height: 823px) {
   :root {
-    --image-size: 130px;
     --footer-height: 2rem;
     --footer-bottom: 0.5rem;
     --translate-anim: -1rem;
@@ -85,10 +104,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  :root {
-    --image-size: 120px;
-  }
-
   .category div {
     margin-top: 0.3rem;
   }
@@ -96,7 +111,6 @@
 
 @media screen and (max-width: 511px) and (max-height: 640px) {
   :root {
-    --image-size: 120px;
     --translate-anim: -0.5rem;
   }
 }
