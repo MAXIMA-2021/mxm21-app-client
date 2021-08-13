@@ -93,7 +93,11 @@ const HomeZeppelin = () => {
               Zeppelin
             </h1>
           </Flex>
-          <Image src={Home.ZeppPink} alt="home zeppelin" />
+          <Image
+            src={Home.ZeppPink}
+            alt="home zeppelin"
+            className="zep-illustration"
+          />
 
           <Flex className="home-zep-desc" color={Palette.Navy}>
             <p>

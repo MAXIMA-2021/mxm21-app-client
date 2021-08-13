@@ -260,3 +260,24 @@
     width: 35ch;
   }
 }
+@keyframes zeppelin_animation {
+  0% {
+    transform: translateX(30%) scaleX(1);
+  }
+  49% {
+    transform: translateX(-30%);
+  }
+  50% {
+    transform: translateX(-30%) scaleX(-1);
+  }
+
+  100% {
+    transform: translateX(30%) scaleX(-1);
+  }
+}
+
+.zep-illustration {
+  animation: zeppelin_animation 6s infinite;
+  // transition: 0.5s;
+  // transform: translateX(100px);
+}
