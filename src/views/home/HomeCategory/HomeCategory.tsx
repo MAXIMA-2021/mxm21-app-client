@@ -46,7 +46,7 @@ const HomeCategory = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "HoME Category Page";
+    document.title = "HoME 2021 - Kategori Zona";
   }, []);
 
   const handleChapterClick = (homeChapter: string) => {

@@ -63,7 +63,7 @@ const HomeOrganisatorDetail = () => {
 
   const [images, setImages] = useState([]);
   useEffect(() => {
-    document.title = "HoME Organisator Detail";
+    document.title = "HoME 2021 - Detail Organisator";
 
     const fetchData = async () => {
       try {

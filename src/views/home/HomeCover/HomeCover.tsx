@@ -51,7 +51,7 @@ const HomeCover = () => {
   };
 
   useEffect(() => {
-    document.title = "HoME Cover Page";
+    document.title = "HoME 2021 - Selamat Datang";
   }, []);
 
   return (

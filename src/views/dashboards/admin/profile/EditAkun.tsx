@@ -61,7 +61,7 @@ const EditAkun: React.FC = () => {
   password.current = watch("password", "");
 
   useEffect(() => {
-    document.title = "Edit Akun Kamu - MAXIMA 2021";
+    document.title = "[Dashboard] - Edit Akun Kamu";
     const fetchData = async () => {
       try {
         const decoded: any = jwtDecode(
@@ -196,7 +196,7 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.oldPassword}>
             <MxmFormLabel color="black">Password Saat Ini</MxmFormLabel>
-            <MxmInputGroup addon="icon">
+            <InputGroup addon="icon">
               <MxmInput
                 {...register("oldPassword")}
                 type={show ? "text" : "password"}
@@ -210,7 +210,7 @@ const EditAkun: React.FC = () => {
                   {show ? <IconHidePassword /> : <IconShowPassword />}
                 </Button>
               </InputRightElement>
-            </MxmInputGroup>
+            </InputGroup>
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.oldPassword && (
                 <Flex flexDirection="row" alignItems="center">
@@ -224,7 +224,7 @@ const EditAkun: React.FC = () => {
           </FormControl>
           <FormControl mb={3} isInvalid={errors.password}>
             <MxmFormLabel color="black">Password Baru</MxmFormLabel>
-            <MxmInputGroup addon="icon">
+            <InputGroup addon="icon">
               <MxmInput
                 type={showNew ? "text" : "password"}
                 {...register("password", {
@@ -243,7 +243,7 @@ const EditAkun: React.FC = () => {
                   {showNew ? <IconHidePassword /> : <IconShowPassword />}
                 </Button>
               </InputRightElement>
-            </MxmInputGroup>
+            </InputGroup>
             <MxmFormErrorMessage fontSize="xs" mt={1}>
               {errors.password && (
                 <Flex flexDirection="row" alignItems="center">

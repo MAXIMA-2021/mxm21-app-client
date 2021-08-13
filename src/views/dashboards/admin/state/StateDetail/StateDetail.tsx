@@ -85,7 +85,7 @@ const StateDetail: React.FC = () => {
 
     fetchDataDetail();
     fetchDataMhs();
-    document.title = `State Detail ${detailState?.name}`;
+    document.title = `[Dashboard] - Detail STATE`;
   }, []);
 
   const tableColumns = [
@@ -270,7 +270,8 @@ const StateDetail: React.FC = () => {
                 </Text>
                 <Flex direction="row" my="1rem">
                   <Text>
-                    <PeopleAltOutlinedIcon /> {detailState?.quota}
+                    <PeopleAltOutlinedIcon /> {detailState?.registered} /{" "}
+                    {detailState?.quota}
                   </Text>
                   <Text ml="6rem">
                     <VpnKeyOutlinedIcon /> {detailState?.attendanceCode}

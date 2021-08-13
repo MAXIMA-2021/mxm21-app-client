@@ -33,7 +33,7 @@ const HomePintu = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "HoME Pintu Page";
+    document.title = "HoME 2021 - Let's Dive Into Dreamland";
   }, []);
 
   const handleClickNext = () => {

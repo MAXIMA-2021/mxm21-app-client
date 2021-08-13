@@ -48,6 +48,7 @@ const EditState: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
+    document.title = "[Dashboard] - Edit STATE";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getSpecificState(stateID);

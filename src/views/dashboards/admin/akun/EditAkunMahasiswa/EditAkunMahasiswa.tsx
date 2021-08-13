@@ -43,7 +43,7 @@ const EditMahasiswa: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
-    document.title = "Edit Akun Mahasiswa - MAXIMA 2021";
+    document.title = "[Dashboard] - Edit Akun Mahasiswa";
     const fetchData = async () => {
       try {
         let returnedData = await adminService.getMahasiswaByNim(nim);

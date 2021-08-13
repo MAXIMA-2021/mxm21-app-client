@@ -25,7 +25,7 @@ const DaftarHome: React.FC = () => {
   const toast = useToast();
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Organisator HoME";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllHome();

@@ -65,7 +65,7 @@ const TambahOrganisator: React.FC = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    document.title = "[Organisator] Daftar - MAXIMA 2021";
+    document.title = "[Dashboard] - Tambah Akun Organisator";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllState();

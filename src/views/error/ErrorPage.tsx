@@ -1,9 +1,13 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./ErrorPage.scss";
 
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "404 - Page Not Found";
+  }, []);
+
   return (
     <Flex
       minH={{

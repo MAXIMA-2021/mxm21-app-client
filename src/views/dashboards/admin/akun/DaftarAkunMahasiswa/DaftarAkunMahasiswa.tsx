@@ -27,7 +27,7 @@ const DaftarAkunMahasiswa: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Akun Mahasiswa";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllMahasiswa();

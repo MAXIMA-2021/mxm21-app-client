@@ -52,6 +52,10 @@ const benderaVariants = {
 };
 
 const HomeFinish = () => {
+  useEffect(() => {
+    document.title = "HoME 2021 - Selesai";
+  }, []);
+
   return (
     <Box overflow="hidden">
       <motion.div

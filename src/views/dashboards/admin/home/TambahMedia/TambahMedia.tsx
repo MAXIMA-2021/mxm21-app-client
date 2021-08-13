@@ -39,7 +39,7 @@ const TambahMedia: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
-    document.title = "[Dashboard] - Tambah Media";
+    document.title = "[Dashboard] - Tambah Media HoME";
     const fetchData = async () => {
       try {
         const data = await adminService.getAllHome();

@@ -296,7 +296,7 @@ const PassComponent = (props: any) => {
               </MxmFormErrorMessage>
             </FormControl>
           </Grid>
-          <Flex>
+          <Flex direction={{ base: "column", lg: "row" }}>
             <FormControl isInvalid={errors.otp}>
               <MxmFormLabel color={Palette.Navy}>Kode OTP</MxmFormLabel>
               <HStack>
@@ -305,7 +305,6 @@ const PassComponent = (props: any) => {
                   onChange={handleOTP}
                   type="alphanumeric"
                   otp
-                  size={{ base: "sm", lg: "md" }}
                 >
                   <PinInputField />
                   <PinInputField />
@@ -328,14 +327,16 @@ const PassComponent = (props: any) => {
             <Flex
               display="flex"
               justifyContent="center"
-              mt={{ base: "12px", lg: "24px" }}
+              mt={{ base: "0px", lg: "24px" }}
             >
               <MxmButton
                 type="submit"
                 variant="squared"
-                margin="0 0 0 1rem"
+                margin={{ base: "1rem 0 0 0", lg: "0 0 0 1rem" }}
                 colorScheme="yellow-red"
-                fontSize={{ base: "0.8rem", lg: "1rem" }}
+                padding={{ base: "0 1rem", lg: "0 1rem" }}
+                fontSize={{ base: "0.9rem", lg: "1rem" }}
+                width="100%"
               >
                 Ubah Password
               </MxmButton>

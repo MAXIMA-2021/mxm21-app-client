@@ -119,10 +119,11 @@ const Card = (props: any) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: `State ${props.name} berhasil diambil!`,
+        title: `STATE ${props.name} berhasil diambil!`,
         showConfirmButton: false,
         timer: 1000,
       });
+      window.location.href = "/state";
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -208,7 +209,7 @@ const StateLists = () => {
   };
 
   useEffect(() => {
-    document.title = "Daftar STATE";
+    document.title = "STATE 2021 - Daftar STATE";
     fetchData();
   }, []);
 

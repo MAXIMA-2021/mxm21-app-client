@@ -25,7 +25,7 @@ const DaftarState: React.FC = () => {
   const toast = useToast();
 
   useEffect(() => {
-    document.title = "Daftar STATE - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar STATE";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllState();
