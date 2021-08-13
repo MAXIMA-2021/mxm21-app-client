@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Box, Flex, Heading, Image, Spacer } from "@chakra-ui/react";
 import { bendera } from "../../../assets/home";

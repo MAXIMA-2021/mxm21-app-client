@@ -66,33 +66,33 @@
 }
 
 @media screen and (max-width: 47em) {
-  :root {
+  * {
     --image-size: 120px;
     --container-height: calc(100vh - 3.5rem);
   }
 }
 
 @media screen and (max-width: 79em) {
-  :root {
+  * {
     --image-size: 140px;
     --container-height: calc(100vh - 4rem);
   }
 }
 
 @media screen and (min-width: 80em) {
-  :root {
+  * {
     --container-height: calc(100vh - 5rem);
   }
 }
 
 @media screen and (max-width: 1020px) {
-  :root {
+  * {
     --translate-anim: -1.5rem;
   }
 }
 
 @media screen and (max-width: 830px) and (max-height: 823px) {
-  :root {
+  * {
     --footer-height: 2rem;
     --footer-bottom: 0.5rem;
     --translate-anim: -1rem;
@@ -106,7 +106,7 @@
 }
 
 @media screen and (max-width: 511px) and (max-height: 640px) {
-  :root {
+  * {
     --translate-anim: -0.5rem;
   }
 }

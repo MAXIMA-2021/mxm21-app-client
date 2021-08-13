@@ -4,6 +4,7 @@
   --home-zep-text-h1-fontsize: 4rem;
   --home-zep-text-h2-fontsize: 2rem;
   --home-zep-text-btn-fontsize: 0.8rem;
+  --zep-translate-value: 30%;
 }
 
 .home-zep-outer-container p,
@@ -207,6 +208,7 @@
     --home-zep-text-h1-fontsize: 2.5rem;
     --home-zep-text-h2-fontsize: 1.2rem;
     --home-zep-text-btn-fontsize: 0.875rem;
+    --zep-translate-value: 20%;
   }
 
   .home-zep-content-flex {
@@ -232,6 +234,7 @@
     --home-zep-text-h1-fontsize: 2rem;
     --home-zep-text-h2-fontsize: 1rem;
     --home-zep-text-btn-fontsize: 0.75rem;
+    --zep-translate-value: 15%;
   }
 
   .home-zep-header {
@@ -256,26 +259,33 @@
 }
 
 @media screen and(max-width: 390px) {
+  * {
+    --zep-translate-value: 8%;
+  }
   .home-zep-inner-container p:only-child {
     width: 35ch;
   }
 }
 @keyframes zeppelin_animation {
   0% {
-    transform: translateX(30%) scaleX(1);
+    transform: translateX(var(--zep-translate-value)) scaleX(1);
   }
   49% {
-    transform: translateX(-30%);
+    transform: translateX(calc(-1 * var(--zep-translate-value)));
   }
   50% {
-    transform: translateX(-30%) scaleX(-1);
+    transform: translateX(calc(-1 * var(--zep-translate-value))) scaleX(-1);
   }
 
   100% {
-    transform: translateX(30%) scaleX(-1);
+    transform: translateX(var(--zep-translate-value)) scaleX(-1);
   }
 }
 
 .zep-illustration {
   animation: zeppelin_animation 6s infinite;
+}
+
+.zep-default {
+  transform: translateX(var(--zep-translate-value));
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomeZeppelin.scss";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { Box, Flex, Grid, Image, useMediaQuery } from "@chakra-ui/react";
@@ -15,14 +15,30 @@ const transition = {
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
-const cardVariants = {
-  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+const textVariants = {
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "0%",
     opacity: 1,
     transition,
   },
+};
+
+const titleVariants = {
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  rest: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
+const frameVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.2, ...transition } },
 };
 
 const buttonVariants = {
@@ -37,8 +53,21 @@ const buttonVariantsTwo = {
   exit: { y: 100, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
+const zeppelinVariants = {
+  rest: { x: "1000%" },
+  enter: {
+    x: "0%",
+    transition: { delay: 0.2, duration: 2, ease: [0.43, 0.13, 0.23, 0.96] },
+  },
+  exit: {
+    x: "-1000%",
+    transition: { delay: 0.2, duration: 2, ease: [0.43, 0.13, 0.23, 0.96] },
+  },
+};
+
 const HomeZeppelin = () => {
   const history = useHistory();
+  const [zeppelin, setZeppelin] = useState(false);
   const [isSmallerThan620px] = useMediaQuery("(max-width: 620px)");
 
   const handleClick = () => {
@@ -50,15 +79,17 @@ const HomeZeppelin = () => {
 
   useEffect(() => {
     document.title = "HoME 2021 - Zeppelin";
+    setTimeout(() => {
+      setZeppelin(true);
+    }, 1998);
   }, []);
 
   return (
     <motion.div
-      variants={cardVariants}
+      variants={frameVariants}
       initial="rest"
       animate="enter"
       exit="exit"
-      style={{ overflow: "hidden" }}
     >
       <Flex
         className="home-zep-outer-container"
@@ -83,32 +114,37 @@ const HomeZeppelin = () => {
           w="100%"
           h="100%"
         >
-          <Flex
-            className="home-zep-header"
-            color={Palette.Red}
-            marginTop="2rem"
-            marginBottom="1rem"
-          >
-            <h1 style={{ background: Palette.Yellow, borderRadius: "20px" }}>
-              Zeppelin
-            </h1>
-          </Flex>
-          <Image
-            src={Home.ZeppPink}
-            alt="home zeppelin"
-            className="zep-illustration"
-          />
-
-          <Flex className="home-zep-desc" color={Palette.Navy}>
-            <p>
-              Zeppelin adalah peta konsep mimpi yang dibuat berdasarkan beberapa
-              pertanyaan. Zeppelin terinspirasi dari nama sebuah balon udara
-              berbentuk cerutu raksasa yang dapat terbang terarah karena
-              mempunyai mesin dan kemudi. Harapannya adalah Maximers dapat
-              mengetahui apa yang harus dilakukan dalam menggapai mimpi dan juga
-              memiliki kemudi atas mimpi tersebut.
-            </p>
-          </Flex>
+          <motion.div variants={titleVariants}>
+            <Flex
+              className="home-zep-header"
+              color={Palette.Red}
+              marginTop="2rem"
+              marginBottom="1rem"
+            >
+              <h1 style={{ background: Palette.Yellow, borderRadius: "20px" }}>
+                Zeppelin
+              </h1>
+            </Flex>
+          </motion.div>
+          <motion.div variants={zeppelinVariants}>
+            <Image
+              src={Home.ZeppPink}
+              alt="home zeppelin"
+              className={zeppelin ? "zep-illustration" : "zep-default"}
+            />
+          </motion.div>
+          <motion.div variants={textVariants}>
+            <Flex className="home-zep-desc" color={Palette.Navy}>
+              <p>
+                Zeppelin adalah peta konsep mimpi yang dibuat berdasarkan
+                beberapa pertanyaan. Zeppelin terinspirasi dari nama sebuah
+                balon udara berbentuk cerutu raksasa yang dapat terbang terarah
+                karena mempunyai mesin dan kemudi. Harapannya adalah Maximers
+                dapat mengetahui apa yang harus dilakukan dalam menggapai mimpi
+                dan juga memiliki kemudi atas mimpi tersebut.
+              </p>
+            </Flex>
+          </motion.div>
           <Flex className="home-zep-content-flex">
             {/* <div
                 className="home-zep-content-header"
@@ -119,9 +155,6 @@ const HomeZeppelin = () => {
             <motion.div
               className="home-zep-regulasi-btn"
               variants={buttonVariantsTwo}
-              initial="rest"
-              animate="enter"
-              exit="exit"
             >
               <button
                 onClick={() =>
@@ -137,9 +170,6 @@ const HomeZeppelin = () => {
             <motion.div
               className="home-zep-bukti-btn"
               variants={buttonVariantsTwo}
-              initial="rest"
-              animate="enter"
-              exit="exit"
             >
               <button onClick={() => window.open("http://bit.ly/FormZeppelin")}>
                 <ExternalLinkIcon style={{ fontSize: "20px" }} />
@@ -147,12 +177,7 @@ const HomeZeppelin = () => {
               </button>
             </motion.div>
           </Flex>
-          <motion.div
-            variants={buttonVariants}
-            initial="rest"
-            animate="enter"
-            exit="exit"
-          >
+          <motion.div variants={buttonVariants}>
             <Flex className="nav-btn-zep">
               <MxmButton
                 variant="squared"
