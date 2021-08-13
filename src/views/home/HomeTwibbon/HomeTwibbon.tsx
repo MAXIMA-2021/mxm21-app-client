@@ -55,6 +55,12 @@ const buttonVariantsTwo = {
   exit: { y: 100, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
+const frameVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.6, ...transition } },
+};
+
 const HomeTwibbon = () => {
   const history = useHistory();
   var images = [];
@@ -166,169 +172,240 @@ const HomeTwibbon = () => {
   }
 
   return (
-    <Box overflow="hidden">
-      <motion.div
-        variants={cardVariants}
-        initial="rest"
-        animate="enter"
-        exit="exit"
+    <motion.div
+      variants={frameVariants}
+      initial="rest"
+      animate="enter"
+      exit="exit"
+    >
+      <Flex
+        // h={{
+        //   base: "calc(100vh - 3.5rem)",
+        //   md: "calc((100vh - 4rem))",
+        //   xl: "calc(100vh - 5rem)",
+        // }}
+        padding={{
+          base: "1rem",
+          md: "2rem",
+        }}
+        bgColor={Palette.Cyan}
+        className="home-cvr-outer_container"
+        overflow="hidden"
       >
-        <Flex flexDir="column" className="box-flex">
-          <Flex flexDir={{ base: "column", md: "row" }}>
-            <Box
-              justifyContent={{ base: "center", md: "initial" }}
-              display={{ base: "flex", md: "initial" }}
-              my={{ base: "2rem", md: 0 }}
-            >
-              <Image
-                src={XimaFull}
-                className="xima-full"
-                w={{
-                  base: "50%",
-                  md: "100%",
-                }}
-              />
-            </Box>
-            <Flex
-              ml={{ base: 0, md: "3rem" }}
-              w="100%"
-              h="100%"
-              flexDir="column"
-              bgColor="white"
-              borderRadius="1rem"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Box className="twibbon-head">TWIBBON</Box>
-              <Box
-                className="twibbon-body"
-                maxW={{ "2xl": "80%" }}
-                overflow="hidden"
+        <Flex
+          w="100%"
+          h="100%"
+          flexDir="column"
+          bgColor="white"
+          borderRadius="1rem"
+          alignItems="center"
+          justifyContent="center"
+          overflow="hidden"
+        >
+          <Flex
+            backgroundColor="transparent"
+            className="home-cvr-middle_container"
+            flexDirection="column"
+          >
+            <Box overflow="hidden">
+              <motion.div
+                variants={cardVariants}
+                initial="rest"
+                animate="enter"
+                exit="exit"
               >
-                <Heading fontSize="1.2rem" textAlign="center">
-                  Regulasi Twibbon:
-                </Heading>
-                <br />
-                <p>
-                  1. Twibbon dapat diunduh pada website MAXIMA 2021 sesuai
-                  dengan Zona favorit pilihan MAXIMERS.
-                </p>
-                <br />
-                <p>
-                  2. Maximers mengunggah twibbon tersebut di akun Instagram
-                  pribadi dan akun tidak di-private.
-                </p>
-                <br />
-                <p>
-                  3. Maximers men-tag akun instagram @maximaumn menggunakan
-                  hashtag <b>#HoME2021 #DreamBigBuildEnormous</b>
-                </p>
-                <br />
-                <p>
-                  4. Maximers mengawali caption dengan kalimat seperti dibawah
-                  ini:
-                  <br />
-                  Halo, MAXIMERS! Saya (Nama Lengkap) siap untuk mengikuti
-                  rangkaian kegiatan #MAXIMA2021 bersama #(Nama Organisasi yang
-                  ingin diikuti) untuk menjadi satu langkah lebih dekat menuju
-                  mimpiku.
-                  <br />
-                  <br />
-                  <b>#HoME2021 #DreamBigBuildEnormous</b>
-                </p>
-                <br />
-                <p>
-                  5. Post twibbon tidak boleh dihapus sampai Sabtu, 28 Agustus
-                  2021.
-                </p>
-                <br />
-                <motion.div
-                  variants={buttonVariantsTwo}
-                  initial="rest"
-                  animate="enter"
-                  exit="exit"
-                >
-                  <Flex
-                    flexDir={{ base: "column", md: "row" }}
-                    h={{ base: "6rem", md: "max-content" }}
-                  >
-                    <MxmButton
-                      variant="rounded"
-                      colorScheme="navy-white"
-                      margin="0"
-                      padding="1rem 2rem"
-                      fontSize={{ base: "0.8rem", md: "1rem" }}
-                      onClick={handleDownloadTwibbon}
+                <Flex flexDir="column" className="box-flex">
+                  <Flex flexDir={{ base: "column", md: "row" }}>
+                    <Box
+                      justifyContent={{ base: "center", md: "initial" }}
+                      display={{ base: "flex", md: "initial" }}
+                      my={{ base: "2rem", md: 0 }}
+                      pt={4}
                     >
-                      DOWNLOAD TWIBBON
-                    </MxmButton>
-                    <Spacer />
-                    <MxmButton
-                      variant="rounded"
-                      colorScheme="navy-white"
-                      margin="0"
-                      padding="1rem 2rem"
-                      fontSize={{ base: "0.8rem", md: "1rem" }}
-                      onClick={handleAutomatedTwibbon}
+                      <Image
+                        src={XimaFull}
+                        className="xima-full"
+                        w={{
+                          base: "50%",
+                          md: "100%",
+                        }}
+                      />
+                    </Box>
+                    <Flex
+                      ml={{ base: 0, md: "3rem" }}
+                      w="100%"
+                      h="100%"
+                      flexDir="column"
+                      bgColor="white"
+                      borderRadius="1rem"
+                      alignItems="center"
+                      justifyContent="center"
                     >
-                      AUTOMATED TWIBBON
-                    </MxmButton>
+                      <Box className="twibbon-head">TWIBBON</Box>
+                      <Box
+                        className="twibbon-body"
+                        maxW={{ "2xl": "80%" }}
+                        overflow="hidden"
+                      >
+                        <Heading fontSize="1.2rem" textAlign="center">
+                          Regulasi Twibbon:
+                        </Heading>
+                        <br />
+                        <p>
+                          1. Twibbon dapat diunduh pada website MAXIMA 2021
+                          sesuai dengan Zona favorit pilihan MAXIMERS.
+                        </p>
+                        <br />
+                        <p>
+                          2. Maximers mengunggah twibbon tersebut di akun
+                          Instagram pribadi dan akun tidak di-private.
+                        </p>
+                        <br />
+                        <p>
+                          3. Maximers men-tag akun instagram @maximaumn
+                          menggunakan hashtag{" "}
+                          <b>#HoME2021 #DreamBigBuildEnormous</b>
+                        </p>
+                        <br />
+                        <p>
+                          4. Maximers mengawali caption dengan kalimat seperti
+                          dibawah ini:
+                          <br />
+                          Halo, MAXIMERS! Saya (Nama Lengkap) siap untuk
+                          mengikuti rangkaian kegiatan #MAXIMA2021 bersama
+                          #(Nama Organisasi yang ingin diikuti) untuk menjadi
+                          satu langkah lebih dekat menuju mimpiku.
+                          <br />
+                          <br />
+                          <b>#HoME2021 #DreamBigBuildEnormous</b>
+                        </p>
+                        <br />
+                        <p>
+                          5. Post twibbon tidak boleh dihapus sampai Sabtu, 28
+                          Agustus 2021.
+                        </p>
+                        <br />
+                        <motion.div
+                          variants={buttonVariantsTwo}
+                          initial="rest"
+                          animate="enter"
+                          exit="exit"
+                        >
+                          <Flex
+                            flexDir={{ base: "column", md: "row" }}
+                            h={{ base: "6rem", md: "max-content" }}
+                          >
+                            <MxmButton
+                              variant="rounded"
+                              colorScheme="navy-white"
+                              margin="0"
+                              padding={{
+                                base: "1rem 2rem",
+                                md: "0 1rem",
+                                lg: "1rem 2rem",
+                              }}
+                              height={{
+                                base: "initial",
+                                md: "2rem",
+                                lg: "initial",
+                              }}
+                              fontSize={{
+                                base: "0.8rem",
+                                md: "0.5rem",
+                                lg: "1rem",
+                              }}
+                              onClick={handleDownloadTwibbon}
+                            >
+                              DOWNLOAD TWIBBON
+                            </MxmButton>
+                            <Spacer />
+                            <MxmButton
+                              variant="rounded"
+                              colorScheme="navy-white"
+                              margin="0"
+                              padding={{
+                                base: "1rem 2rem",
+                                md: "0 1rem",
+                                lg: "1rem 2rem",
+                              }}
+                              height={{
+                                base: "initial",
+                                md: "2rem",
+                                lg: "initial",
+                              }}
+                              fontSize={{
+                                base: "0.8rem",
+                                md: "0.5rem",
+                                lg: "1rem",
+                              }}
+                              onClick={handleAutomatedTwibbon}
+                            >
+                              AUTOMATED TWIBBON
+                            </MxmButton>
+                          </Flex>
+                        </motion.div>
+                      </Box>
+                    </Flex>
                   </Flex>
-                </motion.div>
-              </Box>
-            </Flex>
-          </Flex>
-          <Divider
-            mt={9}
-            mb={8}
-            style={{ border: `2px solid ${Palette.Cyan}` }}
-          />
-          <Grid templateColumns="repeat(3, 1fr)" gap={2}>
-            {chapter}
-          </Grid>
-          <motion.div variants={buttonVariants} initial="rest" animate="enter">
-            <Flex mt={10}>
-              <motion.div
-                exit={{
-                  x: -100,
-                  opacity: 1,
-                  transition: { delay: 0.2, ...transition },
-                }}
-              >
-                <MxmButton
-                  onClick={history.goBack}
-                  variant="rounded"
-                  colorScheme="navy-white"
-                  margin="0"
-                  padding="1rem"
-                >
-                  Back
-                </MxmButton>
-              </motion.div>
-              <Spacer />
-              <motion.div
-                exit={{
-                  x: 100,
-                  opacity: 1,
-                  transition: { delay: 0.2, ...transition },
-                }}
-              >
-                <NavLink to="/home/zeppelin">
-                  <MxmButton
-                    variant="desktop"
-                    colorScheme="navy-white"
-                    margin="0"
-                    padding="1rem"
+                  <Divider
+                    mt={9}
+                    mb={8}
+                    style={{ border: `2px solid ${Palette.Cyan}` }}
+                  />
+                  <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+                    {chapter}
+                  </Grid>
+                  <motion.div
+                    variants={buttonVariants}
+                    initial="rest"
+                    animate="enter"
                   >
-                    Next
-                  </MxmButton>
-                </NavLink>
+                    <Flex mt={10}>
+                      <motion.div
+                        exit={{
+                          x: -100,
+                          opacity: 1,
+                          transition: { delay: 0.2, ...transition },
+                        }}
+                      >
+                        <MxmButton
+                          onClick={history.goBack}
+                          variant="rounded"
+                          colorScheme="navy-white"
+                          margin="0"
+                          padding="1rem"
+                        >
+                          Back
+                        </MxmButton>
+                      </motion.div>
+                      <Spacer />
+                      <motion.div
+                        exit={{
+                          x: 100,
+                          opacity: 1,
+                          transition: { delay: 0.2, ...transition },
+                        }}
+                      >
+                        <NavLink to="/home/zeppelin">
+                          <MxmButton
+                            variant="desktop"
+                            colorScheme="navy-white"
+                            margin="0"
+                            padding="1rem"
+                          >
+                            Next
+                          </MxmButton>
+                        </NavLink>
+                      </motion.div>
+                    </Flex>
+                  </motion.div>
+                </Flex>
               </motion.div>
-            </Flex>
-          </motion.div>
+            </Box>
+          </Flex>
         </Flex>
-      </motion.div>
-    </Box>
+      </Flex>
+    </motion.div>
   );
 };
 

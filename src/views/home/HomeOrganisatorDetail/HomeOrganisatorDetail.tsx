@@ -7,6 +7,9 @@ import {
   Text,
   Image,
   Skeleton,
+  Spacer,
+  Grid,
+  Center,
 } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import { createIcon } from "@chakra-ui/icons";
@@ -16,6 +19,9 @@ import { useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import adminService from "../../../services/admin";
 import { motion } from "framer-motion";
+import "./HomeOrganisatorDetail.scss";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const transition = {
   duration: 0.5,
@@ -38,6 +44,12 @@ const buttonVariants = {
   exit: { x: -100, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
+const frameVariants = {
+  rest: { opacity: 0 },
+  enter: { opacity: 1, transition: { delay: 0, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0.6, ...transition } },
+};
+
 const HomeOrganisatorDetail = () => {
   const [index, setIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(0);
@@ -49,6 +61,10 @@ const HomeOrganisatorDetail = () => {
   const { searchKey } = useParams<{ searchKey: string }>();
   const history = useHistory();
 
+  const [images, setImages] = useState([]);
+  const validator =
+    /(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/;
+  let [validation, setValidation] = useState(null);
   useEffect(() => {
     document.title = "HoME Organisator Detail";
 
@@ -56,6 +72,17 @@ const HomeOrganisatorDetail = () => {
       try {
         const data = await adminService.getHomeBySearchKey(searchKey);
         setHomeDetail(data[0]);
+        console.log(data[0]);
+
+        for (let media of data[0].home_media) {
+          setImages((prevImages: any) => [
+            ...prevImages,
+            { original: media.linkMedia },
+          ]);
+        }
+        console.log(images);
+        validation = homeDetail.linkYoutube.match(validator);
+        console.log(validation);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -92,184 +119,173 @@ const HomeOrganisatorDetail = () => {
   };
 
   return (
-    <Box overflow="hidden">
-      <motion.div
-        variants={cardVariants}
-        initial="rest"
-        animate="enter"
-        exit="exit"
+    <motion.div
+      variants={frameVariants}
+      initial="rest"
+      animate="enter"
+      exit="exit"
+    >
+      <Flex
+        padding={{
+          base: "1rem",
+          md: "2rem",
+        }}
+        bgColor={Palette.Cyan}
+        className="home-cvr-outer_container"
+        overflow="hidden"
       >
         <Flex
           w="100%"
-          minH={{
-            base: "calc(100vh - 3.5rem)",
-            md: "calc(100vh - 4rem)",
-            xl: "calc(100vh - 5rem)",
-          }}
-          justifyContent="center"
-          alignItems="center"
+          h="100%"
           flexDir="column"
-          bgColor={{ base: Palette.Cyan, md: "white" }}
+          bgColor="white"
+          borderRadius="1rem"
+          alignItems="center"
+          justifyContent="center"
+          overflow="hidden"
         >
           <Flex
-            bgColor={Palette.Navy}
-            borderRadius={{ base: "1.5rem", md: "3rem" }}
-            p={{ base: "0.5rem 2rem", md: "0.5rem 3rem", xl: "0.5rem 5rem" }}
-            flexDir="column"
-            alignItems="center"
-            justifyContent="center"
-            mb={{ base: "-3rem", md: "-3rem", xl: "-4rem" }}
-            mt={{ base: "1rem", xl: "2rem" }}
-            zIndex="2"
+            backgroundColor="transparent"
+            className="home-cvr-middle_container"
+            flexDirection="column"
+            py={5}
+            px={10}
           >
             <Heading
+              color={Palette.Navy}
               fontFamily="Rubik"
-              color="white"
-              fontSize={{ base: "1.5rem", md: "1.8rem", xl: "2.2rem" }}
+              fontWeight="700"
+              fontSize={{ base: "2rem", md: "2.15rem", "2xl": "4rem" }}
+              letterSpacing="0.1rem"
             >
               Hocus Pocus
             </Heading>
-            <Heading
-              mt={{ base: "0.2rem", md: "0.5rem" }}
+            <Text
+              backgroundColor={Palette.Navy}
+              color="white"
               fontFamily="Rubik"
-              color={Palette.Yellow}
-              fontWeight="500"
-              fontSize={{ base: "1rem", md: "1.5rem", xl: "1.8rem" }}
+              fontWeight="400"
+              fontSize={{ base: "0.8rem", md: "1rem", "2xl": "1.5rem" }}
+              mt="0.5rem"
+              px="0.4rem"
+              borderRadius="5px"
+              mb="1.5rem"
             >
               {chapterName()}
-            </Heading>
-          </Flex>
-          <Box
-            bgColor={Palette.Cyan}
-            p="1rem"
-            borderRadius={{ base: "0", md: "3rem" }}
-            mb={{ base: "0", xl: "2rem" }}
-          >
-            <Box
-              bgColor={Palette.Red}
-              p={{
-                base: "3.5rem 1rem 0rem 1rem",
-                md: "3.5rem 7.5rem 1rem 7.5rem",
-                xl: "4.5rem 15rem 1rem 15rem",
-              }}
-              borderRadius={{ base: "1.5rem", md: "3rem" }}
+            </Text>
+            <Grid
+              templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
+              gap={6}
+              width="100%"
+              height="100%"
             >
-              <Box
-                maxW={{ base: "calc(100vw - 4rem)", md: "50vw" }}
-                minW="40vw"
-                minH={{ base: "calc(100vh - 14rem)", md: "max-content" }}
-                color="white"
-                textAlign="center"
+              <div className="container">
+                {validation !== null ? (
+                  <iframe
+                    title="video"
+                    src={homeDetail.linkYoutube}
+                    allowFullScreen
+                    className="responsive-iframe"
+                  />
+                ) : (
+                  <Flex w="100%" h="100%" bgColor="grey">
+                    Video tidak dapat dimuat
+                  </Flex>
+                )}
+                <iframe
+                  title="video"
+                  src={homeDetail.linkYoutube}
+                  allowFullScreen
+                  className="responsive-iframe"
+                />
+              </div>
+              <div className="carousel">
+                <ImageGallery
+                  items={images}
+                  showThumbnails={false}
+                  showNav={true}
+                  showBullets={true}
+                  showPlayButton={false}
+                  thumbnailPosition="bottom"
+                  className="responsive-iframe"
+                />
+              </div>
+            </Grid>
+            <Heading
+              color={Palette.Navy}
+              fontFamily="Rubik"
+              fontWeight="700"
+              fontSize={{ base: "2rem", md: "2.15rem", "2xl": "4rem" }}
+              // letterSpacing="0.1rem"
+              textAlign="left"
+              width="100%"
+              mt="1rem"
+            >
+              {homeDetail.name}
+            </Heading>
+            <Text
+              textAlign="justify"
+              fontFamily="Poppins"
+              fontWeight="400"
+              mb="1.5rem"
+            >
+              {homeDetail.longDesc}
+            </Text>
+            <Flex
+              flexDir={{ base: "column", md: "row" }}
+              h={{ base: "6rem", md: "max-content" }}
+              width="100%"
+            >
+              <MxmButton
+                variant="rounded"
+                colorScheme="navy-white"
+                margin="0"
+                padding={{
+                  base: "1rem 2rem",
+                  md: "0 1rem",
+                  lg: "1rem 2rem",
+                }}
+                height={{
+                  base: "initial",
+                  md: "2rem",
+                  lg: "initial",
+                }}
+                fontSize={{
+                  base: "0.8rem",
+                  md: "0.5rem",
+                  lg: "1rem",
+                }}
               >
-                <Flex
-                  justifyContent="center"
-                  mb={{ base: "2rem", md: "1.5rem" }}
-                  alignItems="center"
-                >
-                  <button onClick={handlePrev}>
-                    <ArrowIcon
-                      _hover={{ transform: "scaleX(-1) translateX(5px)" }}
-                      transform="scaleX(-1)"
-                      color={Palette.Navy}
-                      boxSize={{ base: "1.5rem", md: "2rem", xl: "3rem" }}
-                      transition="all 0.2s ease-in-out"
-                    />
-                  </button>
-                  <Box
-                    w="80%"
-                    ml={{ base: "0.2rem", md: "0.5rem", xl: "0.8rem" }}
-                    mr={{ base: "0.2rem", md: "0.5rem", xl: "0.8rem" }}
-                    borderRadius={{ base: "1rem", md: "2rem" }}
-                    overflow="hidden"
-                  >
-                    <Skeleton
-                      isLoaded={isLoaded}
-                      startColor={Palette.Cyan}
-                      endColor={Palette.Navy}
-                    >
-                      <motion.div
-                        whileHover={
-                          index !== 0 ? { scale: 1.1, transition } : ""
-                        }
-                      >
-                        <AspectRatio
-                          onLoad={() => {
-                            setVisible(true);
-                            setIsLoaded(true);
-                          }}
-                          id="corousell"
-                          ratio={16 / 9}
-                          style={{ overflow: "hidden" }}
-                          transition="all 0.3s ease-in-out"
-                          opacity={visible ? "1" : "0"}
-                          transform={
-                            visible
-                              ? ""
-                              : rslide
-                              ? "translateX(5rem)"
-                              : "translateX(-5rem)"
-                          }
-                        >
-                          <Carousell
-                            index={index}
-                            setMaxIndex={setMaxIndex}
-                            video={homeDetail.linkYoutube}
-                            media={homeDetail.home_media}
-                          />
-                        </AspectRatio>
-                      </motion.div>
-                    </Skeleton>
-                  </Box>
-                  <button onClick={handleNext}>
-                    <ArrowIcon
-                      _hover={{ transform: "translateX(5px)" }}
-                      color={Palette.Navy}
-                      boxSize={{ base: "1.5rem", md: "2rem", xl: "3rem" }}
-                      transition="all 0.2s ease-in-out"
-                    />
-                  </button>
-                </Flex>
-                <Heading
-                  fontFamily="Rubik"
-                  fontSize={{ base: "1.2rem", md: "1.5rem", xl: "1.8rem" }}
-                  mb="1rem"
-                >
-                  {homeDetail.name}
-                </Heading>
-                <Text
-                  textAlign="justify"
-                  fontFamily="Poppins"
-                  fontSize={{ base: "0.9rem", md: "1rem" }}
-                  mb={{ base: "2rem" }}
-                >
-                  {homeDetail.longDesc}
-                </Text>
-                <motion.div
-                  variants={buttonVariants}
-                  initial="rest"
-                  animate="enter"
-                  exit="exit"
-                >
-                  <MxmButton
-                    onClick={() =>
-                      history.push("/home/twibbon", {
-                        status: true,
-                      })
-                    }
-                    variant="rounded"
-                    colorScheme="navy-cyan"
-                  >
-                    <Text fontSize="1rem" p="0.2rem 2rem">
-                      TWIBBON
-                    </Text>
-                  </MxmButton>
-                </motion.div>
-              </Box>
-            </Box>
-          </Box>
+                Back to Chapter
+              </MxmButton>
+              <Spacer />
+              <MxmButton
+                variant="rounded"
+                colorScheme="navy-white"
+                margin="0"
+                padding={{
+                  base: "1rem 2rem",
+                  md: "0 1rem",
+                  lg: "1rem 2rem",
+                }}
+                height={{
+                  base: "initial",
+                  md: "2rem",
+                  lg: "initial",
+                }}
+                fontSize={{
+                  base: "0.8rem",
+                  md: "0.5rem",
+                  lg: "1rem",
+                }}
+              >
+                Go to Twibbon
+              </MxmButton>
+            </Flex>
+          </Flex>
         </Flex>
-      </motion.div>
-    </Box>
+      </Flex>
+    </motion.div>
   );
 };
 
@@ -287,12 +303,12 @@ const ArrowIcon = createIcon({
 });
 
 const chapterSub = {
-  C01: "Chapter One: Lost Treasure Island",
-  C02: "Chapter Two: Fantasy Bridge",
-  C03: "Chapter Three: Medalist Playground",
-  C04: "Chapter Four: Rainbow Mines",
-  C05: "Chapter Five: Tomorrow Ville",
-  C06: "Chapter Six: Adventure Land",
-  C07: "Chapter Seven: Town Area",
-  C08: "Chapter Eight: Wonderous Campground",
+  C01: "Chapter 1: Lost Treasure Island",
+  C02: "Chapter 2: Fantasy Bridge",
+  C03: "Chapter 3: Medalist Playground",
+  C04: "Chapter 4: Rainbow Mines",
+  C05: "Chapter 5: Tomorrow Ville",
+  C06: "Chapter 6: Adventure Land",
+  C07: "Chapter 7: Town Area",
+  C08: "Chapter 8: Wondrous Campground",
 };

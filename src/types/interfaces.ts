@@ -77,4 +77,6 @@ export interface DataState {
   shortDesc: string;
   day: string;
   quota: string;
+  stateLogo: any;
+  coverPhoto: any;
 }
