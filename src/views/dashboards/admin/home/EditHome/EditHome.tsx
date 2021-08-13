@@ -35,7 +35,6 @@ import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
   const toast = useToast();
@@ -112,7 +111,7 @@ const EditHome: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Edit Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Edit HoME";
     const fetchData = async () => {
       try {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
@@ -374,7 +373,7 @@ const EditHome: React.FC = () => {
                     xl: "1.5em",
                   }}
                 >
-                  Edit Data {homeDatabySearchKey?.name}
+                  Edit Data
                 </Heading>
               </Tab>
               <Tab>
@@ -387,7 +386,7 @@ const EditHome: React.FC = () => {
                     xl: "1.5em",
                   }}
                 >
-                  Edit Media {homeDatabySearchKey?.name}
+                  Edit Media
                 </Heading>
               </Tab>
             </TabList>
@@ -648,24 +647,32 @@ const EditHome: React.FC = () => {
                 <Flex mt={5}>
                   <Spacer />
                   {loading ? (
-                    <MxmButton
+                    <Button
                       isLoading
-                      loadingText="Mengubah..."
+                      loadingText="Updating..."
                       spinnerPlacement="start"
+                      backgroundColor="#41ceba"
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                       type="submit"
-                      variant="rounded"
-                      colorScheme="cyan-white"
+                      _hover={{ backgroundColor: "#2BAD96" }}
                     >
-                      Mengubah...
-                    </MxmButton>
+                      Updating...
+                    </Button>
                   ) : (
-                    <MxmButton
+                    <Button
+                      backgroundColor="#41ceba"
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                       type="submit"
-                      variant="rounded"
-                      colorScheme="cyan-white"
+                      _hover={{ backgroundColor: "#2BAD96" }}
                     >
-                      Konfirmasi Edit
-                    </MxmButton>
+                      Update Data
+                    </Button>
                   )}
                 </Flex>
               </form>
@@ -693,33 +700,30 @@ const EditHome: React.FC = () => {
               <Flex mt={5}>
                 <Spacer />
                 {loading ? (
-                  <Flex mr="1rem" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      w="2rem"
-                      h="2rem"
-                    />
-                    <Text
-                      fontFamily="Poppins"
-                      fontSize={{ base: "0.9rem", md: "1rem" }}
-                      ml="0.5rem"
-                    >
-                      mengunggah data...
-                    </Text>
-                  </Flex>
-                ) : (
                   <Button
-                    backgroundColor={Palette.Cyan}
+                    isLoading
+                    loadingText="Updating..."
+                    spinnerPlacement="start"
+                    backgroundColor="#41ceba"
                     color="white"
                     padding="1em 2em 1em 2em"
                     borderRadius="999px"
                     boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                     type="submit"
                     _hover={{ backgroundColor: "#2BAD96" }}
+                  >
+                    Updating...
+                  </Button>
+                ) : (
+                  <Button
+                    backgroundColor="#41ceba"
+                    color="white"
+                    padding="1em 2em 1em 2em"
+                    borderRadius="999px"
+                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                    type="submit"
                     onClick={onMediaSubmit}
+                    _hover={{ backgroundColor: "#2BAD96" }}
                   >
                     Update Media
                   </Button>

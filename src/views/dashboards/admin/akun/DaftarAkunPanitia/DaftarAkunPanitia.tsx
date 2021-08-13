@@ -52,7 +52,7 @@ const DaftarAkunPanitia: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Akun Panitia";
     fetchData();
   }, []);
 

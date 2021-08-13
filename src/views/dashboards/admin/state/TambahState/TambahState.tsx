@@ -377,7 +377,7 @@ const TambahState: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Tambah STATE"
+                loadingText="Menambahkan..."
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"
@@ -387,7 +387,7 @@ const TambahState: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                Tambah STATE
+                Menambahkan...
               </Button>
             ) : (
               <Button

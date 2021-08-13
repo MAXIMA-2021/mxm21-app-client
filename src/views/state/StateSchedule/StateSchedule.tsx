@@ -50,7 +50,7 @@ const StateSchedule = () => {
   const [stateData, setStateData] = useState<any>({});
 
   useEffect(() => {
-    document.title = "Jadwal STATE";
+    document.title = "STATE 2021 - Jadwal STATE";
 
     const fetchData = async () => {
       try {
@@ -221,7 +221,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: `State ${deletedState?.stateData.name} berhasil dibatalkan!`,
+        title: `STATE ${deletedState?.stateData.name} berhasil dibatalkan!`,
         showConfirmButton: false,
         timer: 2000,
       });

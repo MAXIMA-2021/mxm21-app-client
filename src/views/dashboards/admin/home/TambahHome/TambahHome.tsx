@@ -74,9 +74,6 @@ const TambahHome: React.FC = () => {
     formData.append("instagram", data.instagram);
     formData.append("linkLogo", files[0]);
 
-    reset();
-    setValue("kategori", "");
-
     try {
       await adminService.tambahHome(formData);
       toast({
@@ -86,6 +83,8 @@ const TambahHome: React.FC = () => {
         duration: 4000,
         isClosable: true,
       });
+      reset();
+      setValue("kategori", "");
       setResetUpload(true);
       setFiles([]);
     } catch (error) {
@@ -203,24 +202,28 @@ const TambahHome: React.FC = () => {
                   Pilih Chapter
                 </option>
                 <option value={HomeChapter.LostTreasureIsland}>
-                  Lost Treasure Island
+                  Chapter 1: Lost Treasure Island
                 </option>
                 <option value={HomeChapter.FantasyBridge}>
-                  Fantasy Bridge
+                  Chapter 2: Fantasy Bridge
                 </option>
                 <option value={HomeChapter.MedalistPlayground}>
-                  Medialist Playground
+                  Chapter 3: Medialist Playground
                 </option>
-                <option value={HomeChapter.RainbowMines}>Rainbows Mines</option>
+                <option value={HomeChapter.RainbowMines}>
+                  Chapter 4: Rainbows Mines
+                </option>
                 <option value={HomeChapter.TomorrowVille}>
-                  Tomorrow Ville
+                  Chapter 5: Tomorrowville
                 </option>
                 <option value={HomeChapter.AdventureLand}>
-                  Adventure Land
+                  Chapter 6: Adventure Land
                 </option>
-                <option value={HomeChapter.TownArea}>Town Area</option>
+                <option value={HomeChapter.TownArea}>
+                  Chapter 7: Town Area
+                </option>
                 <option value={HomeChapter.WonderousCampground}>
-                  Wonderous Campground
+                  Chapter 8: Wondrous Campground
                 </option>
               </MxmSelect>
               <MxmFormErrorMessage fontSize="xs" mt={1}>
@@ -412,7 +415,7 @@ const TambahHome: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Tambah HoME"
+                loadingText="Menambahkan..."
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"
@@ -422,7 +425,7 @@ const TambahHome: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                Tambah HoME
+                Menambahkan...
               </Button>
             ) : (
               <Button

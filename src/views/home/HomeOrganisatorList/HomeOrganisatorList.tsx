@@ -65,7 +65,7 @@ const HomeOrganisatorList = () => {
   window.sessionStorage.setItem("chapter", homeChapter);
 
   useEffect(() => {
-    document.title = `HoME Organisator list ${homeChapter}`;
+    document.title = "HoME 2021 - Daftar Organisator";
     setLoading(true);
     setImageLoading(true);
     const fetchData = async () => {

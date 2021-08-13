@@ -50,7 +50,7 @@ const TambahMahasiswa: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Dashboard] - Tambah Akun Mahasiswa";
   }, []);
 
   const password = useRef({});

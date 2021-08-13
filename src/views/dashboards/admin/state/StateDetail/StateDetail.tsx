@@ -46,7 +46,7 @@ const StateDetail: React.FC = () => {
     const fetchDataDetail = async () => {
       try {
         const returnedDataState = await adminService.getSpecificState(stateID);
-        document.title = `State Detail ${returnedDataState[0]?.name}`;
+        document.title = `[Dashboard] - Detail STATE ${returnedDataState[0]?.name}`;
         setDetailState(returnedDataState[0]);
       } catch (error) {
         Swal.fire({
@@ -269,7 +269,8 @@ const StateDetail: React.FC = () => {
                 </Text>
                 <Flex direction="row" my="1rem">
                   <Text>
-                    <PeopleAltOutlinedIcon /> {detailState?.quota}
+                    <PeopleAltOutlinedIcon /> {detailState?.registered} /{" "}
+                    {detailState?.quota}
                   </Text>
                   <Text ml="6rem">
                     <VpnKeyOutlinedIcon /> {detailState?.attendanceCode}

@@ -36,7 +36,7 @@ const frameVariants = {
 const HomeWelcome = () => {
   const history = useHistory();
   useEffect(() => {
-    document.title = "HoME Welcome Page";
+    document.title = "HoME 2021 - Pembukaan";
   }, []);
 
   const handleClick = () => {

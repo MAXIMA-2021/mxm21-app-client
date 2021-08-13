@@ -49,7 +49,7 @@ const HomeZeppelin = () => {
   };
 
   useEffect(() => {
-    document.title = "Home Zeppelin Page";
+    document.title = "HoME 2021 - Zeppelin";
   }, []);
 
   return (

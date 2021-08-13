@@ -61,7 +61,7 @@ const TambahPanitia: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Dashboard] - Tambah Akun Panitia";
   }, []);
 
   const password = useRef({});

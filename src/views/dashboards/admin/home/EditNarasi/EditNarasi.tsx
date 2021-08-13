@@ -43,7 +43,7 @@ const EditNarasi: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
-    document.title = "[Dashboard] - Tambah Media";
+    document.title = "[Dashboard] - Edit Narasi HoME";
     const fetchData = async () => {
       try {
         const data = await adminService.getChapterById(homeChapterID);

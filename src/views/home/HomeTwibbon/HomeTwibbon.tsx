@@ -68,7 +68,7 @@ const HomeTwibbon = () => {
   var index = 0;
 
   useEffect(() => {
-    document.title = "HoME Twibbon";
+    document.title = "HoME 2021 - Twibbon HoME";
   }, []);
 
   const handleChapterClick = (homeChapter: string) => {

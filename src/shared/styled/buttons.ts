@@ -16,7 +16,7 @@ export const MxmButton = styled(Button)<{
     format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
-  padding: ${(props) => props.padding || "0 1rem"};
+  padding: ${(props) => props.padding || "0.5rem 1rem"};
   margin: ${(props) => props.margin || "1rem"};
 
   border-radius: ${(props) => (props.variant === "squared" ? "10px" : "20px")};
