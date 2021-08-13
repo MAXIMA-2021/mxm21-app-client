@@ -9,6 +9,7 @@
   display: flex;
   margin: 2rem 0 1rem 0;
   width: 35vw;
+  justify-content: center;
   & h1 {
     font-size: 1.7rem;
     font-family: Rubik, Arial, sans-serif;
@@ -62,16 +63,16 @@
   display: flex;
   justify-content: center;
   & img {
-    width: 400px;
+    width: 500px;
   }
 
   margin-top: 2.3rem;
 }
 
 .home-cvr-mxm-logo {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   & img {
-    height: 125px;
+    height: 90px;
   }
 }
 
@@ -79,7 +80,37 @@
   .home-cvr-mxm-logo {
     margin-bottom: 0.5rem;
     & img {
-      height: 90px;
+      height: 75px;
+    }
+  }
+
+  .home-cvr-gate {
+    & img {
+      width: 450px;
+    }
+  }
+}
+
+@media screen and(max-height: 794px) {
+  .home-cvr-mxm-logo {
+    margin-bottom: 0.5rem;
+    & img {
+      height: 75px;
+    }
+  }
+
+  .home-cvr-gate {
+    & img {
+      width: 350px;
+    }
+  }
+}
+
+@media screen and(max-height: 700px) {
+  .home-cvr-mxm-logo {
+    margin-bottom: 0.5rem;
+    & img {
+      height: 75px;
     }
   }
 
@@ -90,17 +121,17 @@
   }
 }
 
-@media screen and(max-height: 760px) {
+@media screen and(max-height: 660px) {
   .home-cvr-mxm-logo {
     margin-bottom: 0.5rem;
     & img {
-      height: 90px;
+      height: 75px;
     }
   }
 
   .home-cvr-gate {
     & img {
-      width: 225px;
+      width: 250px;
     }
   }
 }
@@ -143,13 +174,14 @@
   .home-cvr-gate {
     margin-top: 4rem;
     & img {
-      width: 200px;
+      width: 300px;
     }
   }
 
   .home-cvr-header {
     width: 80vw;
     justify-content: center;
+
     & h1 {
       font-size: 1.5rem;
     }
@@ -180,7 +212,7 @@
     margin-top: 3rem;
 
     & h1 {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 

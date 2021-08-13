@@ -83,10 +83,21 @@ const HomeZeppelin = () => {
           w="100%"
           h="100%"
         >
-          <Flex className="home-zep-header" color={Palette.Red}>
-            <h1>Zeppelin</h1>
+          <Flex
+            className="home-zep-header"
+            color={Palette.Red}
+            marginTop="2rem"
+            marginBottom="1rem"
+          >
+            <h1 style={{ background: Palette.Yellow, borderRadius: "20px" }}>
+              Zeppelin
+            </h1>
           </Flex>
-          <Image src={Home.homeCoverGate} alt="home cover gate" />
+          <Image
+            src={Home.ZeppPink}
+            alt="home zeppelin"
+            className="zep-illustration"
+          />
 
           <Flex className="home-zep-desc" color={Palette.Navy}>
             <p>

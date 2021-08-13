@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-} from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import { AuthRouters, HomeRouters, StateRouters } from "./routers";
 import { AnimatePresence } from "framer-motion";

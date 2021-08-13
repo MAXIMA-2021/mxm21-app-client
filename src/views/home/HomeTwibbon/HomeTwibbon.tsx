@@ -194,7 +194,6 @@ const HomeTwibbon = () => {
           md: "2rem",
         }}
         bgColor={Palette.Cyan}
-        className="home-cvr-outer_container"
         overflow="hidden"
       >
         <Flex
@@ -209,7 +208,7 @@ const HomeTwibbon = () => {
         >
           <Flex
             backgroundColor="transparent"
-            className="home-cvr-middle_container"
+            className="home-twibbon-middle_container"
             flexDirection="column"
           >
             <Box overflow="hidden">

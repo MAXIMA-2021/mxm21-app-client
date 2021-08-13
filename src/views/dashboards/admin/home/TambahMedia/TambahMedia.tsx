@@ -66,7 +66,7 @@ const TambahMedia: React.FC = () => {
       reset();
       toast({
         title: "Data berhasil ditambahkan!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,

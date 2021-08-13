@@ -60,7 +60,7 @@ const DaftarNarasi: React.FC = () => {
           setData(homeData);
           toast({
             title: "Data berhasil dihapus!",
-            position: "top",
+            position: "bottom-right",
             status: "success",
             duration: 4000,
             isClosable: true,

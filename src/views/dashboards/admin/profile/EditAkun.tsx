@@ -90,7 +90,7 @@ const EditAkun: React.FC = () => {
         await adminService.updatePanitia(data);
         toast({
           title: "Akun kamu berhasil diperbaharui!",
-          position: "top",
+          position: "bottom-right",
           status: "success",
           duration: 4000,
           isClosable: true,
@@ -99,7 +99,7 @@ const EditAkun: React.FC = () => {
         await adminService.updateOrganisator(data);
         toast({
           title: "Akun kamu berhasil diperbaharui!",
-          position: "top",
+          position: "bottom-right",
           status: "success",
           duration: 4000,
           isClosable: true,

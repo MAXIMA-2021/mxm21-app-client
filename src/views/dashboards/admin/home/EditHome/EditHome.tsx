@@ -15,6 +15,7 @@ import {
   Box,
   Spinner,
   useToast,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Palette, HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
@@ -50,6 +51,8 @@ const EditHome: React.FC = () => {
     formState: { errors },
     setValue,
   } = useForm();
+
+  const [isSmallerThan475px] = useMediaQuery("(max-width: 475px)");
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
@@ -87,7 +90,7 @@ const EditHome: React.FC = () => {
       await adminService.updateHome(homeDatabySearchKey.homeID, formData);
       toast({
         title: "Data berhasil berhasil diperbaharui!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -261,7 +264,7 @@ const EditHome: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "400px" },
+          style: { minWidth: isSmallerThan475px ? "" : "400px" },
         }),
         customBodyRender: (value: any, tableMeta: any) => (
           <>
