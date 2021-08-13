@@ -156,7 +156,7 @@ const HomeNavbar = () => {
                 ) : (
                   // <GoogleLogoutBtn />
                   <>
-                    <NavLink
+                    {/* <NavLink
                       to="/auth/daftar"
                       className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                     >
@@ -167,7 +167,7 @@ const HomeNavbar = () => {
                       className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                     >
                       Masuk
-                    </NavLink>
+                    </NavLink> */}
                   </>
                 )}
               </motion.li>
