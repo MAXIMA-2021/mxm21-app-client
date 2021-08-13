@@ -12,7 +12,8 @@ import {
   StartMapMobile,
 } from "../../../assets/home";
 import "./HomePintu.scss";
-import { motion } from "framer-motion";
+import { motion, useTransform, useMotionValue } from "framer-motion";
+import { useState } from "react";
 
 const transition = {
   duration: 0.5,
@@ -20,7 +21,7 @@ const transition = {
 };
 
 const cardVariants = {
-  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  exit: { opacity: 0, transition: { delay: 0, ...transition } },
   rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
     y: "-15%",
@@ -31,13 +32,18 @@ const cardVariants = {
 
 const HomePintu = () => {
   const history = useHistory();
+  const [isToggle, setIsToggle] = useState(false);
 
   useEffect(() => {
     document.title = "HoME 2021 - Let's Dive Into Dreamland";
   }, []);
 
   const handleClickNext = () => {
-    history.push("/home/category");
+    setIsToggle(true);
+    console.log(isToggle);
+    setTimeout(() => {
+      history.push("/home/category");
+    }, 2000);
   };
 
   let count = 0;
@@ -60,20 +66,14 @@ const HomePintu = () => {
     <motion.div
       initial="rest"
       animate="enter"
-      exit="exit"
       variants={cardVariants}
+      exit="exit"
     >
       <Center>
         <Box boxSize="xs" my="4rem">
           <Flex>
             <button onClick={handleClickNext}>
-              <Image
-                src={StartMapMobile}
-                srcSet={`${StartMapMobile} 300w, ${StartMapDesktop} 1000w`}
-                alt="start-map-mxm"
-                className="start-map"
-                objectFit="cover"
-              />
+              <PetaisMap isToggle={isToggle} />
             </button>
             <Image
               src={LeftGateMobile}
@@ -107,3 +107,31 @@ const HomePintu = () => {
 };
 
 export default HomePintu;
+
+const MapVariants = {
+  rest: { scale: 1 },
+  next: {
+    scale: 8,
+    zIndex: 999,
+    transition: { delay: 0.2, duration: 2, ease: [0.43, 0.13, 0.23, 0.96] },
+  },
+};
+
+const PetaisMap = (props: any) => {
+  console.log(props.isToggle);
+  return (
+    <motion.div
+      variants={MapVariants}
+      animate={props.isToggle && "next"}
+      initial="rest"
+      className="start-map"
+    >
+      <Image
+        src={StartMapMobile}
+        srcSet={`${StartMapMobile} 300w, ${StartMapDesktop} 1000w`}
+        alt="start-map-mxm"
+        objectFit="cover"
+      />
+    </motion.div>
+  );
+};

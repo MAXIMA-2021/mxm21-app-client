@@ -46,7 +46,7 @@ const StateDetail: React.FC = () => {
     const fetchDataDetail = async () => {
       try {
         const returnedDataState = await adminService.getSpecificState(stateID);
-
+        document.title = `[Dashboard] - Detail STATE ${returnedDataState[0]?.name}`;
         setDetailState(returnedDataState[0]);
       } catch (error) {
         Swal.fire({
@@ -85,7 +85,6 @@ const StateDetail: React.FC = () => {
 
     fetchDataDetail();
     fetchDataMhs();
-    document.title = `[Dashboard] - Detail STATE`;
   }, []);
 
   const tableColumns = [
