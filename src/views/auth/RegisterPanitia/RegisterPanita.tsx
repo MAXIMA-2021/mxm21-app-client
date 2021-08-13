@@ -484,7 +484,7 @@ const RegisterPanitia: React.FC = () => {
                       />
                     </InputGroup>
                     <FormErrorMessage>
-                      {errors.nim_koor && errors.nim_koor.message}
+                      {errors.nim && errors.nim.message}
                     </FormErrorMessage>
                   </FormControl>
 
