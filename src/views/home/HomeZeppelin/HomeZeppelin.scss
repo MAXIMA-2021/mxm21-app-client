@@ -73,6 +73,10 @@
     --home-zep-text-h1-fontsize: 3rem;
     --home-zep-text-p-fontsize: 1rem;
   }
+
+  .nav-btn-zep {
+    margin-top: 1.2rem !important;
+  }
 }
 .home-zep-inner-container p:only-child {
   text-align: center;
@@ -143,7 +147,15 @@
 
 .nav-btn-zep {
   justify-content: space-between;
-  width: calc(100vw - 60px);
+  width: calc(80vw - 60px);
+  margin-top: 3rem;
+  // position: absolute;
+  // left: 30px;
+  // bottom: 5%;
+  @media screen and (max-width: 1042px) {
+    width: calc(100vw - 60px);
+    margin-top: unset;
+  }
 }
 
 .home-zep-next-btn {
@@ -152,9 +164,10 @@
   display: flex;
   align-items: center;
   margin-top: 2rem !important;
+  margin-bottom: 0 !important;
 
-  position: absolute;
-  right: 0px;
+  // position: absolute;
+  // right: 0px;
 
   // @media screen and (max-width: );
 }
@@ -165,6 +178,7 @@
   display: flex;
   align-items: center;
   margin-top: 2rem !important;
+  margin-bottom: 0 !important;
 
   // @media screen and (max-width: );
 }

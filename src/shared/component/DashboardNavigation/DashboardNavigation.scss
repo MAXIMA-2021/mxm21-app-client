@@ -114,6 +114,20 @@ body {
   overflow-x: hidden;
   scrollbar-width: thin;
 
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #172138;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #74c8b9;
+    border-radius: 5px;
+  }
+
   color: #ffffff;
 }
 

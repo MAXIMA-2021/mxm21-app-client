@@ -29,6 +29,7 @@ import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
 import adminService from "../../../../../services/admin";
 import "./TambahAkunOrganisator.scss";
+import { useHistory } from "react-router-dom";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -53,6 +54,8 @@ const TambahOrganisator: React.FC = () => {
     formState: { errors },
   } = useForm();
   const toast = useToast();
+
+  const history = useHistory();
 
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
@@ -103,12 +106,12 @@ const TambahOrganisator: React.FC = () => {
       reset();
       toast({
         title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
-        position: "bottom",
+        position: "top",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-organisator";
+      history.push("/admin/daftar-organisator");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

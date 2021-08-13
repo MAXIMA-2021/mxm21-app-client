@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Flex,
   Heading,
@@ -8,6 +8,7 @@ import {
   FormErrorIcon,
   Button,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
@@ -29,6 +30,8 @@ const EditNarasi: React.FC = () => {
   const [dialogue, setDialogue] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<any>([]);
+  const history = useHistory();
+  const toast = useToast();
 
   const {
     register,
@@ -71,14 +74,14 @@ const EditNarasi: React.FC = () => {
     try {
       await adminService.updateChapterById(homeChapterID, data);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
-      window.location.href = "/admin/daftar-narasi";
+      history.push("/admin/daftar-narasi");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -208,7 +211,7 @@ const EditNarasi: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                Tambah Media
+                Update Narasi
               </Button>
             )}
           </Flex>

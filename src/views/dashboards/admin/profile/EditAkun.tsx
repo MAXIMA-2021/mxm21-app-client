@@ -13,6 +13,7 @@ import {
   InputRightElement,
   Input,
   InputGroup,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../assets";
 import {
@@ -54,6 +55,8 @@ const EditAkun: React.FC = () => {
   const [showNew, setShowNew] = useState(false);
   const handleClickNew = () => setShowNew(!showNew);
 
+  const toast = useToast();
+
   const password = useRef({});
   password.current = watch("password", "");
 
@@ -85,21 +88,21 @@ const EditAkun: React.FC = () => {
     try {
       if (user?.division) {
         await adminService.updatePanitia(data);
-        Swal.fire({
-          position: "center",
-          icon: "success",
+        toast({
           title: "Akun kamu berhasil diperbaharui!",
-          showConfirmButton: false,
-          timer: 2000,
+          position: "top",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
         });
       } else if (user?.stateID) {
         await adminService.updateOrganisator(data);
-        Swal.fire({
-          position: "center",
-          icon: "success",
+        toast({
           title: "Akun kamu berhasil diperbaharui!",
-          showConfirmButton: false,
-          timer: 2000,
+          position: "top",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
         });
       }
       window.sessionStorage.setItem("name", data.name);

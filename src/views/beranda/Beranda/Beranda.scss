@@ -556,6 +556,12 @@
 .faq-outer-container {
   width: calc(100vw - 8px);
   justify-content: center;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .faq-inner-container {
@@ -614,11 +620,35 @@
       flex-direction: column;
       align-items: center;
     }
+
+    & .faq-illustration {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    & .faq-illustration {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    & .faq-illustration {
+      width: 80%;
+    }
+
+    & {
+      padding: 2rem 0;
+    }
   }
 
   @media screen and (max-width: 450px) {
     & {
-      width: 95%;
+      width: 100%;
+    }
+
+    & .faq-illustration {
+      width: 90%;
     }
   }
 }
@@ -667,6 +697,10 @@
         background-position: 100% 150%;
         box-shadow: 0 10px 4px -8px rgba(0, 0, 0, 0.3);
       }
+
+      @media screen and (max-width: 500px) {
+        font-size: 0.8rem;
+      }
     }
 
     @media screen and (max-width: 1838px) {
@@ -680,13 +714,23 @@
         width: 95%;
       }
     }
-
+    @media screen and (max-width: 520px) {
+      & {
+        padding: 2rem;
+      }
+    }
     @media screen and (max-width: 436px) {
       & {
         width: 100%;
       }
-      & .faq-side-item {
+      & {
         width: 100%;
+        padding: 1rem;
+      }
+    }
+    @media screen and (max-width: 440px) {
+      & {
+        padding: 1rem;
       }
     }
   }
@@ -711,7 +755,14 @@
 
 @media screen and (max-width: 520px) {
   * {
-    --faq-h1-font-size: 2.5rem;
-    --faq-h3-font-size: 1.15rem;
+    --faq-h1-font-size: 2rem;
+    --faq-h3-font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  * {
+    --faq-h1-font-size: 1.7rem;
+    --faq-h3-font-size: 0.8rem;
   }
 }
