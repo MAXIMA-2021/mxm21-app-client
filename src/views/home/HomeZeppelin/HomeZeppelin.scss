@@ -23,13 +23,7 @@
   justify-content: center;
 
   & > .home-zep-inner-container {
-    // width: max-content;
-    // min-height: 80vh;
     border-radius: 1rem;
-    // padding: 0 3rem 3rem 3rem;
-
-    // border: 40px solid #ffd008;
-
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -39,33 +33,32 @@
 .home-zep-inner-container {
   & img {
     margin-top: 5vh;
-    width: 250px;
+    width: 300px;
     margin-bottom: 5vh;
+  }
+
+  @media screen and (max-height: 850px) {
+    & img {
+      width: 250px;
+    }
   }
 }
 
 .home-zep-header {
-  // background-image: url("./home-zep-rect.svg");
-
   flex-direction: row;
-  // align-items: center;
 
   & h1 {
     font-size: var(--home-zep-text-h1-fontsize);
     font-weight: 600;
     text-align: center;
-
-    // height: 130px;
-
-    // margin-top: 5vh;
     width: var(--home-zep-bg-size);
   }
 }
-@media screen and(max-height: 800px) {
+@media screen and(max-height: 750px) {
   .home-zep-inner-container {
     & img {
-      margin-top: 5vh;
-      width: 200px;
+      margin-top: 1rem;
+      width: 225px;
     }
   }
 
@@ -75,9 +68,10 @@
   }
 
   .nav-btn-zep {
-    margin-top: 1.2rem !important;
+    margin-top: 1.2vh !important;
   }
 }
+
 .home-zep-inner-container p:only-child {
   text-align: center;
   font-size: var(--home-zep-text-p-fontsize);
@@ -87,8 +81,6 @@
 
 .home-zep-content-flex {
   margin-top: 3rem;
-  // border-radius: 20px;
-  // margin-top: 5rem;
 
   justify-content: space-between;
   align-items: center;
@@ -101,7 +93,7 @@
 .home-zep-regulasi-btn button,
 .home-zep-bukti-btn button {
   display: grid;
-  // flex-direction: column;
+
   column-gap: 15px;
   grid-template-areas:
     "svg mainText"
@@ -109,7 +101,7 @@
   color: white;
 
   width: 210px;
-  // height: 72px;
+
   background: linear-gradient(270deg, #74c8b9 0%, #164273 100%);
   background-size: 250% 200%;
   background-position: 10% 150%;
@@ -149,9 +141,6 @@
   justify-content: space-between;
   width: calc(80vw - 60px);
   margin-top: 3rem;
-  // position: absolute;
-  // left: 30px;
-  // bottom: 5%;
   @media screen and (max-width: 1042px) {
     width: calc(100vw - 60px);
     margin-top: unset;
@@ -165,11 +154,6 @@
   align-items: center;
   margin-top: 2rem !important;
   margin-bottom: 0 !important;
-
-  // position: absolute;
-  // right: 0px;
-
-  // @media screen and (max-width: );
 }
 
 .home-zep-back-btn {
@@ -179,8 +163,6 @@
   align-items: center;
   margin-top: 2rem !important;
   margin-bottom: 0 !important;
-
-  // @media screen and (max-width: );
 }
 
 @media screen and(max-width: 1180px) {
@@ -208,11 +190,6 @@
   .home-zep-inner-container p:only-child {
     width: 50ch;
   }
-
-  // .home-zep-regulasi-btn button,
-  // .home-zep-bukti-btn button {
-  //   width: 180px;
-  // }
 
   .home-zep-desc {
     margin-top: 0.5rem;
@@ -274,7 +251,6 @@
     & > .home-zep-inner-container {
       width: 100%;
       padding: unset;
-      // border: 40px solid #ffd008;
     }
   }
 }
