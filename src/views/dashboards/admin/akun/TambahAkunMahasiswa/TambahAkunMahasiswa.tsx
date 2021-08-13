@@ -28,6 +28,7 @@ import { DataRegisterMaba } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
 import "./TambahAkunMahasiswa.scss";
+import { useHistory } from "react-router-dom";
 
 const TambahMahasiswa: React.FC = () => {
   const {
@@ -45,6 +46,8 @@ const TambahMahasiswa: React.FC = () => {
       event.target.style.color = "black";
     }
   };
+
+  const history = useHistory();
 
   useEffect(() => {
     document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
@@ -77,12 +80,12 @@ const TambahMahasiswa: React.FC = () => {
       reset();
       toast({
         title: "Akun Mahasiswa MAXIMA 2021 berhasil dibuat!",
-        position: "bottom",
+        position: "top",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-mahasiswa";
+      history.push("/admin/daftar-mahasiswa");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

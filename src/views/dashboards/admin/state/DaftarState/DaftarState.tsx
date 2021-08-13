@@ -10,6 +10,7 @@ import {
   HStack,
   CloseButton,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
@@ -21,6 +22,7 @@ import Swal from "sweetalert2";
 
 const DaftarState: React.FC = () => {
   const [data, setData] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
     document.title = "Daftar STATE - MAXIMA 2021";
@@ -59,7 +61,13 @@ const DaftarState: React.FC = () => {
               (item: any) => item.stateID !== stateID
             );
             setData(stateData);
-            Swal.fire("Data telah dihapus!", "", "success");
+            toast({
+              title: "Data berhasil dihapus!",
+              position: "top",
+              status: "success",
+              duration: 4000,
+              isClosable: true,
+            });
           } catch (error) {
             Swal.fire({
               title: "Perhatian!",

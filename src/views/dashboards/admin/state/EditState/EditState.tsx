@@ -14,6 +14,7 @@ import {
   NumberInputStepper,
   Button,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -37,7 +38,7 @@ const EditState: React.FC = () => {
   const [cover, setCover] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
   const history = useHistory();
-
+  const toast = useToast();
   const {
     register,
     handleSubmit,
@@ -89,19 +90,16 @@ const EditState: React.FC = () => {
 
     try {
       await adminService.updateState(state.stateID, formData);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setLogo([]);
-      history.push("/admin/daftar-state", {
-        status: "success",
-        message: "Kamu berhasil mengedit",
-      });
+      history.push("/admin/daftar-state");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

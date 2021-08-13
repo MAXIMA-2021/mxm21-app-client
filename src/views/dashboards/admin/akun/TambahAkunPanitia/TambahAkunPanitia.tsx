@@ -28,6 +28,7 @@ import { DataRegisterPanitia } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
 import "./TambahAkunPanitia.scss";
+import { useHistory } from "react-router-dom";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -52,6 +53,7 @@ const TambahPanitia: React.FC = () => {
     formState: { errors },
   } = useForm();
   const toast = useToast();
+  const history = useHistory();
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -85,12 +87,12 @@ const TambahPanitia: React.FC = () => {
       reset();
       toast({
         title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
-        position: "bottom",
+        position: "top",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-panitia";
+      history.push("/admin/daftar-panitia");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

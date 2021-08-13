@@ -12,6 +12,7 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import "./TambahState.scss";
 import { MxmLogo } from "../../../../../assets";
@@ -37,6 +38,7 @@ const TambahState: React.FC = () => {
     setFocus,
     formState: { errors },
   } = useForm();
+  const toast = useToast();
 
   const [loading, setLoading] = useState(false);
   const [logo, setLogo] = useState<any>([]);
@@ -63,12 +65,12 @@ const TambahState: React.FC = () => {
     try {
       await adminService.tambahState(formData);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setLogo([]);

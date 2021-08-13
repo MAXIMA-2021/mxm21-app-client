@@ -7,6 +7,7 @@ import {
   Center,
   Text,
   Switch,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
@@ -33,6 +34,7 @@ const DaftarAkunPanitia: React.FC = () => {
     base: "1em",
     "2xl": "1.2em",
   };
+  const toast = useToast();
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
@@ -57,12 +59,12 @@ const DaftarAkunPanitia: React.FC = () => {
   const verifyThis = async (nim: string) => {
     try {
       await adminService.verifyPanitia(nim, data);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 1000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       fetchData();
     } catch (error) {

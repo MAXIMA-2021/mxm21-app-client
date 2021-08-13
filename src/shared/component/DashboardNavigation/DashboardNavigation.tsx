@@ -31,8 +31,6 @@ const DashboardNavigation = (props: any) => {
   const decoded: any = token !== null && jwtDecode(token);
   decoded.division === "D01" && (isAdmin = true);
 
-  const location = useLocation();
-
   const handleLogOut = () => {
     Swal.fire({
       title:
@@ -243,30 +241,22 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/admin/daftar-home"
-                      className={
-                        location.pathname === "/admin/daftar-home"
-                          ? "dropdown-item_active"
-                          : ""
-                      }
+                    <NavLink
+                      to="/admin/daftar-home"
+                      activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/admin/daftar-narasi"
-                      className={
-                        location.pathname === "/admin/daftar-narasi"
-                          ? "dropdown-item_active"
-                          : ""
-                      }
+                    <NavLink
+                      to="/admin/daftar-narasi"
+                      activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Narasi HoME
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </li>
@@ -288,17 +278,13 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/admin/daftar-state"
-                      className={
-                        location.pathname === "/admin/daftar-state"
-                          ? "dropdown-item_active"
-                          : ""
-                      }
+                    <NavLink
+                      to="/admin/daftar-state"
+                      activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar STATE
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </li>

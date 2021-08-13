@@ -42,12 +42,6 @@ const EditMahasiswa: React.FC = () => {
     setValue,
   } = useForm();
 
-  //   const handleSelectChange = (event: any) => {
-  //     if (event.target.value !== "") {
-  //       event.target.style.color = "black";
-  //     }
-  //   };
-
   useEffect(() => {
     document.title = "Edit Akun Mahasiswa - MAXIMA 2021";
     const fetchData = async () => {
@@ -57,9 +51,18 @@ const EditMahasiswa: React.FC = () => {
           "@student.umn.ac.id",
           ""
         );
-        returnedData[0].tanggalLahir = new Date(returnedData[0].tanggalLahir)
-          .toISOString()
-          .split("T")[0];
+
+        const mhsBirthDate = new Date(returnedData[0].tanggalLahir);
+
+        returnedData[0].tanggalLahir = `${mhsBirthDate.getFullYear()}-${(
+          mhsBirthDate.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${mhsBirthDate
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`;
+
         setMahasiswaByNim(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -77,7 +80,6 @@ const EditMahasiswa: React.FC = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterMaba) => {
     setLoading(true);
@@ -97,12 +99,12 @@ const EditMahasiswa: React.FC = () => {
       reset();
       toast({
         title: "Akun Mahasiswa berhasil diperbaharui!",
-        position: "bottom",
+        position: "top",
         status: "success",
         duration: 4000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-mahasiswa";
+      history.push("/admin/daftar-mahasiswa");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

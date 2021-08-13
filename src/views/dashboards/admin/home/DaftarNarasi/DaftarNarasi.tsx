@@ -10,6 +10,7 @@ import {
   HStack,
   CloseButton,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
@@ -21,6 +22,7 @@ import Swal from "sweetalert2";
 
 const DaftarNarasi: React.FC = () => {
   const [data, setData] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
     document.title = "Daftar Organisator HoME - MAXIMA 2021";
@@ -56,7 +58,13 @@ const DaftarNarasi: React.FC = () => {
           await adminService.deleteHome(IDhome);
           const homeData = data.filter((item: any) => item.homeID !== IDhome);
           setData(homeData);
-          Swal.fire("Data telah dihapus!", "", "success");
+          toast({
+            title: "Data berhasil dihapus!",
+            position: "top",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          });
         } else if (result.isDenied) {
           Swal.fire("Perubahan belum tersimpan", "", "info");
         }

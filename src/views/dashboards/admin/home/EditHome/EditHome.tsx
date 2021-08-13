@@ -14,6 +14,7 @@ import {
   HStack,
   Box,
   Spinner,
+  useToast,
 } from "@chakra-ui/react";
 import { Palette, HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
@@ -36,6 +37,7 @@ import Swal from "sweetalert2";
 
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
+  const toast = useToast();
 
   const history = useHistory();
   const [homeDatabySearchKey, sethomeDatabySearchKey] = useState<any>({});
@@ -84,12 +86,12 @@ const EditHome: React.FC = () => {
 
     try {
       await adminService.updateHome(homeDatabySearchKey.homeID, formData);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 2000,
+      toast({
+        title: "Data berhasil berhasil diperbaharui!",
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setFiles([]);

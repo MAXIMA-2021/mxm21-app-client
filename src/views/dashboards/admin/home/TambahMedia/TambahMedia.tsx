@@ -7,6 +7,7 @@ import {
   FormErrorIcon,
   Button,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
@@ -26,6 +27,7 @@ const TambahMedia: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const toast = useToast();
 
   const {
     register,
@@ -62,12 +64,12 @@ const TambahMedia: React.FC = () => {
     try {
       await adminService.tambahMedia(formData, data.homeID);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setFiles([]);

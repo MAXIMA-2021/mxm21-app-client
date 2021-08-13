@@ -10,6 +10,7 @@ import {
   Button,
   Spinner,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
 import "./TambahHome.scss";
@@ -37,6 +38,7 @@ const TambahHome: React.FC = () => {
     setFocus,
     formState: { errors },
   } = useForm();
+  const toast = useToast();
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
@@ -77,12 +79,12 @@ const TambahHome: React.FC = () => {
 
     try {
       await adminService.tambahHome(formData);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "top",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setFiles([]);
