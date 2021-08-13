@@ -99,7 +99,7 @@ const EditMahasiswa: React.FC = () => {
       reset();
       toast({
         title: "Akun Mahasiswa berhasil diperbaharui!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,

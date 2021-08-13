@@ -92,7 +92,7 @@ const EditState: React.FC = () => {
       await adminService.updateState(state.stateID, formData);
       toast({
         title: "Data berhasil diperbaharui!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,

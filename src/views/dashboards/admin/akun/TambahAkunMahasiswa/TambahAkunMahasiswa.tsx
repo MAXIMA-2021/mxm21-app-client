@@ -80,7 +80,7 @@ const TambahMahasiswa: React.FC = () => {
       reset();
       toast({
         title: "Akun Mahasiswa MAXIMA 2021 berhasil dibuat!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 3000,
         isClosable: true,

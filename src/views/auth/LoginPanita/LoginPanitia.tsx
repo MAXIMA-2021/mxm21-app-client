@@ -16,6 +16,7 @@ import {
   Text,
   Alert,
   AlertIcon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
@@ -68,6 +69,8 @@ const buttonVariants = {
 const LoginPanitia: React.FC = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
+
   const {
     register,
     handleSubmit,
@@ -252,7 +255,12 @@ const LoginPanitia: React.FC = () => {
                     )}
                   </MxmFormErrorMessage>
                 </FormControl>
-                <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
+                <Flex
+                  fontFamily="Rubik"
+                  fontWeight="400"
+                  fontSize="0.8em"
+                  direction={isSmallerThan450px ? "column-reverse" : "row"}
+                >
                   <MxmVerticalAlign variant="">
                     <Text color="white">
                       Belum punya akun?{" "}
@@ -287,6 +295,8 @@ const LoginPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Masuk
                       </MxmButton>
@@ -295,6 +305,9 @@ const LoginPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        padding="0 1rem"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Masuk
                       </MxmButton>

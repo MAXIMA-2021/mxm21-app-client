@@ -265,7 +265,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
       props.setStateData({ ...props.stateData, state: tempData });
       toast({
         title: `Absensi STATE ${props.stateData.state[i].stateData.name} berhasil!`,
-        position: "bottom",
+        position: "bottom-right",
         status: "success",
         duration: 3000,
         isClosable: true,

@@ -66,7 +66,7 @@ const DaftarAkunOrganisator: React.FC = () => {
       await adminService.verifyOrganisator(nim, data);
       toast({
         title: "Data berhasil diperbaharui!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,

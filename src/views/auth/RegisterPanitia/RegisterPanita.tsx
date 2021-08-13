@@ -15,6 +15,7 @@ import {
   InputRightElement,
   Button,
   createIcon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -75,6 +76,8 @@ const RegisterPanitia: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -385,6 +388,7 @@ const RegisterPanitia: React.FC = () => {
                   fontWeight="400"
                   fontSize="0.8em"
                   mt={1}
+                  direction={isSmallerThan450px ? "column-reverse" : "row"}
                 >
                   <MxmVerticalAlign variant="">
                     <Text color="white">
@@ -407,6 +411,8 @@ const RegisterPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>
@@ -415,6 +421,9 @@ const RegisterPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        padding="0 1rem"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>

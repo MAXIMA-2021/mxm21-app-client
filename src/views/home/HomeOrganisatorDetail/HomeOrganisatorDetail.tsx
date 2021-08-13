@@ -132,7 +132,7 @@ const HomeOrganisatorDetail = () => {
           md: "2rem",
         }}
         bgColor={Palette.Cyan}
-        className="home-cvr-outer_container"
+        className="home-orgdetail-outer_container"
         overflow="hidden"
       >
         <Flex
@@ -147,7 +147,7 @@ const HomeOrganisatorDetail = () => {
         >
           <Flex
             backgroundColor="transparent"
-            className="home-cvr-middle_container"
+            className="home-orgdetail-middle_container"
             flexDirection="column"
             py={5}
             px={10}

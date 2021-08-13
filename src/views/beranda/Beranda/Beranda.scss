@@ -191,6 +191,10 @@
 .hero-container-vid {
   position: relative;
   left: -10px;
+
+  @media screen and(max-width: 1000px) {
+    left: 0px;
+  }
 }
 
 .hero-side-container {
@@ -566,11 +570,6 @@
 
 .faq-inner-container {
   width: 67%;
-  // background: linear-gradient(
-  //   79.43deg,
-  //   rgba(255, 0, 94, 0.39) 36.1%,
-  //   rgba(255, 0, 94, 0.0741) 100%
-  // );
   background: linear-gradient(
     259.27deg,
     rgba(65, 206, 186, 0.1) 0%,
@@ -662,7 +661,6 @@
     width: 95%;
 
     & > h1 {
-      // color: rgba(255, 71, 139, 1);
       color: #247c70;
       font-weight: 700;
       font-size: var(--faq-h1-font-size);
@@ -670,7 +668,6 @@
     }
 
     & > h3 {
-      // color: rgba(39, 22, 64, 1);
       color: rgba(1, 33, 43, 1);
       font-size: var(--faq-h3-font-size);
       font-weight: 500;
@@ -700,6 +697,7 @@
 
       @media screen and (max-width: 500px) {
         font-size: 0.8rem;
+        width: 100%;
       }
     }
 

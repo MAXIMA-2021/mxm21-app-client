@@ -88,7 +88,7 @@ const EditHome: React.FC = () => {
       await adminService.updateHome(homeDatabySearchKey.homeID, formData);
       toast({
         title: "Data berhasil berhasil diperbaharui!",
-        position: "top",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,
