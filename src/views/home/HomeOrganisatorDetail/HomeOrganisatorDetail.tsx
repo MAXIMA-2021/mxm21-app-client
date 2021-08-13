@@ -175,7 +175,10 @@ const HomeOrganisatorDetail = () => {
               {chapterName()}
             </Text>
             <Grid
-              templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
+              templateColumns={{
+                base: "repeat(1, 1fr)",
+                lg: "repeat(2, 1fr)",
+              }}
               gap={6}
               width="100%"
               height="100%"
@@ -187,23 +190,31 @@ const HomeOrganisatorDetail = () => {
                   allowFullScreen
                   className="responsive-iframe"
                 />
-                <iframe
-                  title="video"
-                  src={homeDetail.linkYoutube}
-                  allowFullScreen
-                  className="responsive-iframe"
-                />
               </div>
               <div className="carousel">
-                <ImageGallery
-                  items={images}
-                  showThumbnails={false}
-                  showNav={true}
-                  showBullets={true}
-                  showPlayButton={false}
-                  thumbnailPosition="bottom"
-                  className="responsive-iframe"
-                />
+                {images.length === 0 ? (
+                  <Flex
+                    w="100%"
+                    h="100%"
+                    bgColor="lightgrey"
+                    textAlign="center"
+                    border="1px solid black"
+                  >
+                    <Center w="100%">
+                      Anda belum memasukkan foto untuk {homeDetail.name}
+                    </Center>
+                  </Flex>
+                ) : (
+                  <ImageGallery
+                    items={images}
+                    showThumbnails={false}
+                    showNav={true}
+                    showBullets={true}
+                    showPlayButton={false}
+                    thumbnailPosition="bottom"
+                    className="slide"
+                  />
+                )}
               </div>
             </Grid>
             <Heading

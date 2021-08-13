@@ -26,6 +26,7 @@ import {
   MxmTextarea,
   MxmDivider,
 } from "../../../../../shared/styled/input";
+import { MxmButton } from "../../../../../shared/styled/buttons";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
@@ -368,7 +369,7 @@ const EditHome: React.FC = () => {
                     xl: "1.5em",
                   }}
                 >
-                  Edit HoME
+                  Edit Data {homeDatabySearchKey?.name}
                 </Heading>
               </Tab>
               <Tab>
@@ -381,7 +382,7 @@ const EditHome: React.FC = () => {
                     xl: "1.5em",
                   }}
                 >
-                  Edit Media
+                  Edit Media {homeDatabySearchKey?.name}
                 </Heading>
               </Tab>
             </TabList>
@@ -642,35 +643,24 @@ const EditHome: React.FC = () => {
                 <Flex mt={5}>
                   <Spacer />
                   {loading ? (
-                    <Flex mr="1rem" alignItems="center">
-                      <Spinner
-                        thickness="4px"
-                        speed="0.65s"
-                        emptyColor="gray.200"
-                        color="blue.500"
-                        w="2rem"
-                        h="2rem"
-                      />
-                      <Text
-                        fontFamily="Poppins"
-                        fontSize={{ base: "0.9rem", md: "1rem" }}
-                        ml="0.5rem"
-                      >
-                        mengunggah data...
-                      </Text>
-                    </Flex>
-                  ) : (
-                    <Button
-                      backgroundColor={Palette.Cyan}
-                      color="white"
-                      padding="1em 2em 1em 2em"
-                      borderRadius="999px"
-                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                    <MxmButton
+                      isLoading
+                      loadingText="Mengubah..."
+                      spinnerPlacement="start"
                       type="submit"
-                      _hover={{ backgroundColor: "#2BAD96" }}
+                      variant="rounded"
+                      colorScheme="cyan-white"
                     >
-                      Update HoME
-                    </Button>
+                      Mengubah...
+                    </MxmButton>
+                  ) : (
+                    <MxmButton
+                      type="submit"
+                      variant="rounded"
+                      colorScheme="cyan-white"
+                    >
+                      Konfirmasi Edit
+                    </MxmButton>
                   )}
                 </Flex>
               </form>
