@@ -10,6 +10,7 @@ import {
   HStack,
   Button,
   Switch,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
@@ -38,6 +39,7 @@ const DaftarAkunOrganisator: React.FC = () => {
     base: "1em",
     "2xl": "1.2em",
   };
+  const toast = useToast();
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
@@ -55,19 +57,19 @@ const DaftarAkunOrganisator: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Akun Organisator";
     fetchData();
   }, []);
 
   const verifyThis = async (nim: string) => {
     try {
       await adminService.verifyOrganisator(nim, data);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 1000,
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       fetchData();
     } catch (error) {

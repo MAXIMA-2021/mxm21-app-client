@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Flex,
   Heading,
@@ -7,19 +6,16 @@ import {
   Image,
   Center,
   Text,
-  HStack,
-  Button,
   Switch,
+  useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { RepeatIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import ClearIcon from "@material-ui/icons/Clear";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const colorTheme = createMuiTheme({
@@ -38,6 +34,7 @@ const DaftarAkunPanitia: React.FC = () => {
     base: "1em",
     "2xl": "1.2em",
   };
+  const toast = useToast();
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
@@ -55,19 +52,19 @@ const DaftarAkunPanitia: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Akun Panitia";
     fetchData();
   }, []);
 
   const verifyThis = async (nim: string) => {
     try {
       await adminService.verifyPanitia(nim, data);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 1000,
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       fetchData();
     } catch (error) {
@@ -200,46 +197,6 @@ const DaftarAkunPanitia: React.FC = () => {
       },
     },
   ];
-
-  // const data = [
-  //   ["Jane Cooper Krisna Cahyadi", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Maximilliano Adrian Stefan Gabrielsar",
-  //     "23231",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Carlos Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["William Cooper", "34242", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Dharmawan Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper June Caaper", "35353", "jane.cooper@student.umn.ac.id"],
-  //   [
-  //     "Jane Cooper Krisna Finantyo Chandra",
-  //     "35353",
-  //     "jane.cooper@student.umn.ac.id",
-  //   ],
-  //   ["Jane Bonifasius", "23231", "jane.cooper@student.umn.ac.id"],
-  //   ["Jane Cooper", "12121", "jane.cooper@student.umn.ac.id"],
-  //   ["Gabrielsar Cooper", "56565", "jane.cooper@student.umn.ac.id"],
-  // ];
 
   return (
     <>

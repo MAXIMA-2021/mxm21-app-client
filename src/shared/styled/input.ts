@@ -9,6 +9,26 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
+export const formLabelStyle: React.CSSProperties = {
+  fontFamily: "Poppins",
+  textTransform: "uppercase",
+  textAlign: "justify",
+  textJustify: "inter-word",
+  fontSize: "0.85em",
+  color: "#616161",
+  letterSpacing: "1.5px",
+};
+
+export const formHeaderStyle: React.CSSProperties = {
+  paddingTop: "0.5em",
+  paddingBottom: "1em",
+  fontFamily: "Rubik",
+  fontWeight: "500",
+  color: "#3C4257",
+  fontSize: "1.65em",
+  letterSpacing: "-0.75px",
+};
+
 export const MxmDivider = styled.div<{
   color: string;
   height: string;

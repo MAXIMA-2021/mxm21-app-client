@@ -7,7 +7,14 @@ export {
   DaftarPIC,
 } from "./state";
 
-export { DaftarHome, EditHome, TambahHome, TambahMedia } from "./home";
+export {
+  DaftarHome,
+  EditHome,
+  TambahHome,
+  TambahMedia,
+  DaftarNarasi,
+  EditNarasi,
+} from "./home";
 
 export {
   TambahMahasiswa,

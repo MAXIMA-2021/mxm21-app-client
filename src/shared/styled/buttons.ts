@@ -16,7 +16,7 @@ export const MxmButton = styled(Button)<{
     format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
 
-  padding: ${(props) => props.padding || "0.8vh 1vw"};
+  padding: ${(props) => props.padding || "0.5rem 1rem"};
   margin: ${(props) => props.margin || "1rem"};
 
   border-radius: ${(props) => (props.variant === "squared" ? "10px" : "20px")};
@@ -289,6 +289,23 @@ export const MxmButton = styled(Button)<{
     
     &:active {
     box-shadow: 0 0 0 0 ${Palette.Yellow};
+    transform: translate(0px, 0px);
+    }
+    `
+      : props.colorScheme === "red-navy"
+      ? ` 
+    background: ${Palette.Red};
+    box-shadow: -3px 3px 0 0 ${Palette.Navy};
+    color: white;
+    
+    &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: -2px 2px 0 0 ${Palette.Navy};
+      transform: translate(2px, -2px);
+    }
+    
+    &:active {
+    box-shadow: 0 0 0 0 ${Palette.Navy};
     transform: translate(0px, 0px);
     }
     `

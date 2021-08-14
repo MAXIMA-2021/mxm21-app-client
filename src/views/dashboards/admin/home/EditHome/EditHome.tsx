@@ -14,6 +14,8 @@ import {
   HStack,
   Box,
   Spinner,
+  useToast,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Palette, HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
@@ -26,23 +28,16 @@ import {
   MxmTextarea,
   MxmDivider,
 } from "../../../../../shared/styled/input";
+import { MxmButton } from "../../../../../shared/styled/buttons";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  useToast,
-} from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
 import DeleteIcon from "@material-ui/icons/Delete";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { url } from "inspector";
-
 const EditHome: React.FC = () => {
   const [editMediaTab, setEditMediaTab] = useState(false);
+  const toast = useToast();
 
   const history = useHistory();
   const [homeDatabySearchKey, sethomeDatabySearchKey] = useState<any>({});
@@ -56,6 +51,8 @@ const EditHome: React.FC = () => {
     formState: { errors },
     setValue,
   } = useForm();
+
+  const [isSmallerThan475px] = useMediaQuery("(max-width: 475px)");
 
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState<any>([]);
@@ -72,7 +69,6 @@ const EditHome: React.FC = () => {
   };
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     setLoading(true);
 
     const linkYTEmbed: any = getId(data.linkYoutube);
@@ -92,12 +88,12 @@ const EditHome: React.FC = () => {
 
     try {
       await adminService.updateHome(homeDatabySearchKey.homeID, formData);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 2000,
+      toast({
+        title: "Data berhasil berhasil diperbaharui!",
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setFiles([]);
@@ -115,7 +111,7 @@ const EditHome: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Edit Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Edit HoME";
     const fetchData = async () => {
       try {
         let returnedData = await adminService.getHomeBySearchKey(search_key);
@@ -198,7 +194,6 @@ const EditHome: React.FC = () => {
         break;
       }
     }
-    console.log(mediaFiles);
   };
 
   const deleteHomeMedia = (photoId: any) => {
@@ -269,7 +264,7 @@ const EditHome: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "400px" },
+          style: { minWidth: isSmallerThan475px ? "" : "400px" },
         }),
         customBodyRender: (value: any, tableMeta: any) => (
           <>
@@ -326,8 +321,6 @@ const EditHome: React.FC = () => {
     },
   ];
 
-  console.log(editMediaTab);
-
   return (
     <Tabs
       defaultIndex={0}
@@ -355,7 +348,7 @@ const EditHome: React.FC = () => {
                   base: "",
                   md: "",
                 }
-              : { base: "100%", md: "70%" }
+              : { base: "95%", md: "70%" }
           }
           mt={{
             base: "1rem",
@@ -380,7 +373,7 @@ const EditHome: React.FC = () => {
                     xl: "1.5em",
                   }}
                 >
-                  Edit HoME
+                  Edit Data
                 </Heading>
               </Tab>
               <Tab>
@@ -654,26 +647,11 @@ const EditHome: React.FC = () => {
                 <Flex mt={5}>
                   <Spacer />
                   {loading ? (
-                    <Flex mr="1rem" alignItems="center">
-                      <Spinner
-                        thickness="4px"
-                        speed="0.65s"
-                        emptyColor="gray.200"
-                        color="blue.500"
-                        w="2rem"
-                        h="2rem"
-                      />
-                      <Text
-                        fontFamily="Poppins"
-                        fontSize={{ base: "0.9rem", md: "1rem" }}
-                        ml="0.5rem"
-                      >
-                        mengunggah data...
-                      </Text>
-                    </Flex>
-                  ) : (
                     <Button
-                      backgroundColor={Palette.Cyan}
+                      isLoading
+                      loadingText="Updating..."
+                      spinnerPlacement="start"
+                      backgroundColor="#41ceba"
                       color="white"
                       padding="1em 2em 1em 2em"
                       borderRadius="999px"
@@ -681,7 +659,19 @@ const EditHome: React.FC = () => {
                       type="submit"
                       _hover={{ backgroundColor: "#2BAD96" }}
                     >
-                      Update HoME
+                      Updating...
+                    </Button>
+                  ) : (
+                    <Button
+                      backgroundColor="#41ceba"
+                      color="white"
+                      padding="1em 2em 1em 2em"
+                      borderRadius="999px"
+                      boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                      type="submit"
+                      _hover={{ backgroundColor: "#2BAD96" }}
+                    >
+                      Update Data
                     </Button>
                   )}
                 </Flex>
@@ -710,33 +700,30 @@ const EditHome: React.FC = () => {
               <Flex mt={5}>
                 <Spacer />
                 {loading ? (
-                  <Flex mr="1rem" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      w="2rem"
-                      h="2rem"
-                    />
-                    <Text
-                      fontFamily="Poppins"
-                      fontSize={{ base: "0.9rem", md: "1rem" }}
-                      ml="0.5rem"
-                    >
-                      mengunggah data...
-                    </Text>
-                  </Flex>
-                ) : (
                   <Button
-                    backgroundColor={Palette.Cyan}
+                    isLoading
+                    loadingText="Updating..."
+                    spinnerPlacement="start"
+                    backgroundColor="#41ceba"
                     color="white"
                     padding="1em 2em 1em 2em"
                     borderRadius="999px"
                     boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
                     type="submit"
                     _hover={{ backgroundColor: "#2BAD96" }}
+                  >
+                    Updating...
+                  </Button>
+                ) : (
+                  <Button
+                    backgroundColor="#41ceba"
+                    color="white"
+                    padding="1em 2em 1em 2em"
+                    borderRadius="999px"
+                    boxShadow="-1.2px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+                    type="submit"
                     onClick={onMediaSubmit}
+                    _hover={{ backgroundColor: "#2BAD96" }}
                   >
                     Update Media
                   </Button>

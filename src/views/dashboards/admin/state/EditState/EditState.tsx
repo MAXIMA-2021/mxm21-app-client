@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -14,8 +14,8 @@ import {
   NumberInputStepper,
   Button,
   Box,
+  useToast,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import {
   MxmDivider,
@@ -38,7 +38,7 @@ const EditState: React.FC = () => {
   const [cover, setCover] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
   const history = useHistory();
-
+  const toast = useToast();
   const {
     register,
     handleSubmit,
@@ -48,10 +48,10 @@ const EditState: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
+    document.title = "[Dashboard] - Edit STATE";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getSpecificState(stateID);
-        console.log(returnedData);
         setState(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -91,19 +91,16 @@ const EditState: React.FC = () => {
 
     try {
       await adminService.updateState(state.stateID, formData);
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil diperbaharui!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setLogo([]);
-      history.push("/admin/daftar-state", {
-        status: "success",
-        message: "Kamu berhasil mengedit",
-      });
+      history.push("/admin/daftar-state");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -117,7 +114,7 @@ const EditState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -126,7 +123,7 @@ const EditState: React.FC = () => {
     >
       <Flex
         width={{
-          base: "100%",
+          base: "95vw",
           md: "70%",
         }}
         direction="column"

@@ -31,13 +31,10 @@ import {
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MxmWhiteLogo } from "../../../assets";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
 import "./RegisterOrganisator.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
 import { DataRegisterOrganisator } from "../../../types/interfaces";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { TextField } from "@material-ui/core";
 import { useMediaQuery } from "@chakra-ui/media-query";
 
 const transition = {
@@ -80,6 +77,7 @@ const RegisterOrganisator: React.FC = () => {
     formState: { errors },
   } = useForm();
   const [isLargerThan3000px] = useMediaQuery("(min-width:3000px)");
+  const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -98,8 +96,7 @@ const RegisterOrganisator: React.FC = () => {
     document.title = "[Organisator] Daftar - MAXIMA 2021";
     const fetchData = async () => {
       try {
-        const returnedData = await adminService.getAllState();
-        console.log(returnedData);
+        const returnedData = await authService.getPublicState();
         setData(returnedData);
       } catch (error) {
         Swal.fire({
@@ -204,7 +201,6 @@ const RegisterOrganisator: React.FC = () => {
                       lg: "2vw",
                       "2xl": "1.2vw",
                     }}
-                    // mt={2}
                   />
                 </Flex>
                 <Divider
@@ -425,14 +421,7 @@ const RegisterOrganisator: React.FC = () => {
                       )}
                     </MxmFormErrorMessage>
                   </FormControl>
-                  <FormControl
-                    // w={{
-                    //   base: "100%",
-                    //   md: "95%",
-                    // }}
-                    mb={3}
-                    isInvalid={errors.konfirmasiPassword}
-                  >
+                  <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
                     <MxmFormLabel>Konfirmasi Password</MxmFormLabel>
                     <MxmInputGroup>
                       <Input
@@ -459,6 +448,7 @@ const RegisterOrganisator: React.FC = () => {
                   fontWeight="400"
                   fontSize="0.8em"
                   mt={1}
+                  direction={isSmallerThan450px ? "column-reverse" : "row"}
                 >
                   <MxmVerticalAlign variant="">
                     <Text color="white">
@@ -481,6 +471,8 @@ const RegisterOrganisator: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>
@@ -489,6 +481,9 @@ const RegisterOrganisator: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        padding="0 1rem"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>

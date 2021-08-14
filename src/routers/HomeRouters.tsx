@@ -1,11 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import * as Home from "../views/home";
-import { ErrorPage } from "../views/error";
 
 const HomeRouters = () => {
   return (
-    <>
+    <Switch>
       <Route path="/home" exact component={Home.HomeCover} />
       <Route path="/home/welcome" component={Home.HomeWelcome} />
       <Route path="/home/enter" component={Home.HomePintu} />
@@ -21,7 +20,8 @@ const HomeRouters = () => {
       <Route path="/home/twibbon" component={Home.HomeTwibbon} />
       <Route path="/home/zeppelin" component={Home.HomeZeppelin} />
       <Route path="/home/finish" component={Home.HomeFinish} />
-    </>
+      <Route path="/home/*" render={() => <Redirect to="/404" />} />
+    </Switch>
   );
 };
 

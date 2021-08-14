@@ -10,6 +10,7 @@ import {
   HStack,
   CloseButton,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
@@ -21,14 +22,14 @@ import Swal from "sweetalert2";
 
 const DaftarState: React.FC = () => {
   const [data, setData] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
-    document.title = "Daftar STATE - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar STATE";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllState();
         setData(returnedData);
-        console.log(returnedData);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -54,12 +55,27 @@ const DaftarState: React.FC = () => {
         showCancelButton: true,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await adminService.deleteState(stateID);
-          const stateData = data.filter(
-            (item: any) => item.stateID !== stateID
-          );
-          setData(stateData);
-          Swal.fire("Data telah dihapus!", "", "success");
+          try {
+            await adminService.deleteState(stateID);
+            const stateData = data.filter(
+              (item: any) => item.stateID !== stateID
+            );
+            setData(stateData);
+            toast({
+              title: "Data berhasil dihapus!",
+              position: "bottom-right",
+              status: "success",
+              duration: 4000,
+              isClosable: true,
+            });
+          } catch (error) {
+            Swal.fire({
+              title: "Perhatian!",
+              text: error.response?.data.message,
+              icon: "error",
+              confirmButtonText: "Coba lagi",
+            });
+          }
         } else if (result.isDenied) {
           Swal.fire("Perubahan belum tersimpan", "", "info");
         }

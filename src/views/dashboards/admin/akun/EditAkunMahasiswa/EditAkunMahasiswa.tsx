@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -12,8 +12,6 @@ import {
   Input,
   InputLeftAddon,
   InputRightAddon,
-  Alert,
-  AlertIcon,
   useToast,
 } from "@chakra-ui/react";
 import { MxmLogo } from "../../../../../assets";
@@ -27,7 +25,6 @@ import {
 } from "../../../../../shared/styled/input";
 import { DataRegisterMaba } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
-import authService from "../../../../../services/auth";
 import adminService from "../../../../../services/admin";
 import "./EditAkunMahasiswa.scss";
 
@@ -45,14 +42,8 @@ const EditMahasiswa: React.FC = () => {
     setValue,
   } = useForm();
 
-  //   const handleSelectChange = (event: any) => {
-  //     if (event.target.value !== "") {
-  //       event.target.style.color = "black";
-  //     }
-  //   };
-
   useEffect(() => {
-    document.title = "Edit Akun Mahasiswa - MAXIMA 2021";
+    document.title = "[Dashboard] - Edit Akun Mahasiswa";
     const fetchData = async () => {
       try {
         let returnedData = await adminService.getMahasiswaByNim(nim);
@@ -60,11 +51,19 @@ const EditMahasiswa: React.FC = () => {
           "@student.umn.ac.id",
           ""
         );
-        returnedData[0].tanggalLahir = new Date(returnedData[0].tanggalLahir)
-          .toISOString()
-          .split("T")[0];
+
+        const mhsBirthDate = new Date(returnedData[0].tanggalLahir);
+
+        returnedData[0].tanggalLahir = `${mhsBirthDate.getFullYear()}-${(
+          mhsBirthDate.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${mhsBirthDate
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`;
+
         setMahasiswaByNim(returnedData[0]);
-        console.log(returnedData[0]);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -81,7 +80,6 @@ const EditMahasiswa: React.FC = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: DataRegisterMaba) => {
     setLoading(true);
@@ -101,12 +99,12 @@ const EditMahasiswa: React.FC = () => {
       reset();
       toast({
         title: "Akun Mahasiswa berhasil diperbaharui!",
-        position: "bottom",
+        position: "bottom-right",
         status: "success",
         duration: 4000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-mahasiswa";
+      history.push("/admin/daftar-mahasiswa");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -156,6 +154,7 @@ const EditMahasiswa: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>

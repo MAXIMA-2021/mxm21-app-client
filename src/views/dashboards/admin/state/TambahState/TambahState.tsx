@@ -12,8 +12,8 @@ import {
   NumberDecrementStepper,
   NumberInput,
   Button,
+  useToast,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import "./TambahState.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -38,6 +38,7 @@ const TambahState: React.FC = () => {
     setFocus,
     formState: { errors },
   } = useForm();
+  const toast = useToast();
 
   const [loading, setLoading] = useState(false);
   const [logo, setLogo] = useState<any>([]);
@@ -61,17 +62,15 @@ const TambahState: React.FC = () => {
     formData.append("stateLogo", logo[0]);
     formData.append("coverPhoto", cover[0]);
 
-    console.log(data);
-
     try {
       await adminService.tambahState(formData);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setLogo([]);
@@ -88,6 +87,8 @@ const TambahState: React.FC = () => {
     setResetUpload(false);
 
     setValue("quota", 0);
+    setValue("day", "");
+    setValue("category", "");
     setFocus("name");
   };
 
@@ -100,7 +101,7 @@ const TambahState: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="100%"
@@ -120,6 +121,7 @@ const TambahState: React.FC = () => {
         backgroundColor="#FFFFFF"
         py="1.5rem"
         px="1.5rem"
+        width={{ base: "95vw", md: "initial" }}
         rounded={25}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="form_state">
@@ -375,7 +377,7 @@ const TambahState: React.FC = () => {
             {loading ? (
               <Button
                 isLoading
-                loadingText="Tambah STATE"
+                loadingText="Menambahkan..."
                 spinnerPlacement="start"
                 backgroundColor="#41ceba"
                 color="white"
@@ -385,7 +387,7 @@ const TambahState: React.FC = () => {
                 type="submit"
                 _hover={{ backgroundColor: "#2BAD96" }}
               >
-                Tambah STATE
+                Menambahkan...
               </Button>
             ) : (
               <Button

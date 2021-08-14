@@ -46,9 +46,8 @@ const StateDetail: React.FC = () => {
     const fetchDataDetail = async () => {
       try {
         const returnedDataState = await adminService.getSpecificState(stateID);
-
+        document.title = `[Dashboard] - Detail STATE ${returnedDataState[0]?.name}`;
         setDetailState(returnedDataState[0]);
-        // console.log(returnedDataState);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -60,10 +59,18 @@ const StateDetail: React.FC = () => {
     };
 
     const fetchDataMhs = async () => {
+      const role = window.sessionStorage.getItem("role");
       try {
-        const returnedDataMhs = await adminService.getRegistrationStateMhs(
-          stateID
-        );
+        let returnedDataMhs = "";
+        if (role === "panitia") {
+          returnedDataMhs = await adminService.getRegistrationStateMhsPanit(
+            stateID
+          );
+        } else if (role === "organizator") {
+          returnedDataMhs = await adminService.getRegistrationStateMhsOrg(
+            stateID
+          );
+        }
 
         setDataKehadiranMhs(returnedDataMhs);
       } catch (error) {
@@ -78,7 +85,6 @@ const StateDetail: React.FC = () => {
 
     fetchDataDetail();
     fetchDataMhs();
-    document.title = `State Detail ${detailState?.name}`;
   }, []);
 
   const tableColumns = [
@@ -185,6 +191,7 @@ const StateDetail: React.FC = () => {
             base: "0.2rem",
             md: "2rem",
           }}
+          width={{ base: "95vw", md: "initial" }}
           rounded={20}
           minW={isSmallerThan800px ? "" : "800px"}
         >
@@ -262,7 +269,8 @@ const StateDetail: React.FC = () => {
                 </Text>
                 <Flex direction="row" my="1rem">
                   <Text>
-                    <PeopleAltOutlinedIcon /> {detailState?.quota}
+                    <PeopleAltOutlinedIcon /> {detailState?.registered} /{" "}
+                    {detailState?.quota}
                   </Text>
                   <Text ml="6rem">
                     <VpnKeyOutlinedIcon /> {detailState?.attendanceCode}

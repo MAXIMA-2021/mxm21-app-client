@@ -1,6 +1,7 @@
 export interface DataRegisterMaba {
   name: string;
   nim: string;
+  password: string;
   tempatLahir: string;
   tanggalLahir: string;
   jenisKelamin: string;
@@ -32,7 +33,6 @@ export interface DataRegisterOrganisator {
   stateID: string;
 }
 
-//interface untuk HoME
 export interface DataHome {
   name: string;
   kategori: string;
@@ -76,4 +76,6 @@ export interface DataState {
   shortDesc: string;
   day: string;
   quota: string;
+  stateLogo: any;
+  coverPhoto: any;
 }

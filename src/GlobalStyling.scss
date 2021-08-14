@@ -3,16 +3,16 @@ html {
   scrollbar-color: #74c8b9 #1f2c4c;
 
   &::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #1f2c4c;
+    background: white;
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #74c8b9;
+    background: #f43a3a;
     border-radius: 5px;
   }
 }

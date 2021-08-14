@@ -4,22 +4,33 @@ import jwtDecode from "jwt-decode";
 
 export const StateProtectedRoute = (props: any, { ...options }) => {
   const token: string | null = window.sessionStorage.getItem("token");
-  const decoded: any = token !== null && jwtDecode(token);
+  let decoded: any = null;
 
-  if (decoded.nim && !decoded.division && !decoded.stateID) {
-    return <Route {...options}>{props.children}</Route>;
-  } else {
-    return (
-      <Redirect
-        to={{
-          pathname: "/",
-          state: {
-            title: token !== null ? "Token Invalid" : "Harap Login Kembali",
-            icon: "error",
-            confirmButtonText: "Kembali",
-          },
-        }}
-      />
-    );
+  try {
+    token !== null && (decoded = jwtDecode(token));
+  } catch (error) {
+    window.sessionStorage.clear();
+  } finally {
+    if (
+      decoded !== null &&
+      decoded.nim &&
+      !decoded.division &&
+      !decoded.stateID
+    ) {
+      return <Route {...options}>{props.children}</Route>;
+    } else {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: {
+              title: "Harap Login Kembali",
+              icon: "error",
+              confirmButtonText: "Kembali",
+            },
+          }}
+        />
+      );
+    }
   }
 };

@@ -15,7 +15,7 @@ import MUIDataTable from "mui-datatables";
 import { MxmDivider } from "../../../../../shared/styled/input";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
-import { InfoOutlineIcon, EditIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Palette } from "../../../../../types/enums";
 
 const DaftarMahasiswaBaru: React.FC = () => {
@@ -27,12 +27,11 @@ const DaftarMahasiswaBaru: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    document.title = "Daftar Organisator HoME - MAXIMA 2021";
+    document.title = "[Dashboard] - Daftar Mahasiswa Baru";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllMahasiswa();
         setData(returnedData);
-        console.log(returnedData);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

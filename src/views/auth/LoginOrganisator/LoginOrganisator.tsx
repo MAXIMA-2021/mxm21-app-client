@@ -16,6 +16,7 @@ import {
   Text,
   Alert,
   AlertIcon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { createIcon } from "@chakra-ui/react";
@@ -68,6 +69,7 @@ const buttonVariants = {
 const LoginOrganisator: React.FC = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
   const {
     register,
     handleSubmit,
@@ -87,8 +89,10 @@ const LoginOrganisator: React.FC = () => {
 
     try {
       const returnedData = await authService.loginOrganisator(data);
+
       window.sessionStorage.setItem("name", returnedData.nama);
-      window.sessionStorage.setItem("token", returnedData.accessToken);
+      window.sessionStorage.setItem("token", returnedData.token);
+      window.sessionStorage.setItem("role", returnedData.role);
       window.location.href = "/admin";
     } catch (error) {
       Swal.fire({
@@ -252,7 +256,12 @@ const LoginOrganisator: React.FC = () => {
                     )}
                   </MxmFormErrorMessage>
                 </FormControl>
-                <Flex fontFamily="Rubik" fontWeight="400" fontSize="0.8em">
+                <Flex
+                  fontFamily="Rubik"
+                  fontWeight="400"
+                  fontSize="0.8em"
+                  direction={isSmallerThan450px ? "column-reverse" : "row"}
+                >
                   <MxmVerticalAlign variant="">
                     <Text color="white">
                       Belum punya akun?{" "}
@@ -264,9 +273,9 @@ const LoginOrganisator: React.FC = () => {
                       </Link>
                     </Text>
                     <Text color="white">
-                      Lupa kata sandimu?
+                      Lupa kata sandimu?{" "}
                       <Link
-                        to="/auth/organisator/reset"
+                        to="/auth/reset"
                         style={{ color: "cornflowerblue", fontWeight: 600 }}
                       >
                         Klik di sini
@@ -284,6 +293,8 @@ const LoginOrganisator: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Masuk
                       </MxmButton>
@@ -292,6 +303,9 @@ const LoginOrganisator: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        padding="0 1rem"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Masuk
                       </MxmButton>

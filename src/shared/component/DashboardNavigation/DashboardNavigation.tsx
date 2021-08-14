@@ -25,13 +25,27 @@ const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
-  let isAdmin = false;
-
-  const token: string | null = window.sessionStorage.getItem("token");
-  const decoded: any = token !== null && jwtDecode(token);
-  decoded.division === "D01" && (isAdmin = true);
 
   const location = useLocation();
+
+  let isAdmin = false;
+  let isPanitia = true;
+  const token: string | null = window.sessionStorage.getItem("token");
+  let decoded: any = null;
+
+  try {
+    token !== null && (decoded = jwtDecode(token));
+  } catch (error) {
+    window.sessionStorage.clear();
+    Swal.fire({
+      icon: "error",
+      title: "Token Invalid",
+      confirmButtonText: "Kembali",
+    });
+  } finally {
+    decoded.division === "D01" && (isAdmin = true);
+    decoded.stateID && (isPanitia = false);
+  }
 
   const handleLogOut = () => {
     Swal.fire({
@@ -154,14 +168,14 @@ const DashboardNavigation = (props: any) => {
           </button>
 
           <Flex className="navbar-menu">
-            <NavLink to="/admin/edit-akun">
+            {/* <NavLink to="/admin/edit-akun">
               <Flex align="center" className="navbar-avatar">
                 <div className="navbar-avatar-image">
                   <AccountCircleIcon />
                 </div>
                 <h4>{props.name}</h4>
               </Flex>
-            </NavLink>
+            </NavLink> */}
 
             <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
@@ -201,10 +215,7 @@ const DashboardNavigation = (props: any) => {
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
-              <NavLink
-                to="/admin/dashboard"
-                activeClassName="sidebar-nav_active"
-              >
+              <NavLink to="/admin" activeClassName="sidebar-nav_active">
                 <AssessmentIcon />
                 Dashboard
               </NavLink>
@@ -212,12 +223,16 @@ const DashboardNavigation = (props: any) => {
               <NavLink
                 to="/admin/daftar-maba"
                 activeClassName="sidebar-nav_active"
+                className={`${!isPanitia && "hide"} daftar-maba`}
               >
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
               </NavLink>
 
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+              <li
+                onClick={sidebarDropdownActive}
+                className={`dropdown ${!isPanitia && "hide"}`}
+              >
                 <Flex className="dropdown-header">
                   <HomeRoundedIcon onClick={sidebarDropdownActiveSvg} />
                   HoME
@@ -243,22 +258,30 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/admin/daftar-home"
-                      className={
-                        location.pathname === "/admin/daftar-home"
-                          ? "dropdown-item_active"
-                          : ""
-                      }
+                    <NavLink
+                      to="/admin/daftar-home"
+                      activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
-                    </a>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/daftar-narasi"
+                      activeClassName="dropdown-item_active"
+                    >
+                      <RadioButtonUncheckedOutlinedIcon />
+                      Daftar Narasi HoME
+                    </NavLink>
                   </li>
                 </ul>
               </li>
 
-              <li onClick={sidebarDropdownActive} className={`dropdown`}>
+              <li
+                onClick={sidebarDropdownActive}
+                className={`dropdown ${!isPanitia && "hide"}`}
+              >
                 <Flex className="dropdown-header">
                   <FlightIcon onClick={sidebarDropdownActiveSvg} />
                   STATE
@@ -275,28 +298,31 @@ const DashboardNavigation = (props: any) => {
                     </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/admin/daftar-state"
-                      className={
-                        location.pathname === "/admin/daftar-state"
-                          ? "dropdown-item_active"
-                          : ""
-                      }
+                    <NavLink
+                      to="/admin/daftar-state"
+                      activeClassName="dropdown-item_active"
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar STATE
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </li>
 
-              <NavLink to="/shortener" activeClassName="sidebar-nav_active">
+              {/* <NavLink
+                to="/shortener"
+                activeClassName="sidebar-nav_active"
+                className={`${!isPanitia && "hide"}`}
+              >
                 <LinkIcon />
                 Shortener
-              </NavLink>
+              </NavLink> */}
 
               {isAdmin && (
-                <li onClick={sidebarDropdownActive} className={`dropdown`}>
+                <li
+                  onClick={sidebarDropdownActive}
+                  className={`dropdown ${!isPanitia && "hide"}`}
+                >
                   <Flex className="dropdown-header">
                     <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
                     Akun MAXIMA 2021
@@ -392,7 +418,11 @@ const DashboardNavigation = (props: any) => {
             : "0px"
         }
       >
-        <AdminRouters show={sidebarShow} />
+        <AdminRouters
+          show={sidebarShow}
+          isPanitia={isPanitia}
+          stateID={decoded.stateID || null}
+        />
       </Flex>
     </div>
   );

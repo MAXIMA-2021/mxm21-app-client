@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 
 export const Carousell = (props: any) => {
   const CarousellData = {
@@ -9,8 +9,18 @@ export const Carousell = (props: any) => {
 
   props.setMaxIndex(Number(CarousellData.media?.length));
 
+  const validator =
+    /(http:|https:)?\/\/(www\.)?(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/;
+  const validation = CarousellData.video.match(validator);
+
   if (props.index === 0)
-    return <iframe title="video" src={CarousellData.video} allowFullScreen />;
+    return validation !== null ? (
+      <iframe title="video" src={CarousellData.video} allowFullScreen />
+    ) : (
+      <Flex w="100%" h="100%" bgColor="grey">
+        Video tidak dapat dimuat
+      </Flex>
+    );
   else
     return (
       <Image

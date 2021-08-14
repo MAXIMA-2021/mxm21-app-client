@@ -15,6 +15,13 @@ import {
   InputRightElement,
   Button,
   createIcon,
+  useMediaQuery,
+  Stack,
+  FormLabel,
+  FormErrorMessage,
+  InputGroup,
+  Select,
+  Center,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -35,6 +42,12 @@ import "./RegisterPanitia.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
 import { DataRegisterPanitia } from "../../../types/interfaces";
+
+//YANG DARI OPREC
+import { LoginFormCard } from "../../../shared/styled/containers";
+import { formLabelStyle } from "../../../shared/styled/input";
+import { formHeaderStyle } from "../../../shared/styled/input";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 const transition = {
   duration: 0.5,
@@ -75,6 +88,9 @@ const RegisterPanitia: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
+  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -126,7 +142,7 @@ const RegisterPanitia: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia>
+    <MxmContainersPanitia style={{ paddingBottom: "calc(20vh + 15vh)" }}>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -137,7 +153,7 @@ const RegisterPanitia: React.FC = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Flex
+            {/* <Flex
               direction="column"
               background="#212529"
               py="2vh"
@@ -385,6 +401,7 @@ const RegisterPanitia: React.FC = () => {
                   fontWeight="400"
                   fontSize="0.8em"
                   mt={1}
+                  direction={isSmallerThan450px ? "column-reverse" : "row"}
                 >
                   <MxmVerticalAlign variant="">
                     <Text color="white">
@@ -407,6 +424,8 @@ const RegisterPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>
@@ -415,6 +434,9 @@ const RegisterPanitia: React.FC = () => {
                         type="submit"
                         variant="rounded"
                         colorScheme="cyan-navy"
+                        padding="0 1rem"
+                        width={isSmallerThan450px ? "100%" : ""}
+                        margin={isSmallerThan450px ? "1rem 0" : ""}
                       >
                         Daftar
                       </MxmButton>
@@ -422,7 +444,180 @@ const RegisterPanitia: React.FC = () => {
                   </motion.div>
                 </Flex>
               </form>
-            </Flex>
+            </Flex> */}
+
+            <LoginFormCard
+              style={
+                isShorterThan800px || isSmallerThan450px
+                  ? { marginTop: "15vh" }
+                  : { marginTop: "0" }
+              }
+            >
+              <Image src={MxmLogo} width={50} height="auto" />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Text style={formHeaderStyle}>Aktivasi Akun</Text>
+                <Stack spacing={4}>
+                  <FormControl id="name" isInvalid={errors.name}>
+                    <FormLabel style={formLabelStyle}>Nama Lengkap</FormLabel>
+                    <Input
+                      type="text"
+                      autoFocus
+                      {...register("name", {
+                        required: "Isi nama lengkap kamu",
+                      })}
+                    />
+                    <FormErrorMessage>
+                      {errors.name && errors.name.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl id="nim_koor" isInvalid={errors.nim}>
+                    <FormLabel style={formLabelStyle}>NIM</FormLabel>
+                    <InputGroup>
+                      <InputLeftAddon children="000000" fontFamily="Poppins" />
+                      <Input
+                        type="number"
+                        {...register("nim", {
+                          required: "Isi NIM kamu",
+                          minLength: {
+                            value: 5,
+                            message: "Masukkan 5 angka terakhir dari NIM kamu",
+                          },
+                          maxLength: {
+                            value: 5,
+                            message: "Masukkan 5 angka terakhir dari NIM kamu",
+                          },
+                        })}
+                      />
+                    </InputGroup>
+                    <FormErrorMessage>
+                      {errors.nim && errors.nim.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl id="divisiID" isInvalid={errors.divisiID}>
+                    <FormLabel style={formLabelStyle}>Divisi</FormLabel>
+                    <Select
+                      placeholder="Pilih divisi"
+                      {...register("divisiID", {
+                        required: "Isi nama divisi kamu",
+                      })}
+                    >
+                      {Divisi.map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.nama}
+                        </option>
+                      ))}
+                    </Select>
+                    <FormErrorMessage>
+                      {errors.divisiID && errors.divisiID.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl isInvalid={errors.email}>
+                    <FormLabel style={formLabelStyle}>Email Student</FormLabel>
+                    <InputGroup addon="right">
+                      <Input
+                        {...register("email", {
+                          required: "Isi email student kamu",
+                          pattern: {
+                            value: /^[^@]+$/g,
+                            message:
+                              "Alamat email tidak perlu mencantumkan domain",
+                          },
+                        })}
+                      />
+                      <InputRightAddon children="@student.umn.ac.id" />
+                    </InputGroup>
+                    <FormErrorMessage>
+                      {errors.email && errors.email.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormControl isInvalid={errors.password}>
+                    <FormLabel style={formLabelStyle}>Password</FormLabel>
+                    <InputGroup addon="icon">
+                      <Input
+                        // placeholder="Password minimal 8 karakter"
+                        {...register("password", {
+                          required: "Isi password kamu",
+                          minLength: {
+                            value: 8,
+                            message: "Password minimal 8 karakter",
+                          },
+                        })}
+                        type={show ? "text" : "password"}
+                      />
+                      <InputRightElement>
+                        <Button size="base" onClick={handleClick}>
+                          {show ? <IconHidePassword /> : <IconShowPassword />}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                    <MxmFormErrorMessage>
+                      {errors.password && errors.password.message}
+                    </MxmFormErrorMessage>
+                  </FormControl>
+
+                  <FormControl
+                    isInvalid={errors.konfirmasiPassword}
+                    paddingBottom="0.5rem"
+                  >
+                    <FormLabel style={formLabelStyle}>
+                      Konfirmasi Password
+                    </FormLabel>
+                    <InputGroup>
+                      <Input
+                        type="password"
+                        {...register("konfirmasiPassword", {
+                          required: "Masukkan ulang password kamu",
+                          validate: (value) =>
+                            value === password.current || "Password belum sama",
+                        })}
+                      />
+                    </InputGroup>
+                    <FormErrorMessage fontSize="xs" mt={1}>
+                      {errors.konfirmasiPassword &&
+                        errors.konfirmasiPassword.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  {loading ? (
+                    <Button
+                      isLoading
+                      loadingText="Daftarkan Akun"
+                      spinnerPlacement="start"
+                      type="submit"
+                      colorScheme="teal"
+                    >
+                      Daftar
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      colorScheme="teal"
+                      leftIcon={<ArrowForwardIcon />}
+                    >
+                      Daftar
+                    </Button>
+                  )}
+                </Stack>
+                <Center mt={8}>
+                  <Stack spacing={1}>
+                    <Link to="/auth/panitia/masuk">
+                      <Text fontSize="xs" textAlign="center" color="blue.500">
+                        Sudah memiliki akun? Masuk di sini
+                      </Text>
+                    </Link>
+                    <Link to="/auth/reset">
+                      <Text fontSize="xs" textAlign="center" color="blue.500">
+                        Lupa password kamu? Klik di sini
+                      </Text>
+                    </Link>
+                  </Stack>
+                </Center>
+              </form>
+            </LoginFormCard>
           </Flex>
         </motion.div>
       </motion.div>

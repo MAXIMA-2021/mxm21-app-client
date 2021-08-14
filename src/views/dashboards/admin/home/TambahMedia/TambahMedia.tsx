@@ -7,6 +7,7 @@ import {
   FormErrorIcon,
   Button,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { MxmLogo } from "../../../../../assets";
@@ -26,6 +27,7 @@ const TambahMedia: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [files, setFiles] = useState<any>([]);
   const [resetUpload, setResetUpload] = useState<boolean>(false);
+  const toast = useToast();
 
   const {
     register,
@@ -37,7 +39,7 @@ const TambahMedia: React.FC = () => {
   } = useForm();
 
   useEffect(() => {
-    document.title = "[Dashboard] - Tambah Media";
+    document.title = "[Dashboard] - Tambah Media HoME";
     const fetchData = async () => {
       try {
         const data = await adminService.getAllHome();
@@ -62,12 +64,12 @@ const TambahMedia: React.FC = () => {
     try {
       await adminService.tambahMedia(formData, data.homeID);
       reset();
-      Swal.fire({
-        position: "center",
-        icon: "success",
+      toast({
         title: "Data berhasil ditambahkan!",
-        showConfirmButton: false,
-        timer: 2000,
+        position: "bottom-right",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
       });
       setResetUpload(true);
       setFiles([]);
@@ -88,7 +90,7 @@ const TambahMedia: React.FC = () => {
   return (
     <Flex
       width={{
-        base: "calc(100vw - 18rem)",
+        base: "100%",
         md: "calc(100vw - 18rem)",
       }}
       height="calc(100vh - 3.75rem - 3.5rem)"
@@ -106,6 +108,7 @@ const TambahMedia: React.FC = () => {
         }}
         direction="column"
         backgroundColor="#FFFFFF"
+        width={{ base: "95vw", md: "initial" }}
         py="1.5rem"
         px="1.5rem"
         rounded={25}

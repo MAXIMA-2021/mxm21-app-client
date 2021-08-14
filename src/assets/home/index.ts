@@ -22,4 +22,5 @@ export { default as MiddleGateMobile } from "./gate-tengah-mobile.png";
 export { default as LeftGateMobile } from "./gate-kiri-mobile.png";
 export { default as RightGateMobile } from "./gate-kanan-mobile.png";
 export { default as StartMapMobile } from "./peta-masuk-mobile.png";
+export { default as ZeppPink } from "./Zepp_Merah_Muda.png";
 export { default as XimaFull } from "./xima.png";

@@ -1,9 +1,10 @@
 :root {
   --home-zep-bg-size: 400px;
-  --home-zep-text-p-fontsize: 1.2rem;
+  --home-zep-text-p-fontsize: 1.1rem;
   --home-zep-text-h1-fontsize: 4rem;
   --home-zep-text-h2-fontsize: 2rem;
   --home-zep-text-btn-fontsize: 0.8rem;
+  --zep-translate-value: 30%;
 }
 
 .home-zep-outer-container p,
@@ -23,44 +24,53 @@
   justify-content: center;
 
   & > .home-zep-inner-container {
-    width: max-content;
-    min-height: 80vh;
-    border-radius: 200px;
-    padding: 0 3rem 3rem 3rem;
-
-    border: 40px solid #ffd008;
-
+    border-radius: 1rem;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.home-zep-inner-container {
+  & img {
+    margin-top: 5vh;
+    width: 300px;
+    margin-bottom: 5vh;
+  }
+
+  @media screen and (max-height: 850px) {
+    & img {
+      width: 250px;
+    }
   }
 }
 
 .home-zep-header {
-  background-image: url("./home-zep-rect.svg");
-  background-repeat: no-repeat;
-  background-size: var(--home-zep-bg-size);
-  background-position: top;
-
   flex-direction: row;
-  align-items: center;
-
-  position: relative;
-  top: -2rem;
 
   & h1 {
     font-size: var(--home-zep-text-h1-fontsize);
     font-weight: 600;
-    height: 130px;
+    text-align: center;
     width: var(--home-zep-bg-size);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
+@media screen and(max-height: 750px) {
+  .home-zep-inner-container {
+    & img {
+      margin-top: 1rem;
+      width: 225px;
+    }
+  }
 
-.home-zep-desc {
-  margin-top: 2rem;
+  * {
+    --home-zep-text-h1-fontsize: 3rem;
+    --home-zep-text-p-fontsize: 1rem;
+  }
+
+  .nav-btn-zep {
+    margin-top: 1.2vh !important;
+  }
 }
 
 .home-zep-inner-container p:only-child {
@@ -70,58 +80,57 @@
   width: 70ch;
 }
 
-.home-zep-content-grid {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: max-content max-content;
-  grid-template-areas:
-    "contentHeader contentHeader"
-    "regulasiBtn buktiBtn";
-  justify-items: center;
+.home-zep-content-flex {
+  margin-top: 3rem;
+
+  justify-content: space-between;
   align-items: center;
 
-  border-radius: 20px;
-  margin-top: 5rem;
-
-  & > .home-zep-content-header {
-    border-bottom: 3px solid rgba(0, 0, 0, 0.438);
-    padding: 1.5rem;
-    width: 100%;
-
-    & h2 {
-      font-size: var(--home-zep-text-h2-fontsize);
-      font-weight: 500;
-      text-align: center;
-    }
-
-    grid-area: contentHeader;
-  }
-
-  & > .home-zep-regulasi-btn {
-    padding: 1.5rem;
-    grid-area: regulasiBtn;
-  }
-
-  & > .home-zep-bukti-btn {
-    padding: 2rem;
-    border-left: 3px solid rgba(0, 0, 0, 0.438);
-    grid-area: buktiBtn;
+  & button {
+    margin: 0 1rem;
   }
 }
 
 .home-zep-regulasi-btn button,
 .home-zep-bukti-btn button {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+
+  column-gap: 15px;
+  grid-template-areas:
+    "svg mainText"
+    "svg type";
   color: white;
 
-  width: 225px;
-  background-color: #1f2c4c;
-  border-radius: 999px;
+  width: 210px;
+
+  background: linear-gradient(270deg, #74c8b9 0%, #164273 100%);
+  background-size: 250% 200%;
+  background-position: 10% 150%;
+  border-radius: 15px;
   padding: 0.3rem;
 
+  transition: background-position 0.3s ease;
+
   align-items: center;
+  justify-content: center;
 
   font-size: var(--home-zep-text-btn-fontsize);
+
+  & svg {
+    grid-area: svg;
+  }
+
+  & p {
+    grid-area: mainText;
+  }
+
+  & span {
+    grid-area: type;
+  }
+
+  &:hover {
+    background-position: 30% 200%;
+  }
 }
 
 .home-zep-regulasi-btn button:hover,
@@ -129,11 +138,32 @@
   background-color: rgb(41, 53, 83);
 }
 
+.nav-btn-zep {
+  justify-content: space-between;
+  width: calc(80vw - 60px);
+  margin-top: 3rem;
+  @media screen and (max-width: 1042px) {
+    width: calc(100vw - 60px);
+    margin-top: unset;
+  }
+}
+
 .home-zep-next-btn {
   font-size: var(--home-zep-text-btn-fontsize);
-  padding: 0.5rem 2.5rem !important;
+  padding: 0.5rem 1.5rem !important;
   display: flex;
   align-items: center;
+  margin-top: 2rem !important;
+  margin-bottom: 0 !important;
+}
+
+.home-zep-back-btn {
+  font-size: var(--home-zep-text-btn-fontsize);
+  padding: 0.5rem 1.5rem !important;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem !important;
+  margin-bottom: 0 !important;
 }
 
 @media screen and(max-width: 1180px) {
@@ -162,26 +192,12 @@
     width: 50ch;
   }
 
-  .home-zep-regulasi-btn button,
-  .home-zep-bukti-btn button {
-    width: 180px;
-  }
-
   .home-zep-desc {
     margin-top: 0.5rem;
   }
 
-  .home-zep-content-grid {
+  .home-zep-content-flex {
     margin-top: 2.5rem;
-    & > .home-zep-content-header {
-      padding: 1rem;
-    }
-    & > .home-zep-regulasi-btn {
-      padding: 1rem;
-    }
-    & > .home-zep-bukti-btn {
-      padding: 1.5rem;
-    }
   }
 }
 
@@ -192,20 +208,17 @@
     --home-zep-text-h1-fontsize: 2.5rem;
     --home-zep-text-h2-fontsize: 1.2rem;
     --home-zep-text-btn-fontsize: 0.875rem;
+    --zep-translate-value: 20%;
   }
 
-  .home-zep-content-grid {
-    grid-template-columns: unset;
-    grid-template-rows: max-content max-content;
-    grid-template-areas:
-      "contentHeader "
-      "regulasiBtn"
-      "buktiBtn";
-    justify-items: center;
-    align-items: center;
+  .home-zep-content-flex {
+    flex-direction: column;
+    justify-content: center;
 
-    & > .home-zep-bukti-btn {
-      border-left: none;
+    margin: 2rem 0 1rem 0;
+
+    & button {
+      margin: 0.8rem 0;
     }
   }
 
@@ -221,6 +234,7 @@
     --home-zep-text-h1-fontsize: 2rem;
     --home-zep-text-h2-fontsize: 1rem;
     --home-zep-text-btn-fontsize: 0.75rem;
+    --zep-translate-value: 15%;
   }
 
   .home-zep-header {
@@ -240,13 +254,38 @@
     & > .home-zep-inner-container {
       width: 100%;
       padding: unset;
-      border: 40px solid #ffd008;
     }
   }
 }
 
 @media screen and(max-width: 390px) {
+  * {
+    --zep-translate-value: 8%;
+  }
   .home-zep-inner-container p:only-child {
     width: 35ch;
   }
+}
+@keyframes zeppelin_animation {
+  0% {
+    transform: translateX(var(--zep-translate-value)) scaleX(1);
+  }
+  49% {
+    transform: translateX(calc(-1 * var(--zep-translate-value)));
+  }
+  50% {
+    transform: translateX(calc(-1 * var(--zep-translate-value))) scaleX(-1);
+  }
+
+  100% {
+    transform: translateX(var(--zep-translate-value)) scaleX(-1);
+  }
+}
+
+.zep-illustration {
+  animation: zeppelin_animation 6s infinite;
+}
+
+.zep-default {
+  transform: translateX(var(--zep-translate-value));
 }

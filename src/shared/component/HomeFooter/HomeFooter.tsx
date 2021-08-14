@@ -1,21 +1,72 @@
 import { Flex, HStack, Image } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import "./HomeFooter.scss";
 import { MxmWhiteLogoText } from "../../../assets";
 import { InstagramIcon, LineIcon, LoveIcon, TiktokIcon } from "./icon";
+import { motion } from "framer-motion";
+import jwtDecode from "jwt-decode";
+import Swal from "sweetalert2";
+
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const footerVariants = {
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
 
 const HomeFooter: React.FC = () => {
+  let isMahasiswa = false;
+  let isLoggedIn = false;
+
+  const token: string | null = window.sessionStorage.getItem("token");
+  let decoded: any = null;
+
+  try {
+    token !== null && (decoded = jwtDecode(token));
+  } catch (error) {
+    window.sessionStorage.clear();
+    Swal.fire({
+      icon: "error",
+      title: "Token Invalid",
+      confirmButtonText: "Kembali",
+    });
+  } finally {
+    if (decoded !== null) {
+      isLoggedIn = true;
+      decoded.nim &&
+        !decoded.division &&
+        !decoded.stateID &&
+        (isMahasiswa = true);
+    }
+  }
+
   return (
-    <div className="footer-container">
+    <motion.div
+      className="footer-container"
+      variants={footerVariants}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+    >
       <Flex justifyContent="center" alignItems="center" flexDir="column">
         <Image src={MxmWhiteLogoText} alt="MAXIMA 2021" height="150px" />
         <HStack margin="2.5rem 0" spacing={{ base: "2rem", md: "3rem" }}>
           <a href="/" className="nav-footer">
             HoME
           </a>
-          <a href="/" className="nav-footer">
-            STATE
-          </a>
+          {isMahasiswa && (
+            <a href="/" className="nav-footer">
+              STATE
+            </a>
+          )}
+
           <a href="/" className="nav-footer">
             FAQ
           </a>
@@ -41,7 +92,7 @@ const HomeFooter: React.FC = () => {
           Created with <LoveIcon color="#FF0000" /> by WEB MAXIMA 2021 Team
         </h5>
       </Flex>
-    </div>
+    </motion.div>
   );
 };
 

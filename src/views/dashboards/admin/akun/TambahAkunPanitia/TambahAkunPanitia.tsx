@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
@@ -13,8 +12,6 @@ import {
   InputLeftAddon,
   InputRightAddon,
   InputRightElement,
-  Alert,
-  AlertIcon,
   createIcon,
   useToast,
 } from "@chakra-ui/react";
@@ -31,6 +28,7 @@ import { DataRegisterPanitia } from "../../../../../types/interfaces";
 import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
 import "./TambahAkunPanitia.scss";
+import { useHistory } from "react-router-dom";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -55,6 +53,7 @@ const TambahPanitia: React.FC = () => {
     formState: { errors },
   } = useForm();
   const toast = useToast();
+  const history = useHistory();
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -62,7 +61,7 @@ const TambahPanitia: React.FC = () => {
   };
 
   useEffect(() => {
-    document.title = "Pendaftaran Akun Mahasiswa Baru - MAXIMA 2021";
+    document.title = "[Dashboard] - Tambah Akun Panitia";
   }, []);
 
   const password = useRef({});
@@ -88,12 +87,12 @@ const TambahPanitia: React.FC = () => {
       reset();
       toast({
         title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
-        position: "bottom",
+        position: "bottom-right",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-panitia";
+      history.push("/admin/daftar-panitia");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -133,6 +132,7 @@ const TambahPanitia: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -335,14 +335,7 @@ const TambahPanitia: React.FC = () => {
                 )}
               </MxmFormErrorMessage>
             </FormControl>
-            <FormControl
-              // w={{
-              //   base: "100%",
-              //   md: "95%",
-              // }}
-              mb={3}
-              isInvalid={errors.konfirmasiPassword}
-            >
+            <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
               <MxmFormLabel color="black">Konfirmasi Password</MxmFormLabel>
               <MxmInputGroup>
                 <Input

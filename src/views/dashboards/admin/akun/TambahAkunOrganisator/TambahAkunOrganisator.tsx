@@ -29,6 +29,7 @@ import Swal from "sweetalert2";
 import authService from "../../../../../services/auth";
 import adminService from "../../../../../services/admin";
 import "./TambahAkunOrganisator.scss";
+import { useHistory } from "react-router-dom";
 
 const IconShowPassword = createIcon({
   displayName: "ShowPassword",
@@ -54,6 +55,8 @@ const TambahOrganisator: React.FC = () => {
   } = useForm();
   const toast = useToast();
 
+  const history = useHistory();
+
   const handleSelectChange = (event: any) => {
     if (event.target.value !== "") {
       event.target.style.color = "black";
@@ -62,7 +65,7 @@ const TambahOrganisator: React.FC = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    document.title = "[Organisator] Daftar - MAXIMA 2021";
+    document.title = "[Dashboard] - Tambah Akun Organisator";
     const fetchData = async () => {
       try {
         const returnedData = await adminService.getAllState();
@@ -103,12 +106,12 @@ const TambahOrganisator: React.FC = () => {
       reset();
       toast({
         title: "Akun Panitia MAXIMA 2021 berhasil dibuat!",
-        position: "bottom",
+        position: "bottom-right",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      window.location.href = "/admin/daftar-organisator";
+      history.push("/admin/daftar-organisator");
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -148,6 +151,7 @@ const TambahOrganisator: React.FC = () => {
           base: "0.2rem",
           md: "2rem",
         }}
+        width={{ base: "95vw", md: "initial" }}
         rounded={20}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -352,14 +356,7 @@ const TambahOrganisator: React.FC = () => {
                 )}
               </MxmFormErrorMessage>
             </FormControl>
-            <FormControl
-              // w={{
-              //   base: "100%",
-              //   md: "95%",
-              // }}
-              mb={3}
-              isInvalid={errors.konfirmasiPassword}
-            >
+            <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
               <MxmFormLabel color="black">Konfirmasi Password</MxmFormLabel>
               <MxmInputGroup>
                 <Input
