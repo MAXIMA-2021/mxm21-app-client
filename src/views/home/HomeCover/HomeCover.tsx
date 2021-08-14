@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./HomeCover.scss";
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import { Home } from "../../../assets";
 import { MxmLogoText } from "../../../assets";
@@ -45,6 +45,7 @@ const frameVariants = {
 
 const HomeCover = () => {
   const history = useHistory();
+  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
 
   const handleClick = () => {
     history.push("/home/welcome");
@@ -62,11 +63,15 @@ const HomeCover = () => {
       exit="exit"
     >
       <Flex
-        // h={{
-        //   base: "calc(100vh - 3.5rem)",
-        //   md: "calc(100vh - 4rem)",
-        //   xl: "calc(100vh - 5rem)",
-        // }}
+        h={
+          isShorterThan800px
+            ? "100vh"
+            : {
+                base: "calc(100vh - 3.5rem)",
+                md: "calc(100vh - 4rem)",
+                xl: "calc(100vh - 5rem)",
+              }
+        }
         padding={{
           base: "1rem",
           md: "2rem",
