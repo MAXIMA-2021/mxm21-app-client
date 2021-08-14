@@ -118,15 +118,15 @@ const HomeOrganisatorList = () => {
         bg={"#FBCF10"}
         className="home-orglist-outer_container"
         justifyContent="center"
-        h={
-          isSmallerThan886px
-            ? "max-content"
-            : {
-                base: "calc(100vh - 3.5rem)",
-                md: "calc(100vh - 4rem)",
-                xl: "calc(100vh - 5rem)",
-              }
-        }
+        // h={
+        //   isSmallerThan886px
+        //     ? "max-content"
+        //     : {
+        //         base: "calc(100vh - 3.5rem)",
+        //         md: "calc(100vh - 4rem)",
+        //         xl: "calc(100vh - 5rem)",
+        //       }
+        // }
         padding={{
           base: "1rem",
           md: "2rem",
