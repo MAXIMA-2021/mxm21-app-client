@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Box, Flex, Heading, Image, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Spacer,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { bendera } from "../../../assets/home";
 import { MxmLogoText } from "../../../assets";
 import { Palette } from "../../../types/enums";
@@ -52,6 +59,9 @@ const benderaVariants = {
 };
 
 const HomeFinish = () => {
+  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
+  const [isWiderThan820px] = useMediaQuery("(min-width: 820px)");
+
   useEffect(() => {
     document.title = "HoME 2021 - Selesai";
   }, []);
@@ -67,11 +77,15 @@ const HomeFinish = () => {
       >
         <Flex
           w="100%"
-          // h={{
-          //   base: "calc(100vh - 3.5rem)",
-          //   md: "calc(100vh - 4rem)",
-          //   lg: "calc(100vh - 5rem)",
-          // }}
+          h={
+            isShorterThan800px && isWiderThan820px
+              ? "auto"
+              : {
+                  base: "calc(100vh - 3.5rem)",
+                  md: "calc(100vh - 4rem)",
+                  xl: "calc(100vh - 5rem)",
+                }
+          }
           padding={{
             base: "1rem",
             md: "2rem",
@@ -171,7 +185,11 @@ const HomeFinish = () => {
                   exit="exit"
                   style={{ width: "100%" }}
                 >
-                  <NavLink to="/home/category">
+                  <NavLink
+                    to="/home/category"
+                    className="home-chapter-finish-btn"
+                    style={{ display: "flex" }}
+                  >
                     <MxmButton
                       variant="rounded"
                       colorScheme="navy-cyan"
@@ -201,8 +219,8 @@ const HomeFinish = () => {
                     style={{
                       width: "100%",
                       display: "flex",
-                      justifyContent: "flex-end",
                     }}
+                    className="home-finish-btn"
                   >
                     <MxmButton
                       variant="rounded"

@@ -46,7 +46,7 @@ const frameVariants = {
 const HomeCover = () => {
   const history = useHistory();
   const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
-  const [isWiderThan520px] = useMediaQuery("(min-width: 520px)");
+  const [isWiderThan820px] = useMediaQuery("(min-width: 820px)");
 
   const handleClick = () => {
     history.push("/home/welcome");
@@ -65,7 +65,7 @@ const HomeCover = () => {
     >
       <Flex
         h={
-          isShorterThan800px && isWiderThan520px
+          isShorterThan800px && isWiderThan820px
             ? "auto"
             : {
                 base: "calc(100vh - 3.5rem)",
