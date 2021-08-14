@@ -41,17 +41,16 @@
   height: max-content;
   padding: var(--home-orglist-grid-header-p);
 
-  & > .home-orglist-chap-logo {
-    width: max-content;
-    grid-area: chapLogo;
-
-    & > img {
-      width: 150px;
-    }
-  }
-
   & > .home-orglist-divider {
     grid-area: divider;
+  }
+}
+.home-orglist-grid-header > .home-orglist-chap-logo {
+  width: max-content;
+  grid-area: chapLogo;
+
+  & > img {
+    width: 150px;
   }
 }
 
@@ -113,64 +112,60 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  & > .home-orglist-content-grid {
-    grid-template-columns: max-content 40rem max-content;
-    column-gap: 1.5rem;
-
-    margin: 1rem 0 1.5rem 0;
-  }
-
-  & .content-org-logo {
-    padding: 0.5rem;
-    border: 5px solid #1f2c4c;
-    height: max-content;
-    width: max-content;
-    border-radius: 20px;
-    cursor: pointer;
-
-    & img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      object-position: center;
-    }
-  }
-
-  & .content-org-desc {
-    height: 100%;
-    padding: 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-
-    & > h3 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      line-height: 42px;
-    }
-
-    & > p {
-      font-size: var(--home-orglist-text-p-fontsize);
-    }
-  }
-
-  & .home-orglist-arrow_icon {
-    align-self: center;
-    & svg {
-      font-size: 90px;
-    }
-
-    & > button {
-      transition: 0.1s ease;
-    }
-
-    & > button:hover {
-      transform: translateX(2px);
-    }
-  }
-
   @media screen and (max-width: 886px) {
     padding-bottom: 3rem;
     padding-left: 0px;
+  }
+}
+.home-orglist-content_container > .home-orglist-content-grid {
+  grid-template-columns: max-content 40rem max-content;
+  column-gap: 1.5rem;
+
+  margin: 1rem 0 1.5rem 0;
+}
+.home-orglist-content_container .content-org-logo {
+  padding: 0.5rem;
+  border: 5px solid #1f2c4c;
+  height: max-content;
+  width: max-content;
+  border-radius: 20px;
+  cursor: pointer;
+
+  & img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+.home-orglist-content_container .content-org-desc {
+  padding: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline !important;
+
+  & > h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 42px;
+  }
+
+  & > p {
+    font-size: var(--home-orglist-text-p-fontsize);
+  }
+}
+.home-orglist-content_container .home-orglist-arrow_icon {
+  align-self: center;
+  & svg {
+    font-size: 90px;
+  }
+
+  & > button {
+    transition: 0.1s ease;
+  }
+
+  & > button:hover {
+    transform: translateX(2px);
   }
 }
 
@@ -191,41 +186,39 @@
   .home-orglist-content_container {
     width: 65%;
   }
+}
 
-  @media screen and(max-width: 1630px) {
-    .home-orglist-content_container {
-      width: 80%;
-    }
+@media screen and(max-width: 1630px) {
+  .home-orglist-content_container {
+    width: 80%;
   }
+}
 
-  @media screen and(max-width: 1550px) {
-    .home-orglist-content_container {
-      width: 80%;
-    }
+@media screen and(max-width: 1550px) {
+  .home-orglist-content_container {
+    width: 80%;
   }
-  @media screen and(max-width: 1400px) {
-    .home-orglist-content_container {
-      width: 80%;
-    }
+}
+@media screen and(max-width: 1400px) {
+  .home-orglist-content_container {
+    width: 80%;
   }
+}
 
-  @media screen and(max-width: 1322px) {
-    .home-orglist-content_container {
-      width: 90%;
-    }
+@media screen and(max-width: 1322px) {
+  .home-orglist-content_container {
+    width: 90%;
   }
-  @media screen and(max-width: 1226px) {
-    .home-orglist-content_container {
-      & > .home-orglist-content-grid {
-        grid-template-columns: max-content 35rem max-content;
-      }
-    }
+}
+@media screen and(max-width: 1226px) {
+  .home-orglist-content_container > .home-orglist-content-grid {
+    grid-template-columns: max-content 35rem max-content;
   }
+}
 
-  @media screen and(max-width: 988px) {
-    .home-orglist-content_container {
-      width: 95%;
-    }
+@media screen and(max-width: 988px) {
+  .home-orglist-content_container {
+    width: 95%;
   }
 }
 
@@ -233,24 +226,18 @@
   * {
     --home-orglist-text-p-fontsize: 1rem;
   }
-  .home-orglist-chap-desc {
-    & > .chap-desc-text {
-      width: 50ch;
-    }
+  .home-orglist-chap-desc > .chap-desc-text {
+    width: 50ch;
   }
 
-  .home-orglist-content_container {
-    & > .home-orglist-content-grid {
-      grid-template-columns: max-content 35rem max-content;
-    }
+  .home-orglist-content_container > .home-orglist-content-grid {
+    grid-template-columns: max-content 35rem max-content;
   }
 }
 
 @media screen and(max-width: 1116px) {
-  .home-orglist-content_container {
-    & > .home-orglist-content-grid {
-      grid-template-columns: max-content 30rem max-content;
-    }
+  .home-orglist-content_container > .home-orglist-content-grid {
+    grid-template-columns: max-content 30rem max-content;
   }
 }
 
@@ -258,10 +245,8 @@
   * {
     --home-orglist-text-p-fontsize: 0.875rem;
   }
-  .home-orglist-chap-desc {
-    & > .chap-desc-text {
-      width: 40ch;
-    }
+  .home-orglist-chap-desc > .chap-desc-text {
+    width: 40ch;
   }
 }
 
@@ -274,24 +259,20 @@
     height: fit-content;
     overflow-x: unset;
     overflow-y: unset;
-    & > .home-orglist-content-grid {
-      grid-template-columns: unset;
-      grid-template-rows: max-content 1fr;
-      justify-items: center;
-
-      margin-right: 3px;
-
-      & > .home-orglist-arrow_icon {
-        display: none;
-      }
-
-      row-gap: 1rem;
-    }
   }
-  .home-orglist-chap-desc {
-    & > .chap-desc-text {
-      width: 50ch;
+
+  .home-orglist-content_container > .home-orglist-content-grid {
+    grid-template-columns: unset;
+    grid-template-rows: max-content 1fr;
+    justify-items: center;
+
+    margin-right: 3px;
+
+    & > .home-orglist-arrow_icon {
+      display: none;
     }
+
+    row-gap: 1rem;
   }
 
   .home-orglist-grid-header {
@@ -304,6 +285,7 @@
 
     justify-items: center;
     padding: unset;
+    width: 100%;
   }
 
   .home-orglist-chap-desc {
@@ -346,9 +328,6 @@
     overflow-x: unset;
     width: 100%;
   }
-  .content-org-desc {
-    width: calc(100vw - 38px);
-  }
   .home-orglist-divider {
     width: 90vw !important;
   }
@@ -358,8 +337,8 @@
   .home-orglist-chap-desc {
     margin-left: 2px;
     margin-right: 2px;
-    & > .chap-desc-text {
-      width: 100%;
-    }
+  }
+  .home-orglist-chap-desc > .chap-desc-text {
+    width: 100%;
   }
 }

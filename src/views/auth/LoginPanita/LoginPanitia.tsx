@@ -117,17 +117,14 @@ const LoginPanitia: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia>
+    <MxmContainersPanitia style={{ paddingBottom: "calc(20vh + 2vh)" }}>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
             flexDir="column"
             height={{
               base: "100vh",
-              sm: "100vh",
               md: "80vh",
-              lg: "80vh",
-              xl: "80vh",
             }}
             alignItems="center"
             justifyContent="center"

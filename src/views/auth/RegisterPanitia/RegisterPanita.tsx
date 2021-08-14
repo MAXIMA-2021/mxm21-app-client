@@ -90,6 +90,7 @@ const RegisterPanitia: React.FC = () => {
   } = useForm();
 
   const [isSmallerThan450px] = useMediaQuery("(max-width: 450px)");
+  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -141,7 +142,7 @@ const RegisterPanitia: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia>
+    <MxmContainersPanitia style={{ paddingBottom: "calc(20vh + 15vh)" }}>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex
@@ -445,7 +446,13 @@ const RegisterPanitia: React.FC = () => {
               </form>
             </Flex> */}
 
-            <LoginFormCard>
+            <LoginFormCard
+              style={
+                isShorterThan800px || isSmallerThan450px
+                  ? { marginTop: "15vh" }
+                  : { marginTop: "0" }
+              }
+            >
               <Image src={MxmLogo} width={50} height="auto" />
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Text style={formHeaderStyle}>Aktivasi Akun</Text>

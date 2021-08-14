@@ -15,8 +15,8 @@ export const LoginFormCard = styled.div`
     flex-direction: column;
     place-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
+    /* height: 100vh;
+    width: 100vw; */
 
     /* margin: 5rem 0; */
   }
