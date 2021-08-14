@@ -316,7 +316,7 @@ const chapterSub = {
   C02: "Chapter 2: Fantasy Bridge",
   C03: "Chapter 3: Medalist Playground",
   C04: "Chapter 4: Rainbow Mines",
-  C05: "Chapter 5: Tomorrow Ville",
+  C05: "Chapter 5: Tomorrowville",
   C06: "Chapter 6: Adventure Land",
   C07: "Chapter 7: Town Area",
   C08: "Chapter 8: Wondrous Campground",

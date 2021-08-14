@@ -229,7 +229,7 @@ const StateDetail: React.FC = () => {
                   <img
                     src={detailState?.stateLogo}
                     style={{
-                      maxWidth: "40%",
+                      maxWidth: "20rem",
                       height: "100%",
                     }}
                     alt={`Logo ${detailState?.name}`}
@@ -239,7 +239,7 @@ const StateDetail: React.FC = () => {
                 <img
                   src={detailState?.stateLogo}
                   style={{
-                    maxWidth: "40%",
+                    maxWidth: "20rem",
                     height: "100%",
                     marginRight: "1.5rem",
                   }}
@@ -290,34 +290,6 @@ const StateDetail: React.FC = () => {
                 </Text>
               </Container>
             </Flex>
-
-            {detailState?.coverPhoto === "" ? (
-              <div
-                style={{
-                  backgroundColor: "grey",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "1.2rem",
-                  height: "250px",
-                  marginTop: "1.4rem",
-                }}
-              >
-                Foto Cover tidak ditemukan
-              </div>
-            ) : (
-              <img
-                src={detailState?.coverPhoto}
-                style={{
-                  width: "100%",
-                  objectFit: "cover",
-                  height: "300px",
-                  marginTop: "1.4rem",
-                }}
-                alt={`Cover ${detailState?.name}`}
-              />
-            )}
 
             <Text fontWeight="bold" fontSize="1.2em" mt="3rem">
               Peserta Registrasi STATE

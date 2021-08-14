@@ -8,8 +8,6 @@ import {
   FormControl,
   FormErrorIcon,
   Button,
-  Spinner,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import { Palette } from "../../../../../types/enums";
