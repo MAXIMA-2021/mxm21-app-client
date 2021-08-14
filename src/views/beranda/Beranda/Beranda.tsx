@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Beranda.scss";
 import {
-  Heading,
-  Center,
-  SimpleGrid,
-  Box,
-  Text,
-  Container,
   Flex,
 } from "@chakra-ui/react";
 import Tilt from "react-tilt";
@@ -32,7 +26,7 @@ const HeroContainer = () => {
             Kegiatan tahunan terbesar di UMN yang memperkenalkan
             organisasi-organisasi UMN kepada mahasiswa baru.
           </h3>
-          <button className="btn-linear-gradient">Daftarkan dirimu!</button>
+          <button className="btn-linear-gradient">Coming Soon</button>
         </Flex>
       </Flex>
       <Flex alignItems="center" className="hero-container-vid">
