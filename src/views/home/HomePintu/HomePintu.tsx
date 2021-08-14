@@ -33,6 +33,7 @@ const cardVariants = {
 const HomePintu = () => {
   const history = useHistory();
   const [isToggle, setIsToggle] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     document.title = "HoME 2021 - Let's Dive Into Dreamland";
@@ -76,6 +77,7 @@ const HomePintu = () => {
               <PetaisMap isToggle={isToggle} />
             </button>
             <Image
+              zIndex={isToggle ? "0" : ""}
               src={LeftGateMobile}
               srcSet={`${LeftGateMobile} 300w, ${LeftGateDesktop} 1000w`}
               alt="left-gate-mxm"
@@ -91,6 +93,7 @@ const HomePintu = () => {
               objectFit="cover"
             />
             <Image
+              zIndex={isToggle ? "0" : ""}
               src={RightGateMobile}
               srcSet={`${RightGateMobile} 300w, ${RightGateDesktop} 1000w`}
               alt="right-gate-mxm"
