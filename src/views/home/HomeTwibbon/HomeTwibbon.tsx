@@ -295,6 +295,7 @@ const HomeTwibbon = () => {
                             h={{ base: "6rem", md: "max-content" }}
                           >
                             <MxmButton
+                              className="mxm-button"
                               variant="rounded"
                               colorScheme="navy-white"
                               margin="0"
@@ -315,10 +316,16 @@ const HomeTwibbon = () => {
                               }}
                               onClick={handleDownloadTwibbon}
                             >
+                              <DownloadIcon
+                                mr="0.5rem "
+                                className="download"
+                                color="white"
+                              />
                               DOWNLOAD TWIBBON
                             </MxmButton>
                             <Spacer />
                             <MxmButton
+                              className="mxm-button"
                               variant="rounded"
                               colorScheme="navy-white"
                               margin="0"
@@ -339,6 +346,11 @@ const HomeTwibbon = () => {
                               }}
                               onClick={handleAutomatedTwibbon}
                             >
+                              <ExternalLinkIcon
+                                mr="0.5rem"
+                                className="automated"
+                                color="white"
+                              />
                               AUTOMATED TWIBBON
                             </MxmButton>
                           </Flex>

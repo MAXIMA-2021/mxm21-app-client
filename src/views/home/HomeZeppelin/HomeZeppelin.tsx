@@ -61,6 +61,7 @@ const zeppelinVariants = {
   },
   exit: {
     x: "-1000%",
+    scaleX: "-1",
     transition: { delay: 0.2, duration: 2, ease: [0.43, 0.13, 0.23, 0.96] },
   },
 };
