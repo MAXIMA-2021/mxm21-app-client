@@ -178,7 +178,7 @@ const Card = (props: any) => {
                 "PENUH"
               ) : (
                 <Text>
-                  <span className="kuota-head">SISA KUOTA:</span>
+                  <span className="kuota-head">KUOTA TERISI</span>
                   <br />
                   {props.registered}/{props.quota}
                 </Text>
@@ -194,11 +194,14 @@ const Card = (props: any) => {
 const StateLists = () => {
   const [data, setData] = useState([]);
   const [hari, setHari] = useState(0);
+  const [tanggalState, setTanggalState] = useState<any>();
 
   const fetchData = async () => {
     try {
       const returnedData = await stateService.getStateList();
       setData(returnedData);
+      console.log(returnedData);
+      // console.log(data?.find((state) => state.day === `D1`));
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -209,8 +212,17 @@ const StateLists = () => {
     }
   };
 
+  const searchTanggalState = (hari: number) => {
+    const object: any = data?.find(
+      (state) => state.day === `D${hari.toString()}`
+    );
+    return object?.tanggal;
+  };
+
   useEffect(() => {
     document.title = "STATE 2021 - Daftar STATE";
+    setHari(1);
+    console.log(searchTanggalState("2"));
     fetchData();
   }, []);
 
@@ -262,7 +274,7 @@ const StateLists = () => {
                   borderRadius="5px"
                   py="0.3rem"
                 >
-                  STATE Hari ke-{hari}: {5 + hari} September 2021
+                  STATE Hari ke-{hari}: {searchTanggalState(hari)}
                 </Text>
                 <TabPanels>
                   <TabPanel

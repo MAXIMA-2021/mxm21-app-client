@@ -49,6 +49,7 @@ const HomeOrganisatorList = () => {
   const [imageLoading, setImageLoading] = useState(false);
   const history = useHistory();
 
+  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
   const [isSmallerThan886px] = useMediaQuery("(max-width: 886px)");
 
   var images: any = [];
@@ -119,7 +120,7 @@ const HomeOrganisatorList = () => {
         className="home-orglist-outer_container"
         justifyContent="center"
         h={
-          isSmallerThan886px
+          isShorterThan800px || isSmallerThan886px
             ? "max-content"
             : {
                 base: "calc(100vh - 3.5rem)",
