@@ -5,7 +5,7 @@
   color: black;
   font-weight: 700;
   text-align: center;
-  top: 45.5vw;
+  top: 40.5vw;
   left: 34%;
   font-size: 2vw;
   margin-bottom: 0px;
@@ -17,25 +17,25 @@
   position: absolute;
   top: 10.75vw;
   left: 38.9%;
-  width: 22%;
+  width: 20%;
 
   z-index: 0;
 }
 
 .start-map {
   position: absolute;
-  top: 22.5vw;
+  top: 21.5vw;
   left: 41.9%;
-  width: 16%;
+  width: 14%;
 
   z-index: 1;
 }
 
 .left-gate {
   position: absolute;
-  top: 19vw;
-  left: 24.425%;
-  width: 14.6%;
+  top: 18.5vw;
+  left: 26.1%;
+  width: 13.1%;
   cursor: pointer;
 
   transform: scaleX(-1);
@@ -64,9 +64,9 @@
 
 .right-gate {
   position: absolute;
-  top: 19vw;
-  right: 24.425%;
-  width: 14.7%;
+  top: 18.5vw;
+  right: 28.1%;
+  width: 13.2%;
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -94,53 +94,59 @@
 
 @media screen and (max-width: 1024px) {
   .middle-gate {
-    top: 12.75vw;
-    width: 22%;
+    top: 11.75vw;
+    width: 18%;
   }
 
   .start-map {
-    top: 24.5vw;
-    width: 16%;
+    top: 22.5vw;
+    width: 12%;
   }
 
   .left-gate {
-    top: 21vw;
-    width: 14.6%;
+    top: 18.5vw;
+    width: 12%;
+    left: 27%;
   }
 
   .right-gate {
-    top: 21vw;
-    width: 14.7%;
+    top: 18.5vw;
+    width: 12.1%;
+    right: 31.1%;
   }
 
   .hint {
-    top: 45.5vw;
+    top: 39.5vw;
+    font-size: 1.8vw;
   }
 }
 
 @media screen and (max-width: 768px) {
   .middle-gate {
-    top: 19.75vw;
-    width: 22%;
+    top: 14.75vw;
+    width: 18%;
   }
 
   .start-map {
-    top: 31.5vw;
-    width: 16%;
+    top: 25.5vw;
+    width: 12%;
   }
 
   .left-gate {
-    top: 28vw;
-    width: 14.6%;
+    top: 21.5vw;
+    width: 12%;
+    left: 27%;
   }
 
   .right-gate {
-    top: 28vw;
-    width: 14.7%;
+    top: 21.5vw;
+    width: 12.1%;
+    right: 31.1%;
   }
 
   .hint {
-    top: 52.5vw;
+    top: 42.5vw;
+    font-size: 1.8vw;
   }
 }
 
