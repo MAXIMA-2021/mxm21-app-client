@@ -1,0 +1,148 @@
+:root {
+  --loginmhs-span-fs: 1rem;
+}
+
+.loginmhs-outer-container {
+  & h1 {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+  }
+  & .loginmhs-form-span {
+    margin-bottom: 0.875rem;
+    font-size: var(--loginmhs-span-fs);
+    font-family: Poppins;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    color: #7d7d7d;
+  }
+
+  & .loginmhs-form-span {
+    display: block;
+  }
+}
+
+.loginmhs-outer-container {
+  flex-direction: row-reverse;
+  position: relative;
+  min-height: 900px;
+  flex: 1 1 auto;
+  padding-bottom: 1vh;
+}
+
+.loginmhs-side-banner {
+  background-image: url("../../../assets/bg2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.loginmhs-form-outer-container {
+  z-index: 1;
+  background: white;
+  min-width: 45vw;
+  padding: 2rem;
+  min-height: auto;
+  & .loginmhs-form-inner-container {
+    min-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.loginmhs-form-logo {
+  width: 70px;
+  height: auto;
+}
+
+.loginmhs-form-header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  & h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2c4c;
+  }
+}
+
+.loginmhs-nim-addon {
+  border-width: 0.75px 0 0.75px 0.75px;
+  border-color: #7e879fab !important;
+}
+
+.loginmhs-pass-input {
+  border: 0.75px solid #7e879fab !important;
+}
+
+.loginmhs-pass-label {
+  justify-content: space-between;
+  & a {
+    color: #0645ad;
+    font-size: 0.75rem;
+    height: max-content;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.loginmhs-btn-masuk {
+  padding: 1rem 0;
+  width: 100%;
+  height: 40px;
+
+  font-weight: 500;
+  font-size: 18px;
+  font-family: Rubik;
+  color: white;
+
+  background: #164273;
+
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 2rem 0 1.25rem 0;
+}
+
+.loginmhs-links {
+  flex-direction: column;
+  align-items: center;
+  & div {
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+    color: #7d7d7d;
+    font-size: 0.75rem;
+  }
+
+  & a {
+    color: #0645ad;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loginmhs-form-inner-container {
+    align-items: flex-start !important;
+    min-width: 0px !important;
+  }
+}
+
+@media screen and (max-width: 466px) {
+  .loginmhs-form-outer-container {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .loginmhs-form-inner-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}

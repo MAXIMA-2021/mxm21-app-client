@@ -94,12 +94,57 @@ export const MxmNumberInputField = styled(NumberInputField)<{ border: string }>`
 
 export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
-  box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.1);
   & Input {
     /* height: 5vh !important; */
     font-size: 0.9em !important;
     background-color: white;
     font-family: "Poppins", sans-serif;
+    border-radius: ${(props) => {
+      let radius: string;
+      props.border === "rounded" ? (radius = "30px") : (radius = "4px");
+      if (props.addon === "left") {
+        return `0 ${radius} ${radius} 0`;
+      } else if (props.addon === "right") {
+        return `${radius} 0 0 ${radius}`;
+      } else {
+        return `${radius}`;
+      }
+    }};
+    & ::placeholder {
+      color: #cbd5e0;
+    }
+  }
+  & Input::-ms-reveal {
+    display: none !important;
+  }
+  & div {
+    font-size: 0.9em !important;
+    background-color: ${(props) =>
+      props.addon === "icon" ? "transparant" : "#deefec"};
+    border-radius: ${(props) => {
+      let radius: string;
+      props.border === "rounded" ? (radius = "30px") : (radius = "4px");
+      if (props.addon === "left") {
+        return `${radius} 0 0 ${radius}`;
+      } else if (props.addon === "right") {
+        return `0 ${radius} ${radius} 0`;
+      } else {
+        return `${radius}`;
+      }
+    }};
+  }
+`;
+
+export const MxmInputGroupMhs = styled(InputGroup)<{ border: string }>`
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  & Input {
+    display: block;
+    font-size: 0.9em !important;
+    font-family: "Poppins", sans-serif;
+    border-width: 0.75px 0.75px 0.75px 0.75px;
+    border-color: #7e879fab !important;
+    background-color: white;
     border-radius: ${(props) => {
       let radius: string;
       props.border === "rounded" ? (radius = "30px") : (radius = "4px");

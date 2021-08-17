@@ -94,15 +94,15 @@ const HomeZeppelin = () => {
     >
       <Flex
         className="home-zep-outer-container"
-        // h={
-        //   isSmallerThan620px
-        //     ? "max-content"
-        //     : {
-        //         base: "calc(100vh - 3.5rem)",
-        //         md: "calc(100vh - 4rem)",
-        //         xl: "calc(100vh - 5rem)",
-        //       }
-        // }
+        h={
+          isSmallerThan620px
+            ? "max-content"
+            : {
+                base: "calc(100vh - 3.5rem)",
+                md: "calc(100vh - 4rem)",
+                xl: "calc(100vh - 5rem)",
+              }
+        }
         padding={{
           base: "1rem",
           md: "2rem",
@@ -148,12 +148,6 @@ const HomeZeppelin = () => {
             </Flex>
           </motion.div>
           <Flex className="home-zep-content-flex">
-            {/* <div
-                className="home-zep-content-header"
-                style={{ color: Palette.Red }}
-              >
-                <h2>Zeppelin HoME Competition</h2>
-              </div> */}
             <motion.div
               className="home-zep-regulasi-btn"
               variants={buttonVariantsTwo}

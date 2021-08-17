@@ -44,7 +44,6 @@
 .chapter {
   width: 170px;
   &:hover {
-    animation: popup 2s infinite ease-in-out;
     cursor: pointer;
   }
 }
