@@ -1,28 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  AspectRatio,
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Image,
-  Skeleton,
-  Spacer,
-  Grid,
-  Center,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { Palette } from "../../../types/enums";
-import { createIcon } from "@chakra-ui/icons";
-import { Carousell } from "./OrganisatorCarousell";
+import { AspectRatio, Flex, Center } from "@chakra-ui/react";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import adminService from "../../../services/admin";
 import { motion } from "framer-motion";
 import "./HomeOrganisatorDetail.scss";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const transition = {
   duration: 0.5,
@@ -49,17 +34,12 @@ const frameVariants = {
   exit: { opacity: 0, transition: { delay: 0.6, ...transition } },
 };
 const HomeOrganisatorDetail = () => {
-  const [index, setIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(0);
   const [visible, setVisible] = useState(false);
-  const [rslide, setRslide] = useState(true);
   const [homeDetail, setHomeDetail] = useState<any>({});
   const [isLoaded, setIsLoaded] = useState(false);
   const { searchKey } = useParams<{ searchKey: string }>();
   const history = useHistory();
   const [images, setImages] = useState([]);
-  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
-  const [isWiderThan820px] = useMediaQuery("(min-width: 820px)");
 
   useEffect(() => {
     document.title = "HoME 2021 - Detail Organisator";
@@ -92,22 +72,6 @@ const HomeOrganisatorDetail = () => {
     };
     fetchData();
   }, []);
-  const handleNext = () => {
-    setRslide(true);
-    setVisible(false);
-    setTimeout(() => {
-      index === maxIndex ? setIndex(0) : setIndex(index + 1);
-      setVisible(true);
-    }, 300);
-  };
-  const handlePrev = () => {
-    setRslide(false);
-    setVisible(false);
-    setTimeout(() => {
-      index === 0 ? setIndex(maxIndex) : setIndex(index - 1);
-      setVisible(true);
-    }, 300);
-  };
   const chapterName = () => {
     const kode = homeDetail.kategori?.slice(-1);
     const nama = eval(`chapterSub.C0${kode}`);
@@ -223,15 +187,6 @@ const HomeOrganisatorDetail = () => {
 };
 export default HomeOrganisatorDetail;
 
-const contentData = {
-  name: "MAXIMA 2021",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at est eu mi vestibulum egestas ac sit amet quam. Phasellus eget dictum enim. Pellentesque molestie, velit vitae egestas elementum, quam felis molestie lorem, eget imperdiet metus ex in ligula. Duis semper ornare tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam arcu ex, consectetur vitae diam et, ultrices congue turpis. Suspendisse eget aliquet urna. Maecenas sed leo eu elit pulvinar dapibus et quis nulla. Curabitur finibus sodales lectus. Fusce mollis tincidunt nibh, eget facilisis erat commodo in.",
-};
-const ArrowIcon = createIcon({
-  viewBox: "0 0 10 18",
-  d: "M0.292787 0.292861C0.464979 0.120685 0.694079 0.0172534 0.937105 0.00197221C1.18013 -0.013309 1.42038 0.06061 1.61279 0.209861L1.70679 0.292861L9.70679 8.29286C9.87896 8.46505 9.98239 8.69415 9.99767 8.93718C10.013 9.18021 9.93904 9.42046 9.78979 9.61286L9.70679 9.70686L1.70679 17.7069C1.52683 17.8862 1.28535 17.9903 1.0314 17.9981C0.777453 18.0058 0.530073 17.9166 0.339508 17.7486C0.148942 17.5806 0.0294809 17.3463 0.00538731 17.0934C-0.0187063 16.8405 0.0543746 16.5879 0.209786 16.3869L0.292787 16.2929L7.58579 8.99986L0.292787 1.70686C0.105316 1.51933 0 1.26503 0 0.999861C0 0.734697 0.105316 0.480389 0.292787 0.292861Z",
-});
 const chapterSub = {
   C01: "Chapter 1: Lost Treasure Island",
   C02: "Chapter 2: Fantasy Bridge",
