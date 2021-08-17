@@ -30,6 +30,11 @@ const transition = {
 };
 
 const cardVariants = {
+  rest: { x: 100, opacity: 0, transition },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
+  exit: { x: -100, opacity: 1, transition: { delay: 0.2, ...transition } },
+};
+const buttonVariants = {
   exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   rest: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
@@ -37,11 +42,6 @@ const cardVariants = {
     opacity: 1,
     transition,
   },
-};
-const buttonVariants = {
-  rest: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
-  exit: { x: -100, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 const frameVariants = {
   rest: { opacity: 0 },
@@ -115,98 +115,109 @@ const HomeOrganisatorDetail = () => {
   };
   return (
     <>
-      <Flex
-        h="auto"
-        padding={{
-          base: "1rem",
-          md: "2rem",
-        }}
-        bg={"#164273"}
-        className="home-cvr-outer_container"
-        overflow="hidden"
+      <motion.div
+        variants={frameVariants}
+        initial="rest"
+        animate="enter"
+        exit="exit"
       >
-        <Flex className="detail-content">
-          <Flex alignItems="center" direction="column">
-            <div className="title">{homeDetail.name}</div>
-            <div className="subtitle">{chapterName()}</div>
+        <Flex
+          h="auto"
+          padding={{
+            base: "1rem",
+            md: "2rem",
+          }}
+          bg={"#164273"}
+          className="home-cvr-outer_container"
+          overflow="hidden"
+        >
+          <Flex className="detail-content">
+            <Flex alignItems="center" direction="column">
+              <div className="title">{homeDetail.name}</div>
+              <div className="subtitle">{chapterName()}</div>
+            </Flex>
+            <motion.div variants={cardVariants}>
+              <div className="flex-container">
+                <div className="iframe-container">
+                  <AspectRatio ratio={16 / 9}>
+                    <iframe
+                      title="Video STATE"
+                      src={homeDetail.linkYoutube}
+                      allowFullScreen
+                      frameBorder="0"
+                      className="iframe-radius"
+                    />
+                  </AspectRatio>
+                </div>
+                <div className="img-container">
+                  {images.length === 0 ? (
+                    <Flex
+                      w="100%"
+                      h="100%"
+                      bgColor="lightgrey"
+                      textAlign="center"
+                      border="1px solid black"
+                    >
+                      <Center w="100%">
+                        Anda belum memasukkan foto untuk {homeDetail.name}
+                      </Center>
+                    </Flex>
+                  ) : (
+                    <Carousel
+                      infiniteLoop
+                      useKeyboardArrows
+                      autoPlay
+                      stopOnHover
+                      swipeable
+                      interval={6000}
+                      emulateTouch
+                      showThumbs={false}
+                      className="slide"
+                    >
+                      {images.map((image) => (
+                        <AspectRatio ratio={16 / 9}>
+                          <div key={image["original"]}>
+                            <img
+                              src={image["original"]}
+                              alt="Foto Kegiatan Organisator"
+                              style={{ borderRadius: 5 }}
+                            />
+                          </div>
+                        </AspectRatio>
+                      ))}
+                    </Carousel>
+                  )}
+                </div>
+              </div>
+              <div className="desc-detail">{homeDetail.longDesc}</div>
+            </motion.div>
+            <motion.div variants={buttonVariants}>
+              <div className="btn-div">
+                <MxmButton
+                  variant="squared"
+                  colorScheme="navy-cyan"
+                  className="btn-detail"
+                  onClick={() => history.push("/home/category")}
+                >
+                  Kembali ke Zona
+                </MxmButton>
+                <MxmButton
+                  variant="squared"
+                  colorScheme="cyan-navy"
+                  className="btn-detail"
+                  onClick={() =>
+                    history.push("/home/twibbon", {
+                      status: true,
+                    })
+                  }
+                >
+                  Dapatkan Twibbon
+                </MxmButton>
+              </div>
+            </motion.div>
           </Flex>
-          <div className="flex-container">
-            <div className="iframe-container">
-              <AspectRatio ratio={16 / 9}>
-                <iframe
-                  title="Video STATE"
-                  src={homeDetail.linkYoutube}
-                  allowFullScreen
-                  frameBorder="0"
-                  className="iframe-radius"
-                />
-              </AspectRatio>
-            </div>
-            <div className="img-container">
-              {images.length === 0 ? (
-                <Flex
-                  w="100%"
-                  h="100%"
-                  bgColor="lightgrey"
-                  textAlign="center"
-                  border="1px solid black"
-                >
-                  <Center w="100%">
-                    Anda belum memasukkan foto untuk {homeDetail.name}
-                  </Center>
-                </Flex>
-              ) : (
-                <Carousel
-                  infiniteLoop
-                  useKeyboardArrows
-                  autoPlay
-                  stopOnHover
-                  swipeable
-                  interval={6000}
-                  emulateTouch
-                  showThumbs={false}
-                  className="slide"
-                >
-                  {images.map((image) => (
-                    <AspectRatio ratio={16 / 9}>
-                      <div key={image.original}>
-                        <img
-                          src={image.original}
-                          alt="Foto Kegiatan Organisator"
-                          style={{ borderRadius: 5 }}
-                        />
-                      </div>
-                    </AspectRatio>
-                  ))}
-                </Carousel>
-              )}
-            </div>
-          </div>
-          <div className="desc-detail">{homeDetail.longDesc}</div>
-          <div className="btn-div">
-            <MxmButton
-              variant="squared"
-              colorScheme="navy-cyan"
-              className="btn-detail"
-              onClick={() => history.push("/home/category")}
-            >
-              Kembali ke Zona
-            </MxmButton>
-            <MxmButton
-              variant="squared"
-              colorScheme="cyan-navy"
-              className="btn-detail"
-              onClick={() =>
-                history.push("/home/twibbon", {
-                  status: true,
-                })
-              }
-            >
-              Dapatkan Twibbon
-            </MxmButton>
-          </div>
         </Flex>
-      </Flex>
+      </motion.div>
     </>
   );
 };
