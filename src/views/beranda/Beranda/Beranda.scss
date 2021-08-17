@@ -200,9 +200,7 @@
   justify-content: flex-end;
 }
 
-.hero-side-container-item {
-  width: 70ch;
-
+.hero-side-container-text {
   & > h1 {
     font-size: var(--hero-h1-font-size);
     background-color: linear-gradient(180deg, #edd500 0%, #e40000 100%);
@@ -235,6 +233,10 @@
 
     margin-top: 2rem;
   }
+}
+
+.hero-side-container-item {
+  width: 70ch;
 
   & > button {
     margin-top: 3rem;

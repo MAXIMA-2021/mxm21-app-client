@@ -73,11 +73,7 @@ const HomeNavbar = () => {
   window.addEventListener("scroll", (event) => navbarAnimation(event));
 
   const mobileMenuShown = (event: any) => {
-    if (mobileMenuShow === false) {
-      setMobileMenuShow(true);
-    } else {
-      setMobileMenuShow(false);
-    }
+    setMobileMenuShow(!mobileMenuShow);
   };
 
   return (
@@ -226,24 +222,41 @@ const HomeNavbar = () => {
           }
           className="mobile-menu-grid"
         >
-          <NavLink to="/home" className="btn-main-nav btn-styling-main-nav">
+          <NavLink
+            to="/home"
+            onClick={mobileMenuShown}
+            className="btn-main-nav btn-styling-main-nav"
+          >
             HoME
           </NavLink>
           {isMahasiswa && (
-            <NavLink to="/state" className="btn-main-nav btn-styling-main-nav">
+            <NavLink
+              to="/state"
+              onClick={mobileMenuShown}
+              className="btn-main-nav btn-styling-main-nav"
+            >
               STATE
             </NavLink>
           )}
-          <NavLink to="/FAQ" className="btn-main-nav btn-styling-main-nav">
+          <NavLink
+            to="/FAQ"
+            onClick={mobileMenuShown}
+            className="btn-main-nav btn-styling-main-nav"
+          >
             FAQ
           </NavLink>
-          <NavLink to="/AboutUs" className="btn-main-nav btn-styling-main-nav">
+          <NavLink
+            to="/about-us"
+            onClick={mobileMenuShown}
+            className="btn-main-nav btn-styling-main-nav"
+          >
             About Us
           </NavLink>
           <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
                 to="/auth/keluar"
+                onClick={mobileMenuShown}
                 className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
               >
                 Keluar
@@ -253,12 +266,14 @@ const HomeNavbar = () => {
               <>
                 <NavLink
                   to="/auth/daftar"
+                  onClick={mobileMenuShown}
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                 >
                   Daftar
                 </NavLink>
                 <NavLink
                   to="/auth/masuk"
+                  onClick={mobileMenuShown}
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk
