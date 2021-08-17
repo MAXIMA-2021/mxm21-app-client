@@ -150,7 +150,6 @@ const HomeNavbar = () => {
                     Keluar
                   </NavLink>
                 ) : (
-                  // <GoogleLogoutBtn />
                   <>
                     {/* <NavLink
                       to="/auth/daftar"
@@ -262,9 +261,8 @@ const HomeNavbar = () => {
                 Keluar
               </NavLink>
             ) : (
-              // <GoogleLogoutBtn />
               <>
-                <NavLink
+                {/* <NavLink
                   to="/auth/daftar"
                   onClick={mobileMenuShown}
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
@@ -277,7 +275,7 @@ const HomeNavbar = () => {
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk
-                </NavLink>
+                </NavLink> */}
               </>
             )}
           </div>

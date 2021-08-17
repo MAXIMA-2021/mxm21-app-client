@@ -15,10 +15,6 @@ export const LoginFormCard = styled.div`
     flex-direction: column;
     place-items: center;
     justify-content: center;
-    /* height: 100vh;
-    width: 100vw; */
-
-    /* margin: 5rem 0; */
   }
 
   @media (max-width: 450px) {
@@ -42,20 +38,8 @@ export const MxmContainers = styled("div")`
 `;
 
 export const MxmContainersPanitia = styled("div")`
-  /* background-color: #164273; */
-  height: 100%;
-  padding-top: 5vh;
-  padding-bottom: 20vh;
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
-
-  /* background-color: rgba(229, 229, 247, 0.2); */
-  /* background-color: rgba(22, 66, 115, 0.5); */
-
-  /* @media screen and (max-width: 520px) {
-    padding-top: 7vh;
-  } */
+  min-height: 900px;
+  padding-top: 5rem;
 
   background-color: #000000;
   background-image: linear-gradient(
@@ -110,7 +94,7 @@ export const MxmContainersPanitia = styled("div")`
   background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
 
   @media only screen and (max-width: 767px) {
-    padding-top: 0vh;
+    padding-top: 2rem;
     padding-bottom: 0vh;
   }
 `;

@@ -110,6 +110,11 @@
   justify-content: center;
 
   margin: 2rem 0 1.25rem 0;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #113157;
+  }
 }
 
 .loginmhs-links {
@@ -124,6 +129,12 @@
   & a {
     color: #0645ad;
     font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .loginmhs-form-outer-container {
+    min-width: 100vw;
   }
 }
 
