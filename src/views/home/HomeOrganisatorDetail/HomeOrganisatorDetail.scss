@@ -47,6 +47,8 @@
   font-size: 0.7rem;
   white-space: pre-wrap;
   word-wrap: break-word;
+  line-height: 1.3rem;
+  padding: 10px 20px;
 }
 
 .detail-content {
@@ -88,7 +90,8 @@
   }
 
   .desc-detail {
-    padding: 0 30px;
+    padding: 15px 80px;
+    line-height: 1.4rem;
   }
 
   .btn-div {
@@ -108,6 +111,8 @@
 
   .desc-detail {
     font-size: 0.9rem;
+    padding: 20px 120px;
+    line-height: 1.6rem;
   }
 }
 
@@ -126,8 +131,9 @@
   }
 
   .desc-detail {
-    padding: 0 50px;
-    font-size: 1rem;
+    padding: 25px 200px;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
   }
 
   .detail-content {
