@@ -139,15 +139,10 @@ const RegisterMhs: React.FC = () => {
               boxShadow="0 15px 35px 0 rgba(60,66,87,.08),0 5px 15px 0 rgba(0,0,0,.12)"
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex direction="column" alignItems="center">
-                  <Link
-                    to="/"
-                    style={{ width: "max-content", display: "block" }}
-                  >
-                    <Image src={MxmLogoText} width={50} height="auto" />
-                  </Link>
-                  <Text style={formHeaderStyle}>Daftarkan akunmu di sini </Text>
-                </Flex>
+                <Link to="/" style={{ width: "max-content", display: "block" }}>
+                  <Image src={MxmLogoText} width={50} height="auto" />
+                </Link>
+                <Text style={formHeaderStyle}>Daftarkan akunmu di sini </Text>
 
                 <Flex
                   direction={{

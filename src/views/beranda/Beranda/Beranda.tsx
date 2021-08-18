@@ -7,6 +7,8 @@ import {
   timeline2,
   timeline3,
   faqIllustration,
+  dermaExpress,
+  moonChicken,
 } from "../../../assets/beranda";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -225,6 +227,26 @@ const FaqSection = () => {
   );
 };
 
+const SponsorSection = () => {
+  return (
+    <Flex className="spsr-outer-container">
+      <div className="spsr-inner-container">
+        <div className="spsr-header">
+          <h2>Disponsori oleh</h2>
+        </div>
+        <Flex className="spsr-logo-container">
+          <div className="spsr-logo">
+            <img src={dermaExpress} />
+          </div>
+          <div className="spsr-logo">
+            <img src={moonChicken} />
+          </div>
+        </Flex>
+      </div>
+    </Flex>
+  );
+};
+
 const contaienrVariants = {
   rest: { y: 500, opacity: 0 },
   enter: { y: 0, opacity: 1, transition: { delay: 0.6, ...transition } },
@@ -244,6 +266,7 @@ const Beranda = () => {
         <motion.div variants={contaienrVariants}>
           <MaximaTimeline />
           <FaqSection />
+          <SponsorSection />
         </motion.div>
       </div>
     </motion.div>
