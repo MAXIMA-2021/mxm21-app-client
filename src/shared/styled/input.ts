@@ -15,7 +15,7 @@ export const formLabelStyle: React.CSSProperties = {
   textAlign: "justify",
   textJustify: "inter-word",
   fontSize: "0.85em",
-  color: "#616161",
+  color: "#252525",
   letterSpacing: "1.5px",
 };
 
@@ -188,7 +188,8 @@ export const MxmInputGroupMhs = styled(InputGroup)<{ border: string }>`
   & div {
     font-size: 0.9em !important;
     background-color: ${(props) =>
-      props.addon === "icon" ? "transparant" : "#deefec"};
+      props.addon === "icon" ? "transparent" : "#113157"};
+    color: ${(props) => (props.addon === "icon" ? "#000" : "#fff")};
     border-radius: ${(props) => {
       let radius: string;
       props.border === "rounded" ? (radius = "30px") : (radius = "4px");

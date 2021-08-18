@@ -366,8 +366,8 @@
 
   & img {
     border-radius: 10px;
-    object-fit: cover;
-    object-position: 90% 50%;
+    object-fit: scale-down;
+    object-position: 0% 0%;
     transition: box-shadow 0.3s ease;
     &:hover {
       box-shadow: 0px 12px 15px -3px rgba(255, 214, 40, 0.3);
@@ -428,7 +428,6 @@
     box-shadow: 0px 10px 6px -5px rgba(31, 44, 76, 0.5);
 
     & img {
-      object-position: 60% 100%;
       &:hover {
         box-shadow: 0px 12px 15px -3px rgba(31, 44, 76, 0.3);
       }
@@ -452,7 +451,6 @@
   &#timeline-card-2 {
     box-shadow: 0px 10px 6px -5px rgba(255, 71, 139, 0.5);
     & img {
-      object-position: 25% 100%;
       &:hover {
         box-shadow: 0px 12px 15px -3px rgba(255, 71, 139, 0.3);
       }

@@ -26,15 +26,14 @@ import {
   formLabelStyle,
 } from "../../../shared/styled/input";
 import {
-  MxmContainersPanitia,
+  MxmContainersMhs,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
 import {
   IconHidePassword,
   IconShowPassword,
-  MxmButton,
 } from "../../../shared/styled/buttons";
-import { MxmLogo } from "../../../assets";
+import { MxmLogoText } from "../../../assets";
 import { motion } from "framer-motion";
 import "./RegisterMhs.scss";
 import Swal from "sweetalert2";
@@ -128,7 +127,7 @@ const RegisterMhs: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia className="regMhs-bg-pattern">
+    <MxmContainersMhs>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex alignItems="center" justifyContent="center">
@@ -140,10 +139,16 @@ const RegisterMhs: React.FC = () => {
               boxShadow="0 15px 35px 0 rgba(60,66,87,.08),0 5px 15px 0 rgba(0,0,0,.12)"
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Link to="/" style={{ width: "max-content", display: "block" }}>
-                  <Image src={MxmLogo} width={50} height="auto" />
-                </Link>
-                <Text style={formHeaderStyle}>Daftarkan Akunmu di sini </Text>
+                <Flex direction="column" alignItems="center">
+                  <Link
+                    to="/"
+                    style={{ width: "max-content", display: "block" }}
+                  >
+                    <Image src={MxmLogoText} width={50} height="auto" />
+                  </Link>
+                  <Text style={formHeaderStyle}>Daftarkan akunmu di sini </Text>
+                </Flex>
+
                 <Flex
                   direction={{
                     base: "column",
@@ -569,7 +574,7 @@ const RegisterMhs: React.FC = () => {
           </Flex>
         </motion.div>
       </motion.div>
-    </MxmContainersPanitia>
+    </MxmContainersMhs>
   );
 };
 

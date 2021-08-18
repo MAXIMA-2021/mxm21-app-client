@@ -37,6 +37,20 @@ export const MxmContainers = styled("div")`
   }
 `;
 
+export const MxmContainersMhs = styled("div")`
+  background-image: url(${bgAuth});
+  min-height: 100vh;
+  padding-top: 5vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media only screen and (max-width: 767px) {
+    padding-top: 0vh;
+    padding-bottom: 0vh;
+  }
+`;
+
 export const MxmContainersPanitia = styled("div")`
   min-height: 100vh;
   padding-top: 5rem;

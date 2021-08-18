@@ -38,6 +38,11 @@ export default function AppRouter() {
         }}
       />
       <Route path="/404" exact component={ErrorPage} />
+      <Route path="/auth/:path1?/:path2?" exact>
+        <div>
+          <AuthRouters />
+        </div>
+      </Route>
       <Route>
         <HomeNavbar />
         <AnimatePresence exitBeforeEnter initial={false}>
@@ -48,12 +53,7 @@ export default function AppRouter() {
             <StateProtectedRoute path="/state/:path1?/:path2?" exact>
               <StateRouters />
             </StateProtectedRoute>
-            <Route path="/auth/:path1?/:path2?" exact>
-              <div>
-                <AuthRouters />
-                {/* <HomeFooter /> */}
-              </div>
-            </Route>
+
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                 <Switch>

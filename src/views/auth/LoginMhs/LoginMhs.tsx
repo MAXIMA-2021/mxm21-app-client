@@ -180,7 +180,7 @@ const LoginMhs: React.FC = () => {
               <Divider
                 colorScheme="whiteAlpha"
                 style={{ border: "1px solid rgba(31, 44, 76, 0.4)" }}
-                mt={"45px"}
+                mt={"2rem"}
                 mb={"2rem"}
               />
               <div>
