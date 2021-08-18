@@ -49,9 +49,9 @@ export default function AppRouter() {
               <StateRouters />
             </StateProtectedRoute>
             <Route path="/auth/:path1?/:path2?" exact>
-              <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
+              <div>
                 <AuthRouters />
-                <HomeFooter />
+                {/* <HomeFooter /> */}
               </div>
             </Route>
             <Route>

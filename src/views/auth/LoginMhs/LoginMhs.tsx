@@ -99,7 +99,10 @@ const LoginMhs: React.FC = () => {
               {location?.state?.message}
             </Alert>
           )}
-          <img src={MxmLogoText} alt="" className="loginmhs-form-logo" />
+          <Link to="/" style={{ width: "max-content", display: "block" }}>
+            <img src={MxmLogoText} alt="" className="loginmhs-form-logo" />
+          </Link>
+
           <div className="loginmhs-form-header">
             <h1>Alô, Dreamers!</h1>
           </div>

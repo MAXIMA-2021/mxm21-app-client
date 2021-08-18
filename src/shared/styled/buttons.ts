@@ -23,7 +23,7 @@ export const MxmButton = styled(Button)<{
   padding?: string;
 }>`
   /* 
-    variant: either desktop (rounded) or mobile (more squared)
+    variant: either rounded or squared
     colorScheme: format1 -> frontcolor-backcolor, 
     format2  -> frontcolor-backcolor-textcolor (only for navy-cyan-cyan)
     */
@@ -31,7 +31,12 @@ export const MxmButton = styled(Button)<{
   padding: ${(props) => props.padding || "0.5rem 1rem"};
   margin: ${(props) => props.margin || "1rem"};
 
-  border-radius: ${(props) => (props.variant === "squared" ? "10px" : "20px")};
+  border-radius: ${(props) =>
+    props.variant === "squared"
+      ? "10px"
+      : props.variant === "rounded"
+      ? "20px"
+      : "20px"};
 
   transform: translate(3px, -3px);
 

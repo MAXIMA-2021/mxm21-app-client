@@ -23,9 +23,9 @@
 .loginmhs-outer-container {
   flex-direction: row-reverse;
   position: relative;
-  min-height: 900px;
+  min-height: 100vh;
   flex: 1 1 auto;
-  padding-bottom: 1vh;
+  -webkit-flex: 1 1 auto;
 }
 
 .loginmhs-side-banner {
@@ -142,6 +142,10 @@
   .loginmhs-form-inner-container {
     align-items: flex-start !important;
     min-width: 0px !important;
+  }
+
+  .loginmhs-form {
+    width: 100%;
   }
 }
 

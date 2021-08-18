@@ -61,6 +61,15 @@ export const MxmSelect = styled(Select)`
   font-size: 0.9em !important;
 `;
 
+export const MxmSelectMhs = styled(Select)`
+  background-color: white !important;
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-width: 0.75px 0.75px 0.75px 0.75px;
+  border-color: #7e879fab !important;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em !important;
+`;
+
 export const MxmFormLabel = styled(FormLabel)<{ color: string }>`
   color: ${(props) => props.color || "white"};
   font-family: "Poppins", sans-serif;
@@ -73,6 +82,17 @@ export const MxmInput = styled(Input)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   border: 1px solid #e2e8f0;
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em !important;
+  & ::placeholder {
+    color: #cbd5e0;
+  }
+`;
+export const MxmInputMhs = styled(Input)<{ border: string }>`
+  background-color: white !important;
+  border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
+  border-width: 0.75px 0.75px 0.75px 0.75px;
+  border-color: #7e879fab !important;
   font-family: "Poppins", sans-serif;
   font-size: 0.9em !important;
   & ::placeholder {
@@ -95,6 +115,8 @@ export const MxmNumberInputField = styled(NumberInputField)<{ border: string }>`
 export const MxmInputGroup = styled(InputGroup)<{ border: string }>`
   border-radius: ${(props) => (props.border === "rounded" ? "30px" : "4px")};
   box-shadow: -1.2px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  /* width: 100%; */
+  box-sizing: border-box;
   & Input {
     /* height: 5vh !important; */
     font-size: 0.9em !important;

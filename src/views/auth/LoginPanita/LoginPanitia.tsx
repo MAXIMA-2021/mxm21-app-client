@@ -108,7 +108,9 @@ const LoginPanitia: React.FC = () => {
               </Alert>
             )}
             <LoginFormCard>
-              <Image src={MxmLogo} width={50} height="auto" />
+              <Link to="/" style={{ width: "max-content", display: "block" }}>
+                <Image src={MxmLogo} width={50} height="auto" />
+              </Link>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Text style={formHeaderStyle}>
                   Masuk

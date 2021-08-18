@@ -38,7 +38,7 @@ export const MxmContainers = styled("div")`
 `;
 
 export const MxmContainersPanitia = styled("div")`
-  min-height: 900px;
+  min-height: 100vh;
   padding-top: 5rem;
 
   background-color: #000000;

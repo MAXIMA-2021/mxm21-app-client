@@ -128,12 +128,14 @@ const RegisterOrganisator: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia style={{ minHeight: "1000px" }}>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex alignItems="center" justifyContent="center">
             <LoginFormCard>
-              <Image src={MxmLogo} width={50} height="auto" />
+              <Link to="/" style={{ width: "max-content", display: "block" }}>
+                <Image src={MxmLogo} width={50} height="auto" />
+              </Link>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Text style={formHeaderStyle}>
                   Aktivasi Akun

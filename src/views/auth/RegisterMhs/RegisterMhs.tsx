@@ -2,30 +2,30 @@ import React, { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   Flex,
-  Heading,
   Input,
   FormControl,
   FormErrorIcon,
   InputLeftAddon,
   InputRightAddon,
-  Divider,
   Image,
   Spacer,
   Text,
   useMediaQuery,
   Button,
   InputRightElement,
+  Spinner,
 } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom";
 import {
-  MxmInput,
-  MxmInputGroup,
+  MxmInputGroupMhs,
   MxmFormLabel,
-  MxmSelect,
+  MxmSelectMhs,
   MxmFormErrorMessage,
+  formHeaderStyle,
+  MxmInputMhs,
+  formLabelStyle,
 } from "../../../shared/styled/input";
 import {
-  MxmContainers,
   MxmContainersPanitia,
   MxmVerticalAlign,
 } from "../../../shared/styled/containers";
@@ -36,7 +36,6 @@ import {
 } from "../../../shared/styled/buttons";
 import { MxmLogo } from "../../../assets";
 import { motion } from "framer-motion";
-import { Palette } from "../../../types/enums";
 import "./RegisterMhs.scss";
 import Swal from "sweetalert2";
 import authService from "../../../services/auth";
@@ -129,58 +128,22 @@ const RegisterMhs: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia>
+    <MxmContainersPanitia className="regMhs-bg-pattern">
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
           <Flex alignItems="center" justifyContent="center">
             <Flex
               direction="column"
-              background="linear-gradient(180deg, rgba(65, 206, 186, 0.85) 44.79%, rgba(31, 44, 76, 0.85) 100%);"
-              py="2vh"
-              px={{
-                base: "5vw",
-                md: "2vw",
-              }}
-              mx={{
-                base: "1vw",
-                md: "10vw",
-              }}
-              rounded={25}
-              style={{
-                WebkitBackdropFilter: "blur(4px)",
-                backdropFilter: "blur(4px)",
-              }}
+              background="white"
+              padding="2.5em 3em 2.5em 3em"
+              rounded={7}
+              boxShadow="0 15px 35px 0 rgba(60,66,87,.08),0 5px 15px 0 rgba(0,0,0,.12)"
             >
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Flex mb={3} alignItems="center">
-                  <Heading
-                    color="white"
-                    letterSpacing="0.05em"
-                    fontSize={{
-                      base: "1.5em",
-                      xl: "1.7em",
-                    }}
-                  >
-                    Daftar
-                  </Heading>
-                  <Spacer />
-                  <Image
-                    src={MxmLogo}
-                    alt="Logo MAXIMA 2021"
-                    h="100%"
-                    w={{
-                      base: "4vw",
-                      md: "2.5vw",
-                      lg: "2vw",
-                      "2xl": "1.2vw",
-                    }}
-                  />
-                </Flex>
-                <Divider
-                  colorScheme="whiteAlpha"
-                  style={{ border: "2px solid white" }}
-                  mb={3}
-                />
+                <Link to="/" style={{ width: "max-content", display: "block" }}>
+                  <Image src={MxmLogo} width={50} height="auto" />
+                </Link>
+                <Text style={formHeaderStyle}>Daftarkan Akunmu di sini </Text>
                 <Flex
                   direction={{
                     base: "column",
@@ -188,8 +151,10 @@ const RegisterMhs: React.FC = () => {
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.name}>
-                    <MxmFormLabel>NAMA LENGKAP</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>
+                      NAMA LENGKAP
+                    </MxmFormLabel>
+                    <MxmInputMhs
                       {...register("name", {
                         required: "Isi nama lengkap kamu",
                       })}
@@ -214,9 +179,13 @@ const RegisterMhs: React.FC = () => {
                       xl: "40%",
                     }}
                   >
-                    <MxmFormLabel>NIM Anda</MxmFormLabel>
-                    <MxmInputGroup addon="left">
-                      <InputLeftAddon children="000000" fontFamily="Poppins" />
+                    <MxmFormLabel style={formLabelStyle}>NIM Anda</MxmFormLabel>
+                    <MxmInputGroupMhs addon="left">
+                      <InputLeftAddon
+                        children="000000"
+                        fontFamily="Poppins"
+                        className="loginmhs-nim-addon"
+                      />
                       <Input
                         type="number"
                         {...register("nim", {
@@ -231,7 +200,7 @@ const RegisterMhs: React.FC = () => {
                           },
                         })}
                       />
-                    </MxmInputGroup>
+                    </MxmInputGroupMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.nim && (
                         <Flex flexDirection="row" alignItems="center">
@@ -251,8 +220,10 @@ const RegisterMhs: React.FC = () => {
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.tempatLahir}>
-                    <MxmFormLabel>Tempat Lahir</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>
+                      Tempat Lahir
+                    </MxmFormLabel>
+                    <MxmInputMhs
                       {...register("tempatLahir", {
                         required: "Isi tempat lahir kamu",
                       })}
@@ -277,8 +248,10 @@ const RegisterMhs: React.FC = () => {
                     }}
                     isInvalid={errors.tanggalLahir}
                   >
-                    <MxmFormLabel>Tanggal Lahir</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>
+                      Tanggal Lahir
+                    </MxmFormLabel>
+                    <MxmInputMhs
                       type="date"
                       {...register("tanggalLahir", {
                         required: "Isi tanggal lahir kamu",
@@ -305,8 +278,10 @@ const RegisterMhs: React.FC = () => {
                     }}
                     isInvalid={errors.jenisKelamin}
                   >
-                    <MxmFormLabel>Jenis Kelamin</MxmFormLabel>
-                    <MxmSelect
+                    <MxmFormLabel style={formLabelStyle}>
+                      Jenis Kelamin
+                    </MxmFormLabel>
+                    <MxmSelectMhs
                       {...register("jenisKelamin", {
                         required: "Pilih jenis kelamin kamu",
                       })}
@@ -318,7 +293,7 @@ const RegisterMhs: React.FC = () => {
                       </option>
                       <option value="L">Laki-laki</option>
                       <option value="P">Perempuan</option>
-                    </MxmSelect>
+                    </MxmSelectMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.jenisKelamin && (
                         <Flex flexDirection="row" alignItems="center">
@@ -346,8 +321,10 @@ const RegisterMhs: React.FC = () => {
                     }}
                     isInvalid={errors.prodi}
                   >
-                    <MxmFormLabel>Program Studi</MxmFormLabel>
-                    <MxmSelect
+                    <MxmFormLabel style={formLabelStyle}>
+                      Program Studi
+                    </MxmFormLabel>
+                    <MxmSelectMhs
                       backgroundColor="white"
                       {...register("prodi", {
                         required: "Pilih program studi kamu",
@@ -375,7 +352,7 @@ const RegisterMhs: React.FC = () => {
                       <option value="Manajemen">Manajemen</option>
                       <option value="Akuntansi">Akuntansi</option>
                       <option value="Perhotelan">Perhotelan</option>
-                    </MxmSelect>
+                    </MxmSelectMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.prodi && (
                         <Flex flexDirection="row" alignItems="center">
@@ -388,8 +365,10 @@ const RegisterMhs: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} isInvalid={errors.email}>
-                    <MxmFormLabel>Email Student</MxmFormLabel>
-                    <MxmInputGroup addon="right">
+                    <MxmFormLabel style={formLabelStyle}>
+                      Email Student
+                    </MxmFormLabel>
+                    <MxmInputGroupMhs addon="right">
                       <Input
                         {...register("email", {
                           required: "Isi email student kamu",
@@ -401,7 +380,7 @@ const RegisterMhs: React.FC = () => {
                         })}
                       />
                       <InputRightAddon children="@student.umn.ac.id" />
-                    </MxmInputGroup>
+                    </MxmInputGroupMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.email && (
                         <Flex flexDirection="row" alignItems="center">
@@ -421,8 +400,10 @@ const RegisterMhs: React.FC = () => {
                   }}
                 >
                   <FormControl mb={3} mr="5" isInvalid={errors.whatsapp}>
-                    <MxmFormLabel>Nomor HP (WhatsApp)</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>
+                      Nomor HP (WhatsApp)
+                    </MxmFormLabel>
+                    <MxmInputMhs
                       placeholder="08XXXXXXXXXX"
                       {...register("whatsapp", {
                         required: "Isi nomor whatsapp kamu",
@@ -454,8 +435,8 @@ const RegisterMhs: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} mr="5" isInvalid={errors.idLine}>
-                    <MxmFormLabel>ID LINE</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>ID LINE</MxmFormLabel>
+                    <MxmInputMhs
                       {...register("idLine", {
                         required: "Isi ID LINE kamu",
                         pattern: {
@@ -476,8 +457,10 @@ const RegisterMhs: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} isInvalid={errors.idInstagram}>
-                    <MxmFormLabel>Username Instagram</MxmFormLabel>
-                    <MxmInput
+                    <MxmFormLabel style={formLabelStyle}>
+                      Username Instagram
+                    </MxmFormLabel>
+                    <MxmInputMhs
                       placeholder="Isi tanpa @"
                       {...register("idInstagram", {
                         required: "Isi username instagram kamu",
@@ -506,8 +489,8 @@ const RegisterMhs: React.FC = () => {
                   }}
                 >
                   <FormControl isInvalid={errors.password} mb={3} mr="5">
-                    <MxmFormLabel>Password</MxmFormLabel>
-                    <MxmInputGroup addon="icon">
+                    <MxmFormLabel style={formLabelStyle}>Password</MxmFormLabel>
+                    <MxmInputGroupMhs addon="icon">
                       <Input
                         placeholder="Password minimal 8 karakter"
                         {...register("password", {
@@ -524,7 +507,7 @@ const RegisterMhs: React.FC = () => {
                           {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>
                       </InputRightElement>
-                    </MxmInputGroup>
+                    </MxmInputGroupMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.password && (
                         <p>
@@ -535,8 +518,10 @@ const RegisterMhs: React.FC = () => {
                     </MxmFormErrorMessage>
                   </FormControl>
                   <FormControl mb={3} isInvalid={errors.konfirmasiPassword}>
-                    <MxmFormLabel>Konfirmasi Password</MxmFormLabel>
-                    <MxmInputGroup>
+                    <MxmFormLabel style={formLabelStyle}>
+                      Konfirmasi Password
+                    </MxmFormLabel>
+                    <MxmInputGroupMhs>
                       <Input
                         type="password"
                         {...register("konfirmasiPassword", {
@@ -545,7 +530,7 @@ const RegisterMhs: React.FC = () => {
                             value === password.current || "Password belum sama",
                         })}
                       />
-                    </MxmInputGroup>
+                    </MxmInputGroupMhs>
                     <MxmFormErrorMessage fontSize="xs" mt={1}>
                       {errors.konfirmasiPassword && (
                         <p>
@@ -564,43 +549,19 @@ const RegisterMhs: React.FC = () => {
                   direction={isSmallerThan450px ? "column-reverse" : "row"}
                 >
                   <MxmVerticalAlign variant="">
-                    <Text color="white">
+                    <Text color="#000">
                       Sudah punya akun?{" "}
-                      <Link
-                        to="/auth/masuk"
-                        style={{ color: `${Palette.Cyan}` }}
-                      >
+                      <Link to="/auth/masuk" style={{ color: `#0645ad` }}>
                         Masuk
                       </Link>
                     </Text>
                   </MxmVerticalAlign>
                   <Spacer />
                   <motion.div className="back" variants={buttonVariants}>
-                    {loading ? (
-                      <MxmButton
-                        isLoading
-                        loadingText="Daftar"
-                        spinnerPlacement="start"
-                        type="submit"
-                        variant="rounded"
-                        colorScheme="cyan-white"
-                        width={isSmallerThan450px ? "100%" : ""}
-                        margin={isSmallerThan450px ? "1rem 0" : ""}
-                      >
-                        Daftar
-                      </MxmButton>
-                    ) : (
-                      <MxmButton
-                        type="submit"
-                        variant="rounded"
-                        colorScheme="cyan-white"
-                        padding="0 1rem"
-                        width={isSmallerThan450px ? "100%" : ""}
-                        margin={isSmallerThan450px ? "1rem 0" : ""}
-                      >
-                        Daftar
-                      </MxmButton>
-                    )}
+                    <button type="submit" className="regmhs-btn-masuk">
+                      {loading ? <Spinner mr={"5px"} size="sm" /> : ""}
+                      Daftar
+                    </button>
                   </motion.div>
                 </Flex>
               </form>
