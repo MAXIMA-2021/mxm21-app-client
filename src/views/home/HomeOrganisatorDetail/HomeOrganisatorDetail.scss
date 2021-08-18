@@ -71,6 +71,21 @@
   font-size: 0.8rem !important;
 }
 
+.social-org {
+  text-align: right;
+}
+
+.svg-div {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80px;
+  margin-left: auto;
+}
+
+.svg-org {
+  width: 3em !important;
+}
+
 @media only screen and (min-width: 600px) {
   /* For tablets: */
   .title {
@@ -111,8 +126,12 @@
 
   .desc-detail {
     font-size: 0.9rem;
-    padding: 20px 120px;
+    padding: 20px 170px;
     line-height: 1.6rem;
+  }
+
+  .svg-div {
+    max-width: 100px;
   }
 }
 
@@ -146,5 +165,9 @@
 
   .btn-detail {
     font-size: 0.9rem !important;
+  }
+
+  .svg-div {
+    max-width: 140px;
   }
 }
