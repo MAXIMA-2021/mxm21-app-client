@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AspectRatio, Flex, Center, Icon } from "@chakra-ui/react";
+import { AspectRatio, Flex, Center } from "@chakra-ui/react";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -42,7 +42,7 @@ const HomeOrganisatorDetail = () => {
   const [images, setImages] = useState<any>([]);
 
   useEffect(() => {
-    document.title = "HoME 2021 - Detail Organisator";
+    document.title = `HoME 2021: Detail Organisator`;
     const fetchData = async () => {
       try {
         const data = await adminService.getHomeBySearchKey(searchKey);
