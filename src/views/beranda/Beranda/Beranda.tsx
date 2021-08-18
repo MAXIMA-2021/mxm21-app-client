@@ -142,8 +142,16 @@ const MaximaTimeline = () => {
                     className="card-timeline"
                     id={`timeline-card-${index}`}
                     key={index}
+                    overflow="hidden"
                   >
-                    <img src={item.image} alt="" />
+                    <motion.img
+                      src={item.image}
+                      alt=""
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { ...transition },
+                      }}
+                    />
                     <Flex className="blur-background-container">
                       <h4>{item.header}</h4>
                       <h6>{item.subheader}</h6>
