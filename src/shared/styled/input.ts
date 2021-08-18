@@ -23,7 +23,7 @@ export const formHeaderStyle: React.CSSProperties = {
   paddingTop: "0.5em",
   paddingBottom: "1em",
   fontFamily: "Rubik",
-  fontWeight: "500",
+  fontWeight: 500,
   color: "#3C4257",
   fontSize: "1.65em",
   letterSpacing: "-0.75px",
