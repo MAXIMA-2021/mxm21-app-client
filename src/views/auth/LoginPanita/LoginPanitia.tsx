@@ -16,20 +16,24 @@ import {
   InputGroup,
   FormLabel,
   FormErrorMessage,
+  useMediaQuery,
+  Badge,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
-import { MxmContainersPanitia} from "../../../shared/styled/containers";
+import { MxmContainersPanitia } from "../../../shared/styled/containers";
 import { MxmLogo } from "../../../assets";
 import { motion } from "framer-motion";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
 import { DataLogin } from "../../../types/interfaces";
-
-//YANG DARI OPREC
 import { LoginFormCard } from "../../../shared/styled/containers";
 import { formLabelStyle } from "../../../shared/styled/input";
 import { formHeaderStyle } from "../../../shared/styled/input";
 import { UnlockIcon } from "@chakra-ui/icons";
+import {
+  IconHidePassword,
+  IconShowPassword,
+} from "../../../shared/styled/buttons";
 
 const transition = {
   duration: 0.5,
@@ -48,6 +52,8 @@ const cardVariants = {
 const LoginPanitia: React.FC = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+
+  const [isThinnerThan450px] = useMediaQuery("(max-width: 450px)");
 
   const {
     register,
@@ -85,24 +91,16 @@ const LoginPanitia: React.FC = () => {
   };
 
   return (
-    <MxmContainersPanitia style={{ paddingBottom: "calc(20vh + 2vh)" }}>
+    <MxmContainersPanitia>
       <motion.div initial="exit" animate="enter" exit="exit">
         <motion.div variants={cardVariants}>
-          <Flex
-            flexDir="column"
-            height={{
-              base: "100vh",
-              md: "80vh",
-            }}
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Flex flexDir="column" alignItems="center" justifyContent="center">
             {location.state && (
               <Alert
                 fontFamily="Rubik"
                 fontSize="0.9rem"
                 status={location.state.status}
-                width={{ base: "20rem", lg: "max-content" }}
+                width={isThinnerThan450px ? "95%" : "425px"}
                 marginBottom="1rem"
               >
                 <AlertIcon />
@@ -110,9 +108,16 @@ const LoginPanitia: React.FC = () => {
               </Alert>
             )}
             <LoginFormCard>
-              <Image src={MxmLogo} width={50} height="auto" />
+              <Link to="/" style={{ width: "max-content", display: "block" }}>
+                <Image src={MxmLogo} width={50} height="auto" />
+              </Link>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Text style={formHeaderStyle}>Masuk ke akun Anda</Text>
+                <Text style={formHeaderStyle}>
+                  Masuk
+                  <Badge colorScheme="green" ml={1.5}>
+                    panitia
+                  </Badge>
+                </Text>
                 <Stack spacing={4}>
                   <FormControl id="nim_koor" isInvalid={errors.nim}>
                     <FormLabel style={formLabelStyle}>NIM</FormLabel>
@@ -157,8 +162,12 @@ const LoginPanitia: React.FC = () => {
                         })}
                       />
                       <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleClick}>
-                          {show ? "Hide" : "Show"}
+                        <Button
+                          className="show-password"
+                          size="base"
+                          onClick={handleClick}
+                        >
+                          {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>
                       </InputRightElement>
                     </InputGroup>

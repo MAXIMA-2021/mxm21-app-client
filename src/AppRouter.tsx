@@ -38,6 +38,11 @@ export default function AppRouter() {
         }}
       />
       <Route path="/404" exact component={ErrorPage} />
+      <Route path="/auth/:path1?/:path2?" exact>
+        <div>
+          <AuthRouters />
+        </div>
+      </Route>
       <Route>
         <HomeNavbar />
         <AnimatePresence exitBeforeEnter initial={false}>
@@ -48,16 +53,15 @@ export default function AppRouter() {
             <StateProtectedRoute path="/state/:path1?/:path2?" exact>
               <StateRouters />
             </StateProtectedRoute>
-            <Route path="/auth/:path1?/:path2?" exact>
+            <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
-                <AuthRouters />
+                <Route path="/" exact component={Beranda.Beranda} />
                 <HomeFooter />
               </div>
             </Route>
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                 <Switch>
-                  <Route path="/" exact component={Beranda.Beranda} />
                   <Route path="/about-us" component={Beranda.AboutUs} />
                   <Route path="/faq" component={Beranda.FAQ} />
                   <Route render={() => <Redirect to="/404" />} />

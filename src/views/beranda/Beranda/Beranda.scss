@@ -5,6 +5,7 @@
   --timeline-h3-font-size: 1rem;
   --faq-h1-font-size: 3.25rem;
   --faq-h3-font-size: 1.3rem;
+  --spsr-h2-font-size: 2rem;
 }
 
 .homepage h1,
@@ -174,6 +175,9 @@
   }
 
   @media screen and (max-width: 350px) {
+    * {
+      --hero-h1-font-size: 2.5rem;
+    }
     & iframe {
       width: 300px;
       height: 161.73px;
@@ -191,7 +195,7 @@
 }
 
 .hero-side-container {
-  width: 50%;
+  width: 48.5%;
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(255, 71, 139, 0.12) 0%,
@@ -200,9 +204,7 @@
   justify-content: flex-end;
 }
 
-.hero-side-container-item {
-  width: 70ch;
-
+.hero-side-container-text {
   & > h1 {
     font-size: var(--hero-h1-font-size);
     background-color: linear-gradient(180deg, #edd500 0%, #e40000 100%);
@@ -234,7 +236,16 @@
     width: 50ch;
 
     margin-top: 2rem;
+
+    @media screen and(max-width: 400px) {
+      width: unset;
+      margin-left: 2rem auto;
+    }
   }
+}
+
+.hero-side-container-item {
+  width: 70ch;
 
   & > button {
     margin-top: 3rem;
@@ -356,6 +367,7 @@
   width: 362px;
   height: 485px;
   position: relative;
+  overflow: hidden;
 
   flex-direction: row;
   justify-content: center;
@@ -364,11 +376,18 @@
 
   & img {
     border-radius: 10px;
-    object-fit: cover;
-    object-position: 90% 50%;
-    transition: box-shadow 0.3s ease;
+    object-fit: scale-down;
+    object-position: 0% 0%;
+    transition: all 0.3s ease-out;
+    transform: scale(1.01);
+
+    @media screen and (max-width: 400px) {
+      object-fit: cover;
+      object-position: center;
+    }
     &:hover {
       box-shadow: 0px 12px 15px -3px rgba(255, 214, 40, 0.3);
+      transform: scale(1.06) rotate(2deg);
     }
   }
 
@@ -426,7 +445,6 @@
     box-shadow: 0px 10px 6px -5px rgba(31, 44, 76, 0.5);
 
     & img {
-      object-position: 60% 100%;
       &:hover {
         box-shadow: 0px 12px 15px -3px rgba(31, 44, 76, 0.3);
       }
@@ -450,7 +468,6 @@
   &#timeline-card-2 {
     box-shadow: 0px 10px 6px -5px rgba(255, 71, 139, 0.5);
     & img {
-      object-position: 25% 100%;
       &:hover {
         box-shadow: 0px 12px 15px -3px rgba(255, 71, 139, 0.3);
       }
@@ -514,6 +531,7 @@
 .faq-outer-container {
   width: calc(100vw - 8px);
   justify-content: center;
+  padding-bottom: 10rem;
 
   @media screen and (max-width: 450px) {
     width: 100%;
@@ -716,5 +734,55 @@
   * {
     --faq-h1-font-size: 1.7rem;
     --faq-h3-font-size: 0.8rem;
+  }
+}
+
+.spsr-outer-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  background-color: #f3f7ff;
+  justify-content: center;
+  // border: 0.5px solid #1f2c4c;
+  box-shadow: inset 0px 4px 6px rgba(0, 41, 143, 0.25);
+}
+
+.spsr-inner-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+
+  & .spsr-header {
+    margin-bottom: 2rem;
+  }
+
+  & h2 {
+    font-weight: 500;
+    font-size: var(--spsr-h2-font-size);
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+  }
+}
+
+.spsr-logo-container {
+  & > .spsr-logo {
+    padding: 2rem;
+  }
+  & img {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  * {
+    --spsr-h2-font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  * {
+    --spsr-h2-font-size: 1.2rem;
   }
 }

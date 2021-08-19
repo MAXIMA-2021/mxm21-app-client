@@ -2,7 +2,7 @@
   --navbar-padding-x: 9rem;
   --homepage-navbar-height: 5rem;
   --btn-main-nav-spacing-y: 2rem;
-  --btn-main-nav-spacing-x: 3.375rem;
+  --btn-main-nav-spacing-x: 3rem;
   --btn-main-nav-font-size: 0.875rem;
   --btn-main-nav-auth-mg-x: 1rem;
 }
@@ -52,7 +52,13 @@
   &.nav-sticky {
     background: #fff;
     transition: background 0.5s ease;
-    box-shadow: 0 1.6px 6px 0 rgba(0, 0, 0, 0.1);
+
+    --btn-main-nav-spacing-y: 1rem;
+
+    & .navigation-btn-homepage-mxm-logo {
+      transform: scale(0.8);
+      -webkit-transform: scale(0.8);
+    }
 
     & .navigation-list {
       --homepage-navbar-height: 4rem;
@@ -64,6 +70,11 @@
 .navigation-btn-homepage-logo {
   display: flex;
   align-items: center;
+
+  & .navigation-btn-homepage-mxm-logo {
+    transition: transform 0.4s ease;
+    transition: -webkit-transform 0.4s ease;
+  }
 }
 
 .navigation-btn-homepage-logo a {
@@ -122,9 +133,27 @@
   background-color: #f4224b;
 }
 
+@media screen and (min-width: 1500px) {
+  * {
+    --navbar-padding-x: 300px;
+  }
+}
+
 @media screen and (min-width: 700px) {
   .mobile-nav-menu-container {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1740px) {
+  * {
+    --navbar-padding-x: 10rem;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  * {
+    --navbar-padding-x: 7rem;
   }
 }
 
@@ -136,7 +165,7 @@
 
 @media screen and (max-width: 1200px) {
   * {
-    --btn-main-nav-spacing-x: 3rem;
+    --btn-main-nav-spacing-x: 2rem;
   }
 }
 
@@ -144,6 +173,7 @@
   * {
     --navbar-padding-x: 2rem;
     --btn-main-nav-auth-mg-x: 0.5rem;
+    --btn-main-nav-spacing-x: 1.8rem;
   }
 }
 
@@ -152,7 +182,7 @@
     --navbar-padding-x: 2rem;
     --homepage-navbar-height: 4rem;
     --btn-main-nav-spacing-y: 2rem;
-    --btn-main-nav-spacing-x: 1.8rem;
+
     --btn-main-nav-font-size: 0.875rem;
     --btn-main-nav-auth-mg-x: 0.5rem;
   }
