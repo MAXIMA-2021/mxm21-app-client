@@ -12,7 +12,7 @@ import {
   StartMapMobile,
 } from "../../../assets/home";
 import "./HomePintu.scss";
-import { motion, useTransform, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 const transition = {
@@ -33,7 +33,6 @@ const cardVariants = {
 const HomePintu = () => {
   const history = useHistory();
   const [isToggle, setIsToggle] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     document.title = "HoME 2021 - Let's Dive Into Dreamland";

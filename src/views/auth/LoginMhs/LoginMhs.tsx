@@ -32,15 +32,6 @@ const transition = {
   ease: [0.43, 0.13, 0.23, 0.96],
 };
 
-const cardVariants = {
-  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
-  enter: {
-    y: "0%",
-    opacity: 1,
-    transition,
-  },
-};
-
 const buttonVariants = {
   exit: { x: 100, opacity: 0, transition },
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },

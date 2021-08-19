@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./HomeZeppelin.scss";
 import { MxmButton } from "../../../shared/styled/buttons";
-import { Box, Flex, Grid, Image, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./Beranda.scss";
 import { Flex, useMediaQuery } from "@chakra-ui/react";
-import Tilt from "react-tilt";
 import {
   timeline1,
   timeline2,
@@ -87,9 +86,7 @@ const HeroContainer = () => {
         </Flex>
       </Flex>
       <Flex alignItems="center" className="hero-container-vid">
-        <Tilt className="Tilt " options={{ max: 25 }}>
-          <iframe src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
-        </Tilt>
+          <iframe title="Teaser MAXIMA 2021" src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
       </Flex>
     </Flex>
   );
