@@ -33,6 +33,19 @@ const frameVariants = {
   enter: { opacity: 1, transition: { delay: 0, ...transition } },
   exit: { opacity: 0, transition: { delay: 0.6, ...transition } },
 };
+
+const chapterSub = {
+  C01: "Chapter 1: Lost Treasure Island",
+  C02: "Chapter 2: Fantasy Bridge",
+  C03: "Chapter 3: Medalist Playground",
+  C04: "Chapter 4: Rainbow Mines",
+  C05: "Chapter 5: Tomorrowville",
+  C06: "Chapter 6: Adventure Land",
+  C07: "Chapter 7: Town Area",
+  C08: "Chapter 8: Wondrous Campground",
+};
+
+
 const HomeOrganisatorDetail = () => {
   const [visible, setVisible] = useState(false);
   const [homeDetail, setHomeDetail] = useState<any>({});
@@ -163,7 +176,7 @@ const HomeOrganisatorDetail = () => {
                   <div className="svg-div">
                     <div className="svg-org">
                       <a
-                        href={`https://line.me/R/ti/p/${homeDetail.lineID}`}
+                        href={`https://line.me/R/ti/p/@${homeDetail.lineID}`}
                         target="blank"
                       >
                         <svg
@@ -290,13 +303,3 @@ const HomeOrganisatorDetail = () => {
 };
 export default HomeOrganisatorDetail;
 
-const chapterSub = {
-  C01: "Chapter 1: Lost Treasure Island",
-  C02: "Chapter 2: Fantasy Bridge",
-  C03: "Chapter 3: Medalist Playground",
-  C04: "Chapter 4: Rainbow Mines",
-  C05: "Chapter 5: Tomorrowville",
-  C06: "Chapter 6: Adventure Land",
-  C07: "Chapter 7: Town Area",
-  C08: "Chapter 8: Wondrous Campground",
-};
