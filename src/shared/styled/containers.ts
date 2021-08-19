@@ -40,7 +40,7 @@ export const MxmContainers = styled("div")`
 export const MxmContainersMhs = styled("div")`
   background-image: url(${bgAuth});
   min-height: 100vh;
-  padding-top: 5vh;
+  padding-top: 5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

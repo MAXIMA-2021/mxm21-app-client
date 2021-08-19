@@ -137,6 +137,7 @@ const RegisterMhs: React.FC = () => {
               padding="2.5em 3em 2.5em 3em"
               rounded={7}
               boxShadow="0 15px 35px 0 rgba(60,66,87,.08),0 5px 15px 0 rgba(0,0,0,.12)"
+              className="regMhs-card"
             >
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Link to="/" style={{ width: "max-content", display: "block" }}>
