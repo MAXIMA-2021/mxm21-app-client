@@ -12,7 +12,7 @@ import {
 } from "../../../assets/beranda";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import { motion } from "framer-motion";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SplitText } from "./SplitText";
 import { useState } from "react";
 
@@ -120,6 +120,16 @@ const MaximaTimeline = () => {
     },
   ];
 
+  const [onScroll, setOnScroll] = useState(false);
+  const { scrollYProgress } = useViewportScroll();
+  const yRange = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
+
+  useEffect(() => {
+    yRange.onChange((viewPort) => {
+      if (viewPort >= 1) setOnScroll(true);
+    });
+  }, [yRange]);
+
   return (
     <motion.div
       exit={{ y: -200, opacity: 0, transition: { delay: 0.8, ...transition } }}
@@ -134,6 +144,14 @@ const MaximaTimeline = () => {
             <Flex className="timeline-content-item">
               {timelineMaxima.map((item, index) => (
                 <motion.div
+                  initial={{ y: 200, opacity: 0 }}
+                  animate={
+                    onScroll && {
+                      y: 0,
+                      opacity: 1,
+                      transition: { delay: index * 0.3, ...transition },
+                    }
+                  }
                   exit={{
                     y: 200,
                     opacity: 0,
