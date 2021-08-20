@@ -45,9 +45,15 @@ export const MxmButton = styled(Button)<{
       ? `&:hover {
     background: ${Palette.Cyan} !important;
   }`
-      : props.colorScheme === "yellow-red" &&
+      : props.colorScheme === "yellow-red"
+      ? `&:hover {
+    background: ${Palette.Yellow} !important;
+  }`
+      : props.colorScheme === "yellow-navy" &&
         `&:hover {
     background: ${Palette.Yellow} !important;
+    box-shadow: none !important;
+    transform: translate(none) !important;
   }`}
 
   ${(props) =>
