@@ -93,6 +93,12 @@ const HomeOrganisatorDetail = () => {
     const nama = eval(`chapterSub.C0${kode}`);
     return nama;
   };
+  const randomNumber = () => Math.random() * 7 + 1;
+  const backToList = () => {
+    const chapterStorage =
+      window?.sessionStorage?.getItem("chapter") || `C0${randomNumber()}`;
+    history.push(`/home/organisator-list/${chapterStorage}`);
+  };
   return (
     <>
       <motion.div
@@ -157,15 +163,15 @@ const HomeOrganisatorDetail = () => {
                       className="slide"
                     >
                       {images.map((image: any) => (
-                        <AspectRatio ratio={16 / 9}>
-                          <div key={image["original"]}>
+                        <div key={image["original"]}>
+                          <AspectRatio ratio={16 / 9}>
                             <img
                               src={image["original"]}
                               alt="Foto Kegiatan Organisator"
                               style={{ borderRadius: 5 }}
                             />
-                          </div>
-                        </AspectRatio>
+                          </AspectRatio>
+                        </div>
                       ))}
                     </Carousel>
                   </Skeleton>
@@ -270,10 +276,10 @@ const HomeOrganisatorDetail = () => {
                                 gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(126.438 512.662) rotate(-90) scale(471.751 438.765)"
                               >
-                                <stop stop-color="#FFDD55" />
-                                <stop offset="0.1" stop-color="#FFDD55" />
-                                <stop offset="0.5" stop-color="#FF543E" />
-                                <stop offset="1" stop-color="#C837AB" />
+                                <stop stopColor="#FFDD55" />
+                                <stop offset="0.1" stopColor="#FFDD55" />
+                                <stop offset="0.5" stopColor="#FF543E" />
+                                <stop offset="1" stopColor="#C837AB" />
                               </radialGradient>
                               <radialGradient
                                 id="paint1_radial"
@@ -283,12 +289,12 @@ const HomeOrganisatorDetail = () => {
                                 gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(-79.7325 34.2902) rotate(78.6806) scale(210.875 869.235)"
                               >
-                                <stop stop-color="#3771C8" />
-                                <stop offset="0.128" stop-color="#3771C8" />
+                                <stop stopColor="#3771C8" />
+                                <stop offset="0.128" stopColor="#3771C8" />
                                 <stop
                                   offset="1"
-                                  stop-color="#6600FF"
-                                  stop-opacity="0"
+                                  stopColor="#6600FF"
+                                  stopOpacity="0"
                                 />
                               </radialGradient>
                             </defs>
@@ -306,7 +312,7 @@ const HomeOrganisatorDetail = () => {
                   variant="squared"
                   colorScheme="navy-cyan"
                   className="btn-detail"
-                  onClick={() => history.push("/home/category")}
+                  onClick={backToList}
                 >
                   Kembali ke Zona
                 </MxmButton>
