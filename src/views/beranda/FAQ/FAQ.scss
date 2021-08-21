@@ -24,7 +24,19 @@
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .faqpage-container {
-    margin: 4rem 3rem 10rem 3rem;
+    margin: 4rem 5rem 10rem 5rem;
+  }
+
+  .faqpage-title {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* For desktop: */
+  .faqpage-container {
+    margin: 6rem 10rem 15rem 10rem;
   }
 
   .faqpage-title {
@@ -40,7 +52,7 @@
   }
 
   .faqpage-title {
-    font-size: 1.15rem;
-    line-height: 1.75rem;
+    font-size: 1.3rem;
+    line-height: 2rem;
   }
 }
