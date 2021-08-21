@@ -12,6 +12,7 @@ import {
   createIcon,
 } from "@chakra-ui/react";
 import "./FAQ.scss";
+import { motion } from "framer-motion";
 
 const FAQ = () => {
   useEffect(() => {
@@ -27,7 +28,11 @@ const FAQ = () => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              _expanded={{ bg: "#EB2378", color: "white", borderRadius: "5px" }}
+              _expanded={{
+                bg: "#EB2378",
+                color: "white",
+                borderRadius: "5px 5px 0 0",
+              }}
               _hover={{ bg: "#EB2378", color: "white" }}
             >
               <Box flex="1" textAlign="left" className="faqpage-title">
@@ -52,7 +57,11 @@ const FAQ = () => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              _expanded={{ bg: "#164273", color: "white", borderRadius: "5px" }}
+              _expanded={{
+                bg: "#164273",
+                color: "white",
+                borderRadius: "5px 5px 0 0",
+              }}
               _hover={{ bg: "#164273", color: "white" }}
             >
               <Box flex="1" textAlign="left" className="faqpage-title">
@@ -113,7 +122,11 @@ const FAQ = () => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              _expanded={{ bg: "#164273", color: "white", borderRadius: "5px" }}
+              _expanded={{
+                bg: "#164273",
+                color: "white",
+                borderRadius: "5px 5px 0 0",
+              }}
               _hover={{ bg: "#164273", color: "white" }}
             >
               <Box flex="1" textAlign="left" className="faqpage-title">
@@ -160,7 +173,7 @@ const MaxiFAQ = () => {
       y="0px"
       width="340px"
       height="340px"
-      viewBox="0 0 340 340"
+      viewBox="0 0 340 320"
       enable-background="new 0 0 340 340"
       xmlSpace="preserve"
     >
