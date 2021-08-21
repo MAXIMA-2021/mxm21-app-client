@@ -1,5 +1,10 @@
 .faqpage-container {
-  margin: 2rem 1rem 5rem 1rem;
+  margin: 1rem 1rem -6rem 1rem;
+}
+
+.accordion-container {
+  margin-bottom: -4rem;
+  z-index: 1;
 }
 
 .faqpage-title {
@@ -12,7 +17,11 @@
 @media only screen and (min-width: 600px) {
   /* For tablets: */
   .faqpage-container {
-    margin: 3rem 2rem 8rem 2rem;
+    margin: 3rem 2rem -2rem 2rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
   }
 
   .faqpage-title {
@@ -24,7 +33,11 @@
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .faqpage-container {
-    margin: 4rem 5rem 10rem 5rem;
+    margin: 3rem 5rem -1rem 5rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
   }
 
   .faqpage-title {
@@ -36,7 +49,11 @@
 @media only screen and (min-width: 1024px) {
   /* For desktop: */
   .faqpage-container {
-    margin: 6rem 10rem 15rem 10rem;
+    margin: 2rem 10rem -1rem 10rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
   }
 
   .faqpage-title {
@@ -48,11 +65,22 @@
 @media only screen and (min-width: 1440px) {
   /* For desktop L: */
   .faqpage-container {
-    margin: 12rem 20rem 15rem 20rem;
+    margin: 4rem 20rem -1rem 20rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
   }
 
   .faqpage-title {
     font-size: 1.3rem;
     line-height: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1650px) {
+  /* For desktop L: */
+  .faqpage-container {
+    margin: 8rem 20rem -1rem 20rem;
   }
 }
