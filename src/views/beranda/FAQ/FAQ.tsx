@@ -14,6 +14,50 @@ import {
 import "./FAQ.scss";
 import { motion } from "framer-motion";
 
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const headerVariants = {
+  exit: { y: "-50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
+const slideVariant = {
+  rest: { x: -300, opacity: 0 },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.15, ...transition } },
+  exit: { x: -300, opacity: 0, transition: { delay: 0.15, ...transition } },
+};
+const slideVariant2 = {
+  rest: { x: -300, opacity: 0 },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.3, ...transition } },
+  exit: { x: -300, opacity: 0, transition: { delay: 0.3, ...transition } },
+};
+const slideVariant3 = {
+  rest: { x: -300, opacity: 0 },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.45, ...transition } },
+  exit: { x: -300, opacity: 0, transition: { delay: 0.45, ...transition } },
+};
+const slideVariant4 = {
+  rest: { x: -300, opacity: 0 },
+  enter: { x: 0, opacity: 1, transition: { delay: 0.6, ...transition } },
+  exit: { x: -300, opacity: 0, transition: { delay: 0.6, ...transition } },
+};
+
+const footerVariants = {
+  exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
+  enter: {
+    y: "0%",
+    opacity: 1,
+    transition,
+  },
+};
+
 const FAQ = () => {
   useEffect(() => {
     document.title = "FAQ - MAXIMA 2021";
@@ -21,141 +65,184 @@ const FAQ = () => {
 
   return (
     <Flex direction="column" className="faqpage-container">
-      <Center mb="2rem" w="100%" textAlign="center">
-        <div className="title">Frequently Asked Questions</div>
-      </Center>
+      <motion.div
+        variants={headerVariants}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+      >
+        <Center mb="2rem" w="100%" textAlign="center">
+          <div className="title">Frequently Asked Questions</div>
+        </Center>
+      </motion.div>
       <Accordion allowMultiple mt="1rem" className="accordion-container">
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              _expanded={{
-                bg: "#EB2378",
-                color: "white",
-                borderRadius: "5px 5px 0 0",
-              }}
-              _hover={{ bg: "#EB2378", color: "white" }}
+        <motion.div
+          variants={slideVariant}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <AccordionItem>
+            <h2>
+              <AccordionButton
+                _expanded={{
+                  bg: "#EB2378",
+                  color: "white",
+                  borderRadius: "5px 5px 0 0",
+                }}
+                _hover={{ bg: "#EB2378", color: "white" }}
+              >
+                <Box flex="1" textAlign="left" className="faqpage-title">
+                  Apakah wajib untuk mendaftar akun terlebih dahulu sebelum
+                  mengunjungi HoME MAXIMA 2021?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel
+              pb={4}
+              border="1px solid gray"
+              borderRadius="0 0 5px 5px"
+              mb={5}
+              className="desc-detail"
             >
-              <Box flex="1" textAlign="left" className="faqpage-title">
-                Apakah wajib untuk mendaftar akun terlebih dahulu sebelum
-                mengunjungi HoME MAXIMA 2021?
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel
-            pb={4}
-            border="1px solid gray"
-            borderRadius="0 0 5px 5px"
-            mb={5}
-            className="desc-detail"
-          >
-            Tidak perlu ya, untuk mengunjungi HoME, Maximers dapat langsung
-            akses melalui laman maxima.umn.ac.id dan pilih menu bagian HoME.
-          </AccordionPanel>
-        </AccordionItem>
+              Tidak perlu ya, untuk mengunjungi HoME, Maximers dapat langsung
+              akses melalui laman maxima.umn.ac.id dan pilih menu bagian HoME.
+            </AccordionPanel>
+          </AccordionItem>
+        </motion.div>
 
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              _expanded={{
-                bg: "#164273",
-                color: "white",
-                borderRadius: "5px 5px 0 0",
-              }}
-              _hover={{ bg: "#164273", color: "white" }}
+        <motion.div
+          variants={slideVariant2}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <AccordionItem>
+            <h2>
+              <AccordionButton
+                _expanded={{
+                  bg: "#164273",
+                  color: "white",
+                  borderRadius: "5px 5px 0 0",
+                }}
+                _hover={{ bg: "#164273", color: "white" }}
+              >
+                <Box flex="1" textAlign="left" className="faqpage-title">
+                  Apakah diwajibkan melihat seluruh 8 zona yang ada?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel
+              pb={4}
+              border="1px solid gray"
+              borderRadius="0 0 5px 5px"
+              mb={5}
+              className="desc-detail"
             >
-              <Box flex="1" textAlign="left" className="faqpage-title">
-                Apakah diwajibkan melihat seluruh 8 zona yang ada?
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel
-            pb={4}
-            border="1px solid gray"
-            borderRadius="0 0 5px 5px"
-            mb={5}
-            className="desc-detail"
-          >
-            Tidak diwajibkan untuk mengunjungi seluruh 8 zona yang ada. Akan
-            tetapi, akan lebih baik apabila Maximers dapat mengunjungi seluruh
-            zonanya. Dengan begitu, bekal informasi yang Maximers miliki makin
-            banyak, sehingga ketika memilih STATE nanti, Maximers pun menjadi
-            makin yakin akan pilihannya.
-          </AccordionPanel>
-        </AccordionItem>
+              Tidak diwajibkan untuk mengunjungi seluruh 8 zona yang ada. Akan
+              tetapi, akan lebih baik apabila Maximers dapat mengunjungi seluruh
+              zonanya. Dengan begitu, bekal informasi yang Maximers miliki makin
+              banyak, sehingga ketika memilih STATE nanti, Maximers pun menjadi
+              makin yakin akan pilihannya.
+            </AccordionPanel>
+          </AccordionItem>
+        </motion.div>
 
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              _expanded={{
-                bg: "#EB2378",
-                color: "white",
-                borderRadius: "5px 5px 0 0",
-              }}
-              _hover={{ bg: "#EB2378", color: "white" }}
+        <motion.div
+          variants={slideVariant3}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <AccordionItem>
+            <h2>
+              <AccordionButton
+                _expanded={{
+                  bg: "#EB2378",
+                  color: "white",
+                  borderRadius: "5px 5px 0 0",
+                }}
+                _hover={{ bg: "#EB2378", color: "white" }}
+              >
+                <Box flex="1" textAlign="left" className="faqpage-title">
+                  Apakah wajib untuk post Twibbon?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel
+              pb={4}
+              border="1px solid gray"
+              borderRadius="0 0 5px 5px"
+              mb={5}
+              className="desc-detail"
             >
-              <Box flex="1" textAlign="left" className="faqpage-title">
-                Apakah wajib untuk post Twibbon?
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel
-            pb={4}
-            border="1px solid gray"
-            borderRadius="0 0 5px 5px"
-            mb={5}
-            className="desc-detail"
-          >
-            Twibbon disediakan sebagai wadah bagi Maximers untuk mengekspresikan
-            partisipasinya dalam meramaikan HoME MAXIMA 2021. Twibbon tidak
-            bersifat wajib, tetapi Maximers diharapkan untuk dapat
-            berpartisipasi meramaikan HoME dengan memasang Twibbon. Pemasangan
-            Twibbon menjadi wajib apabila Maximers mengikuti Zeppelin HoME
-            Competition, karena Twibbon merupakan syarat untuk mengikuti
-            Zeppelin HoME Competition. Informasi mengenai Twibbon dapat dilihat
-            pada laman HoME setelah Maximers mengakhiri perjalanannya di HoME.
-          </AccordionPanel>
-        </AccordionItem>
+              Twibbon disediakan sebagai wadah bagi Maximers untuk
+              mengekspresikan partisipasinya dalam meramaikan HoME MAXIMA 2021.
+              Twibbon tidak bersifat wajib, tetapi Maximers diharapkan untuk
+              dapat berpartisipasi meramaikan HoME dengan memasang Twibbon.
+              Pemasangan Twibbon menjadi wajib apabila Maximers mengikuti
+              Zeppelin HoME Competition, karena Twibbon merupakan syarat untuk
+              mengikuti Zeppelin HoME Competition. Informasi mengenai Twibbon
+              dapat dilihat pada laman HoME setelah Maximers mengakhiri
+              perjalanannya di HoME.
+            </AccordionPanel>
+          </AccordionItem>
+        </motion.div>
 
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              _expanded={{
-                bg: "#164273",
-                color: "white",
-                borderRadius: "5px 5px 0 0",
-              }}
-              _hover={{ bg: "#164273", color: "white" }}
+        <motion.div
+          variants={slideVariant4}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <AccordionItem>
+            <h2>
+              <AccordionButton
+                _expanded={{
+                  bg: "#164273",
+                  color: "white",
+                  borderRadius: "5px 5px 0 0",
+                }}
+                _hover={{ bg: "#164273", color: "white" }}
+              >
+                <Box flex="1" textAlign="left" className="faqpage-title">
+                  Apakah wajib mengikuti Zeppelin HoME Competition?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel
+              pb={4}
+              border="1px solid gray"
+              borderRadius="0 0 5px 5px"
+              mb={5}
+              className="desc-detail"
             >
-              <Box flex="1" textAlign="left" className="faqpage-title">
-                Apakah wajib mengikuti Zeppelin HoME Competition?
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel
-            pb={4}
-            border="1px solid gray"
-            borderRadius="0 0 5px 5px"
-            mb={5}
-            className="desc-detail"
-          >
-            Hadirnya Zeppelin HoME Competition diharapkan dapat membantu
-            Maximers dalam merangkai mimpi menjadi langkah-langkah kecil.
-            Partisipasi Maximers di dalam Zeppelin HoME Competition ini tidak
-            bersifat wajib. Namun, terdapat SKKM Minat & Bakat dan hadiah yang
-            menarik bagi Maximers yang mengikuti serta memenangkan Zeppelin HoME
-            Competition. Informasi mengenai Zeppelin HoME Competition dapat
-            Maximers lihat pada laman HoME setelah Maximers membaca informasi
-            seputar Twibbon.
-          </AccordionPanel>
-        </AccordionItem>
+              Hadirnya Zeppelin HoME Competition diharapkan dapat membantu
+              Maximers dalam merangkai mimpi menjadi langkah-langkah kecil.
+              Partisipasi Maximers di dalam Zeppelin HoME Competition ini tidak
+              bersifat wajib. Namun, terdapat SKKM Minat & Bakat dan hadiah yang
+              menarik bagi Maximers yang mengikuti serta memenangkan Zeppelin
+              HoME Competition. Informasi mengenai Zeppelin HoME Competition
+              dapat Maximers lihat pada laman HoME setelah Maximers membaca
+              informasi seputar Twibbon.
+            </AccordionPanel>
+          </AccordionItem>
+        </motion.div>
       </Accordion>
-      <Flex alignItems="flex-end" justifyContent="space-between">
-        <MaxiFAQ /> <XimaFAQ />
-      </Flex>
+      <motion.div
+        variants={footerVariants}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+      >
+        <Flex alignItems="flex-end" justifyContent="space-between">
+          <MaxiFAQ /> <XimaFAQ />
+        </Flex>
+      </motion.div>
     </Flex>
   );
 };
