@@ -58,21 +58,11 @@ export default function AppRouter() {
                   <Route path="/about-us" component={Beranda.AboutUs} />
                   <Route path="/faq" component={Beranda.FAQ} />
                   <Route render={() => <Redirect to="/" />} />
-                  <HomeFooter />
-                </Switch>
-              </div>
-            </Route>
-            <Route render={() => <Redirect to="/404" />} />
-            {/* <Route>
-              <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
-                <Switch>
-                  <Route path="/about-us" component={Beranda.AboutUs} />
-                  <Route path="/faq" component={Beranda.FAQ} />
-                  <Route render={() => <Redirect to="/404" />} />
                 </Switch>
                 <HomeFooter />
               </div>
-            </Route> */}
+            </Route>
+            <Route render={() => <Redirect to="/404" />} />
           </Switch>
         </AnimatePresence>
       </Route>
