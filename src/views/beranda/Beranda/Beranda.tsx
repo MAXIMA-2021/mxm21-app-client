@@ -86,7 +86,10 @@ const HeroContainer = () => {
         </Flex>
       </Flex>
       <Flex alignItems="center" className="hero-container-vid">
-          <iframe title="Teaser MAXIMA 2021" src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
+        <iframe
+          title="Teaser MAXIMA 2021"
+          src="https://www.youtube.com/embed/JGz46gSAlEo"
+        ></iframe>
       </Flex>
     </Flex>
   );
@@ -232,7 +235,9 @@ const FaqSection = () => {
                 <h3>
                   Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
                 </h3>
-                <button>Kunjungi FAQ</button>
+                <button>
+                  <a href="/faq">Kunjungi FAQ</a>
+                </button>
               </Flex>
             </motion.div>
           </Flex>

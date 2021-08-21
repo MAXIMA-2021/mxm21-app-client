@@ -45,7 +45,7 @@ export default function AppRouter() {
       </Route>
       <Route>
         <HomeNavbar />
-        <AnimatePresence exitBeforeEnter initial={false}>
+        <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
             <Route path="/home/:path1?/:path2?" exact>
               <HomeRouters />
@@ -55,6 +55,8 @@ export default function AppRouter() {
             </StateProtectedRoute>
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
+                <Route path="/about-us" component={Beranda.AboutUs} />
+                <Route path="/faq" component={Beranda.FAQ} />
                 <Route path="/" exact component={Beranda.Beranda} />
                 <HomeFooter />
               </div>
@@ -62,8 +64,8 @@ export default function AppRouter() {
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                 <Switch>
-                  <Route path="/about-us" component={Beranda.AboutUs} />
-                  <Route path="/faq" component={Beranda.FAQ} />
+                  {/* <Route path="/about-us" component={Beranda.AboutUs} />
+                  <Route path="/faq" component={Beranda.FAQ} /> */}
                   <Route render={() => <Redirect to="/404" />} />
                 </Switch>
                 <HomeFooter />

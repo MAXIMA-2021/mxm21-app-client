@@ -63,7 +63,7 @@ const HomeFinish = () => {
   const [isWiderThan820px] = useMediaQuery("(min-width: 820px)");
 
   useEffect(() => {
-    document.title = "HoME 2021 - Selesai";
+    document.title = "HoME 2021: Selesai";
   }, []);
 
   return (

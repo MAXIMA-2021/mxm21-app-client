@@ -153,6 +153,7 @@ const Card = (props: any) => {
               className="header"
               style={{
                 backgroundImage: `url(${props.coverPhoto})`,
+                backgroundColor: "#e1e1e1",
               }}
             ></div>
             <div className="card-img">
