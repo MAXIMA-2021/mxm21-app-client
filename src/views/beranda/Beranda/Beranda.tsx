@@ -9,7 +9,7 @@ import {
   dermaExpress,
   moonChicken,
 } from "../../../assets/beranda";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SplitText } from "./SplitText";
@@ -236,7 +236,7 @@ const FaqSection = () => {
                   Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
                 </h3>
                 <button>
-                  <a href="/faq">Kunjungi FAQ</a>
+                  <Link to="/faq">Kunjungi FAQ</Link>
                 </button>
               </Flex>
             </motion.div>

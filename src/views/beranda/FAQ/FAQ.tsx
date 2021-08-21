@@ -20,9 +20,9 @@ const FAQ = () => {
   return (
     <Flex direction="column" className="faqpage-container">
       <Center mb="2rem" w="100%" textAlign="center">
-        <div className="title">🌙 Frequently Asked Questions 🌙</div>
+        <div className="title">Frequently Asked Questions</div>
       </Center>
-      <Accordion allowMultiple>
+      <Accordion allowMultiple mt="1rem">
         <AccordionItem>
           <h2>
             <AccordionButton
