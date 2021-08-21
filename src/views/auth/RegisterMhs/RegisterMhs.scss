@@ -20,7 +20,7 @@ input::-moz-placeholder {
   height: 40px;
 
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1rem;
   font-family: Rubik;
   color: white;
 
@@ -42,7 +42,13 @@ input::-moz-placeholder {
 
 .regMhs-card {
   min-width: 1000px;
+  border-radius: 7px;
   @media screen and (max-width: 1000px) {
     min-width: 0px;
+  }
+
+  @media screen and (max-width: 766px) {
+    min-width: 100vw;
+    border-radius: 0;
   }
 }

@@ -8,6 +8,7 @@ import {
   faqIllustration,
   dermaExpress,
   moonChicken,
+  jacquelleBeauty,
 } from "../../../assets/beranda";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -86,7 +87,10 @@ const HeroContainer = () => {
         </Flex>
       </Flex>
       <Flex alignItems="center" className="hero-container-vid">
-          <iframe title="Teaser MAXIMA 2021" src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
+        <iframe
+          title="Teaser MAXIMA 2021"
+          src="https://www.youtube.com/embed/JGz46gSAlEo"
+        ></iframe>
       </Flex>
     </Flex>
   );
@@ -251,10 +255,13 @@ const SponsorSection = () => {
         </div>
         <Flex className="spsr-logo-container">
           <div className="spsr-logo">
-            <img src={dermaExpress} />
+            <img src={dermaExpress} width="325px" />
           </div>
           <div className="spsr-logo">
             <img src={moonChicken} />
+          </div>
+          <div className="spsr-logo">
+            <img src={jacquelleBeauty} />
           </div>
         </Flex>
       </div>
