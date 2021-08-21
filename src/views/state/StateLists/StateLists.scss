@@ -102,9 +102,6 @@
   height: 42%;
   left: -3%;
   position: absolute;
-  // background-image: url("https://www2.umn.ac.id/wp-content/uploads/2015/07/3G2A3851.jpg");
-  // border-top-left-radius: 10px;
-  // border-top-right-radius: 10px;
   border-bottom-left-radius: 50% 22%;
   border-bottom-right-radius: 50% 22%;
   display: flex;
@@ -112,6 +109,7 @@
   background-size: cover;
   background-position: center;
   z-index: 0;
+  animation: skeleton 1.5s infinite alternate linear;
 }
 
 .container-card {
@@ -239,5 +237,32 @@
 @keyframes blinker {
   50% {
     box-shadow: 0 10px 10px -2px rgba(244, 117, 171, 0.6);
+  }
+}
+
+@-webkit-keyframes skeleton {
+  from {
+    background-color: #74c8b9;
+  }
+  to {
+    background-color: #164273;
+  }
+}
+
+@-moz-keyframes skeleton {
+  from {
+    background-color: #74c8b9;
+  }
+  to {
+    background-color: #164273;
+  }
+}
+
+@keyframes skeleton {
+  from {
+    background-color: #74c8b9;
+  }
+  to {
+    background-color: #164273;
   }
 }
