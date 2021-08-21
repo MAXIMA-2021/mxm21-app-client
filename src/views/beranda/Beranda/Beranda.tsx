@@ -249,21 +249,29 @@ const FaqSection = () => {
 
 const SponsorSection = () => {
   return (
-    <Flex className="spsr-outer-container">
-      <div className="spsr-inner-container">
-        <div className="spsr-header">
-          <h2>Disponsori oleh</h2>
+    <motion.div
+      exit={{
+        y: "100%",
+        opacity: 0,
+        transition: { delay: 0.2, ...transition },
+      }}
+    >
+      <Flex className="spsr-outer-container">
+        <div className="spsr-inner-container">
+          <div className="spsr-header">
+            <h2>Disponsori oleh</h2>
+          </div>
+          <Flex className="spsr-logo-container">
+            <div className="spsr-logo">
+              <img src={dermaExpress} />
+            </div>
+            <div className="spsr-logo">
+              <img src={moonChicken} />
+            </div>
+          </Flex>
         </div>
-        <Flex className="spsr-logo-container">
-          <div className="spsr-logo">
-            <img src={dermaExpress} />
-          </div>
-          <div className="spsr-logo">
-            <img src={moonChicken} />
-          </div>
-        </Flex>
-      </div>
-    </Flex>
+      </Flex>
+    </motion.div>
   );
 };
 
