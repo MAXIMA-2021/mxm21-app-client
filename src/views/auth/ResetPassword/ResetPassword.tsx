@@ -47,7 +47,6 @@ const OTPComponent = (props: any) => {
     try {
       const returnedData = await authService.getOTP(data);
       reset();
-      alert(returnedData["otp"]);
       props.setRole(returnedData["role"]);
       props.setHasOTP(true);
     } catch (error) {
