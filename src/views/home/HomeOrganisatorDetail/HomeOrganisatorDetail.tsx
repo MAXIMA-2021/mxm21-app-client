@@ -314,7 +314,7 @@ const HomeOrganisatorDetail = () => {
                   className="btn-detail"
                   onClick={backToList}
                 >
-                  Kembali ke Zona
+                  Kembali
                 </MxmButton>
                 <MxmButton
                   variant="squared"
