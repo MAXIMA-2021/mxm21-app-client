@@ -24,6 +24,16 @@
   text-align: center;
 }
 
+.nav-footer-alt {
+  text-decoration: none;
+  color: gray;
+  font-weight: medium;
+  position: relative;
+  text-align: center;
+  font-size: var(--text-size);
+  cursor: not-allowed;
+}
+
 .nav-footer {
   text-decoration: none;
   color: var(--content-color);

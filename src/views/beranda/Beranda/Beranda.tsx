@@ -9,7 +9,7 @@ import {
   dermaExpress,
   moonChicken,
 } from "../../../assets/beranda";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SplitText } from "./SplitText";
@@ -86,7 +86,10 @@ const HeroContainer = () => {
         </Flex>
       </Flex>
       <Flex alignItems="center" className="hero-container-vid">
-          <iframe title="Teaser MAXIMA 2021" src="https://www.youtube.com/embed/JGz46gSAlEo"></iframe>
+        <iframe
+          title="Teaser MAXIMA 2021"
+          src="https://www.youtube.com/embed/JGz46gSAlEo"
+        ></iframe>
       </Flex>
     </Flex>
   );
@@ -232,7 +235,9 @@ const FaqSection = () => {
                 <h3>
                   Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
                 </h3>
-                <button>Kunjungi FAQ</button>
+                <button>
+                  <Link to="/faq">Kunjungi FAQ</Link>
+                </button>
               </Flex>
             </motion.div>
           </Flex>
@@ -244,21 +249,29 @@ const FaqSection = () => {
 
 const SponsorSection = () => {
   return (
-    <Flex className="spsr-outer-container">
-      <div className="spsr-inner-container">
-        <div className="spsr-header">
-          <h2>Disponsori oleh</h2>
+    <motion.div
+      exit={{
+        y: "100%",
+        opacity: 0,
+        transition: { delay: 0.2, ...transition },
+      }}
+    >
+      <Flex className="spsr-outer-container">
+        <div className="spsr-inner-container">
+          <div className="spsr-header">
+            <h2>Disponsori oleh</h2>
+          </div>
+          <Flex className="spsr-logo-container">
+            <div className="spsr-logo">
+              <img src={dermaExpress} />
+            </div>
+            <div className="spsr-logo">
+              <img src={moonChicken} />
+            </div>
+          </Flex>
         </div>
-        <Flex className="spsr-logo-container">
-          <div className="spsr-logo">
-            <img src={dermaExpress} />
-          </div>
-          <div className="spsr-logo">
-            <img src={moonChicken} />
-          </div>
-        </Flex>
-      </div>
-    </Flex>
+      </Flex>
+    </motion.div>
   );
 };
 

@@ -37,6 +37,20 @@ const buttonVariants = {
   enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
 };
 
+const loginVariants = {
+  rest: { x: "100%" },
+  enter: { x: "0%", transition: { duration: 1, ease: transition.ease } },
+  exit: { x: "100%", transition: { duration: 1, ease: transition.ease } },
+};
+
+const contentVariants = {
+  rest: { y: "100%" },
+  enter: {
+    y: "0%",
+    transition: { delay: 0.5, duration: 1, ease: transition.ease },
+  },
+};
+
 const LoginMhs: React.FC = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
@@ -78,113 +92,125 @@ const LoginMhs: React.FC = () => {
   return (
     <Flex className="loginmhs-outer-container">
       <div className="loginmhs-side-banner"></div>
-      <Flex className="loginmhs-form-outer-container">
-        <Flex className="loginmhs-form-inner-container">
-          {location.state && (
-            <Alert
-              status={location?.state?.status}
-              width={isThinnerThan620px ? "90vw" : "max-content"}
-              style={{ justifyContent: "center" }}
-            >
-              <AlertIcon />
-              {location?.state?.message}
-            </Alert>
-          )}
-          <Link to="/" style={{ width: "max-content", display: "block" }}>
-            <img src={MxmLogoText} alt="" className="loginmhs-form-logo" />
-          </Link>
+      <motion.div
+        className="loginmhs-form-outer-container"
+        variants={loginVariants}
+        initial="rest"
+        animate="enter"
+        exit="exit"
+      >
+        <motion.div
+          style={{ width: "100%", display: "flex" }}
+          variants={contentVariants}
+        >
+          <Flex className="loginmhs-form-inner-container">
+            {location.state && (
+              <Alert
+                status={location?.state?.status}
+                width={isThinnerThan620px ? "90vw" : "max-content"}
+                style={{ justifyContent: "center" }}
+              >
+                <AlertIcon />
+                {location?.state?.message}
+              </Alert>
+            )}
+            <Link to="/" style={{ width: "max-content", display: "block" }}>
+              <img src={MxmLogoText} alt="" className="loginmhs-form-logo" />
+            </Link>
 
-          <div className="loginmhs-form-header">
-            <h1>Alô, Dreamers!</h1>
-          </div>
-          <div className="loginmhs-form">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl isInvalid={errors.nim}>
-                <span className="loginmhs-form-span">NIM</span>
-                <MxmInputGroupMhs addon="left">
-                  <InputLeftAddon
-                    size="base"
-                    children="000000"
-                    fontFamily="Poppins"
-                    className="loginmhs-nim-addon"
-                  />
-                  <Input
-                    type="number"
-                    placeholder="5 angka terakhir NIM"
-                    {...register("nim", {
-                      required: "Isi NIM kamu",
-                      minLength: {
-                        value: 5,
-                        message: "Masukkan 5 angka terakhir dari NIM kamu",
-                      },
-                      maxLength: {
-                        value: 5,
-                        message: "Masukkan 5 angka terakhir dari NIM kamu",
-                      },
-                    })}
-                  />
-                </MxmInputGroupMhs>
-                <FormErrorMessage>
-                  {errors.nim && errors.nim.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={errors.password}>
-                <Flex className="loginmhs-pass-label" mt={"1.5rem"}>
-                  <span className="loginmhs-form-span">PASSWORD</span>
-                  <Link to="/auth/reset">Lupa Password?</Link>
-                </Flex>
-                <MxmInputGroupMhs addon="icon">
-                  <Input
-                    placeholder="Masukkan password kamu"
-                    {...register("password", {
-                      required: "Isi password kamu",
-                    })}
-                    pr="4.5rem"
-                    type={show ? "text" : "password"}
-                    className="loginmhs-pass-input"
-                  />
-                  <InputRightElement>
-                    <Button
-                      className="show-password"
+            <div className="loginmhs-form-header">
+              <h1>Alô, Dreamers!</h1>
+            </div>
+            <div className="loginmhs-form">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <FormControl isInvalid={errors.nim}>
+                  <span className="loginmhs-form-span">NIM</span>
+                  <MxmInputGroupMhs addon="left">
+                    <InputLeftAddon
                       size="base"
-                      onClick={handleClick}
-                    >
-                      {show ? <IconHidePassword /> : <IconShowPassword />}
-                    </Button>
-                  </InputRightElement>
-                </MxmInputGroupMhs>
-                <FormErrorMessage>
-                  {errors.password && errors.password.message}
-                </FormErrorMessage>
-              </FormControl>
-              <motion.div className="back" variants={buttonVariants}>
-                <button type="submit" className="loginmhs-btn-masuk">
-                  {loading ? <Spinner mr={"5px"} size="sm" /> : ""}
-                  Masuk
-                </button>
-              </motion.div>
-            </form>
-            <Flex className="loginmhs-links">
-              <div>
-                Belum punya akun? <Link to="/auth/daftar">Daftar</Link>
-              </div>
-              <Divider
-                colorScheme="whiteAlpha"
-                style={{ border: "1px solid rgba(31, 44, 76, 0.4)" }}
-                mt={"2rem"}
-                mb={"2rem"}
-              />
-              <div>
-                Apakah kamu panitia? <Link to="/auth/panitia/masuk">Masuk</Link>
-              </div>
-              <div style={{ marginTop: "0.875rem" }}>
-                Apakah kamu organisator?{" "}
-                <Link to="/auth/organisator/masuk">Masuk</Link>
-              </div>
-            </Flex>
-          </div>
-        </Flex>
-      </Flex>
+                      children="000000"
+                      fontFamily="Poppins"
+                      className="loginmhs-nim-addon"
+                    />
+                    <Input
+                      type="number"
+                      placeholder="5 angka terakhir NIM"
+                      {...register("nim", {
+                        required: "Isi NIM kamu",
+                        minLength: {
+                          value: 5,
+                          message: "Masukkan 5 angka terakhir dari NIM kamu",
+                        },
+                        maxLength: {
+                          value: 5,
+                          message: "Masukkan 5 angka terakhir dari NIM kamu",
+                        },
+                      })}
+                    />
+                  </MxmInputGroupMhs>
+                  <FormErrorMessage>
+                    {errors.nim && errors.nim.message}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl isInvalid={errors.password}>
+                  <Flex className="loginmhs-pass-label" mt={"1.5rem"}>
+                    <span className="loginmhs-form-span">PASSWORD</span>
+                    <Link to="/auth/reset">Lupa Password?</Link>
+                  </Flex>
+                  <MxmInputGroupMhs addon="icon">
+                    <Input
+                      placeholder="Masukkan password kamu"
+                      {...register("password", {
+                        required: "Isi password kamu",
+                      })}
+                      pr="4.5rem"
+                      type={show ? "text" : "password"}
+                      className="loginmhs-pass-input"
+                    />
+                    <InputRightElement>
+                      <Button
+                        className="show-password"
+                        size="base"
+                        onClick={handleClick}
+                      >
+                        {show ? <IconHidePassword /> : <IconShowPassword />}
+                      </Button>
+                    </InputRightElement>
+                  </MxmInputGroupMhs>
+                  <FormErrorMessage>
+                    {errors.password && errors.password.message}
+                  </FormErrorMessage>
+                </FormControl>
+                <motion.div className="back" variants={buttonVariants}>
+                  <button type="submit" className="loginmhs-btn-masuk">
+                    {loading ? <Spinner mr={"5px"} size="sm" /> : ""}
+                    Masuk
+                  </button>
+                </motion.div>
+              </form>
+              <Flex className="loginmhs-links">
+                <div>
+                  Belum punya akun? <Link to="/auth/daftar">Daftar</Link>
+                </div>
+                <Divider
+                  colorScheme="whiteAlpha"
+                  style={{ border: "1px solid rgba(31, 44, 76, 0.4)" }}
+                  mt={"2rem"}
+                  mb={"2rem"}
+                />
+                <div>
+                  Apakah kamu panitia?{" "}
+                  <Link to="/auth/panitia/masuk">Masuk</Link>
+                </div>
+                <div style={{ marginTop: "0.875rem" }}>
+                  Apakah kamu organisator?{" "}
+                  <Link to="/auth/organisator/masuk">Masuk</Link>
+                </div>
+              </Flex>
+            </div>
+          </Flex>
+        </motion.div>
+      </motion.div>
     </Flex>
   );
 };

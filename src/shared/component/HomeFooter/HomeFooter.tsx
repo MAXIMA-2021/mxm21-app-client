@@ -6,6 +6,7 @@ import { InstagramIcon, LineIcon, LoveIcon, TiktokIcon } from "./icon";
 import { motion } from "framer-motion";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 const transition = {
   duration: 0.5,
@@ -58,21 +59,28 @@ const HomeFooter: React.FC = () => {
       <Flex justifyContent="center" alignItems="center" flexDir="column">
         <Image src={MxmWhiteLogoText} alt="MAXIMA 2021" height="150px" />
         <HStack margin="2.5rem 0" spacing={{ base: "2rem", md: "3rem" }}>
-          <a href="/" className="nav-footer">
+          <NavLink to="/home" className="nav-footer">
             HoME
-          </a>
+          </NavLink>
           {isMahasiswa && (
-            <a href="/" className="nav-footer">
+            <NavLink to="/state" className="nav-footer">
               STATE
-            </a>
+            </NavLink>
           )}
 
-          <a href="/" className="nav-footer">
+          <NavLink to="/faq" className="nav-footer">
             FAQ
-          </a>
-          <a href="/" className="nav-footer">
+          </NavLink>
+          {/* <a href="/about-us" className="nav-footer">
             About Us
-          </a>
+          </a> */}
+          <NavLink
+            to="/"
+            className="nav-footer-alt"
+            onClick={(e) => e.preventDefault()}
+          >
+            Coming Soon
+          </NavLink>
         </HStack>
         <HStack mb="1.5rem" spacing="2rem">
           <a href="https://www.instagram.com/maximaumn" target="blank">

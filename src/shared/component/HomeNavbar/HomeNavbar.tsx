@@ -129,10 +129,12 @@ const HomeNavbar = () => {
                   FAQ
                 </NavLink>
                 <NavLink
-                  to="/about-us"
-                  className="btn-main-nav btn-styling-main-nav"
+                  to="/"
+                  onClick={(e) => e.preventDefault()}
+                  className="btn-main-nav"
+                  style={{ cursor: "not-allowed", color: "gray" }}
                 >
-                  About Us
+                  Coming Soon
                 </NavLink>
               </li>
               <motion.li
@@ -244,13 +246,13 @@ const HomeNavbar = () => {
           >
             FAQ
           </NavLink>
-          <NavLink
-            to="/about-us"
-            onClick={mobileMenuShown}
-            className="btn-main-nav btn-styling-main-nav"
+          <a
+            href={false}
+            className="btn-main-nav"
+            style={{ cursor: "not-allowed", color: "gray" }}
           >
-            About Us
-          </NavLink>
+            Coming Soon
+          </a>
           <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
