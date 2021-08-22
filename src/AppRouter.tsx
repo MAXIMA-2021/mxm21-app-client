@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import { AuthRouters, HomeRouters, StateRouters } from "./routers";
@@ -13,6 +13,12 @@ import { ErrorPage } from "./views/error";
 
 export default function AppRouter() {
   const location = useLocation();
+
+  // useEffect(() => {
+  //   console.log(location);
+  //   window.scrollTo(0, 0);
+  // }, [location.pathname]);
+
   return (
     <Switch>
       <DashboardProtectedRoute path="/admin/:path1?/:path2?/:path3?" exact>
@@ -39,7 +45,7 @@ export default function AppRouter() {
       />
       <Route path="/404" exact component={ErrorPage} />
       <Route path="/auth/:path1?/:path2?" exact>
-        <AuthRouters />
+        <AuthRouters location={location} />
       </Route>
       <Route>
         <HomeNavbar />

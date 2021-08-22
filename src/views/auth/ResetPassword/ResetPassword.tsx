@@ -17,6 +17,7 @@ import {
   InputRightElement,
   PinInput,
   PinInputField,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import {
   MxmFormErrorMessage,
@@ -30,6 +31,7 @@ import {
 import { Palette } from "../../../types/enums";
 import authService from "../../../services/auth";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const OTPComponent = (props: any) => {
   const {
@@ -345,15 +347,57 @@ const PassComponent = (props: any) => {
   );
 };
 
+const transition = {
+  duration: 0.5,
+  ease: [0.43, 0.13, 0.23, 0.96],
+};
+
+const ilustVariants = {
+  rest: { opacity: 0 },
+  enter: {
+    opacity: 1,
+    transition: { delay: 0.2, duration: 1, ease: transition.ease },
+  },
+};
+
+const contentVariants = {
+  rest: { opacity: 0, x: "-50%" },
+  enter: {
+    opacity: 1,
+    x: "0%",
+    transition: { delay: 1.2, ...transition },
+  },
+};
+
+const contentMobileVariants = {
+  rest: { opacity: 0, y: "50%" },
+  enter: {
+    opacity: 1,
+    y: "0%",
+    transition: { delay: 1.2, ...transition },
+  },
+};
+
+const mainVariants = {
+  exit: { opacity: 0, transition: { delay: 0.2, ...transition } },
+};
+
 const ResetPassword: React.FC = () => {
   const [hasOTP, setHasOTP] = useState(false);
   const [role, setRole] = useState();
+  const [isSmallerThan767px] = useMediaQuery("(max-width: 767px)");
+
   useEffect(() => {
     document.title = "Reset Password - MAXIMA 2021";
   }, []);
 
   return (
-    <>
+    <motion.div
+      initial="rest"
+      animate="enter"
+      exit="exit"
+      variants={mainVariants}
+    >
       <Flex
         minH={{
           base: "calc(100vh - 3.5rem)",
@@ -376,21 +420,29 @@ const ResetPassword: React.FC = () => {
             width={{ base: "80%", md: "50%" }}
             mt={{ base: "6rem", sm: "3rem", md: "0" }}
           >
-            <ResetIlust />
+            <motion.div variants={ilustVariants}>
+              <ResetIlust />
+            </motion.div>
           </Box>
           <Box
             w={{ base: "100%", sm: "80%", md: "50%" }}
             textAlign={{ base: "center", md: "center" }}
           >
-            {hasOTP ? (
-              <PassComponent setHasOTP={setHasOTP} role={role} />
-            ) : (
-              <OTPComponent setHasOTP={setHasOTP} setRole={setRole} />
-            )}
+            <motion.div
+              variants={
+                isSmallerThan767px ? contentMobileVariants : contentVariants
+              }
+            >
+              {hasOTP ? (
+                <PassComponent setHasOTP={setHasOTP} role={role} />
+              ) : (
+                <OTPComponent setHasOTP={setHasOTP} setRole={setRole} />
+              )}
+            </motion.div>
           </Box>
         </Flex>
       </Flex>
-    </>
+    </motion.div>
   );
 };
 

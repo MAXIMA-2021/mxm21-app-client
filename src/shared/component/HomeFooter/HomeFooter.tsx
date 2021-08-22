@@ -76,9 +76,8 @@ const HomeFooter: React.FC = () => {
           </a> */}
           <NavLink
             to="/"
-            // className="nav-footer"
+            className="nav-footer-alt"
             onClick={(e) => e.preventDefault()}
-            style={{ cursor: "not-allowed", color: "grey" }}
           >
             Coming Soon
           </NavLink>
