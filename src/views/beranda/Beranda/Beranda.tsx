@@ -8,6 +8,7 @@ import {
   faqIllustration,
   dermaExpress,
   moonChicken,
+  jacquelleBeauty,
 } from "../../../assets/beranda";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -256,22 +257,26 @@ const SponsorSection = () => {
         transition: { delay: 0.2, ...transition },
       }}
     >
-      <Flex className="spsr-outer-container">
-        <div className="spsr-inner-container">
-          <div className="spsr-header">
-            <h2>Disponsori oleh</h2>
-          </div>
-          <Flex className="spsr-logo-container">
-            <div className="spsr-logo">
-              <img src={dermaExpress} />
-            </div>
-            <div className="spsr-logo">
-              <img src={moonChicken} />
-            </div>
-          </Flex>
+    <Flex className="spsr-outer-container">
+      <div className="spsr-inner-container">
+        <div className="spsr-header">
+          <h2>Disponsori oleh</h2>
         </div>
-      </Flex>
+        <Flex className="spsr-logo-container">
+          <div className="spsr-logo">
+            <img src={dermaExpress} />
+          </div>
+          <div className="spsr-logo">
+            <img src={moonChicken} />
+          </div>
+          <div className="spsr-logo">
+            <img src={jacquelleBeauty} />
+          </div>
+        </Flex>
+      </div>
+    </Flex>
     </motion.div>
+
   );
 };
 

@@ -44,17 +44,17 @@ const DaftarNarasi: React.FC = () => {
   }, []);
 
   const deleteHome = (IDhome: any) => {
-    try {
-      Swal.fire({
-        title:
-          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
-        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
-        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
-        confirmButtonColor: "#e40000",
-        denyButtonColor: "#fff",
-        showCancelButton: true,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
+    Swal.fire({
+      title:
+        '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+      confirmButtonColor: "#e40000",
+      denyButtonColor: "#fff",
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
           await adminService.deleteHome(IDhome);
           const homeData = data.filter((item: any) => item.homeID !== IDhome);
           setData(homeData);
@@ -65,18 +65,18 @@ const DaftarNarasi: React.FC = () => {
             duration: 4000,
             isClosable: true,
           });
-        } else if (result.isDenied) {
-          Swal.fire("Perubahan belum tersimpan", "", "info");
+        } catch (error) {
+          Swal.fire({
+            title: "Perhatian!",
+            text: error.response?.data.message,
+            icon: "error",
+            confirmButtonText: "Coba lagi",
+          });
         }
-      });
-    } catch (error) {
-      Swal.fire({
-        title: "Perhatian!",
-        text: error.response?.data.message,
-        icon: "error",
-        confirmButtonText: "Coba lagi",
-      });
-    }
+      } else if (result.isDenied) {
+        Swal.fire("Perubahan belum tersimpan", "", "info");
+      }
+    });
   };
 
   const findSearchKey = (IDhome: any) => {

@@ -52,7 +52,7 @@
   &.nav-sticky {
     background: #fff;
     transition: background 0.5s ease;
-
+    box-shadow: 0 1.4px 6px 0 rgba(0, 0, 0, 0.1);
     --btn-main-nav-spacing-y: 1rem;
 
     & .navigation-btn-homepage-mxm-logo {
@@ -145,21 +145,45 @@
   }
 }
 
+@media screen and (max-width: 1870px) {
+  * {
+    --navbar-padding-x: 16rem;
+  }
+}
+
+@media screen and (max-width: 1780px) {
+  * {
+    --navbar-padding-x: 16rem;
+  }
+}
+
+@media screen and (max-width: 1775px) {
+  * {
+    --navbar-padding-x: 15rem;
+  }
+}
+
 @media screen and (max-width: 1740px) {
   * {
-    --navbar-padding-x: 10rem;
+    --navbar-padding-x: 10%;
   }
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1515px) {
   * {
-    --navbar-padding-x: 7rem;
+    --navbar-padding-x: 8%;
   }
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1390px) {
   * {
-    --navbar-padding-x: 3rem;
+    --navbar-padding-x: 7%;
+  }
+}
+
+@media screen and (max-width: 1340px) {
+  * {
+    --navbar-padding-x: 5%;
   }
 }
 
@@ -248,7 +272,7 @@
     font-weight: 500;
 
     position: fixed;
-    top: -50%;
+    top: -60%;
     height: max-content;
     width: 100%;
     background-color: #fff;

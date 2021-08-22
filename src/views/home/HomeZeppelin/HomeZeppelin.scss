@@ -1,7 +1,7 @@
 :root {
   --home-zep-bg-size: 400px;
   --home-zep-text-p-fontsize: 1.1rem;
-  --home-zep-text-h1-fontsize: 4rem;
+  --home-zep-text-h1-fontsize: 3rem;
   --home-zep-text-h2-fontsize: 2rem;
   --home-zep-text-btn-fontsize: 0.8rem;
   --zep-translate-value: 30%;
@@ -53,7 +53,11 @@
     font-weight: 600;
     text-align: center;
     width: var(--home-zep-bg-size);
+    // padding: 1.2rem;
   }
+
+  // @media screen and (max-width: ) {
+  // }
 }
 @media screen and(max-height: 750px) {
   .home-zep-inner-container {
@@ -64,12 +68,20 @@
   }
 
   * {
-    --home-zep-text-h1-fontsize: 3rem;
+    --home-zep-text-h1-fontsize: 2.5rem;
     --home-zep-text-p-fontsize: 1rem;
   }
 
   .nav-btn-zep {
-    margin-top: 1.2vh !important;
+    // margin-top: 1.2vh !important;
+    & .home-zep-back-btn {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+    }
+    & .home-zep-next-btn {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+    }
   }
 }
 
@@ -184,7 +196,7 @@
   * {
     --home-zep-bg-size: 350px;
     --home-zep-text-p-fontsize: 0.875rem;
-    --home-zep-text-h1-fontsize: 3rem;
+    --home-zep-text-h1-fontsize: 2rem;
     --home-zep-text-h2-fontsize: 1.5rem;
     --home-zep-text-btn-fontsize: 0.875rem;
   }
@@ -205,7 +217,7 @@
   * {
     --home-zep-bg-size: 300px;
     --home-zep-text-p-fontsize: 0.875rem;
-    --home-zep-text-h1-fontsize: 2.5rem;
+    --home-zep-text-h1-fontsize: 2rem;
     --home-zep-text-h2-fontsize: 1.2rem;
     --home-zep-text-btn-fontsize: 0.875rem;
     --zep-translate-value: 20%;
@@ -231,7 +243,7 @@
   * {
     --home-zep-bg-size: 250px;
     --home-zep-text-p-fontsize: 0.75rem;
-    --home-zep-text-h1-fontsize: 2rem;
+    --home-zep-text-h1-fontsize: 1.5rem;
     --home-zep-text-h2-fontsize: 1rem;
     --home-zep-text-btn-fontsize: 0.75rem;
     --zep-translate-value: 15%;
@@ -241,8 +253,8 @@
     top: -0.5rem;
     & > h1 {
       align-items: flex-start;
-      position: relative;
-      top: 20px;
+      // position: relative;
+      // top: 20px;
     }
   }
 

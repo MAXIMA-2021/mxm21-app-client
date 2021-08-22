@@ -58,7 +58,10 @@
 
 .hero-container {
   flex-direction: row;
-  padding: 8rem 0 12rem 0;
+  padding-left: 0;
+  padding-right: 0;
+  height: calc(100vh - 5rem);
+  align-items: center;
   & .Tilt,
   & iframe {
     border-radius: 20px;
@@ -151,20 +154,25 @@
         & button {
           margin-bottom: 2rem;
         }
+        & h3 {
+          margin-right: auto;
+          margin-left: auto;
+        }
       }
     }
   }
 
   @media screen and (max-width: 446px) {
-    padding: 3vh 0 8rem 0;
+    padding: 2rem 0 8rem 0;
+    height: unset;
 
     * {
       --hero-h1-font-size: 3rem;
     }
 
     & .hero-side-container-item {
-      & > h3 {
-        width: 40ch;
+      & h3 {
+        width: 85%;
       }
     }
 
@@ -739,11 +747,10 @@
 
 .spsr-outer-container {
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2.3rem;
   width: 100%;
   background-color: #f3f7ff;
   justify-content: center;
-  // border: 0.5px solid #1f2c4c;
   box-shadow: inset 0px 4px 6px rgba(0, 41, 143, 0.25);
 }
 
@@ -751,7 +758,6 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
 
   & .spsr-header {
@@ -764,6 +770,12 @@
     letter-spacing: 0.015em;
     text-transform: uppercase;
   }
+
+  @media screen and (max-width: 530px) {
+    & .spsr-header {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .spsr-logo-container {
@@ -772,6 +784,32 @@
   }
   & img {
     width: 350px;
+  }
+
+  // & .spsr-logo:first-child img {
+  //   width: 325px;
+  // }
+}
+
+@media screen and (max-width: 785px) {
+  .spsr-logo-container {
+    & > .spsr-logo {
+      padding: 1.2rem;
+    }
+    & img {
+      width: 350px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .spsr-logo-container {
+    & > .spsr-logo {
+      padding: 0.5rem;
+    }
+    & img {
+      width: 350px;
+    }
   }
 }
 

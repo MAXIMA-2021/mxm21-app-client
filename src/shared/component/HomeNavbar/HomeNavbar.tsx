@@ -129,12 +129,10 @@ const HomeNavbar = () => {
                   FAQ
                 </NavLink>
                 <NavLink
-                  to="/"
-                  onClick={(e) => e.preventDefault()}
-                  className="btn-main-nav"
-                  style={{ cursor: "not-allowed", color: "gray" }}
+                  to="/about-us"
+                  className="btn-main-nav btn-styling-main-nav"
                 >
-                  Coming Soon
+                  About Us
                 </NavLink>
               </li>
               <motion.li
@@ -219,7 +217,8 @@ const HomeNavbar = () => {
       >
         <Grid
           templateRows={
-            isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
+            //isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
+            "repeat(3, 1fr)"
           }
           className="mobile-menu-grid"
         >
@@ -246,14 +245,15 @@ const HomeNavbar = () => {
           >
             FAQ
           </NavLink>
-          <a
-            href={false}
-            className="btn-main-nav"
-            style={{ cursor: "not-allowed", color: "gray" }}
-          >
-            Coming Soon
-          </a>
-          <div className="btn-main-nav-auth-container-mobile">
+          <NavLink
+              to="/"
+              onClick={(e) => e.preventDefault()}
+              className="btn-main-nav"
+              style={{ cursor: "not-allowed", color: "gray" }}
+            >
+              Coming Soon
+            </NavLink>
+          {/* <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
                 to="/auth/keluar"
@@ -264,7 +264,7 @@ const HomeNavbar = () => {
               </NavLink>
             ) : (
               <>
-                {/* <NavLink
+                <NavLink
                   to="/auth/daftar"
                   onClick={mobileMenuShown}
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
@@ -277,10 +277,10 @@ const HomeNavbar = () => {
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk
-                </NavLink> */}
+                </NavLink>
               </>
             )}
-          </div>
+          </div> */}
         </Grid>
       </div>
     </>

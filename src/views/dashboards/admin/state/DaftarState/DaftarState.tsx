@@ -44,50 +44,41 @@ const DaftarState: React.FC = () => {
   }, []);
 
   const deleteState = (stateID: any) => {
-    try {
-      Swal.fire({
-        title:
-          '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
-        cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
-        confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
-        confirmButtonColor: "#e40000",
-        denyButtonColor: "#fff",
-        showCancelButton: true,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            await adminService.deleteState(stateID);
-            const stateData = data.filter(
-              (item: any) => item.stateID !== stateID
-            );
-            setData(stateData);
-            toast({
-              title: "Data berhasil dihapus!",
-              position: "bottom-right",
-              status: "success",
-              duration: 4000,
-              isClosable: true,
-            });
-          } catch (error) {
-            Swal.fire({
-              title: "Perhatian!",
-              text: error.response?.data.message,
-              icon: "error",
-              confirmButtonText: "Coba lagi",
-            });
-          }
-        } else if (result.isDenied) {
-          Swal.fire("Perubahan belum tersimpan", "", "info");
+    Swal.fire({
+      title:
+        '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
+      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
+      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+      confirmButtonColor: "#e40000",
+      denyButtonColor: "#fff",
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await adminService.deleteState(stateID);
+          const stateData = data.filter(
+            (item: any) => item.stateID !== stateID
+          );
+          setData(stateData);
+          toast({
+            title: "Data berhasil dihapus!",
+            position: "bottom-right",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          });
+        } catch (error) {
+          Swal.fire({
+            title: "Perhatian!",
+            text: error.response?.data.message,
+            icon: "error",
+            confirmButtonText: "Coba lagi",
+          });
         }
-      });
-    } catch (error) {
-      Swal.fire({
-        title: "Perhatian!",
-        text: error.response?.data.message,
-        icon: "error",
-        confirmButtonText: "Coba lagi",
-      });
-    }
+      } else if (result.isDenied) {
+        Swal.fire("Perubahan belum tersimpan", "", "info");
+      }
+    });
   };
 
   const responsiveData = {
