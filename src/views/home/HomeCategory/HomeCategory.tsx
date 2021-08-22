@@ -232,7 +232,7 @@ const HomeCategory = () => {
           ml={{ base: "2rem", md: "4rem" }}
           className="arrow-btn"
           src={arrow}
-          onClick={() => history.push("/home/enter")}
+          onClick={() => history.goBack()}
         />
       </motion.div>
     </Box>

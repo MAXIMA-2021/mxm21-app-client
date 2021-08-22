@@ -221,7 +221,7 @@ const HomeOrganisatorList = () => {
             exit="exit"
           >
             <MxmButton
-              onClick={() => history.push("/home/category")}
+              onClick={() => history.goBack() } 
               variant="squared"
               colorScheme="cyan-navy"
             >

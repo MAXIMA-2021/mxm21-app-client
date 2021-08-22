@@ -95,12 +95,7 @@ const HomeOrganisatorDetail = () => {
     const nama = eval(`chapterSub.C0${kode}`);
     return nama;
   };
-  const randomNumber = () => Math.random() * 7 + 1;
-  const backToList = () => {
-    const chapterStorage =
-      window?.sessionStorage?.getItem("chapter") || `C0${randomNumber()}`;
-    history.push(`/home/organisator-list/${chapterStorage}`);
-  };
+
   return (
     <>
       <motion.div
@@ -314,7 +309,7 @@ const HomeOrganisatorDetail = () => {
                   variant="squared"
                   colorScheme="navy-cyan"
                   className="btn-detail"
-                  onClick={backToList}
+                  onClick={() => { history.goBack() }}
                 >
                   Kembali
                 </MxmButton>

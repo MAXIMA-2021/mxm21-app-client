@@ -180,7 +180,7 @@ const HomeZeppelin = () => {
                 variant="squared"
                 colorScheme="navy-cyan"
                 className="btn-detail"
-                onClick={() => history.push("/home/twibbon")}
+                onClick={() => history.goBack() }
               >
                 <span>Kembali</span>
               </MxmButton>
