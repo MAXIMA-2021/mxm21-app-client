@@ -400,7 +400,7 @@ const HomeTwibbon = () => {
                             lg: "1rem",
                           }}
                         >
-                          Back
+                          Kembali 
                         </MxmButton>
                       </motion.div>
                       <Spacer />
@@ -432,7 +432,7 @@ const HomeTwibbon = () => {
                               lg: "1rem",
                             }}
                           >
-                            Next
+                            Selanjutnya
                           </MxmButton>
                         </NavLink>
                       </motion.div>

@@ -196,7 +196,7 @@ const HomeFinish = () => {
                       padding="1rem"
                       width="90%"
                     >
-                      Back to Chapter Lists
+                      Kembali ke Hocus Pocus
                     </MxmButton>
                   </NavLink>
                 </motion.div>
@@ -228,7 +228,7 @@ const HomeFinish = () => {
                       padding="1rem"
                       width="90%"
                     >
-                      Finish HoME
+                      Selesaikan Tur HoME
                     </MxmButton>
                   </NavLink>
                 </motion.div>

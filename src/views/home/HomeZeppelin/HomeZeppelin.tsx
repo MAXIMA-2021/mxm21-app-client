@@ -161,7 +161,7 @@ const HomeZeppelin = () => {
                 }
               >
                 <GetAppIcon />
-                <p>Download Regulasi</p> <span>(pdf)</span>
+                <p>Unduh Regulasi</p> <span>(pdf)</span>
               </button>
             </motion.div>
             <motion.div
@@ -182,7 +182,7 @@ const HomeZeppelin = () => {
                 className="home-zep-back-btn"
                 onClick={() => history.push("/home/twibbon")}
               >
-                <span>BACK</span>
+                <span>Kembali</span>
               </MxmButton>
               <MxmButton
                 variant="squared"
@@ -190,7 +190,7 @@ const HomeZeppelin = () => {
                 className="home-zep-next-btn"
                 onClick={handleClick}
               >
-                <span>NEXT</span>
+                <span>Berikutnya</span>
               </MxmButton>
             </Flex>
           </motion.div>
