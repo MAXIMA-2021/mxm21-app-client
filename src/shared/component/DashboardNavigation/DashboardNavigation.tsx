@@ -65,14 +65,17 @@ const DashboardNavigation = (props: any) => {
   };
 
   const sidebarShown = () => {
-    setSidebarShow(false);
-    if (sidebarShow === false) {
-      setSidebarShow(true);
-    }
+    setSidebarShow(!sidebarShow);
   };
 
   const closeSidebar = () => {
     setSidebarShow(false);
+  };
+
+  const handleMobile = () => {
+    if (isSmallerThan450px) {
+      setSidebarShow(false);
+    }
   };
 
   const sidebarDropdownActive = (event: any) => {
@@ -207,7 +210,9 @@ const DashboardNavigation = (props: any) => {
                 <AccountCircleIcon />
               </div>
               <h4>{props.name}</h4>
-              <h6>Panitia</h6>
+              <h6 style={{ textTransform: "capitalize" }}>
+                {window?.sessionStorage?.getItem("role") || "panitia"}
+              </h6>
             </div>
           </NavLink>
           <Flex className="sidebar-nav_header">
@@ -215,7 +220,11 @@ const DashboardNavigation = (props: any) => {
           </Flex>
           <Flex className="main-navigation" direction="column">
             <ul>
-              <NavLink to="/admin" activeClassName="sidebar-nav_active">
+              <NavLink
+                to="/admin"
+                activeClassName="sidebar-nav_active"
+                onClick={handleMobile}
+              >
                 <AssessmentIcon />
                 Dashboard
               </NavLink>
@@ -224,6 +233,7 @@ const DashboardNavigation = (props: any) => {
                 to="/admin/daftar-maba"
                 activeClassName="sidebar-nav_active"
                 className={`${!isPanitia && "hide"} daftar-maba`}
+                onClick={handleMobile}
               >
                 <ContactsIcon />
                 Daftar Mahasiswa Baru
@@ -243,6 +253,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/tambah-home"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Tambah Data HoME
@@ -252,6 +263,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/tambah-media"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Tambah Media HoME
@@ -261,6 +273,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/daftar-home"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Organisasi HoME
@@ -270,6 +283,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/daftar-narasi"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar Narasi HoME
@@ -292,6 +306,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/tambah-state"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Tambah STATE
@@ -301,6 +316,7 @@ const DashboardNavigation = (props: any) => {
                     <NavLink
                       to="/admin/daftar-state"
                       activeClassName="dropdown-item_active"
+                      onClick={handleMobile}
                     >
                       <RadioButtonUncheckedOutlinedIcon />
                       Daftar STATE
@@ -335,6 +351,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/tambah-mahasiswa"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Tambah Akun Mahasiswa
@@ -344,6 +361,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/daftar-mahasiswa"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Daftar Akun Mahasiswa
@@ -353,6 +371,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/tambah-panitia"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Tambah Akun Panitia
@@ -362,6 +381,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/daftar-panitia"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Daftar Akun Panitia
@@ -371,6 +391,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/tambah-organisator"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Tambah Akun Organisator
@@ -380,6 +401,7 @@ const DashboardNavigation = (props: any) => {
                       <NavLink
                         to="/admin/daftar-organisator"
                         activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Daftar Akun Organisator
@@ -392,6 +414,7 @@ const DashboardNavigation = (props: any) => {
               <NavLink
                 to="/admin/edit-akun"
                 activeClassName="sidebar-nav_active"
+                onClick={handleMobile}
               >
                 <Face />
                 Edit Akun Kamu

@@ -128,13 +128,14 @@ const HomeNavbar = () => {
                 >
                   FAQ
                 </NavLink>
-                <a
-                  href={false}
+                <NavLink
+                  to="/"
+                  onClick={(e) => e.preventDefault()}
                   className="btn-main-nav"
                   style={{ cursor: "not-allowed", color: "gray" }}
                 >
                   Coming Soon
-                </a>
+                </NavLink>
               </li>
               <motion.li
                 className="btn-main-nav-auth-container"
