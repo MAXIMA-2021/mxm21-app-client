@@ -70,6 +70,7 @@ const HomeZeppelin = () => {
   const history = useHistory();
   const [zeppelin, setZeppelin] = useState(false);
   const [isSmallerThan620px] = useMediaQuery("(max-width: 620px)");
+  const [isShorterThan900px] = useMediaQuery("(max-height: 900px)");
 
   const handleClick = () => {
     history.push("/home/finish", {
@@ -95,7 +96,7 @@ const HomeZeppelin = () => {
       <Flex
         className="home-zep-outer-container"
         h={
-          isSmallerThan620px
+          isSmallerThan620px || isShorterThan900px
             ? "max-content"
             : {
                 base: "calc(100vh - 3.5rem)",
@@ -124,7 +125,7 @@ const HomeZeppelin = () => {
               marginBottom="1rem"
             >
               <h1 style={{ background: Palette.Yellow, borderRadius: "20px" }}>
-                Zeppelin
+                Zeppelin HoME Competition
               </h1>
             </Flex>
           </motion.div>

@@ -255,7 +255,7 @@ const SponsorSection = () => {
         </div>
         <Flex className="spsr-logo-container">
           <div className="spsr-logo">
-            <img src={dermaExpress} width="325px" />
+            <img src={dermaExpress} />
           </div>
           <div className="spsr-logo">
             <img src={moonChicken} />
