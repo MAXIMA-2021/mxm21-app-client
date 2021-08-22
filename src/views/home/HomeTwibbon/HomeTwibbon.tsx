@@ -270,7 +270,7 @@ const HomeTwibbon = () => {
                           4. Maximers mengawali caption dengan kalimat seperti
                           dibawah ini:
                           <br />
-                          Halo, DREAMERS! Saya (Nama Lengkap) siap untuk
+                          Halo, MAXIMERS! Saya (Nama Lengkap) siap untuk
                           mengikuti rangkaian kegiatan #MAXIMA2021 bersama
                           #(organisasi yang ingin diikuti) untuk menjadi satu
                           langkah lebih dekat menuju mimpiku.
@@ -371,7 +371,7 @@ const HomeTwibbon = () => {
                     initial="rest"
                     animate="enter"
                   >
-                    <Flex mt={10}>
+                    <Flex mt={10} mb={5}>
                       <motion.div
                         exit={{
                           x: -100,
@@ -380,27 +380,12 @@ const HomeTwibbon = () => {
                         }}
                       >
                         <MxmButton
+                          variant="squared"
+                          colorScheme="navy-cyan"
+                          className="btn-detail"
                           onClick={history.goBack}
-                          variant="rounded"
-                          colorScheme="navy-white"
-                          margin="0"
-                          padding={{
-                            base: "1rem 2rem",
-                            md: "0 1rem",
-                            lg: "1rem 2rem",
-                          }}
-                          height={{
-                            base: "initial",
-                            md: "2rem",
-                            lg: "2rem",
-                          }}
-                          fontSize={{
-                            base: "0.8rem",
-                            md: "0.5rem",
-                            lg: "1rem",
-                          }}
                         >
-                          Kembali 
+                          Kembali
                         </MxmButton>
                       </motion.div>
                       <Spacer />
@@ -413,26 +398,11 @@ const HomeTwibbon = () => {
                       >
                         <NavLink to="/home/zeppelin">
                           <MxmButton
-                            variant="desktop"
-                            colorScheme="navy-white"
-                            margin="0"
-                            padding={{
-                              base: "1rem 2rem",
-                              md: "0 1rem",
-                              lg: "1rem 2rem",
-                            }}
-                            height={{
-                              base: "initial",
-                              md: "2rem",
-                              lg: "2rem",
-                            }}
-                            fontSize={{
-                              base: "0.8rem",
-                              md: "0.5rem",
-                              lg: "1rem",
-                            }}
+                            variant="squared"
+                            colorScheme="yellow-red"
+                            className="btn-detail"
                           >
-                            Selanjutnya
+                            Berikutnya
                           </MxmButton>
                         </NavLink>
                       </motion.div>
