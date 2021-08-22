@@ -31,7 +31,7 @@ const LandingDashboard: React.FC = () => {
         px="1.5rem"
         rounded={25}
       >
-        <h1>Ini Dashboard</h1>
+        <h1>Silakan pilih menu di samping</h1>
       </Flex>
     </Flex>
   );

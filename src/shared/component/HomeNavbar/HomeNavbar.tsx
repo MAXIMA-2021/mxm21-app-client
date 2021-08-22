@@ -6,7 +6,6 @@ import { MxmLogo } from "../../../assets";
 import { Image, Grid, Skeleton } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import jwtDecode from "jwt-decode";
-import { GoogleLogoutBtn } from "../GoogleLogoutBtn";
 import { Palette } from "../../../types/enums";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
@@ -129,10 +128,12 @@ const HomeNavbar = () => {
                   FAQ
                 </NavLink>
                 <NavLink
-                  to="/about-us"
-                  className="btn-main-nav btn-styling-main-nav"
+                  to="/"
+                  onClick={(e) => e.preventDefault()}
+                  className="btn-main-nav"
+                  style={{ cursor: "not-allowed", color: "gray" }}
                 >
-                  About Us
+                  Coming Soon
                 </NavLink>
               </li>
               <motion.li

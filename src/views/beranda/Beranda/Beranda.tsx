@@ -10,8 +10,7 @@ import {
   moonChicken,
   jacquelleBeauty,
 } from "../../../assets/beranda";
-import { Link, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SplitText } from "./SplitText";
 import { useState } from "react";
@@ -82,7 +81,9 @@ const HeroContainer = () => {
             className="btn-linear-gradient"
             variants={buttonSlideVariant}
           >
-            Coming Soon
+            <Link to='/home'>
+            Kunjungi HoME 2021 
+            </Link>
           </motion.button>
         </Flex>
       </Flex>
@@ -264,13 +265,13 @@ const SponsorSection = () => {
         </div>
         <Flex className="spsr-logo-container">
           <div className="spsr-logo">
-            <img src={dermaExpress} />
+            <img src={dermaExpress} alt="Derma Express" />
           </div>
           <div className="spsr-logo">
-            <img src={moonChicken} />
+            <img src={moonChicken} alt="Moon Chicken" />
           </div>
           <div className="spsr-logo">
-            <img src={jacquelleBeauty} />
+            <img src={jacquelleBeauty} alt="Jacquelle Beaute" />
           </div>
         </Flex>
       </div>
@@ -286,10 +287,8 @@ const contaienrVariants = {
 };
 
 const Beranda = () => {
-  const location = useLocation();
   useEffect(() => {
     document.title = "Beranda - MAXIMA 2021";
-    location.state && Swal.fire(location?.state);
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import { AuthRouters, HomeRouters, StateRouters } from "./routers";
@@ -13,11 +13,6 @@ import { ErrorPage } from "./views/error";
 
 export default function AppRouter() {
   const location = useLocation();
-
-  // useEffect(() => {
-  //   console.log(location);
-  //   window.scrollTo(0, 0);
-  // }, [location.pathname]);
 
   return (
     <Switch>

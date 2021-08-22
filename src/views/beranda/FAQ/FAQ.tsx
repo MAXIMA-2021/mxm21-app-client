@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  Heading,
   Center,
   Box,
   Flex,
@@ -9,7 +8,6 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  createIcon,
 } from "@chakra-ui/react";
 import "./FAQ.scss";
 import { motion } from "framer-motion";
@@ -61,6 +59,7 @@ const footerVariants = {
 const FAQ = () => {
   useEffect(() => {
     document.title = "FAQ - MAXIMA 2021";
+    window.scrollTo(0, 0);
   }, []);
 
   return (

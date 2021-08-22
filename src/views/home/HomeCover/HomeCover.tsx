@@ -5,8 +5,7 @@ import { Palette } from "../../../types/enums";
 import { Home } from "../../../assets";
 import { MxmLogoText } from "../../../assets";
 
-import { MxmButton } from "../../../shared/styled/buttons";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 

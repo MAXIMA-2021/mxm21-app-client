@@ -5,7 +5,6 @@ import {
   Flex,
   Heading,
   Image,
-  Spacer,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { bendera } from "../../../assets/home";
