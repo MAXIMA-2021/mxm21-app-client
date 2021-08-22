@@ -270,7 +270,7 @@ const HomeTwibbon = () => {
                           4. Maximers mengawali caption dengan kalimat seperti
                           dibawah ini:
                           <br />
-                          Halo, DREAMERS! Saya (Nama Lengkap) siap untuk
+                          Halo, MAXIMERS! Saya (Nama Lengkap) siap untuk
                           mengikuti rangkaian kegiatan #MAXIMA2021 bersama
                           #(organisasi yang ingin diikuti) untuk menjadi satu
                           langkah lebih dekat menuju mimpiku.
