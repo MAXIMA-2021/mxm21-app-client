@@ -128,7 +128,7 @@ const HomeCover = () => {
               exit="exit"
             >
               <button onClick={handleClick} style={{ color: "white" }}>
-                Enter HoME
+                Masuk HoME
                 <ArrowForwardRoundedIcon />
               </button>
             </motion.div>

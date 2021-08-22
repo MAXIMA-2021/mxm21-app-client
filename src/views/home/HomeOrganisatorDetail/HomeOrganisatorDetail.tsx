@@ -55,6 +55,8 @@ const HomeOrganisatorDetail = () => {
   const history = useHistory();
   const [images, setImages] = useState<any>([]);
 
+  window.sessionStorage.setItem("organisator", searchKey);
+
   useEffect(() => {
     document.title = `HoME 2021: Detail Organisator`;
     const fetchData = async () => {

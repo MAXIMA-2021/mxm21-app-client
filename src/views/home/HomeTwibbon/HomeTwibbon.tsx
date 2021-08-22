@@ -176,6 +176,12 @@ const HomeTwibbon = () => {
     }
   }
 
+  const backToDetail = () => {
+    const detailStorage =
+      window?.sessionStorage?.getItem("organisator") || `umn-documentation`;
+    history.push(`/home/organisator-detail/${detailStorage}`);
+  };
+
   return (
     <motion.div
       variants={frameVariants}
@@ -383,7 +389,7 @@ const HomeTwibbon = () => {
                           variant="squared"
                           colorScheme="navy-cyan"
                           className="btn-detail"
-                          onClick={history.goBack}
+                          onClick={backToDetail}
                         >
                           Kembali
                         </MxmButton>

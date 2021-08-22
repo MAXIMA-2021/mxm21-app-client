@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Box,
-  Flex,
-  Heading,
-  Image,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import { bendera } from "../../../assets/home";
 import { MxmLogoText } from "../../../assets";
 import { Palette } from "../../../types/enums";
@@ -223,7 +217,7 @@ const HomeFinish = () => {
                   >
                     <MxmButton
                       variant="rounded"
-                      colorScheme="navy-cyan"
+                      colorScheme="red-navy"
                       margin={{ base: "1rem 0 0 0", md: "2rem 0 0 0" }}
                       padding="1rem"
                       width="90%"

@@ -179,7 +179,7 @@ const HomeZeppelin = () => {
               <MxmButton
                 variant="squared"
                 colorScheme="navy-cyan"
-                className="home-zep-back-btn"
+                className="btn-detail"
                 onClick={() => history.push("/home/twibbon")}
               >
                 <span>Kembali</span>
@@ -187,7 +187,7 @@ const HomeZeppelin = () => {
               <MxmButton
                 variant="squared"
                 colorScheme="red-navy"
-                className="home-zep-next-btn"
+                className="btn-detail"
                 onClick={handleClick}
               >
                 <span>Berikutnya</span>
