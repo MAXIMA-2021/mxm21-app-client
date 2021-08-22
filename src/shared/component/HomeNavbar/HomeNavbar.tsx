@@ -217,7 +217,8 @@ const HomeNavbar = () => {
       >
         <Grid
           templateRows={
-            isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
+            //isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
+            "repeat(3, 1fr)"
           }
           className="mobile-menu-grid"
         >
@@ -251,7 +252,7 @@ const HomeNavbar = () => {
           >
             About Us
           </NavLink>
-          <div className="btn-main-nav-auth-container-mobile">
+          {/* <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
                 to="/auth/keluar"
@@ -262,7 +263,7 @@ const HomeNavbar = () => {
               </NavLink>
             ) : (
               <>
-                {/* <NavLink
+                <NavLink
                   to="/auth/daftar"
                   onClick={mobileMenuShown}
                   className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
@@ -275,10 +276,10 @@ const HomeNavbar = () => {
                   className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                 >
                   Masuk
-                </NavLink> */}
+                </NavLink>
               </>
             )}
-          </div>
+          </div> */}
         </Grid>
       </div>
     </>
