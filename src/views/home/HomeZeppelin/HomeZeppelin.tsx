@@ -80,7 +80,7 @@ const HomeZeppelin = () => {
   };
 
   useEffect(() => {
-    document.title = "HoME 2021 - Zeppelin";
+    document.title = "HoME 2021: Zeppelin";
     setTimeout(() => {
       setZeppelin(true);
     }, 1998);

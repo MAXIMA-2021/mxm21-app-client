@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import * as Beranda from "./views/beranda";
 import { AuthRouters, HomeRouters, StateRouters } from "./routers";
@@ -13,6 +13,12 @@ import { ErrorPage } from "./views/error";
 
 export default function AppRouter() {
   const location = useLocation();
+
+  // useEffect(() => {
+  //   console.log(location);
+  //   window.scrollTo(0, 0);
+  // }, [location.pathname]);
+
   return (
     <Switch>
       <DashboardProtectedRoute path="/admin/:path1?/:path2?/:path3?" exact>
@@ -39,13 +45,11 @@ export default function AppRouter() {
       />
       <Route path="/404" exact component={ErrorPage} />
       <Route path="/auth/:path1?/:path2?" exact>
-        <div>
-          <AuthRouters />
-        </div>
+        <AuthRouters location={location} />
       </Route>
       <Route>
         <HomeNavbar />
-        <AnimatePresence exitBeforeEnter initial={false}>
+        <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
             <Route path="/home/:path1?/:path2?" exact>
               <HomeRouters />
@@ -55,20 +59,16 @@ export default function AppRouter() {
             </StateProtectedRoute>
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
-                <Route path="/" exact component={Beranda.Beranda} />
-                <HomeFooter />
-              </div>
-            </Route>
-            <Route>
-              <div style={{ minHeight: "100vh", paddingBottom: "37.5rem" }}>
                 <Switch>
+                  <Route path="/" exact component={Beranda.Beranda} />
                   <Route path="/about-us" component={Beranda.AboutUs} />
                   <Route path="/faq" component={Beranda.FAQ} />
-                  <Route render={() => <Redirect to="/404" />} />
+                  <Route render={() => <Redirect to="/" />} />
                 </Switch>
                 <HomeFooter />
               </div>
             </Route>
+            <Route render={() => <Redirect to="/404" />} />
           </Switch>
         </AnimatePresence>
       </Route>

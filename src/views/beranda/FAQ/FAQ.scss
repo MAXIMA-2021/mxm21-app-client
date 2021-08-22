@@ -1,0 +1,86 @@
+.faqpage-container {
+  margin: 1rem 1rem -6rem 1rem;
+}
+
+.accordion-container {
+  margin-bottom: -4rem;
+  z-index: 1;
+}
+
+.faqpage-title {
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .faqpage-container {
+    margin: 3rem 2rem -2rem 2rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
+  }
+
+  .faqpage-title {
+    font-size: 0.85rem;
+    line-height: 1.45rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .faqpage-container {
+    margin: 3rem 5rem -1rem 5rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
+  }
+
+  .faqpage-title {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* For desktop: */
+  .faqpage-container {
+    margin: 2rem 10rem -1rem 10rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
+  }
+
+  .faqpage-title {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  /* For desktop L: */
+  .faqpage-container {
+    margin: 4rem 20rem -1rem 20rem;
+  }
+
+  .accordion-container {
+    margin-bottom: 0rem;
+  }
+
+  .faqpage-title {
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1650px) {
+  /* For desktop L: */
+  .faqpage-container {
+    margin: 8rem 20rem -1rem 20rem;
+  }
+}

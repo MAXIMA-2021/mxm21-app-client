@@ -41,11 +41,13 @@
 }
 
 .loginmhs-form-outer-container {
+  display: flex;
   z-index: 1;
   background: white;
   min-width: 45vw;
   padding: 2rem;
   min-height: auto;
+  overflow: hidden;
   & .loginmhs-form-inner-container {
     min-width: 400px;
     width: 100%;

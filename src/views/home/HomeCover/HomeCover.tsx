@@ -53,7 +53,7 @@ const HomeCover = () => {
   };
 
   useEffect(() => {
-    document.title = "HoME 2021 - Selamat Datang";
+    document.title = "HoME 2021: Selamat Datang";
   }, []);
 
   return (

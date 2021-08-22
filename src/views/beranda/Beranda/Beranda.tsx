@@ -10,7 +10,7 @@ import {
   moonChicken,
   jacquelleBeauty,
 } from "../../../assets/beranda";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SplitText } from "./SplitText";
@@ -236,7 +236,9 @@ const FaqSection = () => {
                 <h3>
                   Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
                 </h3>
-                <button>Kunjungi FAQ</button>
+                <button>
+                  <Link to="/faq">Kunjungi FAQ</Link>
+                </button>
               </Flex>
             </motion.div>
           </Flex>
@@ -248,6 +250,13 @@ const FaqSection = () => {
 
 const SponsorSection = () => {
   return (
+    <motion.div
+      exit={{
+        y: "100%",
+        opacity: 0,
+        transition: { delay: 0.2, ...transition },
+      }}
+    >
     <Flex className="spsr-outer-container">
       <div className="spsr-inner-container">
         <div className="spsr-header">
@@ -266,6 +275,8 @@ const SponsorSection = () => {
         </Flex>
       </div>
     </Flex>
+    </motion.div>
+
   );
 };
 

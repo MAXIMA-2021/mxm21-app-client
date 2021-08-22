@@ -246,12 +246,13 @@ const HomeNavbar = () => {
             FAQ
           </NavLink>
           <NavLink
-            to="/about-us"
-            onClick={mobileMenuShown}
-            className="btn-main-nav btn-styling-main-nav"
-          >
-            About Us
-          </NavLink>
+              to="/"
+              onClick={(e) => e.preventDefault()}
+              className="btn-main-nav"
+              style={{ cursor: "not-allowed", color: "gray" }}
+            >
+              Coming Soon
+            </NavLink>
           {/* <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
