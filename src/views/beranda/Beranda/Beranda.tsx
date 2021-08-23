@@ -116,7 +116,7 @@ const MaximaTimeline = () => {
     {
       header: "Malam Puncak",
       image: timeline3,
-      subheader: "STARRING: Nama guest star",
+      subheader: "",
       startDate: "18 September",
       endDate: "",
     },
