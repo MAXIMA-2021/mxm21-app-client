@@ -81,9 +81,7 @@ const HeroContainer = () => {
             className="btn-linear-gradient"
             variants={buttonSlideVariant}
           >
-            <Link to='/home'>
-            Kunjungi HoME 2021 
-            </Link>
+            <Link to="/home">Kunjungi HoME 2021</Link>
           </motion.button>
         </Flex>
       </Flex>
@@ -237,9 +235,9 @@ const FaqSection = () => {
                 <h3>
                   Silakan kunjungi halaman FAQ atau klik tombol di bawah ini ya!
                 </h3>
-                <button>
-                  <Link to="/faq">Kunjungi FAQ</Link>
-                </button>
+                <Link to="/faq">
+                  <button>Kunjungi FAQ</button>
+                </Link>
               </Flex>
             </motion.div>
           </Flex>
@@ -258,26 +256,25 @@ const SponsorSection = () => {
         transition: { delay: 0.2, ...transition },
       }}
     >
-    <Flex className="spsr-outer-container">
-      <div className="spsr-inner-container">
-        <div className="spsr-header">
-          <h2>Disponsori oleh</h2>
+      <Flex className="spsr-outer-container">
+        <div className="spsr-inner-container">
+          <div className="spsr-header">
+            <h2>Disponsori oleh</h2>
+          </div>
+          <Flex className="spsr-logo-container">
+            <div className="spsr-logo">
+              <img src={dermaExpress} alt="Derma Express" />
+            </div>
+            <div className="spsr-logo">
+              <img src={moonChicken} alt="Moon Chicken" />
+            </div>
+            <div className="spsr-logo">
+              <img src={jacquelleBeauty} alt="Jacquelle Beaute" />
+            </div>
+          </Flex>
         </div>
-        <Flex className="spsr-logo-container">
-          <div className="spsr-logo">
-            <img src={dermaExpress} alt="Derma Express" />
-          </div>
-          <div className="spsr-logo">
-            <img src={moonChicken} alt="Moon Chicken" />
-          </div>
-          <div className="spsr-logo">
-            <img src={jacquelleBeauty} alt="Jacquelle Beaute" />
-          </div>
-        </Flex>
-      </div>
-    </Flex>
+      </Flex>
     </motion.div>
-
   );
 };
 
