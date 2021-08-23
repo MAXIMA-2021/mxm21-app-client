@@ -167,7 +167,7 @@ const Card = (props: any) => {
             <div className="card-text">
               <div className="name">{props.name}</div>
               <div className="category">{props.category}</div>
-              {loading ? (
+              {imageLoading ? (
                 <SkeletonText mt="4" noOfLines={5} spacing="" />
               ) : (
                 <div className="desc">{props.shortDesc}</div>
