@@ -116,8 +116,8 @@ const MaximaTimeline = () => {
     {
       header: "Malam Puncak",
       image: timeline3,
-      subheader: "",
-      startDate: "18 September",
+      subheader: "Malam Puncak MAXIMA 2021",
+      startDate: "12 September",
       endDate: "",
     },
   ];
