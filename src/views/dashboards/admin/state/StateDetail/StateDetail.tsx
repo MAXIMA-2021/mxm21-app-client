@@ -89,7 +89,7 @@ const StateDetail: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "mahasiswa",
       label: "Nama Mahasiswa",
       options: {
         filter: true,
@@ -259,6 +259,7 @@ const StateDetail: React.FC = () => {
                   fontSize={"1.2rem"}
                   fontWeight={600}
                   mt={"0.2rem"}
+                  color="grey"
                   textAlign={isSmallerThan600px ? "center" : "left"}
                 >
                   {detailState?.category}

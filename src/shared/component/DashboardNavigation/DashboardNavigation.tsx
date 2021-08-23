@@ -13,7 +13,6 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import FlightIcon from "@material-ui/icons/Flight";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import Face from "@material-ui/icons/Face";
-import LinkIcon from "@material-ui/icons/Link";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
@@ -26,7 +25,6 @@ const DashboardNavigation = (props: any) => {
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
 
-  const location = useLocation();
 
   let isAdmin = false;
   let isPanitia = true;
