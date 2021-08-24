@@ -228,6 +228,7 @@ const HomeTwibbon = () => {
                           base: "50%",
                           md: "100%",
                         }}
+                        h="100%"
                       />
                     </Box>
                     <Flex
@@ -383,7 +384,9 @@ const HomeTwibbon = () => {
                           variant="squared"
                           colorScheme="navy-cyan"
                           className="btn-detail"
-                          onClick={() => { history.goBack() }}
+                          onClick={() => {
+                            history.goBack();
+                          }}
                         >
                           Kembali
                         </MxmButton>
