@@ -161,7 +161,7 @@ const DaftarAkunPanitia: React.FC = () => {
     },
     {
       name: "verified",
-      label: "Active Toggle",
+      label: "Verifikasi",
       options: {
         filter: true,
         sort: true,
@@ -179,7 +179,7 @@ const DaftarAkunPanitia: React.FC = () => {
           style: { minWidth: "100px" },
         }),
         customBodyRender: (value: any, tableMeta: any) => (
-          <Text ml={9}>
+          <Text margin="0" display="flex" justifyContent="center" w="100%">
             {value ? (
               <Switch
                 isChecked

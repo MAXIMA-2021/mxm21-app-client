@@ -48,6 +48,10 @@ const StateDetail: React.FC = () => {
         const returnedDataState = await adminService.getSpecificState(stateID);
         document.title = `[Dashboard] - Detail STATE ${returnedDataState[0]?.name}`;
         setDetailState(returnedDataState[0]);
+        window.sessionStorage.setItem(
+          "organisator",
+          returnedDataState[0]?.name
+        );
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -89,7 +93,7 @@ const StateDetail: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "mahasiswa",
+      name: "name",
       label: "Nama Mahasiswa",
       options: {
         filter: true,
@@ -259,7 +263,6 @@ const StateDetail: React.FC = () => {
                   fontSize={"1.2rem"}
                   fontWeight={600}
                   mt={"0.2rem"}
-                  color="grey"
                   textAlign={isSmallerThan600px ? "center" : "left"}
                 >
                   {detailState?.category}

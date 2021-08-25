@@ -13,6 +13,7 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import FlightIcon from "@material-ui/icons/Flight";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import Face from "@material-ui/icons/Face";
+import LinkIcon from "@material-ui/icons/Link";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
@@ -25,8 +26,10 @@ const DashboardNavigation = (props: any) => {
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
 
+  const location = useLocation();
 
   let isAdmin = false;
+  let isWeb = false;
   let isPanitia = true;
   const token: string | null = window.sessionStorage.getItem("token");
   let decoded: any = null;
@@ -42,6 +45,7 @@ const DashboardNavigation = (props: any) => {
     });
   } finally {
     decoded.division === "D01" && (isAdmin = true);
+    decoded.division === "D02" && (isWeb = true);
     decoded.stateID && (isPanitia = false);
   }
 
@@ -209,7 +213,7 @@ const DashboardNavigation = (props: any) => {
               </div>
               <h4>{props.name}</h4>
               <h6 style={{ textTransform: "capitalize" }}>
-                {window?.sessionStorage?.getItem("role") || "panitia"}
+                {window?.sessionStorage?.getItem("organisator") || "panitia"}
               </h6>
             </div>
           </NavLink>
@@ -393,6 +397,43 @@ const DashboardNavigation = (props: any) => {
                       >
                         <RadioButtonUncheckedOutlinedIcon />
                         Tambah Akun Organisator
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/admin/daftar-organisator"
+                        activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Daftar Akun Organisator
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              )}
+
+              {isWeb && (
+                <li
+                  onClick={sidebarDropdownActive}
+                  className={`dropdown ${!isPanitia && "hide"}`}
+                >
+                  <Flex className="dropdown-header">
+                    <PersonAddIcon onClick={sidebarDropdownActiveSvg} />
+                    Akun MAXIMA 2021
+                    <ArrowBackIosRoundedIcon
+                      onClick={sidebarDropdownActiveSvg}
+                    />
+                  </Flex>
+                  <ul className="dropdown-items">
+                    <li>
+                      <NavLink
+                        to="/admin/daftar-panitia"
+                        activeClassName="dropdown-item_active"
+                        onClick={handleMobile}
+                      >
+                        <RadioButtonUncheckedOutlinedIcon />
+                        Daftar Akun Panitia
                       </NavLink>
                     </li>
                     <li>
