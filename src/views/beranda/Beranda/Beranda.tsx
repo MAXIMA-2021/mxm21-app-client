@@ -9,6 +9,7 @@ import {
   dermaExpress,
   moonChicken,
   jacquelleBeauty,
+  lokalate,
 } from "../../../assets/beranda";
 import { Link } from "react-router-dom";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
@@ -270,6 +271,9 @@ const SponsorSection = () => {
             </div>
             <div className="spsr-logo">
               <img src={jacquelleBeauty} alt="Jacquelle Beaute" />
+            </div>
+            <div className="spsr-logo">
+              <img src={lokalate} alt="lokalate" />
             </div>
           </Flex>
         </div>
