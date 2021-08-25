@@ -218,8 +218,7 @@ const HomeNavbar = () => {
       >
         <Grid
           templateRows={
-            //isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
-            "repeat(3, 1fr)"
+            isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
           }
           className="mobile-menu-grid"
         >
