@@ -152,7 +152,7 @@ const HomeNavbar = () => {
                   </NavLink>
                 ) : (
                   <>
-                    {/* <NavLink
+                    <NavLink
                       to="/auth/daftar"
                       className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                     >
@@ -163,7 +163,7 @@ const HomeNavbar = () => {
                       className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                     >
                       Masuk
-                    </NavLink> */}
+                    </NavLink>
                   </>
                 )}
               </motion.li>
@@ -254,7 +254,7 @@ const HomeNavbar = () => {
             >
               Coming Soon
             </NavLink>
-          {/* <div className="btn-main-nav-auth-container-mobile">
+          <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
                 to="/auth/keluar"
@@ -281,7 +281,7 @@ const HomeNavbar = () => {
                 </NavLink>
               </>
             )}
-          </div> */}
+          </div>
         </Grid>
       </div>
     </>
