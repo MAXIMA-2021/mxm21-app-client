@@ -200,8 +200,6 @@ const StateLists = () => {
     try {
       const returnedData = await stateService.getStateList();
       setData(returnedData);
-      console.log(returnedData);
-      // console.log(data?.find((state) => state.day === `D1`));
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -295,6 +293,15 @@ const StateLists = () => {
                       >
                         {data
                           .filter((card) => card.day === "D1")
+                          .sort((a: any, b: any) => {
+                            if (a?.name < b?.name) {
+                              return -1;
+                            }
+                            if (a?.name > b?.name) {
+                              return 1;
+                            }
+                            return 0;
+                          })
                           .map((card) => {
                             return card.quota === card.registered ? (
                               <Card
@@ -327,6 +334,15 @@ const StateLists = () => {
                       >
                         {data
                           .filter((card) => card.day === "D2")
+                          .sort((a: any, b: any) => {
+                            if (a?.name < b?.name) {
+                              return -1;
+                            }
+                            if (a?.name > b?.name) {
+                              return 1;
+                            }
+                            return 0;
+                          })
                           .map((card) => {
                             return card.quota === card.registered ? (
                               <Card
@@ -359,6 +375,15 @@ const StateLists = () => {
                       >
                         {data
                           .filter((card) => card.day === "D3")
+                          .sort((a: any, b: any) => {
+                            if (a?.name < b?.name) {
+                              return -1;
+                            }
+                            if (a?.name > b?.name) {
+                              return 1;
+                            }
+                            return 0;
+                          })
                           .map((card) => {
                             return card.quota === card.registered ? (
                               <Card
@@ -391,6 +416,15 @@ const StateLists = () => {
                       >
                         {data
                           .filter((card) => card.day === "D4")
+                          .sort((a: any, b: any) => {
+                            if (a?.name < b?.name) {
+                              return -1;
+                            }
+                            if (a?.name > b?.name) {
+                              return 1;
+                            }
+                            return 0;
+                          })
                           .map((card) => {
                             return card.quota === card.registered ? (
                               <Card
@@ -423,6 +457,15 @@ const StateLists = () => {
                       >
                         {data
                           .filter((card) => card.day === "D5")
+                          .sort((a: any, b: any) => {
+                            if (a?.name < b?.name) {
+                              return -1;
+                            }
+                            if (a?.name > b?.name) {
+                              return 1;
+                            }
+                            return 0;
+                          })
                           .map((card) => {
                             return card.quota === card.registered ? (
                               <Card

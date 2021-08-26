@@ -109,7 +109,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "400px" },
+          style: { minWidth: "350px" },
         }),
       },
     },
@@ -130,8 +130,32 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
+          style: { minWidth: "200px" },
+        }),
+      },
+    },
+    {
+      name: "attendanceTime",
+      label: "Jam Kehadiran",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
           style: { minWidth: "250px" },
         }),
+        customBodyRender: (value: any) => (
+          <Text>{value === null ? "N/A" : value}</Text>
+        ),
       },
     },
     {
