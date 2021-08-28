@@ -81,74 +81,82 @@ const DashboardNavigation = (props: any) => {
   };
 
   const sidebarDropdownActive = (event: any) => {
-    if (
-      event.target.parentNode
-        .querySelector(".dropdown-items")
-        .classList.contains("dropdown-items_open")
-    ) {
-      event.target.parentNode
-        .querySelector(".dropdown-items")
-        .classList.remove("dropdown-items_open");
+    try {
+      if (
+        event.target.parentNode
+          .querySelector(".dropdown-items")
+          .classList.contains("dropdown-items_open")
+      ) {
+        event.target.parentNode
+          .querySelector(".dropdown-items")
+          .classList.remove("dropdown-items_open");
 
-      event.target.parentNode
-        .querySelector(".dropdown-header")
-        .classList.remove("sidebar-nav_active");
-    } else {
-      event.target.parentNode
-        .querySelector(".dropdown-items")
-        .classList.add("dropdown-items_open");
+        event.target.parentNode
+          .querySelector(".dropdown-header")
+          .classList.remove("sidebar-nav_active");
+      } else {
+        event.target.parentNode
+          .querySelector(".dropdown-items")
+          .classList.add("dropdown-items_open");
 
-      event.target.parentNode
-        .querySelector(".dropdown-header")
-        .classList.add("sidebar-nav_active");
+        event.target.parentNode
+          .querySelector(".dropdown-header")
+          .classList.add("sidebar-nav_active");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const sidebarDropdownActiveSvg = (event: any) => {
-    if (event.target.localName === "svg") {
-      if (
-        event.target.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.contains("dropdown-items_open")
-      ) {
-        event.target.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.remove("dropdown-items_open");
+    try {
+      if (event.target.localName === "svg") {
+        if (
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.contains("dropdown-items_open")
+        ) {
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.remove("dropdown-items_open");
 
-        event.target.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.remove("sidebar-nav_active");
-      } else {
-        event.target.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.add("dropdown-items_open");
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.remove("sidebar-nav_active");
+        } else {
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.add("dropdown-items_open");
 
-        event.target.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.add("sidebar-nav_active");
+          event.target.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.add("sidebar-nav_active");
+        }
+      } else if (event.target.localName === "path") {
+        if (
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.contains("dropdown-items_open")
+        ) {
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.remove("dropdown-items_open");
+
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.remove("sidebar-nav_active");
+        } else {
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-items")
+            .classList.add("dropdown-items_open");
+
+          event.target.parentNode.parentNode.parentNode
+            .querySelector(".dropdown-header")
+            .classList.add("sidebar-nav_active");
+        }
       }
-    } else if (event.target.localName === "path") {
-      if (
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.contains("dropdown-items_open")
-      ) {
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.remove("dropdown-items_open");
-
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.remove("sidebar-nav_active");
-      } else {
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-items")
-          .classList.add("dropdown-items_open");
-
-        event.target.parentNode.parentNode.parentNode
-          .querySelector(".dropdown-header")
-          .classList.add("sidebar-nav_active");
-      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
