@@ -93,7 +93,7 @@ const StateDetail: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "mahasiswa",
       label: "Nama Mahasiswa",
       options: {
         filter: true,
@@ -136,7 +136,7 @@ const StateDetail: React.FC = () => {
     },
     {
       name: "attendanceTime",
-      label: "Jam Kehadiran",
+      label: "Jam Masuk",
       options: {
         filter: true,
         sort: true,
@@ -159,8 +159,8 @@ const StateDetail: React.FC = () => {
       },
     },
     {
-      name: "inEventAttendance",
-      label: "Kehadiran",
+      name: "exitAttendance",
+      label: "Status Absen",
       options: {
         filter: true,
         sort: true,
