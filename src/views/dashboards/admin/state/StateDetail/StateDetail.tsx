@@ -136,7 +136,7 @@ const StateDetail: React.FC = () => {
     },
     {
       name: "attendanceTime",
-      label: "Jam Kehadiran",
+      label: "Jam Absen",
       options: {
         filter: true,
         sort: true,
