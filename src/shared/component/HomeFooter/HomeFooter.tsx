@@ -74,12 +74,8 @@ const HomeFooter: React.FC = () => {
           {/* <a href="/about-us" className="nav-footer">
             About Us
           </a> */}
-          <NavLink
-            to="/"
-            className="nav-footer-alt"
-            onClick={(e) => e.preventDefault()}
-          >
-            Coming Soon
+          <NavLink to="/pusat-aset" className="nav-footer">
+            Pusat Aset
           </NavLink>
         </HStack>
         <HStack mb="1.5rem" spacing="2rem">
