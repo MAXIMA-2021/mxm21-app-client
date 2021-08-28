@@ -136,7 +136,7 @@ const StateDetail: React.FC = () => {
     },
     {
       name: "attendanceTime",
-      label: "Jam Absen",
+      label: "Jam Masuk",
       options: {
         filter: true,
         sort: true,
@@ -159,8 +159,8 @@ const StateDetail: React.FC = () => {
       },
     },
     {
-      name: "inEventAttendance",
-      label: "Kehadiran",
+      name: "exitAttendance",
+      label: "Status Absen",
       options: {
         filter: true,
         sort: true,
