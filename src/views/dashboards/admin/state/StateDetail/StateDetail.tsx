@@ -154,7 +154,9 @@ const StateDetail: React.FC = () => {
           style: { minWidth: "250px" },
         }),
         customBodyRender: (value: any) => (
-          <Text>{value === null ? "N/A" : value}</Text>
+          <Text>
+            {value === null ? "N/A" : new Date(value).toLocaleString()}
+          </Text>
         ),
       },
     },

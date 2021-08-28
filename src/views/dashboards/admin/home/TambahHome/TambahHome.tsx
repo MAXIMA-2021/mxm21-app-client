@@ -10,7 +10,6 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
-import { Palette } from "../../../../../types/enums";
 import "./TambahHome.scss";
 import { MxmLogo } from "../../../../../assets";
 import {

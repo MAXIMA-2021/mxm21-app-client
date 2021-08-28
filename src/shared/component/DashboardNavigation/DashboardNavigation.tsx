@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./DashboardNavigation.scss";
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -13,7 +13,6 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import FlightIcon from "@material-ui/icons/Flight";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import Face from "@material-ui/icons/Face";
-import LinkIcon from "@material-ui/icons/Link";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
@@ -25,8 +24,6 @@ const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
-
-  const location = useLocation();
 
   let isAdmin = false;
   let isWeb = false;
@@ -103,9 +100,7 @@ const DashboardNavigation = (props: any) => {
           .querySelector(".dropdown-header")
           .classList.add("sidebar-nav_active");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch {}
   };
 
   const sidebarDropdownActiveSvg = (event: any) => {
@@ -155,9 +150,7 @@ const DashboardNavigation = (props: any) => {
             .classList.add("sidebar-nav_active");
         }
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch {}
   };
 
   return (

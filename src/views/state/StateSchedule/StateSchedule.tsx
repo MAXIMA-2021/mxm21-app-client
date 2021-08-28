@@ -8,7 +8,6 @@ import {
   Image,
   useToast,
   SkeletonCircle,
-  Skeleton,
 } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";

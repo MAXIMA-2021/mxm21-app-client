@@ -1,5 +1,5 @@
-export { default as timeline1 } from "./Home_2.png";
-export { default as timeline2 } from "./STATE_2.png";
+export { default as timeline1 } from "./Home_2.jpg";
+export { default as timeline2 } from "./STATE_2.jpg";
 export { default as timeline3 } from "./MalPun_2.png";
 export { default as dermaExpress } from "./dermaExpress.png";
 export { default as moonChicken } from "./moonChicken.png";

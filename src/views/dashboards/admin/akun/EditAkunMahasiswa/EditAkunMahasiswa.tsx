@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   Flex,
