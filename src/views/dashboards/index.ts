@@ -3,8 +3,6 @@ export {
   DaftarState,
   StateDetail,
   EditState,
-  TambahPIC,
-  DaftarPIC,
   DaftarHome,
   EditHome,
   TambahHome,

@@ -1,11 +1,4 @@
-export {
-  TambahState,
-  DaftarState,
-  StateDetail,
-  EditState,
-  TambahPIC,
-  DaftarPIC,
-} from "./state";
+export { TambahState, DaftarState, StateDetail, EditState } from "./state";
 
 export {
   DaftarHome,

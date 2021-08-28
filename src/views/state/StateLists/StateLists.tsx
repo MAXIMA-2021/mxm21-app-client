@@ -220,7 +220,6 @@ const StateLists = () => {
   useEffect(() => {
     document.title = "STATE 2021 - Daftar STATE";
     setHari(1);
-    console.log(searchTanggalState("2"));
     fetchData();
   }, []);
 

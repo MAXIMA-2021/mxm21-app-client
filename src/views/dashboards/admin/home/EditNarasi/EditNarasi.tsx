@@ -63,8 +63,6 @@ const EditNarasi: React.FC = () => {
   useEffect(() => {
     setValue("title", dialogue?.title);
     setValue("message", dialogue?.message);
-    console.log(dialogue.title);
-    console.log(dialogue.message);
   }, [dialogue]);
 
   const onSubmit = async (data: any) => {

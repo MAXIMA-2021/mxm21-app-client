@@ -38,20 +38,12 @@ const AdminRouters = (props: any) => {
                 component={Dashboards.TambahState}
               />
               <Route
-                path="/admin/tambah-pic"
-                component={Dashboards.TambahPIC}
-              />
-              <Route
                 path="/admin/edit-state/:stateID"
                 component={Dashboards.EditState}
               />
               <Route
                 path="/admin/daftar-state"
                 component={Dashboards.DaftarState}
-              />
-              <Route
-                path="/admin/daftar-pic"
-                component={Dashboards.DaftarPIC}
               />
               <Route
                 path="/admin/daftar-maba"
