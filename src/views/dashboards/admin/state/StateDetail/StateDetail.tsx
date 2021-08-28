@@ -93,7 +93,7 @@ const StateDetail: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "mahasiswa",
       label: "Nama Mahasiswa",
       options: {
         filter: true,
