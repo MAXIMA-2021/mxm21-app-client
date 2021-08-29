@@ -67,19 +67,26 @@ const PusatAset = () => {
       </motion.div>
       {/* <Tilt options={{ max: 25 }} style={{ background: "white !important" }}> */}
       <div className="flex-vbg">
-        <Center>
-          <div className="aset-title" style={{ color: "#41ceba" }}>
-            DREAMER
-          </div>
-        </Center>
-        <Center>
-          <div
-            className="aset-subtitle"
-            style={{ backgroundColor: "#41ceba", color: "white" }}
-          >
-            Mahasiswa Baru UMN 2021
-          </div>
-        </Center>
+        <motion.div
+          variants={headerVariants}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <Center>
+            <div className="aset-title" style={{ color: "#41ceba" }}>
+              DREAMER
+            </div>
+          </Center>
+          <Center>
+            <div
+              className="aset-subtitle"
+              style={{ backgroundColor: "#41ceba", color: "white" }}
+            >
+              Mahasiswa Baru UMN 2021
+            </div>
+          </Center>
+        </motion.div>
         <motion.div
           variants={slideVariant1}
           initial="exit"
@@ -95,19 +102,26 @@ const PusatAset = () => {
             </a>
           </div>
         </motion.div>
-        <Center>
-          <div className="aset-title" style={{ color: "#164273" }}>
-            MORPHEUS
-          </div>
-        </Center>
-        <Center>
-          <div
-            className="aset-subtitle"
-            style={{ backgroundColor: "#164273", color: "white" }}
-          >
-            Organisator MAXIMA 2021
-          </div>
-        </Center>
+        <motion.div
+          variants={headerVariants}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <Center>
+            <div className="aset-title" style={{ color: "#164273" }}>
+              MORPHEUS
+            </div>
+          </Center>
+          <Center>
+            <div
+              className="aset-subtitle"
+              style={{ backgroundColor: "#164273", color: "white" }}
+            >
+              Organisator MAXIMA 2021
+            </div>
+          </Center>
+        </motion.div>
         <motion.div
           variants={slideVariant2}
           initial="exit"
@@ -123,19 +137,26 @@ const PusatAset = () => {
             </a>
           </div>
         </motion.div>
-        <Center>
-          <div className="aset-title" style={{ color: "#EB2378" }}>
-            DAKOTA
-          </div>
-        </Center>
-        <Center>
-          <div
-            className="aset-subtitle"
-            style={{ backgroundColor: "#EB2378", color: "white" }}
-          >
-            Panitia MAXIMA 2021
-          </div>
-        </Center>
+        <motion.div
+          variants={headerVariants}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+        >
+          <Center>
+            <div className="aset-title" style={{ color: "#EB2378" }}>
+              DAKOTA
+            </div>
+          </Center>
+          <Center>
+            <div
+              className="aset-subtitle"
+              style={{ backgroundColor: "#EB2378", color: "white" }}
+            >
+              Panitia MAXIMA 2021
+            </div>
+          </Center>
+        </motion.div>
         <motion.div
           variants={slideVariant3}
           initial="exit"
