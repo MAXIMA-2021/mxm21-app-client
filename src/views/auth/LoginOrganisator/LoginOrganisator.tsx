@@ -167,6 +167,7 @@ const LoginOrganisator: React.FC = () => {
                           className="show-password"
                           size="base"
                           onClick={handleClick}
+                          tabIndex={-1}
                         >
                           {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>

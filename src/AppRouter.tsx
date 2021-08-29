@@ -58,6 +58,7 @@ export default function AppRouter() {
                   <Route path="/" exact component={Beranda.Beranda} />
                   <Route path="/about-us" component={Beranda.AboutUs} />
                   <Route path="/faq" component={Beranda.FAQ} />
+                  <Route path="/pusat-aset" component={Beranda.PusatAset} />
                   <Route render={() => <Redirect to="/" />} />
                 </Switch>
                 <HomeFooter />

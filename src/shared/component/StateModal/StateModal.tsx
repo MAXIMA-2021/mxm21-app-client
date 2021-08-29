@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./StateModal.scss";
 import {
+  Button,
   HStack,
   PinInput,
   PinInputField,
@@ -14,6 +15,7 @@ import {
   ModalCloseButton,
   FormControl,
   FormErrorIcon,
+  Spinner,
 } from "@chakra-ui/react";
 import { MxmButton } from "../../styled/buttons";
 import { MxmFormErrorMessage } from "../../styled/input";
@@ -184,6 +186,8 @@ export const PilihState = (props: any) => {
           <MxmButton
             colorScheme="navy-cyan"
             variant="squared"
+            isLoading={props.loading ? true : false}
+            loadingText={props.loading ? "Loading..." : ""}
             onClick={() => props.handleRegister(props.stateID)}
           >
             Ya, Ambil

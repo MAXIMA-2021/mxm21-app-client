@@ -128,12 +128,10 @@ const HomeNavbar = () => {
                   FAQ
                 </NavLink>
                 <NavLink
-                  to="/"
-                  onClick={(e) => e.preventDefault()}
-                  className="btn-main-nav"
-                  style={{ cursor: "not-allowed", color: "gray" }}
+                  to="/pusat-aset"
+                  className="btn-main-nav btn-styling-main-nav"
                 >
-                  Coming Soon
+                  Pusat Aset
                 </NavLink>
               </li>
               <motion.li
@@ -152,7 +150,7 @@ const HomeNavbar = () => {
                   </NavLink>
                 ) : (
                   <>
-                    {/* <NavLink
+                    <NavLink
                       to="/auth/daftar"
                       className="btn-main-nav-auth btn-styling-main-nav-auth-ghost"
                     >
@@ -163,7 +161,7 @@ const HomeNavbar = () => {
                       className="btn-main-nav-auth btn-styling-main-nav-auth-gradient"
                     >
                       Masuk
-                    </NavLink> */}
+                    </NavLink>
                   </>
                 )}
               </motion.li>
@@ -218,8 +216,7 @@ const HomeNavbar = () => {
       >
         <Grid
           templateRows={
-            //isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
-            "repeat(3, 1fr)"
+            isMahasiswa ? "repeat(4,1fr) 1.3fr" : "repeat(3, 1fr) 1.3fr"
           }
           className="mobile-menu-grid"
         >
@@ -247,14 +244,13 @@ const HomeNavbar = () => {
             FAQ
           </NavLink>
           <NavLink
-              to="/"
-              onClick={(e) => e.preventDefault()}
-              className="btn-main-nav"
-              style={{ cursor: "not-allowed", color: "gray" }}
-            >
-              Coming Soon
-            </NavLink>
-          {/* <div className="btn-main-nav-auth-container-mobile">
+            to="/pusat-aset"
+            onClick={mobileMenuShown}
+            className="btn-main-nav btn-styling-main-nav"
+          >
+            Pusat Aset
+          </NavLink>
+          <div className="btn-main-nav-auth-container-mobile">
             {isLoggedIn ? (
               <NavLink
                 to="/auth/keluar"
@@ -281,7 +277,7 @@ const HomeNavbar = () => {
                 </NavLink>
               </>
             )}
-          </div> */}
+          </div>
         </Grid>
       </div>
     </>

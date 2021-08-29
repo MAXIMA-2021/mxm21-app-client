@@ -16,12 +16,9 @@ import {
   MxmDivider,
   MxmFormLabel,
   MxmFormErrorMessage,
-  MxmSelect,
   MxmInput,
   MxmTextarea,
 } from "../../../../../shared/styled/input";
-import { Palette } from "../../../../../types/enums";
-import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import Swal from "sweetalert2";
 import adminService from "../../../../../services/admin";
 
@@ -63,8 +60,6 @@ const EditNarasi: React.FC = () => {
   useEffect(() => {
     setValue("title", dialogue?.title);
     setValue("message", dialogue?.message);
-    console.log(dialogue.title);
-    console.log(dialogue.message);
   }, [dialogue]);
 
   const onSubmit = async (data: any) => {

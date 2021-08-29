@@ -13,11 +13,10 @@ import {
   Text,
   HStack,
   Box,
-  Spinner,
   useToast,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { Palette, HomeChapter } from "../../../../../types/enums";
+import { HomeChapter } from "../../../../../types/enums";
 import "./EditHome.scss";
 import { MxmLogo } from "../../../../../assets";
 import {
@@ -28,7 +27,6 @@ import {
   MxmTextarea,
   MxmDivider,
 } from "../../../../../shared/styled/input";
-import { MxmButton } from "../../../../../shared/styled/buttons";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import MUIDataTable from "mui-datatables";
@@ -200,8 +198,8 @@ const EditHome: React.FC = () => {
     Swal.fire({
       title:
         '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
-      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
-      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+      cancelButtonText: `<span style="font-family: Poppins, sans-serif;">Batalkan</span>`,
+      confirmButtonText: `<span style="font-family: Poppins, sans-serif;">Hapus</span>`,
       confirmButtonColor: "#e40000",
       denyButtonColor: "#fff",
       showCancelButton: true,

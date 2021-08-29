@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import "./FAQ.scss";
 import { motion } from "framer-motion";
+import dataFAQ from "./DataFAQ";
 
 const transition = {
   duration: 0.5,
@@ -26,7 +27,7 @@ const headerVariants = {
   },
 };
 
-const slideVariant = {
+const slideVariant1 = {
   rest: { x: -300, opacity: 0 },
   enter: { x: 0, opacity: 1, transition: { delay: 0.15, ...transition } },
   exit: { x: -300, opacity: 0, transition: { delay: 0.15, ...transition } },
@@ -41,11 +42,6 @@ const slideVariant3 = {
   enter: { x: 0, opacity: 1, transition: { delay: 0.45, ...transition } },
   exit: { x: -300, opacity: 0, transition: { delay: 0.45, ...transition } },
 };
-const slideVariant4 = {
-  rest: { x: -300, opacity: 0 },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.6, ...transition } },
-  exit: { x: -300, opacity: 0, transition: { delay: 0.6, ...transition } },
-};
 
 const footerVariants = {
   exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
@@ -53,6 +49,32 @@ const footerVariants = {
     y: "0%",
     opacity: 1,
     transition,
+  },
+};
+
+const styleNavy = {
+  expand: {
+    bg: "#164273",
+    color: "white",
+    borderRadius: "5px 5px 0 0",
+    border: "1px solid #164273",
+  },
+  hover: {
+    bg: "#164273",
+    color: "white",
+  },
+};
+
+const stylePink = {
+  expand: {
+    bg: "#EB2378",
+    color: "white",
+    borderRadius: "5px 5px 0 0",
+    border: "1px solid #EB2378",
+  },
+  hover: {
+    bg: "#EB2378",
+    color: "white",
   },
 };
 
@@ -76,39 +98,44 @@ const FAQ = () => {
       </motion.div>
       <Accordion allowMultiple mt="1rem" className="accordion-container">
         <motion.div
-          variants={slideVariant}
+          variants={slideVariant1}
           initial="exit"
           animate="enter"
           exit="exit"
+          style={{ marginBottom: 30 }}
         >
-          <AccordionItem>
-            <h2>
-              <AccordionButton
-                _expanded={{
-                  bg: "#EB2378",
-                  color: "white",
-                  borderRadius: "5px 5px 0 0",
-                }}
-                _hover={{ bg: "#EB2378", color: "white" }}
-              >
-                <Box flex="1" textAlign="left" className="faqpage-title">
-                  Apakah wajib untuk mendaftar akun terlebih dahulu sebelum
-                  mengunjungi HoME MAXIMA 2021?
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel
-              pb={4}
-              border="1px solid gray"
-              borderRadius="0 0 5px 5px"
-              mb={5}
-              className="desc-detail"
-            >
-              Tidak perlu ya, untuk mengunjungi HoME, Maximers dapat langsung
-              akses melalui laman maxima.umn.ac.id dan pilih menu bagian HoME.
-            </AccordionPanel>
-          </AccordionItem>
+          <div className="faq-subtitle" style={{ color: "#EB2378" }}>
+            HoME
+          </div>
+          {dataFAQ.home.map((data, i) => {
+            return (
+              <AccordionItem key={i}>
+                <h2>
+                  <AccordionButton
+                    _expanded={
+                      i % 2 === 0 ? styleNavy.expand : stylePink.expand
+                    }
+                    _hover={i % 2 === 0 ? styleNavy.hover : stylePink.hover}
+                  >
+                    <Box flex="1" textAlign="left" className="faqpage-title">
+                      {data.question}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel
+                  pb={2}
+                  border="1px solid gray"
+                  borderTop="none"
+                  borderRadius="0 0 5px 5px"
+                  mb={2}
+                  className="desc-detail"
+                >
+                  {data.answer}
+                </AccordionPanel>
+              </AccordionItem>
+            );
+          })}
         </motion.div>
 
         <motion.div
@@ -116,37 +143,40 @@ const FAQ = () => {
           initial="exit"
           animate="enter"
           exit="exit"
+          style={{ marginBottom: 30 }}
         >
-          <AccordionItem>
-            <h2>
-              <AccordionButton
-                _expanded={{
-                  bg: "#164273",
-                  color: "white",
-                  borderRadius: "5px 5px 0 0",
-                }}
-                _hover={{ bg: "#164273", color: "white" }}
-              >
-                <Box flex="1" textAlign="left" className="faqpage-title">
-                  Apakah diwajibkan melihat seluruh 8 zona yang ada?
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel
-              pb={4}
-              border="1px solid gray"
-              borderRadius="0 0 5px 5px"
-              mb={5}
-              className="desc-detail"
-            >
-              Tidak diwajibkan untuk mengunjungi seluruh 8 zona yang ada. Akan
-              tetapi, akan lebih baik apabila Maximers dapat mengunjungi seluruh
-              zonanya. Dengan begitu, bekal informasi yang Maximers miliki makin
-              banyak, sehingga ketika memilih STATE nanti, Maximers pun menjadi
-              makin yakin akan pilihannya.
-            </AccordionPanel>
-          </AccordionItem>
+          <div className="faq-subtitle" style={{ color: "#164273" }}>
+            STATE
+          </div>
+          {dataFAQ.state.map((data, i) => {
+            return (
+              <AccordionItem key={i}>
+                <h2>
+                  <AccordionButton
+                    _expanded={
+                      i % 2 === 0 ? stylePink.expand : styleNavy.expand
+                    }
+                    _hover={i % 2 === 0 ? stylePink.hover : styleNavy.hover}
+                  >
+                    <Box flex="1" textAlign="left" className="faqpage-title">
+                      {data.question}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel
+                  pb={2}
+                  border="1px solid gray"
+                  borderTop="none"
+                  borderRadius="0 0 5px 5px"
+                  mb={2}
+                  className="desc-detail"
+                >
+                  {data.answer}
+                </AccordionPanel>
+              </AccordionItem>
+            );
+          })}
         </motion.div>
 
         <motion.div
@@ -154,84 +184,43 @@ const FAQ = () => {
           initial="exit"
           animate="enter"
           exit="exit"
+          style={{ marginBottom: 30 }}
         >
-          <AccordionItem>
-            <h2>
-              <AccordionButton
-                _expanded={{
-                  bg: "#EB2378",
-                  color: "white",
-                  borderRadius: "5px 5px 0 0",
-                }}
-                _hover={{ bg: "#EB2378", color: "white" }}
-              >
-                <Box flex="1" textAlign="left" className="faqpage-title">
-                  Apakah wajib untuk post Twibbon?
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel
-              pb={4}
-              border="1px solid gray"
-              borderRadius="0 0 5px 5px"
-              mb={5}
-              className="desc-detail"
-            >
-              Twibbon disediakan sebagai wadah bagi Maximers untuk
-              mengekspresikan partisipasinya dalam meramaikan HoME MAXIMA 2021.
-              Twibbon tidak bersifat wajib, tetapi Maximers diharapkan untuk
-              dapat berpartisipasi meramaikan HoME dengan memasang Twibbon.
-              Pemasangan Twibbon menjadi wajib apabila Maximers mengikuti
-              Zeppelin HoME Competition, karena Twibbon merupakan syarat untuk
-              mengikuti Zeppelin HoME Competition. Informasi mengenai Twibbon
-              dapat dilihat pada laman HoME setelah Maximers mengakhiri
-              perjalanannya di HoME.
-            </AccordionPanel>
-          </AccordionItem>
-        </motion.div>
-
-        <motion.div
-          variants={slideVariant4}
-          initial="exit"
-          animate="enter"
-          exit="exit"
-        >
-          <AccordionItem>
-            <h2>
-              <AccordionButton
-                _expanded={{
-                  bg: "#164273",
-                  color: "white",
-                  borderRadius: "5px 5px 0 0",
-                }}
-                _hover={{ bg: "#164273", color: "white" }}
-              >
-                <Box flex="1" textAlign="left" className="faqpage-title">
-                  Apakah wajib mengikuti Zeppelin HoME Competition?
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel
-              pb={4}
-              border="1px solid gray"
-              borderRadius="0 0 5px 5px"
-              mb={5}
-              className="desc-detail"
-            >
-              Hadirnya Zeppelin HoME Competition diharapkan dapat membantu
-              Maximers dalam merangkai mimpi menjadi langkah-langkah kecil.
-              Partisipasi Maximers di dalam Zeppelin HoME Competition ini tidak
-              bersifat wajib. Namun, terdapat SKKM Minat & Bakat dan hadiah yang
-              menarik bagi Maximers yang mengikuti serta memenangkan Zeppelin
-              HoME Competition. Informasi mengenai Zeppelin HoME Competition
-              dapat Maximers lihat pada laman HoME setelah Maximers membaca
-              informasi seputar Twibbon.
-            </AccordionPanel>
-          </AccordionItem>
+          <div className="faq-subtitle" style={{ color: "#164273" }}>
+            STATE Challenge
+          </div>
+          {dataFAQ.challenge.map((data, i) => {
+            return (
+              <AccordionItem key={i}>
+                <h2>
+                  <AccordionButton
+                    _expanded={
+                      i % 2 === 0 ? stylePink.expand : styleNavy.expand
+                    }
+                    _hover={i % 2 === 0 ? stylePink.hover : styleNavy.hover}
+                  >
+                    <Box flex="1" textAlign="left" className="faqpage-title">
+                      {data.question}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel
+                  pb={2}
+                  border="1px solid gray"
+                  borderTop="none"
+                  borderRadius="0 0 5px 5px"
+                  mb={2}
+                  className="desc-detail"
+                >
+                  {data.answer}
+                </AccordionPanel>
+              </AccordionItem>
+            );
+          })}
         </motion.div>
       </Accordion>
+
       <motion.div
         variants={footerVariants}
         initial="exit"

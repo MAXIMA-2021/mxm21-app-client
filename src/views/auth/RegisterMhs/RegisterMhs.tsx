@@ -503,7 +503,7 @@ const RegisterMhs: React.FC = () => {
                         type={show ? "text" : "password"}
                       />
                       <InputRightElement>
-                        <Button size="base" onClick={handleClick}>
+                        <Button size="base" onClick={handleClick} tabIndex={-1}>
                           {show ? <IconHidePassword /> : <IconShowPassword />}
                         </Button>
                       </InputRightElement>

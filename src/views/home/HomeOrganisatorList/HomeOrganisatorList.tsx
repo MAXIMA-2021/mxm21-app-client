@@ -72,7 +72,6 @@ const HomeOrganisatorList = () => {
     const fetchData = async () => {
       try {
         const returnedData = await homeService.getChapterData(homeChapter);
-        console.log(returnedData[0].home);
         setData(returnedData[0]);
       } catch (error) {
         Swal.fire({
@@ -160,7 +159,6 @@ const HomeOrganisatorList = () => {
           <Flex className="home-orglist-content_container">
             {data?.home.map((item: any, index: any) => (
               <Grid className="home-orglist-content-grid" key={index}>
-                {console.log(item)}
                 <div
                   className="content-org-logo"
                   onClick={() => {
@@ -221,7 +219,7 @@ const HomeOrganisatorList = () => {
             exit="exit"
           >
             <MxmButton
-              onClick={() => history.goBack() } 
+              onClick={() => history.goBack()}
               variant="squared"
               colorScheme="cyan-navy"
             >

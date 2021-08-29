@@ -47,8 +47,8 @@ const DaftarNarasi: React.FC = () => {
     Swal.fire({
       title:
         '<span style="font-family: Rubik, sans-serif;">Apakah Anda yakin?</sp>',
-      cancelButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Batalkan</span>`,
-      confirmButtonText: `<span style=\"font-family: Poppins, sans-serif;\">Hapus</span>`,
+      cancelButtonText: `<span style="font-family: Poppins, sans-serif;">Batalkan</span>`,
+      confirmButtonText: `<span style="font-family: Poppins, sans-serif;">Hapus</span>`,
       confirmButtonColor: "#e40000",
       denyButtonColor: "#fff",
       showCancelButton: true,

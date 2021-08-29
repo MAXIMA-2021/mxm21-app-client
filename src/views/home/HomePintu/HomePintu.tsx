@@ -40,7 +40,6 @@ const HomePintu = () => {
 
   const handleClickNext = () => {
     setIsToggle(true);
-    console.log(isToggle);
     setTimeout(() => {
       history.push("/home/category");
     }, 2000);
@@ -120,7 +119,6 @@ const MapVariants = {
 };
 
 const PetaisMap = (props: any) => {
-  console.log(props.isToggle);
   return (
     <motion.div
       variants={MapVariants}

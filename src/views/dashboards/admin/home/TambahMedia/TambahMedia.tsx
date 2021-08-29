@@ -17,7 +17,6 @@ import {
   MxmFormErrorMessage,
   MxmSelect,
 } from "../../../../../shared/styled/input";
-import { Palette } from "../../../../../types/enums";
 import UploadFiles from "../../../../../shared/component/ImageUpload/UploadFiles";
 import Swal from "sweetalert2";
 import adminService from "../../../../../services/admin";

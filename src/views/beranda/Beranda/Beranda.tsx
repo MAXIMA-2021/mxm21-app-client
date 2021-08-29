@@ -9,6 +9,7 @@ import {
   dermaExpress,
   moonChicken,
   jacquelleBeauty,
+  lokalate,
 } from "../../../assets/beranda";
 import { Link } from "react-router-dom";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
@@ -81,7 +82,7 @@ const HeroContainer = () => {
             className="btn-linear-gradient"
             variants={buttonSlideVariant}
           >
-            <Link to="/home">Kunjungi HoME 2021</Link>
+            <Link to="/auth/daftar">Buat akun sekarang!</Link>
           </motion.button>
         </Flex>
       </Flex>
@@ -270,6 +271,9 @@ const SponsorSection = () => {
             </div>
             <div className="spsr-logo">
               <img src={jacquelleBeauty} alt="Jacquelle Beaute" />
+            </div>
+            <div className="spsr-logo">
+              <img src={lokalate} alt="lokalate" />
             </div>
           </Flex>
         </div>

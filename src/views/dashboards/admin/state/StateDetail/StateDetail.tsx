@@ -93,7 +93,7 @@ const StateDetail: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
+      name: "mahasiswa",
       label: "Nama Mahasiswa",
       options: {
         filter: true,
@@ -109,7 +109,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "400px" },
+          style: { minWidth: "250px" },
         }),
       },
     },
@@ -130,13 +130,13 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "250px" },
+          style: { minWidth: "100px" },
         }),
       },
     },
     {
-      name: "inEventAttendance",
-      label: "Kehadiran",
+      name: "attendanceTime",
+      label: "Jam Masuk",
       options: {
         filter: true,
         sort: true,
@@ -151,7 +151,33 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "250px" },
+          style: { minWidth: "150px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text>
+            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
+          </Text>
+        ),
+      },
+    },
+    {
+      name: "exitAttendance",
+      label: "Status Absen",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "100px" },
         }),
         customBodyRender: (value: any) => (
           <Text ml={8}>
@@ -164,6 +190,32 @@ const StateDetail: React.FC = () => {
                 <ClearIcon color="secondary" />
               </ThemeProvider>
             )}
+          </Text>
+        ),
+      },
+    },
+    {
+      name: "tokenTime",
+      label: "Jam Absen",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "150px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text>
+            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
           </Text>
         ),
       },

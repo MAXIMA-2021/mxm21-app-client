@@ -5,4 +5,3 @@ export { RegisterPanitia } from "./RegisterPanitia";
 export { LoginOrganisator } from "./LoginOrganisator";
 export { RegisterOrganisator } from "./RegisterOrganisator";
 export { ResetPassword } from "./ResetPassword";
-export { GoogleAuth } from "./GoogleAuth";

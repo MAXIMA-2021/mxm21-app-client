@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -8,7 +8,6 @@ import {
   Image,
   useToast,
   SkeletonCircle,
-  Skeleton,
 } from "@chakra-ui/react";
 import { Palette } from "../../../types/enums";
 import * as State from "../../../assets/state";
@@ -157,7 +156,7 @@ const StateSchedule = () => {
                 animate="enter"
                 exit="exit"
               >
-                <NavLink
+                <Link
                   to="/state/lists"
                   onClick={(event) => disable && event.preventDefault()}
                 >
@@ -170,7 +169,7 @@ const StateSchedule = () => {
                   >
                     <Text margin="1rem">Pilih STATE</Text>
                   </MxmButton>
-                </NavLink>
+                </Link>
               </motion.div>
             </Box>
           </Flex>
