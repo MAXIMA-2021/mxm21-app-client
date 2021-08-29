@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Image, Text, createIcon } from "@chakra-ui/react";
+import { Flex, Image, Text, createIcon, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Malpun, MxmLogoText } from "../../../assets";
 import { dermaExpress } from "../../../assets/beranda";
 import { MxmButton } from "../../../shared/styled/buttons";
 import "./MalpunCover.scss";
+import { Palette } from "../../../types/enums";
 
 const transition = {
   duration: 0.5,
@@ -48,8 +49,15 @@ const MalpunCover = () => {
     document.title = "Malam Puncak 2021";
   }, []);
 
+  const [isShorterThan768px] = useMediaQuery("(max-width: 768px)");
+
   return (
     <Flex
+      minH={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
       flexDir="column"
       padding={{
         base: "1rem",
@@ -81,7 +89,7 @@ const MalpunCover = () => {
           >
             <Text className="malpun-sponsor">
               Sponsored
-              <br />
+              {isShorterThan768px && <br />}
               by
             </Text>
             <Image
@@ -146,7 +154,7 @@ const MalpunCover = () => {
           exit="exit"
         >
           <Link to="/malpun/welcome">
-            <MxmButton colorScheme="red-red" padding="1.5rem">
+            <MxmButton colorScheme="red-yellow" padding="1.5rem">
               <Text
                 fontStyle="Rubik"
                 fontWeight="500"
@@ -157,7 +165,7 @@ const MalpunCover = () => {
               <NextIcon
                 ml="1rem"
                 boxSize={{ base: "0.7rem", md: "1.5rem" }}
-                color="white"
+                color={Palette.Yellow}
               />
             </MxmButton>
           </Link>
