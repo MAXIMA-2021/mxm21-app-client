@@ -1,2 +1,2 @@
-export { default as Pintu } from "./malpun-pintu.png";
-export { default as Welcome } from "./malpun-welcome.png";
+export { default as MalpunPintu } from "./MalpunPintu.svg";
+export { default as MalpunText } from "./MalpunText.svg";
