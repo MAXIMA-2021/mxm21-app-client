@@ -11,7 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MalpunMaxi, MalpunXima } from "../../../assets/malpun";
-import { Maxi, Xima } from "../../../assets/home";
+
 import "./MalpunWelcome.scss";
 
 const transition = {
@@ -29,18 +29,6 @@ const cardVariants = {
   },
 };
 
-const buttonVariantsTwo = {
-  rest: { y: 100, opacity: 0, transition },
-  enter: { y: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
-  exit: { y: 100, opacity: 0, transition: { delay: 0.2, ...transition } },
-};
-
-const frameVariants = {
-  rest: { opacity: 0 },
-  enter: { opacity: 1, transition: { delay: 0, ...transition } },
-  exit: { opacity: 0, transition: { delay: 0.2, ...transition } },
-};
-
 const footerVariants = {
   exit: { y: "50%", opacity: 0, transition: { delay: 0.2, ...transition } },
   enter: {
@@ -51,13 +39,9 @@ const footerVariants = {
 };
 
 const MalpunWelcome = () => {
-  const history = useHistory();
   useEffect(() => {
     document.title = "Malam Puncak 2021";
   }, []);
-
-  const [isShorterThan800px] = useMediaQuery("(max-height: 750px)");
-  const [isWiderThan820px] = useMediaQuery("(min-width: 820px)");
 
   return (
     <Flex
