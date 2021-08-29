@@ -192,11 +192,11 @@ const RegisterMhs: React.FC = () => {
                           required: "Isi NIM kamu",
                           min: {
                             value: 52000,
-                            message: 'NIM kamu lebih kecil daripada yang telah ditentukan'
+                            message: 'NIM kamu bukan bagian dari angkatan 2021'
                           },
                           max: {
                             value: 70000,
-                            message: 'NIM kamu lebih besar daripada yang telah ditentukan'
+                            message: 'NIM kamu bukan bagian dari angkatan 2021'
                           },
                           minLength: {
                             value: 5,
