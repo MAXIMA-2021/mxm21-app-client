@@ -190,6 +190,14 @@ const RegisterMhs: React.FC = () => {
                         type="number"
                         {...register("nim", {
                           required: "Isi NIM kamu",
+                          min: {
+                            value: 52000,
+                            message: 'NIM kamu lebih kecil daripada yang telah ditentukan'
+                          },
+                          max: {
+                            value: 70000,
+                            message: 'NIM kamu lebih besar daripada yang telah ditentukan'
+                          },
                           minLength: {
                             value: 5,
                             message: "Masukkan 5 angka terakhir dari NIM kamu",
