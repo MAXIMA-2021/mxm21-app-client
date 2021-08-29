@@ -109,7 +109,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: "250px" },
         }),
       },
     },
@@ -130,7 +130,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "200px" },
+          style: { minWidth: "100px" },
         }),
       },
     },
@@ -151,11 +151,11 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "250px" },
+          style: { minWidth: "150px" },
         }),
         customBodyRender: (value: any) => (
           <Text>
-            {value === null ? "N/A" : new Date(value).toLocaleString()}
+            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
           </Text>
         ),
       },
@@ -177,7 +177,7 @@ const StateDetail: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "250px" },
+          style: { minWidth: "100px" },
         }),
         customBodyRender: (value: any) => (
           <Text ml={8}>
@@ -190,6 +190,32 @@ const StateDetail: React.FC = () => {
                 <ClearIcon color="secondary" />
               </ThemeProvider>
             )}
+          </Text>
+        ),
+      },
+    },
+    {
+      name: "tokenTime",
+      label: "Jam Absen",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "150px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text>
+            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
           </Text>
         ),
       },
