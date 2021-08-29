@@ -54,11 +54,6 @@ const cardVariants = {
   },
 };
 
-const buttonVariants = {
-  exit: { x: 100, opacity: 0, transition },
-  enter: { x: 0, opacity: 1, transition: { delay: 0.2, ...transition } },
-};
-
 const RegisterOrganisator: React.FC = () => {
   const {
     register,
@@ -80,7 +75,9 @@ const RegisterOrganisator: React.FC = () => {
     const fetchData = async () => {
       try {
         const returnedData = await authService.getPublicState();
-        setData(returnedData);
+        setData(returnedData
+          .sort((a: any, b: any) => (a.name > b.name) 
+          ? 1 : ((b.name > a.name) ? -1 : 0)));
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -191,7 +188,7 @@ const RegisterOrganisator: React.FC = () => {
                       })}
                     >
                       {data.map((data: any, key: number) => (
-                        <option value={data.stateID} id={`${key}`}>
+                        <option key={data.stateID} value={data.stateID} id={`${key}`}>
                           {data.name}
                         </option>
                       ))}

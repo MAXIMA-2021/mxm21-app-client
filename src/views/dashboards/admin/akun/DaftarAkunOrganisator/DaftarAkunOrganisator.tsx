@@ -233,8 +233,6 @@ const DaftarAkunOrganisator: React.FC = () => {
                 letterSpacing="0.05em"
                 fontSize={{
                   base: "1.2em",
-                  sm: "1.2em",
-                  md: "1.2em",
                   lg: "1.3em",
                   xl: "1.5em",
                   "2xl": "1.5em",
