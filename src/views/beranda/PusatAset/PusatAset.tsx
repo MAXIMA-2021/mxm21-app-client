@@ -55,7 +55,7 @@ const PusatAset = () => {
               style={{
                 backgroundColor: "#164273",
                 borderRadius: "3px",
-                padding: "1px 6px 1px 6px",
+                padding: "0.35rem",
                 color: "#FBCF10",
               }}
             >
