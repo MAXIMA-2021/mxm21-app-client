@@ -4,6 +4,7 @@ import { Flex, Image, Text, createIcon } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Malpun, MxmLogoText } from "../../../assets";
 import { MxmButton } from "../../../shared/styled/buttons";
+import { Palette } from "../../../types/enums";
 
 const transition = {
   duration: 0.5,
@@ -41,13 +42,18 @@ const footerVariants = {
   },
 };
 
-const MalpunSimsalabim = () => {
+const MalpunCover = () => {
   useEffect(() => {
     document.title = "Malam Puncak 2021";
   }, []);
 
   return (
     <Flex
+      minH={{
+        base: "calc(100vh - 3.5rem)",
+        md: "calc(100vh - 4rem)",
+        xl: "calc(100vh - 5rem)",
+      }}
       flexDir="column"
       padding={{
         base: "1rem",
@@ -117,27 +123,29 @@ const MalpunSimsalabim = () => {
           animate="enter"
           exit="exit"
         >
-          <MxmButton colorScheme="red-red" padding="1.5rem">
-            <Text
-              fontStyle="Rubik"
-              fontWeight="500"
-              fontSize={{ base: "1.2rem", md: "2rem" }}
-            >
-              Berikutnya
-            </Text>
-            <NextIcon
-              ml="1rem"
-              boxSize={{ base: "0.7rem", md: "1.5rem" }}
-              color="white"
-            />
-          </MxmButton>
+          <Link to="/malpun/welcome">
+            <MxmButton colorScheme="red-yellow" padding="1.5rem">
+              <Text
+                fontStyle="Rubik"
+                fontWeight="500"
+                fontSize={{ base: "1.2rem", md: "2rem" }}
+              >
+                Berikutnya
+              </Text>
+              <NextIcon
+                ml="1rem"
+                boxSize={{ base: "0.7rem", md: "1.5rem" }}
+                color={Palette.Yellow}
+              />
+            </MxmButton>
+          </Link>
         </motion.div>
       </Flex>
     </Flex>
   );
 };
 
-export default MalpunSimsalabim;
+export default MalpunCover;
 
 const NextIcon = createIcon({
   viewBox: "0 0 88 88",
