@@ -192,7 +192,7 @@ const RegisterOrganisator: React.FC = () => {
                     >
                       {data.map((data: any, key: number) => (
                         <option value={data.stateID} id={`${key}`}>
-                          {data.stateID} - {data.name}
+                          {data.name}
                         </option>
                       ))}
                     </Select>
