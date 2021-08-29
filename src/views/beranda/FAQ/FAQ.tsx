@@ -139,7 +139,7 @@ const FAQ = () => {
         </motion.div>
 
         <motion.div
-          variants={slideVariant1}
+          variants={slideVariant2}
           initial="exit"
           animate="enter"
           exit="exit"
@@ -180,7 +180,7 @@ const FAQ = () => {
         </motion.div>
 
         <motion.div
-          variants={slideVariant1}
+          variants={slideVariant3}
           initial="exit"
           animate="enter"
           exit="exit"
