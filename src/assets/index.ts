@@ -6,3 +6,4 @@ export { default as MxmWhiteLogoText } from "./logo-mxm-putih-text.png";
 export * as Home from "./home";
 export * as State from "./state";
 export * as Beranda from "./beranda";
+export * as Malpun from "./malpun";

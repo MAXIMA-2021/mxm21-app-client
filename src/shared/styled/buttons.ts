@@ -332,6 +332,28 @@ export const MxmButton = styled(Button)<{
     transform: translate(0px, 0px);
     }
     `
+      : props.colorScheme === "red-red"
+      ? `
+    border-radius: 30px; 
+    background: ${Palette.Red};
+    box-shadow: 6px 6px 0 0 #851443;
+    color: white;
+
+  &:hover {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+      box-shadow: 4px 4px 0 0 #851443;
+      transform: translate(2px, 2px) !important;
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0 #851443} !important;
+    transform: translate(0px, 0px) !important;
+  }
+  
+  &:focus {
+    box-shadow: 6px 6px 0 0 #851443;
+  }
+  `
       : `
     
     background: ${Palette.Navy};
