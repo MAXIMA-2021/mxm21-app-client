@@ -56,6 +56,16 @@ export default function AppRouter() {
             <Route path="/malpun/:path1?/:path2?" exact>
               <Switch>
                 <Route path="/malpun" exact component={Malpun.MalpunCover} />
+                <Route
+                  path="/malpun/welcome"
+                  exact
+                  component={Malpun.MalpunWelcome}
+                />
+                <Route
+                  path="/malpun/simsalabim"
+                  exact
+                  component={Malpun.MalpunSimsalabim}
+                />
               </Switch>
             </Route>
             <Route>
