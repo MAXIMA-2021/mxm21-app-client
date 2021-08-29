@@ -254,7 +254,6 @@ const Card = (props: any) => {
   const handleRegister = async () => {
     try {
       setLoading(true);
-      setRegisterStatus(false);
       const data = {
         stateID: props.stateID,
       };
@@ -267,6 +266,8 @@ const Card = (props: any) => {
         showConfirmButton: false,
         timer: 1000,
       });
+      setLoading(false);
+      setRegisterStatus(false);
       history.push("/state");
     } catch (error) {
       Swal.fire({
@@ -275,8 +276,6 @@ const Card = (props: any) => {
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -287,6 +286,7 @@ const Card = (props: any) => {
         isOpen={registerStatus}
         onClose={() => setRegisterStatus(false)}
         {...props}
+        loading={loading}
         handleRegister={handleRegister}
       />
       <button onClick={() => setRegisterStatus(true)}>
