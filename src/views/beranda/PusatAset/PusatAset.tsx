@@ -65,7 +65,6 @@ const PusatAset = () => {
           </div>
         </Center>
       </motion.div>
-      {/* <Tilt options={{ max: 25 }} style={{ background: "white !important" }}> */}
       <div className="flex-vbg">
         <motion.div
           variants={headerVariants}
@@ -93,14 +92,16 @@ const PusatAset = () => {
           animate="enter"
           exit="exit"
         >
-          <div className="vgb-container">
-            <a href="https://cdn.mxm.one/state/VBG_Dreamer%20(Maba).jpg">
-              <img
-                src="https://cdn.mxm.one/state/VBG_Dreamer%20(Maba).jpg"
-                alt="VBG Dreamer"
-              />
-            </a>
-          </div>
+          <Tilt options={{ max: 25 }}>
+            <div className="vgb-container">
+              <a href="https://cdn.mxm.one/state/VBG_Dreamer%20(Maba).jpg">
+                <img
+                  src="https://cdn.mxm.one/state/VBG_Dreamer%20(Maba).jpg"
+                  alt="VBG Dreamer"
+                />
+              </a>
+            </div>
+          </Tilt>
         </motion.div>
         <motion.div
           variants={headerVariants}
@@ -128,14 +129,16 @@ const PusatAset = () => {
           animate="enter"
           exit="exit"
         >
-          <div className="vgb-container">
-            <a href="https://cdn.mxm.one/state/VBG_Morpheus%20(Organisasi).jpg">
-              <img
-                src="https://cdn.mxm.one/state/VBG_Morpheus%20(Organisasi).jpg"
-                alt="VBG Dreamer"
-              />
-            </a>
-          </div>
+          <Tilt options={{ max: 25 }}>
+            <div className="vgb-container">
+              <a href="https://cdn.mxm.one/state/VBG_Morpheus%20(Organisasi).jpg">
+                <img
+                  src="https://cdn.mxm.one/state/VBG_Morpheus%20(Organisasi).jpg"
+                  alt="VBG Dreamer"
+                />
+              </a>
+            </div>
+          </Tilt>
         </motion.div>
         <motion.div
           variants={headerVariants}
@@ -163,17 +166,18 @@ const PusatAset = () => {
           animate="enter"
           exit="exit"
         >
-          <div className="vgb-container">
-            <a href="https://cdn.mxm.one/state/VBG_Dakota%20(Panit).jpg">
-              <img
-                src="https://cdn.mxm.one/state/VBG_Dakota%20(Panit).jpg"
-                alt="VBG Dreamer"
-              />
-            </a>
-          </div>
+          <Tilt options={{ max: 25 }}>
+            <div className="vgb-container">
+              <a href="https://cdn.mxm.one/state/VBG_Dakota%20(Panit).jpg">
+                <img
+                  src="https://cdn.mxm.one/state/VBG_Dakota%20(Panit).jpg"
+                  alt="VBG Dreamer"
+                />
+              </a>
+            </div>
+          </Tilt>
         </motion.div>
       </div>
-      {/* </Tilt> */}
     </Flex>
   );
 };
