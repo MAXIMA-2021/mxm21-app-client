@@ -289,7 +289,10 @@ const Card = (props: any) => {
         loading={loading}
         handleRegister={handleRegister}
       />
-      <button onClick={() => setRegisterStatus(true)}>
+      <button
+        onClick={() => setRegisterStatus(true)}
+        style={{ pointerEvents: props.status === "full" ? "none" : "auto" }}
+      >
         <div className={props.status === "full" ? "card full" : "card"}>
           <div className="container-card">
             <div
