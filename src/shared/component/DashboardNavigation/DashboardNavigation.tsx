@@ -24,6 +24,9 @@ const DashboardNavigation = (props: any) => {
   const [sidebarShow, setSidebarShow] = useState(true);
   const [isSmallerThan450px] = useMediaQuery("(max-width: 28.125em)");
   const [isLargerThan3000px] = useMediaQuery("(min-width: 3000px)");
+  const [displayName, setDisplayName] = useState(
+    window?.sessionStorage?.getItem("role") || "panitia"
+  );
 
   let isAdmin = false;
   let isWeb = false;
@@ -205,9 +208,7 @@ const DashboardNavigation = (props: any) => {
                 <AccountCircleIcon />
               </div>
               <h4>{props.name}</h4>
-              <h6 style={{ textTransform: "capitalize" }}>
-                {window?.sessionStorage?.getItem("organisator") || "panitia"}
-              </h6>
+              <h6 style={{ textTransform: "capitalize" }}>{displayName}</h6>
             </div>
           </NavLink>
           <Flex className="sidebar-nav_header">
@@ -477,6 +478,7 @@ const DashboardNavigation = (props: any) => {
           show={sidebarShow}
           isPanitia={isPanitia}
           stateID={decoded.stateID || null}
+          setDisplayName={setDisplayName}
         />
       </Flex>
     </div>

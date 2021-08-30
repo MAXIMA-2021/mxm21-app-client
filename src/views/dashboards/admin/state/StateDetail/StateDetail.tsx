@@ -35,7 +35,7 @@ const colorTheme = createMuiTheme({
   },
 });
 
-const StateDetail: React.FC = () => {
+const StateDetail: React.FC = (props: any) => {
   const { stateID }: any = useParams();
   const [detailState, setDetailState] = useState<any>([]);
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
@@ -52,6 +52,7 @@ const StateDetail: React.FC = () => {
           "organisator",
           returnedDataState[0]?.name
         );
+        props.setDisplayName(returnedDataState[0]?.name);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -155,7 +156,7 @@ const StateDetail: React.FC = () => {
         }),
         customBodyRender: (value: any) => (
           <Text>
-            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
+            {value === null ? "N/A" : new Date(value).toLocaleString("id-ID")}
           </Text>
         ),
       },
@@ -215,7 +216,7 @@ const StateDetail: React.FC = () => {
         }),
         customBodyRender: (value: any) => (
           <Text>
-            {value === null ? "N/A" : new Date(value).toLocaleString('id-ID')}
+            {value === null ? "N/A" : new Date(value).toLocaleString("id-ID")}
           </Text>
         ),
       },
