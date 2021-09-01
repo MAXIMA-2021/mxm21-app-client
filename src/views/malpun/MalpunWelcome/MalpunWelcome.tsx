@@ -96,7 +96,7 @@ const MalpunWelcome = () => {
             animate="enter"
             exit="exit"
           >
-            <Link to="/malpun/welcome">
+            <Link to="/malpun/simsalabim">
               <MxmButton colorScheme="red-red" padding="1.5rem">
                 <Text
                   fontStyle="Rubik"
