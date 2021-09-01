@@ -276,6 +276,8 @@ const Card = (props: any) => {
         icon: "error",
         confirmButtonText: "Coba lagi",
       });
+      setLoading(false);
+      setRegisterStatus(false);
     }
   };
 
