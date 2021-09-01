@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -9,10 +10,11 @@ import {
   Text,
   Container,
   useMediaQuery,
+  Button,
 } from "@chakra-ui/react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ClearIcon from "@material-ui/icons/Clear";
-import { Palette } from "../../../../../types/enums";
+import { Palette, Role } from "../../../../../types/enums";
 import { MxmLogo } from "../../../../../assets";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -23,6 +25,8 @@ import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
 import adminService from "../../../../../services/admin";
 import Swal from "sweetalert2";
+import jwtDecode from "jwt-decode";
+import { DivisionList } from "../../../../../shared/constants";
 
 const colorTheme = createMuiTheme({
   palette: {
@@ -41,6 +45,7 @@ const StateDetail: React.FC = (props: any) => {
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
   const [isSmallerThan600px] = useMediaQuery("(max-width: 600px)");
   const [isSmallerThan800px] = useMediaQuery("(max-width: 800px)");
+  const role = window.sessionStorage.getItem("role");
 
   useEffect(() => {
     const fetchDataDetail = async () => {
@@ -64,14 +69,13 @@ const StateDetail: React.FC = (props: any) => {
     };
 
     const fetchDataMhs = async () => {
-      const role = window.sessionStorage.getItem("role");
       try {
         let returnedDataMhs = "";
-        if (role === "panitia") {
+        if (role === Role.Panitia) {
           returnedDataMhs = await adminService.getRegistrationStateMhsPanit(
             stateID
           );
-        } else if (role === "organizator") {
+        } else if (role === Role.Organisator) {
           returnedDataMhs = await adminService.getRegistrationStateMhsOrg(
             stateID
           );
@@ -87,10 +91,31 @@ const StateDetail: React.FC = (props: any) => {
         });
       }
     };
-
     fetchDataDetail();
     fetchDataMhs();
   }, []);
+
+  const handleZoomButton = () => {
+    try {
+      const { division } = jwtDecode(window.sessionStorage.getItem('token')!);
+      const divisionName = DivisionList.find(d => d.id === division)?.name;
+      const name = window.sessionStorage.getItem('name');
+      if (role === Role.Panitia) {
+        const link = `${detailState?.zoomLink}&uname=${divisionName} - ${name}`
+        window.open(link, '_blank')
+      } else {
+        window.open(detailState?.zoomLink, '_blank')
+      }
+    } catch (InvalidTokenError) {
+      Swal.fire({
+        title: 'Perhatian!',
+        text: InvalidTokenError,
+        icon: 'error',
+        confirmButtonText: 'Coba lagi',
+      });
+    }
+
+  }
 
   const tableColumns = [
     {
@@ -271,10 +296,8 @@ const StateDetail: React.FC = (props: any) => {
                 h="100%"
                 w={{
                   base: "4vw",
-                  sm: "4vw",
                   md: "2.5vw",
                   lg: "2vw",
-                  xl: "2vw",
                   "2xl": "1.2vw",
                 }}
               />
@@ -336,7 +359,7 @@ const StateDetail: React.FC = (props: any) => {
                 <Flex direction="row">
                   <VideocamOutlinedIcon />
                   <Text ml="0.5rem" wordBreak="break-all">
-                    {detailState?.zoomLink}
+                    <Button colorScheme="blue" size="sm" onClick={handleZoomButton}>Masuk ZOOM</Button> 
                   </Text>
                 </Flex>
                 <Heading mt="1.2rem" fontSize={"1rem"} fontWeight={700}>

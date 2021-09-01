@@ -17,3 +17,27 @@ export enum HomeChapter {
   TownArea = "C07",
   WonderousCampground = "C08",
 }
+
+export enum Role {
+  Panitia = 'panitia',
+  Organisator = 'organizator'
+}
+
+
+export enum Division {
+  D01 = 'SuperAdmin',
+  D02 = 'Web',
+  D03 = 'Acara',
+  D04 = 'BPH',
+  D05 = 'Bazaar',
+  D06 = 'Dekorasi',
+  D07 = 'Dokumentasi',
+  D08 = 'Fresh Money',
+  D09 = 'Media Relations',
+  D10 = 'Merchandise',
+  D11 = 'Perlengkapan',
+  D12 = 'Publikasi',
+  D13 = 'Security and Accomodations',
+  D14 = 'Sponsor',
+  D15 = 'Visual',
+}
