@@ -50,7 +50,7 @@ const HeroContainer = () => {
           >
             <h1>
               Selamat <br /> datang di <br />
-              <strong>MAXIMA 2021</strong>
+              <strong>MAXIMA 2021 (dev)</strong>
             </h1>
             <h3>
               <SplitText
