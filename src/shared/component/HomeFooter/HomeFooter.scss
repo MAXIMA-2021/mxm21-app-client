@@ -89,3 +89,33 @@
     --text-size: 0.799rem;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .footer-nav-container.mahasiswa-footer-container {
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 677px) {
+  .footer-nav-container.mahasiswa-footer-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer-nav-container.mahasiswa-footer-container {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and(max-width: 423px) {
+  .footer-nav-container:not(.mahasiswa-footer-container) {
+    & .nav-footer {
+      margin: 0.6rem;
+    }
+  }
+}

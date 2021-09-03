@@ -91,6 +91,7 @@
 .card.full {
   box-shadow: 0 10px 20px -5px rgba(59, 149, 250, 0.6);
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .card.full:hover {

@@ -26,7 +26,9 @@ const AdminRouters = (props: any) => {
           <Route path="/admin/edit-akun" component={Dashboards.EditAkun} />
           <Route
             path="/admin/state-detail/:stateID"
-            component={Dashboards.StateDetail}
+            render={() => (
+              <Dashboards.StateDetail setDisplayName={props.setDisplayName} />
+            )}
           />
           <DoubleProtectedRoute
             path="/admin/:path1?/:path2?/:path3?"

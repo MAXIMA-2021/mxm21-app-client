@@ -10,6 +10,7 @@ import { HomeFooter } from "./shared/component/HomeFooter";
 import { DashboardProtectedRoute } from "./routers/DashboardProtectedRoute";
 import { StateProtectedRoute } from "./routers/StateProtectedRoute";
 import { ErrorPage } from "./views/error";
+import { Malpun } from "./views";
 
 export default function AppRouter() {
   const location = useLocation();
@@ -52,6 +53,21 @@ export default function AppRouter() {
             <StateProtectedRoute path="/state/:path1?/:path2?" exact>
               <StateRouters />
             </StateProtectedRoute>
+            <Route path="/malpun/:path1?/:path2?" exact>
+              <Switch>
+                <Route path="/malpun" exact component={Malpun.MalpunCover} />
+                <Route
+                  path="/malpun/welcome"
+                  exact
+                  component={Malpun.MalpunWelcome}
+                />
+                <Route
+                  path="/malpun/simsalabim"
+                  exact
+                  component={Malpun.MalpunSimsalabim}
+                />
+              </Switch>
+            </Route>
             <Route>
               <div style={{ minHeight: "100vh", paddingBottom: "24rem" }}>
                 <Switch>

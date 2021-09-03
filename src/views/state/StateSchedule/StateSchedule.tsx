@@ -233,11 +233,12 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
     }
   };
 
-  const handleZoom = async (id: number, zoomLink: string) => {
+  const handleZoom = async (id: number) => {
     try {
       setLoading(true);
-      await stateService.updateZoomAttendence(id);
-      window.open(zoomLink);
+      const response: { message: string } =
+        await stateService.updateZoomAttendence(id);
+      window.open(response.message);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",
@@ -435,10 +436,7 @@ const BoxJadwal = (props: { stateData: any; i: string; setStateData: any }) => {
                         : true
                     }
                     onClick={() =>
-                      handleZoom(
-                        props.stateData.state[i].stateData.stateID,
-                        props.stateData.state[i].stateData.zoomLink
-                      )
+                      handleZoom(props.stateData.state[i].stateData.stateID)
                     }
                   >
                     ZOOM
