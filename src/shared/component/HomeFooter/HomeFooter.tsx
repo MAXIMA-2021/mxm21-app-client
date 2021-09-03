@@ -58,7 +58,13 @@ const HomeFooter: React.FC = () => {
     >
       <Flex justifyContent="center" alignItems="center" flexDir="column">
         <Image src={MxmWhiteLogoText} alt="MAXIMA 2021" height="150px" />
-        <HStack margin="2.5rem 0" spacing={{ base: "2rem", md: "3rem" }}>
+        <HStack
+          margin="2.5rem 0"
+          spacing={{ md: "3rem" }}
+          className={`footer-nav-container ${
+            isMahasiswa ? "mahasiswa-footer-container" : ""
+          }`}
+        >
           <NavLink to="/home" className="nav-footer">
             HoME
           </NavLink>
@@ -73,7 +79,12 @@ const HomeFooter: React.FC = () => {
           <NavLink to="/pusat-aset" className="nav-footer">
             Pusat Aset
           </NavLink>
-          <a href="https://maximaumn2021.statuspage.io" target="_blank" className="nav-footer" rel="noreferrer">
+          <a
+            href="https://maximaumn2021.statuspage.io"
+            target="_blank"
+            className="nav-footer"
+            rel="noreferrer"
+          >
             Status Server
           </a>
         </HStack>
