@@ -67,16 +67,15 @@ const HomeFooter: React.FC = () => {
               STATE
             </NavLink>
           )}
-
           <NavLink to="/faq" className="nav-footer">
             FAQ
           </NavLink>
-          {/* <a href="/about-us" className="nav-footer">
-            About Us
-          </a> */}
           <NavLink to="/pusat-aset" className="nav-footer">
             Pusat Aset
           </NavLink>
+          <a href="https://maximaumn2021.statuspage.io" target="_blank" className="nav-footer" rel="noreferrer">
+            Status Server
+          </a>
         </HStack>
         <HStack mb="1.5rem" spacing="2rem">
           <a href="https://www.instagram.com/maximaumn" target="blank">
