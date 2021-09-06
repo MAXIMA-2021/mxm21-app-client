@@ -17,6 +17,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import RadioButtonUncheckedOutlinedIcon from "@material-ui/icons/RadioButtonUncheckedOutlined";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Swal from "sweetalert2";
 import jwtDecode from "jwt-decode";
 
@@ -169,15 +170,6 @@ const DashboardNavigation = (props: any) => {
           </button>
 
           <Flex className="navbar-menu">
-            {/* <NavLink to="/admin/edit-akun">
-              <Flex align="center" className="navbar-avatar">
-                <div className="navbar-avatar-image">
-                  <AccountCircleIcon />
-                </div>
-                <h4>{props.name}</h4>
-              </Flex>
-            </NavLink> */}
-
             <button className="navbar-logout-btn" onClick={handleLogOut}>
               <p>Keluar</p>
               <ExitToAppIcon />
@@ -329,6 +321,15 @@ const DashboardNavigation = (props: any) => {
                 <LinkIcon />
                 Shortener
               </NavLink> */}
+              <NavLink
+                to="/admin/daftar-malpun"
+                activeClassName="sidebar-nav_active"
+                className={`${!isPanitia && "hide"}`}
+                onClick={handleMobile}
+              >
+                <Brightness3Icon />
+                Daftar Malpun
+              </NavLink>
 
               {isAdmin && (
                 <li

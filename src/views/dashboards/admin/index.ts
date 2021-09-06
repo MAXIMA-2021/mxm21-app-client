@@ -19,6 +19,8 @@ export {
   EditMahasiswa,
 } from "./akun";
 
+export { daftarMalpun } from "./daftarMalpun";
+
 export { EditAkun } from "./profile";
 export { DaftarMahasiswaBaru, DetailMahasiswaBaru } from "./mahasiswaBaru";
 export { LandingDashboard } from "./landing-dashboard";

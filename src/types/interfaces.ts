@@ -79,3 +79,10 @@ export interface DataState {
   stateLogo: any;
   coverPhoto: any;
 }
+
+export interface DataMalpun {
+  nim: string;
+  nama: string;
+  noTelp: string;
+  idLine: string;
+}

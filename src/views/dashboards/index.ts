@@ -20,4 +20,5 @@ export {
   DaftarMahasiswaBaru,
   DetailMahasiswaBaru,
   LandingDashboard,
+  daftarMalpun,
 } from "./admin";

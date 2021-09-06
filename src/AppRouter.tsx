@@ -66,6 +66,11 @@ export default function AppRouter() {
                   exact
                   component={Malpun.MalpunSimsalabim}
                 />
+                <Route
+                  path="/malpun/form"
+                  exact
+                  component={Malpun.MalpunForm}
+                />
               </Switch>
             </Route>
             <Route>

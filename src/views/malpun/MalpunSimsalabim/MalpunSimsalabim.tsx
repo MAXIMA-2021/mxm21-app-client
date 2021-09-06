@@ -123,7 +123,7 @@ const MalpunCover = () => {
           animate="enter"
           exit="exit"
         >
-          <Link to="/malpun/welcome">
+          <Link to="/malpun/form">
             <MxmButton colorScheme="red-yellow" padding="1.5rem">
               <Text
                 fontStyle="Rubik"
