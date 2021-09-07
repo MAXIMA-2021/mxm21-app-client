@@ -66,6 +66,7 @@ const MalpunCover = () => {
       bgColor="#1C3261"
       alignItems="center"
       justifyContent="space-between"
+      overflow="hidden"
     >
       <Flex
         w="100%"
@@ -156,7 +157,7 @@ const MalpunCover = () => {
           <Link to="/malpun/welcome">
             <MxmButton colorScheme="red-yellow" padding="1.5rem">
               <Text
-                fontStyle="Rubik"
+                fontFamily="Rubik"
                 fontWeight="500"
                 fontSize={{ base: "1.2rem", md: "2rem" }}
               >

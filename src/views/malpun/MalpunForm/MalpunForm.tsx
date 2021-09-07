@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Flex,
   Image,
@@ -33,6 +33,7 @@ const MalpunForm = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const history = useHistory();
 
   useEffect(() => {
     document.title = "Malam Puncak 2021";
@@ -42,15 +43,8 @@ const MalpunForm = () => {
     setLoading(true);
 
     try {
-      await malpunServices.daftarMalpun(data);
-      // window.alert(data);
-      // console.log(data);
-
-      reset();
-
-      //   window.sessionStorage.setItem("token", returnedData.token);
-      //   window.sessionStorage.setItem("name", returnedData.nama);
-      window.location.href = "/malpun/form";
+      const res = await malpunServices.daftarMalpun(data);
+      history.push("/malpun/number", res.lucky_number);
     } catch (error) {
       Swal.fire({
         title: "Perhatian!",

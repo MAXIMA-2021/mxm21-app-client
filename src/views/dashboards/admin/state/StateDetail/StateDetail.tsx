@@ -39,7 +39,7 @@ const colorTheme = createMuiTheme({
   },
 });
 
-const StateDetail: React.FC = (props: any) => {
+const StateDetail = (props: any) => {
   const { stateID }: any = useParams();
   const [detailState, setDetailState] = useState<any>([]);
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
@@ -53,15 +53,12 @@ const StateDetail: React.FC = (props: any) => {
         const returnedDataState = await adminService.getSpecificState(stateID);
         document.title = `[Dashboard] - Detail STATE ${returnedDataState[0]?.name}`;
         setDetailState(returnedDataState[0]);
-
-        if (window.sessionStorage.getItem("role") === "organizator") {
-          window.sessionStorage.setItem(
-            "organisator",
-            returnedDataState[0]?.name
-          );
-        }
-
-        props.setDisplayName(returnedDataState[0]?.name);
+        window.sessionStorage.setItem(
+          "organisator",
+          returnedDataState[0]?.name
+        );
+        window.sessionStorage.getItem("role") === "organizator" &&
+          props.setDisplayName(returnedDataState[0]?.name);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",

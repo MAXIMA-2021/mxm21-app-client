@@ -62,6 +62,7 @@ const MalpunCover = () => {
       bgColor="#1C3261"
       alignItems="center"
       justifyContent="space-between"
+      overflow="hidden"
     >
       <Flex
         w="100%"
