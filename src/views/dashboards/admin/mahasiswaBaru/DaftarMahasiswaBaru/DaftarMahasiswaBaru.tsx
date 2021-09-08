@@ -79,6 +79,16 @@ const DaftarMahasiswaBaru: React.FC = () => {
         filter: true,
         sort: true,
         display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
       },
     },
     {
