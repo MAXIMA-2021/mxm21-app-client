@@ -194,7 +194,7 @@ const DaftarMalpun: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar Mahasiswa Baru
+                Daftar Peserta Malpun
               </Heading>
               <Spacer />
               <Image
