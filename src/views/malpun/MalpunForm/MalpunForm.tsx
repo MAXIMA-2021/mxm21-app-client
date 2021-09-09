@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Flex,
-  Image,
-  Text,
-  createIcon,
-  useMediaQuery,
   FormControl,
   InputLeftAddon,
   Input,
   FormErrorMessage,
   Spinner,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { Malpun, MxmLogoText } from "../../../assets";
-import { dermaExpress } from "../../../assets/beranda";
 import { MxmButton } from "../../../shared/styled/buttons";
 import "./MalpunForm.scss";
-import { Palette } from "../../../types/enums";
 import { useForm } from "react-hook-form";
 import { MxmInputGroupMhs } from "../../../shared/styled/input";
 import { DataMalpun } from "../../../types/interfaces";
@@ -30,7 +22,6 @@ const MalpunForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
   const history = useHistory();

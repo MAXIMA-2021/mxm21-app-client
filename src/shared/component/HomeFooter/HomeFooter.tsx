@@ -73,6 +73,9 @@ const HomeFooter: React.FC = () => {
               STATE
             </NavLink>
           )}
+          <NavLink to="/malpun" className="nav-footer">
+              Malpun
+          </NavLink>
           <NavLink to="/faq" className="nav-footer">
             FAQ
           </NavLink>
