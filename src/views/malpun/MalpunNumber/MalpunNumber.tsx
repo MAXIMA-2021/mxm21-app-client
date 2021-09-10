@@ -211,22 +211,6 @@ const MalpunNumber = () => {
             animate="enter"
             exit="exit"
           >
-            <Link to="/malpun">
-              <MxmButton colorScheme="red-yellow" padding="1.5rem">
-                <Text
-                  fontFamily="Rubik"
-                  fontWeight="500"
-                  fontSize={{ base: "1.2rem", md: "2rem" }}
-                >
-                  Berikutnya
-                </Text>
-                <NextIcon
-                  ml="1rem"
-                  boxSize={{ base: "0.7rem", md: "1.5rem" }}
-                  color={Palette.Yellow}
-                />
-              </MxmButton>
-            </Link>
           </motion.div>
         </Flex>
       </Flex>
@@ -235,8 +219,3 @@ const MalpunNumber = () => {
 };
 
 export default MalpunNumber;
-
-const NextIcon = createIcon({
-  viewBox: "0 0 88 88",
-  d: "M14.4721 1.23605C7.82311 -2.08846 0 2.74651 0 10.1803V77.8196C0 85.2535 7.82312 90.0884 14.4721 86.7639L82.1115 52.9443C89.482 49.259 89.4819 38.741 82.1115 35.0557L14.4721 1.23605Z",
-});
