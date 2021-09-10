@@ -147,7 +147,7 @@ const MalpunForm = () => {
             </FormControl>
             <MxmButton className="mp-form-submit-btn" type="submit">
               {loading ? <Spinner mr={"5px"} size="sm" /> : ""}
-              submit
+              Kirim Data Diri
             </MxmButton>
           </form>
         </Flex>
