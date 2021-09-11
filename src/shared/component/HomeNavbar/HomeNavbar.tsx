@@ -122,6 +122,13 @@ const HomeNavbar = () => {
                   </NavLink>
                 )}
                 <NavLink
+                  to="/malpun"
+                  onClick={mobileMenuShown}
+                  className="btn-main-nav btn-styling-main-nav"
+                  >
+              Malam Puncak
+                </NavLink>
+                <NavLink
                   to="/faq"
                   className="btn-main-nav btn-styling-main-nav"
                 >
@@ -236,6 +243,13 @@ const HomeNavbar = () => {
               STATE
             </NavLink>
           )}
+          <NavLink
+            to="/malpun"
+            onClick={mobileMenuShown}
+            className="btn-main-nav btn-styling-main-nav"
+            >
+            Malam Puncak
+          </NavLink>
           <NavLink
             to="/FAQ"
             onClick={mobileMenuShown}

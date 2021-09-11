@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  Flex,
-  Heading,
-  Spacer,
-  Image,
-  Center,
-  Text,
-  HStack,
-  Button,
-} from "@chakra-ui/react";
-import { MxmLogo } from "../../../../../assets";
+import { Flex, Heading, Spacer, Image, Center, Text } from "@chakra-ui/react";
+import { MxmLogo } from "../../../../assets";
 import MUIDataTable from "mui-datatables";
-import { MxmDivider } from "../../../../../shared/styled/input";
-import adminService from "../../../../../services/admin";
+import { MxmDivider } from "../../../../shared/styled/input";
+import adminServices from "../../../../services/admin";
 import Swal from "sweetalert2";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Palette } from "../../../../../types/enums";
 
-const DaftarMahasiswaBaru: React.FC = () => {
+const DaftarMalpun: React.FC = () => {
   const responsiveData = {
     base: "1em",
     "2xl": "1.2em",
@@ -30,7 +18,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
     document.title = "[Dashboard] - Daftar Mahasiswa Baru";
     const fetchData = async () => {
       try {
-        const returnedData = await adminService.getAllMahasiswa();
+        const returnedData = await adminServices.getDataMalpun();
         setData(returnedData);
       } catch (error) {
         Swal.fire({
@@ -47,8 +35,8 @@ const DaftarMahasiswaBaru: React.FC = () => {
 
   const tableColumns = [
     {
-      name: "name",
-      label: "Nama Mahasiswa",
+      name: "nama",
+      label: "Nama",
       options: {
         filter: true,
         sort: true,
@@ -63,7 +51,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: "300px" },
         }),
         customBodyRender: (value: any, tableMeta: any) => (
           <Text fontSize={responsiveData}>
@@ -92,8 +80,8 @@ const DaftarMahasiswaBaru: React.FC = () => {
       },
     },
     {
-      name: "idInstagram",
-      label: "Instagram",
+      name: "lucky_number",
+      label: "Nomor Urut",
       options: {
         filter: true,
         sort: true,
@@ -108,7 +96,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
           </Text>
         ),
         setCellProps: () => ({
-          style: { minWidth: "350px" },
+          style: { minWidth: "150px" },
         }),
         customBodyRender: (value: any) => (
           <Text fontSize={responsiveData}>{value}</Text>
@@ -116,8 +104,32 @@ const DaftarMahasiswaBaru: React.FC = () => {
       },
     },
     {
-      name: "Actions",
-      label: "Aksi",
+      name: "idLine",
+      label: "Id Line",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
+        setCellProps: () => ({
+          style: { minWidth: "150px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
+        ),
+      },
+    },
+    {
+      name: "noTelp",
+      label: "No. Telepon",
       options: {
         print: false,
         customHeadLabelRender: ({ index, ...column }) => (
@@ -130,25 +142,11 @@ const DaftarMahasiswaBaru: React.FC = () => {
             {column.label}
           </Text>
         ),
-        customBodyRender: (value: any, tableMeta: any) => (
-          <HStack spacing={2}>
-            <Link
-              to={`/admin/detail-maba/${tableMeta.rowData[1]}`}
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <Button
-                fontSize={responsiveData}
-                size="xs"
-                leftIcon={<InfoOutlineIcon />}
-                bgColor={Palette.Navy}
-                color="white"
-              >
-                Detail
-              </Button>
-            </Link>
-          </HStack>
+        setCellProps: () => ({
+          style: { minWidth: "150px" },
+        }),
+        customBodyRender: (value: any) => (
+          <Text fontSize={responsiveData}>{value}</Text>
         ),
       },
     },
@@ -196,7 +194,7 @@ const DaftarMahasiswaBaru: React.FC = () => {
                   "2xl": "1.5em",
                 }}
               >
-                Daftar Mahasiswa Baru
+                Daftar Peserta Malpun
               </Heading>
               <Spacer />
               <Image
@@ -235,4 +233,4 @@ const DaftarMahasiswaBaru: React.FC = () => {
   );
 };
 
-export default DaftarMahasiswaBaru;
+export default DaftarMalpun;

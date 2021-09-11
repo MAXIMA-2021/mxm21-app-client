@@ -39,7 +39,7 @@ const colorTheme = createMuiTheme({
   },
 });
 
-const StateDetail: React.FC = (props: any) => {
+const StateDetail = (props: any) => {
   const { stateID }: any = useParams();
   const [detailState, setDetailState] = useState<any>([]);
   const [dataKehadiranMhs, setDataKehadiranMhs] = useState<any>([]);
@@ -57,7 +57,8 @@ const StateDetail: React.FC = (props: any) => {
           "organisator",
           returnedDataState[0]?.name
         );
-        props.setDisplayName(returnedDataState[0]?.name);
+        window.sessionStorage.getItem("role") === "organizator" &&
+          props.setDisplayName(returnedDataState[0]?.name);
       } catch (error) {
         Swal.fire({
           title: "Perhatian!",
@@ -97,25 +98,24 @@ const StateDetail: React.FC = (props: any) => {
 
   const handleZoomButton = () => {
     try {
-      const { division } = jwtDecode(window.sessionStorage.getItem('token')!);
-      const divisionName = DivisionList.find(d => d.id === division)?.name;
-      const name = window.sessionStorage.getItem('name');
+      const { division } = jwtDecode(window.sessionStorage.getItem("token")!);
+      const divisionName = DivisionList.find((d) => d.id === division)?.name;
+      const name = window.sessionStorage.getItem("name");
       if (role === Role.Panitia) {
-        const link = `${detailState?.zoomLink}&uname=${divisionName} - ${name}`
-        window.open(link, '_blank')
+        const link = `${detailState?.zoomLink}&uname=${divisionName} - ${name}`;
+        window.open(link, "_blank");
       } else {
-        window.open(detailState?.zoomLink, '_blank')
+        window.open(detailState?.zoomLink, "_blank");
       }
     } catch (InvalidTokenError) {
       Swal.fire({
-        title: 'Perhatian!',
+        title: "Perhatian!",
         text: InvalidTokenError,
-        icon: 'error',
-        confirmButtonText: 'Coba lagi',
+        icon: "error",
+        confirmButtonText: "Coba lagi",
       });
     }
-
-  }
+  };
 
   const tableColumns = [
     {
@@ -359,7 +359,13 @@ const StateDetail: React.FC = (props: any) => {
                 <Flex direction="row">
                   <VideocamOutlinedIcon />
                   <Text ml="0.5rem" wordBreak="break-all">
-                    <Button colorScheme="blue" size="sm" onClick={handleZoomButton}>Masuk ZOOM</Button> 
+                    <Button
+                      colorScheme="blue"
+                      size="sm"
+                      onClick={handleZoomButton}
+                    >
+                      Masuk ZOOM
+                    </Button>
                   </Text>
                 </Flex>
                 <Heading mt="1.2rem" fontSize={"1rem"} fontWeight={700}>

@@ -249,6 +249,11 @@ const updateChapterById = async (homeChapterID: string, data: any) => {
   return request;
 };
 
+const getDataMalpun = async () => {
+  const request = await axios.get(`${baseUrl}/panit/malpun`, config);
+  return request.data;
+};
+
 export default {
   tambahHome,
   tambahMedia,
@@ -278,4 +283,5 @@ export default {
   updateState,
   verifyPanitia,
   verifyOrganisator,
+  getDataMalpun,
 };

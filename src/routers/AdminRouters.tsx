@@ -107,6 +107,10 @@ const AdminRouters = (props: any) => {
                 path="/admin/edit-mahasiswa/:nim"
                 component={Dashboards.EditMahasiswa}
               />
+              <Route
+                path="/admin/daftar-malpun"
+                component={Dashboards.daftarMalpun}
+              />
             </Switch>
           </DoubleProtectedRoute>
           <Route path="/admin/*" render={() => <Redirect to="/404" />} />

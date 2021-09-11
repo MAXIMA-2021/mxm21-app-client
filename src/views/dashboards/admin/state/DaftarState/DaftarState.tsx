@@ -115,9 +115,19 @@ const DaftarState: React.FC = () => {
     },
     {
       name: "registered",
-      label: "registered",
+      label: "Registered",
       options: {
         display: false,
+        customHeadLabelRender: ({ index, ...column }) => (
+          <Text
+            key={index}
+            fontWeight="bold"
+            fontFamily="Rubik"
+            fontSize="1.1em"
+          >
+            {column.label}
+          </Text>
+        ),
       },
     },
     {

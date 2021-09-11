@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Flex, Image, Text, createIcon, useMediaQuery } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Malpun, MxmLogoText } from "../../../assets";
-import { dermaExpress } from "../../../assets/beranda";
+import { dermaExpress, jacquelleBeauty, lokalate, moonChicken } from "../../../assets/beranda";
 import { MxmButton } from "../../../shared/styled/buttons";
 import "./MalpunCover.scss";
 import { Palette } from "../../../types/enums";
@@ -66,7 +66,8 @@ const MalpunCover = () => {
       bgColor="#1C3261"
       alignItems="center"
       justifyContent="space-between"
-    >
+      overflow="hidden"
+    >iya 
       <Flex
         w="100%"
         alignItems="center"
@@ -90,13 +91,31 @@ const MalpunCover = () => {
             <Text className="malpun-sponsor">
               Sponsored
               {isShorterThan768px && <br />}
-              by
+              {" "}by
             </Text>
+            <Flex direction={{ base: "column", md: "row" }}>
             <Image
               src={dermaExpress}
               alt="Logo Derma Express"
               className="malpun-sponsor-img"
             />
+            <Image
+              src={moonChicken}
+              alt="Logo Derma Express"
+              className="malpun-sponsor-img"
+            />
+            </Flex>
+            <Flex direction={{ base: "column", md: "row" }}>
+            <Image
+              src={jacquelleBeauty}
+              alt="Logo Derma Express"
+              className="malpun-sponsor-img"
+            />
+            <Image
+              src={lokalate}
+              alt="Logo Derma Express"
+              className="malpun-sponsor-img"
+            /></Flex>
           </Flex>
         </motion.div>
         <motion.div
@@ -156,7 +175,7 @@ const MalpunCover = () => {
           <Link to="/malpun/welcome">
             <MxmButton colorScheme="red-yellow" padding="1.5rem">
               <Text
-                fontStyle="Rubik"
+                fontFamily="Rubik"
                 fontWeight="500"
                 fontSize={{ base: "1.2rem", md: "2rem" }}
               >

@@ -5,9 +5,8 @@ import {
   Text,
   Box,
   createIcon,
-  useMediaQuery,
 } from "@chakra-ui/react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MxmButton } from "../../../shared/styled/buttons";
 import { MalpunMaxi, MalpunXima } from "../../../assets/malpun";
