@@ -82,7 +82,7 @@ const HeroContainer = () => {
             className="btn-linear-gradient"
             variants={buttonSlideVariant}
           >
-            <Link to="/auth/daftar">Buat akun sekarang!</Link>
+            <Link to="/malpun">Dapatkan Lucky Number!</Link>
           </motion.button>
         </Flex>
       </Flex>
